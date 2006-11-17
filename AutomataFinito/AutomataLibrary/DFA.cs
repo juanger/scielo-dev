@@ -100,7 +100,7 @@ public class DFA : IFA {
 			}
 		}
 		
-		delta = ndelta;
+		this.delta = ndelta;
 		
 		int qcount = 0;
 		string [] qstates = new string [newstates.Count];

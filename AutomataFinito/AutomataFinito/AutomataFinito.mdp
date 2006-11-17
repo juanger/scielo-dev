@@ -3,7 +3,7 @@
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
       <Output directory="./bin/Debug" assembly="AutomataFinito" />
       <Build debugmode="True" target="Exe" />
-      <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" clr-version="Net_1_1" />
+      <Execution runwithwarnings="True" commandlineparameters="--gra ../../../AutomataLibrary/Data/gram-001.xml &quot;001&quot;" consolepause="False" runtime="MsNet" clr-version="Net_1_1" />
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
     <Configuration name="Release" ctype="DotNetProjectConfiguration">
