@@ -107,7 +107,7 @@ public class DFA : IFA {
 		foreach (object o in newstates)
 			qstates [qcount++] = (string) o;
 			
-		states = qstates;
+		this.states = qstates;
 		string [] ofstates = nfa.FState;
 		ArrayList list = new ArrayList ();
 		
@@ -117,6 +117,7 @@ public class DFA : IFA {
 					list.Add (sub);
 					break;
 				}
+		
 		string [] farray = new string [list.Count];
 		list.CopyTo (farray);
 		f_states = farray;
