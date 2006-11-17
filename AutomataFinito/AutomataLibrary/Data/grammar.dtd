@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!ELEMENT sym (#PCDATA)>
+
+<!ELEMENT alph (sym)*>
+
+<!ELEMENT str (epsilon|(sym)+)>
+
+<!ELEMENT epsilon EMPTY>
+
+<!ELEMENT left (str)>
+
+<!ELEMENT right (str)>
+
+<!ELEMENT p (left, right)>
+
+<!ELEMENT productionSet (p)*>
+
+<!ELEMENT description (#PCDATA)>
+
+<!ELEMENT gram (description?,alph,alph,productionSet,sym)>

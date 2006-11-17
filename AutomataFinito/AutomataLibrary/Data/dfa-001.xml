@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding="iso-8859-1" ?>
+
+<!DOCTYPE dfa SYSTEM "dfa.dtd">
+
+<!-- Un DFA  M es un quntuplo (Q,Sigma,delta,q0,F) -->
+
+<dfa>
+    <description>Este automata acepta cadenas que tengan como subcadena 001</description>
+
+   <stateSet>
+	<state>q</state>
+	<state>q0</state>
+	<state>q00</state>
+	<state>q001</state>
+   </stateSet>
+
+   <alph>
+	<sym>0</sym>
+	<sym>1</sym>
+   </alph>
+
+   <delta>
+	<trans> <state>q</state> <sym>0</sym> <state>q0</state> </trans>
+	<trans> <state>q</state> <sym>1</sym> <state>q</state> </trans>
+	<trans> <state>q0</state> <sym>0</sym> <state>q00</state> </trans>
+	<trans> <state>q0</state> <sym>1</sym> <state>q</state> </trans>
+	<trans> <state>q00</state> <sym>0</sym> <state>q00</state> </trans>
+	<trans> <state>q00</state> <sym>1</sym> <state>q001</state> </trans>
+	<trans> <state>q001</state> <sym>0</sym> <state>q001</state> </trans>
+	<trans> <state>q001</state> <sym>1</sym> <state>q001</state> </trans>
+   </delta>
+
+   <state>q</state>
+
+   <stateSet>
+	   <state>q001</state>
+   </stateSet>
+
+</dfa>

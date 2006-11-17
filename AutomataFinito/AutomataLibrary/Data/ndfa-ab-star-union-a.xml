@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding="iso-8859-1" ?>
+
+<!DOCTYPE ndfa SYSTEM "ndfa.dtd">
+
+<ndfa> 
+
+<description> Acepta el lenguaje L = L1 U L2, donde: L1 = (ab)*, L2 = {a}</description>
+
+<stateSet> <state>q0</state> <state>q1</state> <state>q2</state> <state>q3</state> <state>q4</state> </stateSet> 
+
+<alph> <sym>a</sym> <sym>b</sym> </alph> 
+
+<delta> 
+	<trans> <state>q0</state> <sym>a</sym> <stateSet> <state>q1</state> <state>q3</state> </stateSet> </trans> 
+	<trans> <state>q0</state> <sym>b</sym> <stateSet> <state>q4</state> </stateSet> </trans> 
+	<trans> <state>q1</state> <sym>b</sym> <stateSet> <state>q2</state> </stateSet> </trans> 
+	<trans> <state>q2</state> <sym>a</sym> <stateSet> <state>q1</state> </stateSet> </trans> 
+	<trans> <state>q2</state> <sym>b</sym> <stateSet> <state>q4</state> </stateSet> </trans> 
+	<trans> <state>q3</state> <sym>a</sym> <stateSet> <state>q4</state> </stateSet> </trans> 
+	<trans> <state>q3</state> <sym>b</sym> <stateSet> <state>q4</state> </stateSet> </trans> 
+	<trans> <state>q4</state> <sym>a</sym> <stateSet> <state>q4</state> </stateSet> </trans> 
+	<trans> <state>q4</state> <sym>b</sym> <stateSet> <state>q4</state> </stateSet> </trans>
+</delta>
+
+<stateSet> <state>q0</state> </stateSet> 
+<stateSet> <state>q0</state> <state>q2</state> <state>q3</state> </stateSet> 
+
+</ndfa>
+
+
+

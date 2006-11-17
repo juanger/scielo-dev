@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!ELEMENT sym (#PCDATA)>
+
+<!ELEMENT alph (sym)*>
+
+<!ELEMENT str (epsilon|(sym)+)>
+
+<!ELEMENT epsilon EMPTY>
+
+<!ELEMENT state (#PCDATA)>
+<!ATTLIST state xpos CDATA #IMPLIED>
+<!ATTLIST state ypos CDATA #IMPLIED>
+
+<!ELEMENT stateSet (state)*>
+
+<!-- Para DFA -->
+<!ELEMENT description (#PCDATA)>
+
+<!ELEMENT trans (state, sym, state)>
+
+<!ELEMENT delta (trans)*>
+
+<!ELEMENT dfa (description?, stateSet, alph, delta, state, stateSet)>

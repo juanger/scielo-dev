@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<UserCombinePreferences filename="/home/hector/Projects/AutomataFinito/AutomataFinito.mds">
+  <Files>
+    <File filename="./AutomataLibrary/Data/dfa.dtd" />
+    <File filename="./AutomataLibrary/Data/dfa-002.xml" />
+    <File filename="./AutomataLibrary/Data/gram-001.xml" />
+    <File filename="./AutomataLibrary/DFAReader.cs" />
+    <File filename="./AutomataLibrary/FAReader.cs" />
+  </Files>
+  <Views>
+    <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ProjectPad">
+      <TreeView>
+        <Node expanded="True">
+          <Node name="AutomataFinito" expanded="True" />
+          <Node name="AutomataLibrary" expanded="True">
+            <Node name="Data" expanded="True" />
+            <Node name="FAReader.cs" expanded="False" selected="True" />
+          </Node>
+        </Node>
+      </TreeView>
+    </ViewMemento>
+    <ViewMemento Id="MonoDevelop.Ide.Gui.Pads.ClassPad">
+      <TreeView>
+        <Node expanded="True" selected="True">
+          <Node name="AutomataFinito" expanded="True">
+            <Node name="AutomataFinito" expanded="True" />
+          </Node>
+          <Node name="AutomataLibrary" expanded="True">
+            <Node name="AutomataLibrary" expanded="True" />
+          </Node>
+        </Node>
+      </TreeView>
+    </ViewMemento>
+    <ViewMemento Id="MonoDevelop.NUnit.TestPad">
+      <TreeView>
+        <Node expanded="True">
+          <Node name="AutomataLibrary" expanded="True">
+            <Node name="AutomataLibrary" expanded="True">
+              <Node name="TestContext" expanded="True" />
+              <Node name="TestDFA" expanded="True" selected="True" />
+            </Node>
+          </Node>
+        </Node>
+      </TreeView>
+    </ViewMemento>
+    <ViewMemento Id="MonoQuery.DatabasePad">
+      <TreeView>
+        <Node expanded="False" selected="True" />
+      </TreeView>
+    </ViewMemento>
+  </Views>
+  <Properties>
+    <Properties>
+      <Property key="ActiveConfiguration" value="Debug" />
+      <Property key="ActiveWindow" value="/home/hector/Projects/AutomataFinito/AutomataLibrary/FAReader.cs" />
+    </Properties>
+  </Properties>
+</UserCombinePreferences>

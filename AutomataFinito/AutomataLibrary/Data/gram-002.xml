@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding="iso-8859-1" ?>
+
+        <!DOCTYPE gram SYSTEM "grammar.dtd">
+
+<gram>
+
+<description>Gramtica tipo3, genera el lenguaje sobre {0,1}^{*} que tiene como subcadena 001</description>
+
+  <!--  Alfabeto N  -->
+  <alph><sym>A</sym><sym>D</sym><sym>C</sym><sym>B</sym></alph>
+
+  <!--  Alfabeto T  -->
+  <alph><sym>1</sym><sym>0</sym></alph>
+
+  <!--  Producciones  -->
+  <productionSet>
+
+    <p> <left><str><sym>D</sym></str></left> <right><str><sym>0</sym><sym>D</sym></str> </right></p>
+
+    <p> <left><str><sym>D</sym></str></left> <right><str><sym>1</sym></str></right> </p>
+
+    <p> <left><str><sym>D</sym></str></left> <right> <str><sym>0</sym></str></right></p>
+
+    <p> <left><str><sym>A</sym></str></left> <right> <str><sym>1</sym><sym>A</sym></str></right> </p>
+
+    <p> <left><str><sym>A</sym></str></left> <right> <str><epsilon/></str></right> </p>
+
+    <p> <left><str><sym>B</sym></str></left> <right> <str><sym>1</sym><sym>A</sym></str> </right> </p>
+
+    <p> <left><str><sym>C</sym></str></left> <right> <str><sym>1</sym></str></right> </p>
+
+    <p> <left><str><sym>C</sym></str></left> <right> <str><sym>1</sym><sym>DE</sym></str> </right></p>
+
+    <p> <left><str><sym>A</sym></str></left> <right> <str><sym>0</sym><sym>B</sym></str></right> </p>
+
+    <p> <left><str><sym>B</sym></str></left> <right> <str><sym>0</sym><sym>C</sym></str></right> </p>
+
+    <p> <left><str><sym>D</sym></str></left> <right> <str><sym>1</sym><sym>D</sym></str></right> </p>
+
+    <p> <left><str><sym>C</sym></str></left> <right> <str><sym>0</sym><sym>C</sym></str></right> </p>    
+
+  </productionSet>
+
+<!--  Smbolo  inicial S  -->
+<sym>A</sym>
+</gram>

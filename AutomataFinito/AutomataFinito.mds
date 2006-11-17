@@ -1,0 +1,23 @@
+<Combine defaultDeployTarget="Tarball" name="AutomataFinito" fileversion="2.0" outputpath="./build/bin/" MakePkgConfig="False" MakeLibPC="True">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="CombineConfiguration">
+      <Entry build="True" name="AutomataFinito" configuration="Debug" />
+      <Entry build="True" name="AutomataLibrary" configuration="Debug" />
+    </Configuration>
+    <Configuration name="Release" ctype="CombineConfiguration">
+      <Entry build="True" name="AutomataFinito" configuration="Release" />
+      <Entry build="True" name="AutomataLibrary" configuration="Release" />
+    </Configuration>
+  </Configurations>
+  <DeployTargets>
+    <DeployTarget Handler="MonoDevelop.Autotools.Deployer" Name="Tarball" TargetDirectory="/home/hector/Projects/Tarballs" DefaultConfiguration="Release" ctype="TarballDeployTarget" />
+  </DeployTargets>
+  <StartMode startupentry="AutomataFinito" single="True">
+    <Execute type="None" entry="AutomataFinito" />
+    <Execute type="None" entry="AutomataLibrary" />
+  </StartMode>
+  <Entries>
+    <Entry filename="./AutomataFinito/AutomataFinito.mdp" />
+    <Entry filename="./AutomataLibrary/AutomataLibrary.mdp" />
+  </Entries>
+</Combine>

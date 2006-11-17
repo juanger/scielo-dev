@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding="iso-8859-1" ?>
+<!DOCTYPE dfa SYSTEM "dfa.dtd">
+
+<!-- Un DFA  M es un quíntuplo (Q,Sigma,delta,q0,F) -->
+
+<dfa>
+
+  <description> Este autómata reconoce el lenguaje 0^{*}10^{+}</description>
+
+  <stateSet>
+	<state>A</state>
+	<state>B</state>
+	<state>C</state>
+  </stateSet>
+
+   <alph>
+	<sym>0</sym>
+	<sym>1</sym>
+   </alph>
+
+   <delta>
+	<trans> <state>A</state> <sym>0</sym> <state>A</state> </trans>
+	<trans> <state>A</state> <sym>1</sym> <state>B</state> </trans>
+	<trans> <state>B</state> <sym>0</sym> <state>C</state> </trans>
+	<trans> <state>C</state> <sym>0</sym> <state>C</state> </trans>
+   </delta>
+
+   <state>A</state>
+
+   <stateSet>
+	   <state>C</state>
+   </stateSet>
+
+</dfa>

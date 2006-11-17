@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding="iso-8859-1" ?>
+
+<!DOCTYPE ndfa SYSTEM "ndfa.dtd">
+
+<!-- Un NDFA  M es un quíntuplo (Q,Sigma,delta,q0,F) -->
+
+<ndfa>
+    <description>Este autómata acepta (01^{+})^{+}</description>
+
+  <!--    Conjunto de estados Q -->
+   <stateSet>
+	<state>A</state>
+	<state>B</state>
+	<state>C</state>
+   </stateSet>
+
+  <!--    Alfabeto de entrada Sigma -->
+   <alph>
+	<sym>0</sym>
+	<sym>1</sym>
+   </alph>
+
+  <!--    Función de transición delta -->
+   <delta>
+	<trans> <state>A</state> <sym>0</sym>   <stateSet><state>B</state>  </stateSet>  </trans>
+	<trans> <state>B</state> <sym>1</sym>   <stateSet><state>B</state> <state>C</state> <state>A</state> </stateSet>  </trans>
+   </delta>
+
+  <!--    Estado inicial q0 -->
+   <stateSet> <state>A</state>    </stateSet>
+
+  <!--    Conjunto de estados finales F -->
+   <stateSet>
+	   <state>C</state>
+   </stateSet>
+
+</ndfa>
