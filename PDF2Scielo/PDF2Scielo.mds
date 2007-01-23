@@ -3,19 +3,23 @@
     <Configuration name="Debug" ctype="CombineConfiguration">
       <Entry build="True" name="PDF2Scielo" configuration="Debug" />
       <Entry build="True" name="PDF2Text" configuration="Debug" />
+      <Entry build="True" name="MarkupHTML" configuration="Debug" />
     </Configuration>
     <Configuration name="Release" ctype="CombineConfiguration">
       <Entry build="True" name="PDF2Scielo" configuration="Release" />
       <Entry build="True" name="PDF2Text" configuration="Release" />
+      <Entry build="True" name="MarkupHTML" configuration="Release" />
     </Configuration>
   </Configurations>
   <DeployTargets />
   <StartMode startupentry="PDF2Scielo" single="True">
     <Execute type="None" entry="PDF2Scielo" />
     <Execute type="None" entry="PDF2Text" />
+    <Execute type="None" entry="MarkupHTML" />
   </StartMode>
   <Entries>
     <Entry filename="./PDF2Scielo/PDF2Scielo.mdp" />
     <Entry filename="./PDF2Text/PDF2Text.mdp" />
+    <Entry filename="./MarkupHTML/MarkupHTML.mdp" />
   </Entries>
 </Combine>
