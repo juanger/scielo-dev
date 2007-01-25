@@ -1,2 +1,9 @@
+2007-01-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/MyClass.cs, PDF2Text/PDF2Text.mdp, PDF2Text/DocReader.cs,
+	  PDF2Scielo/Main.cs: Cambio de nombre a DocReader de la clase
+	  lectora de PDF, uso de GetSize () para obtener las dimensiones de
+	  los articulos.
+
 2007-01-08  Hector E. Gomez M <hectoregm@gmail.com>
 	* Initial Commit of Proyect.

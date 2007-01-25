@@ -10,7 +10,7 @@ public class MainClass {
 	public static void Main(string[] args)
 	{
 			Application.Init ();
-			Article art = new Article (args[0]);
+			DocReader art = new DocReader (args[0]);
 			art.CreateFile ();
 	}
 }
