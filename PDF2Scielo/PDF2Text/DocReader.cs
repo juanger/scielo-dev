@@ -15,7 +15,7 @@ public class DocReader {
 	public DocReader (string filepath)
 	{
 		Uri uri = new Uri (filepath);
-		Console.WriteLine ("1:" + uri.ToString ());
+		Console.WriteLine ("DEBUG:" + " FILE = " + uri.ToString ());
 
 		// Mainloop needed to initialize the use of poppler.
 		//MainLoop main = new MainLoop ();

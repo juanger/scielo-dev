@@ -4,9 +4,9 @@ using System;
 using Scielo.PDF2Text;
 
 namespace Scielo {
-namespace Prueba {
+namespace PDF2Scielo {
 
-public class MainClass {
+public class Driver {
 	public static void Main(string[] args)
 	{
 			Application.Init ();
