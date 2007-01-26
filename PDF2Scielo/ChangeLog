@@ -1,5 +1,11 @@
 2007-01-25  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/DocReader.cs, PDF2Scielo/AssemblyInfo.cs,
+	  PDF2Scielo/Driver.cs, PDF2Scielo/PDF2Scielo.mdp: Primera version
+	  del frontend pdf2scielo.
+
+2007-01-25  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/DocReader.cs, PDF2Scielo/Driver.cs, PDF2Scielo/Main.cs,
 	  PDF2Scielo/PDF2Scielo.mdp: Cambio a la clase Driver.cs que es el
 	  frontend de linea de comandos de pdf2scielo

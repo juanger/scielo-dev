@@ -1,4 +1,13 @@
-// project created on 1/22/2007 at 4:46 PM
+//
+// AssemblyInfo.cs: Assembly Information.
+//
+// Author:
+//   Hector E. Gomez Morales (hectoregm@gmail.com)
+//   Anaid V. Velazquez (anaidv@gmail.com)
+//
+// Copyright (C) 2007 UNAM DGB
+//
+
 using Gtk;
 using System;
 using System.IO;
@@ -12,9 +21,8 @@ public class DocReader {
 	private Document doc;
 	private Rectangle rec;
 	
-	public DocReader (string filepath)
+	public DocReader (Uri uri)
 	{
-		Uri uri = new Uri (filepath);
 		Console.WriteLine ("DEBUG:" + " FILE = " + uri.ToString ());
 
 		// Mainloop needed to initialize the use of poppler.
@@ -31,19 +39,23 @@ public class DocReader {
 				Environment.Exit (1);
 			}
 		}
+
+		if (doc != null) {
 		
-		// Creation of a Poppler.Rectangle that is the size of the page of the document.
-		Page firstpage = doc.GetPage (0);
-		double width, height;
+			// Creation of a Poppler.Rectangle that is the size of the page of the document.
+			Page firstpage = doc.GetPage (0);
+			double width, height;
 		
-		firstpage.GetSize (out width, out height);
+			firstpage.GetSize (out width, out height);
 		
-		Console.WriteLine ("DEBUG: " + "width = " + width + " height = " + height);
-		rec = new Rectangle ();
-		rec.X1 = 0.0;
-		rec.X2 = width;
-		rec.Y1 = 0.0;
-		rec.Y2 = height;
+			Console.WriteLine ("DEBUG: " + "width = " + width + " height = " + height);
+			rec = new Rectangle ();
+			rec.X1 = 0.0;
+			rec.X2 = width;
+			rec.Y1 = 0.0;
+			rec.Y2 = height;
+		} else
+			rec = null;
 	}
 	
 	public string GetText ()
@@ -61,11 +73,12 @@ public class DocReader {
                 return result;
 	}
 	
-	public void CreateFile ()
+	public void CreateFile (string filepath, string filename)
 	{
+		string name = filename + ".txt";
 		FileStream filestream = null;
 
-                using (filestream = File.Create ("/home/hector/text.txt")) {
+                using (filestream = File.Create (filepath + Path.DirectorySeparatorChar + name)) {
                 	StreamWriter writer = new StreamWriter (filestream);
                 	writer.Write (GetText ());
                 	writer.Flush ();

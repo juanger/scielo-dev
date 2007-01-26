@@ -1,7 +1,7 @@
 <Project name="PDF2Scielo" fileversion="2.0" language="C#" clr-version="Net_1_1" ctype="DotNetProject">
   <Configurations active="Debug">
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Debug" assembly="PDF2Scielo" />
+      <Output directory="./bin/Debug" assembly="pdf2scielo" />
       <Build debugmode="True" target="Exe" />
       <Execution runwithwarnings="True" commandlineparameters="/compartido/atm/v17n1/pdf/v17n01a02.PDF" consolepause="True" runtime="MsNet" clr-version="Net_1_1" />
       <CodeGeneration compiler="Csc" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
