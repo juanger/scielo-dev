@@ -1,3 +1,11 @@
+2007-01-26  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/AssemblyInfo.cs, PDF2Text/DocReader.cs,
+	  PDF2Scielo/AssemblyInfo.cs, PDF2Scielo/Driver.cs,
+	  PDF2Scielo/PDF2Scielo.mdp: Mejor chequeo de error para pdf2scielo
+	  tambien se hizo un metodo CreateInstance para DocReader para
+	  regrear null si no se puede abrir el PDF con poppler.
+
 2007-01-25  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/DocReader.cs, PDF2Scielo/AssemblyInfo.cs,

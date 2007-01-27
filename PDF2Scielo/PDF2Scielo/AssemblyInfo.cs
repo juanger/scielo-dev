@@ -14,11 +14,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("PDF2Scielo")]
-[assembly: AssemblyDescription("Convierte un archivo PDF a un archivo HTML con formato SciELO")]
+[assembly: AssemblyDescription("Convierte un archivo PDF a un archivo HTML con formato SciELO.")]
 [assembly: AssemblyCompany("UNAM - DGB")]
 [assembly: AssemblyProduct("pdf2scielo")]
 [assembly: AssemblyCopyright("Copyright 2007 DGB UNAM")]
-[assembly: AssemblyVersion("0.0.1")]
+[assembly: AssemblyVersion("0.0.0.1")]
 
 //[assembly: AssemblyConfiguration("")]
 //[assembly: AssemblyTrademark("")]

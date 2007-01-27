@@ -21,41 +21,53 @@ public class DocReader {
 	private Document doc;
 	private Rectangle rec;
 	
-	public DocReader (Uri uri)
+	private DocReader (Document doc, Rectangle rec)
 	{
-		Console.WriteLine ("DEBUG:" + " FILE = " + uri.ToString ());
+		this.doc = doc;
+		this.rec = rec;
+	}
 
-		// Mainloop needed to initialize the use of poppler.
-		//MainLoop main = new MainLoop ();
-		//main.Run ();
-
+	public static DocReader CreateInstance (Uri uri)
+	{
+		Document document = null;
+		Rectangle rectangle;
+		
+		#if DEBUG
+		Console.WriteLine ("DEBUG: " + uri.ToString ());
+		#endif
+		
 		try {
-			doc = new Document (uri.ToString (), null);
+			document = new Document (uri.ToString (), null);
 		} catch (GLib.GException e) {
 		
-			//TODO: Authentication.
+			// TODO: Authentication.
 			if (e.Message.StartsWith ("Document is encrypted.")) {
 				Console.WriteLine ("FIXME: throw up an authentication dialog here...");
 				Environment.Exit (1);
 			}
 		}
 
-		if (doc != null) {
-		
-			// Creation of a Poppler.Rectangle that is the size of the page of the document.
-			Page firstpage = doc.GetPage (0);
+		if (document != null) {
+			// Creation of a Poppler.Rectangle that is the size of 
+			// the page of the document.
+			Page firstpage = document.GetPage (0);
 			double width, height;
 		
 			firstpage.GetSize (out width, out height);
 		
+			#if DEBUG
 			Console.WriteLine ("DEBUG: " + "width = " + width + " height = " + height);
-			rec = new Rectangle ();
-			rec.X1 = 0.0;
-			rec.X2 = width;
-			rec.Y1 = 0.0;
-			rec.Y2 = height;
+			#endif
+			
+			rectangle = new Rectangle ();
+			rectangle.X1 = 0.0;
+			rectangle.X2 = width;
+			rectangle.Y1 = 0.0;
+			rectangle.Y2 = height;
+			
+			return new DocReader (document, rectangle);
 		} else
-			rec = null;
+			return null;
 	}
 	
 	public string GetText ()
@@ -84,8 +96,7 @@ public class DocReader {
                 	writer.Flush ();
                 	writer.Close ();
                 }
-	}
-		
+	}	
 }
 }
 }
