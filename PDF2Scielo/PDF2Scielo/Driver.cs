@@ -1,5 +1,5 @@
 //
-// AssemblyInfo.cs: Assembly Information.
+// Driver.cs: Entry Point of the CLI frontend of pdf2scielo.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
@@ -13,6 +13,7 @@ using Gtk;
 using System;
 using System.IO;
 using Scielo.PDF2Text;
+using Scielo.MarkupHTML;
 
 namespace Scielo {
 namespace PDF2Scielo {

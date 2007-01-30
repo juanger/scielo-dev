@@ -1,5 +1,5 @@
 //
-// AssemblyInfo.cs: Assembly Information.
+// TestDocReader.cs: Unit tests for the DocReader class.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
@@ -15,8 +15,7 @@ namespace Scielo {
 namespace PDF2Text {
 
 [TestFixture()]
-public class TestDocReader
-{
+public class TestDocReader {
 	[Test]	
 	public void Case()
 	{

@@ -1,5 +1,15 @@
 2007-01-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestDocReader.cs, PDF2Text/DocReader.cs,
+	  MarkupHTML/MyClass.cs, MarkupHTML/Test,
+	  MarkupHTML/Test/TestConfiguration.cs, MarkupHTML/MarkupHTML.mdp,
+	  MarkupHTML/Configuration.cs, PDF2Scielo/Driver.cs,
+	  PDF2Scielo/PDF2Scielo.mdp: Commit inicial de la clase
+	  Configuration, ingreso de pruebas de unidad y cambios de los
+	  headers de los archivos.
+
+2007-01-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test, PDF2Text/Test/TestDocReader.cs, PDF2Text/PDF2Text.mdp:
 	  Commit inicial de folder de pruebas de la clase DocReader.
 

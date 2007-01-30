@@ -1,5 +1,5 @@
 //
-// AssemblyInfo.cs: Assembly Information.
+// DocReader.cs: Class that reads PDF files and outputs text.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
