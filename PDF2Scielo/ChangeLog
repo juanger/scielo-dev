@@ -1,3 +1,8 @@
+2007-01-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test, PDF2Text/Test/TestDocReader.cs, PDF2Text/PDF2Text.mdp:
+	  Commit inicial de folder de pruebas de la clase DocReader.
+
 2007-01-29  Anaid V. Velázquez <anaidv@gmail.com> 
 
 	* PDF2Text/DocReader.cs, PDF2Scielo/PDF2Scielo.mdp: Uso de

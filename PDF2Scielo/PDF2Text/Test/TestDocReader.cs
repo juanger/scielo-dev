@@ -1,0 +1,29 @@
+//
+// AssemblyInfo.cs: Assembly Information.
+//
+// Author:
+//   Hector E. Gomez Morales (hectoregm@gmail.com)
+//   Anaid V. Velazquez (anaidv@gmail.com)
+//
+// Copyright (C) 2007 UNAM DGB
+//
+
+using System;
+using NUnit.Framework;
+
+namespace Scielo {
+namespace PDF2Text {
+
+[TestFixture()]
+public class TestDocReader
+{
+	[Test]	
+	public void Case()
+	{
+		Uri uri = new Uri ("/foo/foo/foo.pdf");
+		DocReader reader = DocReader.CreateInstance (uri);
+		Assert.IsNull (reader, "DR01");
+	}
+}
+}
+}
