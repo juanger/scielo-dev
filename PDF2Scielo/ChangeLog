@@ -1,5 +1,11 @@
 2007-01-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* MarkupHTML/Test/TestConfiguration.cs, MarkupHTML/MarkupHTML.mdp,
+	  MarkupHTML/Configuration.cs: Commit de la implementacion de
+	  Configuration con sus pruebas de unidad respectivas.
+
+2007-01-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestDocReader.cs, PDF2Text/DocReader.cs,
 	  MarkupHTML/MyClass.cs, MarkupHTML/Test,
 	  MarkupHTML/Test/TestConfiguration.cs, MarkupHTML/MarkupHTML.mdp,

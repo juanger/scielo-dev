@@ -20,24 +20,24 @@ public class TestConfiguration {
 	[Test]
 	public void Case1 ()
 	{
-		Configuration test1 = new Configuration ("q", "a");
-		Configuration test2 = new Configuration ("q", "a");
+		Configuration test1 = new Configuration ("q", "a", "x");
+		Configuration test2 = new Configuration ("q", "a", "x");
 		Assert.AreEqual (test1, test2, "C01");
 	}
 
 	[Test]
 	public void Case2 ()
 	{
-		Configuration test1 = new Context ("q", "b");
-		Configuration test2 = new Context ("q", "b");
+		Configuration test1 = new Configuration ("q", "b", "y");
+		Configuration test2 = new Configuration ("q", "b", "y");
 		Assert.IsTrue (test1 == test2, "C02");
 	}
 
 	[Test]
 	public void Case3 ()
 	{
-		Context test1 = new Context ("q", "a");
-		Context test2 = new Context ("", "");
+		Configuration test1 = new Configuration ("q", "a", "z");
+		Configuration test2 = new Configuration ("", "", "");
 		Assert.IsNotNull (test1, "C03-A");
 		Assert.IsNotNull (test2, "C03-B");
 	}
@@ -46,8 +46,8 @@ public class TestConfiguration {
 	public void Case4 ()
 	{
 		int code1, code2;
-		Context test1 = new Context ("q", "a");
-		Context test2 = new Context ("q", "a");
+		Configuration test1 = new Configuration ("q", "a", "w");
+		Configuration test2 = new Configuration ("q", "a", "w");
 		code1 = test1.GetHashCode ();
 		code2 = test2.GetHashCode ();
 		Console.WriteLine ("test1 object has HashCode: {0}", code1);
