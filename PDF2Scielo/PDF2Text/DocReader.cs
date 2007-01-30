@@ -10,6 +10,7 @@
 
 using Gtk;
 using System;
+using System.Text;
 using System.IO;
 using Poppler;
 
@@ -73,16 +74,20 @@ public class DocReader {
 	public string GetText ()
 	{
 		Page page;
-		string result = "";
+		int capacity, count;
+		string pseparator;
 		
-                for (int i = 0; i < doc.NPages; i++) {
-                	int temp = i + 1;
+		capacity = doc.NPages * 4000;
+		StringBuilder result = new StringBuilder (capacity);
+		for (int i = 0; i < doc.NPages; i++) {
+			count = i + 1;
+			pseparator = "#!Scielo." + count.ToString () + " ";
                         page = doc.GetPage (i);
-                        result += page.GetText (rec);
-                        result += "#!Scielo." + temp.ToString () + " ";
+                        result.Append (page.GetText (rec));
+                        result.Append (pseparator);
                 }
                 
-                return result;
+                return result.ToString ();
 	}
 	
 	public void CreateFile (string filepath, string filename)

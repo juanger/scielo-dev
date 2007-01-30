@@ -1,3 +1,10 @@
+2007-01-29  Anaid V. Velázquez <anaidv@gmail.com> 
+
+	* PDF2Text/DocReader.cs, PDF2Scielo/PDF2Scielo.mdp: Uso de
+	  StringBuilder para ir guardando el texto extraido en cada pagina
+	  del documento. Con una capacidad inicial de 4000 multiplicado por
+	  el numero de paginas del documento.
+
 2007-01-26  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/AssemblyInfo.cs, PDF2Text/DocReader.cs,
