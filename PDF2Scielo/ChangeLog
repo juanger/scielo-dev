@@ -1,3 +1,8 @@
+2007-01-30  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* MarkupHTML/XReaderNPDA.cs, MarkupHTML/MarkupHTML.mdp: Commit para
+	  ingresar XReaderNPDA y ParserHTML al build en monodevelop.
+
 2007-01-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* MarkupHTML/Test/TestConfiguration.cs, MarkupHTML/MarkupHTML.mdp,

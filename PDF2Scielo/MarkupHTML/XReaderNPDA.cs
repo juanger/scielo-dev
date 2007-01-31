@@ -14,7 +14,7 @@ public class XReaderNPDA{
 
 
     public XmlNodeList deltaElements;
-    public XmlNode deltaTransitions [];
+    public XmlNode [] deltaTransitions;
 
    /**
     * This constructor reads the name file that contains the definition of the NPDA. 
@@ -49,7 +49,7 @@ public class XReaderNPDA{
 
    public static void Main(){
 
-      ReaderXMLNPDA rXN = new ReaderXMLNPDA("npdaAtm.xml");
+      XReaderNPDA rXN = new XReaderNPDA("npdaAtm.xml");
       rXN.getDeltaRelation();
    }
   
