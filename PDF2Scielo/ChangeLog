@@ -1,3 +1,8 @@
+2007-01-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* MarkupHTML/AssemblyInfo.cs, MarkupHTML/XReaderNPDA.cs,
+	  MarkupHTML/ParserHTML.cs: Cambio del formato del codigo.
+
 2007-01-30  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* MarkupHTML/XReaderNPDA.cs, MarkupHTML/MarkupHTML.mdp: Commit para
