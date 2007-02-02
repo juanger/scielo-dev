@@ -26,7 +26,7 @@ public class XReaderNPDA {
 	/**
 	* This constructor reads the name file that contains the definition of the NPDA.
 	*/
-	public XReaderNPDA( string namefile )
+	public XReaderNPDA (string namefile)
 	{
 		XmlDocument document = new XmlDocument ();
 		document.Load (namefile);

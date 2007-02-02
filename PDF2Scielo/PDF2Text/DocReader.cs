@@ -92,10 +92,12 @@ public class DocReader {
 	
 	public void CreateFile (string filepath, string filename)
 	{
-		string name = filename + ".txt";
+		string fullpath, name;
+		name = filename + ".txt";
+		fullpath = Path.Combine (filepath, name);
 		FileStream filestream = null;
 
-                using (filestream = File.Create (filepath + Path.DirectorySeparatorChar + name)) {
+                using (filestream = File.Create (fullpath)) {
                 	StreamWriter writer = new StreamWriter (filestream);
                 	writer.Write (GetText ());
                 	writer.Flush ();

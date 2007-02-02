@@ -1,4 +1,4 @@
-<Combine name="PDF2Scielo" fileversion="2.0">
+<Combine name="PDF2Scielo" fileversion="2.0" outputpath="./build/bin/" MakePkgConfig="False" MakeLibPC="True">
   <Configurations active="Debug">
     <Configuration name="Debug" ctype="CombineConfiguration">
       <Entry build="True" name="PDF2Scielo" configuration="Debug" />
