@@ -3,7 +3,7 @@
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
-//   Anaid V. Velazquez (anaidv@gmail.com)
+//   Anaid V. Velazquez Rivera (anaidv@gmail.com)
 //
 // Copyright (C) 2007 UNAM DGB
 //

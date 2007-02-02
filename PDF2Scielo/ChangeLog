@@ -1,5 +1,11 @@
 2007-02-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/AssemblyInfo.cs, PDF2Text/Test/TestDocReader.cs,
+	  PDF2Text/DocReader.cs, PDF2Scielo/Driver.cs: Se agrego el nombre
+	  completo de Anaid.
+
+2007-02-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/PDF2Text.mdp, PDF2Text/Test/TestDocReader.cs,
 	  PDF2Text/DocReader.cs, MarkupHTML/XReaderNPDA.cs,
 	  PDF2Scielo/PDF2Scielo.mdp, PDF2Scielo.mds: Se cambio el uso de
