@@ -9,7 +9,7 @@
        <mkdir dir="bin/Debug" />
        <csc target="library" output="./bin/Debug/MarkupHTML.dll" debug="${debug}">
           <sources>
-             <include name="Configuration.cs" />
+             <include name="*.cs" />
           </sources>
        </csc>
    </target>
