@@ -125,7 +125,7 @@ public class XReaderNPDA {
 		XmlNodeList symbols = root.SelectNodes ("/pda/sym");	
 		XmlNode symbolNode = symbols.Item (0);
 		string value = symbolNode.FirstChild.Value;  
-
+		return value;
 	}
 
 	public string GetInitialState ()
