@@ -16,47 +16,48 @@ using System.Collections;
 namespace Scielo {
 namespace MarkupHTML {
 
-public class GStarSXQ{
+public class GStarSXQ {
 
-   protected string [] gammaStar;
-   protected string state;
+	protected string [] gammaStar;
+	protected string state;
 
-   public GStarSXQ(string [] symbols, string st){
-       gammaStar = symbols;
-       state = st;
-   }
+	public GStarSXQ (string [] symbols, string st)
+	{
+		gammaStar = symbols;
+		state = st;
+	}
 
-   public string [] GammaStar{
-       get {
- 	     return gammaStar;
- 	   }
-   }
+	public string [] GammaStar {
+		get {
+			return gammaStar;
+		}
+	}
 
-   public string State {
-       get {
- 	     return state;
- 	   }
-   }
+	public string State {
+		get {
+			return state;
+		}
+	}
 
-   public override string ToString(){
-       
-          ArrayList elements = new ArrayList( gammaStar);
- 	  return ("symbols::"+elements.ToString()+"::state::"+state);
- 	
-   }
+	public override string ToString()
+	{
+		ArrayList elements = new ArrayList (gammaStar);
+		return ("symbols::" + elements.ToString () + "::state::" + state);
+	}
 
-   public override bool Equals (Object obj){
-
+	public override bool Equals (Object obj)
+	{
 		if (obj == null || GetType () != obj.GetType ())
 			return false;
-			
+
 		GStarSXQ o = (GStarSXQ) obj;
 		return (state == o.state) && (gammaStar == o.gammaStar);
-    }
-    
-    public override int GetHashCode (){
+	}
+
+	public override int GetHashCode ()
+	{
 		return state.GetHashCode () ^ gammaStar.GetHashCode ();
-    }	
+	}	
 }
 }
 }

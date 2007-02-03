@@ -1,3 +1,9 @@
+2007-02-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* MarkupHTML/GStarSXQ.cs, MarkupHTML/XReaderNPDA.cs,
+	  MarkupHTML/MarkupHTML.mdp, MarkupHTML/ParserHTML.cs,
+	  MarkupHTML/NPDA.cs: Cambios de formato.
+
 2007-02-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/AssemblyInfo.cs, PDF2Text/Test/TestDocReader.cs,
