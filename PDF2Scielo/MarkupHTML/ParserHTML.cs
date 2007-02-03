@@ -19,6 +19,9 @@ public class ParserHTML : IEnumerable
 	
 	public ParserHTML (string source, char [] delimiters)
 	{
+	
+	         //ParserHTML.DisplayString(source);
+	         ParserHTML.FormatString(source);
 		// Parse the string into tokens:
 		elements = source.Split (delimiters);
 	}
@@ -63,6 +66,51 @@ public class ParserHTML : IEnumerable
 				return t.elements [position];
 			}
 		}
+		
+		
+	}
+	
+	//*********************************
+	// quitar esto
+	public static string[] LowNames = {
+        "NUL", "SOH", "STX", "ETX", "EOT", "ENQ", "ACK", "BEL", 
+    	"BS", "HT", "LF", "VT", "FF", "CR", "SO", "SI",
+    	"DLE", "DC1", "DC2", "DC3", "DC4", "NAK", "SYN", "ETB",
+    	"CAN", "EM", "SUB", "ESC", "FS", "GS", "RS", "US"};
+
+    	public static void DisplayString (string text){
+
+    		Console.WriteLine ("String length: {0}", text.Length);
+    		foreach (char c in text){
+        		if (c < 32) {
+            			Console.WriteLine ("<{0}> U+{1:x4}", ParserHTML.LowNames[c], (int)c);
+        		}
+        		else if (c > 127){
+            			Console.WriteLine ("(Possibly non-printable) U+{0:x4}", (int)c);
+        		}else{
+            			Console.WriteLine ("{0} U+{1:x4}", c, (int)c);
+        		}
+    		}
+	}
+	
+	public static void FormatString(string text){
+	
+	   char [] copy = text.ToCharArray();
+	   int line = (int) '\n';
+	   
+	   Console.Write("-----------------------------------el entero es::"+ line);
+	   
+	   /*for(int i=0; i<copy.Lenght; i++ ){
+	      if( (int)copy[i]==000a)
+	   }*/
+	   /*foreach (char c in text){
+	   
+	   }*/
+	}
+	
+	//**********************************
+	public string [] GetElements(){
+		return elements;
 	}
    
 }

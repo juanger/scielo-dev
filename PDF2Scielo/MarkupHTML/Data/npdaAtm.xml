@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding="iso-8859-1" ?>
+
+<!DOCTYPE stack SYSTEM "pda.dtd">
+
+<!--   Q = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10} -->
+<!--   Sigma = {epsilon, asterisc, \n, Key, words:, word:, Keyword:, Keywords:, 1., References, EOF} -->
+<!--   Gamma = {Z, Front, Body, Back, BF, BB, BBk} -->
+<!--   F = {q0, q1} -->
+
+<!--   d(q0, a, <epsilon/>) = { (q0, A) } -->
+<!--   d(q0, b, A) = { (q1, <epsilon/>) } -->
+<!--   d(q1, b, A) = { (q1, <epsilon/>) } -->
+
+<pda>
+  <description>  Pushdown automaton to separate the blocks front, body and back for the Atmosfera's Journal</description>
+
+<!--  El conjunto de estados Q  -->
+ <stateSet> <state>1</state>
+            <state>2</state>
+            <state>3</state>
+            <state>4</state>
+            <state>5</state>
+            <state>6</state>
+            <state>7</state>
+            <state>8</state>
+            <state>9</state>
+            <state>10</state>
+</stateSet>
+
+<!--  Input Alphabet Sigma  -->
+ <alph> 
+        <sym>epsilon</sym> 
+        <sym>asterisc</sym> 
+        <sym>\n</sym> 
+        <sym>Key</sym> 
+        <sym>words:</sym> 
+        <sym>word:</sym> 
+        <sym>Keyword:</sym> 
+        <sym>Keywords:</sym> 
+        <sym>1.</sym> 
+        <sym>References</sym> 
+        <sym>EOF</sym> 
+ </alph>
+
+<!--  Stack's Alphabet Gamma  -->
+ <alph> 
+       <sym>Z</sym> 
+       <sym>Front</sym>
+       <sym>Body</sym>
+       <sym>Back</sym>
+       <sym>BF</sym>
+       <sym>BB</sym>
+       <sym>BBk</sym>
+ </alph>
+
+
+<!--  Función de transición delta -->
+ <delta> 
+<!-- A transition -->
+   <trans> <state>1</state> <sym>asterisc</sym> <sym>Z</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>Front</sym><sym>Z</sym></str> <state>2</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+<!-- B transition -->
+   <trans> <state>2</state> <sym>asterisc</sym> <sym>Front</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym><sym>Front</sym></str> <state>2</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+<!-- C transition -->
+   <trans> <state>2</state> <sym>asterisc</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym></str><state>2</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- D transition -->
+   <trans> <state>2</state> <sym>\n</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym></str><state>3</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- E transition -->
+   <trans> <state>3</state> <sym>asterisc</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym></str><state>2</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- F transition -->
+   <trans> <state>3</state> <sym>Key</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym></str><state>6</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- G transition -->
+   <trans> <state>4</state> <sym>words</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym></str><state>4</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- H transition -->
+   <trans> <state>4</state> <sym>word</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym></str><state>4</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- I transition -->
+   <trans> <state>3</state> <sym>Keyword</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym></str><state>4</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- J transition -->
+   <trans> <state>3</state> <sym>Keywords</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym></str><state>4</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- K transition -->
+   <trans> <state>6</state> <sym>asterisc</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BF</sym></str><state>4</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- L transition -->
+   <trans> <state>4</state> <sym>\n</sym> <sym>BF</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>epsilon</sym></str><state>5</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!--M  transition -->
+   <trans> <state>5</state> <sym>1.</sym> <sym>Front</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>Body</sym></str><state>5</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- N transition -->
+   <trans> <state>5</state> <sym>asterisc</sym> <sym>Body</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BB</sym><sym>Body</sym></str><state>5</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- O transition -->
+   <trans> <state>5</state> <sym>asterisc</sym> <sym>BB</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BB</sym></str><state>5</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- O´ transition (change of states)-->
+   <trans> <state>7</state> <sym>asterisc</sym> <sym>BB</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BB</sym></str><state>5</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- P transition -->
+   <trans> <state>7</state> <sym>\n</sym> <sym>BB</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>epsilon</sym></str><state>8</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- Q transition -->
+   <trans> <state>5</state> <sym>References</sym> <sym>BB</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BB</sym></str><state>7</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- R transition -->
+   <trans> <state>8</state> <sym>asterisc</sym> <sym>Body</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>Back</sym></str><state>8</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- S transition -->
+   <trans> <state>8</state> <sym>asterisc</sym> <sym>Back</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BBk</sym><sym>Back</sym></str><state>8</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- T transition -->
+   <trans> <state>8</state> <sym>asterisc</sym> <sym>BBk</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>BBk</sym></str><state>8</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- U transition -->
+   <trans> <state>8</state> <sym>EOF</sym> <sym>BBk</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>epsilon</sym></str><state>9</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- V transition -->
+   <trans> <state>9</state> <sym>epsilon</sym> <sym>Back</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>epsilon</sym></str><state>9</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+<!-- W transition -->
+   <trans> <state>9</state> <sym>epsilon</sym> <sym>Z</sym>  
+	   <GammaStarSetXQ>
+	      <GammaStarXQ> <str><sym>Z</sym></str><state>10</state></GammaStarXQ>
+	   </GammaStarSetXQ>
+   </trans>
+
+ </delta>
+
+ <state>1</state>
+
+ <sym>Z</sym>
+
+ <stateSet><state>10</state></stateSet>
+
+</pda>

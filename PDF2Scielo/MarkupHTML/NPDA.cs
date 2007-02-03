@@ -11,7 +11,7 @@
 using System;
 using System.Xml;
 using System.Collections;
-
+using Scielo.PDF2Text;
 
 using System.IO;
 
@@ -46,15 +46,15 @@ public class NPDA{
    
    public NPDA(string filename, string [] input){
       
-      XReaderNPDA xr = new XReaderNPDA("npdaAtm.xml");
+      XReaderNPDA xr = new XReaderNPDA( filename );
       deltaTransitions = xr.GetDelta();
       sigmaAlphabet = xr.GetSigma();
       gammaAlphabet = xr.GetGamma();
       symbolStack = xr.GetSymbolStack();     
       initialState = xr.GetInitialState();
-
       inputString  = new ArrayList(input); 
       currentState = initialState;
+      currentToken = (string)inputString[head];
       stack = new Stack();
      
    }
@@ -68,21 +68,35 @@ public class NPDA{
    }
 
    public void RunMachine(){
-          
+      Console.WriteLine("entro");
       stack.Push(symbolStack);
+      MatchSymbol();
+      Configuration tmp = new Configuration(initialState,
+                                            currentToken,
+                                            (string)stack.Peek() );
+      
+      Console.WriteLine("*********************state:"+initialState+
+                        "" );
+      nextConfiguration = (GStarSXQ) deltaTransitions[tmp];
      
-      string currentToken = (string) inputString[head];
+      //string currentToken = (string) inputString[head];
       MatchSymbol();
         
       while( DoTransition(currentToken) ){
+         
+         Console.WriteLine("hiiiiiiiiiiiiiii ");
+         Console.WriteLine("*************(configuration::state::"+currentState+
+                                                        "::in::"+currentToken+
+                                                    "::glance::"+stack.Peek()+
+                                                   ")::entrada::"+inputString[head]);
          head++;
          UpdateStack();
          currentToken = (string) inputString [head];   
          MatchSymbol();
       }
 
-      /*if(head==inputString.lenght+1 && stack.peek()==symbolStack && currentState=="10")
-        Console.WriteLine("uffffffffffffffff ............ por fin!!! ");  */
+      if(head==inputString.Count+1 && (string)stack.Peek()==symbolStack && currentState=="10")
+        Console.WriteLine("uffffffffffffffff ............ por fin!!! ");
              
    }
 
@@ -105,6 +119,13 @@ public class NPDA{
        
        Configuration config = new Configuration (currentState, cInput.ToString(), glance);
        nextConfiguration = (GStarSXQ) deltaTransitions[config];
+       
+       if(nextConfiguration == null )
+         Console.WriteLine("*****************aqui esta**********");
+   
+       if(currentState == null )
+         Console.WriteLine("*****************aqui esta state**********");
+       
        currentState = nextConfiguration.State;
  	   
        if(nextConfiguration == null)            
@@ -125,19 +146,37 @@ public class NPDA{
       return true;     
    }
 
-   /*public static void Main(){
-
+  public static void Main()
+   {
+      Console.WriteLine("empecé");
+      Gtk.Application.Init ();
+      Console.WriteLine("empecé1");
        
-      DocReader doc = DocReader.createInstance ( new Uri("/compartido/atm/v18n4/pdf/v18n4a02.pdf")); 
-      Tokens t = new Token(doc.getText(), 
+      Uri uri = new Uri ("/compartido/atm/v18n4/pdf/v18n4a02.pdf");
+      DocReader doc = DocReader.CreateInstance (uri);
+      Console.WriteLine("-----------------------------------------------------------------1");
+      ParserHTML t = new ParserHTML (doc.GetText(), 
                            new char[]{' '});
+      Console.WriteLine("-----------------------------------------------------------------2");
+      //Console.WriteLine( doc.GetText() );
+      Console.WriteLine("----------------------------------------------------------again");
+      
+      string [] data = t.GetElements();
+      int i=0;
+      foreach(string element in data ){
+         Console.WriteLine( "token:"+i+":"+element );       
+         i++;
+      }
+    
+      NPDA npda = new NPDA("/home/virginia/Projects/PDF2Scielo/MarkupHTML/Data/npdaAtm.xml", data );
+      
+      npda.PrepareInput();
+      npda.RunMachine();
+      //Hashtable hash = npda.GetDelta();
+      //npda.GetSymbolStack();
 
-      NPDA np = new NPDA("npdaAtm.xml");
-      Hashtable hash = rXN.GetDelta();
-      rXN.GetSymbolStack();
-
-      rXN.PrintKeysAndValues( hash );      
-   }*/
+      //npda.PrintKeysAndValues( hash );      
+   }
    
 
 }
