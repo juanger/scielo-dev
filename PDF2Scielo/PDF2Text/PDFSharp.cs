@@ -1,5 +1,5 @@
 //
-// DocReader.cs: Class that reads PDF files and outputs text.
+// PDFSharp.cs: Class that reads PDF files using poppler-sharp bindings and outputs text.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
@@ -18,17 +18,17 @@ using Poppler;
 namespace Scielo {
 namespace PDF2Text {
 
-public class DocReader {
+public class PDFSharp {
 	private Document doc;
 	private Rectangle rec;
 	
-	private DocReader (Document doc, Rectangle rec)
+	private PDFSharp (Document doc, Rectangle rec)
 	{
 		this.doc = doc;
 		this.rec = rec;
 	}
 
-	public static DocReader CreateInstance (Uri uri)
+	public static PDFSharp CreateInstance (Uri uri)
 	{
 		Document document = null;
 		Rectangle rectangle;
@@ -66,7 +66,7 @@ public class DocReader {
 			rectangle.Y1 = 0.0;
 			rectangle.Y2 = height;
 			
-			return new DocReader (document, rectangle);
+			return new PDFSharp (document, rectangle);
 		} else
 			return null;
 	}

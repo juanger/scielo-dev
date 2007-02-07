@@ -69,7 +69,7 @@ public class Driver {
 	public static void Main(string[] args)
 	{
 		Uri uri;
-		DocReader reader;
+		PDFSharp reader;
 		string filepath;
 		
 		if (args.Length == 1) {
@@ -90,7 +90,7 @@ public class Driver {
 		
 		if (uri != null && File.Exists (filepath)) {
 			Application.Init ();
-			reader = DocReader.CreateInstance (uri);
+			reader = PDFSharp.CreateInstance (uri);
 			
 			if (reader != null)
 				reader.CreateFile (Environment.CurrentDirectory,

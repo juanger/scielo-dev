@@ -1,5 +1,5 @@
 //
-// TestDocReader.cs: Unit tests for the DocReader class.
+// TestPDFSharp.cs: Unit tests for the PDFSharp class.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
@@ -15,13 +15,13 @@ namespace Scielo {
 namespace PDF2Text {
 
 [TestFixture()]
-public class TestDocReader {
+public class TestPDFSharp {
 
 	[Test]	
 	public void Case1 ()
 	{
 		Uri uri = new Uri ("/foo/foo/foo.pdf");
-		DocReader reader = DocReader.CreateInstance (uri);
+		PDFSharp reader = PDFSharp.CreateInstance (uri);
 		Assert.IsNull (reader, "DR01");
 	}
 	

@@ -1,3 +1,10 @@
+2007-02-07  Virginia Teodosio P <ainigriv_t@hotmail.com> 
+
+	* PDF2Text/Test/TestPDFSharp.cs, PDF2Text/Test/TestDocReader.cs,
+	  PDF2Text/PDF2Text.mdp, PDF2Text/PDFSharp.cs, PDF2Text/DocReader.cs,
+	  PDF2Scielo/Driver.cs: Cambio de nombre de la clase DocReader a
+	  PDFSharp.
+
 2007-02-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* MarkupHTML/XReaderNPDA.cs: Arreglando un typo.
