@@ -1,5 +1,10 @@
 2007-02-08  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
+	* PDF2Text/PDF2Text.mdp, PDF2Text/INormalizable.cs: Commit inicial de
+	  la interface INormalizable.
+
+2007-02-08  Virginia Teodosio P <ainigriv_t@hotmail.com> 
+
 	* PDF2Text/PDF2Text.mdp, PDF2Text/IExtractable.cs,
 	  PDF2Scielo/PDF2Scielo.mdp: Commit inicial de la Interfaz
 	  IExtractable
