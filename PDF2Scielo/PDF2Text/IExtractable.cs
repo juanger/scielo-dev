@@ -1,5 +1,6 @@
 //
-// AssemblyInfo.cs: Assembly Information.
+// IExtractable: Interface que define los metodos basicos para extraer informacion
+// de un documento.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)

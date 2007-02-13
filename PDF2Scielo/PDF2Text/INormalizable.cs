@@ -1,5 +1,6 @@
 //
-// AssemblyInfo.cs: Assembly Information.
+// INormalizable.cs: Interface que define los metodos basicos para darle formato
+// a un stream de texto.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)

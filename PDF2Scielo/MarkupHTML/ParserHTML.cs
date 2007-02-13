@@ -94,7 +94,6 @@ public class ParserHTML : IEnumerable
 	
 	public static void FormatString(string text)
 	{
-		char [] copy = text.ToCharArray ();
 		int line = (int) '\n';
 
 		Console.Write ("-----------------------------------el entero es::" + line);

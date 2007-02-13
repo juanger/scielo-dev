@@ -8,7 +8,6 @@
 // Copyright (C) 2007 UNAM DGB
 //
 
-
 using Gtk;
 using System;
 using System.IO;
