@@ -1,5 +1,6 @@
 //
-// AssemblyInfo.cs: Assembly Information.
+// AtmNormalizer: A class that implements a the interface INormalizer for
+// Atmosfera.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
