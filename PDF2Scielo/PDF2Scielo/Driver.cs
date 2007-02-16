@@ -68,7 +68,7 @@ public class Driver {
 	public static void Main(string[] args)
 	{
 		Uri uri;
-		PDFSharp reader;
+		PDFPoppler reader;
 		string filepath;
 		
 		if (args.Length == 1) {
@@ -78,7 +78,6 @@ public class Driver {
 				break;
 			case "--version":
 				Header ();
-
 				break;
 			}
 		} else
@@ -89,12 +88,13 @@ public class Driver {
 		
 		if (uri != null && File.Exists (filepath)) {
 			Application.Init ();
-			reader = PDFSharp.CreateInstance (uri);
+			reader = PDFPoppler.CreateInstance (uri);
 			
-			if (reader != null)
+			if (reader != null) {
 				reader.CreateFile (Environment.CurrentDirectory,
 					Path.GetFileNameWithoutExtension (filepath));
-			else {
+				reader.GetNonText ();
+			} else {
 				Console.WriteLine ("Error: El archivo {0} no es un archivo PDF", args [0]);
 				Environment.Exit (1);
 			}
