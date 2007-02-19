@@ -15,6 +15,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Threading;
+using System.Text.RegularExpressions;
 using System.IO;
 
 namespace Scielo {
@@ -51,15 +52,19 @@ public class PDFPoppler : IExtractable {
 	}
 	
 	public String GetText (string encoding)
-	{
-		//TODO: To be implemented.
-		return ExtractText ();
+	{	
+		//FIXME: Pruebas para remover encabezados y numeros de pagina usando Replace.
+		AtmNormalizer norm = new AtmNormalizer (ExtractText ());
+		norm.ReplacePattern (@"[\n]+\u000c[0-9]+[\n]+[a-zA-Z. ]+", "CAMBIO");
+		
+		return norm.Text;
 	}
 	
 	public Queue GetNonText ()
 	{
 		//TODO: To be implemented.
 		ExtractImages ();
+		
 		return null;
 	}
 	

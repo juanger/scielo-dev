@@ -51,10 +51,8 @@ public class AtmNormalizer : INormalizable {
 		string newstring;
 		Regex regex = new Regex (regexp);
 		
-		newstring = regex.Replace (source, substitute);
-
-		
-		return newstring != null? true: false;
+		source = regex.Replace (source, substitute);
+		return source != null? true: false;
 	}
 	
 	public bool ReplaceFootNotes (string regexp)

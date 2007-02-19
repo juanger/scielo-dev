@@ -1,5 +1,10 @@
 2007-02-19  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/PDFPoppler.cs, PDF2Text/AtmNormalizer.cs: Pruebas usando
+	  Replace de Regex para remover encabezados y numeros de pagina.
+
+2007-02-19  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestAtmNormalizer.cs, PDF2Text/PDFPoppler.cs,
 	  PDF2Text/AtmNormalizer.cs, PDF2Text/INormalizable.cs: Cambio de la
 	  Interfase INormalizable, se agrego la propiedad Text para obtener
