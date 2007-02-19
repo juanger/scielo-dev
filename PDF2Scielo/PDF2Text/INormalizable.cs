@@ -19,17 +19,19 @@ namespace PDF2Text {
 	
 public interface INormalizable {
 	
-	void setEncoding (string encoding);
+	void SetEncoding (string encoding);
 	
-	bool removePattern (string regexp);
+	bool RemovePattern (string regexp);
 	
-	bool insertNonText ();
+	bool InsertNonText ();
 	
-	bool replacePattern (string regexp, string substitute);
+	bool ReplacePattern (string regexp, string substitute);
 	
-	bool replaceFootNotes (string regexp);
+	bool ReplaceFootNotes (string regexp);
 	
-	bool replaceChars (ArrayList rechar);
+	bool ReplaceChars (ArrayList rechar);
+	
+	string Text { get; } 
 }
 }
 }

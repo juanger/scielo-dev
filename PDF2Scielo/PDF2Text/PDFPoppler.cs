@@ -34,7 +34,7 @@ public class PDFPoppler : IExtractable {
 	
 	public static PDFPoppler CreateInstance (Uri uri)
 	{
-		string docpath, temp, dir;
+		string docpath, temp;
 		docpath = uri.LocalPath;
 		
 		temp = Path.GetTempPath ();

@@ -20,8 +20,10 @@ namespace PDF2Text {
 [TestFixture()]
 public class TestAtmNormalizer {
 	
-	public void TestCase ()
+	[Test]
+	public void ReplacePattern ()
 	{
+		
 	}
 }
 }

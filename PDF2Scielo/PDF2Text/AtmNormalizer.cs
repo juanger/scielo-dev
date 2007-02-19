@@ -13,51 +13,66 @@
 //
 
 using System;
+using System.Text.RegularExpressions;
 using System.Collections;
 
 namespace Scielo {
 namespace PDF2Text {
 	
 public class AtmNormalizer : INormalizable {
+
+	private string source;
 		
-	public AtmNormalizer()
+	public AtmNormalizer (string source)
 	{
-	
+		this.source = source;
 	}
 	
-	public void setEncoding (string encoding)
-	{
-		//TODO: To be implemented.
-	}
-	
-	public bool removePattern (string regexp)
+	public void SetEncoding (string encoding)
 	{
 		//TODO: To be implemented.
-		return false;
 	}
 	
-	public bool insertNonText ()
+	public bool RemovePattern (string regexp)
 	{
 		//TODO: To be implemented.
 		return false;
 	}
 	
-	public bool replacePattern (string regexp, string substitute)
+	public bool InsertNonText ()
 	{
 		//TODO: To be implemented.
 		return false;
 	}
 	
-	public bool replaceFootNotes (string regexp)
+	public bool ReplacePattern (string regexp, string substitute)
+	{
+		//TODO: To be implemented.
+		string newstring;
+		Regex regex = new Regex (regexp);
+		
+		newstring = regex.Replace (source, substitute);
+
+		
+		return newstring != null? true: false;
+	}
+	
+	public bool ReplaceFootNotes (string regexp)
 	{
 		//TODO: To be implemented.
 		return false;
 	}
 	
-	public bool replaceChars (ArrayList rechar)
+	public bool ReplaceChars (ArrayList rechar)
 	{
 		//TODO: To be implemented.
 		return false;
+	}
+	
+	public string Text {
+		get {
+			return source;
+		}
 	}
 }
 }
