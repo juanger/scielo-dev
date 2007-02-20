@@ -25,6 +25,17 @@ public class TestAtmNormalizer {
 	{
 		
 	}
+	
+	[Test]
+	public void ReplaceBytes ()
+	{       
+	        string data = "sofisticadas, el Análisis de";
+	        Console.WriteLine("Prueba Descripcion:Reemplazo de: '' por '&#147;' ");
+	        Console.WriteLine ("La cadena antes de entrar::::" + data);
+		AtmNormalizer converter = new AtmNormalizer (data);
+		Console.WriteLine ("La cadena al salir::::" + converter.Text);
+		
+    	}
 }
 }
 }
