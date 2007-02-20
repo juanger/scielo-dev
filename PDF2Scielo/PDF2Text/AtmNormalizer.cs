@@ -27,10 +27,11 @@ public class AtmNormalizer : INormalizable {
 		
 	public AtmNormalizer (string source)
 	{
-	        byte [] code = {194,147};//"
-	        byte [] change = {38, 35, 49, 52, 55, 59};//&#147;
+	        //byte [] code = {194,147};//"
+	        //byte [] change = {38, 35, 49, 52, 55, 59};//&#147;
 		data_byte = ConverterBytesUTF8 (source);
-		ReplaceBytes (code, change);
+		//ReplaceBytes (code, change);
+		ReplaceCodesTable();
 		text = GetStringUnicode ();
 	}
 	
@@ -153,7 +154,31 @@ public class AtmNormalizer : INormalizable {
 		get {
 			return data_byte;
 		}
-	}	
+	}
+	
+	private ArrayList CodesList ()
+	{
+		ArrayList table = new ArrayList();
+		//" (start)
+		table.Add( new CodesTable (new byte[] {194,147},
+		                           new byte[] {38, 35, 49, 52, 55, 59}));
+		//" (end)                           
+		table.Add( new CodesTable (new byte[] {194,148},
+		                           new byte[] {38, 35, 49, 52, 56, 59}));
+		//" (end)                           
+		table.Add( new CodesTable (new byte[] {32,32},
+		                           new byte[] {38, 35, 49, 53, 48, 59}));                         
+		return table;                      
+	}
+	
+	private void ReplaceCodesTable( ){
+	       	ArrayList table = CodesList();
+	       	for (int i = 0; i < table.Count; i++){
+	       	        CodesTable codT = (CodesTable) table[i];
+			ReplaceBytes( codT.Code, codT.Sustitute );  				
+	       	}
+	}
+	
 }
 }
 }

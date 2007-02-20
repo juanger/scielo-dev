@@ -14,8 +14,8 @@
 
 using System;
 
-namespace PDF2Text
-{
+namespace Scielo {
+namespace PDF2Text{
 	
 	
 	public class CodesTable
@@ -42,4 +42,5 @@ namespace PDF2Text
 		}
 		
 	}
+}
 }
