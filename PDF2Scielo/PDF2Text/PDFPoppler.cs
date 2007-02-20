@@ -45,7 +45,7 @@ public class PDFPoppler : IExtractable {
 			Directory.CreateDirectory (tempdir);
 		
 		#if DEBUG
-		Console.WriteLine ("DEBUG: " + uri.LocalPath);
+		Console.WriteLine ("DEBUG: " + "Ruta del archivo: " + uri.LocalPath);
 		#endif
 		
 		return new PDFPoppler (docpath);
@@ -55,8 +55,8 @@ public class PDFPoppler : IExtractable {
 	{	
 		//FIXME: Pruebas para remover encabezados y numeros de pagina usando Replace.
 		AtmNormalizer norm = new AtmNormalizer (ExtractText ());
-		norm.ReplacePattern (@"[\n]+[\u000c]+[0-9]+[\n]+[a-zA-Z. \u00f1\u002f\u0050-\u00ff-]+[\n]+", " ");
-		norm.ReplacePattern (@"[\n]+[\u000c]+[a-zA-Z. \u00f1\u002f\u0050-\u00ff-]+[\n]+[0-9]+[\n]+", " ");
+		norm.ReplacePattern (@"[\n]+[\u000c]+[0-9]+[\n]+[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+", " ");
+		norm.ReplacePattern (@"[\n]+[\u000c]+[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+[0-9]+[\n]+", " ");
 		
 		norm.ReplacePattern (@"([\n]+|[ ]+)RESUMEN[ ]+", "\n[res] Resumen [/res]\n");
 		norm.ReplacePattern (@"([\n]+|[ ]+)ABSTRACT[ ]+", "\n[abs] Abstract [/abs]\n");
@@ -98,7 +98,7 @@ public class PDFPoppler : IExtractable {
 		filepath = Path.Combine (dir, filename + ".txt");
 		
 		#if DEBUG
-		Console.WriteLine ("DEBUG: " + dir);
+		Console.WriteLine ("DEBUG: " + "Ruta del directorio temporal: " + dir);
 		#endif
 		
 		if (Directory.Exists (dir)) {
@@ -110,7 +110,7 @@ public class PDFPoppler : IExtractable {
 		proc.WaitForExit ();
 		
 		#if DEBUG
-		Console.WriteLine ("DEBUG: " + filepath);
+		Console.WriteLine ("DEBUG: " + "Ruta del archivo temporal: " + filepath);
 		#endif
 		
 		FileStream filestream = null;
@@ -144,7 +144,7 @@ public class PDFPoppler : IExtractable {
 		Environment.CurrentDirectory = oworkdir;
 		
 		#if DEBUG
-		Console.WriteLine ("DEBUG " + Environment.CurrentDirectory);
+		Console.WriteLine ("DEBUG: "+ "Ruta del directorio de trabajo: " + Environment.CurrentDirectory);
 		#endif
 	}
 }

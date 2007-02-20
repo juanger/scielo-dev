@@ -51,7 +51,7 @@ public class Driver {
 			(filext != String.Empty) && (ext.IndexOf (filext) != -1);
 
 		#if DEBUG		
-		Console.WriteLine ("DEBUG: " + filext);
+		Console.WriteLine ("DEBUG: " + "La extension del archivo: " + filext);
 		#endif
 		
 		if (pdf) {		
@@ -87,13 +87,15 @@ public class Driver {
 		uri = ParsePath (filepath);
 		
 		if (uri != null && File.Exists (filepath)) {
-			Application.Init ();
+			//Application.Init ();
 			reader = PDFPoppler.CreateInstance (uri);
 			
 			if (reader != null) {
+				Console.WriteLine ("Transformando PDF ... ");
 				reader.CreateFile (Environment.CurrentDirectory,
 					Path.GetFileNameWithoutExtension (filepath));
 				reader.GetNonText ();
+				Console.WriteLine ("Finalizando\n");
 			} else {
 				Console.WriteLine ("Error: El archivo {0} no es un archivo PDF", args [0]);
 				Environment.Exit (1);
