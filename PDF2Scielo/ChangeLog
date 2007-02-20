@@ -1,3 +1,9 @@
+2007-02-19  Virginia Teodosio P <ainigriv_t@hotmail.com> 
+
+	* PDF2Text/AtmNormalizer.cs: Se agregaron los métodos de
+	  ConverterBytesUTF8, ReplaceBytes, CompareBytes,  SubstituteBytes,
+	  DeleteCodeBytes, InsertCodeBytes, GetStringUnicode
+
 2007-02-19  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/PDFPoppler.cs, PDF2Text/AtmNormalizer.cs: Pruebas usando
