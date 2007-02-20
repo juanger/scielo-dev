@@ -41,8 +41,7 @@ public class AtmNormalizer : INormalizable {
 	
 	public bool RemovePattern (string regexp)
 	{
-		//TODO: To be implemented.
-		return false;
+		return ReplacePattern (regexp, String.Empty);
 	}
 	
 	public bool InsertNonText ()
@@ -53,8 +52,6 @@ public class AtmNormalizer : INormalizable {
 	
 	public bool ReplacePattern (string regexp, string substitute)
 	{
-		//TODO: To be implemented.
-		string newstring;
 		Regex regex = new Regex (regexp);
 		
 		text = regex.Replace (text, substitute);
