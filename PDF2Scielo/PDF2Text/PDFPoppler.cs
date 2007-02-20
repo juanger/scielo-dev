@@ -55,7 +55,8 @@ public class PDFPoppler : IExtractable {
 	{	
 		//FIXME: Pruebas para remover encabezados y numeros de pagina usando Replace.
 		AtmNormalizer norm = new AtmNormalizer (ExtractText ());
-		norm.ReplacePattern (@"[\n]+\u000c[0-9]+[\n]+[a-zA-Z. ]+", "CAMBIO");
+		norm.ReplacePattern (@"[\n]+[\u000c]+[0-9]+[\n]+[a-zA-Z. \u00f1]+[\n]+", " CAMBIO ");
+		norm.ReplacePattern (@"[\n]+[\u000c]+[a-zA-Z. \u00f1]+[\n]+[0-9]+[\n]+", " CAMBIO ");
 		
 		return norm.Text;
 	}
