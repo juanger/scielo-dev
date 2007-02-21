@@ -38,6 +38,9 @@ public class PDFPoppler : IExtractable {
 		string docpath, temp;
 		docpath = uri.LocalPath;
 		
+		if (!File.Exists (docpath))
+			return null;
+		
 		temp = Path.GetTempPath ();
 		tempdir = Path.Combine (temp, "Poppler");
 		

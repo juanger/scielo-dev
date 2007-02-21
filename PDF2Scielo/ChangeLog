@@ -1,5 +1,11 @@
 2007-02-20  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/PDFPoppler.cs: Se agrego
+	  una prueba para checar el metodo estatico CreateInstance de
+	  PDFPoppler.
+
+2007-02-20  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/v17n01a02.pdf, PDF2Text/Test/v17n4a03.pdf,
 	  PDF2Text/Test/v18n4a02.pdf, PDF2Text/PDF2Text.mdp: Archivos PDF
 	  para usarse en los unit test de PDFPoppler.
