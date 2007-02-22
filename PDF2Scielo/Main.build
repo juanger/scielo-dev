@@ -16,6 +16,7 @@
        <buildfiles>
            <include name="MarkupHTML/MarkupHTML.build" />
 	   <include name="PDF2Text/PDF2Text.build" />
+	   <include name="PDFImage/PDFImage.build" />
            <!-- avoid recursive execution of current build file -->
            <exclude name="${project::get-buildfile-path()}" />
        </buildfiles>
