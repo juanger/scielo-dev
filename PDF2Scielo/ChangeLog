@@ -1,3 +1,11 @@
+2007-02-22  Virginia Teodosio P <ainigriv_t@hotmail.com> 
+
+	* PDF2Text/PDF2Text.mdp, PDF2Text/AtmNormalizer.cs,
+	  PDF2Text/CodesTable.cs, Utils/MyClass.cs, Utils/Utils.mdp,
+	  Utils/StringEncoding.cs, Utils/CodesTable.cs, Utils/Utils.pidb,
+	  PDFImage/PDFImage.pidb: Refactoracion de la parte de Encoding a la
+	  libreria de apoyo Utils.
+
 2007-02-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/PDFPoppler.cs, PDF2Text/AtmNormalizer.cs,
