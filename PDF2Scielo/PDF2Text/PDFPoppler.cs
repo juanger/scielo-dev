@@ -56,16 +56,39 @@ public class PDFPoppler : IExtractable {
 	
 	public String GetText (string encoding)
 	{	
-		//FIXME: Pruebas para remover encabezados y numeros de pagina usando Replace.
+		//FIXME: Remover encabezados y numeros de pagina usando Replace.
 		AtmNormalizer norm = new AtmNormalizer (ExtractText ());
-		norm.ReplacePattern (@"[\n]+[\u000c]+[0-9]+[\n]+[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+", " ");
-		norm.ReplacePattern (@"[\n]+[\u000c]+[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+[0-9]+[\n]+", " ");
+		norm.ReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+", "\n");
+		//norm.ReplacePattern (@"[\n]+[\u000c]+[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+[0-9]+[\n]+", " ");
 		
-		norm.ReplacePattern (@"([\n]+|[ ]+)RESUMEN[ ]+", "\n[res] Resumen [/res]\n");
-		norm.ReplacePattern (@"([\n]+|[ ]+)ABSTRACT[ ]+", "\n[abs] Abstract [/abs]\n");
-		norm.ReplacePattern (@"([\n]+|[ ]+)References[ ]+", "\n[ref] References [/ref]\n");
+		//FIXME: Etiquetado de RESUMEN, ABSTRACT y REFERENCES.
+		norm.ReplacePattern (@"[\n]+RESUMEN\n", "\n[res] Resumen [/res]\n");
+		norm.ReplacePattern (@"[\n]+ABSTRACT\n", "\n[abs] Abstract [/abs]\n");
+		norm.ReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
+
+		//FIXME: Etiquetado de Keyword.		
+		Match [] matches;
+		matches = norm.GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z, ]+");
 		
-		norm.ReplacePattern (@"([\n]+|[ ]+)(Key words|Keywords|Keyword|Key word):([\n]+|[ ]+)", "\n[key] Keywords: [/key] ");
+		foreach (Match m in matches) {
+			string result;
+			result = m.Value.Trim (); 
+			Console.WriteLine ("MATCH: " + result);
+			result = "\n[key] " + result + " [/key].\n";
+			norm.ReplacePattern (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z, ]+\n",
+				result);
+		}
+		
+		matches = norm.GetMatches (@"[\n]+[0-9][.][ ].*\n");
+		foreach (Match m in matches) {
+			string result, mid;
+			mid = m.Value;
+			result = mid.Trim ();
+			Console.WriteLine ("MATCH: " + result);
+			result = "\n[sec] " + result + " [/sec]\n";
+			norm.ReplacePattern (mid, result);
+		}
+		
 		return norm.Text;
 	}
 	
@@ -109,7 +132,7 @@ public class PDFPoppler : IExtractable {
 		}
 		
 		Directory.CreateDirectory (dir);
-		Process proc = Process.Start ("pdftotext", docpath + " " + filepath);
+		Process proc = Process.Start ("pdftotext", " -raw " + docpath + " " + filepath);
 		proc.WaitForExit ();
 		
 		#if DEBUG

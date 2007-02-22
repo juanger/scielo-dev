@@ -68,6 +68,18 @@ public class AtmNormalizer : INormalizable {
 		return false;
 	}
 	
+	public Match [] GetMatches (string regexp)
+	{
+		Match [] result;
+		Regex regex = new Regex (regexp);
+		MatchCollection matches = regex.Matches (text);
+		
+		result = new Match [matches.Count];
+		matches.CopyTo (result, 0);
+		
+		return result;
+	}
+	
 	public string Text {
 		get {
 			return text;

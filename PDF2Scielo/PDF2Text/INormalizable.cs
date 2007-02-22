@@ -12,6 +12,7 @@
 //
 
 using System;
+using System.Text.RegularExpressions;
 using System.Collections;
 
 namespace Scielo {
@@ -30,6 +31,8 @@ public interface INormalizable {
 	bool ReplaceFootNotes (string regexp);
 	
 	bool ReplaceChars (ArrayList rechar);
+	
+	Match [] GetMatches (string regexp);
 	
 	string Text { get; } 
 }
