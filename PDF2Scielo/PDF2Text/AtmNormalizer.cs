@@ -27,10 +27,7 @@ public class AtmNormalizer : INormalizable {
 		
 	public AtmNormalizer (string source)
 	{
-	        //byte [] code = {194,147};//"
-	        //byte [] change = {38, 35, 49, 52, 55, 59};//&#147;
 		data_byte = ConverterBytesUTF8 (source);
-		//ReplaceBytes (code, change);
 		ReplaceCodesTable();
 		text = GetStringUnicode ();
 	}
@@ -165,9 +162,24 @@ public class AtmNormalizer : INormalizable {
 		//" (end)                           
 		table.Add( new CodesTable (new byte[] {194,148},
 		                           new byte[] {38, 35, 49, 52, 56, 59}));
-		//" (end)                           
-		table.Add( new CodesTable (new byte[] {32,32},
-		                           new byte[] {38, 35, 49, 53, 48, 59}));                         
+		
+		//(start ')
+                table.Add (new CodesTable (new byte [] {194,145},
+                                           new byte [] {38, 35, 49, 52, 53, 59}));
+
+                //(end ')                           
+                table.Add (new CodesTable (new byte [] {194,146},
+                        		   new byte [] {38, 35, 49, 52, 54, 59}));
+
+                //(long -)                           
+                table.Add (new CodesTable (new byte [] {194,150},
+                        		   new byte [] {38, 35, 49, 53, 48, 59}));
+                // 000C -Form Feed (FF)-                           
+                table.Add (new CodesTable (new byte [] {12},
+                        		   new byte [] {38, 35, 49, 50, 59}));
+
+                        		   
+                        		
 		return table;                      
 	}
 	
