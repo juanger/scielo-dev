@@ -132,7 +132,6 @@ public class AtmNormalizer : INormalizable {
      	
       	private String GetStringUnicode ()
       	{
-
         	UTF8Encoding utf8 = new UTF8Encoding();
         	Encoding unicode = Encoding.Unicode;
         	byte [] sustituteByte = new byte [data_byte.Count];
@@ -161,24 +160,52 @@ public class AtmNormalizer : INormalizable {
 		                           new byte[] {38, 35, 49, 52, 55, 59}));
 		//" (end)                           
 		table.Add( new CodesTable (new byte[] {194,148},
-		                           new byte[] {38, 35, 49, 52, 56, 59}));
-		
+		                           new byte[] {38, 35, 49, 52, 56, 59}));		
 		//(start ')
                 table.Add (new CodesTable (new byte [] {194,145},
                                            new byte [] {38, 35, 49, 52, 53, 59}));
-
                 //(end ')                           
                 table.Add (new CodesTable (new byte [] {194,146},
                         		   new byte [] {38, 35, 49, 52, 54, 59}));
-
                 //(long -)                           
                 table.Add (new CodesTable (new byte [] {194,150},
                         		   new byte [] {38, 35, 49, 53, 48, 59}));
-                // 000C -Form Feed (FF)-                           
-                table.Add (new CodesTable (new byte [] {12},
-                        		   new byte [] {38, 35, 49, 50, 59}));
-
-                        		   
+                //(&aacute;)                           
+                table.Add (new CodesTable (new byte [] {195,161},
+                        		   new byte [] {38, 97, 97, 99, 117, 116, 101, 59}));
+		//(&eacute;)                           
+                table.Add (new CodesTable (new byte [] {195,169},
+                        		   new byte [] {38, 101, 97, 99, 117, 116, 101, 59}));     
+		//(&iacute;)                           
+                table.Add (new CodesTable (new byte [] {195,173},
+                        		   new byte [] {38, 105, 97, 99, 117, 116, 101, 59}));     
+		//(&oacute;)                           
+                table.Add (new CodesTable (new byte [] {195,179},
+                        		   new byte [] {38, 111, 97, 99, 117, 116, 101, 59}));     
+		//(&uacute;)                           
+                table.Add (new CodesTable (new byte [] {195,186},
+                        		   new byte [] {38, 117, 97, 99, 117, 116, 101, 59}));    
+                //(&Aacute;)                           
+                table.Add (new CodesTable (new byte [] {195,129},
+                        		   new byte [] {38, 65, 97, 99, 117, 116, 101, 59}));
+                //(&Eacute;)
+                table.Add (new CodesTable (new byte [] {195,137},
+                        		   new byte [] {38, 69, 97, 99, 117, 116, 101, 59}));        
+                //(&Iacute;)                           
+                table.Add (new CodesTable (new byte [] {195,141},
+                        		   new byte [] {38, 73, 97, 99, 117, 116, 101, 59}));
+                //(&Oacute;)                           
+                table.Add (new CodesTable (new byte [] {195,147},
+                        		   new byte [] {38, 79, 97, 99, 117, 116, 101, 59}));        		   
+                //(&Uacute;)                           
+                table.Add (new CodesTable (new byte [] {195,154},
+                        		   new byte [] {38, 85, 97, 99, 117, 116, 101, 59}));                       		   
+                //(&ntilde;)                           
+                table.Add (new CodesTable (new byte [] {195,177},
+                        		   new byte [] {38, 110, 116, 105, 108, 100, 101, 59}));
+                //(&Ntilde;)                           
+                table.Add (new CodesTable (new byte [] {195,145},
+                        		   new byte [] {38, 78, 116, 105, 108, 100, 101, 59}));
                         		
 		return table;                      
 	}
