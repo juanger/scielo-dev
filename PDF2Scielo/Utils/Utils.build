@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<project name="Utils" default="build" basedir=".">
+   <description>Library with general purpose classes to be used in the Scielo Framework.</description>
+   <property name="debug" value="true" overwrite="false" />
+   <target name="clean" description="remove all generated files">
+      <delete dir="bin" failonerror="false" />
+   </target>
+   <target name="build" description="compiles the source code">
+       <mkdir dir="bin/Debug" />
+       <csc target="library" output="./bin/Debug/Utils.dll" debug="${debug}">
+          <sources>
+             <include name="*.cs" />
+          </sources>
+       </csc>
+   </target>
+</project>

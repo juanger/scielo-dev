@@ -18,7 +18,7 @@ namespace MarkupHTML {
 public class TestConfiguration {
 		
 	[Test]
-	public void Case1 ()
+	public void Equals ()
 	{
 		Configuration test1 = new Configuration ("q", "a", "x");
 		Configuration test2 = new Configuration ("q", "a", "x");
@@ -26,7 +26,7 @@ public class TestConfiguration {
 	}
 
 	[Test]
-	public void Case2 ()
+	public void OperatorOverloading ()
 	{
 		Configuration test1 = new Configuration ("q", "b", "y");
 		Configuration test2 = new Configuration ("q", "b", "y");
@@ -34,7 +34,7 @@ public class TestConfiguration {
 	}
 
 	[Test]
-	public void Case3 ()
+	public void Constructor ()
 	{
 		Configuration test1 = new Configuration ("q", "a", "z");
 		Configuration test2 = new Configuration ("", "", "");
@@ -43,7 +43,7 @@ public class TestConfiguration {
 	}
 	
 	[Test]
-	public void Case4 ()
+	public void GetHashCode ()
 	{
 		int code1, code2;
 		Configuration test1 = new Configuration ("q", "a", "w");
