@@ -15,7 +15,7 @@
 using System;
 
 namespace Scielo {
-namespace PDF2Text{
+namespace Utils {
 	
 	
 	public class CodesTable
