@@ -43,7 +43,7 @@ public class TestConfiguration {
 	}
 	
 	[Test]
-	public void GetHashCode ()
+	public void HashCode ()
 	{
 		int code1, code2;
 		Configuration test1 = new Configuration ("q", "a", "w");

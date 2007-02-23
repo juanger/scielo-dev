@@ -40,9 +40,17 @@ public class AtmNormalizer : INormalizable {
 	
 	public string RemoveHeaders ()
 	{
+		#if DEBUG
+		Match [] matches;
+		matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+");
+	 		
+	 	foreach (Match m in matches) {
+			Console.WriteLine ("MATCH: " + m.Value);
+		}
+		#endif
+		
 		// Remueve encabezados y numeros de pagina usando ReplacePattern.
-	 	return ReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*
-	 		[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+", "\n");
+	 	return ReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
 	}
 	
 	public string RemovePattern (string regexp)
@@ -59,25 +67,33 @@ public class AtmNormalizer : INormalizable {
 		
 		//Etiquetado de Keyword.		
 		Match [] matches;
-		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z, ]+");
+		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+");
 		
 		foreach (Match m in matches) {
 			string result;
-			result = m.Value.Trim (); 
+			result = m.Value.Trim ();
+			
+			#if DEBUG
 			Console.WriteLine ("MATCH: " + result);
+			#endif
+			
 			result = "\n[key] " + result + " [/key].\n";
-			ReplacePattern (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z, ]+\n",
+			ReplacePattern (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+\n",
 				result);
 		}
 		
 		matches = GetMatches (@"[\n]+[0-9][.][ ].*\n");
 		foreach (Match m in matches) {
-			string result, mid;
-			mid = m.Value;
-			result = mid.Trim ();
+			string result, old;
+			old = m.Value;
+			result = old.Trim ();
+			
+			#if DEBUG
 			Console.WriteLine ("MATCH: " + result);
+			#endif
+			
 			result = "\n[sec] " + result + " [/sec]\n";
-			ReplacePattern (mid, result);
+			ReplacePattern (old, result);
 		}
 		
 		return this.Text;
@@ -91,8 +107,7 @@ public class AtmNormalizer : INormalizable {
 	
 	public string ReplacePattern (string regexp, string substitute)
 	{
-		Regex regex = new Regex (regexp);
-		
+		Regex regex = new Regex (regexp);	
 		text = regex.Replace (text, substitute);
 		
 		return text;
