@@ -21,27 +21,27 @@ namespace Utils {
 	
 public class StringEncoding {
 	
-	private UTF8Encoding utf8;
+	private Encoding encoder;
 	private ArrayList data_byte;
-	private int code_page;
 		
 	public StringEncoding (string data)
 	{
-	        code_page = 2525;
-		utf8 = new UTF8Encoding ();
-		data_byte = ConverterBytesUTF8 (data);
+		encoder = new UTF8Encoding ();
+		data_byte = ConverterDataInBytes (data);
 	}
 	
-	public StringEncoding (string data, int codePage){
-	       code_page = codePage;
+	public StringEncoding (string data, int codePage)
+	{
+		encoder = Encoding.GetEncoding (codePage);
+		data_byte = ConverterDataInBytes (data);
 	}
 		
-	public ArrayList ConverterBytesUTF8 (string data)
+	public ArrayList ConverterDataInBytes (string data)
 	{
-	       	ArrayList bytes = new ArrayList (utf8.GetBytes(data));
+	       	ArrayList bytes = new ArrayList (encoder.GetBytes(data));
 	        return bytes;
     	}
-    		
+    	    	
     	private bool ReplaceBytes (byte[] code, byte[] substitute)
 	{
         	for (int i=0; i < data_byte.Count; i++) {
@@ -92,14 +92,13 @@ public class StringEncoding {
      	
      	public String GetStringUnicode ()
       	{
-        	UTF8Encoding utf8 = new UTF8Encoding();
         	Encoding unicode = Encoding.Unicode;
         	byte [] sustituteByte = new byte [data_byte.Count];
         	
            	for (int i = 0; i < data_byte.Count; i++)
               		sustituteByte[i] = (byte)data_byte [i];
 
-           	byte [] unicodeBytes = Encoding.Convert (utf8, unicode, sustituteByte); 
+           	byte [] unicodeBytes = Encoding.Convert (encoder, unicode, sustituteByte); 
            	char [] data = new char[ unicode.GetCharCount (unicodeBytes, 0, unicodeBytes.Length) ];     
            	unicode.GetChars( unicodeBytes, 0, unicodeBytes.Length, data, 0 );
            	String utfString = new String( data );
