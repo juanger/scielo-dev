@@ -38,9 +38,49 @@ public class AtmNormalizer : INormalizable {
 		//TODO: To be implemented.
 	}
 	
-	public bool RemovePattern (string regexp)
+	public string RemoveHeaders ()
+	{
+		// Remueve encabezados y numeros de pagina usando ReplacePattern.
+	 	return ReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*
+	 		[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+", "\n");
+	}
+	
+	public string RemovePattern (string regexp)
 	{
 		return ReplacePattern (regexp, String.Empty);
+	}
+	
+	public string MarkSections ()
+	{
+		// Etiquetado de RESUMEN, ABSTRACT y REFERENCES.
+		ReplacePattern (@"[\n]+RESUMEN\n", "\n[res] Resumen [/res]\n");
+		ReplacePattern (@"[\n]+ABSTRACT\n", "\n[abs] Abstract [/abs]\n");
+		ReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
+		
+		//Etiquetado de Keyword.		
+		Match [] matches;
+		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z, ]+");
+		
+		foreach (Match m in matches) {
+			string result;
+			result = m.Value.Trim (); 
+			Console.WriteLine ("MATCH: " + result);
+			result = "\n[key] " + result + " [/key].\n";
+			ReplacePattern (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z, ]+\n",
+				result);
+		}
+		
+		matches = GetMatches (@"[\n]+[0-9][.][ ].*\n");
+		foreach (Match m in matches) {
+			string result, mid;
+			mid = m.Value;
+			result = mid.Trim ();
+			Console.WriteLine ("MATCH: " + result);
+			result = "\n[sec] " + result + " [/sec]\n";
+			ReplacePattern (mid, result);
+		}
+		
+		return this.Text;
 	}
 	
 	public bool InsertNonText ()
@@ -49,12 +89,13 @@ public class AtmNormalizer : INormalizable {
 		return false;
 	}
 	
-	public bool ReplacePattern (string regexp, string substitute)
+	public string ReplacePattern (string regexp, string substitute)
 	{
 		Regex regex = new Regex (regexp);
 		
 		text = regex.Replace (text, substitute);
-		return text != null? true: false;
+		
+		return text;
 	}
 	
 	public bool ReplaceFootNotes (string regexp)

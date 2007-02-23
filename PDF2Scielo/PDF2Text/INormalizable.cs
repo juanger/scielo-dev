@@ -22,11 +22,15 @@ public interface INormalizable {
 	
 	void SetEncoding (string encoding);
 	
-	bool RemovePattern (string regexp);
+	string RemoveHeaders ();
+	
+	string RemovePattern (string regexp);
+	
+	string MarkSections ();
 	
 	bool InsertNonText ();
 	
-	bool ReplacePattern (string regexp, string substitute);
+	string ReplacePattern (string regexp, string substitute);
 	
 	bool ReplaceFootNotes (string regexp);
 	

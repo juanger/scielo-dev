@@ -14,7 +14,6 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
-using System.Threading;
 using System.Text.RegularExpressions;
 using System.IO;
 
@@ -23,14 +22,14 @@ namespace PDF2Text {
 
 public class PDFPoppler : IExtractable {
 
-	private string docpath;
-	private string filename;
-	private static string tempdir;
+	private string doc_path;
+	private string file_name;
+	private static string temp_dir;
 		
 	private PDFPoppler (string fullpath)
 	{
-		docpath = fullpath;
-		filename = Path.GetFileNameWithoutExtension (fullpath);
+		doc_path = fullpath;
+		file_name = Path.GetFileNameWithoutExtension (fullpath);
 	}
 	
 	public static PDFPoppler CreateInstance (Uri uri)
@@ -42,10 +41,10 @@ public class PDFPoppler : IExtractable {
 			return null;
 		
 		temp = Path.GetTempPath ();
-		tempdir = Path.Combine (temp, "Poppler");
+		temp_dir = Path.Combine (temp, "Poppler");
 		
-		if (!Directory.Exists (tempdir))
-			Directory.CreateDirectory (tempdir);
+		if (!Directory.Exists (temp_dir))
+			Directory.CreateDirectory (temp_dir);
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: " + "Ruta del archivo: " + uri.LocalPath);
@@ -56,38 +55,9 @@ public class PDFPoppler : IExtractable {
 	
 	public String GetText (string encoding)
 	{	
-		//FIXME: Remover encabezados y numeros de pagina usando Replace.
 		AtmNormalizer norm = new AtmNormalizer (ExtractText ());
-		norm.ReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+", "\n");
-		//norm.ReplacePattern (@"[\n]+[\u000c]+[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()]+[\n]+[0-9]+[\n]+", " ");
-		
-		//FIXME: Etiquetado de RESUMEN, ABSTRACT y REFERENCES.
-		norm.ReplacePattern (@"[\n]+RESUMEN\n", "\n[res] Resumen [/res]\n");
-		norm.ReplacePattern (@"[\n]+ABSTRACT\n", "\n[abs] Abstract [/abs]\n");
-		norm.ReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
-
-		//FIXME: Etiquetado de Keyword.		
-		Match [] matches;
-		matches = norm.GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z, ]+");
-		
-		foreach (Match m in matches) {
-			string result;
-			result = m.Value.Trim (); 
-			Console.WriteLine ("MATCH: " + result);
-			result = "\n[key] " + result + " [/key].\n";
-			norm.ReplacePattern (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z, ]+\n",
-				result);
-		}
-		
-		matches = norm.GetMatches (@"[\n]+[0-9][.][ ].*\n");
-		foreach (Match m in matches) {
-			string result, mid;
-			mid = m.Value;
-			result = mid.Trim ();
-			Console.WriteLine ("MATCH: " + result);
-			result = "\n[sec] " + result + " [/sec]\n";
-			norm.ReplacePattern (mid, result);
-		}
+		norm.RemoveHeaders ();
+		norm.MarkSections ();
 		
 		return norm.Text;
 	}
@@ -103,7 +73,7 @@ public class PDFPoppler : IExtractable {
 	public void CreateFile (string filepath, string filename)
 	{
 		string fullpath, name;
-		name = filename + ".txt";
+		name = file_name + ".txt";
 		fullpath = Path.Combine (filepath, name);
 		FileStream filestream = null;
 
@@ -120,8 +90,8 @@ public class PDFPoppler : IExtractable {
 		string dir, filepath, result;
 		result = null;
 		
-		dir = Path.Combine (tempdir, filename);
-		filepath = Path.Combine (dir, filename + ".txt");
+		dir = Path.Combine (temp_dir, file_name);
+		filepath = Path.Combine (dir, file_name + ".txt");
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: " + "Ruta del directorio temporal: " + dir);
@@ -132,7 +102,7 @@ public class PDFPoppler : IExtractable {
 		}
 		
 		Directory.CreateDirectory (dir);
-		Process proc = Process.Start ("pdftotext", " -raw " + docpath + " " + filepath);
+		Process proc = Process.Start ("pdftotext", " -raw " + doc_path + " " + filepath);
 		proc.WaitForExit ();
 		
 		#if DEBUG
@@ -153,7 +123,7 @@ public class PDFPoppler : IExtractable {
 	{
 		string docdir, imgdir, oworkdir;
 		
-		docdir = Path.Combine (tempdir, filename);
+		docdir = Path.Combine (temp_dir, file_name);
 		imgdir = Path.Combine (docdir, "Images");
 		
 		if (Directory.Exists (imgdir)) {
@@ -164,7 +134,7 @@ public class PDFPoppler : IExtractable {
 		Directory.CreateDirectory (imgdir);
 		Environment.CurrentDirectory = imgdir;
 
-		Process proc = Process.Start ("pdfimages", " -j " + docpath + " Images");
+		Process proc = Process.Start ("pdfimages", " -j " + doc_path + " Images");
 		proc.WaitForExit ();
 		
 		Environment.CurrentDirectory = oworkdir;
