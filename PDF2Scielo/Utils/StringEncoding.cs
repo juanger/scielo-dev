@@ -40,8 +40,31 @@ public class StringEncoding {
 	{
 	       	ArrayList bytes = new ArrayList (encoder.GetBytes(data));
 	        return bytes;
-    	}
-    	    	
+    	}    	
+    	
+     	public String GetStringUnicode ()
+      	{
+        	Encoding unicode = Encoding.Unicode;
+        	byte [] sustituteByte = new byte [data_byte.Count];
+        	
+           	for (int i = 0; i < data_byte.Count; i++)
+              		sustituteByte[i] = (byte)data_byte [i];
+
+           	byte [] unicodeBytes = Encoding.Convert (encoder, unicode, sustituteByte); 
+           	char [] data = new char[ unicode.GetCharCount (unicodeBytes, 0, unicodeBytes.Length) ];     
+           	unicode.GetChars( unicodeBytes, 0, unicodeBytes.Length, data, 0 );
+           	String utfString = new String( data );
+           	return utfString;	
+     	} 
+     	
+     	public void ReplaceCodesTable( ){
+	       	ArrayList table = CodesList();
+	       	for (int i = 0; i < table.Count; i++){
+	       	        CodesTable codT = (CodesTable) table[i];
+			ReplaceBytes( codT.Code, codT.Sustitute );  				
+	       	}
+	}
+    	
     	private bool ReplaceBytes (byte[] code, byte[] substitute)
 	{
         	for (int i=0; i < data_byte.Count; i++) {
@@ -89,30 +112,7 @@ public class StringEncoding {
         		position++;    
         	}
      	}
-     	
-     	public String GetStringUnicode ()
-      	{
-        	Encoding unicode = Encoding.Unicode;
-        	byte [] sustituteByte = new byte [data_byte.Count];
-        	
-           	for (int i = 0; i < data_byte.Count; i++)
-              		sustituteByte[i] = (byte)data_byte [i];
-
-           	byte [] unicodeBytes = Encoding.Convert (encoder, unicode, sustituteByte); 
-           	char [] data = new char[ unicode.GetCharCount (unicodeBytes, 0, unicodeBytes.Length) ];     
-           	unicode.GetChars( unicodeBytes, 0, unicodeBytes.Length, data, 0 );
-           	String utfString = new String( data );
-           	return utfString;	
-     	} 
-     	
-     	public void ReplaceCodesTable( ){
-	       	ArrayList table = CodesList();
-	       	for (int i = 0; i < table.Count; i++){
-	       	        CodesTable codT = (CodesTable) table[i];
-			ReplaceBytes( codT.Code, codT.Sustitute );  				
-	       	}
-	}
-    		
+    	
     	private ArrayList CodesList ()
 	{
 		ArrayList table = new ArrayList();
