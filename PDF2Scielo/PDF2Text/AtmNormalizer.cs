@@ -60,10 +60,11 @@ public class AtmNormalizer : INormalizable {
 	
 	public string MarkSections ()
 	{
-		// Etiquetado de RESUMEN, ABSTRACT y REFERENCES.
+		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
 		ReplacePattern (@"[\n]+RESUMEN\n", "\n[res] Resumen [/res]\n");
 		ReplacePattern (@"[\n]+ABSTRACT\n", "\n[abs] Abstract [/abs]\n");
 		ReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
+		ReplacePattern (@"[\n]+Acknowledgements\n", "\n[ack] Acknowledgements [/ack]\n");
 		
 		//Etiquetado de Keyword.		
 		Match [] matches;
@@ -94,6 +95,16 @@ public class AtmNormalizer : INormalizable {
 			
 			result = "\n[sec] " + result + " [/sec]\n";
 			ReplacePattern (old, result);
+		}
+		
+		matches = GetMatches (@"[ ]+[a-z]+[A-Z]+[a-z]*[ ]+");
+		foreach (Match m in matches) {
+			string result;
+			result = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + result);
+			#endif
 		}
 		
 		return this.Text;
