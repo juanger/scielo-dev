@@ -98,16 +98,16 @@ public class AtmNormalizer : INormalizable {
 		return text;
 	}
 	
-	public bool ReplaceFootNotes (string regexp)
+	public string ReplaceFootNotes (string regexp)
 	{
 		//TODO: To be implemented.
-		return false;
+		return null;
 	}
 	
-	public bool ReplaceChars (ArrayList rechar)
+	public string ReplaceChars (ArrayList rechar)
 	{
 		//TODO: To be implemented.
-		return false;
+		return null;
 	}
 	
 	public Match [] GetMatches (string regexp)

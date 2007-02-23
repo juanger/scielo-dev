@@ -32,9 +32,9 @@ public interface INormalizable {
 	
 	string ReplacePattern (string regexp, string substitute);
 	
-	bool ReplaceFootNotes (string regexp);
+	string ReplaceFootNotes (string regexp);
 	
-	bool ReplaceChars (ArrayList rechar);
+	string ReplaceChars (ArrayList rechar);
 	
 	Match [] GetMatches (string regexp);
 	
