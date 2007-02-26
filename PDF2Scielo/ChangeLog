@@ -1,3 +1,7 @@
+2007-02-26  Virginia Teodosio P <ainigriv_t@hotmail.com> 
+
+	implementación del método replaceChars para AtmNormalizer y modificación de todos las clases que respectan con este cambio
+
 2007-02-26  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/v17n4a03.txt, PDF2Text/Test/v18n4a02.txt,

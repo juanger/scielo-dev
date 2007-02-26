@@ -29,7 +29,7 @@ public class AtmNormalizer : INormalizable {
 	public AtmNormalizer (string source)
 	{
 		encoder = new StringEncoding (source);
-		encoder.ReplaceCodesTable();
+		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
 		text = encoder.GetStringUnicode ();
 	}
 	
@@ -132,8 +132,8 @@ public class AtmNormalizer : INormalizable {
 	
 	public string ReplaceChars (ArrayList rechar)
 	{
-		//TODO: To be implemented.
-		return null;
+		encoder.ReplaceCodesTable (rechar);
+		return encoder.GetStringUnicode();
 	}
 	
 	public Match [] GetMatches (string regexp)

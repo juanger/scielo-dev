@@ -23,7 +23,8 @@ public class StringEncoding {
 	
 	private Encoding encoder;
 	private ArrayList data_byte;
-		
+        private static ArrayList characters_default = StringEncoding.CodesList();  
+ 
 	public StringEncoding (string data)
 	{
 		encoder = new UTF8Encoding ();
@@ -57,12 +58,17 @@ public class StringEncoding {
            	return utfString;	
      	} 
      	
-     	public void ReplaceCodesTable( ){
-	       	ArrayList table = CodesList();
+     	public void ReplaceCodesTable (ArrayList table){
 	       	for (int i = 0; i < table.Count; i++){
 	       	        CodesTable codT = (CodesTable) table[i];
 			ReplaceBytes( codT.Code, codT.Sustitute );  				
 	       	}
+	}
+	
+	public static ArrayList CharactersDefault{
+		get {
+			return characters_default;
+		}
 	}
     	
     	private bool ReplaceBytes (byte[] code, byte[] substitute)
@@ -113,7 +119,7 @@ public class StringEncoding {
         	}
      	}
     	
-    	private ArrayList CodesList ()
+    	private static ArrayList CodesList ()
 	{
 		ArrayList table = new ArrayList();
 		//" (start)
