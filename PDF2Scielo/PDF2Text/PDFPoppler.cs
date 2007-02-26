@@ -64,7 +64,6 @@ public class PDFPoppler : IExtractable {
 	
 	public Queue GetNonText ()
 	{
-		//TODO: To be implemented.
 		ExtractImages ();
 		
 		return null;
