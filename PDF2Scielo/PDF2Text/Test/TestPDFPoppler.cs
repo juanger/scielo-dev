@@ -53,7 +53,7 @@ public class TestPDFPoppler {
 	}
 	
 	[Test]
-	public void GetText ()
+	public void GetRawText ()
 	{
 		string path, path0, path1, path2, text0, text1, text2;
 		string pdftext0, pdftext1, pdftext2;
@@ -81,9 +81,9 @@ public class TestPDFPoppler {
 		text1 = ReadFile (path1);
 		text2 = ReadFile (path2);
 		
-		pdftext0 = doc0.GetText ("utf-8");
-		pdftext1 = doc1.GetText ("utf-8");
-		pdftext2 = doc2.GetText ("utf-8");
+		pdftext0 = doc0.GetRawText ();
+		pdftext1 = doc1.GetRawText ();
+		pdftext2 = doc2.GetRawText ();
 		
 		Assert.AreEqual (text0, pdftext0);
 		Assert.AreEqual (text1, pdftext1);

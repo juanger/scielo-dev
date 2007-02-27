@@ -53,13 +53,18 @@ public class PDFPoppler : IExtractable {
 		return new PDFPoppler (docpath);
 	}
 	
-	public String GetText (string encoding)
+	public string GetText (string encoding)
 	{	
 		AtmNormalizer norm = new AtmNormalizer (ExtractText ());
 		norm.RemoveHeaders ();
 		norm.MarkSections ();
 		
 		return norm.Text;
+	}
+	
+	public string GetRawText ()
+	{
+		return ExtractText ();
 	}
 	
 	public Queue GetNonText ()

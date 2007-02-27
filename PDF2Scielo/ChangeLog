@@ -1,5 +1,16 @@
 2007-02-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/Test/v18n4a02-raw.txt,
+	  PDF2Text/Test/v17n4a03-raw.txt, PDF2Text/Test/v18n4a02.txt,
+	  PDF2Text/Test/v17n4a03.txt, PDF2Text/Test/v17n01a02-raw.txt,
+	  PDF2Text/Test/v17n01a02-nom.txt, PDF2Text/Test/v17n4a03-norm.txt,
+	  PDF2Text/Test/v18n4a02-norm.txt, PDF2Text/Test/v17n01a02.txt,
+	  PDF2Text/PDF2Text.mdp, PDF2Text/PDFPoppler.cs,
+	  PDF2Text/IExtractable.cs: Mas movimientos para agregar archivos
+	  para las pruebas de unidad
+
+2007-02-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/v17n01a02.htm, PDF2Text/Test/v17n4a03.htm,
 	  PDF2Text/Test/v18n4a02.htm, PDF2Text/PDF2Text.mdp: Archivos HTML
 	  para las pruebas de unidad de PDFPoppler.
