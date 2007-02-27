@@ -72,10 +72,10 @@ public class PDFPoppler : IExtractable {
 	public void CreateFile (string filepath, string filename)
 	{
 		string fullpath, name;
-		name = file_name + ".txt";
+		name = filename + ".txt";
 		fullpath = Path.Combine (filepath, name);
+		
 		FileStream filestream = null;
-
                 using (filestream = File.Create (fullpath)) {
                 	StreamWriter writer = new StreamWriter (filestream);
                 	writer.Write (GetText ("utf8"));
