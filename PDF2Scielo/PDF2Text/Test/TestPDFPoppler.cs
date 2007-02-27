@@ -73,9 +73,9 @@ public class TestPDFPoppler {
 		PDFPoppler doc1 = PDFPoppler.CreateInstance (uri1);
 		PDFPoppler doc2 = PDFPoppler.CreateInstance (uri2);
 		
-		path0 = Path.Combine (path, "v17n01a02.txt");
-		path1 = Path.Combine (path, "v17n4a03.txt");
-		path2 = Path.Combine (path, "v18n4a02.txt");
+		path0 = Path.Combine (path, "v17n01a02-raw.txt");
+		path1 = Path.Combine (path, "v17n4a03-raw.txt");
+		path2 = Path.Combine (path, "v18n4a02-raw.txt");
 		
 		text0 = ReadFile (path0);
 		text1 = ReadFile (path1);
@@ -91,7 +91,7 @@ public class TestPDFPoppler {
 	}
 	
 	[Test]
-	public void CreateFile ()
+	public void CreateHTMLFile ()
 	{
 		string path, path0, path1, path2, text0, text1, text2;
 		string pdftext0, pdftext1, pdftext2;
@@ -112,9 +112,9 @@ public class TestPDFPoppler {
 		PDFPoppler doc1 = PDFPoppler.CreateInstance (uri1);
 		PDFPoppler doc2 = PDFPoppler.CreateInstance (uri2);
 		
-		path0 = Path.Combine (path, "v17n01a02.txt");
-		path1 = Path.Combine (path, "v17n4a03.txt");
-		path2 = Path.Combine (path, "v18n4a02.txt");
+		path0 = Path.Combine (path, "v17n01a02.htm");
+		path1 = Path.Combine (path, "v17n4a03.htm");
+		path2 = Path.Combine (path, "v18n4a02.htm");
 		
 		// Cadena con el contenido del archivo final tal como queremos
 		// que PDFPoppler nos entregue.
@@ -124,14 +124,14 @@ public class TestPDFPoppler {
 		
 		// Usamos CreateFile y depositamos los resultados en archivos
 		// temporales.
-		doc0.CreateFile (path, "v17n01a02f");
-		doc1.CreateFile (path, "v17n4a03f");
-		doc2.CreateFile (path, "v18n4a02f");
+		doc0.CreateHTMLFile (path, "v17n01a02f");
+		doc1.CreateHTMLFile (path, "v17n4a03f");
+		doc2.CreateHTMLFile (path, "v18n4a02f");
 		
 		// Se lee el contenido de los archivos creados por CreateFile.
-		pdftext0 = ReadFile (Path.Combine (path, "v17n01a02f.txt"));
-		pdftext1 = ReadFile (Path.Combine (path, "v17n4a03f.txt"));
-		pdftext2 = ReadFile (Path.Combine (path, "v18n4a02f.txt"));
+		pdftext0 = ReadFile (Path.Combine (path, "v17n01a02f.htm"));
+		pdftext1 = ReadFile (Path.Combine (path, "v17n4a03f.htm"));
+		pdftext2 = ReadFile (Path.Combine (path, "v18n4a02f.htm"));
 		
 		Assert.AreEqual (text0, pdftext0, "CF01");
 		Assert.AreEqual (text1, pdftext1, "CF02");

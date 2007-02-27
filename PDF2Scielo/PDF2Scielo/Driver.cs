@@ -92,7 +92,7 @@ public class Driver {
 			
 			if (reader != null) {
 				Console.WriteLine ("Transformando PDF ... ");
-				reader.CreateFile (Environment.CurrentDirectory,
+				reader.CreateHTMLFile (Environment.CurrentDirectory,
 					Path.GetFileNameWithoutExtension (filepath));
 				reader.GetNonText ();
 				Console.WriteLine ("Finalizando\n");

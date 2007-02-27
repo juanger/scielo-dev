@@ -74,10 +74,10 @@ public class PDFPoppler : IExtractable {
 		return null;
 	}
 	
-	public void CreateFile (string filepath, string filename)
+	public void CreateHTMLFile (string filepath, string filename)
 	{
 		string fullpath, name;
-		name = filename + ".txt";
+		name = filename + ".htm";
 		fullpath = Path.Combine (filepath, name);
 		
 		FileStream filestream = null;

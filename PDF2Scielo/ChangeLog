@@ -1,5 +1,12 @@
 2007-02-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/PDFPoppler.cs,
+	  PDF2Text/IExtractable.cs, PDF2Scielo/Driver.cs: Cambio de la
+	  IExtractable para que tenga las funciones GetRawText () y
+	  CreateHTMLFile (). Y sus implementaciones en PDFPoppler.
+
+2007-02-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/Test/v18n4a02-raw.txt,
 	  PDF2Text/Test/v17n4a03-raw.txt, PDF2Text/Test/v18n4a02.txt,
 	  PDF2Text/Test/v17n4a03.txt, PDF2Text/Test/v17n01a02-raw.txt,
