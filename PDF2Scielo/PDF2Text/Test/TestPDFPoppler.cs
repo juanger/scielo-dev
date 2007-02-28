@@ -53,6 +53,44 @@ public class TestPDFPoppler {
 	}
 	
 	[Test]
+	public void GetNormText ()
+	{
+		string path, path0, path1, path2, text0, text1, text2;
+		string pdftext0, pdftext1, pdftext2;
+
+		path = PathOfTest ();
+
+		// Rutas a los PDF a usar en el test unit.
+		path0 = Path.Combine (path, "v17n01a02.pdf");
+		path1 = Path.Combine (path, "v17n4a03.pdf");
+		path2 = Path.Combine (path, "v18n4a02.pdf");
+		
+		Uri uri0 = new Uri (path0);
+		Uri uri1 = new Uri (path1);
+		Uri uri2 = new Uri (path2);
+		
+		PDFPoppler doc0 = PDFPoppler.CreateInstance (uri0);
+		PDFPoppler doc1 = PDFPoppler.CreateInstance (uri1);
+		PDFPoppler doc2 = PDFPoppler.CreateInstance (uri2);
+		
+		path0 = Path.Combine (path, "v17n01a02-norm.txt");
+		path1 = Path.Combine (path, "v17n4a03-norm.txt");
+		path2 = Path.Combine (path, "v18n4a02-norm.txt");
+		
+		text0 = ReadFile (path0);
+		text1 = ReadFile (path1);
+		text2 = ReadFile (path2);
+		
+		pdftext0 = doc0.GetNormText ("utf8");
+		pdftext1 = doc1.GetNormText ("utf8");
+		pdftext2 = doc2.GetNormText ("utf8");
+		
+		Assert.AreEqual (text0, pdftext0);
+		Assert.AreEqual (text1, pdftext1);
+		Assert.AreEqual (text2, pdftext2);
+	}
+	
+	[Test]
 	public void GetRawText ()
 	{
 		string path, path0, path1, path2, text0, text1, text2;

@@ -17,30 +17,27 @@ using System;
 namespace Scielo {
 namespace Utils {
 	
-	
-	public class CodesTable
+public class CodesTable {
+	private byte [] code;
+	private byte [] sustitute;
+		
+	public CodesTable(byte [] code, byte [] sustitute)
 	{
-		private byte [] code;
-		private byte [] sustitute;
-		
-		public CodesTable(byte [] code, byte [] sustitute)
-		{
-			this.code = code;
-			this.sustitute = sustitute;
-		}
-		
-	        public byte [] Code {
-			get {
-				return code;
-			}
-		}
-		
-		public byte [] Sustitute {
-			get {
-				return sustitute;
-			}
-		}
-		
+		this.code = code;
+		this.sustitute = sustitute;
 	}
+	
+	public byte [] Code {
+		get {
+			return code;
+		}
+	}
+		
+	public byte [] Sustitute {
+		get {
+			return sustitute;
+		}
+	}
+}
 }
 }

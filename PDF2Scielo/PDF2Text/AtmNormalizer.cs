@@ -24,12 +24,10 @@ namespace PDF2Text {
 public class AtmNormalizer : INormalizable {
 
 	private string text;
-	private StringEncoding encoder;
 		
 	public AtmNormalizer (string source)
 	{
-		encoder = new StringEncoding (source);
-		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
+		StringEncoding encoder = new StringEncoding (source);
 		text = encoder.GetStringUnicode ();
 	}
 	
@@ -132,8 +130,11 @@ public class AtmNormalizer : INormalizable {
 	
 	public string ReplaceChars (ArrayList rechar)
 	{
+		StringEncoding encoder = new StringEncoding (text);
 		encoder.ReplaceCodesTable (rechar);
-		return encoder.GetStringUnicode();
+		text = encoder.GetStringUnicode ();
+		
+		return text;
 	}
 	
 	public Match [] GetMatches (string regexp)

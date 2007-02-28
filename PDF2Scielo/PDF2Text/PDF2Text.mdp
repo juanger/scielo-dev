@@ -28,7 +28,7 @@
     <File name="./Test/v17n01a02.pdf" subtype="Code" buildaction="Nothing" />
     <File name="./Test/v17n4a03.pdf" subtype="Code" buildaction="Nothing" />
     <File name="./Test/v18n4a02.pdf" subtype="Code" buildaction="Nothing" />
-    <File name="./Test/v17n01a02-nom.txt" subtype="Code" buildaction="Nothing" />
+    <File name="./Test/v17n01a02-norm.txt" subtype="Code" buildaction="Nothing" />
     <File name="./Test/v17n4a03-norm.txt" subtype="Code" buildaction="Nothing" />
     <File name="./Test/v18n4a02-norm.txt" subtype="Code" buildaction="Nothing" />
     <File name="./Test/v17n01a02.htm" subtype="Code" buildaction="Nothing" />

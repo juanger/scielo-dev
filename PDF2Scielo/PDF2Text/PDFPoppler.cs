@@ -16,6 +16,7 @@ using System.Collections;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.IO;
+using Scielo.Utils;
 
 namespace Scielo {
 namespace PDF2Text {
@@ -53,11 +54,12 @@ public class PDFPoppler : IExtractable {
 		return new PDFPoppler (docpath);
 	}
 	
-	public string GetText (string encoding)
+	public string GetNormText (string encoding)
 	{	
 		AtmNormalizer norm = new AtmNormalizer (ExtractText ());
 		norm.RemoveHeaders ();
 		norm.MarkSections ();
+		norm.ReplaceChars (StringEncoding.CharactersDefault);
 		
 		return norm.Text;
 	}
@@ -83,7 +85,7 @@ public class PDFPoppler : IExtractable {
 		FileStream filestream = null;
                 using (filestream = File.Create (fullpath)) {
                 	StreamWriter writer = new StreamWriter (filestream);
-                	writer.Write (GetText ("utf8"));
+                	writer.Write (GetNormText ("utf8"));
                 	writer.Flush ();
                 	writer.Close ();
                 }

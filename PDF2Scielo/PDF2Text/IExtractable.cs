@@ -19,7 +19,7 @@ namespace PDF2Text {
 	
 public interface IExtractable {
 
-	string GetText (string encoding);
+	string GetNormText (string encoding);
 	
 	string GetRawText ();
 	
