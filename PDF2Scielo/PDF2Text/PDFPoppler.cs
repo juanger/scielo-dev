@@ -26,6 +26,7 @@ public class PDFPoppler : IExtractable {
 	private string doc_path;
 	private string file_name;
 	private static string temp_dir;
+	private INormalizable norm;
 		
 	private PDFPoppler (string fullpath)
 	{
@@ -56,7 +57,7 @@ public class PDFPoppler : IExtractable {
 	
 	public string GetNormText (string encoding)
 	{	
-		AtmNormalizer norm = new AtmNormalizer (ExtractText ());
+		norm = new AtmNormalizer (ExtractText ());
 		norm.RemoveHeaders ();
 		norm.MarkSections ();
 		norm.ReplaceChars (StringEncoding.CharactersDefault);

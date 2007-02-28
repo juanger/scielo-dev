@@ -1,5 +1,10 @@
 2007-02-27  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
+	* PDF2Text/PDFPoppler.cs: Agregar como miembro a un objeto de alguna
+	  clase que implemente INormalizable a PDFPoppler.
+
+2007-02-27  Virginia Teodosio P <ainigriv_t@hotmail.com> 
+
 	* Utils/Test/TestStringEncoding.cs: Principio de las pruebas de unidad
 	  para StringEncoding.
 
