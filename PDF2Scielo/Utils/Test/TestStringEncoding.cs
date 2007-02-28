@@ -25,10 +25,9 @@ public class TestStringEncoding{
 	{
 		string data = "sofisticadas, el Análisis de";
 	        Console.WriteLine("Prueba Descripcion:Reemplazo de: '' por '&#147;' ");
-	        Console.WriteLine ("La cadena antes de entrar::::" + data);
 		StringEncoding converter = new StringEncoding (data);
 		converter.ReplaceCodesTable(StringEncoding.CharactersDefault);
-		Console.WriteLine ("La cadena al salir::::" + converter.GetStringUnicode() );		
+		Assert.AreEqual ("sofisticadas, el &#147;An&aacute;lisis de", converter.GetStringUnicode (), "C01");
 	}
 
 	[Test]
