@@ -38,17 +38,29 @@ public class AtmNormalizer : INormalizable {
 	
 	public string RemoveHeaders ()
 	{
-		#if DEBUG
+		// Remueve encabezados y numeros de pagina usando ReplacePattern.
 		Match [] matches;
 		matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+");
-	 		
+		ReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
+		
+	 	#if DEBUG
 	 	foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
 		#endif
 		
-		// Remueve encabezados y numeros de pagina usando ReplacePattern.
-	 	return ReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
+
+		
+		matches = GetMatches (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[0-9]+[\n]+");
+		ReplacePattern (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[0-9]+[\n]+", "\n");
+		
+	 	#if DEBUG
+	 	foreach (Match m in matches) {
+			Console.WriteLine ("MATCH: " + m.Value);
+		}
+		#endif		
+
+	 	return text;
 	}
 	
 	public string RemovePattern (string regexp)
@@ -56,46 +68,15 @@ public class AtmNormalizer : INormalizable {
 		return ReplacePattern (regexp, String.Empty);
 	}
 	
-	public string MarkSections ()
+	public string MarkText ()
 	{
-		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
-		ReplacePattern (@"[\n]+RESUMEN\n", "\n[res] Resumen [/res]\n");
-		ReplacePattern (@"[\n]+ABSTRACT\n", "\n[abs] Abstract [/abs]\n");
-		ReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
-		ReplacePattern (@"[\n]+Acknowledgements\n", "\n[ack] Acknowledgements [/ack]\n");
-		
-		//Etiquetado de Keyword.		
+		MarkMajorSections ();
+		MarkMinorSections ();
+		MarkParagraphs ();
+
+		// Aqui se busca posibles alteraciones en el texto ie que se elimine espacios.
 		Match [] matches;
-		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+");
-		
-		foreach (Match m in matches) {
-			string result;
-			result = m.Value.Trim ();
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + result);
-			#endif
-			
-			result = "\n[key] " + result + " [/key].\n";
-			ReplacePattern (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+\n",
-				result);
-		}
-		
-		matches = GetMatches (@"[\n]+[0-9][.][ ].*\n");
-		foreach (Match m in matches) {
-			string result, old;
-			old = m.Value;
-			result = old.Trim ();
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + result);
-			#endif
-			
-			result = "\n[sec] " + result + " [/sec]\n";
-			ReplacePattern (old, result);
-		}
-		
-		matches = GetMatches (@"[ ]+[a-z]+[A-Z]+[a-z]*[ ]+");
+		matches = GetMatches (@"[ \n]+[a-z]+[A-Z]+[a-zA-Z]*[ \n]+");
 		foreach (Match m in matches) {
 			string result;
 			result = m.Value;
@@ -105,7 +86,7 @@ public class AtmNormalizer : INormalizable {
 			#endif
 		}
 		
-		return this.Text;
+		return text;
 	}
 	
 	public bool InsertNonText ()
@@ -149,13 +130,89 @@ public class AtmNormalizer : INormalizable {
 		return result;
 	}
 	
+	
 	public string Text {
 		get {
 			return text;
 		}
 	}
      	
-      		
+     	private void MarkMajorSections ()
+     	{
+     		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
+		ReplacePattern (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
+		ReplacePattern (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
+		ReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
+		ReplacePattern (@"[\n]+Acknowledgements\n", "\n[ack] Acknowledgements [/ack]\n");
+		
+		//Etiquetado de Keyword.		
+		Match [] matches;
+		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+");
+		
+		foreach (Match m in matches) {
+			string result;
+			result = m.Value.Trim ();
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + result);
+			#endif
+			
+			result = "\n[key] " + result + " [/key].\n";
+			ReplacePattern (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+\n",
+				result);
+		}
+     	}
+     	
+     	private void MarkMinorSections ()
+     	{
+     		Match [] matches;
+     		matches = GetMatches (@"[\n]+[0-9][.][ ].*\n");
+		
+		foreach (Match m in matches) {
+			string result, old;
+			old = m.Value;
+			result = old.Trim ();
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + result);
+			#endif
+			
+			result = "\n[sec] " + result + " [/sec]\n";
+			ReplacePattern (old, result);
+		}
+		
+		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.]*[ ].*\n");
+		foreach (Match m in matches) {
+			string result, old;
+			old = m.Value;
+			result = old.Trim ();
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + result);
+			#endif
+			
+			result = "\n[subsec] " + result + " [/subsec]\n";
+			ReplacePattern (old, result);
+		}
+     	}
+     	
+     	private void MarkParagraphs ()
+     	{
+     		Match [] matches;
+     		matches = GetMatches (@"[.]\n[ ][ ][ ][ ]*[a-zA-Z0-9.,;& \n()-/]+[.]\n[ ][ ][ ][ ]*");
+		foreach (Match m in matches) {
+			string result, old;
+			old = m.Value;
+			result = old.Trim ();
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + result);
+			#endif
+			
+//			result = "\n[para] " + result + " [/para]\n";
+//			ReplacePattern (old, result);
+		}
+     	}	
 }
 }
 }

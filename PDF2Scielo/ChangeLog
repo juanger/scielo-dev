@@ -1,3 +1,10 @@
+2007-03-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/PDFPoppler.cs, PDF2Text/AtmNormalizer.cs,
+	  PDF2Text/INormalizable.cs: Se cambio de uso del flag -raw a uso de
+	  -layout puesto que -raw esta eliminando espacios en el texto en una
+	  forma aleatoria.
+
 2007-02-27  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	* PDF2Text/PDFPoppler.cs: Agregar como miembro a un objeto de alguna

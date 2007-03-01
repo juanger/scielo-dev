@@ -36,14 +36,16 @@ public class PDFPoppler : IExtractable {
 	
 	public static PDFPoppler CreateInstance (Uri uri)
 	{
-		string docpath, temp;
+		string docpath, temp, user, dir;
 		docpath = uri.LocalPath;
 		
 		if (!File.Exists (docpath))
 			return null;
 		
+		user = Environment.UserName;
+		dir = "Poppler-" + user;
 		temp = Path.GetTempPath ();
-		temp_dir = Path.Combine (temp, "Poppler");
+		temp_dir = Path.Combine (temp, dir);
 		
 		if (!Directory.Exists (temp_dir))
 			Directory.CreateDirectory (temp_dir);
@@ -58,9 +60,9 @@ public class PDFPoppler : IExtractable {
 	public string GetNormText (string encoding)
 	{	
 		norm = new AtmNormalizer (ExtractText ());
-		norm.RemoveHeaders ();
-		norm.MarkSections ();
 		norm.ReplaceChars (StringEncoding.CharactersDefault);
+		norm.RemoveHeaders ();
+		norm.MarkText ();
 		
 		return norm.Text;
 	}
@@ -109,7 +111,7 @@ public class PDFPoppler : IExtractable {
 		}
 		
 		Directory.CreateDirectory (dir);
-		Process proc = Process.Start ("pdftotext", " -raw " + doc_path + " " + filepath);
+		Process proc = Process.Start ("pdftotext", " -layout " + doc_path + " " + filepath);
 		proc.WaitForExit ();
 		
 		#if DEBUG

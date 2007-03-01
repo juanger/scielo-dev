@@ -26,7 +26,7 @@ public interface INormalizable {
 	
 	string RemovePattern (string regexp);
 	
-	string MarkSections ();
+	string MarkText ();
 	
 	bool InsertNonText ();
 	
