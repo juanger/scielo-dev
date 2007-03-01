@@ -1,5 +1,10 @@
 2007-03-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/AtmNormalizer.cs: Mejoras en las expresiones regulares, se
+	  capturan las subsubsecciones.
+
+2007-03-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/v18n4a02-raw.txt, PDF2Text/Test/v17n4a03-raw.txt,
 	  PDF2Text/Test/v17n01a02-raw.txt: Cambio en los archivos de prueba
 	  para -layout.
