@@ -122,21 +122,6 @@ public class StringEncoding {
     	private static ArrayList CodesList ()
 	{
 		ArrayList table = new ArrayList();
-		//" (start)
-		table.Add( new CodesTable (new byte[] {194,147},
-		                           new byte[] {38, 35, 49, 52, 55, 59}));
-		//" (end)                           
-		table.Add( new CodesTable (new byte[] {194,148},
-		                           new byte[] {38, 35, 49, 52, 56, 59}));		
-		//(start ')
-                table.Add (new CodesTable (new byte [] {194,145},
-                                           new byte [] {38, 35, 49, 52, 53, 59}));
-                //(end ')                           
-                table.Add (new CodesTable (new byte [] {194,146},
-                        		   new byte [] {38, 35, 49, 52, 54, 59}));
-                //(long -)                           
-                table.Add (new CodesTable (new byte [] {194,150},
-                        		   new byte [] {38, 35, 49, 53, 48, 59}));
                 //(&aacute;)                           
                 table.Add (new CodesTable (new byte [] {195,161},
                         		   new byte [] {38, 97, 97, 99, 117, 116, 101, 59}));
@@ -173,6 +158,35 @@ public class StringEncoding {
                 //(&Ntilde;)                           
                 table.Add (new CodesTable (new byte [] {195,145},
                         		   new byte [] {38, 78, 116, 105, 108, 100, 101, 59}));                        		
+                //----------------------------symbols
+		//(start ')
+                table.Add (new CodesTable (new byte [] {194,145},
+                                           new byte [] {38, 35, 49, 52, 53, 59}));
+                //(end ')                           
+                table.Add (new CodesTable (new byte [] {194,146},
+                        		   new byte [] {38, 35, 49, 52, 54, 59}));
+		//" (start)
+		table.Add( new CodesTable (new byte [] {194,147},
+		                           new byte [] {38, 35, 49, 52, 55, 59}));
+		//" (end)                           
+		table.Add( new CodesTable (new byte [] {194,148},
+		                           new byte [] {38, 35, 49, 52, 56, 59}));		
+                //(long -)                           
+                table.Add (new CodesTable (new byte [] {194,150},
+                        		   new byte [] {38, 35, 49, 53, 48, 59}));
+                //(&iexcl; )                           
+                table.Add (new CodesTable (new byte [] {194,161},
+                        		   new byte [] {38, 35, 49, 54, 49, 59}));                        		   
+                //(&deg; degree sign)                           
+                table.Add (new CodesTable (new byte [] {194,176},
+                        		   new byte [] {38, 35, 49, 55, 54, 59}));	   
+                //(&iquest; )                           
+                table.Add (new CodesTable (new byte [] {194,191},
+                        		   new byte [] {38, 35, 49, 57, 49, 59}));
+                //(En Dash - &#8211; )                           
+                table.Add (new CodesTable (new byte [] {226,128,147},
+                        		   new byte [] {38,35,56,50,49,49,59}));                        		   
+                        		     
 		return table;                      
 	}
 	
