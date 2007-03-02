@@ -1,5 +1,10 @@
 2007-03-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/PDFPoppler.cs, PDF2Text/AtmNormalizer.cs,
+	  PDF2Text/INormalizable.cs: Mas cambios a AtmNormalizer.
+
+2007-03-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/AtmNormalizer.cs: Mejoras en las expresiones regulares, se
 	  capturan las subsubsecciones.
 

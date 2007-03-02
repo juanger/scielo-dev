@@ -22,21 +22,19 @@ public interface INormalizable {
 	
 	void SetEncoding (string encoding);
 	
-	string RemoveHeaders ();
-	
-	string RemovePattern (string regexp);
+	string RemovePattern (string regexp, string source);
 	
 	string MarkText ();
 	
 	bool InsertNonText ();
 	
-	string ReplacePattern (string regexp, string substitute);
+	string ReplacePattern (string regexp, string substitute, string source);
 	
 	string ReplaceFootNotes (string regexp);
 	
 	string ReplaceChars (ArrayList rechar);
 	
-	Match [] GetMatches (string regexp);
+	Match [] GetMatches (string regexp, string source);
 	
 	string Text { get; } 
 }

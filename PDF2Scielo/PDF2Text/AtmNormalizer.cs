@@ -24,11 +24,19 @@ namespace PDF2Text {
 public class AtmNormalizer : INormalizable {
 
 	private string text;
+	private string front;
+	private string body;
+	private string back;
 		
 	public AtmNormalizer (string source)
 	{
 		StringEncoding encoder = new StringEncoding (source);
+		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
 		text = encoder.GetStringUnicode ();
+		
+		RemoveHeaders ();
+		MarkMajorSections ();
+		GetBlocks ();
 	}
 	
 	public void SetEncoding (string encoding)
@@ -36,55 +44,20 @@ public class AtmNormalizer : INormalizable {
 		//TODO: To be implemented.
 	}
 	
-	public string RemoveHeaders ()
-	{
-		// Remueve encabezados y numeros de pagina.
-		Match [] matches;
-		matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+");
-		ReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
-		
-	 	#if DEBUG
-	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
-	 	foreach (Match m in matches) {
-			Console.WriteLine ("MATCH: " + m.Value);
-		}
-		#endif
-		
 
-		
-		matches = GetMatches (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]+[\n]+");
-		ReplacePattern (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]+[\n]+", "\n");
-		
-	 	#if DEBUG
-	 	foreach (Match m in matches) {
-			Console.WriteLine ("MATCH: " + m.Value);
-		}
-		#endif		
-
-	 	return text;
-	}
 	
-	public string RemovePattern (string regexp)
+	public string RemovePattern (string regexp, string source)
 	{
-		return ReplacePattern (regexp, String.Empty);
+		return ReplacePattern (regexp, String.Empty, source);
 	}
 	
 	public string MarkText ()
 	{
-		MarkMajorSections ();
+		//MarkMajorSections ();
 		MarkMinorSections ();
 		MarkParagraphs ();
 		
-		#if DEBUG
-		// Aqui se busca posibles alteraciones en el texto ie que se eliminen espacios.
-		Match [] matches;
-		matches = GetMatches (@"[ \n]+[a-z]+[A-Z]+[a-zA-Z]*[ \n]+");
-		foreach (Match m in matches) {
-			Console.WriteLine ("MATCH: " + m.Value);
-		}
-		#endif
-		
-		return text;
+		return Text;
 	}
 	
 	public bool InsertNonText ()
@@ -93,12 +66,10 @@ public class AtmNormalizer : INormalizable {
 		return false;
 	}
 	
-	public string ReplacePattern (string regexp, string substitute)
+	public string ReplacePattern (string regexp, string substitute, string source)
 	{
 		Regex regex = new Regex (regexp);	
-		text = regex.Replace (text, substitute);
-		
-		return text;
+		return regex.Replace (source, substitute);
 	}
 	
 	public string ReplaceFootNotes (string regexp)
@@ -116,11 +87,11 @@ public class AtmNormalizer : INormalizable {
 		return text;
 	}
 	
-	public Match [] GetMatches (string regexp)
+	public Match [] GetMatches (string regexp, string source)
 	{
 		Match [] result;
 		Regex regex = new Regex (regexp);
-		MatchCollection matches = regex.Matches (text);
+		MatchCollection matches = regex.Matches (source);
 		
 		result = new Match [matches.Count];
 		matches.CopyTo (result, 0);
@@ -131,21 +102,55 @@ public class AtmNormalizer : INormalizable {
 	
 	public string Text {
 		get {
+			text = front + body + back;
 			return text;
 		}
 	}
-     	
-     	private void MarkMajorSections ()
+	
+	private void GlobalReplacePattern (string regexp, string substitute)
+	{
+		Regex regex = new Regex (regexp);	
+		text = regex.Replace (text, substitute);
+	}
+	
+	private void RemoveHeaders ()
+	{
+		Match [] matches;
+		
+		// Remueve encabezados y numeros de pagina.
+		matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", text);
+		GlobalReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
+		
+	 	#if DEBUG
+	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
+	 	foreach (Match m in matches) {
+			Console.WriteLine ("MATCH: " + m.Value);
+		}
+		#endif
+		
+
+		
+		matches = GetMatches (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]+[\n]+", text);
+		GlobalReplacePattern (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]+[\n]+", "\n");
+		
+	 	#if DEBUG
+	 	foreach (Match m in matches) {
+			Console.WriteLine ("MATCH: " + m.Value);
+		}
+		#endif
+	}
+	
+	private void MarkMajorSections ()
      	{
      		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
-		ReplacePattern (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
-		ReplacePattern (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
-		ReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
-		ReplacePattern (@"[\n]+Acknowledgements\n", "\n[ack] Acknowledgements [/ack]\n");
+		GlobalReplacePattern (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
+		GlobalReplacePattern (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
+		GlobalReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
+		GlobalReplacePattern (@"[\n]+Acknowledgements\n", "\n[ack] Acknowledgements [/ack]\n");
 		
 		//Etiquetado de KEYWORD.		
 		Match [] matches;
-		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+");
+		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+", text);
 		
 		string result, old;
 		old = matches [0].Value;
@@ -157,8 +162,40 @@ public class AtmNormalizer : INormalizable {
 		#endif
 		
 		result = "\n[key] " + result + " [/key].\n";
-		ReplacePattern (old, result);
+		GlobalReplacePattern (old, result);
      	}
+	
+	private void GetBlocks ()
+	{
+		string temp;
+		Match [] matches;
+		matches = GetMatches (@"Atm(.|\s)* \[/key\][.]\n", text);
+		front = matches [0].Value;
+		
+		#if DEBUG
+	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
+		Console.WriteLine ("MATCH: " + front);
+		#endif
+		
+		matches = GetMatches (@"\[/key\][.](.|\s)*\[ref\]", text);
+		temp = matches [0].Value;
+		body = temp.Substring (8, temp.Length - 13);
+		
+		#if DEBUG
+	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
+	 	Console.WriteLine ("MATCH: " + body);
+		#endif
+		
+		matches = GetMatches (@"\[ref\](.|\s)*", text);
+		back = matches [0].Value;
+		
+		#if DEBUG
+	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
+	 	Console.WriteLine ("MATCH: " + back);
+		#endif
+	}
+     	
+
      	
      	private void MarkMinorSections ()
      	{
@@ -169,7 +206,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las secciones.");
 		#endif
      		
-     		matches = GetMatches (@"[\n]+[0-9][.][ ].*\n");
+     		matches = GetMatches (@"[\n]+[0-9][.][ ].*\n", body);
 		foreach (Match m in matches) {
 			string result, old;
 			old = m.Value;
@@ -180,7 +217,7 @@ public class AtmNormalizer : INormalizable {
 			#endif
 			
 			result = "\n[sec] " + result + " [/sec]\n";
-			ReplacePattern (old, result);
+			body = ReplacePattern (old, result, body);
 		}
 		
 		// Etiquetado de las secciones del tipo <num>.<num>[.] <string>
@@ -188,7 +225,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsecciones.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.]*[ ].*\n");
+		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.]*[ ].*\n", body);
 		foreach (Match m in matches) {
 			string result, old;
 			old = m.Value;
@@ -199,7 +236,7 @@ public class AtmNormalizer : INormalizable {
 			#endif
 			
 			result = "\n[subsec] " + result + " [/subsec]\n";
-			ReplacePattern (old, result);
+			body = ReplacePattern (old, result, body);
 		}
 		
 		// Etiquetado de las secciones del tipo <num>.<num>.<num> <string>
@@ -207,7 +244,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsubsecciones.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n");
+		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n", body);
 		foreach (Match m in matches) {
 			string result, old;
 			old = m.Value;
@@ -218,7 +255,7 @@ public class AtmNormalizer : INormalizable {
 			#endif
 			
 			result = "\n[subsubsec] " + result + " [/subsubsec]\n";
-			ReplacePattern (old, result);
+			body = ReplacePattern (old, result, body);
 		}
      	}
      	
@@ -231,7 +268,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar los parrafos.");
 		#endif
      		
-     		matches = GetMatches (@"[.][\n]*[ ]{3,4}[A-Z].*");
+     		matches = GetMatches (@"[.][\n]*[ ]{3,4}[A-Z].*", body);
 		foreach (Match m in matches) {
 			string result, old;
 			old = m.Value;
@@ -242,7 +279,7 @@ public class AtmNormalizer : INormalizable {
 			#endif
 			
 //			result = "\n[para] " + result + " [/para]\n";
-//			ReplacePattern (old, result);
+//			body = ReplacePattern (old, result, body);
 		}
      	}	
 }

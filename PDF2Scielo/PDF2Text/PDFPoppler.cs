@@ -60,8 +60,7 @@ public class PDFPoppler : IExtractable {
 	public string GetNormText (string encoding)
 	{	
 		norm = new AtmNormalizer (ExtractText ());
-		norm.ReplaceChars (StringEncoding.CharactersDefault);
-		norm.RemoveHeaders ();
+		//norm.ReplaceChars (StringEncoding.CharactersDefault);
 		norm.MarkText ();
 		
 		return norm.Text;
