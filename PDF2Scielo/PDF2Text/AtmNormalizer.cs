@@ -152,6 +152,7 @@ public class AtmNormalizer : INormalizable {
 		Match [] matches;
 		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+", text);
 		
+		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
 		string result, old;
 		old = matches [0].Value;
 		result = old.Trim ();
@@ -206,6 +207,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las secciones.");
 		#endif
      		
+     		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
      		matches = GetMatches (@"[\n]+[0-9][.][ ].*\n", body);
 		foreach (Match m in matches) {
 			string result, old;
@@ -225,6 +227,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsecciones.");
 		#endif
 		
+		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
 		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.]*[ ].*\n", body);
 		foreach (Match m in matches) {
 			string result, old;
@@ -244,6 +247,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsubsecciones.");
 		#endif
 		
+		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
 		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n", body);
 		foreach (Match m in matches) {
 			string result, old;
@@ -268,6 +272,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar los parrafos.");
 		#endif
      		
+     		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
      		matches = GetMatches (@"[.][\n]*[ ]{3,4}[A-Z].*", body);
 		foreach (Match m in matches) {
 			string result, old;
@@ -278,8 +283,12 @@ public class AtmNormalizer : INormalizable {
 			Console.WriteLine ("MATCH: " + result);
 			#endif
 			
-//			result = "\n[para] " + result + " [/para]\n";
-//			body = ReplacePattern (old, result, body);
+			
+			result = result.Substring (1);
+			result = result.TrimStart ();
+			result = ".\n[para] " + result;
+			
+			body = ReplacePattern (old, result, body);
 		}
      	}	
 }
