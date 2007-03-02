@@ -185,7 +185,11 @@ public class StringEncoding {
                         		   new byte [] {38, 35, 49, 57, 49, 59}));
                 //(En Dash - &#8211; )                           
                 table.Add (new CodesTable (new byte [] {226,128,147},
-                        		   new byte [] {38,35,56,50,49,49,59}));                        		   
+                        		   new byte [] {38,35,56,50,49,49,59}));
+                //(Right Single Quotation Mark - &#8217; )                           
+                table.Add (new CodesTable (new byte [] {226,128,153},
+                        		   new byte [] {38,35,56,50,49,55,59}));
+                        		   
                         		     
 		return table;                      
 	}
