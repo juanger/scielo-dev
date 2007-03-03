@@ -192,7 +192,7 @@ public class TestPDFPoppler {
 	
 	private string PathOfTest ()
 	{
-		// FIXME: Este es un hack para correr los casos depende de la
+		// FIXME: Este es un hack para correr los casos que depende de la
 		// locacion cuando se corre el test.
 		string path;
 		path = Environment.CurrentDirectory;

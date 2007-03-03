@@ -1,3 +1,9 @@
+2007-03-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/AtmNormalizer.cs: Ingreso
+	  de expresiones regulares para capturar los parrafos en la parte de
+	  body del documento.
+
 2007-03-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	

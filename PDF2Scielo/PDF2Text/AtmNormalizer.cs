@@ -53,7 +53,6 @@ public class AtmNormalizer : INormalizable {
 	
 	public string MarkText ()
 	{
-		//MarkMajorSections ();
 		MarkMinorSections ();
 		MarkParagraphs ();
 		
@@ -142,6 +141,10 @@ public class AtmNormalizer : INormalizable {
 	
 	private void MarkMajorSections ()
      	{
+     		string smatch, result;
+     		Match match;
+     		Match [] matches;
+     		
      		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
 		GlobalReplacePattern (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
 		GlobalReplacePattern (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
@@ -149,21 +152,18 @@ public class AtmNormalizer : INormalizable {
 		GlobalReplacePattern (@"[\n]+Acknowledgements\n", "\n[ack] Acknowledgements [/ack]\n");
 		
 		//Etiquetado de KEYWORD.		
-		Match [] matches;
 		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+", text);
+		match = matches [0];
+		smatch = match.Value;
 		
-		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
-		string result, old;
-		old = matches [0].Value;
-		result = old.Trim ();
-		
+		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern.
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar la seccion Keyword.");
-		Console.WriteLine ("MATCH: " + result);
+		Console.WriteLine ("MATCH: " + smatch);
 		#endif
 		
-		result = "\n[key] " + result + " [/key].\n";
-		GlobalReplacePattern (old, result);
+		result = "\n[key] " + smatch.Trim () + " [/key].\n";
+		text = text.Replace (smatch, result);
      	}
 	
 	private void GetBlocks ()
@@ -180,6 +180,8 @@ public class AtmNormalizer : INormalizable {
 		
 		matches = GetMatches (@"\[/key\][.](.|\s)*\[ref\]", text);
 		temp = matches [0].Value;
+		
+		// FIXME: Documentar o hacer mejor la extracion de body.
 		body = temp.Substring (8, temp.Length - 13);
 		
 		#if DEBUG
@@ -207,19 +209,17 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las secciones.");
 		#endif
      		
-     		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
      		matches = GetMatches (@"[\n]+[0-9][.][ ].*\n", body);
 		foreach (Match m in matches) {
-			string result, old;
-			old = m.Value;
-			result = old.Trim ();
+			string smatch, result;
+			smatch = m.Value;
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + result);
+			Console.WriteLine ("MATCH: " + smatch);
 			#endif
 			
-			result = "\n[sec] " + result + " [/sec]\n";
-			body = ReplacePattern (old, result, body);
+			result = "\n[sec] " + smatch.Trim () + " [/sec]\n";
+			body = body.Replace (smatch, result);
 		}
 		
 		// Etiquetado de las secciones del tipo <num>.<num>[.] <string>
@@ -227,19 +227,17 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsecciones.");
 		#endif
 		
-		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
 		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.]*[ ].*\n", body);
 		foreach (Match m in matches) {
-			string result, old;
-			old = m.Value;
-			result = old.Trim ();
+			string smatch, result;
+			smatch = m.Value;
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + result);
+			Console.WriteLine ("MATCH: " + smatch);
 			#endif
 			
-			result = "\n[subsec] " + result + " [/subsec]\n";
-			body = ReplacePattern (old, result, body);
+			result = "\n[subsec] " + smatch.Trim () + " [/subsec]\n";
+			body = body.Replace (smatch, result);
 		}
 		
 		// Etiquetado de las secciones del tipo <num>.<num>.<num> <string>
@@ -250,16 +248,15 @@ public class AtmNormalizer : INormalizable {
 		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
 		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n", body);
 		foreach (Match m in matches) {
-			string result, old;
-			old = m.Value;
-			result = old.Trim ();
+			string smatch, result;
+			smatch = m.Value;
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + result);
+			Console.WriteLine ("MATCH: " + smatch);
 			#endif
 			
-			result = "\n[subsubsec] " + result + " [/subsubsec]\n";
-			body = ReplacePattern (old, result, body);
+			result = "\n[subsubsec] " + smatch.Trim () + " [/subsubsec]\n";
+			body = body.Replace (smatch, result);
 		}
      	}
      	
@@ -272,23 +269,49 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar los parrafos.");
 		#endif
      		
-     		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
      		matches = GetMatches (@"[.][\n]*[ ]{3,4}[A-Z].*", body);
 		foreach (Match m in matches) {
-			string result, old;
-			old = m.Value;
-			result = old.Trim ();
+			string smatch, result;
+			smatch = m.Value;
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + result);
+			Console.WriteLine ("MATCH: " + smatch);
 			#endif
 			
-			
-			result = result.Substring (1);
+			result = smatch.Substring (1);
 			result = result.TrimStart ();
 			result = ".\n[para] " + result;
 			
-			body = ReplacePattern (old, result, body);
+			body = body.Replace (smatch, result);
+		}
+		
+		matches = GetMatches (@"\n(\[para\]|\[sec\]|\[subsec\]|\[subsubsec\]|\[ack\]).*", body);
+		foreach (Match m in matches) {
+			string smatch, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			if (smatch.IndexOf ("1. ") != -1)
+				continue;
+			
+			result = "[/para]" + smatch;
+			body = body.Replace (smatch, result);
+		}
+		
+		matches = GetMatches (@"\n.*(\[/sec\]|\[/subsec\]|\[/subsubsec\])\n", body);
+		foreach (Match m in matches) {
+			string smatch, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			result = smatch + "[para] ";
+			body = body.Replace (smatch, result);
 		}
      	}	
 }
