@@ -12,6 +12,7 @@
 //
 
 using System;
+using System.Collections;
 using NUnit.Framework;
 
 namespace Scielo {
@@ -34,19 +35,33 @@ public class TestStringEncoding{
 	public void Constructor2Caso1 ()
 	{
 		string data = "\u307b,\u308b,\u305a,\u3042,\u306d";
-                Console.WriteLine ("La cadena antes de entrar::::"+data);
-	        StringEncoding converter = new StringEncoding (data, 932);
-	        Console.WriteLine ("La cadena al salir::::" + converter.GetStringUnicode ());
+                StringEncoding converter = new StringEncoding (data, 932);
+	        Assert.AreEqual (data, converter.GetStringUnicode(), "CO2 C1");
+	        
 	}
 	
 	[Test]
 	public void Constructor2Caso2 ()
 	{
-		string data = "This string contains the unicode character Pi(\u03a0)";
-                Console.WriteLine ("La cadena antes de entrar::::"+data);
-	        StringEncoding converter = new StringEncoding (data, 1255);
-	        Console.WriteLine ("La cadena al salir::::" + converter.GetStringUnicode ());
-	}	
+		string text = "";
+                StringEncoding converter = new StringEncoding (text, 1255);
+	        Assert.AreEqual (text, converter.GetStringUnicode(), "CO2 C2");
+	}
+
+	[Test]
+	public void Constructor2Caso3 ()
+	{
+		StringEncoding converter = new StringEncoding ("");
+	        Assert.IsNotNull (converter, "CO2 C3");
+	}
+	
+	[Test]
+	public void ConverterDataInBytes()
+	{
+	        StringEncoding converter = new StringEncoding("Hola");
+	        ArrayList data = converter.ConverterDataInBytes("Hola");
+		Assert.AreSame (data, converter.DataByte, "Converter");       
+	}
 }
 }
 }
