@@ -1,3 +1,7 @@
+2007-03-05  Virginia Teodosio P <ainigriv_t@hotmail.com> 
+
+	Se agregaron las pruebas de unidad para las clases StringEncoding y CodesTable
+
 2007-03-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/AtmNormalizer.cs: Ingreso

@@ -20,8 +20,8 @@ public class TestConfiguration {
 	[Test]
 	public void Equals ()
 	{
-		Configuration test1 = new Configuration ("q", "a", "x");
-		Configuration test2 = new Configuration ("q", "a", "x");
+		Configuration test1 = new Configuration ("q", "a", "y");
+		Configuration test2 = new Configuration ("q", "a", "y");
 		Assert.AreEqual (test1, test2, "C01");
 	}
 

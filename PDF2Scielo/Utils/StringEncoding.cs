@@ -70,6 +70,12 @@ public class StringEncoding {
 			return characters_default;
 		}
 	}
+	
+	public ArrayList DataByte{
+		get {
+			return data_byte;
+		}
+	}
     	
     	private bool ReplaceBytes (byte[] code, byte[] substitute)
 	{
@@ -189,10 +195,9 @@ public class StringEncoding {
                 //(Right Single Quotation Mark - &#8217; )                           
                 table.Add (new CodesTable (new byte [] {226,128,153},
                         		   new byte [] {38,35,56,50,49,55,59}));
-                        		   
-                        		     
+                        		                         		     
 		return table;                      
-	}
+		}
 	
 }
 }
