@@ -26,7 +26,7 @@ public class TestPDFPoppler {
 	{
 		Uri uri = new Uri ("/foo/v17n01a02.pdf");
 		PDFPoppler doc = PDFPoppler.CreateInstance (uri);
-		Assert.IsNull (doc, "CI01");	
+		Assert.IsNull (doc, "CI01");
 	}
 	
 	[Test]

@@ -54,7 +54,9 @@ public class AtmNormalizer : INormalizable {
 	public string MarkText ()
 	{
 		MarkMinorSections ();
+		MarkFootFigure ();
 		MarkParagraphs ();
+
 		
 		return Text;
 	}
@@ -149,7 +151,7 @@ public class AtmNormalizer : INormalizable {
 		GlobalReplacePattern (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
 		GlobalReplacePattern (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
 		GlobalReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
-		GlobalReplacePattern (@"[\n]+Acknowledgements\n", "\n[ack] Acknowledgements [/ack]\n");
+		GlobalReplacePattern (@"[\n]+(Acknowledgements|Acknowledgments)\n", "\n[ack] Acknowledgements [/ack]\n");
 		
 		//Etiquetado de KEYWORD.		
 		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+", text);
@@ -285,6 +287,19 @@ public class AtmNormalizer : INormalizable {
 			body = body.Replace (smatch, result);
 		}
 		
+		matches = GetMatches (@"(\[sec\]|\[subsec\]|\[subsubsec\]).*\n", body);
+		foreach (Match m in matches) {
+			string smatch, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			result = "[para] " + smatch.TrimStart ();
+			body = body.Replace (smatch, result);
+		}
+		
 		matches = GetMatches (@"\n(\[para\]|\[sec\]|\[subsec\]|\[subsubsec\]|\[ack\]).*", body);
 		foreach (Match m in matches) {
 			string smatch, result;
@@ -294,14 +309,25 @@ public class AtmNormalizer : INormalizable {
 			Console.WriteLine ("MATCH: " + smatch);
 			#endif
 			
-			if (smatch.IndexOf ("1. ") != -1)
+			// FIXME: Caso para no poner un [/para] extra antes de la primera seccion.
+			if (smatch.StartsWith ("\n[para] [sec] 1. "))
 				continue;
 			
 			result = "[/para]" + smatch;
 			body = body.Replace (smatch, result);
 		}
-		
-		matches = GetMatches (@"\n.*(\[/sec\]|\[/subsec\]|\[/subsubsec\])\n", body);
+     	}
+     	
+     	private void MarkFootFigure ()
+     	{
+     		Match [] matches;
+     		
+     		// Etiquetado de los pies de figura.
+		#if DEBUG
+		Console.WriteLine ("DEBUG: Resultados obtenidos para los pies de figura.");
+		#endif
+     		
+     		matches = GetMatches (@"\n[ ]*Fig[.][ ]?[0-9]+[.] .*", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
@@ -310,10 +336,27 @@ public class AtmNormalizer : INormalizable {
 			Console.WriteLine ("MATCH: " + smatch);
 			#endif
 			
-			result = smatch + "[para] ";
+			result = smatch.TrimStart ();
+			result = "\n[fig] " + result;
+			
 			body = body.Replace (smatch, result);
 		}
-     	}	
+		
+		matches = GetMatches (@"\[fig\](.*\n.*|.*)[.]\n", body);
+		foreach (Match m in matches) {
+			string smatch, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			result = smatch.TrimEnd ();
+			result = result + " [/fig]\n";
+			
+			body = body.Replace (smatch, result);
+		}
+     	}
 }
 }
 }
