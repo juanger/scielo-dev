@@ -287,7 +287,8 @@ public class AtmNormalizer : INormalizable {
 			body = body.Replace (smatch, result);
 		}
 		
-		matches = GetMatches (@"(\[sec\]|\[subsec\]|\[subsubsec\]).*\n", body);
+		
+		matches = GetMatches (@"(\[sec\]|\[subsec\]|\[subsubsec\]).*\n", body); 
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
@@ -300,6 +301,7 @@ public class AtmNormalizer : INormalizable {
 			body = body.Replace (smatch, result);
 		}
 		
+ 		
 		matches = GetMatches (@"\n(\[para\]|\[sec\]|\[subsec\]|\[subsubsec\]|\[ack\]).*", body);
 		foreach (Match m in matches) {
 			string smatch, result;
@@ -333,7 +335,7 @@ public class AtmNormalizer : INormalizable {
 			smatch = m.Value;
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH figura: " + smatch);
 			#endif
 			
 			result = smatch.TrimStart ();
@@ -342,13 +344,16 @@ public class AtmNormalizer : INormalizable {
 			body = body.Replace (smatch, result);
 		}
 		
-		matches = GetMatches (@"\[fig\](.*\n.*|.*)[.]\n", body);
+//		matches = GetMatches (@"\[fig\](.*\n.*|.*)[.]\n", body);
+
+		matches = GetMatches (@"\[fig\]((.*[ ].*|.*)|(.*\n.*|.*))([.])?\n", body);
+		
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH figura2: " + smatch);
 			#endif
 			
 			result = smatch.TrimEnd ();

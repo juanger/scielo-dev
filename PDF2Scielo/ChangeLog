@@ -1,3 +1,7 @@
+2007-03-08  Full Name <Email Address> 
+
+	Modificaciones para enmarcar correctamente los pies de figuras
+
 2007-03-07  Alejandro Juarez <alexjr85@gmail.com> 
 
 	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/Test.config,
