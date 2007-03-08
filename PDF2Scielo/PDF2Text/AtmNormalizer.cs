@@ -158,7 +158,6 @@ public class AtmNormalizer : INormalizable {
 		match = matches [0];
 		smatch = match.Value;
 		
-		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern.
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar la seccion Keyword.");
 		Console.WriteLine ("MATCH: " + smatch);
@@ -247,7 +246,6 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsubsecciones.");
 		#endif
 		
-		// TODO cambiar a uso de indices en lugar uso de GlobalReplacePattern. 
 		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n", body);
 		foreach (Match m in matches) {
 			string smatch, result;
