@@ -21,14 +21,12 @@ namespace PDF2Text {
 public class TestAtmNormalizer {
 	
 	[Test]
-	public void ReplacePattern ()
+	public void Constructor ()
 	{
+		string data = "sofisticadas, el Análisis de";
+		AtmNormalizer atmN = new AtmNormalizer (data);
 	}
 	
-	[Test]
-	public void ReplaceBytes ()
-	{       	
-    	}
 }
 }
 }
