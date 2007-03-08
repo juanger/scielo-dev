@@ -1,5 +1,11 @@
 2007-03-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs, Utils/Test.cs: Se movio el metodo
+	  ReadFile de ser un metodo privado en AtmNormalizer a un metodo
+	  estatico en la clase Test de componente Utils.
+
+2007-03-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/Test/TestAtmNormalizer.cs,
 	  PDF2Text/PDF2Text.mdp, Utils/Utils.mdp, PDF2Scielo/PDF2Scielo.mdp,
 	  MarkupHTML/MarkupHTML.mdp: Se cambio la version de nunint de 2.2.0
