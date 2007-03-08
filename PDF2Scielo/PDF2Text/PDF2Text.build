@@ -13,11 +13,31 @@
           </sources>
 	  <pkg-references>
 	    <package name="gtk-sharp-2.0" />
-	    <package name="poppler-sharp" />
+k	    <package name="poppler-sharp" />
 	  </pkg-references>
           <references>
              <include name="../Utils/bin/Debug/Utils.dll" />
           </references>
        </csc>
+   </target>
+
+   <target name="test" depends="build">
+    <csc target="library" output="./Test/TestPDFPoppler.dll">
+      <sources>
+        <include name="./Test/TestPDFPoppler.cs" />
+      </sources>
+	  <pkg-references>
+	    <package name="nunit" />
+	  </pkg-references>
+
+      <references>
+        <include name="./bin/Debug/PDF2Text.dll" />
+      </references>
+    </csc>
+
+    <nunit2>
+        <formatter type="Xml" usefile="true" extension=".xml" outputdir="Test/results" />
+	<test assemblyname="./Test/TestPDFPoppler.dll" appconfig="Test.config" />
+    </nunit2>
    </target>
 </project>

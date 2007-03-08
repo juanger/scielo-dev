@@ -1,3 +1,11 @@
+2007-03-07  Alejandro Juarez <alexjr85@gmail.com> 
+
+	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/Test.config,
+	  PDF2Text/PDF2Text.build, Utils/Utils.mdp, Utils/Test.cs: Se agrego
+	  la clase Test bajo el Utils que ofrecera metodos para las pruebas
+	  unitarias. Ademas se implemetaron dos pruebas sencillas y se avanzo
+	  con la integracion de Nunit y Nant.
+
 2007-03-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/AtmNormalizer.cs: Commit

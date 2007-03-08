@@ -14,6 +14,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using Scielo.Utils;
 
 namespace Scielo {
 namespace PDF2Text {
@@ -22,11 +23,25 @@ namespace PDF2Text {
 public class TestPDFPoppler {
 	
 	[Test]
-	public void CreateInstance ()
+	public void CreateInstanceWithValidUri ()
+	{
+		string path = Test.PathOfTest ();
+		string file = Path.Combine (path, "v17n01a02.pdf");
+		
+		Uri uri = new Uri (file);
+		PDFPoppler doc = PDFPoppler.CreateInstance (uri);
+		Type myType1 = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
+		Assert.IsInstanceOfType (myType1, doc, "CI01");
+	}
+	
+	[Test]
+	public void CreateInstanceWithInvalidUri ()
 	{
 		Uri uri = new Uri ("/foo/v17n01a02.pdf");
 		PDFPoppler doc = PDFPoppler.CreateInstance (uri);
-		Assert.IsNull (doc, "CI01");
+		Type myType1 = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
+		Assert.IsNotInstanceOfType (myType1, doc, "CI01");
+		Assert.IsNull (doc, "CI02");
 	}
 	
 	[Test]
@@ -58,7 +73,7 @@ public class TestPDFPoppler {
 		string path, path0, path1, path2, text0, text1, text2;
 		string pdftext0, pdftext1, pdftext2;
 
-		path = PathOfTest ();
+		path = Test.PathOfTest ();
 
 		// Rutas a los PDF a usar en el test unit.
 		path0 = Path.Combine (path, "v17n01a02.pdf");
@@ -96,7 +111,7 @@ public class TestPDFPoppler {
 		string path, path0, path1, path2, text0, text1, text2;
 		string pdftext0, pdftext1, pdftext2;
 
-		path = PathOfTest ();
+		path = Test.PathOfTest ();
 
 		// Rutas a los PDF a usar en el test unit.
 		path0 = Path.Combine (path, "v17n01a02.pdf");
@@ -134,7 +149,7 @@ public class TestPDFPoppler {
 		string path, path0, path1, path2, text0, text1, text2;
 		string pdftext0, pdftext1, pdftext2;
 		
-		path = PathOfTest ();
+		path = Test.PathOfTest ();
 		
 		// Rutas a los PDF a usar en el test unit.
 		path0 = Path.Combine (path, "v17n01a02.pdf");
@@ -190,17 +205,17 @@ public class TestPDFPoppler {
 		return result;
 	}
 	
-	private string PathOfTest ()
-	{
-		// FIXME: Este es un hack para correr los casos que depende de la
-		// locacion cuando se corre el test.
-		string path;
-		path = Environment.CurrentDirectory;
-		path = path.Replace ("bin" + Path.DirectorySeparatorChar + "Debug", String.Empty);
-		path = Path.Combine (path, "Test");
-		
-		return path;
-	}
+//	private string PathOfTest ()
+//	{
+//		// FIXME: Este es un hack para correr los casos que depende de la
+//		// locacion cuando se corre el test.
+//		string path;
+//		path = Environment.CurrentDirectory;
+//		path = path.Replace ("bin" + Path.DirectorySeparatorChar + "Debug", String.Empty);
+//		path = Path.Combine (path, "Test");
+//		
+//		return path;
+//	}
 }
 }
 }
