@@ -23,15 +23,11 @@ public class TestAtmNormalizer {
 	[Test]
 	public void ReplacePattern ()
 	{
-		
 	}
 	
 	[Test]
 	public void ReplaceBytes ()
-	{       
-	        string data = "sofisticadas, el Análisis de";
-	        
-		
+	{       	
     	}
 }
 }

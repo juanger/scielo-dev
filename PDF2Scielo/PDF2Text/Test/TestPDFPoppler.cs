@@ -31,7 +31,7 @@ public class TestPDFPoppler {
 		Uri uri = new Uri (file);
 		PDFPoppler doc = PDFPoppler.CreateInstance (uri);
 		Type myType1 = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
-		//Assert.IsInstanceOfType (myType1, doc, "CI01");
+		Assert.IsInstanceOfType (myType1, doc, "CI01");
 	}
 	
 	[Test]
@@ -40,7 +40,7 @@ public class TestPDFPoppler {
 		Uri uri = new Uri ("/foo/v17n01a02.pdf");
 		PDFPoppler doc = PDFPoppler.CreateInstance (uri);
 		Type myType1 = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
-		//Assert.IsNotInstanceOfType (myType1, doc, "CI01");
+		Assert.IsNotInstanceOfType (myType1, doc, "CI01");
 		Assert.IsNull (doc, "CI02");
 	}
 	
