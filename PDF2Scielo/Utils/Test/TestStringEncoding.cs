@@ -55,13 +55,6 @@ public class TestStringEncoding{
 	        Assert.IsNotNull (converter, "CO2 C3");
 	}
 	
-	[Test]
-	public void ConverterDataInBytes()
-	{
-	        StringEncoding converter = new StringEncoding("Hola");
-	        ArrayList data = converter.ConverterDataInBytes("Hola");
-		Assert.AreSame (data, converter.DataByte, "Converter");       
-	}
 }
 }
 }
