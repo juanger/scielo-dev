@@ -1,5 +1,5 @@
 //
-// TestStringEncoding.cs: Test for StringEncoding class
+// TestStringEncoding.cs: Test for StringEncoding class.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
