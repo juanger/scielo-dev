@@ -1,5 +1,5 @@
 //
-// AssemblyInfo.cs: Assembly Information.
+// TestAtmNormalizer.cs: Test for AtmNormalizer class.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
