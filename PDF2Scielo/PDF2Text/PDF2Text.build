@@ -11,10 +11,6 @@
           <sources>
              <include name="*.cs" />
           </sources>
-	  <pkg-references>
-	    <package name="gtk-sharp-2.0" />
-k	    <package name="poppler-sharp" />
-	  </pkg-references>
           <references>
              <include name="../Utils/bin/Debug/Utils.dll" />
           </references>
@@ -32,6 +28,7 @@ k	    <package name="poppler-sharp" />
 
       <references>
         <include name="./bin/Debug/PDF2Text.dll" />
+	<include name="../Utils/bin/Debug/Utils.dll" />
       </references>
     </csc>
 

@@ -269,7 +269,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar los parrafos.");
 		#endif
      		
-     		matches = GetMatches (@"[.][\n]*[ ]{3,4}[A-Z].*", body);
+     		matches = GetMatches (@"([.]|\[/fig\])[\n]*[ ]{3,4}[A-Z].*", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
@@ -278,10 +278,16 @@ public class AtmNormalizer : INormalizable {
 			Console.WriteLine ("MATCH: " + smatch);
 			#endif
 			
-			result = smatch.Substring (1);
-			result = result.TrimStart ();
-			result = ".\n[para] " + result;
-			
+			if (smatch.StartsWith ("[/fig]")) {
+				result = smatch.Substring (6);
+				result = result.TrimStart ();
+				result = "[/fig]\n[para] " + result;
+			} else {
+				result = smatch.Substring (1);
+				result = result.TrimStart ();
+				result = ".\n[para] " + result;
+			}
+
 			body = body.Replace (smatch, result);
 		}
 		
@@ -342,9 +348,9 @@ public class AtmNormalizer : INormalizable {
 			body = body.Replace (smatch, result);
 		}
 		
-//		matches = GetMatches (@"\[fig\](.*\n.*|.*)[.]\n", body);
+		matches = GetMatches (@"\[fig\](.*\n.*|.*)[.]\n", body);
 
-		matches = GetMatches (@"\[fig\]((.*[ ].*|.*)|(.*\n.*|.*))([.])?\n", body);
+//		matches = GetMatches (@"\[fig\]((.*[ ].*|.*)|(.*\n.*|.*))[.]?\n", body);
 		
 		foreach (Match m in matches) {
 			string smatch, result;
