@@ -1,3 +1,8 @@
+2007-03-09  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/AtmNormalizer.cs: Cambios en la expresiones regulares para
+	  los pies de figura.
+
 2007-03-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/AtmNormalizer.cs: Mas

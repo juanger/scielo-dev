@@ -37,6 +37,7 @@ public class AtmNormalizer : INormalizable {
 		RemoveHeaders ();
 		MarkMajorSections ();
 		GetBlocks ();
+		RemoveExtras ();
 	}
 	
 	public void SetEncoding (string encoding)
@@ -175,7 +176,7 @@ public class AtmNormalizer : INormalizable {
 		front = matches [0].Value;
 		
 		#if DEBUG
-	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
+	 	Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el front"); 	
 		Console.WriteLine ("MATCH: " + front);
 		#endif
 		
@@ -186,7 +187,7 @@ public class AtmNormalizer : INormalizable {
 		body = temp.Substring (8, temp.Length - 13);
 		
 		#if DEBUG
-	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
+	 	Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el body"); 	
 	 	Console.WriteLine ("MATCH: " + body);
 		#endif
 		
@@ -194,13 +195,32 @@ public class AtmNormalizer : INormalizable {
 		back = matches [0].Value;
 		
 		#if DEBUG
-	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
+	 	Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el back"); 	
 	 	Console.WriteLine ("MATCH: " + back);
 		#endif
 	}
-     	
-
-     	
+	
+	private void RemoveExtras ()
+	{
+		Match [] matches;
+		
+     		#if DEBUG
+		Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar texto muerto");
+		#endif
+		
+		matches = GetMatches (@"\n[ ]*[0-9.-]+\n", body);
+		foreach (Match m in matches) {
+			string smatch;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			body = body.Replace (smatch, "\n");
+		}
+	}
+	
      	private void MarkMinorSections ()
      	{
      		Match [] matches;
@@ -333,7 +353,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para los pies de figura.");
 		#endif
      		
-     		matches = GetMatches (@"\n[ ]*Fig[.][ ]?[0-9]+[.] .*", body);
+     		matches = GetMatches (@"[\n]+[ ]*Fig[.][ ]?[0-9]+[.] .*", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
@@ -348,10 +368,7 @@ public class AtmNormalizer : INormalizable {
 			body = body.Replace (smatch, result);
 		}
 		
-		matches = GetMatches (@"\[fig\](.*\n.*|.*)[.]\n", body);
-
-//		matches = GetMatches (@"\[fig\]((.*[ ].*|.*)|(.*\n.*|.*))[.]?\n", body);
-		
+		matches = GetMatches (@"\[fig\] Fig[.][ ]?[0-9]+[.] [a-zA-Z0-9-, \n]*[.]\n", body);		
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
