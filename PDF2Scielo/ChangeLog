@@ -1,5 +1,10 @@
 2007-03-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/AtmNormalizer.cs: Mas
+	  modificaciones en TestAtmNormalizer.
+
+2007-03-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/v17n01a02-norm.txt, PDF2Text/PDFPoppler.cs,
 	  PDF2Text/AtmNormalizer.cs, PDF2Text/PDF2Text.build: Modificacion de
 	  los archivos de prueba para AtmNormalizer.

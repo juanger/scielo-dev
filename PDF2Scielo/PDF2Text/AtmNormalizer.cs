@@ -269,7 +269,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar los parrafos.");
 		#endif
      		
-     		matches = GetMatches (@"([.]|\[/fig\])[\n]*[ ]{3,4}[A-Z].*", body);
+     		matches = GetMatches (@"([.]|\[/fig\])[\n]*[ ]{3,5}[A-Z].*", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
