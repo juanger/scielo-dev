@@ -1,5 +1,11 @@
 2007-03-09  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/v17n4a03-norm.txt, PDF2Text/AtmNormalizer.cs:
+	  Modificaciones en la expresion regular para capturar los pies de
+	  figura y el archivo de prueba v17n4a03.
+
+2007-03-09  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/v17n01a02-norm.txt: Cambio en archivo v1701a02-norm.txt
 
 2007-03-09  Hector E. Gomez Morales. <hectoregm@gmail.com> 
