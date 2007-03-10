@@ -1,5 +1,10 @@
 2007-03-09  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/AtmNormalizer.cs: Se agrega un espacio antes de poner el tag
+	  final [/para]
+
+2007-03-09  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/AtmNormalizer.cs: Cambio en la expresion regular para
 	  capturar pies de figura.
 

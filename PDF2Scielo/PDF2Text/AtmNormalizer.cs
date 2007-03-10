@@ -339,7 +339,7 @@ public class AtmNormalizer : INormalizable {
 			if (smatch.StartsWith ("\n[para] [sec] 1. "))
 				continue;
 			
-			result = "[/para]" + smatch;
+			result = " [/para]" + smatch;
 			body = body.Replace (smatch, result);
 		}
      	}
