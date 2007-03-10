@@ -20,7 +20,7 @@ namespace PDF2Text {
 [TestFixture()]
 public class TestAtmNormalizer {
 	
-	[Test]
+	
 	public void Constructor ()
 	{
 		string data = "sofisticadas, el Análisis de";
