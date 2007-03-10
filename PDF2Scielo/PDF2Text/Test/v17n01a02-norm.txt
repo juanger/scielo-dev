@@ -63,7 +63,7 @@ northwesterly winds prevailed with humidity relatively large and abundant precip
 the convective activity was under low-level easterly flow, with a much drier troposphere. In addition,
 Cifelli et al. (2002), suggest that the distinct wind regimens (easterly and westerly) observed in
 Rondonia during the WETAMC control the local rainfall and are associated with the displacements
-of frontal systems in Southeastern Brazil.[/para]
+of frontal systems in Southeastern Brazil. [/para]
 [para] Several studies have shown that many of the large scale characteristics of the circulation over
 South America can be simulated using three dimensional and time varying tropical heat sources
 (Silva Dias et al., 1983; Gandu and Gesiler, 1991) as well as with a forcing due to the extratropical
@@ -81,7 +81,7 @@ tropical troughs over the Northern and Southern Pacific Ocean and the troughs ov
 Atlantic Ocean (Ram&iacute;rez et al., 1999). On the other hand, at lower levels the outstanding features
 include the South Atlantic Convergence Zone (SACZ) (Kodama, 1992; Carvalho et al., 2002), the
 convective activity over the Amazonia (Greco et al., 1990) and the stable semi-arid climate of
-Northeast Brazil (Rao and Hada, 1999).[/para]
+Northeast Brazil (Rao and Hada, 1999). [/para]
 [para] During the WETAMC-TRMM/LBA experiment the main scientific interest was on the mesoscale
 features of the regional circulation. As a consequence, there was a significant effort addressed to
 understanding the local interactions involving the biosphere/atmosphere, cloud dynamics and
@@ -91,7 +91,7 @@ synoptic scale features of the atmospheric circulation during the WETAMC-TRMM/LB
 would certainly be useful to acquire a better understanding of the acting mesoscale processes.
 Thus this work is concerned with the dominant synoptic aspects of the atmospheric circulation over
 tropical South America during that time period. Emphasis was given on the diagnosis of the upper
-and lower tropospheric winds and the analysis of the TRMM-derived rainfall fields.[/para]
+and lower tropospheric winds and the analysis of the TRMM-derived rainfall fields. [/para]
 [para] [sec] 2. Data and methodology [/sec]
 The variables used in this study were the daily air temperature (T), zonal (u) and meridional (v)
 wind components and specific humidity (q) obtained from the global model reanalysis project NCEP/
@@ -110,11 +110,11 @@ variable is given in spherical coordinates by
 
 where:
  G
-9+ is the wind, a is the Earth&#146;s mean radius, and λ and ϕ are the latitude and longitude, respectively.[/para]
+9+ is the wind, a is the Earth&#146;s mean radius, and λ and ϕ are the latitude and longitude, respectively. [/para]
 [para] The software GrADS &#150; Grid Analysis and Display System (Doty, 1997) was used for processing
 and graphical visualization of the results. A script was also used to plot CVNE trajectories reading
 the daily lat-lon vortex center coordinates from an ASCII file with the GrADS &#147;read&#148; scripting
-command, and appropriate commands to analyze and plot the data over a map background.[/para]
+command, and appropriate commands to analyze and plot the data over a map background. [/para]
 [para] The analyses of rainfall fields over South America were based on gridded daily rainfall data
 obtained using the &#147;3B42-TRMM- Adjusted Merged-Infrared Precipitation&#148; algorithm which
 calibrates VIRS (Visible and Infrared Sounder) infrared measurements with precipitation estimates
@@ -125,12 +125,12 @@ tropical belt between 40o N and 40o S. Details of this methodology are described
 (1995) and in the User´s Guide, made available by the TRMM Data and Information System
 (TSDIS) at http://tsdis.gsfc.nasa.gov. The 3B42 data were obtained from NASA (National
 Aeronautics and Space Administration) via File Transfer Protocol (FTP), at the following address:
-http://daac.gsfc.nasa.gov/.[/para]
+http://daac.gsfc.nasa.gov/. [/para]
 [para] [sec] 3. Results [/sec]
 Next a brief description of the climatological characteristics of the upper and lower levels tropospheric
 circulation over tropical South America during the first two months of the austral summer is presented.
 The dominant features are compared with those of January/February 1999, the period during which
-the WETAMC &#150; TRMM / LBA experiment was carried out.[/para]
+the WETAMC &#150; TRMM / LBA experiment was carried out. [/para]
 [para] [subsec] 3.1. Upper level features [/subsec]
 The upper level circulation in tropical South America in January (Fig. 1a) is governed by BH and
 CVNE. Strong divergent areas are observed in the Southeastern Atlantic Ocean, associated with
@@ -153,9 +153,8 @@ was under the influence of the AT, thus with anomalous characteristics. A closed
 of a trough, was the dominant feature over the Tropical Atlantic Ocean near NE, due to the high
 frequency of occurrence of vortices in that region.
                      (a)                                                         (b)
-
 [fig] Fig. 1. Streamlines and horizontal divergence (1 ´ 10-6 s-1) of the mean 250 hPa wind for
-                              (a) January, 1978 &#150; 1999 and (b) January, 1999. [/fig][/para]
+                              (a) January, 1978 &#150; 1999 and (b) January, 1999. [/fig] [/para]
 [para] Except for a zone of weaker divergence along the SACZ, the mean upper tropospheric circulation
 in February, 1999 (Fig. 2a) is quite similar to that of the preceding month. On the other hand, during
 the WETAMC &#150; TRMM/LBA (Fig. 2b) one can notice that the BH had shifted slightly southward
@@ -167,15 +166,14 @@ the SACZ, but not along the ITCZ over the tropical Western Atlantic Ocean.
 
 
                      (a)                                                           (b)
-
-[fig] Fig. 2. As in Fig. 1, but for (a) February, 1978 &#150; 1999 and (b) February, 1999. [/fig][/para]
+[fig] Fig. 2. As in Fig. 1, but for (a) February, 1978 &#150; 1999 and (b) February, 1999. [/fig] [/para]
 [para] [subsec] 3.2. Lower level features [/subsec]
 The mean 850 hPa circulation over tropical South America during the austral summer is dominated
 by the trade winds at low latitudes and the subtropical South Atlantic Ocean High (SAH). Under
 this circumstance, the trade winds have an important role in advecting moisture from the tropical
 Atlantic Ocean into NE and Amazonia (Rao and Marques, 1984). This moisture feeds the convective
 activity over land. On the other hand, the northeasterly winds in the occidental sector of the SAH
-are important for establishing and maintaining the SACZ´s oceanic branch.[/para]
+are important for establishing and maintaining the SACZ´s oceanic branch. [/para]
 [para] The mean 850 hPa water vapor flux divergence fields during January and February (Figs. 3a,
 4a) show high values along the northern/northeastern coast of Brazil. Moisture convergence is also
 observed along portions of the SACZ, the slopes of the Andes in Southwestern Bolivia (topographic
@@ -190,16 +188,14 @@ pronounced, extending from the southern part of the Amazonia to the Southeastern
 
 
                     (a)                                                         (b)
-
 [fig] Fig. 3. Mean 850 hPa streamlines and horizontal moisture flux divergence (1 ´ 10-5gKg-1s-1) for
-                             (a) January, 1978 &#150; 1999 and (b) January, 1999. [/fig][/para]
+                             (a) January, 1978 &#150; 1999 and (b) January, 1999. [/fig] [/para]
 [para] The moisture flux convergence patterns over Amazonia and Southeastern and Northern Brazil
 during January and February 1999 are partly consistent with the rainfall field retrieved from TRMM
 data (Figs. 5a-b). For several areas (e.g. the eastern slopes of the Andes Mountains near
 Southwestern Bolivia, ITCZ, the north/northeast Brazilian coast, western portions of NE Brazil and
 the Southwestern Atlantic Ocean) NCEP data do not show convergence where the satellites
                     (a)                                                           (b)
-
 [fig] Fig. 4. As in Fig. 3, but for (a) February, 1978 &#150; 1999 and (b) February, 1999. [/fig]
 
 
@@ -207,7 +203,7 @@ the Southwestern Atlantic Ocean) NCEP data do not show convergence where the sat
 indicates the existence of precipitating areas. It is likely that this disagreement may be associated
 with the model&#146;s space resolution, parametrization schemes and the representativeness of the
 assimilated data. It should be pointed out that the conventional meteorological network over tropical
-South America is quite sparse.[/para]
+South America is quite sparse. [/para]
 [para] A Hovmöller diagram of the daily 3B42 TRMM rainfall data (Fig. 6), from Southern Amazonia
 to the Southwestern Atlantic Ocean (following SACZ axis), during January and February 1999
 
@@ -215,8 +211,6 @@ to the Southwestern Atlantic Ocean (following SACZ axis), during January and Feb
 
 
                     (a)                                                          (b)
-
-
 [fig] Fig. 5. 3B42 Rainfall (mm) retrieved from TRMM data for (a) January, 1999 and (b) February, 1999. [/fig]
 [fig] Fig. 6. Hovmöller diagram of the daily rainfall data (mm) derived from TRMM data, from Southern Ama-
 zonia (5&#176; S, 60&#176; W) to Southwestern Atlantic Ocean (-30&#176; S, 30&#176; W), during January 1st to February 28th, 1999. [/fig]
@@ -229,7 +223,7 @@ the penetration of frontal systems (Feb. 18 and Feb. 26), along the coast of Sã
 these events, frontal displacements in Southeastern Brazil prompted rainfall in Rondonia and Southern
 Amazonia, in agreement with the findings of Rickenback et al. (2001), and Cifelli et al. (2001). As
 they suggested the large scale modulates the convective activity in Rondonia, so that low-level
-westerly (easterly) winds tend to yield larger (smaller) areas of weak (strong) precipitation.[/para]
+westerly (easterly) winds tend to yield larger (smaller) areas of weak (strong) precipitation. [/para]
 [para] [subsec] 3.3 Upper level circulation patterns during the WETAMC&#150;TRMM/LBA [/subsec]
 The upper level circulation during the WETAMC&#150;TRMM/LBA was characterized by BH, CVNE,
 troughs and an anticyclonic system (AT) located between Southeastern Brazil and adjacent oceanic
@@ -237,7 +231,7 @@ areas. The BH position was observed to be quite variable, oscillating between 90
 This displacement was associated with CVNEs moving inland, the formation of AT and equatorward
 incursion of middle latitude troughs (TRs). Six major events of CVNEs (Fig.7) were observed
 during the studied period, with a mean life time of approximately 6.9 days and most of them showing
-a vertical extension between 200 and 400 hPa.[/para]
+a vertical extension between 200 and 400 hPa. [/para]
 [para] The first vortex (V1) appeared on January 2nd, 1999 at approximately 12oS and 30oW, over the
 NE eastern coast and gradually shifted toward the Amazonia where by January 13th it had dissipated.
 During this movement, its associated subsidence and sensible heat flux were responsible for an
@@ -248,15 +242,13 @@ evident suppression of the convective activity over the Amazonia. Concomitantly,
 
 
 (b)
-
-
 [fig] Fig. 7. Trajectories of the CVNEs during the WETAMA &#150; TRMM/LBA Experiment for
                                    (a) January, 1999 and b) February, 1999. [/fig]
 
 
 shifted westward reaching the Southeastern Pacific Ocean (Southwestern Per&uacute;). The displacement
 of V1 into Amazonia may indeed be regarded as an anomalous situation, for just a few percent of
-the vortices originating in the NE region move inland (Ram&iacute;rez et al., 1999).[/para]
+the vortices originating in the NE region move inland (Ram&iacute;rez et al., 1999). [/para]
 [para] The second vortex (V2) had a shorter life time (3 days); it originated between the coast of Rio
 Grande do Norte state and the Equator, on January 14th, 1999. It also moved westward reaching
 Northeastern Par&aacute; state where it dissipated on the 17th. The origin of V2 was associated with a
@@ -265,29 +257,29 @@ Africa. The genesis of vortices over the NE, linked to this kind of circulation 
 and Gandu (2000). During the active stage of V2, the BH was found in the southwest of Per&uacute;, over
 the Pacific Ocean, and connected to the anticyclonic circulation of the Southwestern Atlantic Ocean.
 The atmospheric circulation pattern during this period affected the convective activity over tropical
-Brazil.[/para]
+Brazil. [/para]
 [para] The third vortex (V3), contrasting to the usual genesis, originated over the continent, 13oS,
 49.5oW (north of Goi&aacute;s state) on January 20th, 1999 and shifted eastward reaching the Sergipe
 state (eastern coast of NE) by January 25th, 1999 where it dissipated. During this period, the BH
 moved eastward, toward Bolivia and the AT position was over the Southern Paran&aacute; state (Southern
-Brazil).[/para]
+Brazil). [/para]
 [para] The fourth vortex (V4) originated over the eastern coast of NE, approximately 12oS on January
 29 , 1999. This vortex had a westward displacement, reaching the northern part of Rondonia state,
    th
 
 where it dissipated. At the same time the BH was between Southern Paraguay and Northern
 Argentina, thus further south of its climatogical position. This is a situation that potentially could
-decrease rainfall along the trajectory of the vortex center.[/para]
+decrease rainfall along the trajectory of the vortex center. [/para]
 [para] The fifth vortex (V5) originated over the Atlantic Ocean (18oS, 20oW ) on February 1st, 1999.
 This vortex also moved westward and dissipated seven days later over the Southern Piaui state
 (northern NE). The BH was located during this event over Northern Argentina, further south than
 its climatological position. Finally, the sixth vortex (V6) appeared at the eastern side of Southern
 Bahia state on February 13th, 1999, due to the expansion of a trough to the east of the BH. This
 vortex had a westward displacement, dissipating over the northern part of Minas Gerais state
-(Southeastern Brazil) nine days later.[/para]
+(Southeastern Brazil) nine days later. [/para]
 [para] An analysis of the prevailing upper circulation patterns over tropical South America during the
 WETAMC&#150;TRMM/LBA period is presented next. The observed four main patterns are quite
-distinct, regarding the relative positons of the BH and CVNEs.[/para]
+distinct, regarding the relative positons of the BH and CVNEs. [/para]
 [para] [subsubsec] 3.3.1 BH/CVNE circulation pattern [/subsubsec]
 The BH/CVNE circulation pattern dominated the first days of the first, fourth and sixth events of
 CVNE. Under this kind of situation, the vortex geneses is due to the amplification of an upper level
@@ -302,14 +294,10 @@ was still located over the ocean. As mentioned before, the rainfall at this time
 be associated with the presence of upper level divergence in the transition region between the two
 opposite circulation systems: the BH and the CVNE. Therefore, eventual oscillations of the BH/
 CVNE system (not shown) are accompanied by northeastward/southeastward displacements of
-frontal systems in Southeastern and Southern Brazil.[/para]
+frontal systems in Southeastern and Southern Brazil. [/para]
 [para] [subsubsec] 3.3.2 BH /CVNE/AT circulation pattern [/subsubsec]
 This type of pattern, identified by Ram&iacute;rez et al. (1999), is more evident when the CVNE is in its
 [fig] Fig.8. 250 hPa streamlines for January 2nd, 1999, associated to the BH/CVNE circulation pattern. [/fig]
-
-
-
-
 [fig] Fig. 9. 3B42 rainfall (mm) retrieved from TRMM data, associated to the BH/CVNE circulation pattern for
                                            January 2nd, 1999. [/fig]
 [fig] Fig.10. 250 hPa streamlines for January 7th, 1999, associated to the BH/CVNE/AT circulation pattern. [/fig]
@@ -320,7 +308,7 @@ intensification stage and during its displacement inland. In this situation the 
 a northwest/southeast orientation as the CVNE initiates its movement. The BH elongates over
 Southeastern Brazil as the CVNE moves inland (Fig. 10). Depending on the intensification of the
 ridge, the BH may split into two parts, with the eastern flank forming a new anticyclonic center
-(AT) over Southeastern Brazil and adjacent oceanic areas.[/para]
+(AT) over Southeastern Brazil and adjacent oceanic areas. [/para]
 [para] The amplification of the ridge along the southeastern side of the BH for the V1 event mentioned,
 occurred with the arrival of a frontal system from Argentina, which remained stationary for five
 days (Jan. 6&#150;10) and established the SACZ. As a consequence, warmer air advection in the lower
@@ -330,7 +318,7 @@ period, the ridge amplification favored the formation of an AT to the south of t
 establishing the circulation pattern involving the BH (with a westward shift toward the Southern
 Pacific Ocean), the CVNE (moving into the continent) and the AT. Although the SACZ is a dominant
 feature in the lower levels of the summer circulation over Brazil, only one SACZ episode was
-observed during the January&#150;February 1999 period.[/para]
+observed during the January&#150;February 1999 period. [/para]
 [para] Related to the BH/CVNE/AT pattern, it was observed that despite the existence of a vortex, a
 new one may form to the northeast of the AT, as exemplified by V2, V4 and V6. Ram&iacute;rez et al.
 (1999) performed a climatological study on the formation mechanisms of tropical vortices and
@@ -340,14 +328,14 @@ new one may form to the northeast of the AT, as exemplified by V2, V4 and V6. Ra
 
 concluded that 27 % of the CVNEs are associated with the occurrence of ATs. During this type of
 situation, the release of latent heat from stationary frontal systems or the SACZ would maintain the
-AT and the associated upper level region of divergence.[/para]
+AT and the associated upper level region of divergence. [/para]
 [para] Whenever there is an intensification of the southeastern sector of the BH over Southeastern
 Brazil and adjacent oceanic areas, the spatial rainfall pattern resembles a convective cloud band
 with an NW&#150;SE orientation to the west of the ridge and a mid-latitude trough in the upper levels
 (Fig. 9). This rainfall band is generally associated with a frontal system. Once the cloudiness of the
 western and northern sectors of the CVNE reaches the NE coast, it interacts with the convective
 activity associated with the BH and frontal systems, frequently forming a Y pattern of cloudiness
-(Ferreira et al., 2001). The Y pattern follows the CVNE during its inland displacement.[/para]
+(Ferreira et al., 2001). The Y pattern follows the CVNE during its inland displacement. [/para]
 [para] [subsubsec] 3.3.3 BH/AT circulation pattern [/subsubsec]
 The establishment of the BH/AT pattern, which lasts a few days, is generally observed after the
 dissipation of a CVNE over the central continent. The observed circulation between Jan. 18&#150;19
@@ -358,13 +346,9 @@ convection in Southeastern Paraguay. In this case, the prevailing rainfall patte
 convective band to the southwest of the AT and stratiform rainfall over vast areas in the Amazonia
 (Fig. 13).
 [fig] Fig.12. 250 hPa streamlines for January 18th, 1999, associated to the BH/AT circulation pattern. [/fig]
-
-
-
-
 [fig] Fig. 13. 3B42 rainfall (mm) retrieved from TRMM data , associated to the BH/AT circulation pattern,
                                              for January 18th, 1999. [/fig]
-[fig] Fig.14. 250 hPa streamlines for January 12th, 1999, associated to the BH/TR circulation pattern. [/fig][/para]
+[fig] Fig.14. 250 hPa streamlines for January 12th, 1999, associated to the BH/TR circulation pattern. [/fig] [/para]
 [para] [subsubsec] 3.3.4 BH/TR circulation pattern [/subsubsec]
 Two episodes involving BH and TR were observed during the WETAMC-TRMM/LBA experiment.
 The first one occurred between Feb. 11 &#150; 12 when the BH showed an almost symmetric configuration
@@ -379,7 +363,7 @@ band northeastward in Southeastern Brazil and southwestward in Amazonia. In othe
 time it reaches Southeastern Brazil, the frontal system interacts with the convection in Amazonia,
 organizing and making it shift northeastward. This feature also favors the formation of troughs with
 a &#147;NW/SE&#148; inclination over the Atlantic Ocean, near the eastern coast of the NE and the formation
-of AT in central Western Brazil.[/para]
+of AT in central Western Brazil. [/para]
 [para] [sec] 4. Concluding remarks [/sec]
 This study analyzes the synoptic scale features of the upper and lower levels tropical circulation
 [fig] Fig. 15. 3B42 rainfall (mm) retrieved from TRMM data, associated to the BH/TR circulation pattern,
@@ -395,7 +379,7 @@ features from the climatological pattern. At least four distinct flow patterns w
 upper troposphere, mainly related to the Bolivian High (BH) and cyclonic vortices in the vicinity of
 Northeast Brazil (CVNEs). In two observed events, CVNEs moved from the NE coast into Amazonia
 and their associated subsidence and changes in the circulation pattern may have impaired the
-precipitation in some parts of Amazonia.[/para]
+precipitation in some parts of Amazonia. [/para]
 [para] It was also observed that from the synoptic point of view the instability in the region is dynamically
 supported by upper level divergence in the transition zone of the Bolivian anticyclone (BH) and the
 cyclonic circulation in the vicinity of NE Brazil (CVNE) in the upper troposphere. Kousky and Gan
@@ -404,7 +388,7 @@ circulation, the position of the vortex and the direction of their movement. In 
 suggested that the convective activity depend on the interaction between the BH/CVNE circulations
 and not only on CVNE dynamics. At lower levels moisture convergence derived from NCEP data
 coincides only partially with the rain areas detected by TRMM satellites. Also, significant interaction
-involving frontal systems and convective activity in Southwestern Amazonia was evident.[/para]
+involving frontal systems and convective activity in Southwestern Amazonia was evident. [/para]
 [ack] Acknowledgements [/ack]
 This work is part of the &#147;Interação Biosfera &#150; Atmosfera em Mesoscala na Amazônia&#148; Project
 sponsored by FAPESP, Process 1997 /9926 &#150; 9. The NCEP data used in this work were provided
