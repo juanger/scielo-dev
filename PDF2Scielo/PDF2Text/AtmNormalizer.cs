@@ -261,6 +261,24 @@ public class AtmNormalizer : INormalizable {
 			body = body.Replace (smatch, result);
 		}
 		
+		// Etiquetado de las secciones del tipo <letter>) <string>
+		#if DEBUG
+		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsecciones alternas.");
+		#endif
+		
+		matches = GetMatches (@"[\n]+[a-z]\) .*\n", body);
+		foreach (Match m in matches) {
+			string smatch, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			result = "\n[subsec] " + smatch.Trim () + " [/subsec]\n";
+			body = body.Replace (smatch, result);
+		}
+		
 		// Etiquetado de las secciones del tipo <num>.<num>.<num> <string>
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsubsecciones.");
@@ -362,7 +380,7 @@ public class AtmNormalizer : INormalizable {
 			body = body.Replace (smatch, result);
 		}
 		
-		matches = GetMatches (@"\[fig\] Fig[.][ ]?[0-9]+[.] [-a-zA-Z0-9.,;´&#()/ \n\u00f6]*?[.]\n", body);		
+		matches = GetMatches (@"\[fig\] Fig[.][ ]?[0-9]+[.] [-a-zA-Z0-9.,:;´&#()/ \n\u00f6]*?[.]\n", body);		
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;

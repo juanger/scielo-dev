@@ -1,3 +1,8 @@
+2007-03-20  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/AtmNormalizer.cs: Se capturan las subsecciones del tipo a),
+	  b), etc.
+
 2007-03-09  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	
