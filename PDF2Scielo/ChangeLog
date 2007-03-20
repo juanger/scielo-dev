@@ -1,5 +1,11 @@
 2007-03-20  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/PDF2Text.mdp: Se removio del proyecto el documento v18n4a02
+	  puesto que este estaba mal formado y no servia como prueba de las
+	  clases.
+
+2007-03-20  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/AtmNormalizer.cs: Se capturan las subsecciones del tipo a),
 	  b), etc.
 
