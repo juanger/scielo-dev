@@ -164,7 +164,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("MATCH: " + smatch);
 		#endif
 		
-		result = "\n[key] " + smatch.Trim () + " [/key].\n";
+		result = "\n[key] " + smatch.Trim () + " [/key]\n";
 		text = text.Replace (smatch, result);
      	}
 	
@@ -172,7 +172,7 @@ public class AtmNormalizer : INormalizable {
 	{
 		string temp;
 		Match [] matches;
-		matches = GetMatches (@"Atm(.|\s)* \[/key\][.]\n", text);
+		matches = GetMatches (@"Atm(.|\s)* \[/key\]\n", text);
 		front = matches [0].Value;
 		
 		#if DEBUG
@@ -180,11 +180,11 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("MATCH: " + front);
 		#endif
 		
-		matches = GetMatches (@"\[/key\][.](.|\s)*\[ref\]", text);
+		matches = GetMatches (@"\[/key\](.|\s)*\[ref\]", text);
 		temp = matches [0].Value;
 		
 		// FIXME: Documentar o hacer mejor la extracion de body.
-		body = temp.Substring (8, temp.Length - 13);
+		body = temp.Substring (7, temp.Length - 12);
 		
 		#if DEBUG
 	 	Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el body"); 	

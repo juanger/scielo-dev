@@ -49,7 +49,7 @@ except for the first half of January, was not active but equatorward incursions 
 disturbed the convective activy in the Southwestern Amazon basin. Besides, during the period of the study,
 the low-level moisture divergence as derived from NCEP data does not show convergence where the TRMM
 rain field clearly reveals the existence of precipitation areas.
-[key] Key words: Cyclonic vortices, TRMM, South Atlantic convergence zone, Bolivian High [/key].
+[key] Key words: Cyclonic vortices, TRMM, South Atlantic convergence zone, Bolivian High [/key]
 
 [para] [sec] 1. Introduction [/sec]
 The first Atmospheric Mesoscale Campaign in the Wet Season (WETAMC) of the Large Scale

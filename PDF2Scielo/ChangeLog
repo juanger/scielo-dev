@@ -1,5 +1,11 @@
 2007-03-20  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/v17n01a02-norm.txt, PDF2Text/Test/v17n4a03-norm.txt,
+	  PDF2Text/AtmNormalizer.cs: Modificacion de la expresion para
+	  capturar la secciond e keywords.
+
+2007-03-20  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/PDF2Text.mdp: Se removio del proyecto el documento v18n4a02
 	  puesto que este estaba mal formado y no servia como prueba de las
 	  clases.

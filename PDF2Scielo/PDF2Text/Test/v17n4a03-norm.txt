@@ -33,7 +33,7 @@ temperatures in the study area are in a mean warming phase of the order of 0.2 Â
 change in maximum temperatures is not significantly defined. These estimations correspond with those
 obtained by the authors in earlier studies using other methods, but the level of precision is much higher in this
 case.
-[key] Key words: Stochastic processes; time series; climate change; Iberian Peninsula. [/key].
+[key] Key words: Stochastic processes; time series; climate change; Iberian Peninsula. [/key]
 
 [para] [sec] 1. Introduction [/sec]
 The aim of stochastic analysis of time series by the formulation of ARIMA models is to separate
