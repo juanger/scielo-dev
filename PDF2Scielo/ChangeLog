@@ -1,5 +1,9 @@
 2007-03-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	
+
+2007-03-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestPDFPoppler.cs: Por ahorita se elimina la prueba
 	  CreateHTMLFile hasta que se implemente MarkupHTML.
 	* PDF2Text/AtmNormalizer.cs: Cambio de nombre de la funcion privada

@@ -318,8 +318,7 @@ public class AtmNormalizer : INormalizable {
 			Console.WriteLine ("MATCH: " + smatch);
 			#endif
 			
-			result = smatch.Substring (1);
-			result = result.TrimStart ();
+			result = smatch.TrimStart ();
 			result = "\n[para] " + result;
 
 			body = body.Replace (smatch, result);
