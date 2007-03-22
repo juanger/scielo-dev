@@ -57,7 +57,6 @@ public class AtmNormalizer : INormalizable {
 		MarkMinorSections ();
 		MarkFootFigure ();
 		MarkParagraphs ();
-
 		
 		return Text;
 	}
@@ -109,10 +108,14 @@ public class AtmNormalizer : INormalizable {
 		}
 	}
 	
-	private void GlobalReplacePattern (string regexp, string substitute)
+	private void GlobalReplaceRegex (string regexp, string substitute)
 	{
 		Regex regex = new Regex (regexp);	
 		text = regex.Replace (text, substitute);
+	}
+	
+	private void GlobalReplace (string match, string substitute, string section)
+	{
 	}
 	
 	private void RemoveHeaders ()
@@ -120,22 +123,21 @@ public class AtmNormalizer : INormalizable {
 		Match [] matches;
 		
 		// Remueve encabezados y numeros de pagina.
-		matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", text);
-		GlobalReplacePattern (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
+		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
 		
 	 	#if DEBUG
+	 	matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", text);
 	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
 	 	foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
 		#endif
 		
-
-		
-		matches = GetMatches (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]+[\n]+", text);
-		GlobalReplacePattern (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]+[\n]+", "\n");
+		// Remueve texto muerto (ie. ejes de graficas) dejados al extraer el texto.
+		GlobalReplaceRegex (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]*[\n]+", "\n");
 		
 	 	#if DEBUG
+	 	matches = GetMatches (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]*[\n]+", text);
 	 	foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
@@ -149,13 +151,13 @@ public class AtmNormalizer : INormalizable {
      		Match [] matches;
      		
      		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
-		GlobalReplacePattern (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
-		GlobalReplacePattern (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
-		GlobalReplacePattern (@"[\n]+References\n", "\n[ref] References [/ref]\n");
-		GlobalReplacePattern (@"[\n]+(Acknowledgements|Acknowledgments)\n", "\n[ack] Acknowledgements [/ack]\n");
+		GlobalReplaceRegex (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
+		GlobalReplaceRegex (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
+		GlobalReplaceRegex (@"[\n]+References\n", "\n[ref] References [/ref]\n");
+		GlobalReplaceRegex (@"[\n]+(Acknowledgements|Acknowledgments)\n", "\n[ack] Acknowledgements [/ack]\n");
 		
 		//Etiquetado de KEYWORD.		
-		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d ]+", text);
+		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d \n]+[\n]+", text);
 		match = matches [0];
 		smatch = match.Value;
 		
@@ -164,7 +166,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("MATCH: " + smatch);
 		#endif
 		
-		result = "\n[key] " + smatch.Trim () + " [/key]\n";
+		result = "\n[key] " + smatch.Trim () + " [/key]\n\n";
 		text = text.Replace (smatch, result);
      	}
 	
@@ -230,7 +232,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las secciones.");
 		#endif
      		
-     		matches = GetMatches (@"[\n]+[0-9][.][ ].*\n", body);
+     		matches = GetMatches (@"[\n]+[0-9]+[.][ ].*\n", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
@@ -248,7 +250,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsecciones.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.]*[ ].*\n", body);
+		matches = GetMatches (@"[\n]+[ ]*[0-9][.][0-9]+[.]*[ ].*\n", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;

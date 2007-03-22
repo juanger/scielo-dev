@@ -1,3 +1,12 @@
+2007-03-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/TestPDFPoppler.cs: Por ahorita se elimina la prueba
+	  CreateHTMLFile hasta que se implemente MarkupHTML.
+	* PDF2Text/AtmNormalizer.cs: Cambio de nombre de la funcion privada
+	  GlobalReplacePattern a GlobalReplaceRegex, tambien se hizo un
+	  cambio a la expresion regular para capturar los keywords de un
+	  documento
+
 2007-03-20  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/v17n01a02-norm.txt, PDF2Text/Test/v17n4a03-norm.txt,

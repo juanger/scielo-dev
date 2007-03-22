@@ -126,7 +126,6 @@ public class TestPDFPoppler {
 		Assert.AreEqual (text2, pdftext2);
 	}
 	
-	[Test]
 	public void CreateHTMLFile ()
 	{	
 		string path = Test.PathOfTest ();
