@@ -1,0 +1,982 @@
+Atm&oacute;sfera (2004) 69-89
+
+
+
+
+ Sequence patterns of 1000 hPa and 500 hPa geopotential height fields
+         associated with cold surges over Central Argentina
+
+
+                            G. ESCOBAR, R. COMPAGNUCCI and S. BISCHOFF
+                                 Departamento de Ciencias de la Atm&oacute;sfera
+                                         Universidad de Buenos Aires,
+                         Ciudad Universitaria &#8211; Pab. II, (1428) Buenos Aires, Argentina
+
+                             Received May 20, 2002; accepted December 3, 2003
+[res] Resumen [/res]
+En este trabajo se realiz&oacute; una clasificaci&oacute;n objetiva de secuencias de campos de altura geopotencial en 500
+hPa y 1000 hPa asociadas a irrupciones de aire fr&iacute;o en el centro de Argentina. Las irrupciones de aire fr&iacute;o
+que ocurren durante el invierno (mayo a septiembre) en el centro de Argentina provocan da&ntilde;os importantes
+en la agricultura y a veces afectan al sector energ&eacute;tico. En particular, el consumo de gas natural es fuertemente
+dependiente de los descensos significativos de temperatura. Para obtener los Patrones de Secuencias
+Principales (PSP) de 1000 hPa y 500 hPa se utiliz&oacute; el An&aacute;lisis por Componentes Principales (ACP) rotadas.
+Las irrupciones de aire fr&iacute;o de invierno durante el per&iacute;odo 1979-1993 se identifican con siete modelos
+patrones en 1000 hPA y tres modelos en 500 hPa. La combinaci&oacute;n de ambos niveles muestra tres situaciones
+t&iacute;picas asociadas a irrupciones de aire fr&iacute;o en el centro de Argentina. El patr&oacute;n de circulaci&oacute;n m&aacute;s cl&aacute;sico
+muestra una importante cu&ntilde;a en altura en el oc&eacute;ano Pac&iacute;fico al oeste del continente sudamericano y un
+anticicl&oacute;n post-frontal en superficie provocando advecci&oacute;n de aire fr&iacute;o sobre Argentina central. Los restantes
+modelos patrones muestran una vaguada de onda larga en altura afectando el continente, uno de ellos con el
+anticicl&oacute;n post-frontal movi&eacute;ndose en latitudes medias y bajas y el otro con un anticicl&oacute;n migratorio afectando
+latitudes m&aacute;s bajas.
+[abs] Abstract [/abs]
+An objective classification of sequence patterns of 1000 hPa and 500 hPa geopotential heights associated
+with cold surges over Central Argentina was carried out. Polar Outbreaks during wintertime in Central
+Argentina (May to September) cause important damage to the regional agriculture and sometimes affect the
+energy supply. In particular, the consumption of natural gas is strongly dependent on significant temperature
+descents. The rotated Principal Components Analysis (PCA) was used to obtain the basic patterns of sequence
+of 1000 hPa and 500 hPa geopotential heights. The winter cold surges during the 1979-1993 period occur in
+seven patterns at 1000 hPa and three modes at 500 hPa. The combination of both levels shows three typical
+situations related to cold surges over Central Argentina. The most classic pattern shows an important ridge
+west of the Pacific coast of the continent at its upper level and a postfrontal anticyclone at its lower level
+producing cold air advection over Central Argentina. The other two patterns present a long wave trough at
+upper levels affecting the continent, one of them with the postfrontal anticyclone moving over middle and
+low latitudes, and the other with the migratory anticyclone affecting lower latitudes.
+[key] Key words: Cold surges, Principal components, Blockings [/key]
+
+[para] [sec] 1. Introduction [/sec]
+Cold surges are frequently observed during the winter season (May to September) in Central
+Argentina, producing substantial damages to regional agriculture and to energy consumption. Most
+of them are associated with the passage of a midlatitude wave in the middle-troposphere that
+interacts with the Andes cordillera and propagates toward the equator reaching low-latitudes. When
+a cold event occurs in Central Argentina the meteorological situations are linked to the passage of
+midlatitude disturbances such as cold fronts that move from the Pacific Ocean. After the cold front
+hits, a migratory anticyclone, moves over the continent producing important temperature drops. [/para]
+[para] Most of the literature related to cold surges is based on descriptive studies of individual cases,
+especially those with strong incidence on South America (Marengo et al., 1997; Fortune and Kousky
+1983; Scian, 1970). [/para]
+[para] Some results are connected with the mean structure and evolution of winter disturbances
+associated with cold surges over South America. Escobar and Bischoff (1999) made an objective
+classification of 1000 and 500 hPa geopotential heights related to significant temperature drops in
+Buenos Aires. Two dominant patterns were found: one has an intense anticyclone with a northwest-
+southeast axis and a maximum strength near 80&#176;W, 40&#176;S. This pattern produces south / south -
+easterly winds over Buenos Aires. The other pattern shows a high-pressure system at 105&#176;W, 48&#176;S
+associated with blocking situations over the Pacific Ocean, which results in persistent southerly
+winds over Buenos Aires. [/para]
+[para] Garreaud (2000) documents the mean three-dimensional structure and evolution of cold surges
+over South America using a compositing analysis. To select the cold episodes he used the 24-h sea
+level pressure tendency in a 5&#176; x 5&#176; grid box centered at 25&#176;S, 57.5&#176;W; additionally employing 17
+years (1979-1995) of atmospheric reanalysis fields (NCEP/NCAR) and extracted a total pool of
+145 wintertime cases (May- September). The analysis of the composite fields shows a mid-latitude
+wave, with a ridge to the west of the Pacific coast and a trough extending south-eastward from the
+subtropics into the South Atlantic. [/para]
+[para] Nocera et al. (2000) made a climatologic and compositing study of cold surges in South America
+using data from NCEP/NCAR reanalysis. 1000 hPa heights and 1000-850 thickness contours for a
+five year period (1992-1996) were analyzed. The cold surges were classified into four types and
+most of them were broken up into categories of strong, moderate and weak intensity. The most
+powerful cold air incursion was associated with a trough (at upper levels) over the east cost of
+South America and a ridge to the west. In this kind of pattern, the anticyclone reaches low latitudes,
+producing an important push of cold air from higher latitudes. [/para]
+[para] As mentioned above, most of the papers related to cold surges in South America deal with the
+analysis of composite fields, producing a comprehensive climatology of this kind of episodes. We
+are also interested in identifying different synoptic situations involved as well as their frequency.
+Therefore, the purpose of this paper is to find the most dominant synoptic-scale modes of circulation
+associated with cold surges over Central Argentina. The final objective of this paper is to study the
+propagation of cold waves by tracking migratory anticyclones that push cold air into Central
+Argentina. Thus, an objective classification of sequence patterns of 1000 hPa and 500 hPa
+geopotential heights associated with cold surges over Central Argentina was conducted. [/para]
+[para] The paper is organized as follows: description of the data is presented in Section 2; the
+methodology of the Principal Components with their particular approach is discussed in Section 3.
+Sections 4 to 6 show the results obtained, and the conclusions are presented in Section 7. [/para]
+[para] [sec] 2. Data [/sec]
+The analyses in this research are based on 15 years (1979-1993) of atmospheric reanalysis from
+the European Centre for Medium Range Weather (ECWMF). The data are set on a 2.5&#176; x 2.5&#176;
+latitude/longitude grid, and the reanalysis include daily (12 UTC) geopotential heights at 1000 and
+500 hPa. The area under study is bounded between 20&#176; and 60&#176;S, and 40&#176; to 130&#176;W and the period
+includes the months from May trough September. [/para]
+[para] Furthermore, daily temperature maximums and minimums, from the Buenos Aires Central
+Observatory (OCBA &#8211; 34.6&#176;S, 58.4&#176;W) were used. These correspond to the months from May
+through September, between 1967 and 1996. These data were provided by the Argentine National
+Weather Service. [/para]
+[para] [sec] 3. Methodology [/sec]
+Since the magnitude of temperature decrease is one of the best-defined features of cold outbreaks,
+the mean daily temperature difference was selected to identify cases related to cold episodes. If the
+prevailing temperatures before the arrival of cold air are above the mean, the thermal contrast will
+be enhanced and the temperature difference will be significant. Therefore, to ensure that the relevant
+temperature decrease was actually associated with the advance of a strong cold front, it was necessary
+to also consider the mean daily temperatures for the previous and subsequent days. For this reason,
+the criterion of Escobar and Bischoff (2001) was used to select the days associated with cold
+episodes. It is based on the interdiurnal descents of mean daily temperature and the prevailing
+thermal conditions on the day before the descent and on the day of the descent, respectively. [/para]
+[para] Event selection was determined according to the following conditions:
+    a) The interdiurnal descents of mean daily temperature must be greater than a certain threshold
+        of temperature (approximately 4 &#176;C for Buenos Aires City).
+    b) Mean daily temperature on the day before the descent must be above the mean value.
+    c) Mean daily temperature on the day of the descent must be above below the mean value. [/para]
+[para] The criterion was applied to the Buenos Aires Central Observatory to consider a place referring
+to the center of the country. [/para]
+[para] Using these criteria, the synoptic situations at 1000 and 500 hPa were used to select 100 events
+for the analysis. [/para]
+[para] The Principal Component Analysis (PCA) in T-Mode using correlation input matrix was applied
+(Green and Carol, 1978; Richman, 1986). The mathematical equations and some important properties
+of the methodology can be found in Richman (1986). Then, the Principal Sequence Patterns (PSP)
+of 1000 and 500 hPa geopotential heights (Compagnucci et al., 2001) were obtained. In this
+application, each variable is a sequence of the consecutive spatial patterns of geopotential height,
+where the first day corresponds to the day of the event and the correlation matrix corresponds to a
+correlation between sequences. [/para]
+[para] Then, a varimax rotation retaining seven and three principal components (PCs) was applied to
+separate signal from noise on real data. To select theses numbers of components the eigenvalue 1.0
+rule was used (Richmann et al., 1992). [/para]
+[para] [sec] 4. Geopotential height at 1000 hPa [/sec]
+The analysis gave seven basic patterns of sequences that explain 70% of the variance. The Principal
+Sequence Patterns (PSP) corresponds to sequences of circulation patterns accounting for decreasing
+variance (Table 1). The analysis of the component loading (figures not shown) lets us evaluate the
+representative patterns as real synoptic situations; values closer to 1 represent sequences of
+meteorological situations similar to the obtained pattern sequence (Harman, 1976; Cattell, 1978).
+The first four loading components show values greater than 0.7. This means that theoretical pattern
+sequences and real synoptic situation have a similar configuration. For this reason, the structure
+and the temporal evolution of the synoptic situations related to the first four PSP was carried out.
+The remaining PSP are less representative and are not consider within this description since their
+explained variance is not significantly different to 0.
+
+
+Table 1. Percentages of variance explained and cumulative percentage explained by the seven components.
+              PSP                         PER. VAR.(%)               PER. CUM. VAR. (%)
+               1&#176;                            18.4                            18.4
+               2&#176;                            16.8                            35.2
+               3&#176;                            14.4                            49.6
+               4&#176;                              9.7                           59.3
+               5&#176;                              4.4                           63.7
+               6&#176;                              3.4                           67.1
+               7&#176;                              2.8                           69.9 [/para]
+[para] Theoretical PSP modes could be related to the two possible patterns of circulation. One of them
+(the direct mode) corresponds to the system with the same sign as the PSP mode, that is to say high
+pressure in the system with positive values and low pressure in the system with negative values.
+The inverse pattern is not a real situation associated with cold surges because it was not found in
+any case. Figures 1 to 4 show the first four PSP and examples of actual circulation fields sequences
+which have a factor loading greater than 0.7 with each of the sequences&#8217; patterns. [/para]
+[para] PSP 1 is shown in the left panels of Figure 1 where the three frames corresponding to day &#8211;2 in
+the top, day &#8211;1 in the middle and day 0 (related to the day when the temperature drops over the
+city) in the bottom. This PSP explains 18.4 % of the variance, and shows the most frequent temporal
+evolution of the synoptic situations related to cold surges over Central Argentina. [/para]
+[para] Two days before (day &#8211;2) the cold air mass hits Buenos Aires, an intense anticyclone can be
+observed over the South Pacific Ocean centered in 50&#176;S, 90&#176;W as it begins to move into Argentina.
+The day when the temperature drops over the city (day &#8211;0) the migratory system reaches the
+southern Patagonia leading to south / south-easterly winds over Buenos Aires. At the same time, a
+region of low pressure extends from the northeastern part of the area toward the South Atlantic on
+a north / northwest to south / southeast axis, with the minimum value over the southern Atlantic
+Ocean. This feature is associated to the passage of a cold front over Argentina. [/para]
+[para] The right panels in Figure 1 show real sequences of surface charts from 12 UTC 29 August
+1991 to 12 UTC 31 August 1991, when the mean daily temperature dropped 5.5&#176;C. The correlation
+coefficient between this actual situation and the PSP 1 is 0.77, and shows agreement with the
+theoretical patterns. [/para]
+[para] PSP 2 (left panels in Fig. 2) explains 16.8 % of the variance and shows a high pressure system
+extended over the Pacific Ocean that moves slowly eastward during the three days, while it intensifies
+showing the highest values at day &#8211;0. At the same time, a trough was observed over the Atlantic
+Ocean related to the synoptic perturbation that advances over the study region. Both, the anticyclone
+in the Pacific Ocean and the cyclone in the Atlantic Ocean, produce south / south-westerly flow
+over the center of the country with a strong cold temperature advection. [/para]
+[para] The right panels in Figure 2 show real sequences of surface charts from 12 UTC 23 August
+1988 to 12 UTC 25 August 1988. In such situation, the mean daily temperature decreased 7.2&#176;C. [/para]
+[para] In the Pacific Ocean the structure of a great quasistationary anticyclone over 110&#176;W producing
+anticyclogenesis over the continental area can be observed. At the same time, a low-pressure
+system located in the South Atlantic Ocean over 60&#176;W moves eastward while intensifying. The
+conjunction of both systems produces cold air advection from the south / southwest direction that
+enters the continent during day 24. [/para]
+[para] PSP 3 (left panels in Fig. 3) with 14.4 % of the variance shows a long-wave trough on the north-
+south axis placed over the Pacific Ocean that moves very slowly during the three days. Due to this
+trough, the semipermanent subtropical anticyclone of the South Pacific Ocean is perturbed 30&#176;S
+south and remains located to the west of 120&#176;W.
+                              1 PSP (day -2)                                                    8/29/91 - 1000 hPa
+-20                                                                    -20
+
+
+-30                                                                    -30
+
+
+-40                                                                    -40
+
+
+-50                                                                    -50
+
+
+-60                                                                    -60
+  -130   -120   -110   -100     -90    -80     -70   -60   -50   -40     -130   -120   -110   -100   -90   -80      -70   -60   -50   -40
+
+
+
+
+                              1&#176;PSP (day -1)                                                    8/30/91 - 1000 hPa
+-20                                                                    -20
+
+
+-30                                                                    -30
+
+
+-40                                                                    -40
+
+
+-50                                                                    -50
+
+
+-60                                                                    -60
+  -130   -120   -110   -100     -90    -80     -70   -60   -50   -40     -130   -120   -110   -100   -90   -80      -70   -60   -50   -40
+
+
+
+
+                                                                                               8/31/91 - 1000 hPa
+                              1&#176;PSP (day 0)
+-20
+
+
+
+-30
+
+
+
+-40
+
+
+
+-50
+
+
+
+-60
+                                                                         -130   -120   -110   -100   -90   -80      -70   -60   -50   -40
+  -130   -120   -110   -100     -90    -80     -70   -60   -50   -40
+[fig] Fig. 1. First main sequence patterns (left) and real sequence of 1000 hPa geopotential height fields for
+                                         29-31 August 1991(right). [/fig]
+                              2&#176;PSP (day -2)                                                      8/23/88 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100   -90   -80   -70   -60   -50   -40
+
+
+
+
+                                                                                                  8/24/88 - 1000 hPa
+                              2&#176;PSP (day -1)
+-20
+
+
+
+-30
+
+
+
+-40
+
+
+
+-50
+
+
+
+-60
+                                                                           -130   -120   -110   -100   -90   -80   -70   -60   -50   -40
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40
+
+
+
+
+                              2&#176;PSP (day 0)                                                       8/25/88 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100   -90   -80   -70   -60   -50   -40
+[fig] Fig. 2. Second main sequence patterns (left) and real sequence of 1000 hPa geopotential height fields for
+                                      23-25 August 1988 (right). [/fig] [/para]
+[para] Furthermore, a postfrontal anticyclone begins to enter the continent during day &#8211;1 at 40&#176;S. The
+day the temperature dropped its center is located on the east coast of the continent at 55&#176;S, and covers
+the central / northeast part of the Southern Cone. The advance and the development of a migratory
+anticyclone toward the east, associated to the passage of a cold front, can be observed on day &#8211;1. This
+kind of surface pressure configuration contributes to introducing the cold air into low latitudes. [/para]
+[para] The right panels in Figure 3 show an example of a real situation. The process that begins on 22
+July 1993 (top panel) and finishes on 24 July 1993 (bottom panel) causes temperature to drop 5.4&#176;C. [/para]
+[para] PSP 4 (left panels in Fig. 4) explains 9.4 % of the variance, with a minimum geopotential height
+centered in 120&#176;W, 35&#176;S that moves slowly during de next days. At the same time, a belt of
+maximum geopotential height can be observed extended from the south Pacific Ocean (125&#176;W,
+55&#176;S) toward the north-east reaching the central part of the continent and connected with the
+Subtropical Atlantic anticyclone that affects the east coast. [/para]
+[para] On day &#8211;1, the branch of the anticyclone belt located in the eastern part of the Pacific Ocean is
+developing and affecting the southern part of the continent. Its center is positioned over 80&#176;W,
+45&#176;S propagating to the northeast and centered in north Patagonia on day &#8211;0. This high system is
+related to the passage of a cold front that contributes to cold air advection over central Argentina. [/para]
+[para] A real sequence of surface charts (right panels in Fig. 4) shows the movement of a cold front over
+Buenos Aires during 12 UTC on 17-19 June 1990. Such situation causes temperature to drop 6.1&#176;C
+over the city. In addition, a system of low pressure located at 120&#176;W, 40&#176;S can be observed propagating
+towards the east as the migratory anticyclone enters the continent, which is also observed in PSP 4. [/para]
+[para] [sec] 5. Geopotential height at 500 hPa [/sec]
+Complementarily, the 500 hPa level is also analyzed as it represents the middle troposphere and
+leads to the surface systems that are valued in the weather forecast. [/para]
+[para] The PSP analysis is again applied to obtain the lead sequence in the middle troposphere. In this
+case only three PSP explain 70% of the variance, while for 1000 hPa, seven PSP were needed.
+Therefore, the varimax rotation is applied for the first three PSP in the 500 hPa analysis. The
+variance and the accumulated variance for the rotated PSP are shown in Table 2. [/para]
+[para] Figures 5 to 7 show the first three PSP and the actual circulation sequence patterns that have a
+loading factor greater than 0.7 with each sequence. [/para]
+[para] As found in the case of 1000 hPa, the inverse mode did not represent significant variances
+different from zero. That means the inverse mode is not a real situation related to cold outbreak
+over Central Argentina. [/para]
+[para] i) PSP 1 (left panels in Fig. 5) explains 25.5 % of the variance, showing a long-wave trough
+with an axis extending southeastward from subtropical latitudes to the southern part of the continent.
+At the same time, a high-pressure region associated with intense anticyclone was observed at
+120&#176;W, 50&#176;S. This pattern of circulation at upper levels slowly moves eastward with blocking
+situation in the Southern Hemisphere (Sinclair, 1996).
+                              3&#176;PSP (day -2)                                                      7/22/93 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100   -90   -80   -70   -60   -50   -40
+
+
+
+
+                                                                                                  7/23/93 - 1000 hPa
+                              3&#176;PSP (day -1)
+-20
+
+
+
+-30
+
+
+
+-40
+
+
+
+-50
+
+
+
+-60
+                                                                           -130   -120   -110   -100   -90   -80   -70   -60   -50   -40
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40
+
+
+
+
+                              3&#176;PSP (day 0)                                                       7/24/93 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100   -90   -80   -70   -60   -50   -40
+[fig] Fig. 3. Third main sequence patterns (left) and real sequence of 1000 hPa geopotential height fields for
+                                             22-24 July, 1993. [/fig]
+Table 2. Percentages of variance explained and cumulative percentage explained by the three components.
+              PSP                         VAR.(%)                   PER.CUM.VAR. (%)
+               1&#176;                           25.5                            25.5
+               2&#176;                           23.8                            49.3
+               3&#176;                           21.1                            70.4 [/para]
+[para] The real sequence (right panels in Fig. 5) shows a very similar configuration of the circulation;
+however, the trough in the Pacific Ocean has a more complex structure and behavior than that
+observed in the PSP. On day &#8211;2 (3 May 1984), the axis of the trough evolved in three different
+sections, one in a lower than 40&#176;S latitude (a: thick line), another in middle latitudes (b: dotted
+line), and the last one in latitudes south of the continent (c: double line). [/para]
+[para] Throughout the sequence of the days, axis (c) moves suddenly towards the east and disappears
+from the analyzed area on day &#8211;1; axis (b) moves towards the east and is located to the south of
+40&#176;S on day &#8211;0 with an inclination of the northwest towards the southeast, this perturbation led the
+cold surge over Buenos Aires. This part of the trough can be moved eastward, possibly because the
+mountain range of the Andes is not higher than 2000 meters at those latitudes, while to the north of
+that latitude the sector of the trough (a) remains in the Pacific Ocean. In brief, the structure in the
+middle troposphere corresponds to a fast short-wave trough superposed over the long-wave trough
+that lets the cold air into central Argentina (Krishnamurti et al., 1999). [/para]
+[para] ii) PSP 2 (left panels in Fig. 6) describes 23.8 % of the variance. The pattern describes an
+important long-wave trough extended over all the South Pacific Ocean southern of 35&#176;S. [/para]
+[para] At the same time, a big anticyclone is located in all the South Atlantic Ocean with a ridge axis
+at 55&#176;S. Between both systems, a short wave trough influences the western part of the continent
+and moves towards the southeast. [/para]
+[para] The real cases partially agree with this pattern. An example of real situations corresponding to
+22 &#8211; 24 July 1993 can be seen in the right panels in Figure 6, where the main system, particularly
+over the Pacific, is represented. Two regions are affected by low pressure systems: a pronounced
+trough over the Pacific Ocean near 95&#176;W and to the north of 35&#176;S, and a trough over the continent
+at middle latitude to the south of 40&#176;S. [/para]
+[para] The second wave at middle latitude is located over the center of the country on day &#8211;1 and
+moves rapidly toward the northeast while intensifying, reaching the south of Brazil on day 0. Such
+perturbation corresponds to a typical cold surge over the country that causes temperature to drop
+over Buenos Aires. In addition, an important low pressure zone can be seen over the South Pacific
+Ocean associated with a long wave trough extending south-eastward and moving slowly for three
+days. [/para]
+[para] PSP 3 (left panels in Fig. 7) explains 21.1 % of the variance. The theoretical pattern has a mayor
+ridge along a north-south axis close to 90&#176;W over the Pacific Ocean and a pronounced trough
+along a north-west / south-east axis over the Atlantic Ocean near 45&#176;W. On day &#8211;2 a high pressure
+                              4&#176;PSP (day -2)                                                         6/17/90 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130    -120    -110    -100    -90    -80    -70    -60    -50    -40
+
+
+
+
+                                                                                                      6/18/90 &#8211; 1000 hPa
+                              4&#176;PSP (day -1)
+-20
+
+
+
+-30
+
+
+
+-40
+
+
+
+-50
+
+
+
+-60
+                                                                            -130    -120    -110    -100    -90    -80    -70    -60    -50    -40
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40
+
+
+
+
+                              4&#176;PSP (day 0)                                                          6/19//90 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130    -120    -110    -100    -90    -80    -70    -60    -50    -40
+[fig] Fig. 4. Fourth main sequence patterns (left) and real sequence of 1000 hPa geopotential height fields for
+                                         17-19 June 1990 (right). [/fig]
+                              1&#176;PSP - day -2                                                     5/3/84 - 500 hPa
+-20                                                                    -20
+
+
+-30                                                                    -30
+
+
+-40                                                                    -40
+                                                                                                              ○
+                                                                                                                  ○
+                                                                                                                      ○
+
+-50                                                                    -50
+
+
+-60                                                                    -60
+  -130   -120   -110   -100     -90    -80     -70   -60   -50   -40     -130   -120   -110   -100      -90           -80           -70       -60   -50   -40
+
+
+
+
+                              1&#176;PSP - day -1                                                     5/4/84 - 500 hPa
+-20                                                                    -20
+
+
+-30                                                                    -30
+
+
+-40                                                                    -40                                            ○
+
+                                                                                                                            ○
+
+                                                                                                                                ○
+
+-50                                                                                                                                 ○
+                                                                                                                                          ○
+
+
+
+
+-60                                                                    -60
+  -130   -120   -110   -100     -90    -80     -70   -60   -50   -40     -130   -120   -110   -100      -90           -80           -70       -60   -50   -40
+
+
+
+
+                              1&#176;PSP - day 0                                                          5/5/84 - 500 hPa
+-20                                                                    -20
+
+
+-30                                                                    -30
+
+
+-40                                                                    -40
+
+
+-50                                                                    -50
+
+
+-60                                                                    -60
+  -130   -120   -110   -100     -90    -80     -70   -60   -50   -40     -130   -120   -110   -100      -90           -80           -70       -60   -50   -40
+[fig] Fig. 5. First main sequence patterns (left) and real sequence of 500 hPa geopotential height fields for 3-5
+                                             May, 1984 (right). [/fig]
+                              2&#176;PSP - day -2                                                       7/22/93 - 500 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100    -90   -80      -70   -60   -50   -40
+
+
+
+
+                              2&#176;PSP - day -1                                                       7/23/93 - 500 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100    -90   -80      -70   -60   -50   -40
+
+
+
+
+                              2&#176;PSP - day 0                                                        7/24/93 &#8211; 500 hPa
+                                                                                                   hP
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100    -90   -80      -70   -60   -50   -40
+[fig] Fig. 6. Second main sequence patterns (left) and real sequence of 500 hPa geopotential height fields for
+                                         22-24 July, 1993 (right). [/fig]
+system center can be observed in 95&#176;W, 60&#176;S moving eastward and located on day &#8211;0 over the
+south-east of Chile. At the same time, over the Atlantic Ocean, there is a strong trough along a
+north-west / south-east axis between days &#8211;2 and 0, intensifying as it moves eastward. Such an
+upper level geopotential heights distribution results in south / south-westerly flow over all of
+Argentina and lets the cold air at low levels move towards the north of the country. This pattern
+contributes to notorious descending motions over most of the continental area and corresponds to
+a typical omega structure related to blocking situations (Elliot and Smith, 1949; Trenberth and Mo,
+1985). [/para]
+[para] The real sequence shows a close similar geopotential heights configuration corresponding to
+12 &#8211; 14 September 1988 (right panels in Fig. 7). A pair of ridge-trough systems is observed in the
+Southern Cone, traveling very slowly eastward. During the temporal evolution of the meteorological
+situations, the deep trough shows a strong confluence of flow from the southwest as shown in the
+PSP over all of Argentina. [/para]
+[para] [sec] 6. Relationships between upper level and low level sequences of circulation patterns [/sec]
+In order to study the vertical structure of the atmospheric circulation associated with cold surges
+over central Argentina, the fields of geopotential heights at 1000 hPa and 500 hPa were related.
+The relationships between the low and upper - level patterns were obtained through the analysis of
+the component loading time series for each of the main components at each level (figures not
+shown). [/para]
+[para] Table 3 shows the correlation coefficients between the series of factor loading of 1000 hPa and
+500 hPa. [/para]
+[para] The best relationships between all the possible combinations for both levels were obtained for: [/para]
+[para] i) PSP 1 at 1000 hPa with PSP 3 at 500 hPa (correlation = 0.71) [/para]
+[para] Figure 8 shows a pair of daily sequences at 500 hPa (left panels) and 1000 hPa (right panels) on
+8 &#8211; 10 June 1989 associated with these patterns. Such situation produces a temperature fall of
+5.3&#176;C over Buenos Aires. These (500 hPa and 1000 hPa) patterns represent the most frequent
+situations related to cold surges over Central Argentina (Garreaud, 2000). A north /south ridge
+over the Pacific Ocean close to the coast of Chile extended into the south of the continent can be
+observed at the upper level (left panels in Fig. 8). In addition, an anticyclonic center was observed
+over the south-eastern Pacific related to the ridge, reaching its maximum value on day &#8211;0.
+Furthermore, a trough over the Atlantic Ocean along a northwest/southeast axis moves slowly
+toward the northeast as it intensified. Such configuration produces a persistent southwesterly flow
+at the upper level that generates frequent passages of migratory system at the low levels. In those
+cases, Central and Northern Argentina is dominated by a strong cold air advection that persists for
+several days. The right panels in Figure 8 show the temporal evolution of meteorological systems
+at low levels. An anticyclonic perturbation centered on day &#8211;2 at around 85&#176;W, 50&#176;S propagating
+north-eastward and located on day &#8211;0 can be observed over Buenos Aires outskirts.
+                              3&#176;PSP - day -2                                                       9/12/88 - 500 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100   -90   -80       -70   -60   -50   -40
+
+
+
+
+                              3&#176;PSP - day -1                                                       9/13/88 - 500 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100   -90   -80       -70   -60   -50   -40
+
+
+
+
+                              3&#176;PSP - day 0                                                        9/14//88 - 500 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100     -90    -80     -70     -60   -50   -40     -130   -120   -110   -100   -90   -80       -70   -60   -50   -40
+[fig] Fig. 7. Third main sequence patterns (left)and real sequence of 500 hPa geopotential height fields for 12-
+                                       14 September 1988 (right). [/fig] [/para]
+[para] Table 3. Correlation coefficients between the series of factor loading of 1000 hPa and 500 hPa.
+                                   PSP500 1      PSP500 2               PSP500 3
+              PSP1000 1            -0.56         0.10                   0.71
+              PSP1000 2            0.86          -0.58                  -0.34
+              PSP1000 3            -0.49         0.88                   -0.41
+              PSP1000 4            0.40          -0.36                  0.12 [/para]
+[para] ii) PSP 2 at 1000 hPa with PSP 1 at 500 hPa (correlation = 0.86) [/para]
+[para] Figure 9 shows a particular case related to this pair of sequences at the 1000 hPa and the 500
+hPa levels. This situation begins on 3 May 1984 and finishes on 5 May 1984, causing a sharp
+temperature fall of 8.7 &#176;C. The large circulation at the 500 hPa level (the left panels in Fig. 9 are
+characterised by a long wave with a ridge along a north-south axis over the Pacific Ocean and a
+strong trough extended from the west of the Andes into the south-western Atlantic Ocean. Such
+configuration pattern over the Pacific Ocean persists between day &#8211;2 and day &#8211;0, while a short
+wave cyclonic perturbation moving eastward and located over Atlantic Ocean is observed over the
+continent on day &#8211;1. The surface pressure configuration (right panels in Fig. 9) shows an intense
+anticyclonic center located around 110&#176;W, 50&#176;S that moves slowly eastward. At the same time, a
+low pressure system can be observed over Patagonia on day &#8211;1 moving to the east and located at
+around 50&#176;W, 55&#176;S on day &#8211;0. In addition, a migratory anticyclone advances over Central Argentina
+pushing cold air from the south of the country. This kind of configuration pressure over the whole
+troposphere characterised by slow propagation is associated with blocking situations over the
+Pacific Ocean (Sinclair, 1996). [/para]
+[para] iii) PSP 3 at 1000 hPa with PSP 2 at 500 hPa (correlation = 0.88) [/para]
+[para] A particular case associated with this pair of sequences is observed in Figure 10. The
+meteorological situation corresponds to 22-24 July 1993 when the temperature fall was 5.4 &#176;C. At
+the upper level (left panels in Fig. 10) a long wave trough over the Pacific Ocean along a northwest
+/ southeast axis that exhibits amplification as it moves eastward can be observed. At the same time,
+there is a wave trough to the west of the Andes on day &#8211;2 propagating toward the northeast and
+located on day &#8211;0 over eastern South America. At the low level (right panels in Fig. 10), a post-
+frontal anticyclone entering the continent was observed on day &#8211;1 at around 40&#176;S and located over
+Central Argentina on day &#8211;0. Such evolution of low-level configuration corresponds to the cyclonic
+perturbation observed at the 500 hPa level. In addition, the wave trough at the 500 hPa level
+becomes deeper as it begins to move eastward, particularly when it is located over the Atlantic
+Ocean. The geopotential height at 1000 hPa shows an intense cyclone over the Atlantic Ocean at
+35&#176;S, 45&#176;W connected to the high level perturbation described above. This low-level pressure
+system also contributes to push the cold air mass from the south toward the lower latitudes. [/para]
+[para] PSP 4 is not directly related to a specific condition at 500 hPa, but presents diversity in the
+conditions of the middle troposphere. This fact becomes evident because of the significantly low
+correlation value between the component loading time series at 1000 hPa and 500 hPa (Table 3).
+                              8-6-89 - 500 hPa                                                       6/8/89 - 1000 hPa
+-20                                                                        -20
+
+
+-30                                                                        -30
+
+
+-40                                                                        -40
+
+
+-50                                                                        -50
+
+
+-60                                                                        -60
+  -130   -120   -110   -100      -90    -80      -70     -60   -50   -40     -130   -120   -110   -100   -90   -80       -70   -60   -50   -40
+
+
+
+
+                              9-6-89 - 500 hPa                                                      6/9/89 - 1000 hPa
+-20                                                                        -20
+
+
+-30                                                                        -30
+
+
+-40                                                                        -40
+
+
+-50                                                                        -50
+
+
+-60
+                                                                             -130   -120   -110   -100   -90   -80       -70   -60   -50   -40
+  -130   -120   -110   -100      -90    -80      -70     -60   -50   -40
+
+
+
+
+                          10-6-89 - 500 hPa                                                         6/10/89 - 1000 hPa
+-20                                                                        -20
+
+
+-30                                                                        -30
+
+
+-40                                                                        -40
+
+
+-50                                                                        -50
+
+
+-60                                                                        -60
+  -130   -120   -110   -100      -90    -80      -70     -60   -50   -40     -130   -120   -110   -100   -90   -80       -70   -60   -50   -40
+[fig] Fig. 8. Real sequences of 500 hPa geopotential height fields (left) and 1000 hPa geopotential height fields
+                                      for 8-10 June, 1989 (right). [/fig]
+                          5/3/84 - 500 hPa                                                         5/3/84 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100      -90    -80      -70   -60   -50   -40     -130   -120   -110   -100      -90   -80    -70   -60   -50   -40
+
+
+
+
+                          5/4/84 - 500 hPa                                                             5/4/84 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100      -90    -80      -70   -60   -50   -40     -130   -120   -110   -100      -90   -80    -70   -60   -50   -40
+
+
+
+
+                              5/5/84 - 500 hPa                                                     5/5/84 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130   -120   -110   -100      -90    -80      -70   -60   -50   -40     -130   -120   -110   -100      -90   -80    -70   -60   -50   -40
+[fig] Fig. 9. Real sequences of 500 hPa geopotential height fields (left) and 1000 hPa geopotential height fields
+                                       for 3-5 May 1984 (right). [/fig]
+                           7/22/93 - 500 hPa                                                      7/22/93 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130    -120   -110   -100   -90   -80       -70     -60   -50   -40     -130   -120   -110   -100   -90   -80   -70   -60   -50   -40
+
+
+
+
+                           7/23/93 - 500 hPa                                                      7/23/93 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130    -120   -110   -100   -90   -80       -70     -60   -50   -40     -130   -120   -110   -100   -90   -80   -70   -60   -50   -40
+
+
+
+
+                           7/24/93 - 500 hPa                                                      7/24/93 - 1000 hPa
+-20                                                                      -20
+
+
+-30                                                                      -30
+
+
+-40                                                                      -40
+
+
+-50                                                                      -50
+
+
+-60                                                                      -60
+  -130    -120   -110   -100   -90   -80       -70     -60   -50   -40     -130   -120   -110   -100   -90   -80   -70   -60   -50   -40
+[fig] Fig. 10. Real sequences of 500 hPa geopotential height fields (left) and 1000 hPa geopotential height
+                                       fields for 22-24 July 1993 (right). [/fig] [/para]
+[para] [sec] 7. Conclusions [/sec]
+Since the same percentage of variance (70 %) is explained by PSP 7 at 1000 hPa and only by PSP
+3 at 500 hPa, the circulation structures are more variable at 1000 hPa than in the middle troposphere
+for the case of cold surges over central Argentina. [/para]
+[para] In the surface, the pattern that leads to cold outbreaks over Central Argentina corresponds to
+several types of postfrontal anticyclones, the most important associated with polar cold air advection
+(PSP 1). [/para]
+[para] At the upper levels, the patterns correspond to a long wave trough affecting the continent on
+which disturbances of shorter waves are superposed, especially the troughs that move rapidly over
+Central Argentina. These geopotential height configurations can be seen in the first and second
+patterns. The long wave trough is much more evident over the continent in PSP 1 than in PSP 2. [/para]
+[para] The third upper level pattern corresponds to the classic situation analyzed by diverse authors
+(Garreaud, 2000) and shows an important ridge to the west of the Pacific Coast. [/para]
+[para] The combination of both levels shows three typical situations related to cold surges over Central
+Argentina. Two of them correspond to a long wave trough at the upper levels affecting the continent,
+one with the anticyclone moving over middle and low latitudes (Fig. 9), determined by the PSP 1
+at 500 hPa and PSP 2 at 1000 hPa, and the other with the surface anticyclone affecting lower
+latitudes over the continent (Fig. 10), determined by the PSP 2 at 500 hPa and PSP 3 at 1000 hPa. [/para]
+[para] Finally, the most classic pattern corresponds to an important ridge to the west of the Pacific
+Coast that produces descending motions over Central Argentina accompanied by a postfrontal
+anticyclone in low levels that advects cold air from the south (Fig. 8). The PSP 1 at 1000 hPa and
+PSP 3 determined this kind of pattern at 500 hPa. [/para]
+[ack] Acknowledgements [/ack]
+The authors wish to thank the University of Buenos Aires for the financial support given through
+the research fellowships and UBA subsidy (Proyecto X / 002).
+[ref] References [/ref]
+Cattell, R., 1978. The scientific use of factor analysis. In: Behavior and life sciences. Plenum, New
+    York and London, 617 pp.
+Compagnucci, R., D. Araneo and P. Canziani, 2001. Principal sequence pattern analysis: A new
+    approach to classifying the evolution of atmospheric systems. Int. Journal. Clim., 21, 197-217.
+Elliot, R. and T. Smith, 1949. A study of the effects of large blocking highs on the general circulation
+    in the Northern Hemisphere westerlies. J. Met., 6, 2. pp. 67-85.
+Escobar, G. and S. Bischoff, 1999. Meteorological situations associated with significant temperature
+    falls in Buenos Aires: an application to the daily consumption of residential natural gas. Meteorol.
+    Appl., 6, 253-260.
+Escobar, G. and S. Bischoff, 2001. Criterio de detecci&oacute;n de irrupciones de aire fr&iacute;o en la regi&oacute;n
+   central de Argentina a partir de descensos interdiurnos de temperatura. Meteorol&oacute;gica, 26, 1 y
+   2, 57-68.
+Fortune, M. and V. Kousky, 1983. Two severe freezes in Brazil: Precursors and Synoptic Evolution.
+   Mon. Wea. Rev., 111, 181-196.
+Garreaud, R., 2000. Cold air incursions over subtropical South America: Mean structure and
+   dynamics. Mon. Wea. Rev., 128, 2544-2559.
+Green, P., 1978. Analysing multivariate data. The Dryden Press. Illinois, U.S.A, 519 pp.
+Harman, H., 1976. Modern factor analysis. The University of Chicago Press, Chicago, IL.
+Krishnamurty, T., M. Tewari and D. Chakraborty, 1999. Downstream amplification: A possible
+   Precursor to Mayor Freeze Events over Southeastern Brazil. Wea. and Forecasting, 14, 242-271.
+Marengo, J., A. Cornejo, P. Satyamurty and C. Nobre, 1997. Cold surges in tropical and extratropical
+   South America: The Strong Event in June 1994. Mon. Wea. Rev., 125, 2759-2786.
+Nocera, J., L. Bosart and D. Knight, 2000. A climatology and compositing study of cold surges in
+   South America. Sixth International Conference on Southern Hemisphere Meteorology and
+   Oceanography. 3-7 April 2000, Santiago, Chile, 378-379.
+Richman, M., 1986. Rotation of principal components. J. of Climatology, 6, 293-335.
+Richman, M., J. Angel and X. Gong, 1992. Determination of dimensionality in eingenanalysis.
+   Fifth International Meeting on Statistical Climatology. 22-26 June 1992, Toronto, Canada, 229-
+   235.
+Scian, B., 1970. Situaci&oacute;n sin&oacute;ptica asociada a las temperaturas extremas observadas en junio de
+   1967. Meteorol&oacute;gica, 1: 22 -37.
+Sinclair, M., 1996. A climatology of anticyclones and blocking for Southern Hemisphere. Mon.
+   Wea. Rev., 124, 245-263.
+Trenberth, K. and K Mo, 1985. Blocking in the Southern Hemisphere. Mon. Wea. Rev., 113, 3-21.
+

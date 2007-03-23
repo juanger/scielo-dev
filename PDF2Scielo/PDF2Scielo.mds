@@ -17,7 +17,6 @@
       <Entry build="True" name="Utils" configuration="Release" />
     </Configuration>
   </Configurations>
-  <DeployTargets />
   <StartMode startupentry="PDF2Scielo" single="True">
     <Execute type="None" entry="PDF2Scielo" />
     <Execute type="None" entry="PDF2Text" />

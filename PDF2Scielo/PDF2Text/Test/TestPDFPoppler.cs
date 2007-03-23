@@ -64,7 +64,7 @@ public class TestPDFPoppler {
 		// Rutas a los PDF a usar en el test unit.
 		string path0 = Path.Combine (path, "v17n01a02.pdf");
 		string path1 = Path.Combine (path, "v17n4a03.pdf");
-		string path2 = Path.Combine (path, "v18n4a02.pdf");
+		string path2 = Path.Combine (path, "v17n2a02.pdf");
 		
 		Uri uri0 = new Uri (path0);
 		Uri uri1 = new Uri (path1);
@@ -76,7 +76,7 @@ public class TestPDFPoppler {
 		
 		path0 = Path.Combine (path, "v17n01a02-norm.txt");
 		path1 = Path.Combine (path, "v17n4a03-norm.txt");
-		path2 = Path.Combine (path, "v18n4a02-norm.txt");
+		path2 = Path.Combine (path, "v17n2a02-norm.txt");
 		
 		string text0 = Test.ReadFile (path0);
 		string text1 = Test.ReadFile (path1);
@@ -86,9 +86,9 @@ public class TestPDFPoppler {
 		string pdftext1 = doc1.GetNormText ("utf8");
 		string pdftext2 = doc2.GetNormText ("utf8");
 		
-		Assert.AreEqual (text0, pdftext0);
-		Assert.AreEqual (text1, pdftext1);
-		//Assert.AreEqual (text2, pdftext2);
+		Assert.AreEqual (text0, pdftext0, "GN01");
+		Assert.AreEqual (text1, pdftext1, "GN02");
+		Assert.AreEqual (text2, pdftext2, "GN03");
 	}
 	
 	[Test]
@@ -99,7 +99,7 @@ public class TestPDFPoppler {
 		// Rutas a los PDF a usar en el test unit.
 		string path0 = Path.Combine (path, "v17n01a02.pdf");
 		string path1 = Path.Combine (path, "v17n4a03.pdf");
-		string path2 = Path.Combine (path, "v18n4a02.pdf");
+		string path2 = Path.Combine (path, "v17n2a02.pdf");
 		
 		Uri uri0 = new Uri (path0);
 		Uri uri1 = new Uri (path1);
@@ -111,7 +111,7 @@ public class TestPDFPoppler {
 		
 		path0 = Path.Combine (path, "v17n01a02-raw.txt");
 		path1 = Path.Combine (path, "v17n4a03-raw.txt");
-		path2 = Path.Combine (path, "v18n4a02-raw.txt");
+		path2 = Path.Combine (path, "v17n2a02-raw.txt");
 		
 		string text0 = Test.ReadFile (path0);
 		string text1 = Test.ReadFile (path1);
@@ -121,9 +121,9 @@ public class TestPDFPoppler {
 		string pdftext1 = doc1.GetRawText ();
 		string pdftext2 = doc2.GetRawText ();
 		
-		Assert.AreEqual (text0, pdftext0);
-		Assert.AreEqual (text1, pdftext1);
-		Assert.AreEqual (text2, pdftext2);
+		Assert.AreEqual (text0, pdftext0, "GR01");
+		Assert.AreEqual (text1, pdftext1, "GR02");
+		Assert.AreEqual (text2, pdftext2, "GR03");
 	}
 	
 	public void CreateHTMLFile ()
@@ -135,7 +135,7 @@ public class TestPDFPoppler {
 		// Rutas a los PDF a usar en el test unit.
 		path0 = Path.Combine (path, "v17n01a02.pdf");
 		path1 = Path.Combine (path, "v17n4a03.pdf");
-		path2 = Path.Combine (path, "v18n4a02.pdf");
+		path2 = Path.Combine (path, "v17n2a02.pdf");
 		
 		Uri uri0 = new Uri (path0);
 		Uri uri1 = new Uri (path1);
@@ -148,7 +148,7 @@ public class TestPDFPoppler {
 		
 		path0 = Path.Combine (path, "v17n01a02.htm");
 		path1 = Path.Combine (path, "v17n4a03.htm");
-		path2 = Path.Combine (path, "v18n4a02.htm");
+		path2 = Path.Combine (path, "v17n2a02.htm");
 		
 		// Cadena con el contenido del archivo final tal como queremos
 		// que PDFPoppler nos entregue.
@@ -160,12 +160,12 @@ public class TestPDFPoppler {
 		// temporales.
 		doc0.CreateHTMLFile (path, "v17n01a02f");
 		doc1.CreateHTMLFile (path, "v17n4a03f");
-		doc2.CreateHTMLFile (path, "v18n4a02f");
+		doc2.CreateHTMLFile (path, "v17n2a02f");
 		
 		// Se lee el contenido de los archivos creados por CreateFile.
 		pdftext0 = Test.ReadFile (Path.Combine (path, "v17n01a02f.htm"));
 		pdftext1 = Test.ReadFile (Path.Combine (path, "v17n4a03f.htm"));
-		pdftext2 = Test.ReadFile (Path.Combine (path, "v18n4a02f.htm"));
+		pdftext2 = Test.ReadFile (Path.Combine (path, "v17n2a02f.htm"));
 		
 		Assert.AreEqual (text0, pdftext0, "CF01");
 		Assert.AreEqual (text1, pdftext1, "CF02");

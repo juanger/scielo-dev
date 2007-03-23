@@ -30,6 +30,10 @@
     <File name="./Test/v17n4a03.htm" subtype="Code" buildaction="Nothing" />
     <File name="./Test/v17n01a02-raw.txt" subtype="Code" buildaction="Nothing" />
     <File name="./Test/v17n4a03-raw.txt" subtype="Code" buildaction="Nothing" />
+    <File name="./Test/v17n2a02.htm" subtype="Code" buildaction="Nothing" />
+    <File name="./Test/v17n2a02.pdf" subtype="Code" buildaction="Nothing" />
+    <File name="./Test/v17n2a02-norm.txt" subtype="Code" buildaction="Nothing" />
+    <File name="./Test/v17n2a02-raw.txt" subtype="Code" buildaction="Nothing" />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />

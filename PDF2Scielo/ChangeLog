@@ -1,5 +1,14 @@
 2007-03-22  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/Test/v17n2a02-raw.txt,
+	  PDF2Text/Test/v17n2a02.pdf, PDF2Text/Test/v17n2a02.htm,
+	  PDF2Text/Test/v17n2a02-norm.txt, PDF2Text/PDF2Text.mdp,
+	  PDF2Scielo.mds, PDFImage/PDFImage.mdp, Testing/Testing.mdp: Se
+	  agrego el archivo v17n202.pdf y sus archivos derivados a las
+	  pruebas unitarias.
+
+2007-03-22  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/AtmNormalizer.cs: Cambios a la expresion regular para
 	  capturar parrafos que inician con i) ii) etc.
 
