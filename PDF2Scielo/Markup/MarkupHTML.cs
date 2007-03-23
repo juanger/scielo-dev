@@ -69,7 +69,7 @@ public class MarkupHTML {
 		string startTag = @"\[res\]";
 		string endTag = @"\[/res\]";
 		string startSustitute = "</p> \n <br><p align=\"center\">";
-		string endSustitute = "</p>";
+		string endSustitute = "</p> \n <p align=\"justify\">";
 
 		text = Regex.Replace(text, startTag, startSustitute);
 		text = Regex.Replace(text, endTag, endSustitute);			

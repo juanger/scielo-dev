@@ -24,8 +24,8 @@ public class TestMarkupHTML
 	{
 		MarkupHTML obj = new MarkupHTML ("mejora.[abs] Abstract [/abs] y continua [res] Resumen [/res] ");
 		obj.HeadDocument();
-		//obj.ReplaceAbsTag();
-		//obj.ReplaceResTag();
+		obj.ReplaceAbsTag();
+		obj.ReplaceResTag();
  		Console.WriteLine("Resultado:    "+obj.Text);
 	}
 }

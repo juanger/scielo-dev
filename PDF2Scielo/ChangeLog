@@ -1,5 +1,9 @@
 2007-03-22   <> 
 
+	Se implementó la clase TestMarkupHTML con el fin de probar los métodos ReplaceAbsTag() y ReplaceResTag()
+
+2007-03-22   <> 
+
 	Se agregaron métodos para reemplazar las etiquetas [abs] [/abs] y [res] [/res]
 
 2007-03-22  Hector E. Gomez Morales. <hectoregm@gmail.com> 
