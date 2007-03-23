@@ -1,5 +1,12 @@
 2007-03-22  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Markup/MarkupHTML.mdp, Markup/Markup.mdp, PDF2Text/PDF2Text.build,
+	  Main.build, PDF2Scielo/PDF2Scielo.build, PDF2Scielo.mds: Ultimos
+	  cambios a los archivos de la solucion PDF2Scielo para realizar la
+	  transicion del nombre MarkupHTML a Markup.
+
+2007-03-22  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Main.build, MarkupHTML/Test/TestMarkupHTML.cs,
 	  MarkupHTML/Test/TestConfiguration.cs, MarkupHTML/AssemblyInfo.cs,
 	  MarkupHTML/GStarSXQ.cs, MarkupHTML/XReaderNPDA.cs,

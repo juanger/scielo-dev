@@ -36,7 +36,7 @@
      <copy todir="PDF2Scielo/bin/Debug" flatten="true">
        <fileset basedir=".">
           <include name="PDF2Text/bin/Debug/PDF2Text.dll" />
-          <include name="MarkupHTML/bin/Debug/MarkupHTML.dll" />
+          <include name="Markup/bin/Debug/Markup.dll" />
        </fileset>
      </copy>
      <exec program="PDF2Scielo/bin/Debug/pdf2scielo.exe">

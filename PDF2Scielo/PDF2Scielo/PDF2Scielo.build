@@ -16,7 +16,7 @@
 	  </pkg-references>
           <references>
              <include name="../PDF2Text/bin/Debug/PDF2Text.dll" />
-             <include name="../MarkupHTML/bin/Debug/MarkupHTML.dll" />
+             <include name="../Markup/bin/Debug/Markup.dll" />
           </references>
        </csc>
    </target>

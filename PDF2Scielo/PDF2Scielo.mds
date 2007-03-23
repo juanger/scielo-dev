@@ -25,7 +25,7 @@
   <Entries>
     <Entry filename="./PDF2Scielo/PDF2Scielo.mdp" />
     <Entry filename="./PDF2Text/PDF2Text.mdp" />
-    <Entry filename="./MarkupHTML/MarkupHTML.mdp" />
+    <Entry filename="./Markup/Markup.mdp" />
     <Entry filename="./PDFImage/PDFImage.mdp" />
     <Entry filename="./Utils/Utils.mdp" />
   </Entries>
