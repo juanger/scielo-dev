@@ -14,7 +14,7 @@ using System.Xml;
 using System.Collections;
 
 namespace Scielo {
-namespace MarkupHTML {
+namespace Markup {
 
 public class GStarSXQ {
 

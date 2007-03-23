@@ -12,7 +12,7 @@ using System;
 using NUnit.Framework;
 
 namespace Scielo {
-namespace MarkupHTML {
+namespace Markup {
 	
 	
 [TestFixture()]

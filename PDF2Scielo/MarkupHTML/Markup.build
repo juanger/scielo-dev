@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<project name="MarkupHTML" default="build" basedir=".">
-   <description>Library that takes an string input and returns a HTML SciELO document.</description>
+<project name="Markup" default="build" basedir=".">
+   <description>Library that contains classes that mark text with HTML or XML tags of SciELO.</description>
    <property name="debug" value="true" overwrite="false" />
    <target name="clean" description="remove all generated files">
       <delete dir="bin" failonerror="false" />
    </target>
    <target name="build" description="compiles the source code">
        <mkdir dir="bin/Debug" />
-       <csc target="library" output="./bin/Debug/MarkupHTML.dll" debug="${debug}">
+       <csc target="library" output="./bin/Debug/Markup.dll" debug="${debug}">
           <sources>
              <include name="*.cs" />
           </sources>

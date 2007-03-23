@@ -3,16 +3,14 @@
     <Configuration name="Debug" ctype="CombineConfiguration">
       <Entry build="True" name="PDF2Scielo" configuration="Debug" />
       <Entry build="True" name="PDF2Text" configuration="Debug" />
-      <Entry build="True" name="MarkupHTML" configuration="Debug" />
-      <Entry build="True" name="Testing" configuration="Debug" />
+      <Entry build="True" name="Markup" configuration="Debug" />
       <Entry build="True" name="PDFImage" configuration="Debug" />
       <Entry build="True" name="Utils" configuration="Debug" />
     </Configuration>
     <Configuration name="Release" ctype="CombineConfiguration">
       <Entry build="True" name="PDF2Scielo" configuration="Release" />
       <Entry build="True" name="PDF2Text" configuration="Release" />
-      <Entry build="True" name="MarkupHTML" configuration="Release" />
-      <Entry build="True" name="Testing" configuration="Release" />
+      <Entry build="True" name="Markup" configuration="Release" />
       <Entry build="True" name="PDFImage" configuration="Release" />
       <Entry build="True" name="Utils" configuration="Release" />
     </Configuration>
@@ -20,8 +18,7 @@
   <StartMode startupentry="PDF2Scielo" single="True">
     <Execute type="None" entry="PDF2Scielo" />
     <Execute type="None" entry="PDF2Text" />
-    <Execute type="None" entry="MarkupHTML" />
-    <Execute type="None" entry="Testing" />
+    <Execute type="None" entry="Markup" />
     <Execute type="None" entry="PDFImage" />
     <Execute type="None" entry="Utils" />
   </StartMode>
@@ -29,7 +26,6 @@
     <Entry filename="./PDF2Scielo/PDF2Scielo.mdp" />
     <Entry filename="./PDF2Text/PDF2Text.mdp" />
     <Entry filename="./MarkupHTML/MarkupHTML.mdp" />
-    <Entry filename="./Testing/Testing.mdp" />
     <Entry filename="./PDFImage/PDFImage.mdp" />
     <Entry filename="./Utils/Utils.mdp" />
   </Entries>

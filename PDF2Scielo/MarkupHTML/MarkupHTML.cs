@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System;
 
 namespace Scielo {
-namespace MarkupHTML {
+namespace Markup {
 		
 public class MarkupHTML {
 	private string text;

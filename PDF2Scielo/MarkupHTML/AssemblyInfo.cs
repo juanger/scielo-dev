@@ -11,8 +11,8 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("MarkupHTML")]
-[assembly: AssemblyDescription("Convierte un entrada de texto en un documento HTML SciELO.")]
+[assembly: AssemblyTitle("Markup")]
+[assembly: AssemblyDescription("Es una libreria que contiene los marcadores para HTML y XML de SciELO.")]
 [assembly: AssemblyCompany("UNAM - DGB")]
 [assembly: AssemblyProduct("pdf2scielo")]
 [assembly: AssemblyCopyright("Copyright 2007 DGB UNAM")]

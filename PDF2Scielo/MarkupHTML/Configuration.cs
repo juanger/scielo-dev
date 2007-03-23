@@ -12,7 +12,7 @@
 using System;
 
 namespace Scielo {
-namespace MarkupHTML {
+namespace Markup {
 
 public class Configuration {
 	private string state;

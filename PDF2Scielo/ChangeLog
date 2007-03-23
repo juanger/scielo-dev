@@ -1,5 +1,18 @@
 2007-03-22  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Main.build, MarkupHTML/Test/TestMarkupHTML.cs,
+	  MarkupHTML/Test/TestConfiguration.cs, MarkupHTML/AssemblyInfo.cs,
+	  MarkupHTML/GStarSXQ.cs, MarkupHTML/XReaderNPDA.cs,
+	  MarkupHTML/MarkupHTML.build, MarkupHTML/MarkupHTML.mdp,
+	  MarkupHTML/ParserHTML.cs, MarkupHTML/NPDA.cs,
+	  MarkupHTML/MarkupHTML.cs, MarkupHTML/Configuration.cs,
+	  MarkupHTML/Markup.build, PDF2Scielo/Driver.cs,
+	  PDF2Scielo/PDF2Scielo.mdp, PDF2Scielo.mds: Se cambio el nombre del
+	  proyecto MarkupHTML a Markup puesto que esta libreria no solo va a
+	  contener el marcador para HTML si no tambien el de XML de SciELO.
+
+2007-03-22  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/Test/v17n2a02-raw.txt,
 	  PDF2Text/Test/v17n2a02.pdf, PDF2Text/Test/v17n2a02.htm,
 	  PDF2Text/Test/v17n2a02-norm.txt, PDF2Text/PDF2Text.mdp,

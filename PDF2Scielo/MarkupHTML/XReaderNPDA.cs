@@ -17,7 +17,7 @@ using System.Collections;
 using System.IO;
 
 namespace Scielo {
-namespace MarkupHTML {
+namespace Markup {
 
 public class XReaderNPDA {
 

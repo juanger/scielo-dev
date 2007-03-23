@@ -11,7 +11,7 @@
 using System;
 using System.IO;
 using Scielo.PDF2Text;
-using Scielo.MarkupHTML;
+using Scielo.Markup;
 
 namespace Scielo {
 namespace PDF2Scielo {
