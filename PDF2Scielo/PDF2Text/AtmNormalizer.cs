@@ -123,8 +123,6 @@ public class AtmNormalizer : INormalizable {
 		Match [] matches;
 		
 		// Remueve encabezados y numeros de pagina.
-		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
-		
 	 	#if DEBUG
 	 	matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", text);
 	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
@@ -133,15 +131,17 @@ public class AtmNormalizer : INormalizable {
 		}
 		#endif
 		
-		// Remueve texto muerto (ie. ejes de graficas) dejados al extraer el texto.
-		GlobalReplaceRegex (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]*[\n]+", "\n");
+		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
 		
+		// Remueve texto muerto (ie. ejes de graficas) dejados al extraer el texto.
 	 	#if DEBUG
 	 	matches = GetMatches (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]*[\n]+", text);
 	 	foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
 		#endif
+		
+		GlobalReplaceRegex (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]*[\n]+", "\n");
 	}
 	
 	private void MarkMajorSections ()
@@ -210,7 +210,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar texto muerto");
 		#endif
 		
-		matches = GetMatches (@"\n[ ]*[0-9.-]+\n", body);
+		matches = GetMatches (@"\n[ ]*[-0-9.]+\n", body);
 		foreach (Match m in matches) {
 			string smatch;
 			smatch = m.Value;
@@ -228,6 +228,7 @@ public class AtmNormalizer : INormalizable {
      		Match [] matches;
      		
      		// Etiquetado de las secciones del tipo <num>. <string>
+     		// FIXME: No se estan agarrando las secciones que son mayores a una linea de texto.
      		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las secciones.");
 		#endif
@@ -309,7 +310,7 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar los parrafos.");
 		#endif
      		
-     		matches = GetMatches (@"[\n]+[ ]{3,5}[A-Z].*", body);
+     		matches = GetMatches (@"[\n]+[ ]{3,5}[A-Zi].*", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
