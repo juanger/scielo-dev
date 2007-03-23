@@ -1,3 +1,7 @@
+2007-03-22   <> 
+
+	Se agregaron métodos para reemplazar las etiquetas [abs] [/abs] y [res] [/res]
+
 2007-03-22  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Markup/MarkupHTML.mdp, Markup/Markup.mdp, PDF2Text/PDF2Text.build,

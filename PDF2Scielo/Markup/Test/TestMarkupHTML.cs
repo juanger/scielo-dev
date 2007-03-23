@@ -22,9 +22,11 @@ public class TestMarkupHTML
 	[Test()]
 	public void TestCase()
 	{
-		MarkupHTML obj = new MarkupHTML ("mejora.[abs] Abstract [/abs] ");
-		obj.ReplaceAbsTag();
-		Console.WriteLine("Resultado:    "+obj.Text);
+		MarkupHTML obj = new MarkupHTML ("mejora.[abs] Abstract [/abs] y continua [res] Resumen [/res] ");
+		obj.HeadDocument();
+		//obj.ReplaceAbsTag();
+		//obj.ReplaceResTag();
+ 		Console.WriteLine("Resultado:    "+obj.Text);
 	}
 }
 }

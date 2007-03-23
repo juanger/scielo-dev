@@ -26,17 +26,55 @@ public class MarkupHTML {
 		}
 	}
 	
-	public void ReplaceAbsTag ()		
+	public string HeadDocument()
 	{
-		string absTag = @"\[abs\]";
-		string absTagEnd = @"\[/abs\]";
-		string htmlTag = "<b>";
-		string htmlTagEnd = "</b>";
-
-		text = Regex.Replace(text, absTag, htmlTag);
-		text = Regex.Replace(text, absTagEnd, htmlTagEnd);			
+		string head = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"> \n";
+                       head += "<html>\n";
+		       head += "<head>\n";
+		       head += "<title>Art&iacute;culo N</title>\n";
+                       head += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\">\n";
+                       head += "</head>\n";
+		       Console.WriteLine(head);
+                return head;
+	}
+	/*
+	private string Front(){
+	}
+	
+	private string Body(){
+	   ReplaceAbsTag();			
 	}
 			
+	private string Back(){
+	}
+	
+	public string CreateDocumentHTML(){
+	    string document = HeadDocument() + Front() + Body() + Back();
+	    return document;
+	}
+	*/
+	public void ReplaceAbsTag ()		
+ 	{
+ 		string startTag = @"\[abs\]";
+		string endTag = @"\[/abs\]";
+		string startSustitute = "<p align=\"center\">";
+		string endSustitute = "</p> \n <p align=\"justify\">";
+ 		
+		text = Regex.Replace(text, startTag, startSustitute);
+		text = Regex.Replace(text, endTag, endSustitute);
+	}
+	
+	public void ReplaceResTag ()		
+	{
+		string startTag = @"\[res\]";
+		string endTag = @"\[/res\]";
+		string startSustitute = "</p> \n <br><p align=\"center\">";
+		string endSustitute = "</p>";
+
+		text = Regex.Replace(text, startTag, startSustitute);
+		text = Regex.Replace(text, endTag, endSustitute);			
+	}        
+		
 }
 }
 }
