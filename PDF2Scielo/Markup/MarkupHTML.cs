@@ -48,11 +48,12 @@ public class MarkupHTML {
 	private string Back(){
 	}
 	
+    */
 	public string CreateDocumentHTML(){
-	    string document = HeadDocument() + Front() + Body() + Back();
+	    string document = HeadDocument() + text;
 	    return document;
 	}
-	*/
+	
 	public void ReplaceAbsTag ()		
  	{
  		string startTag = @"\[abs\]";
