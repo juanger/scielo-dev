@@ -1,3 +1,16 @@
+2007-03-26  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Document.cs, PDF2Text/PDF2Text.mdp: Se implemento la clase
+	  abstracta Document que sera la raiz de varias clases como:
+	  RawDocument (clase que representara un documento en estado sin
+	  procesar), NormDocument (clase que representara un documento que
+	  esta normalizado segun nuestra especificación interna) y
+	  HTMLDocument (clase que representara un documento en formato HTML
+	  SciELO).
+	* PDF2Text/ChangeLog: ChangeLog para la libreria PDF2Text
+	* PDF2Text/AtmNormalizer.cs, PDF2Text/Test/TestAtmNormalizer.cs:
+	  Cambios menores para quitar dos warnings durante la compilación.
+
 2007-03-22   <> 
 
 	Se implementó la clase TestMarkupHTML con el fin de probar los métodos ReplaceAbsTag() y ReplaceResTag()

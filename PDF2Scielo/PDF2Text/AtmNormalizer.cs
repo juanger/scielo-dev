@@ -114,10 +114,6 @@ public class AtmNormalizer : INormalizable {
 		text = regex.Replace (text, substitute);
 	}
 	
-	private void GlobalReplace (string match, string substitute, string section)
-	{
-	}
-	
 	private void RemoveHeaders ()
 	{
 		Match [] matches;
