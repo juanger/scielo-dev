@@ -1,5 +1,5 @@
 //
-// AtmNormalizer: A class that implements a the interface INormalizer for
+// Document.cs: An abstract class that represents a generic type of document.
 // Atmosfera.
 //
 // Author:
@@ -13,6 +13,7 @@
 //
 
 using System;
+using System.IO;
 
 namespace Scielo {
 namespace PDF2Text {
@@ -20,26 +21,28 @@ namespace PDF2Text {
 public abstract class Document {
 
 	protected string text;
-	protected string front;
-	protected string body;
-	protected string back;
 	
 	public Document ()
 	{
 		text = null;
 	}
 	
-	public string Text {
-		get {
-			text = front + body + back;
-			return text;
-		}
-	}
-	
-	public override string ToString ()
+	public abstract string GetText ();
+
+	public void WriteFile (string filepath, string filename, string extension)
 	{
-		return Text;	
-	}
+		string fullpath, name;
+		name = filename + "." + extension;
+		fullpath = Path.Combine (filepath, name);
+		
+		FileStream filestream = null;
+                using (filestream = File.Create (fullpath)) {
+                	StreamWriter writer = new StreamWriter (filestream);
+                	writer.Write (GetText ());
+                	writer.Flush ();
+                	writer.Close ();
+                }
+        }
 }
 }
 }

@@ -1,5 +1,11 @@
 2007-03-26  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/PDF2Text.mdp, PDF2Text/RawDocument.cs: Se implemento la
+	  clase RawDocument que representa a un documento sin modificar acabo
+	  de extraer de alguna fuente externa.
+
+2007-03-26  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Document.cs, PDF2Text/PDF2Text.mdp: Se implemento la clase
 	  abstracta Document que sera la raiz de varias clases como:
 	  RawDocument (clase que representara un documento en estado sin
