@@ -61,6 +61,33 @@ public class TestPDFPoppler {
 	}
 	
 	[Test]
+	public void CreateRawDocument ()
+	{
+		string path = Test.PathOfTest ();
+
+		string path0 = Path.Combine (path, "v17n01a02.pdf");
+		string path1 = Path.Combine (path, "v17n4a03.pdf");
+		string path2 = Path.Combine (path, "v18n4a02.pdf");
+		
+		Uri uri0 = new Uri (path0);
+		Uri uri1 = new Uri (path1);
+		Uri uri2 = new Uri (path2);
+		
+		PDFPoppler doc0 = new PDFPoppler (uri0);
+		PDFPoppler doc1 = new PDFPoppler (uri1);
+		PDFPoppler doc2 = new PDFPoppler (uri2);
+		
+		RawDocument raw0 = doc0.CreateRawDocument ();
+		RawDocument raw1 = doc1.CreateRawDocument ();
+		RawDocument raw2 = doc2.CreateRawDocument ();
+		
+		Type etype = Type.GetType ("Scielo.PDF2Text.RawDocument");
+		Assert.IsInstanceOfType (etype, raw0, "CI01");
+		Assert.IsInstanceOfType (etype, raw1, "CI02");
+		Assert.IsInstanceOfType (etype, raw2, "CI03");	
+	}
+	
+	[Test]
 	public void GetNormText ()
 	{
 		string path = Test.PathOfTest ();

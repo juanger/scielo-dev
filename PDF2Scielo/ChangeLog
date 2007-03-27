@@ -1,5 +1,17 @@
 2007-03-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs: Prueba unitaria para el metodo
+	  CreateRawDocument.
+	* PDF2Text/PDFPoppler.cs, PDF2Text/IExtractable.cs: Se añadio el metodo
+	  CreateRawDocument a la interfase IExtractable, este metodo debe
+	  construir un objeto de tipo RawDocument usando como texto del
+	  documento el texto extraido por la clase que implementa la
+	  interfase.
+	* PDF2Text/RawDocument.cs: Constructor para RawDocument que toma un
+	  string que es el texto que comprende al documento.
+
+2007-03-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestPDFPoppler.cs: Se cambiaron todas las llamadas a
 	  CreateInstance por el constructor publico.
 	* PDF2Text/PDFPoppler.cs: Se elimino el metodo CreateInstance y se

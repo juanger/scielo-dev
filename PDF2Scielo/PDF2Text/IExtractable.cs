@@ -23,6 +23,8 @@ public interface IExtractable {
 	
 	string GetRawText ();
 	
+	RawDocument CreateRawDocument ();
+	
 	void CreateHTMLFile (string filepath, string filename);
 	
 	Queue GetNonText ();

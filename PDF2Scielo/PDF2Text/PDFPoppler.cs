@@ -101,6 +101,11 @@ public class PDFPoppler : IExtractable {
 		return null;
 	}
 	
+	public RawDocument CreateRawDocument ()
+	{
+		return new RawDocument (this);
+	}
+	
 	public void CreateHTMLFile (string filepath, string filename)
 	{
 		string fullpath, name;

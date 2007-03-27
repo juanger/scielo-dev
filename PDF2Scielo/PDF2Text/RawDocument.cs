@@ -19,6 +19,11 @@ namespace PDF2Text {
 
 public class RawDocument : Document {
 
+	public RawDocument (string text) 
+	{
+		this.text = text;
+	}
+
 	public RawDocument (IExtractable extractor)
 	{
 		text = extractor.GetRawText ();
