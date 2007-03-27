@@ -19,14 +19,22 @@ namespace PDF2Text {
 
 public class RawDocument : Document {
 
+	public RawDocument (IExtractable extractor)
+	{
+		text = extractor.GetRawText ();
+	}
+	
 	public override string GetText ()
 	{
 		return text;
 	}
-
-	public RawDocument (IExtractable extractor)
+	
+	public NormDocument Normalize ()
 	{
-		text = extractor.GetRawText ();
+		AtmNormalizer norm = new AtmNormalizer (text);
+		norm.MarkText ();
+		
+		return new NormDocument (norm.Front, norm.Body, norm.Back);
 	}
 }
 }

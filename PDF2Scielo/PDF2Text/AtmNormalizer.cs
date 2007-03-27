@@ -40,6 +40,18 @@ public class AtmNormalizer : INormalizable {
 		RemoveExtras ();
 	}
 	
+	public AtmNormalizer (RawDocument document)
+	{
+		StringEncoding encoder = new StringEncoding (document.GetText ());
+		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
+		text = encoder.GetStringUnicode ();
+		
+		RemoveHeaders ();
+		MarkMajorSections ();
+		GetBlocks ();
+		RemoveExtras ();
+	}
+	
 	public void SetEncoding (string encoding)
 	{
 		//TODO: To be implemented.
@@ -100,10 +112,27 @@ public class AtmNormalizer : INormalizable {
 		return result;
 	}
 	
+	public string Front {
+		get {
+			return front;
+		}
+	}
 	
+	public string Body {
+		get {
+			return body;
+		}
+	}
+	
+	public string Back {
+		get {
+			return back;
+		}
+	}
+		
 	public string Text {
 		get {
-			text = front + body + back;
+			text = Front + Body + Back;
 			return text;
 		}
 	}

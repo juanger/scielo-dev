@@ -1,3 +1,15 @@
+2007-03-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/PDF2Text.mdp, PDF2Text/NormDocument.cs: La clase
+	  NormDocument es una clase que hereda de Document, este representa
+	  un documento que ha sido procesado y ha sido normalizado segun los
+	  estandares de SciELO. Ademas el texto esta subdividido en tres
+	  parte: front, body y back.
+	* PDF2Text/AtmNormalizer.cs: Nuevo constructor para AtmNormalizer que
+	  recibe un objeto de tipo RawDocument, es decir toma un documento
+	  que no ha sido editado, toma el texto completo y inicializa el
+	  normalizador.
+
 2007-03-26  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/PDF2Text.mdp, PDF2Text/RawDocument.cs: Se implemento la
