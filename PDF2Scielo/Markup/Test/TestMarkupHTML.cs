@@ -19,15 +19,20 @@ namespace Markup {
 public class TestMarkupHTML
 {
 		
-	[Test()]
+	[Test]
 	public void TestCase()
 	{
-		MarkupHTML obj = new MarkupHTML ("Mejora. [abs] Abstract [/abs] Y continua. [res] Resumen [/res] ");
-		obj.HeadDocument();
-		obj.ReplaceAbsTag();
-		obj.ReplaceResTag();
- 		Console.WriteLine("Resultado:    "+obj.Text);
+		MarkupHTML mark = new MarkupHTML("[res]Resumen[/res]Texto del Resumen [abs]Abstract[/abs]Texto Abstract [key]Keywords:element1,element2[/key]","","");
+		Console.WriteLine("Resultado:::::::::::::\n"+ mark.CreateDocumentHTML());
 	}
+	
+	[Test]
+	public void CreateInstanceWithEmptyValues ()
+	{
+		MarkupHTML mark = new MarkupHTML ("","","");
+		Assert.IsNull (mark.CreateDocumentHTML(),"CIWEV");
+	}
+	
 }
 }
 }
