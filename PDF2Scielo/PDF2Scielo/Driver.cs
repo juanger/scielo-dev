@@ -87,7 +87,7 @@ public class Driver {
 		
 		if (uri != null && File.Exists (filepath)) {
 			//Application.Init ();
-			reader = PDFPoppler.CreateInstance (uri);
+			reader = new PDFPoppler (uri);
 			
 			if (reader != null) {
 				Console.WriteLine ("Transformando PDF ... ");

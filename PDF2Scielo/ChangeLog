@@ -1,5 +1,16 @@
 2007-03-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs: Se cambiaron todas las llamadas a
+	  CreateInstance por el constructor publico.
+	* PDF2Text/PDFPoppler.cs: Se elimino el metodo CreateInstance y se
+	  sustituyo por un constructor publico que retiene la misma
+	  funcionalidad pero ahora lanza una FileNotFoundException si el
+	  archivo PDF a extraer no existe.
+	* PDF2Scielo/Driver.cs: Se cambio Driver para que use el constructor
+	  nuevo de PDFPoppler que es ahora publico.
+
+2007-03-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/PDF2Text.mdp, PDF2Text/NormDocument.cs: La clase
 	  NormDocument es una clase que hereda de Document, este representa
 	  un documento que ha sido procesado y ha sido normalizado segun los

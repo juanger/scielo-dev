@@ -27,7 +27,31 @@ public class PDFPoppler : IExtractable {
 	private string file_name;
 	private static string temp_dir;
 	private INormalizable norm;
+	
+	public PDFPoppler (Uri uri)
+	{
+		string docpath, temp, user, dir;
+		docpath = uri.LocalPath;
 		
+		if (!File.Exists (docpath))
+			throw new FileNotFoundException ();
+		
+		user = Environment.UserName;
+		dir = "Poppler-" + user;
+		temp = Path.GetTempPath ();
+		temp_dir = Path.Combine (temp, dir);
+		
+		if (!Directory.Exists (temp_dir))
+			Directory.CreateDirectory (temp_dir);
+		
+		#if DEBUG
+		Console.WriteLine ("DEBUG: " + "Ruta del archivo: " + uri.LocalPath);
+		#endif
+		
+		doc_path = docpath;
+		file_name = Path.GetFileNameWithoutExtension (docpath);
+	}
+	
 	private PDFPoppler (string fullpath)
 	{
 		doc_path = fullpath;

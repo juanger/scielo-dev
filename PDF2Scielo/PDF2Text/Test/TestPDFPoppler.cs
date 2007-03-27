@@ -26,11 +26,15 @@ public class TestPDFPoppler {
 	public void CreateInstanceWithInvalidUri ()
 	{
 		Uri uri = new Uri ("/foo/v17n01a02.pdf");
-		PDFPoppler doc = PDFPoppler.CreateInstance (uri);
 		
-		Type etype = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
-		Assert.IsNotInstanceOfType (etype, doc, "CI01");
-		Assert.IsNull (doc, "CI02");
+		try {
+			PDFPoppler doc = new PDFPoppler (uri);
+			Type etype = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
+			Assert.IsNotInstanceOfType (etype, doc, "CI01");
+			Assert.IsNull (doc, "CI02");
+		} catch (FileNotFoundException) {
+			Console.WriteLine ("Error: El archivo no existe.");
+		}
 	}
 	
 	[Test]
@@ -46,9 +50,9 @@ public class TestPDFPoppler {
 		Uri uri1 = new Uri (path1);
 		Uri uri2 = new Uri (path2);
 		
-		PDFPoppler doc0 = PDFPoppler.CreateInstance (uri0);
-		PDFPoppler doc1 = PDFPoppler.CreateInstance (uri1);
-		PDFPoppler doc2 = PDFPoppler.CreateInstance (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0);
+		PDFPoppler doc1 = new PDFPoppler (uri1);
+		PDFPoppler doc2 = new PDFPoppler (uri2);
 		
 		Type etype = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
 		Assert.IsInstanceOfType (etype, doc0, "CI01");
@@ -70,9 +74,9 @@ public class TestPDFPoppler {
 		Uri uri1 = new Uri (path1);
 		Uri uri2 = new Uri (path2);
 		
-		PDFPoppler doc0 = PDFPoppler.CreateInstance (uri0);
-		PDFPoppler doc1 = PDFPoppler.CreateInstance (uri1);
-		PDFPoppler doc2 = PDFPoppler.CreateInstance (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0);
+		PDFPoppler doc1 = new PDFPoppler (uri1);
+		PDFPoppler doc2 = new PDFPoppler (uri2);
 		
 		path0 = Path.Combine (path, "v17n01a02-norm.txt");
 		path1 = Path.Combine (path, "v17n4a03-norm.txt");
@@ -105,9 +109,9 @@ public class TestPDFPoppler {
 		Uri uri1 = new Uri (path1);
 		Uri uri2 = new Uri (path2);
 		
-		PDFPoppler doc0 = PDFPoppler.CreateInstance (uri0);
-		PDFPoppler doc1 = PDFPoppler.CreateInstance (uri1);
-		PDFPoppler doc2 = PDFPoppler.CreateInstance (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0);
+		PDFPoppler doc1 = new PDFPoppler (uri1);
+		PDFPoppler doc2 = new PDFPoppler (uri2);
 		
 		path0 = Path.Combine (path, "v17n01a02-raw.txt");
 		path1 = Path.Combine (path, "v17n4a03-raw.txt");
@@ -142,9 +146,9 @@ public class TestPDFPoppler {
 		Uri uri2 = new Uri (path2);
 		
 		// Se crean los lectores para cada PDF.
-		PDFPoppler doc0 = PDFPoppler.CreateInstance (uri0);
-		PDFPoppler doc1 = PDFPoppler.CreateInstance (uri1);
-		PDFPoppler doc2 = PDFPoppler.CreateInstance (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0);
+		PDFPoppler doc1 = new PDFPoppler (uri1);
+		PDFPoppler doc2 = new PDFPoppler (uri2);
 		
 		path0 = Path.Combine (path, "v17n01a02.htm");
 		path1 = Path.Combine (path, "v17n4a03.htm");
