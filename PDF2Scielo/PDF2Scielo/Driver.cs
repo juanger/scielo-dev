@@ -101,7 +101,6 @@ public class Driver {
 				reader.GetNonText ();
 				
 				Console.WriteLine ("Finalizando\n");
-				}
 			} catch (FileNotFoundException) {
 				Console.WriteLine ("Error: El archivo {0} no existe.", args[0]);
 				Environment.Exit (1);
