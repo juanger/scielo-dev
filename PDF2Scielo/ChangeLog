@@ -1,5 +1,13 @@
 2007-03-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestRawDocument.cs, PDF2Text/Test/TextRawDocument.cs,
+	  PDF2Text/Test/TestNormDocument.cs, PDF2Text/PDF2Text.mdp,
+	  PDF2Text/NormDocument.cs: Se añadio la clas TestNormDocument para
+	  realizar las pruebas unitarias, se hace el cambio de nombre puesto
+	  que tuve un error tipografico con TestRawDocument.
+
+2007-03-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Scielo/Driver.cs: Error tipografico en Driver.cs
 
 2007-03-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 

@@ -1,5 +1,5 @@
 //
-// TestPDFPoppler.cs: Unit tests for the PDFpoppler class.
+// TestRawDocument.cs: Unit tests for the RawDocument class.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)

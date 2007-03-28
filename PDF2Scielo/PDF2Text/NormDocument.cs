@@ -51,7 +51,8 @@ public class NormDocument : Document {
 
 	public override string GetText ()
 	{	
-		return Front + Body + Back;
+		text = Front + Body + Back;
+		return text;
 	}
 }
 }
