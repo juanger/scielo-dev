@@ -14,9 +14,7 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 using System.IO;
-using Scielo.Utils;
 
 namespace Scielo {
 namespace PDF2Text {
@@ -26,7 +24,6 @@ public class PDFPoppler : IExtractable {
 	private string doc_path;
 	private string file_name;
 	private static string temp_dir;
-	private INormalizable norm;
 	
 	public PDFPoppler (Uri uri)
 	{
@@ -52,40 +49,13 @@ public class PDFPoppler : IExtractable {
 		file_name = Path.GetFileNameWithoutExtension (docpath);
 	}
 	
-	private PDFPoppler (string fullpath)
-	{
-		doc_path = fullpath;
-		file_name = Path.GetFileNameWithoutExtension (fullpath);
-	}
-	
-	public static PDFPoppler CreateInstance (Uri uri)
-	{
-		string docpath, temp, user, dir;
-		docpath = uri.LocalPath;
-		
-		if (!File.Exists (docpath))
-			return null;
-		
-		user = Environment.UserName;
-		dir = "Poppler-" + user;
-		temp = Path.GetTempPath ();
-		temp_dir = Path.Combine (temp, dir);
-		
-		if (!Directory.Exists (temp_dir))
-			Directory.CreateDirectory (temp_dir);
-		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: " + "Ruta del archivo: " + uri.LocalPath);
-		#endif
-		
-		return new PDFPoppler (docpath);
-	}
-		
 	public string GetRawText ()
 	{
 		return ExtractText ();
 	}
 	
+	// TODO: Falta implementar una clase que encapsule a las imagenes y demas 
+	// elementos de un documento y los vaya poniendo en un queue.
 	public Queue GetNonText ()
 	{
 		ExtractImages ();

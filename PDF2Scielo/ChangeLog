@@ -1,5 +1,13 @@
 2007-03-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/PDFPoppler.cs: Se elimina el constructor privado el metodo
+	  CreateInstance, ahora se usa el constructor publico. Se agrega un
+	  TODO para el metodo GetNonText.
+	* PDF2Scielo/Driver.cs: Se modifico Main para que cache la excepcion
+	  cuando se da un archivo que no ha sido encontrado.
+
+2007-03-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/PDFPoppler.cs,
 	  PDF2Text/IExtractable.cs: Se eliminaron los metodos: GetNormText y
 	  CreateHTMLFile de la interfase IExtractable puesto que GetNormText
