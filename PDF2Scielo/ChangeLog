@@ -1,3 +1,15 @@
+2007-03-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/PDFPoppler.cs,
+	  PDF2Text/IExtractable.cs: Se eliminaron los metodos: GetNormText y
+	  CreateHTMLFile de la interfase IExtractable puesto que GetNormText
+	  se encuentra ahora en la forma del metodo Normalize en la clase
+	  RawDocument y CreateHTMLFile se cambio por el metodo CreateFile en
+	  Document.
+	* PDF2Scielo/Driver.cs: Se cambio el metodo Main para que se usar los
+	  nuevos objetos *Document para y realizando los cambios al documento
+	  PDF.
+
 2007-03-27  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/TestPDFPoppler.cs: Prueba unitaria para el metodo

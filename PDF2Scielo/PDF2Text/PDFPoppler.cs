@@ -80,15 +80,7 @@ public class PDFPoppler : IExtractable {
 		
 		return new PDFPoppler (docpath);
 	}
-	
-	public string GetNormText (string encoding)
-	{	
-		norm = new AtmNormalizer (GetRawText ());
-		norm.MarkText ();
 		
-		return norm.Text;
-	}
-	
 	public string GetRawText ()
 	{
 		return ExtractText ();
@@ -104,21 +96,6 @@ public class PDFPoppler : IExtractable {
 	public RawDocument CreateRawDocument ()
 	{
 		return new RawDocument (this);
-	}
-	
-	public void CreateHTMLFile (string filepath, string filename)
-	{
-		string fullpath, name;
-		name = filename + ".htm";
-		fullpath = Path.Combine (filepath, name);
-		
-		FileStream filestream = null;
-                using (filestream = File.Create (fullpath)) {
-                	StreamWriter writer = new StreamWriter (filestream);
-                	writer.Write (GetNormText ("utf8"));
-                	writer.Flush ();
-                	writer.Close ();
-                }
 	}
 	
 	private string ExtractText ()

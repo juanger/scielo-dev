@@ -68,6 +68,9 @@ public class Driver {
 	{
 		Uri uri;
 		PDFPoppler reader;
+		RawDocument rdoc;
+		NormDocument ndoc;
+		
 		string filepath;
 		
 		if (args.Length == 1) {
@@ -88,11 +91,14 @@ public class Driver {
 		if (uri != null && File.Exists (filepath)) {
 			//Application.Init ();
 			reader = new PDFPoppler (uri);
-			
+
 			if (reader != null) {
 				Console.WriteLine ("Transformando PDF ... ");
-				reader.CreateHTMLFile (Environment.CurrentDirectory,
-					Path.GetFileNameWithoutExtension (filepath));
+				
+				rdoc = reader.CreateRawDocument ();
+				ndoc = rdoc.Normalize ();
+				ndoc.WriteFile (Environment.CurrentDirectory, 
+					Path.GetFileNameWithoutExtension (filepath), "htm");
 				reader.GetNonText ();
 				Console.WriteLine ("Finalizando\n");
 			} else {
