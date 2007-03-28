@@ -97,7 +97,7 @@ public class Driver {
 				
 					rdoc = reader.CreateRawDocument ();
 					ndoc = rdoc.Normalize ();
-					ndoc.WriteFile (Environment.CurrentDirectory, 
+					ndoc.WriteDocument (Environment.CurrentDirectory, 
 					Path.GetFileNameWithoutExtension (filepath), "htm");
 					reader.GetNonText ();
 					Console.WriteLine ("Finalizando\n");

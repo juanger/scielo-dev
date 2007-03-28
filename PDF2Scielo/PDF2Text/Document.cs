@@ -22,14 +22,9 @@ public abstract class Document {
 
 	protected string text;
 	
-	public Document ()
-	{
-		text = null;
-	}
-	
 	public abstract string GetText ();
 
-	public void WriteFile (string filepath, string filename, string extension)
+	public void WriteDocument (string filepath, string filename, string extension)
 	{
 		string fullpath, name;
 		name = filename + "." + extension;

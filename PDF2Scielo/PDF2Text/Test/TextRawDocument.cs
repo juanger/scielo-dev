@@ -138,6 +138,53 @@ public class TestRawDocument {
 		Assert.IsInstanceOfType (etype1, ndoc1, "CI01");
 		Assert.IsInstanceOfType (etype1, ndoc2, "CI01");
 	}
+	
+	[Test]
+	public void WriteDocument ()
+	{	
+		string path = Test.PathOfTest ();
+		
+		// Rutas a los PDF a usar en el test unit.
+		string path0 = Path.Combine (path, "v17n01a02.pdf");
+		string path1 = Path.Combine (path, "v17n4a03.pdf");
+		string path2 = Path.Combine (path, "v17n2a02.pdf");
+		
+		Uri uri0 = new Uri (path0);
+		Uri uri1 = new Uri (path1);
+		Uri uri2 = new Uri (path2);
+		
+		// Se crean los lectores para cada PDF.
+		PDFPoppler doc0 = new PDFPoppler (uri0);
+		PDFPoppler doc1 = new PDFPoppler (uri1);
+		PDFPoppler doc2 = new PDFPoppler (uri2);
+		
+		RawDocument rdoc0 = new RawDocument (doc0);
+		RawDocument rdoc1 = new RawDocument (doc1);
+		RawDocument rdoc2 = new RawDocument (doc2);
+		
+		path0 = Path.Combine (path, "v17n01a02-raw.txt");
+		path1 = Path.Combine (path, "v17n4a03-raw.txt");
+		path2 = Path.Combine (path, "v17n2a02-raw.txt");
+		
+		string text0 = Test.ReadFile (path0);
+		string text1 = Test.ReadFile (path1);
+		string text2 = Test.ReadFile (path2);
+		
+		// Usamos CreateFile y depositamos los resultados en archivos
+		// temporales.
+		rdoc0.WriteDocument (path, "v17n01a02-rawf", "txt");
+		rdoc1.WriteDocument (path, "v17n4a03-rawf", "txt");
+		rdoc2.WriteDocument (path, "v17n2a02-rawf", "txt");
+		
+		// Se lee el contenido de los archivos creados por CreateFile.
+		string rtext0 = Test.ReadFile (Path.Combine (path, "v17n01a02-rawf.txt"));
+		string rtext1 = Test.ReadFile (Path.Combine (path, "v17n4a03-rawf.txt"));
+		string rtext2 = Test.ReadFile (Path.Combine (path, "v17n2a02-rawf.txt"));
+		
+		Assert.AreEqual (text0, rtext0, "GR01");
+		Assert.AreEqual (text1, rtext1, "GR02");
+		Assert.AreEqual (text2, rtext2, "GR03");
+	}
 }
 }
 }
