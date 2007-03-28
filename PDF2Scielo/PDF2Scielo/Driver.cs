@@ -27,7 +27,7 @@ public class Driver {
 	private static void Help (int exitcode)
 	{
 		Console.WriteLine ("pdf2scielo <ARCHIVO>");
-		Console.WriteLine ("\tDonde <ARCHIVO> es la ruta a un documento PDF ap convertir a HTML SciELO.\n");
+		Console.WriteLine ("\tDonde <ARCHIVO> es la ruta a un documento PDF para convertir a un documento HTML SciELO.\n");
 		Console.WriteLine ("pdf2scielo --help");
 		Console.WriteLine ("\tMuestra la ayuda de esta herramienta.\n");
 		Console.WriteLine ("pdf2scielo --version");

@@ -1,5 +1,11 @@
 2007-03-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TextRawDocument.cs, PDF2Text/PDF2Text.mdp,
+	  PDF2Scielo/Driver.cs: Se agrego TestRawDocument a la suite de
+	  pruebas.
+
+2007-03-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/PDFPoppler.cs: Se elimina el constructor privado el metodo
 	  CreateInstance, ahora se usa el constructor publico. Se agrega un
 	  TODO para el metodo GetNonText.
