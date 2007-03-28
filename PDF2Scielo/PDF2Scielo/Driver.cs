@@ -92,18 +92,15 @@ public class Driver {
 			try {
 				reader = new PDFPoppler (uri);
 
-				if (reader != null) {
-					Console.WriteLine ("Transformando PDF ... ");
+				Console.WriteLine ("Transformando PDF ... ");
 				
-					rdoc = reader.CreateRawDocument ();
-					ndoc = rdoc.Normalize ();
-					ndoc.WriteDocument (Environment.CurrentDirectory, 
+				rdoc = reader.CreateRawDocument ();
+				ndoc = rdoc.Normalize ();
+				ndoc.WriteDocument (Environment.CurrentDirectory, 
 					Path.GetFileNameWithoutExtension (filepath), "htm");
-					reader.GetNonText ();
-					Console.WriteLine ("Finalizando\n");
-				} else {
-					Console.WriteLine ("Error: El archivo {0} no es un archivo PDF", args [0]);
-					Environment.Exit (1);
+				reader.GetNonText ();
+				
+				Console.WriteLine ("Finalizando\n");
 				}
 			} catch (FileNotFoundException) {
 				Console.WriteLine ("Error: El archivo {0} no existe.", args[0]);
