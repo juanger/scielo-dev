@@ -27,6 +27,7 @@ public class Test {
 		string path;
 		path = Environment.CurrentDirectory;
 		path = path.Replace ("bin" + Path.DirectorySeparatorChar + "Debug", String.Empty);
+		path = path.Replace ("bin" + Path.DirectorySeparatorChar + "Release", String.Empty);
 		path = Path.Combine (path, "Test");
 		
 		return path;

@@ -1,5 +1,9 @@
 2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Utils/Test.cs: Para el uso en las pruebas de unidad en Nant
+
+2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/Test/TestAtmNormalizer.cs,
 	  PDF2Text/Test/TestRawDocument.cs: Cambios en las pruebas de unidad.
 	* PDF2Text/PDFPoppler.cs: Cambios al constructor, se agrego un miembro
