@@ -1,3 +1,8 @@
+2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/TestNormDocument.cs, PDF2Text/NormDocument.cs: Se
+	  agrego una prueba unitaria a TestNormDocument.
+
 2007-03-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/TestRawDocument.cs, PDF2Text/Test/TextRawDocument.cs,

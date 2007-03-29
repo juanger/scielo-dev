@@ -26,6 +26,9 @@ public class NormDocument : Document {
 
 	public NormDocument (string front, string body, string back)
 	{
+		if (front == null | body == null | back == null)
+			throw new ArgumentNullException ();
+
 		this.front = front;
 		this.body = body;
 		this.back = back;

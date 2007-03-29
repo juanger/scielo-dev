@@ -23,16 +23,15 @@ namespace PDF2Text {
 public class TestNormDocument {
 	
 	[Test]
-	public void ConstructorString ()
+	public void ConstructorInvalid ()
 	{
-		RawDocument rdoc0 = new RawDocument ("");
-		RawDocument rdoc1 = new RawDocument ("Hola Mundo");
-		RawDocument rdoc2 = new RawDocument ("            ad        ");
-		
-		Type etype = Type.GetType ("Scielo.PDF2Text.RawDocument");
-		Assert.IsInstanceOfType (etype, rdoc0, "CI01");
-		Assert.IsInstanceOfType (etype, rdoc1, "CI01");
-		Assert.IsInstanceOfType (etype, rdoc2, "CI01");	
+		try {
+			NormDocument ndoc0 = new NormDocument (null, null, null);
+			Type etype = Type.GetType ("Scielo.PDF2Text.NormDocument");
+			Assert.IsInstanceOfType (etype, ndoc0, "CI01");
+		} catch (ArgumentNullException) {
+			Console.WriteLine ("Error: NormDocument no acepta como parametro(s) a null.");
+		}	
 	}
 }
 }
