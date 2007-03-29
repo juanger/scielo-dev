@@ -4,6 +4,7 @@
    <property name="debug" value="true" overwrite="false" />
    <target name="clean" description="remove all generated files">
       <delete dir="bin" failonerror="false" />
+      <delete dir="test-results" failonerror="false" />
    </target>
    <target name="build" description="compiles the source code">
        <mkdir dir="bin/Debug" />
