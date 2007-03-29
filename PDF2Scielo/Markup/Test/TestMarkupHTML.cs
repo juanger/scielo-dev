@@ -20,10 +20,15 @@ public class TestMarkupHTML
 {
 		
 	[Test]
-	public void TestCase()
+	public void MarkupHTMLCorrect()
 	{
-		MarkupHTML mark = new MarkupHTML("[res]Resumen[/res]Texto del Resumen [abs]Abstract[/abs]Texto Abstract [key]Keywords:element1,element2[/key]","","");
-		Console.WriteLine("Resultado:::::::::::::\n"+ mark.CreateDocumentHTML());
+		string front = "[res]Res[/res]Texto[abs]Abs[/abs]Texto[key]Keywords:el1,el2.[/key]";
+		string body = "Body";
+		string back = "References";
+		string frontResult = "[res]Res[/res]Texto[abs]Abs[/abs]Texto[key]Keywords:el1,el2.[/key]";
+		MarkupHTML mark = new MarkupHTML(front, body, back);
+		mark.MarkFront();
+		Console.WriteLine("Resultado:::::::::::::\n"+ mark.Front);
 	}
 	
 	[Test]

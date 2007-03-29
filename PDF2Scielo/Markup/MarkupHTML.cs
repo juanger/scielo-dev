@@ -1,6 +1,18 @@
-
+//
+// MarkupHTML.cs: Class that mark the text with html's tags.
+//
+// Author:
+//   Hector E. Gomez Morales (hectoregm@gmail.com)
+//   Anaid V. Velazquez Rivera (anaidv@gmail.com)
+//   Virginia Teodosio Procopio (ainigriv_t@hotmail.com)
+//   Alejandro Rosendo Robles (rosendo69@hotmail.com)
+//
+//
+// Copyright (C) 2007 UNAM DGB
+//
 using System.Text.RegularExpressions;
 using System;
+using Scielo.PDF2Text;
 
 namespace Scielo {
 namespace Markup {
@@ -11,12 +23,19 @@ public class MarkupHTML {
 	private string body;
 	private string back;
 		
+	public MarkupHTML (NormDocument document)
+	{
+		front = document.Front;
+		body = document.Body;
+		back = document.Back;
+	}	
+	
 	public MarkupHTML (string front, string body, string back)
 	{
-		this.body = body;
 		this.front = front;
+		this.body = body;
 		this.back = back;
-	}	
+	}
 			
 	public string CreateDocumentHTML ()
 	{
@@ -24,6 +43,8 @@ public class MarkupHTML {
 			return null;
 			
 		MarkFront ();
+		MarkBody ();
+		MarkBack ();
 		string document = HeadDocument () + front + body + back + FootDocument ();
 		return document;
 	}
@@ -65,11 +86,23 @@ public class MarkupHTML {
 		return foot;
 	}
 	
-	private void MarkFront ()
+	public void MarkFront ()
 	{
 		ReplaceResTag ();
 		ReplaceAbsTag ();
 		ReplaceKeyTag ();
+	}
+	
+	public void MarkBody ()
+	{
+		ReplaceParaTag ();
+		ReplaceSecTag ();
+		ReplaceSubsecTag ();
+	}
+	
+	public void MarkBack ()
+	{
+		ReplaceRefTag ();
 	}
 	
 	private void ReplaceResTag ()		
@@ -111,7 +144,47 @@ public class MarkupHTML {
 		string endSustitute = "</p> \n <br>";
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);		
-	}	
+	}
+	
+	private void ReplaceSecTag ()
+	{
+		string startTag = @"\[sec\]";
+		string endTag = @"\[/sec\]";
+		string startSustitute = "<b>";
+		string endSustitute = "</b><br>";
+		body = Regex.Replace (body, startTag, startSustitute);
+		body = Regex.Replace (body, endTag, endSustitute);
+	}
+	
+	private void ReplaceParaTag ()
+	{
+		string startTag = @"\[para\]";
+		string endTag = @"\[/para\]";
+		string startSustitute = "<p align=\"justify\">";
+		string endSustitute = "</p>";
+		body = Regex.Replace (body, startTag, startSustitute);
+		body = Regex.Replace (body, endTag, endSustitute);
+	}
+	
+	private void ReplaceRefTag ()
+	{
+		string startTag = @"\[ref\]";
+		string endTag = @"\[/ref\]";
+		string startSustitute = "<p align=\"left\"><b>";
+		string endSustitute = "</b></p>";
+		body = Regex.Replace (body, startTag, startSustitute);
+		body = Regex.Replace (body, endTag, endSustitute);
+	}
+	
+	private void ReplaceSubsecTag ()
+	{
+		string startTag = @"\[subsec\]";
+		string endTag = @"\[/subsec\]";
+		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><i>";
+		string endSustitute = "</i></font></p>";
+		body = Regex.Replace (body, startTag, startSustitute);
+		body = Regex.Replace (body, endTag, endSustitute);
+	}
 }
 }
 }
