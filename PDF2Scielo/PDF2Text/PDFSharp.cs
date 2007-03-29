@@ -19,10 +19,10 @@ namespace Scielo {
 namespace PDF2Text {
 
 public class PDFSharp {
-	private Document doc;
+	private Poppler.Document doc;
 	private Rectangle rec;
 	
-	private PDFSharp (Document doc, Rectangle rec)
+	private PDFSharp (Poppler.Document doc, Rectangle rec)
 	{
 		this.doc = doc;
 		this.rec = rec;
@@ -30,7 +30,7 @@ public class PDFSharp {
 
 	public static PDFSharp CreateInstance (Uri uri)
 	{
-		Document document = null;
+		Poppler.Document document = null;
 		Rectangle rectangle;
 		
 		#if DEBUG
@@ -38,7 +38,7 @@ public class PDFSharp {
 		#endif
 		
 		try {
-			document = new Document (uri.ToString (), null);
+			document = new Poppler.Document (uri.ToString (), null);
 		} catch (GLib.GException e) {
 		
 			// TODO: Authentication.

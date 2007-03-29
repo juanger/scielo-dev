@@ -11,6 +11,9 @@
           <sources>
              <include name="*.cs" />
           </sources>
+          <references>
+             <include name="../PDF2Text/bin/Debug/PDF2Text.dll" />
+          </references>
        </csc>
    </target>
 </project>

@@ -1,5 +1,10 @@
 2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Markup/Markup.build, PDF2Text/PDFSharp.cs, Main.build: Modificaciones
+	  menores a la construccion del proyecto usando Nant.
+
+2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestNormDocument.cs, PDF2Text/NormDocument.cs: Se
 	  agrego una prueba unitaria a TestNormDocument.
 
