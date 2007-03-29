@@ -23,7 +23,7 @@ public class TestAtmNormalizer {
 	public void Constructor ()
 	{
 		string data = "sofisticadas, el Análisis de";
-		AtmNormalizer atmN = new AtmNormalizer (data);
+		AtmNormalizer atmN = new AtmNormalizer (data, "atm");
 		
 		Type etype = Type.GetType ("Scielo.PDF2Text.AtmNormalizer");
 		Assert.IsInstanceOfType (etype, atmN, "CI01");

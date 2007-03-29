@@ -24,8 +24,9 @@ public class PDFPoppler : IExtractable {
 	private string doc_path;
 	private string file_name;
 	private static string temp_dir;
+	private string format;
 	
-	public PDFPoppler (Uri uri)
+	public PDFPoppler (Uri uri, string format)
 	{
 		string docpath, temp, user, dir;
 		docpath = uri.LocalPath;
@@ -47,6 +48,8 @@ public class PDFPoppler : IExtractable {
 		
 		doc_path = docpath;
 		file_name = Path.GetFileNameWithoutExtension (docpath);
+		
+		this.format = format;
 	}
 	
 	public string GetRawText ()
@@ -63,9 +66,17 @@ public class PDFPoppler : IExtractable {
 		return null;
 	}
 	
+	// TODO: Se necesita conocer el formato del archivo para que el Normalizador
+	// elija el archivo XML con las ER correspondientes.
 	public RawDocument CreateRawDocument ()
 	{
 		return new RawDocument (this);
+	}
+	
+	public string Format {
+		get {
+			return format;
+		}
 	}
 	
 	private string ExtractText ()

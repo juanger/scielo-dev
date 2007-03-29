@@ -1,5 +1,28 @@
 2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs, PDF2Text/Test/TestAtmNormalizer.cs,
+	  PDF2Text/Test/TestRawDocument.cs: Cambios en las pruebas de unidad.
+	* PDF2Text/PDFPoppler.cs: Cambios al constructor, se agrego un miembro
+	  a la clase que indica el formato del documento y su accesor.
+	* PDF2Text/Document.cs: Se agrego un miembro para guardar el formato
+	  del documento, y su accesor.
+	* PDF2Text/AtmNormalizer.cs: Se cambio el constructor teniendo un
+	  parametro mas para indicar el formato del documento, tambien se
+	  implemento la clase CreateNormDocument que se agrego a la interface
+	  INormalizable.
+	* PDF2Text/IExtractable.cs: Se agrego el accesor Format a la interface
+	  IExtractable
+	* PDF2Text/INormalizable.cs: Se agrego el metodo CreateNormDocument a
+	  la interface INormalizable, este metodo debe regresar un objeto
+	  NormDocument con el documento normalizado.
+	* PDF2Text/RawDocument.cs: Cambios al constructor que tomaba un string
+	  que era el texto total del documento y se necesita otro string para
+	  indicar el formato del mismo.
+	* PDF2Scielo/Driver.cs: Cambio en el constructor de PDFPoppler ahora se
+	  tiene un parametro mas que indica el formato del documento.
+
+2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Markup/Markup.build, PDF2Text/PDFSharp.cs, Main.build: Modificaciones
 	  menores a la construccion del proyecto usando Nant.
 

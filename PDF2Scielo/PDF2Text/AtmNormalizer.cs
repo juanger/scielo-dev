@@ -28,7 +28,7 @@ public class AtmNormalizer : INormalizable {
 	private string body;
 	private string back;
 		
-	public AtmNormalizer (string source)
+	public AtmNormalizer (string source, string format)
 	{
 		StringEncoding encoder = new StringEncoding (source);
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
@@ -40,6 +40,9 @@ public class AtmNormalizer : INormalizable {
 		RemoveExtras ();
 	}
 	
+	// TODO: Hay que hacer general esta clase tal que usando el string format
+	// que define el formato del documento se elija el archivo XML con las ER
+	// correspondientes.
 	public AtmNormalizer (RawDocument document)
 	{
 		StringEncoding encoder = new StringEncoding (document.GetText ());
@@ -110,6 +113,12 @@ public class AtmNormalizer : INormalizable {
 		matches.CopyTo (result, 0);
 		
 		return result;
+	}
+	
+	public NormDocument CreateNormDocument ()
+	{
+		MarkText ();
+		return new NormDocument (front, body, back);
 	}
 	
 	public string Front {

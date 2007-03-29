@@ -28,7 +28,7 @@ public class TestPDFPoppler {
 		Uri uri = new Uri ("/foo/v17n01a02.pdf");
 		
 		try {
-			PDFPoppler doc = new PDFPoppler (uri);
+			PDFPoppler doc = new PDFPoppler (uri, "atm");
 			Type etype = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
 			Assert.IsNotInstanceOfType (etype, doc, "CI01");
 			Assert.IsNull (doc, "CI02");
@@ -50,9 +50,9 @@ public class TestPDFPoppler {
 		Uri uri1 = new Uri (path1);
 		Uri uri2 = new Uri (path2);
 		
-		PDFPoppler doc0 = new PDFPoppler (uri0);
-		PDFPoppler doc1 = new PDFPoppler (uri1);
-		PDFPoppler doc2 = new PDFPoppler (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
+		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
+		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
 		
 		Type etype = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
 		Assert.IsInstanceOfType (etype, doc0, "CI01");
@@ -73,9 +73,9 @@ public class TestPDFPoppler {
 		Uri uri1 = new Uri (path1);
 		Uri uri2 = new Uri (path2);
 		
-		PDFPoppler doc0 = new PDFPoppler (uri0);
-		PDFPoppler doc1 = new PDFPoppler (uri1);
-		PDFPoppler doc2 = new PDFPoppler (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
+		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
+		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
 		
 		RawDocument raw0 = doc0.CreateRawDocument ();
 		RawDocument raw1 = doc1.CreateRawDocument ();
@@ -101,9 +101,9 @@ public class TestPDFPoppler {
 		Uri uri1 = new Uri (path1);
 		Uri uri2 = new Uri (path2);
 		
-		PDFPoppler doc0 = new PDFPoppler (uri0);
-		PDFPoppler doc1 = new PDFPoppler (uri1);
-		PDFPoppler doc2 = new PDFPoppler (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
+		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
+		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
 		
 		path0 = Path.Combine (path, "v17n01a02-raw.txt");
 		path1 = Path.Combine (path, "v17n4a03-raw.txt");

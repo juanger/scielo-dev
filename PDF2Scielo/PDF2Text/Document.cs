@@ -21,8 +21,15 @@ namespace PDF2Text {
 public abstract class Document {
 
 	protected string text;
+	protected string format;
 	
 	public abstract string GetText ();
+	
+	public string Format {
+		get {
+			return format;
+		}
+	}
 
 	public void WriteDocument (string filepath, string filename, string extension)
 	{

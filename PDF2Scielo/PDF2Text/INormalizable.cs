@@ -36,6 +36,8 @@ public interface INormalizable {
 	
 	Match [] GetMatches (string regexp, string source);
 	
+	NormDocument CreateNormDocument ();
+	
 	string Text { get; } 
 }
 }

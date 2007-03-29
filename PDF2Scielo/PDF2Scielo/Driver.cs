@@ -90,7 +90,7 @@ public class Driver {
 		
 		if (uri != null) {
 			try {
-				reader = new PDFPoppler (uri);
+				reader = new PDFPoppler (uri, "atm");
 
 				Console.WriteLine ("Transformando PDF ... ");
 				

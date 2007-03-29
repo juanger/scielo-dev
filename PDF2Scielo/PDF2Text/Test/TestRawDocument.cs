@@ -25,9 +25,9 @@ public class TestRawDocument {
 	[Test]
 	public void ConstructorString ()
 	{
-		RawDocument rdoc0 = new RawDocument ("");
-		RawDocument rdoc1 = new RawDocument ("Hola Mundo");
-		RawDocument rdoc2 = new RawDocument ("            ad        ");
+		RawDocument rdoc0 = new RawDocument ("", "atm");
+		RawDocument rdoc1 = new RawDocument ("Hola Mundo", "atm");
+		RawDocument rdoc2 = new RawDocument ("            ad        ", "atm");
 		
 		Type etype = Type.GetType ("Scielo.PDF2Text.RawDocument");
 		Assert.IsInstanceOfType (etype, rdoc0, "CI01");
@@ -49,9 +49,9 @@ public class TestRawDocument {
 		Uri uri1 = new Uri (path1);
 		Uri uri2 = new Uri (path2);
 		
-		PDFPoppler doc0 = new PDFPoppler (uri0);
-		PDFPoppler doc1 = new PDFPoppler (uri1);
-		PDFPoppler doc2 = new PDFPoppler (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
+		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
+		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
 		
 		RawDocument rdoc0 = new RawDocument (doc0);
 		RawDocument rdoc1 = new RawDocument (doc1);
@@ -77,9 +77,9 @@ public class TestRawDocument {
 		Uri uri1 = new Uri (path1);
 		Uri uri2 = new Uri (path2);
 		
-		PDFPoppler doc0 = new PDFPoppler (uri0);
-		PDFPoppler doc1 = new PDFPoppler (uri1);
-		PDFPoppler doc2 = new PDFPoppler (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
+		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
+		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
 		
 		RawDocument rdoc0 = new RawDocument (doc0);
 		RawDocument rdoc1 = new RawDocument (doc1);
@@ -116,9 +116,9 @@ public class TestRawDocument {
 		Uri uri1 = new Uri (path1);
 		Uri uri2 = new Uri (path2);
 		
-		PDFPoppler doc0 = new PDFPoppler (uri0);
-		PDFPoppler doc1 = new PDFPoppler (uri1);
-		PDFPoppler doc2 = new PDFPoppler (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
+		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
+		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
 		
 		RawDocument rdoc0 = new RawDocument (doc0);
 		RawDocument rdoc1 = new RawDocument (doc1);
@@ -154,9 +154,9 @@ public class TestRawDocument {
 		Uri uri2 = new Uri (path2);
 		
 		// Se crean los lectores para cada PDF.
-		PDFPoppler doc0 = new PDFPoppler (uri0);
-		PDFPoppler doc1 = new PDFPoppler (uri1);
-		PDFPoppler doc2 = new PDFPoppler (uri2);
+		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
+		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
+		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
 		
 		RawDocument rdoc0 = new RawDocument (doc0);
 		RawDocument rdoc1 = new RawDocument (doc1);

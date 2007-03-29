@@ -24,6 +24,8 @@ public interface IExtractable {
 	RawDocument CreateRawDocument ();
 	
 	Queue GetNonText ();
-}
+	
+	string Format { get; }
+}	
 }
 }

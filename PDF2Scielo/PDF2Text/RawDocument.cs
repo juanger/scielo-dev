@@ -19,14 +19,16 @@ namespace PDF2Text {
 
 public class RawDocument : Document {
 
-	public RawDocument (string text) 
+	public RawDocument (string text, string format) 
 	{
 		this.text = text;
+		this.format = format;
 	}
 
 	public RawDocument (IExtractable extractor)
 	{
 		text = extractor.GetRawText ();
+		format = extractor.Format;
 	}
 	
 	public override string GetText ()
@@ -36,10 +38,8 @@ public class RawDocument : Document {
 	
 	public NormDocument Normalize ()
 	{
-		AtmNormalizer norm = new AtmNormalizer (text);
-		norm.MarkText ();
-		
-		return new NormDocument (norm.Front, norm.Body, norm.Back);
+		AtmNormalizer norm = new AtmNormalizer (this);
+		return norm.CreateNormDocument ();
 	}
 }
 }
