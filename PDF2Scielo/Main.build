@@ -77,5 +77,16 @@
         <arg value="--version" />
      </exec>
    </target>
-
+   <target name="test" depends="build-release" description="compiles the source code.">
+   <property name="profile" value="Debug" overwrite="false" />
+     <nant target="test">
+       <buildfiles>
+           <include name="Markup/Markup.build" />
+	   <include name="Utils/Utils.build" />
+	   <include name="PDF2Text/PDF2Text.build" />
+           <!-- avoid recursive execution of current build file -->
+           <exclude name="${project::get-buildfile-path()}" />
+       </buildfiles>
+    </nant>
+   </target>
 </project>
