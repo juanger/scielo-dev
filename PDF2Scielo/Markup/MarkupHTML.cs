@@ -110,7 +110,7 @@ public class MarkupHTML {
 		string startTag = @"\[res\]";
 		string endTag = @"\[/res\]";
 		string startSustitute = "<p align=\"center\">";
-		string endSustitute = "</p> \n <p align=\"justify\">";
+		string endSustitute = "</p>\n<p align=\"justify\">";
 
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);			
@@ -120,8 +120,8 @@ public class MarkupHTML {
  	{
  		string startTag = @"\[abs\]";
 		string endTag = @"\[/abs\]";
-		string startSustitute = "</p> \n <br> <p align=\"center\">";
-		string endSustitute = "</p> \n <p align=\"justify\">";
+		string startSustitute = "</p>\n<br><p align=\"center\">";
+		string endSustitute = "</p>\n<p align=\"justify\">";
  		
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);
@@ -131,17 +131,27 @@ public class MarkupHTML {
 	{
 		string tag = "[key]";
 		int index = front.IndexOf (tag,0);
+		if (index == -1 )
+		{
+			Console.WriteLine("fuera de rango");
+			return;
+		}
 		string keywords = front.Substring (index);
 		front = front.Remove (index, keywords.Length );
 	
 		int index2 = keywords.IndexOf (":", 0);
+		if (index2 == -1 )
+		{
+			Console.WriteLine("fuera de rango");
+			return;
+		}
 		string cad = keywords.Substring (0,index2+1) +"</b>"+ keywords.Substring (index2+1);
 		front += cad;
 		
 		string startTag = @"\[key\]";
 		string endTag = @"\[/key\]";
-		string startSustitute = "</p> \n <br><p align=\"justify\"><b>";
-		string endSustitute = "</p> \n <br>";
+		string startSustitute = "</p>\n<br><p align=\"justify\"><b>";
+		string endSustitute = "</p>\n<br>";
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);		
 	}
@@ -172,8 +182,8 @@ public class MarkupHTML {
 		string endTag = @"\[/ref\]";
 		string startSustitute = "<p align=\"left\"><b>";
 		string endSustitute = "</b></p>";
-		body = Regex.Replace (body, startTag, startSustitute);
-		body = Regex.Replace (body, endTag, endSustitute);
+		back = Regex.Replace (back, startTag, startSustitute);
+		back = Regex.Replace (back, endTag, endSustitute);
 	}
 	
 	private void ReplaceSubsecTag ()
