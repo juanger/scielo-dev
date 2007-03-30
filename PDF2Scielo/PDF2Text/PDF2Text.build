@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <project name="PDF2Text" default="build" basedir=".">
    <description>Library that takes an URI to a  PDF document and outputs it's text.</description>
-   <property name="debug" value="true" overwrite="false" />
+   <property name="libname" value="PDF2Text" overwrite="true" />
    <target name="clean" description="remove all generated files">
       <delete dir="bin" failonerror="false" />
       <delete dir="test-results" failonerror="false" />
    </target>
-   <target name="build" description="compiles the source code">
-       <mkdir dir="bin/Debug" />
-       <csc target="library" output="./bin/Debug/PDF2Text.dll" debug="${debug}">
+   <target name="build-release" description="compiles the source code">
+   <property name="profile" value="Release" overwrite="false" />
+       <mkdir dir="bin/${profile}" />
+       <csc target="library" output="./bin/${profile}/${libname}.dll" debug="false">
           <sources>
              <include name="*.cs" />
           </sources>
@@ -17,28 +18,60 @@
              <package name="poppler-sharp" />
           </pkg-references>
           <references>
-             <include name="../Utils/bin/Debug/Utils.dll" />
+             <include name="../Utils/bin/${profile}/Utils.dll" />
           </references>
        </csc>
    </target>
-
-   <target name="test" depends="build">
-    <csc target="library" output="./Test/TestPDFPoppler.dll">
+   <target name="build" description="compiles the source code">
+   <property name="profile" value="Debug" overwrite="false" />
+       <mkdir dir="bin/${profile}" />
+       <csc target="library" output="./bin/${profile}/${libname}.dll" debug="true">
+          <sources>
+             <include name="*.cs" />
+          </sources>
+          <pkg-references>
+             <package name="gtk-sharp-2.0" />
+             <package name="poppler-sharp" />
+          </pkg-references>
+          <references>
+             <include name="../Utils/bin/${profile}/Utils.dll" />
+          </references>
+       </csc>
+   </target>
+   <target name="test" depends="build-release" description="Runs test units.">
+   <property name="profile" value="Release" overwrite="false" />
+    <copy todir="./bin/${profile}" flatten="true">
+       <fileset basedir=".">
+          <include name="../Utils/bin/${profile}/Utils.dll" />
+       </fileset>
+    </copy>
+    <csc target="library" output="./bin/${profile}/Test${libname}.dll" debug="false">
       <sources>
+        <include name="./Test/TestAtmNormalizer.cs" />
+        <include name="./Test/TestNormDocument.cs" />
         <include name="./Test/TestPDFPoppler.cs" />
+        <include name="./Test/TestRawDocument.cs" />
       </sources>
-	  <pkg-references>
-	    <package name="nunit" />
-	  </pkg-references>
+          <pkg-references>
+            <package name="nunit" />
+          </pkg-references>
       <references>
-        <include name="./bin/Debug/PDF2Text.dll" />
-	<include name="../Utils/bin/Debug/Utils.dll" />
+        <include name="./bin/${profile}/${libname}.dll" />
+        <include name="../Utils/bin/${profile}/Utils.dll" />
       </references>
     </csc>
-
-    <nunit2>
-        <formatter type="Xml" usefile="true" extension=".xml" outputdir="Test/results" />
-	<test assemblyname="./Test/TestPDFPoppler.dll" appconfig="Test.config" />
-    </nunit2>
-   </target>
+    	<if test="${platform::is-unix()}">
+	  <property name="nunit.exe" value="/usr/bin/nunit-console.exe" />
+           <echo message="./bin/${profile}/Test${libname}.dll" />
+           <exec program="${nunit.exe}" workingdir="./bin/${profile}" useruntimeengine="true">
+	     <arg value="Test${libname}.dll" />
+           </exec>
+	</if>
+    	<if test="${not platform::is-unix()}">
+	  <nunit2 verbose="true">
+	    <formatter type="Plain" />
+	    <test assemblyname="./bin/${profile}/Test${libname}.dll" appconfig="Test.config" />
+	  </nunit2>
+        </if>
+    </target>
 </project>

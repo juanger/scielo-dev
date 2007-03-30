@@ -1,5 +1,14 @@
 2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Markup/Test.config, Markup/Markup.build, PDF2Text/PDF2Text.build,
+	  Utils/Utils.build, Main.build, PDF2Scielo/PDF2Scielo.build,
+	  PDFImage/PDFImage.build: Cambio a los .build de la solucion para
+	  tener dos targets build que tiene el flag de DEBUG y build-release
+	  que no lo tiene. Ademas se creo un target test para correr las
+	  pruebas unitarias.
+
+2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Utils/Test.cs: Para el uso en las pruebas de unidad en Nant
 
 2007-03-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
