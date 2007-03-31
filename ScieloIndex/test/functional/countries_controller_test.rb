@@ -12,7 +12,7 @@ class CountriesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = countries(:first).id
+    @first_id = countries(:mexico).id
   end
 
   def test_index
@@ -52,7 +52,7 @@ class CountriesControllerTest < Test::Unit::TestCase
   def test_create
     num_countries = Country.count
 
-    post :create, :country => {}
+    post :create, :country =>{"name"=>"Argentina", "code"=>"AR", "id"=>"90"}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
