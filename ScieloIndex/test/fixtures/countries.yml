@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+mexico:
+  id: 484
+  name: México
+  code: MX
+brasil:
+  id: 123
+  name: Brasil
+  code: br
