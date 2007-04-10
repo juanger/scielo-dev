@@ -22,9 +22,10 @@ public class MarkupHTML {
 	private string front;
 	private string body;
 	private string back;
+	protected string text;
 		
 	public MarkupHTML (NormDocument document)
-	{
+	{	
 		front = document.Front;
 		body = document.Body;
 		back = document.Back;
@@ -32,21 +33,29 @@ public class MarkupHTML {
 	
 	public MarkupHTML (string front, string body, string back)
 	{
+		if (front == null | body == null | back == null)
+			throw new ArgumentNullException ();
 		this.front = front;
 		this.body = body;
 		this.back = back;
 	}
 			
-	public string CreateDocumentHTML ()
+	public void CreateDocumentHTML ()
 	{
 		if (front == "" || body == "" || back == "")
-			return null;
+			return;
 			
 		MarkFront ();
 		MarkBody ();
 		MarkBack ();
-		string document = HeadDocument () + front + body + back + FootDocument ();
-		return document;
+		text = HeadDocument () + front + body + back + FootDocument ();
+	}
+	
+	public string Text {
+		get {
+			CreateDocumentHTML();
+			return text;
+		}
 	}
 	
 	public string Front {
@@ -109,8 +118,8 @@ public class MarkupHTML {
 	{
 		string startTag = @"\[res\]";
 		string endTag = @"\[/res\]";
-		string startSustitute = "<p align=\"center\">";
-		string endSustitute = "</p>\n<p align=\"justify\">";
+		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
+		string endSustitute = "</font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
 
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);			
@@ -120,8 +129,8 @@ public class MarkupHTML {
  	{
  		string startTag = @"\[abs\]";
 		string endTag = @"\[/abs\]";
-		string startSustitute = "</p>\n<br><p align=\"center\">";
-		string endSustitute = "</p>\n<p align=\"justify\">";
+		string startSustitute = "</font></p>\n<br><p align=\"justify\"><font face=\"verdana\" size=\"2\">";
+		string endSustitute = "</font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
  		
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);
@@ -132,26 +141,22 @@ public class MarkupHTML {
 		string tag = "[key]";
 		int index = front.IndexOf (tag,0);
 		if (index == -1 )
-		{
-			Console.WriteLine("fuera de rango");
 			return;
-		}
+
 		string keywords = front.Substring (index);
 		front = front.Remove (index, keywords.Length );
 	
 		int index2 = keywords.IndexOf (":", 0);
 		if (index2 == -1 )
-		{
-			Console.WriteLine("fuera de rango");
 			return;
-		}
+
 		string cad = keywords.Substring (0,index2+1) +"</b>"+ keywords.Substring (index2+1);
 		front += cad;
 		
 		string startTag = @"\[key\]";
 		string endTag = @"\[/key\]";
-		string startSustitute = "</p>\n<br><p align=\"justify\"><b>";
-		string endSustitute = "</p>\n<br>";
+		string startSustitute = "</font></p>\n<br><p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
+		string endSustitute = "</font></p>\n<br>";
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);		
 	}
@@ -170,8 +175,8 @@ public class MarkupHTML {
 	{
 		string startTag = @"\[para\]";
 		string endTag = @"\[/para\]";
-		string startSustitute = "<p align=\"justify\">";
-		string endSustitute = "</p>";
+		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
+		string endSustitute = "</font></p>";
 		body = Regex.Replace (body, startTag, startSustitute);
 		body = Regex.Replace (body, endTag, endSustitute);
 	}
@@ -180,8 +185,8 @@ public class MarkupHTML {
 	{
 		string startTag = @"\[ref\]";
 		string endTag = @"\[/ref\]";
-		string startSustitute = "<p align=\"left\"><b>";
-		string endSustitute = "</b></p>";
+		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
+		string endSustitute = "</b></font></p>";
 		back = Regex.Replace (back, startTag, startSustitute);
 		back = Regex.Replace (back, endTag, endSustitute);
 	}
