@@ -1,3 +1,8 @@
+2007-04-09  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/TestNormDocument.cs: Dos pruebas unitarias para la
+	  clase NormDocument.
+
 2007-03-30  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Main.build: Se añadio el target test en el build principal.
