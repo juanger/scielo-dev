@@ -70,6 +70,8 @@ public class Driver {
 		PDFPoppler reader;
 		RawDocument rdoc;
 		NormDocument ndoc;
+		MarkupHTML marker;
+		HTMLDocument htmldoc;
 		
 		string filepath;
 		
@@ -96,7 +98,9 @@ public class Driver {
 				
 				rdoc = reader.CreateRawDocument ();
 				ndoc = rdoc.Normalize ();
-				ndoc.WriteDocument (Environment.CurrentDirectory, 
+				marker = new MarkupHTML (ndoc);
+				htmldoc = marker.CreateHTMLDocument ();
+				htmldoc.WriteDocument (Environment.CurrentDirectory, 
 					Path.GetFileNameWithoutExtension (filepath), "htm");
 				reader.GetNonText ();
 				

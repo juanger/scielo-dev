@@ -39,8 +39,13 @@ public class MarkupHTML {
 		this.body = body;
 		this.back = back;
 	}
-			
-	public void CreateDocumentHTML ()
+	
+	public HTMLDocument CreateHTMLDocument ()
+	{
+		return new HTMLDocument (this);
+	}
+	
+	public void MarkDocument ()
 	{
 		if (front == "" || body == "" || back == "")
 			return;
@@ -53,7 +58,7 @@ public class MarkupHTML {
 	
 	public string Text {
 		get {
-			CreateDocumentHTML();
+			MarkDocument();
 			return text;
 		}
 	}

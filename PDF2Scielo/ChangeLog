@@ -1,3 +1,12 @@
+2007-04-11  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Markup/DocumentHTML.cs: Se borra puesto que la clase correcta es
+	  HTMLDocument.
+	* Markup/MarkupHTML.cs: Se renombro CreateDocumentHTML por
+	  MarkupDocument y se implemento el metodo CreateHTMLDocument.
+	* PDF2Scielo/Driver.cs: Se usa MarkupHTML y HTMLDocument para obtener
+	  el documento HTML con marcacion SciELO.
+
 2007-04-09  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/TestNormDocument.cs: Dos pruebas unitarias para la
