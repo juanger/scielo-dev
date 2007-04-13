@@ -1,3 +1,9 @@
+2007-04-12  Full Name <Email Address> 
+
+	* Markup/MarkupHTML.cs: Agregamos el reemplazo del tag interno ack y
+	  comentarios de modificación para de patrones de busqueda para
+	  AtmNormalizer
+
 2007-04-11  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Markup/DocumentHTML.cs: Se borra puesto que la clase correcta es

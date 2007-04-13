@@ -87,7 +87,7 @@ public class MarkupHTML {
                        head += "<html>\n";
 		       head += "<head>\n";
 		       head += "<title>Art&iacute;culo N</title>\n";
-                       head += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\">\n";
+                       head += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n";
                        head += "</head>\n";
                        head += "<body>";
                 return head;
@@ -116,15 +116,20 @@ public class MarkupHTML {
 	
 	public void MarkBack ()
 	{
+		ReplaceAckTag ();
 		ReplaceRefTag ();
 	}
 	
 	private void ReplaceResTag ()		
 	{
+		string label = @"\[res\] Resumen \[/res\]";
+		string replace = @"\[res\] RESUMEN \[/res\]";
+		front = Regex.Replace(front, label, replace);
+		
 		string startTag = @"\[res\]";
 		string endTag = @"\[/res\]";
-		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
-		string endSustitute = "</font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
+		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
+		string endSustitute = "</b></font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
 
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);			
@@ -132,10 +137,14 @@ public class MarkupHTML {
 	
 	private void ReplaceAbsTag ()		
  	{
+ 		string label = @"\[abs\] Abstract \[/abs\]";
+		string replace = @"\[abs\] ABSTRACT \[/abs\]";
+		front = Regex.Replace(front, label, replace);
+		
  		string startTag = @"\[abs\]";
 		string endTag = @"\[/abs\]";
-		string startSustitute = "</font></p>\n<br><p align=\"justify\"><font face=\"verdana\" size=\"2\">";
-		string endSustitute = "</font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
+		string startSustitute = "</font></p>\n<br><p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
+		string endSustitute = "</b></font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
  		
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);
@@ -186,16 +195,6 @@ public class MarkupHTML {
 		body = Regex.Replace (body, endTag, endSustitute);
 	}
 	
-	private void ReplaceRefTag ()
-	{
-		string startTag = @"\[ref\]";
-		string endTag = @"\[/ref\]";
-		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
-		string endSustitute = "</b></font></p>";
-		back = Regex.Replace (back, startTag, startSustitute);
-		back = Regex.Replace (back, endTag, endSustitute);
-	}
-	
 	private void ReplaceSubsecTag ()
 	{
 		string startTag = @"\[subsec\]";
@@ -205,6 +204,27 @@ public class MarkupHTML {
 		body = Regex.Replace (body, startTag, startSustitute);
 		body = Regex.Replace (body, endTag, endSustitute);
 	}
+
+	private void ReplaceAckTag ()
+	{
+		string startTag = @"\[ack\]";
+		string endTag = @"\[/ack\]";
+		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
+		string endSustitute = "</b></font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
+		back = Regex.Replace (back, startTag, startSustitute);
+		back = Regex.Replace (back, endTag, endSustitute);
+	}
+	
+	private void ReplaceRefTag ()
+	{
+		string startTag = @"\[ref\]";
+		string endTag = @"\[/ref\]";
+		string startSustitute = "</font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
+		string endSustitute = "</b></font></p>";
+		back = Regex.Replace (back, startTag, startSustitute);
+		back = Regex.Replace (back, endTag, endSustitute);
+	}
+	
 }
 }
 }
