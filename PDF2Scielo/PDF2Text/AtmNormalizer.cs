@@ -72,7 +72,7 @@ public class AtmNormalizer : INormalizable {
 		MarkMinorSections ();
 		MarkFootFigure ();
 		MarkParagraphs ();
-		
+		MarkCitations ();
 		return Text;
 	}
 	
@@ -158,24 +158,24 @@ public class AtmNormalizer : INormalizable {
 		
 		// Remueve encabezados y numeros de pagina.
 	 	#if DEBUG
-	 	matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", text);
+	 	matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[-a-zA-Z. \u00f1\u002f\u0050-\u00ff’,()&;]+[\n]+", text);
 	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
 	 	foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
 		#endif
 		
-		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]+", "\n");
+		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[-a-zA-Z. \u00f1\u002f\u0050-\u00ff’,()&;]+[\n]+", "\n");
 		
 		// Remueve texto muerto (ie. ejes de graficas) dejados al extraer el texto.
 	 	#if DEBUG
-	 	matches = GetMatches (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]*[\n]+", text);
+	 	matches = GetMatches (@"[\n]+[\u000c]+[ ]*[-a-zA-Z0-9. \u00f1\u002f\u0050-\u00ff#’,()&;]+", text);
 	 	foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
 		#endif
 		
-		GlobalReplaceRegex (@"[\n]+[\u000c]+[ ]*[a-zA-Z. \u00f1\u002f\u0050-\u00ff-’,()&;]+[\n]*[0-9]*[\n]+", "\n");
+		GlobalReplaceRegex (@"[\n]+[\u000c]+[ ]*[-a-zA-Z0-9. \u00f1\u002f\u0050-\u00ff#’,()&;]+[ ]*[\n]*[0-9]*[\n]+", "\n");
 	}
 	
 	private void MarkMajorSections ()
@@ -190,7 +190,7 @@ public class AtmNormalizer : INormalizable {
 		GlobalReplaceRegex (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
 		GlobalReplaceRegex (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
 		GlobalReplaceRegex (@"[\n]+References\n", "\n[ref] References [/ref]\n");
-		GlobalReplaceRegex (@"[\n]+(Acknowledgements|Acknowledgments)\n", "\n[ack] Acknowledgements [/ack]\n");
+		GlobalReplaceRegex (@"[\n]+[ ]*(Acknowledgement|Acknowledgment)[s]?\n", "\n[ack] Acknowledgements [/ack]\n");
 		
 		//Etiquetado de KEYWORD.		
 		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d \n]+[\n]+", text);
@@ -391,6 +391,43 @@ public class AtmNormalizer : INormalizable {
 			
 			result = " [/para]" + smatch;
 			body = body.Replace (smatch, result);
+		}
+     	}
+     	
+     	private void MarkCitations ()
+     	{
+     		Match [] matches;
+     		
+     		// Etiquetado de las citas.
+		#if DEBUG
+		Console.WriteLine ("DEBUG: Resultados obtenidos para las citas.");
+		#endif
+		
+		matches = GetMatches (@"[\n]+[A-Z].*", back);
+		foreach (Match m in matches) {
+			string smatch, result;
+			smatch = m.Value.TrimStart ();
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			result = "[cit] " + smatch ;
+			back = back.Replace (smatch, result);
+		}
+		
+		matches = GetMatches (@"\[cit\][^[]*", back);
+		foreach (Match m in matches) {
+			string smatch, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			result = smatch.TrimEnd ();
+			result = result + " [/cit]\n";
+			back = back.Replace (smatch, result);
 		}
      	}
      	

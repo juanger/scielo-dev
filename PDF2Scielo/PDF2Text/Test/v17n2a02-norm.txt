@@ -945,38 +945,37 @@ PSP 3 determined this kind of pattern at 500 hPa. [/para]
 The authors wish to thank the University of Buenos Aires for the financial support given through
 the research fellowships and UBA subsidy (Proyecto X / 002).
 [ref] References [/ref]
-Cattell, R., 1978. The scientific use of factor analysis. In: Behavior and life sciences. Plenum, New
-    York and London, 617 pp.
-Compagnucci, R., D. Araneo and P. Canziani, 2001. Principal sequence pattern analysis: A new
-    approach to classifying the evolution of atmospheric systems. Int. Journal. Clim., 21, 197-217.
-Elliot, R. and T. Smith, 1949. A study of the effects of large blocking highs on the general circulation
-    in the Northern Hemisphere westerlies. J. Met., 6, 2. pp. 67-85.
-Escobar, G. and S. Bischoff, 1999. Meteorological situations associated with significant temperature
+[cit] Cattell, R., 1978. The scientific use of factor analysis. In: Behavior and life sciences. Plenum, New
+    York and London, 617 pp. [/cit]
+[cit] Compagnucci, R., D. Araneo and P. Canziani, 2001. Principal sequence pattern analysis: A new
+    approach to classifying the evolution of atmospheric systems. Int. Journal. Clim., 21, 197-217. [/cit]
+[cit] Elliot, R. and T. Smith, 1949. A study of the effects of large blocking highs on the general circulation
+    in the Northern Hemisphere westerlies. J. Met., 6, 2. pp. 67-85. [/cit]
+[cit] Escobar, G. and S. Bischoff, 1999. Meteorological situations associated with significant temperature
     falls in Buenos Aires: an application to the daily consumption of residential natural gas. Meteorol.
-    Appl., 6, 253-260.
-Escobar, G. and S. Bischoff, 2001. Criterio de detecci&oacute;n de irrupciones de aire fr&iacute;o en la regi&oacute;n
+    Appl., 6, 253-260. [/cit]
+[cit] Escobar, G. and S. Bischoff, 2001. Criterio de detecci&oacute;n de irrupciones de aire fr&iacute;o en la regi&oacute;n
    central de Argentina a partir de descensos interdiurnos de temperatura. Meteorol&oacute;gica, 26, 1 y
-   2, 57-68.
-Fortune, M. and V. Kousky, 1983. Two severe freezes in Brazil: Precursors and Synoptic Evolution.
-   Mon. Wea. Rev., 111, 181-196.
-Garreaud, R., 2000. Cold air incursions over subtropical South America: Mean structure and
-   dynamics. Mon. Wea. Rev., 128, 2544-2559.
-Green, P., 1978. Analysing multivariate data. The Dryden Press. Illinois, U.S.A, 519 pp.
-Harman, H., 1976. Modern factor analysis. The University of Chicago Press, Chicago, IL.
-Krishnamurty, T., M. Tewari and D. Chakraborty, 1999. Downstream amplification: A possible
-   Precursor to Mayor Freeze Events over Southeastern Brazil. Wea. and Forecasting, 14, 242-271.
-Marengo, J., A. Cornejo, P. Satyamurty and C. Nobre, 1997. Cold surges in tropical and extratropical
-   South America: The Strong Event in June 1994. Mon. Wea. Rev., 125, 2759-2786.
-Nocera, J., L. Bosart and D. Knight, 2000. A climatology and compositing study of cold surges in
+   2, 57-68. [/cit]
+[cit] Fortune, M. and V. Kousky, 1983. Two severe freezes in Brazil: Precursors and Synoptic Evolution.
+   Mon. Wea. Rev., 111, 181-196. [/cit]
+[cit] Garreaud, R., 2000. Cold air incursions over subtropical South America: Mean structure and
+   dynamics. Mon. Wea. Rev., 128, 2544-2559. [/cit]
+[cit] Green, P., 1978. Analysing multivariate data. The Dryden Press. Illinois, U.S.A, 519 pp. [/cit]
+[cit] Harman, H., 1976. Modern factor analysis. The University of Chicago Press, Chicago, IL. [/cit]
+[cit] Krishnamurty, T., M. Tewari and D. Chakraborty, 1999. Downstream amplification: A possible
+   Precursor to Mayor Freeze Events over Southeastern Brazil. Wea. and Forecasting, 14, 242-271. [/cit]
+[cit] Marengo, J., A. Cornejo, P. Satyamurty and C. Nobre, 1997. Cold surges in tropical and extratropical
+   South America: The Strong Event in June 1994. Mon. Wea. Rev., 125, 2759-2786. [/cit]
+[cit] Nocera, J., L. Bosart and D. Knight, 2000. A climatology and compositing study of cold surges in
    South America. Sixth International Conference on Southern Hemisphere Meteorology and
-   Oceanography. 3-7 April 2000, Santiago, Chile, 378-379.
-Richman, M., 1986. Rotation of principal components. J. of Climatology, 6, 293-335.
-Richman, M., J. Angel and X. Gong, 1992. Determination of dimensionality in eingenanalysis.
+   Oceanography. 3-7 April 2000, Santiago, Chile, 378-379. [/cit]
+[cit] Richman, M., 1986. Rotation of principal components. J. of Climatology, 6, 293-335. [/cit]
+[cit] Richman, M., J. Angel and X. Gong, 1992. Determination of dimensionality in eingenanalysis.
    Fifth International Meeting on Statistical Climatology. 22-26 June 1992, Toronto, Canada, 229-
-   235.
-Scian, B., 1970. Situaci&oacute;n sin&oacute;ptica asociada a las temperaturas extremas observadas en junio de
-   1967. Meteorol&oacute;gica, 1: 22 -37.
-Sinclair, M., 1996. A climatology of anticyclones and blocking for Southern Hemisphere. Mon.
-   Wea. Rev., 124, 245-263.
-Trenberth, K. and K Mo, 1985. Blocking in the Southern Hemisphere. Mon. Wea. Rev., 113, 3-21.
-
+   235. [/cit]
+[cit] Scian, B., 1970. Situaci&oacute;n sin&oacute;ptica asociada a las temperaturas extremas observadas en junio de
+   1967. Meteorol&oacute;gica, 1: 22 -37. [/cit]
+[cit] Sinclair, M., 1996. A climatology of anticyclones and blocking for Southern Hemisphere. Mon.
+   Wea. Rev., 124, 245-263. [/cit]
+[cit] Trenberth, K. and K Mo, 1985. Blocking in the Southern Hemisphere. Mon. Wea. Rev., 113, 3-21. [/cit]

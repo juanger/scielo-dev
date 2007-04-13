@@ -747,43 +747,42 @@ predictions of the model for the next decade.
                C&oacute;rdoba       0.00       -0.23       0.22          0.23          0.06
                 Sevilla      0.35        0.03       0.28          0.26          0.20
 [ref] References [/ref]
-Al-awadhi S. and J., Jolliffe, 1998. Times series modelling of surface presure data. Int. J. Climatol.
-   18, 443-455.
-Bravo, J. L., M. M. Nava and C. Gay, 2001. Linear and regressive stochastic models for prediction
-   models of daily maximum ozones values at Mexico City atmosphere. Atm&oacute;sfera 14, 113-123.
-Box, G.E.P. and G. M. Jenkins, 1970. Time Series Analysis, Forecasting and Control. Holden-
-   Day. San Francisco.
-Chatfield, C., 1992. The analysis of time series. Chapman & Hall. London.
-Ferrand, M., 1997. Programaci&oacute;n y an&aacute;lisis estad&iacute;stico. MacGraw-Hill. Madrid.
-Garc&iacute;a-Barr&oacute;n, L., 2000. An&aacute;lisis de series termopluviom&eacute;tricas para la elaboraci&oacute;n de modelos
-   clim&aacute;ticos. Universidad de Sevilla.
-Garc&iacute;a-Barr&oacute;n, L. and M. F. Pita, 2001. Propuesta metodol&oacute;gica para la determinaci&oacute;n de
+[cit] Al-awadhi S. and J., Jolliffe, 1998. Times series modelling of surface presure data. Int. J. Climatol.
+   18, 443-455. [/cit]
+[cit] Bravo, J. L., M. M. Nava and C. Gay, 2001. Linear and regressive stochastic models for prediction
+   models of daily maximum ozones values at Mexico City atmosphere. Atm&oacute;sfera 14, 113-123. [/cit]
+[cit] Box, G.E.P. and G. M. Jenkins, 1970. Time Series Analysis, Forecasting and Control. Holden-
+   Day. San Francisco. [/cit]
+[cit] Chatfield, C., 1992. The analysis of time series. Chapman & Hall. London. [/cit]
+[cit] Ferrand, M., 1997. Programaci&oacute;n y an&aacute;lisis estad&iacute;stico. MacGraw-Hill. Madrid. [/cit]
+[cit] Garc&iacute;a-Barr&oacute;n, L., 2000. An&aacute;lisis de series termopluviom&eacute;tricas para la elaboraci&oacute;n de modelos
+   clim&aacute;ticos. Universidad de Sevilla. [/cit]
+[cit] Garc&iacute;a-Barr&oacute;n, L. and M. F. Pita, 2001. Propuesta metodol&oacute;gica para la determinaci&oacute;n de
    inhomogeneidades relativas en las series de observaciones. El tiempo del clima. Publicaciones
-   de la Asociaci&oacute;n Espa&ntilde;ola de Climatolog&iacute;a, serie A Vol. 2, 87-96.
-Garc&iacute;a-Barr&oacute;n, L., 2002. Un modèle pour l&#8217;analyse de la s&eacute;cheresse dans les climats mediterran&eacute;ens.
-   Publications de l´Association Internationale de Climatologie 14, 67-73.
-Garrido, J. and J. A. Garc&iacute;a, 1994. Aplicaci&oacute;n de procesos autoregresivos-media m&oacute;vil para modelizar
-   series temporales de precipitaci&oacute;n mensual en la Espa&ntilde;a peninsular. Anales de F&iacute;sica 89, 50-56.
-Grieser. J., S. Trömel and C. Schönwiese, 2002. Statistical time series decomposition into significant
-   components and application to European temperature. Theor. Appl. Climatol. 71, 171-183.
-Hurrell, J. M., 1995. Decenal trends in North Atlantic Oscillation and relationship to regional
-   temperature precipitation. Science 269, 676-679.
-Kendall, S. M. and J. K. Ord, 1990. Time series. Edward Arnold, London.
-Matyasovszky, I., 2002. A nonlinear approach to modeling climatological time series. Theor. Appl.
-   Climatol. 69, 139-147.
-Martin M., L. V. Cremades and J. Santabarbara, 1999. Analysis and modelling of times series of
-   surface wind speed and direction. Int. J. Climatol. 19, 197-209.
-Pe&ntilde;a S&aacute;nchez de Rivera, D., 1995. Estad&iacute;stica, modelos y m&eacute;todos. Alianza Universitaria, Madrid.
-Pita L&oacute;pez, M. F., J. M. Camarillo and M. Aguilar, 1999. L´evolution de la variabilit&eacute; pluviometrique
+   de la Asociaci&oacute;n Espa&ntilde;ola de Climatolog&iacute;a, serie A Vol. 2, 87-96. [/cit]
+[cit] Garc&iacute;a-Barr&oacute;n, L., 2002. Un modèle pour l&#8217;analyse de la s&eacute;cheresse dans les climats mediterran&eacute;ens.
+   Publications de l´Association Internationale de Climatologie 14, 67-73. [/cit]
+[cit] Garrido, J. and J. A. Garc&iacute;a, 1994. Aplicaci&oacute;n de procesos autoregresivos-media m&oacute;vil para modelizar
+   series temporales de precipitaci&oacute;n mensual en la Espa&ntilde;a peninsular. Anales de F&iacute;sica 89, 50-56. [/cit]
+[cit] Grieser. J., S. Trömel and C. Schönwiese, 2002. Statistical time series decomposition into significant
+   components and application to European temperature. Theor. Appl. Climatol. 71, 171-183. [/cit]
+[cit] Hurrell, J. M., 1995. Decenal trends in North Atlantic Oscillation and relationship to regional
+   temperature precipitation. Science 269, 676-679. [/cit]
+[cit] Kendall, S. M. and J. K. Ord, 1990. Time series. Edward Arnold, London. [/cit]
+[cit] Matyasovszky, I., 2002. A nonlinear approach to modeling climatological time series. Theor. Appl.
+   Climatol. 69, 139-147. [/cit]
+[cit] Martin M., L. V. Cremades and J. Santabarbara, 1999. Analysis and modelling of times series of
+   surface wind speed and direction. Int. J. Climatol. 19, 197-209. [/cit]
+[cit] Pe&ntilde;a S&aacute;nchez de Rivera, D., 1995. Estad&iacute;stica, modelos y m&eacute;todos. Alianza Universitaria, Madrid. [/cit]
+[cit] Pita L&oacute;pez, M. F., J. M. Camarillo and M. Aguilar, 1999. L´evolution de la variabilit&eacute; pluviometrique
    en Andalousie (Espagne). Publications de l´Association Internationale de Climatologie 10, 313-
-   321.
-Pozo-V&aacute;zquez, D., M. J. Esteban-Parra, F. S. Rodrigo and Y. Castro-D&iacute;ez, 2000. An analysis of the
+   321. [/cit]
+[cit] Pozo-V&aacute;zquez, D., M. J. Esteban-Parra, F. S. Rodrigo and Y. Castro-D&iacute;ez, 2000. An analysis of the
    variability of the North Atlantic Oscillation in the time and the frecuency domains. Int. J. Climatol.
-   20, 1675-1692.
-Solange, L. and J. Pinto Peixoto, 1996. The autoregresive model of climatological times series: an
-   aplication to the longest times series in Portugal. Int. J. Climatol. 16, 1165-1173.
-Uriel, Z., 1995. An&aacute;lisis de series temporales. Paraninfo, Madrid.
-Wei, W. W., 1990. Times series. Addison-Wesley, Redwood City.
-Zekai S., 1998. Small sample estimation of the variance of times-averages in climatic times series.
-   Int. J. Climatol. 18, 1725-1732.
-
+   20, 1675-1692. [/cit]
+[cit] Solange, L. and J. Pinto Peixoto, 1996. The autoregresive model of climatological times series: an
+   aplication to the longest times series in Portugal. Int. J. Climatol. 16, 1165-1173. [/cit]
+[cit] Uriel, Z., 1995. An&aacute;lisis de series temporales. Paraninfo, Madrid. [/cit]
+[cit] Wei, W. W., 1990. Times series. Addison-Wesley, Redwood City. [/cit]
+[cit] Zekai S., 1998. Small sample estimation of the variance of times-averages in climatic times series.
+   Int. J. Climatol. 18, 1725-1732. [/cit]

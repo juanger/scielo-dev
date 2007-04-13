@@ -1,3 +1,13 @@
+2007-04-13  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/v17n01a02-norm.txt, PDF2Text/Test/v17n2a02-norm.txt,
+	  PDF2Text/Test/v17n4a03-norm.txt: Cambios en los archivos norm
+	  despues de agregarse el marcado de las citas.
+	* PDF2Text/AtmNormalizer.cs: Se implemento el metodo MarkCitations para
+	  marcar las citas en la seccion de References
+	* PDF2Scielo/Driver.cs: Por el momento se crea un archivo con extension
+	  .norm que tiene la representacion intermedia del documento PDF.
+
 2007-04-12  Full Name <Email Address> 
 
 	Se agregaron pruebas de unidad para el método ReplaceAckTag()

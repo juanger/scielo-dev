@@ -98,6 +98,8 @@ public class Driver {
 				
 				rdoc = reader.CreateRawDocument ();
 				ndoc = rdoc.Normalize ();
+				ndoc.WriteDocument (Environment.CurrentDirectory, 
+					Path.GetFileNameWithoutExtension (filepath), "norm");
 				marker = new MarkupHTML (ndoc);
 				htmldoc = marker.CreateHTMLDocument ();
 				htmldoc.WriteDocument (Environment.CurrentDirectory, 
