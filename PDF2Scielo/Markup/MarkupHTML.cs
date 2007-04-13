@@ -225,6 +225,16 @@ public class MarkupHTML {
 		back = Regex.Replace (back, endTag, endSustitute);
 	}
 	
+	private void ReplaceCitTag ()
+	{
+		string startTag = @"\[cit\]";
+		string endTag = @"\[/cit\]";
+		string startSustitute = "</font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
+		string endSustitute = "</b></font></p>";
+		back = Regex.Replace (back, startTag, startSustitute);
+		back = Regex.Replace (back, endTag, endSustitute);
+	}
+	
 }
 }
 }
