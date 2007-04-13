@@ -1,5 +1,10 @@
 2007-04-13  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/INormalizable.cs, PDF2Text/NormDocument.cs: Cambios a la
+	  Interface INormalizable
+
+2007-04-13  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/v17n01a02-norm.txt, PDF2Text/Test/v17n2a02-norm.txt,
 	  PDF2Text/Test/v17n4a03-norm.txt: Cambios en los archivos norm
 	  despues de agregarse el marcado de las citas.

@@ -34,6 +34,13 @@ public class NormDocument : Document {
 		this.back = back;
 	}
 	
+	public NormDocument (INormalizable normalizer)
+	{
+		front = normalizer.Front;
+		body = normalizer.Body;
+		back = normalizer.Back;
+	}
+	
 	public string Front {
 		get {
 			return front;

@@ -38,6 +38,12 @@ public interface INormalizable {
 	
 	NormDocument CreateNormDocument ();
 	
+	string Front { get; }
+	
+	string Body { get; }
+	
+	string Back { get; }
+	
 	string Text { get; } 
 }
 }
