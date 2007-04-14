@@ -1,4 +1,5 @@
 class CountriesController < ApplicationController
+
   def index
     list
     render :action => 'list'
