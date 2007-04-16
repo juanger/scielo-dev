@@ -1,0 +1,22 @@
+<%= error_messages_for 'author' %>
+
+<!--[form:author]-->
+<p><label for="author_firstname">Firstname</label><br/>
+<%= text_area 'author', 'firstname'  %></p>
+
+<p><label for="author_middlename">Middlename</label><br/>
+<%= text_area 'author', 'middlename'  %></p>
+
+<p><label for="author_lastname">Lastname</label><br/>
+<%= text_area 'author', 'lastname'  %></p>
+
+<p><label for="author_suffix">Suffix</label><br/>
+<%= text_area 'author', 'suffix'  %></p>
+
+<p><label for="author_created_on">Created on</label><br/>
+<%= datetime_select 'author', 'created_on'  %></p>
+
+<p><label for="author_updated_on">Updated on</label><br/>
+<%= datetime_select 'author', 'updated_on'  %></p>
+<!--[eoform:author]-->
+
