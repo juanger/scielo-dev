@@ -43,12 +43,15 @@ public class TestMarkupHTML
 		       body += "[para]";
 		       body += "[subsec]1.2 Titulo[/subsec]";
 		       body += "Texto[/para]";
+		       body += "[ack]Acknowledgements[/ack]Texto";
 		string back = "References";
 		string result  = "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>1. Titulo</b><br>Texto</font></p>";
 		       result += "<p align=\"justify\"><font face=\"verdana\" size=\"2\">Texto</font></p>";
 		       result += "<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
 		       result += "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><i>1.2 Titulo</i></font></p>";
 		       result += "Texto</font></p>";
+		       result += "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>Acknowledgements";
+		       result += "</b></font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">Texto";
 		MarkupHTML mark = new MarkupHTML (front, body, back);
 		mark.MarkBody ();		
 		Assert.AreEqual (mark.Body, result, "MUBC");
@@ -59,11 +62,10 @@ public class TestMarkupHTML
 	{
 		string front = "Front";
 		string body  = "Body";
-		string back  = "[ack]Acknowledgements[/ack]Texto";
-		       back  += "[ref]Referencias[/ref]Texto";
-		string result  = "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>Acknowledgements</b></font></p>";
-		       result += "\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">Texto</font></p>\n";
-		       result += "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>Referencias</b></font></p>Texto";
+		string back  = "[ref]Referencias[/ref]";
+		       back  += "[cit]Texto[/cit]";
+		string result = "</font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>Referencias</b></font></p>";
+		       result += "<p align=\"justify\"><font face=\"verdana\" size=\"2\">Texto</font></p>";
 		MarkupHTML mark = new MarkupHTML (front, body, back);
 		mark.MarkBack ();		
 		Assert.AreEqual (mark.Back, result, "MUBKC");

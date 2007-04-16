@@ -112,12 +112,13 @@ public class MarkupHTML {
 		ReplaceParaTag ();
 		ReplaceSecTag ();
 		ReplaceSubsecTag ();
+		ReplaceAckTag ();
 	}
 	
 	public void MarkBack ()
 	{
-		ReplaceAckTag ();
 		ReplaceRefTag ();
+		ReplaceCitTag ();
 	}
 	
 	private void ReplaceResTag ()		
@@ -211,8 +212,8 @@ public class MarkupHTML {
 		string endTag = @"\[/ack\]";
 		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
 		string endSustitute = "</b></font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
-		back = Regex.Replace (back, startTag, startSustitute);
-		back = Regex.Replace (back, endTag, endSustitute);
+		body = Regex.Replace (body, startTag, startSustitute);
+		body = Regex.Replace (body, endTag, endSustitute);
 	}
 	
 	private void ReplaceRefTag ()
@@ -229,12 +230,11 @@ public class MarkupHTML {
 	{
 		string startTag = @"\[cit\]";
 		string endTag = @"\[/cit\]";
-		string startSustitute = "</font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
-		string endSustitute = "</b></font></p>";
+		string startSustitute = "<p align=\"justify\"><font face=\"verdana\" size=\"2\">";
+		string endSustitute = "</font></p>";
 		back = Regex.Replace (back, startTag, startSustitute);
 		back = Regex.Replace (back, endTag, endSustitute);
 	}
-	
 }
 }
 }
