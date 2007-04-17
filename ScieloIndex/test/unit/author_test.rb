@@ -2,9 +2,16 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class AuthorTest < Test::Unit::TestCase
   fixtures :authors
+  
+  def setup
+    @authors = [:hector, :memo]
+  end 
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  # RIGHT
+  def test_creating_authors_from_fixtures
+    @authors.each { |author|
+      @author = authors(author)
+      assert @author.save
+    }
   end
 end

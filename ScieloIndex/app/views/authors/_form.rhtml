@@ -2,21 +2,16 @@
 
 <!--[form:author]-->
 <p><label for="author_firstname">Firstname</label><br/>
-<%= text_area 'author', 'firstname'  %></p>
+<%= text_field 'author', 'firstname', 'size' => 20, 'maxsize' => 30  %></p>
 
 <p><label for="author_middlename">Middlename</label><br/>
-<%= text_area 'author', 'middlename'  %></p>
+<%= text_field 'author', 'middlename', 'size' => 20, 'maxsize' => 30 %></p>
 
 <p><label for="author_lastname">Lastname</label><br/>
-<%= text_area 'author', 'lastname'  %></p>
+<%= text_field 'author', 'lastname', 'size' => 20, 'maxsize' => 30 %></p>
 
 <p><label for="author_suffix">Suffix</label><br/>
-<%= text_area 'author', 'suffix'  %></p>
+<%= text_field 'author', 'suffix', 'size' => 3, 'maxsize' => 3 %></p>
 
-<p><label for="author_created_on">Created on</label><br/>
-<%= datetime_select 'author', 'created_on'  %></p>
-
-<p><label for="author_updated_on">Updated on</label><br/>
-<%= datetime_select 'author', 'updated_on'  %></p>
 <!--[eoform:author]-->
 

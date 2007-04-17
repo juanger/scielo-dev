@@ -1,5 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+hector:
   id: 1
-two:
+  firstname: Hector
+  middlename: E.
+  lastname: Reyes
+  suffix: Mr.
+
+memo:
   id: 2
+  firstname: Guillermo
+  lastname: Giron
+  suffix:
