@@ -12,6 +12,13 @@ class CountriesTest < ActionController::IntegrationTest
      assert_equal '/countries', path
    end
 
+   def test_new
+     get "/countries/new"
+     assert_equal 200, status
+     assert_equal '/countries/new', path
+   end
+
+   
    def  test_creating_new_country
      post "countries/create", :country =>  {:id => 156, :name => 'China', :code => 'CN'}
      assert_equal 302, status
@@ -27,7 +34,15 @@ class CountriesTest < ActionController::IntegrationTest
      }
    end
 
-   def  test_updating_name
+   def test_editing
+     @countries.each { | country |
+       post "/countries/edit", :id => countries(country).id
+       assert 200, status
+       assert "/countries/edit/#{countries(country).id}", path
+     }
+   end
+
+   def test_updating_name
      @countries.each { | country |
        post "/countries/update", :id => countries(country).id, :name => countries(country).name.reverse
        assert 302, status
@@ -36,12 +51,11 @@ class CountriesTest < ActionController::IntegrationTest
      }
    end
 
-#    def  test_deleting
-#      @countries.each { | country |
-#        get "/countries/delete", :id => countries(country).id
-#        puts status
-#        puts path
-
-#      }
-#    end
+    def test_deleting
+     @countries.each { | country |
+       get "/countries/destroy", :id => countries(country).id
+       assert 302, status
+       assert '/countries/list',  path
+     }
+   end
 end
