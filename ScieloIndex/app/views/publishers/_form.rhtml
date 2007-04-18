@@ -1,0 +1,19 @@
+<%= error_messages_for 'publisher' %>
+
+<!--[form:publisher]-->
+<p><label for="publisher_name">Name</label><br/>
+<%= text_area 'publisher', 'name'  %></p>
+
+<p><label for="publisher_descr">Descr</label><br/>
+<%= text_area 'publisher', 'descr'  %></p>
+
+<p><label for="publisher_url">Url</label><br/>
+<%= text_area 'publisher', 'url'  %></p>
+
+<p><label for="publisher_created_on">Created on</label><br/>
+<%= datetime_select 'publisher', 'created_on'  %></p>
+
+<p><label for="publisher_updated_on">Updated on</label><br/>
+<%= datetime_select 'publisher', 'updated_on'  %></p>
+<!--[eoform:publisher]-->
+
