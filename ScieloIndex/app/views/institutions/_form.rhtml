@@ -2,34 +2,34 @@
 
 <!--[form:institution]-->
 <p><label for="institution_name">Name</label><br/>
-<%= text_area 'institution', 'name'  %></p>
+<%= text_area 'institution', 'name', 'cols' => 45, 'rows' => 3, 'maxsize' => 500  %></p>
 
 <p><label for="institution_url">Url</label><br/>
-<%= text_area 'institution', 'url'  %></p>
+<%= text_field 'institution', 'url', 'size' => 40 %></p>
 
 <p><label for="institution_abbrev">Abbrev</label><br/>
-<%= text_area 'institution', 'abbrev'  %></p>
+<%= text_field 'institution', 'abbrev', 'size' => 40 %></p>
 
 <p><label for="institution_address">Address</label><br/>
-<%= text_area 'institution', 'address'  %></p>
+<%= text_area 'institution', 'address', 'cols' => 45, 'rows' => 3, 'maxsize' => 500  %></p>
 
 <p><label for="institution_state">State</label><br/>
-<%= text_area 'institution', 'state'  %></p>
+<%= text_field 'institution', 'state', 'size' => 40 %></p>
 
 <p><label for="institution_city">City</label><br/>
-<%= text_area 'institution', 'city'  %></p>
+<%= text_field 'institution', 'city', 'size' => 40 %></p>
 
 <p><label for="institution_zipcode">Zipcode</label><br/>
-<%= text_area 'institution', 'zipcode'  %></p>
+<%= text_field 'institution', 'zipcode', 'size' => 40  %></p>
 
 <p><label for="institution_phone">Phone</label><br/>
-<%= text_area 'institution', 'phone'  %></p>
+<%= text_field 'institution', 'phone', 'size' => 40 %></p>
 
 <p><label for="institution_fax">Fax</label><br/>
-<%= text_area 'institution', 'fax'  %></p>
+<%= text_field 'institution', 'fax', 'size' => 40 %></p>
 
 <p><label for="institution_other">Other</label><br/>
-<%= text_area 'institution', 'other'  %></p>
+<%= text_field 'institution', 'other', 'size' => 40 %></p>
 
 <p><label for="institution_created_on">Created on</label><br/>
 <%= datetime_select 'institution', 'created_on'  %></p>
