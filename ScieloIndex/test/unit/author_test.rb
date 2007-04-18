@@ -4,7 +4,7 @@ class AuthorTest < Test::Unit::TestCase
   fixtures :authors
   
   def setup
-    @authors = [:hector, :memo]
+    @authors = [:hector, :memo, :mono]
   end 
 
   # RIGHT
@@ -104,16 +104,30 @@ class AuthorTest < Test::Unit::TestCase
     #@author.middlename = nil
     assert @author.valid?
 
-    @author.middlename = "F"
-    assert !@author.valid?
-
-    @author.middlename = "F."
+    @author.middlename = ""
     assert @author.valid?
 
     @author.middlename = "A"*21
     assert !@author.valid?
 
     @author.middlename = "F2"
+    assert !@author.valid?
+  end
+
+  def test_bad_values_for_suffix
+    @author = Author.new({:id => 100, :firstname => 'Lars', :lastname => 'Adame'})
+
+    # Checking middle name constraints
+    #@author.suffix = nil
+    assert @author.valid?
+
+    @author.suffix = ""
+    assert @author.valid?
+
+    @author.suffix = "A"*9
+    assert !@author.valid?
+
+    @author.suffix = "F2"
     assert !@author.valid?
   end
 end

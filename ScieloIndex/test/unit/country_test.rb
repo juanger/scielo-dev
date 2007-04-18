@@ -18,7 +18,7 @@ class CountryTest < Test::Unit::TestCase
     }
   end
 
-  def test_updating_countries
+  def test_updating
     @countries.each { |country|
       @country = countries(country)
       @country_db = Country.find_by_name(@country.name)
@@ -32,7 +32,7 @@ class CountryTest < Test::Unit::TestCase
     }
    end
 
-  def test_deleting_countries
+  def test_deleting
     @countries.each { |country|
       @country = countries(country)
       @country_db = Country.find_by_name(@country.name)
@@ -54,7 +54,6 @@ class CountryTest < Test::Unit::TestCase
 
   # Boundary
   def test_bad_values_for_id
-#    @country = Country.new({:id => 156, :name => 'China', :code => 'CN'})
     @country = Country.new({:id => 156, :name => 'China', :code => 'CN'})
     
     # Checking for ID constraints
@@ -88,7 +87,7 @@ class CountryTest < Test::Unit::TestCase
   def test_bad_values_for_code
     @country = Country.new({:id => 156, :name => 'China', :code => 'CN'})
     
-    # Checking for ID constraints
+    # Checking for country code constraints
     @country.code = nil
     assert !@country.valid?
 
@@ -101,7 +100,4 @@ class CountryTest < Test::Unit::TestCase
     @country.code = "A2"
     assert !@country.valid?
   end
-
-  #def teardown
-  #end
 end

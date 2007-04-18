@@ -11,3 +11,9 @@ memo:
   firstname: Guillermo
   lastname: Giron
   suffix:
+mono:
+  id: 3
+  firstname: David
+  middlename: Mojo
+  lastname: Gudino
+  suffix: PhD.
