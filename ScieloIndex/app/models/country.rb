@@ -1,5 +1,4 @@
 class Country < ActiveRecord::Base
-  #validates_numericality_of :id
   validates_presence_of :id, :name, :code 
   validates_inclusion_of :id, :in => 1..999
   validates_length_of :name, :within => 3..80

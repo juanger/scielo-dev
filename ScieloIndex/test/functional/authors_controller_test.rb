@@ -12,7 +12,7 @@ class AuthorsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = authors(:first).id
+    @first_id = authors(:hector).id
   end
 
   def test_index
@@ -52,7 +52,7 @@ class AuthorsControllerTest < Test::Unit::TestCase
   def test_create
     num_authors = Author.count
 
-    post :create, :author => {}
+    post :create, :author => {:id => 3, :firstname => "Lars", :lastname => "Adame", :suffix => "Lic."}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'

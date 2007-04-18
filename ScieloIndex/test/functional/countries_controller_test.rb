@@ -52,7 +52,7 @@ class CountriesControllerTest < Test::Unit::TestCase
   def test_create
     num_countries = Country.count
 
-    post :create, :country =>{"name"=>"Argentina", "code"=>"AR", "id"=>"90"}
+    post :create, :country =>{:id => "90", :name => "Argentina", :code => "AR"}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'

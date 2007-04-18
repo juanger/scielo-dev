@@ -71,7 +71,7 @@ class CountryTest < Test::Unit::TestCase
   def test_bad_values_for_name
     @country = Country.new({:id => 156, :name => 'China', :code => 'CN'})
     
-    # Checking for ID constraints
+    # Checking for name constraints
     @country.name = nil
     assert !@country.valid?
 
