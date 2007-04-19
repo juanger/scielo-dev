@@ -31,7 +31,7 @@ class AuthorTest < Test::Unit::TestCase
       @author_db.lastname.reverse
       assert @author_db.update
     }
-   end
+  end
 
   def test_deleting
     @authors.each { |author|

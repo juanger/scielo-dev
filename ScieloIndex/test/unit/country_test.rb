@@ -17,7 +17,6 @@ class CountryTest < Test::Unit::TestCase
       assert_equal @country.code, @country_db.code
     }
   end
-
   def test_updating
     @countries.each { |country|
       @country = countries(country)
