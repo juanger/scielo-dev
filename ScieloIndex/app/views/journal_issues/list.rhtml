@@ -1,0 +1,27 @@
+<h1>Listing journal_issues</h1>
+
+<table>
+  <tr>
+  <% for column in JournalIssue.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for journal_issue in @journal_issues %>
+  <tr>
+  <% for column in JournalIssue.content_columns %>
+    <td><%=h journal_issue.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => journal_issue %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => journal_issue %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => journal_issue }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @journal_issue_pages.current.previous } if @journal_issue_pages.current.previous %>
+<%= link_to 'Next page', { :page => @journal_issue_pages.current.next } if @journal_issue_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New journal_issue', :action => 'new' %>

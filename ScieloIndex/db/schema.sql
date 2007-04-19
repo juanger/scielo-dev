@@ -131,7 +131,7 @@ CREATE TABLE journals (
 COMMENT ON TABLE journals IS
 	'Revistas en las cuales pueden publicarse artículos';
 
-CREATE TABLE journalissues (
+CREATE TABLE journal_issues (
 	id SERIAL,
 	journal_id int4 NOT NULL 
         	REFERENCES journals 
@@ -158,7 +158,7 @@ CREATE TABLE articles (
 CREATE TABLE article_authors (
 	id SERIAL,
 	journalissue_id int4 NOT NULL 
-        	REFERENCES journalissues(id) 
+        	REFERENCES journal_issues(id) 
             	ON UPDATE CASCADE         
             	ON DELETE CASCADE         
             	DEFERRABLE,
