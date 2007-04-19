@@ -43,12 +43,12 @@ class PublisherTest < Test::Unit::TestCase
   end
 
   def test_creating_empty_publisher
-    @author = Author.new()
-    assert !@author.save
+    @publisher = Publisher.new()
+    assert !@publisher.save
   end
 
   def test_checking_uniqueness
-    @publisher = Publisher.new({:id => 1, :name => 'MIT Press', :descr => 'For cool kids'})
+    @publisher = Publisher.new({:id => 4, :name => 'MIT Press', :descr => 'For cool kids'})
     assert !@publisher.save
   end
 
@@ -111,7 +111,7 @@ class PublisherTest < Test::Unit::TestCase
     @publisher.url = "http://foo.org"
     assert @publisher.valid?
 
-    @publisher.url = "A"*101
+    @publisher.url = "A"*201
     assert !@publisher.valid?
 
     @publisher.url = "http://[]"

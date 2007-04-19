@@ -12,7 +12,7 @@ class JournalsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = journals(:first).id
+    @first_id = journals(:watchmen).id
   end
 
   def test_index
@@ -52,7 +52,7 @@ class JournalsControllerTest < Test::Unit::TestCase
   def test_create
     num_journals = Journal.count
 
-    post :create, :journal => {}
+    post :create, :journal => {:id => 3, :title => 'Batman: The Dark Knight Returns', :country_id => 840, :state => 'Arizon', :city => 'Las Vegas', :publisher_id => 12, :email => 'foo@dc.com', :issn => '5678-8765'}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
