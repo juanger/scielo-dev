@@ -1,0 +1,34 @@
+<%= error_messages_for 'journal' %>
+
+<!--[form:journal]-->
+<p><label for="journal_title">Title</label><br/>
+<%= text_area 'journal', 'title'  %></p>
+
+<p><label for="journal_state">State</label><br/>
+<%= text_area 'journal', 'state'  %></p>
+
+<p><label for="journal_city">City</label><br/>
+<%= text_area 'journal', 'city'  %></p>
+
+<p><label for="journal_url">Url</label><br/>
+<%= text_area 'journal', 'url'  %></p>
+
+<p><label for="journal_email">Email</label><br/>
+<%= text_area 'journal', 'email'  %></p>
+
+<p><label for="journal_other">Other</label><br/>
+<%= text_area 'journal', 'other'  %></p>
+
+<p><label for="journal_created_on">Created on</label><br/>
+<%= datetime_select 'journal', 'created_on'  %></p>
+
+<p><label for="journal_updated_on">Updated on</label><br/>
+<%= datetime_select 'journal', 'updated_on'  %></p>
+
+<p><label for="journal_abbrev">Abbrev</label><br/>
+<%= text_area 'journal', 'abbrev'  %></p>
+
+<p><label for="journal_issn">Issn</label><br/>
+<%= text_area 'journal', 'issn'  %></p>
+<!--[eoform:journal]-->
+
