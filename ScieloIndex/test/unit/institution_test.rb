@@ -29,7 +29,7 @@ class InstitutionTest < Test::Unit::TestCase
    end
 
   def test_updating
-    @institutions.each { |institution|
+      @institutions.each { |institution|
       @institution = institutions(institution)
       @institution_db = Institution.find_by_name(@institution.name)
       #@institution_db.id = @institution_db.id + 1 Es serial, se cambia?

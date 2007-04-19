@@ -2,18 +2,18 @@
 
 <!--[form:article]-->
 <p><label for="article_title">Title</label><br/>
-<%= text_area 'article', 'title'  %></p>
+<%= text_area 'article', 'title', 'cols' => 80, 'rows' => 5 %></p>
 
 <p><label for="article_pages">Pages</label><br/>
-<%= text_area 'article', 'pages'  %></p>
+<%= text_field 'article', 'pages'  %></p>
 
 <p><label for="article_url">Url</label><br/>
-<%= text_area 'article', 'url'  %></p>
+<%= text_field 'article', 'url'  %></p>
 
 <p><label for="article_pacsnum">Pacsnum</label><br/>
-<%= text_area 'article', 'pacsnum'  %></p>
+<%= text_field 'article', 'pacsnum'  %></p>
 
 <p><label for="article_other">Other</label><br/>
-<%= text_area 'article', 'other'  %></p>
+<%= text_area 'article', 'other', 'cols' => 80, 'rows' => 5 %></p>
 <!--[eoform:article]-->
 

@@ -1,5 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+article1:
   id: 1
-two:
+  title: Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis
+  pages: 12 p.p
+  url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en
+  pacsnum: 12 sss
+  other: Atmósfera
+  	
+article2:
   id: 2
+  title: Lightning induced heating of the ionosphere
+  pages: 31 pages
+  url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100003&lng=es&nrm=iso&tlng=en
+  pacsnum: 31 sss
+  other: Atmósfera
