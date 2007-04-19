@@ -24,11 +24,11 @@ class AuthorTest < Test::Unit::TestCase
     @authors.each { |author|
       @author = authors(author)
       @author_db = Author.find_by_firstname(@author.firstname)
-      @author_db.firstname.reverse
+      @author_db.firstname.reverse!
       assert @author_db.update
       @author_db.id = @author_db.id + 1
       assert @author_db.update
-      @author_db.lastname.reverse
+      @author_db.lastname.reverse!
       assert @author_db.update
     }
   end

@@ -2,6 +2,7 @@ require "#{File.dirname(__FILE__)}/../test_helper"
 
 class AuthorsTest < ActionController::IntegrationTest
   fixtures :authors
+
   def setup
     @authors = [:hector, :memo, :mono]
   end
