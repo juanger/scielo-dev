@@ -4,6 +4,9 @@
 <p><label for="institution_name">Name</label><br/>
 <%= text_area 'institution', 'name', 'cols' => 45, 'rows' => 3, 'maxsize' => 500  %></p>
 
+<p><label for="institution_institution_id">Parent Institution</label><br/>
+<%= simple_select(Institution,'parent_id') %></p>
+
 <p><label for="institution_url">Url</label><br/>
 <%= text_field 'institution', 'url', 'size' => 40 %></p>
 
@@ -12,6 +15,10 @@
 
 <p><label for="institution_address">Address</label><br/>
 <%= text_area 'institution', 'address', 'cols' => 45, 'rows' => 3, 'maxsize' => 500  %></p>
+
+<p><label for="institution_country_id">Country</label><br/>
+<%= simple_select(Country) %></p>
+
 
 <p><label for="institution_state">State</label><br/>
 <%= text_field 'institution', 'state', 'size' => 40 %></p>

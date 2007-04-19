@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+unam:
+  id: 1	
+  name: Universidad Nacional Autónoma de México
+  url: http://www.unam.mx
+  abbrev: UNAM
+  parent_id: 1
+  address: Ciudad Universitaria, Delegación Coyoacán
+  country_id: 484
+  state: Distrito Federal 
+  city: México 
+  zipcode: 04510
+  phone:
+  fax:
+  other:
+

@@ -1,4 +1,6 @@
 class InstitutionsController < ApplicationController
+  helper :select
+
   def index
     list
     render :action => 'list'
