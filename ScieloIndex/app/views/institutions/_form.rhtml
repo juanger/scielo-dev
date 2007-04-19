@@ -19,7 +19,6 @@
 <p><label for="institution_country_id">Country</label><br/>
 <%= simple_select(Country) %></p>
 
-
 <p><label for="institution_state">State</label><br/>
 <%= text_field 'institution', 'state', 'size' => 40 %></p>
 
@@ -37,11 +36,5 @@
 
 <p><label for="institution_other">Other</label><br/>
 <%= text_field 'institution', 'other', 'size' => 40 %></p>
-
-<p><label for="institution_created_on">Created on</label><br/>
-<%= datetime_select 'institution', 'created_on'  %></p>
-
-<p><label for="institution_updated_on">Updated on</label><br/>
-<%= datetime_select 'institution', 'updated_on'  %></p>
 <!--[eoform:institution]-->
 
