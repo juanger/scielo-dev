@@ -1,5 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+mit:
   id: 1
-two:
+  name: MIT Press
+  descr: Cool books for cool guys
+  url: http://www.mit.edu
+white:
   id: 2
+  name: White Wolf
+  descr: Storytelling for mature minds
+  url: http://www.white-wolf.com
+black:
+  id: 3
+  name: Black Dog Factory
+  descr: Big bad stories for big boys
+  url: http://www.black-dog.com

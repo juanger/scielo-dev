@@ -12,7 +12,7 @@ class InstitutionsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = institutions(:first).id
+    @first_id = institutions(:unam).id
   end
 
   def test_index
@@ -52,7 +52,7 @@ class InstitutionsControllerTest < Test::Unit::TestCase
   def test_create
     num_institutions = Institution.count
 
-    post :create, :institution => {}
+    post :create, :institution => {:id => 2, :name => 'Instituto Politecnico Nacional', :url => 'http://www.ipn.mx', :address => "Foo #12", :country_id => 484, :state => 'Distrito Federal', :city => 'Mexico', :zipcode => 04510}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'

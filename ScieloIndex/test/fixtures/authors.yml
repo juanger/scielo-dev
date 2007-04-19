@@ -10,7 +10,6 @@ memo:
   id: 2
   firstname: Guillermo
   lastname: Giron
-  suffix:
 mono:
   id: 3
   firstname: David

@@ -1,6 +1,6 @@
 class Institution < ActiveRecord::Base
-  validates_presence_of :id, :name, :country_id
-  validates_length_of :id, :in => 1..99999
+  validates_presence_of :name, :country_id
+  validates_length_of :id, :in => 1..99999, :allow_nil => true
   validates_length_of :name, :within => 3..500
   validates_length_of :url, :within => 1..200
   validates_length_of :abbrev, :within => 1..200

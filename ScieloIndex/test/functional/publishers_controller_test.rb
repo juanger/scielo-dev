@@ -12,7 +12,7 @@ class PublishersControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = publishers(:first).id
+    @first_id = publishers(:mit).id
   end
 
   def test_index
@@ -52,7 +52,7 @@ class PublishersControllerTest < Test::Unit::TestCase
   def test_create
     num_publishers = Publisher.count
 
-    post :create, :publisher => {}
+    post :create, :publisher => {:id => 4, :name => 'DC Comics', :descr => 'Comics for the masses', :url => 'http://www.dc-comics.com' }
 
     assert_response :redirect
     assert_redirected_to :action => 'list'

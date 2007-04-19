@@ -2,18 +2,13 @@
 
 <!--[form:publisher]-->
 <p><label for="publisher_name">Name</label><br/>
-<%= text_area 'publisher', 'name'  %></p>
+<%= text_field 'publisher', 'name', 'size' => 30, 'maxsize' => 100 %></p>
 
-<p><label for="publisher_descr">Descr</label><br/>
-<%= text_area 'publisher', 'descr'  %></p>
+<p><label for="publisher_descr">Description</label><br/>
+<%= text_area 'publisher', 'descr', 'cols' => 40, 'rows' => 5, 'maxsize' => 500 %></p>
 
 <p><label for="publisher_url">Url</label><br/>
-<%= text_area 'publisher', 'url'  %></p>
+<%= text_field 'publisher', 'url', 'size' => 30, 'maxsize' => 100 %></p>
 
-<p><label for="publisher_created_on">Created on</label><br/>
-<%= datetime_select 'publisher', 'created_on'  %></p>
-
-<p><label for="publisher_updated_on">Updated on</label><br/>
-<%= datetime_select 'publisher', 'updated_on'  %></p>
 <!--[eoform:publisher]-->
 
