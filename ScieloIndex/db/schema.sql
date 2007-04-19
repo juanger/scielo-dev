@@ -102,7 +102,7 @@ COMMENT ON TABLE publishers IS
 
 CREATE TABLE collections (
 	id SERIAL,
-	title text,
+	title text NOT NULL,
 	country_id int4 NOT NULL 
         	REFERENCES countries(id) 
             	ON UPDATE CASCADE           
