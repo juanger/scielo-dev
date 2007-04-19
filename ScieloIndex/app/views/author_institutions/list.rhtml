@@ -1,0 +1,27 @@
+<h1>Listing author_institutions</h1>
+
+<table>
+  <tr>
+  <% for column in AuthorInstitution.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for author_institution in @author_institutions %>
+  <tr>
+  <% for column in AuthorInstitution.content_columns %>
+    <td><%=h author_institution.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => author_institution %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => author_institution %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => author_institution }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @author_institution_pages.current.previous } if @author_institution_pages.current.previous %>
+<%= link_to 'Next page', { :page => @author_institution_pages.current.next } if @author_institution_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New author_institution', :action => 'new' %>
