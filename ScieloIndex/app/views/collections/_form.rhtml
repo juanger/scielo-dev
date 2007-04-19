@@ -1,0 +1,28 @@
+<%= error_messages_for 'collection' %>
+
+<!--[form:collection]-->
+<p><label for="collection_title">Title</label><br/>
+<%= text_area 'collection', 'title'  %></p>
+
+<p><label for="collection_state">State</label><br/>
+<%= text_area 'collection', 'state'  %></p>
+
+<p><label for="collection_city">City</label><br/>
+<%= text_area 'collection', 'city'  %></p>
+
+<p><label for="collection_url">Url</label><br/>
+<%= text_area 'collection', 'url'  %></p>
+
+<p><label for="collection_email">Email</label><br/>
+<%= text_area 'collection', 'email'  %></p>
+
+<p><label for="collection_other">Other</label><br/>
+<%= text_area 'collection', 'other'  %></p>
+
+<p><label for="collection_created_on">Created on</label><br/>
+<%= datetime_select 'collection', 'created_on'  %></p>
+
+<p><label for="collection_updated_on">Updated on</label><br/>
+<%= datetime_select 'collection', 'updated_on'  %></p>
+<!--[eoform:collection]-->
+
