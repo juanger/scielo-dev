@@ -21,7 +21,7 @@ class AuthorsTest < ActionController::IntegrationTest
 
    
    def  test_creating_new_author
-     post "authors/create", :author =>  {:id => 100, :firstname => 'Fernando', :lastname => 'Maldonado'}
+     post "authors/create", :record =>  {:id => 100, :firstname => 'Fernando', :lastname => 'Maldonado'}
      assert_equal 302, status
      follow_redirect!
      assert_equal '/authors/list', path

@@ -27,7 +27,7 @@ class AuthorsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:authors)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class AuthorsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:author)
-    assert assigns(:author).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +46,13 @@ class AuthorsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:author)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_authors = Author.count
 
-    post :create, :author => {:id => 3, :firstname => "Lars", :lastname => "Adame", :suffix => "Lic."}
+    post :create, :record => {:id => 3, :firstname => "Lars", :lastname => "Adame", :suffix => "Lic."}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +66,8 @@ class AuthorsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:author)
-    assert assigns(:author).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update
