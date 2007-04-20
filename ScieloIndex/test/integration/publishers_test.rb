@@ -21,7 +21,7 @@ class PublishersTest < ActionController::IntegrationTest
 
    
    def  test_creating_new_publisher
-     post "publishers/create", :publisher =>  {:id => 100, :name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'}
+     post "publishers/create", :record =>  {:id => 100, :name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'}
      assert_equal 302, status
      follow_redirect!
      assert_equal '/publishers/list', path
