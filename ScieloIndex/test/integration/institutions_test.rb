@@ -19,12 +19,10 @@ class InstitutionTest < ActionController::IntegrationTest
    end
    
    def  test_creating_new_institutions
-     post "institutions/create", :institution => institutions(:unam).attributes
-#:institution =>  {:id => 1, :name => 'Universidad Nacional Autónoma de México', :url => 'http://www.unam.mx', :abbrev => 'UNAM', :parent_id => 1, :address => 'Ciudad Universitaria, Delegación Coyoacán', :country_id => 484, :state => 'Distrito Federal', :city => 'México', :zipcode => '04510', :phone => '56223040', :fax => '56225678', :other => 'algo'}
-     assert_equal 200, status
-     puts path
-#     follow_redirect!
-#     assert_equal '/institutions/list', path
+     post "institutions/create", :record => {:id => 100, :name => 'Universidad Autonoma Metropolitana', :url => 'http://www.uam.mx', :abbrev => 'UAM', :address => "Foo 12", :country_id => 484, :state => 'Distrito Federal', :city => 'Ciudad de Mexico', :zipcode => '04510', :phone => '55726791', :fax => '55726792', :other => "La mejor univeridad de Latinoamerica"}
+     assert_equal 302, status
+     follow_redirect!
+     assert_equal '/institutions/list', path
    end
 
    def test_showing

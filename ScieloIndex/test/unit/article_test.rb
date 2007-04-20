@@ -62,7 +62,7 @@ class ArticleTest < Test::Unit::TestCase
     
     # Checking for ID constraints
     @article.id = nil
-    assert !@article.valid?
+    assert @article.valid?
   end
 
   def test_bad_values_for_title

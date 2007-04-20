@@ -1,8 +1,8 @@
 <% for column in Institution.content_columns %>
 <p>
-  <b><%= column.human_name %>:</b> <%=h @institution.send(column.name) %>
+  <b><%= column.human_name %>:</b> <%=h @record.send(column.name) %>
 </p>
 <% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @institution %> |
+<%= link_to 'Edit', :action => 'edit', :id => @record %> |
 <%= link_to 'Back', :action => 'list' %>

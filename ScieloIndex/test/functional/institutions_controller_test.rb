@@ -27,7 +27,7 @@ class InstitutionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:institutions)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class InstitutionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:institution)
-    assert assigns(:institution).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +46,13 @@ class InstitutionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:institution)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_institutions = Institution.count
 
-    post :create, :institution => {:id => 2, :name => 'Instituto Politecnico Nacional', :url => 'http://www.ipn.mx', :address => "Foo #12", :country_id => 484, :state => 'Distrito Federal', :city => 'Mexico', :zipcode => 04510}
+    post :create, :record => {:id => 100, :name => 'Universidad Autonoma Metropolitana', :url => 'http://www.uam.mx', :abbrev => 'UAM', :address => "Foo 12", :country_id => 484, :state => 'Distrito Federal', :city => 'Ciudad de Mexico', :zipcode => '04510', :phone => '55726791', :fax => '55726792', :other => "La mejor univeridad de Latinoamerica"}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +66,8 @@ class InstitutionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:institution)
-    assert assigns(:institution).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

@@ -1,40 +1,40 @@
-<%= error_messages_for 'institution' %>
+<%= error_messages_for 'record' %>
 
 <!--[form:institution]-->
 <p><label for="institution_name">Name</label><br/>
-<%= text_area 'institution', 'name', 'cols' => 45, 'rows' => 3, 'maxsize' => 500  %></p>
+<%= text_area 'record', 'name', 'cols' => 45, 'rows' => 3, 'maxsize' => 500  %></p>
 
 <p><label for="institution_institution_id">Parent Institution</label><br/>
-<%= simple_select("institution",Institution,'parent_id') %></p>
+<%= simple_select("record",Institution,'parent_id') %></p>
 
 <p><label for="institution_url">Url</label><br/>
-<%= text_field 'institution', 'url', 'size' => 40 %></p>
+<%= text_field 'record', 'url', 'size' => 40 %></p>
 
 <p><label for="institution_abbrev">Abbrev</label><br/>
-<%= text_field 'institution', 'abbrev', 'size' => 40 %></p>
+<%= text_field 'record', 'abbrev', 'size' => 40 %></p>
 
 <p><label for="institution_address">Address</label><br/>
-<%= text_area 'institution', 'address', 'cols' => 45, 'rows' => 3, 'maxsize' => 500  %></p>
+<%= text_area 'record', 'address', 'cols' => 45, 'rows' => 3, 'maxsize' => 500  %></p>
 
 <p><label for="institution_country_id">Country</label><br/>
-<%= simple_select("institution",Country) %></p>
+<%= simple_select("record",Country) %></p>
 
 <p><label for="institution_state">State</label><br/>
-<%= text_field 'institution', 'state', 'size' => 40 %></p>
+<%= text_field 'record', 'state', 'size' => 40 %></p>
 
 <p><label for="institution_city">City</label><br/>
-<%= text_field 'institution', 'city', 'size' => 40 %></p>
+<%= text_field 'record', 'city', 'size' => 40 %></p>
 
 <p><label for="institution_zipcode">Zipcode</label><br/>
-<%= text_field 'institution', 'zipcode', 'size' => 40  %></p>
+<%= text_field 'record', 'zipcode', 'size' => 40  %></p>
 
 <p><label for="institution_phone">Phone</label><br/>
-<%= text_field 'institution', 'phone', 'size' => 40 %></p>
+<%= text_field 'record', 'phone', 'size' => 40 %></p>
 
 <p><label for="institution_fax">Fax</label><br/>
-<%= text_field 'institution', 'fax', 'size' => 40 %></p>
+<%= text_field 'record', 'fax', 'size' => 40 %></p>
 
 <p><label for="institution_other">Other</label><br/>
-<%= text_field 'institution', 'other', 'size' => 40 %></p>
+<%= text_field 'record', 'other', 'size' => 40 %></p>
 <!--[eoform:institution]-->
 
