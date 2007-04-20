@@ -1,21 +1,15 @@
 <h1>Listing article_authors</h1>
 
 <table>
-  <tr>
-  <% for column in ArticleAuthor.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-
 
 <% for article_author in @collection %>
   <tr>
-    <td><%=h article_author.journal_issue.journal.title + ', num: ' +  
+    <td><%=h article_author.article.title + ', ' + article_author.journal_issue.journal.title + ', num: ' +  
 	article_author.journal_issue.number + ', vol: ' +
-	article_author.journal_issue.volume + ', author: ' +
-	article_author.author.suffix + ' ' +
-	article_author.author.firstname + ' ' +
-	article_author.author.lastname
+	article_author.journal_issue.volume + ', author(s): ' +
+	article_author.article.authors.collect {|author| 
+	author.suffix + ' ' + author.lastname + ' ' + author.firstname
+        }.join(', ')
 
          %> </td>
     <td><%= link_to 'Show', :action => 'show', :id => article_author %></td>
