@@ -1,33 +1,33 @@
-<%= error_messages_for 'journal' %>
+<%= error_messages_for 'record' %>
 
 <!--[form:journal]-->
 <p><label for="journal_title">Title</label><br/>
-<%= text_field 'journal', 'title', 'size' => 30, 'maxsize' => 100 %></p>
+<%= text_field 'record', 'title', 'size' => 30, 'maxsize' => 100 %></p>
 
 <p><label for="journal_publisher_id">Publisher</label><br/>
-<%= simple_select("journal",Publisher) %></p>
+<%= simple_select("record",Publisher) %></p>
 
 <p><label for="journal_state">State</label><br/>
-<%= text_field 'journal', 'state', 'size' => 30, 'maxsize' => 30 %></p>
+<%= text_field 'record', 'state', 'size' => 30, 'maxsize' => 30 %></p>
 
 <p><label for="journal_city">City</label><br/>
-<%= text_field 'journal', 'city', 'size' => 30, 'maxsize' => 30 %></p>
+<%= text_field 'record', 'city', 'size' => 30, 'maxsize' => 30 %></p>
 
 <p><label for="journal_country_id">Country</label><br/>
-<%= simple_select("journal",Country) %></p>
+<%= simple_select("record",Country) %></p>
 
 <p><label for="journal_url">Url</label><br/>
-<%= text_field 'journal', 'url', 'size' => 30, 'maxsize' => 30 %></p>
+<%= text_field 'record', 'url', 'size' => 30, 'maxsize' => 30 %></p>
 
 <p><label for="journal_email">Email</label><br/>
-<%= text_field 'journal', 'email', 'size' => 20, 'maxsize' => 20 %></p>
+<%= text_field 'record', 'email', 'size' => 20, 'maxsize' => 20 %></p>
 
 <p><label for="journal_abbrev">Abbreviation</label><br/>
-<%= text_field 'journal', 'abbrev', 'size' => 20, 'maxsize' => 20 %></p>
+<%= text_field 'record', 'abbrev', 'size' => 20, 'maxsize' => 20 %></p>
 
 <p><label for="journal_issn">ISSN</label><br/>
-<%= text_field 'journal', 'issn', 'size' => 9, 'maxsize' => 9 %></p>
+<%= text_field 'record', 'issn', 'size' => 9, 'maxsize' => 9 %></p>
 
 <p><label for="journal_other">Other</label><br/>
-<%= text_area 'journal', 'other', 'cols' => 40, 'rows' => 5, 'maxsize' => 200 %></p>
+<%= text_area 'record', 'other', 'cols' => 40, 'rows' => 5, 'maxsize' => 200 %></p>
 <!--[eoform:journal]-->

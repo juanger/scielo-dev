@@ -21,7 +21,7 @@ class JournalsTest < ActionController::IntegrationTest
 
    
    def  test_creating_new_journal
-     post "journals/create", :journal =>  {:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'}
+     post "journals/create", :record =>  {:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'}
      assert_equal 302, status
      follow_redirect!
      assert_equal '/journals/list', path

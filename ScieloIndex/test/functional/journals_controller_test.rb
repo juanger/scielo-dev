@@ -27,7 +27,7 @@ class JournalsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:journals)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class JournalsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:journal)
-    assert assigns(:journal).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +46,13 @@ class JournalsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:journal)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_journals = Journal.count
 
-    post :create, :journal => {:id => 3, :title => 'Batman: The Dark Knight Returns', :country_id => 840, :state => 'Arizon', :city => 'Las Vegas', :publisher_id => 12, :email => 'foo@dc.com', :issn => '5678-8765'}
+    post :create, :record => {:id => 3, :title => 'Batman: The Dark Knight Returns', :country_id => 840, :state => 'Arizon', :city => 'Las Vegas', :publisher_id => 12, :email => 'foo@dc.com', :issn => '5678-8765'}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +66,8 @@ class JournalsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:journal)
-    assert assigns(:journal).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update
