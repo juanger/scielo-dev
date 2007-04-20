@@ -7,4 +7,7 @@ class Article < ActiveRecord::Base
   validates_length_of :url, :within => 1..200
   validates_length_of :pacsnum, :within => 1..200
   validates_length_of :other, :in => 2..100000
+
+  belongs_to :journal_issue
+  has_many :authors, :through => :article_authors
 end

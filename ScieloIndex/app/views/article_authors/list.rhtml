@@ -6,12 +6,18 @@
     <th><%= column.human_name %></th>
   <% end %>
   </tr>
-  
-<% for article_author in @article_authors %>
+
+
+<% for article_author in @collection %>
   <tr>
-  <% for column in ArticleAuthor.content_columns %>
-    <td><%=h article_author.send(column.name) %></td>
-  <% end %>
+    <td><%=h article_author.journal_issue.journal.title + ', num: ' +  
+	article_author.journal_issue.number + ', vol: ' +
+	article_author.journal_issue.volume + ', author: ' +
+	article_author.author.suffix + ' ' +
+	article_author.author.firstname + ' ' +
+	article_author.author.lastname
+
+         %> </td>
     <td><%= link_to 'Show', :action => 'show', :id => article_author %></td>
     <td><%= link_to 'Edit', :action => 'edit', :id => article_author %></td>
     <td><%= link_to 'Destroy', { :action => 'destroy', :id => article_author }, :confirm => 'Are you sure?', :method => :post %></td>
@@ -19,8 +25,8 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @article_author_pages.current.previous } if @article_author_pages.current.previous %>
-<%= link_to 'Next page', { :page => @article_author_pages.current.next } if @article_author_pages.current.next %> 
+<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
+<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
 
 <br />
 

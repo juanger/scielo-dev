@@ -15,4 +15,6 @@ class Journal < ActiveRecord::Base
   validates_numericality_of :country_id, :publisher_id, :only_integer => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_uniqueness_of :issn
+
+  has_many :journal_issues
 end

@@ -7,7 +7,7 @@
   <% end %>
   </tr>
   
-<% for journal_issue in @journal_issues %>
+<% for journal_issue in @collection %>
   <tr>
   <% for column in JournalIssue.content_columns %>
     <td><%=h journal_issue.send(column.name) %></td>
@@ -19,8 +19,8 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @journal_issue_pages.current.previous } if @journal_issue_pages.current.previous %>
-<%= link_to 'Next page', { :page => @journal_issue_pages.current.next } if @journal_issue_pages.current.next %> 
+<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
+<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
 
 <br />
 

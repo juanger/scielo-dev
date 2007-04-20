@@ -1,9 +1,9 @@
 <h1>Editing article_author</h1>
 
-<% form_tag :action => 'update', :id => @article_author do %>
+<% form_tag :action => 'update', :id => @record do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @article_author %> |
+<%= link_to 'Show', :action => 'show', :id => @record %> |
 <%= link_to 'Back', :action => 'list' %>

@@ -157,7 +157,7 @@ CREATE TABLE articles (
 
 CREATE TABLE article_authors (
 	id SERIAL,
-	journalissue_id int4 NOT NULL 
+	journal_issue_id int4 NOT NULL 
         	REFERENCES journal_issues(id) 
             	ON UPDATE CASCADE         
             	ON DELETE CASCADE         
@@ -173,7 +173,7 @@ CREATE TABLE article_authors (
             	ON DELETE CASCADE   
             	DEFERRABLE,
 	PRIMARY KEY (id),
-	UNIQUE(journalissue_id, article_id, author_id)
+	UNIQUE(journal_issue_id, article_id, author_id)
 );
 -- CREATE TABLE researchareas ( 
 -- 	id SERIAL,

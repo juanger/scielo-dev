@@ -6,4 +6,6 @@ class Author < ActiveRecord::Base
   validates_inclusion_of :id, :in => 1..9999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_format_of :firstname, :lastname, :middlename, :suffix, :with => /^[-a-zA-ZáéíóúÁÉÍÓÚñÑ. ]*$/
+
+  has_many :articles, :through => :article_authors
 end
