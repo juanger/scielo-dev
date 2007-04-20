@@ -15,3 +15,17 @@ unam:
   fax: 56225678
   other: algo
 
+ipn:
+  id: 2 
+  name: Instituto Politécnico Nacional 
+  url: http://www.ipn.mx
+  abbrev: IPN 
+  parent_id: 2 
+  address: Zacatenco 
+  country_id: 484
+  state: Distrito Federal
+  city: México
+  zipcode: 45100
+  phone: 5666666
+  fax: 5000000
+  other: algox
