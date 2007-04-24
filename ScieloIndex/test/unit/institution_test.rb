@@ -90,7 +90,6 @@ class InstitutionTest < Test::Unit::TestCase
     # Checking for empty ID 
     @institution.id = nil
     assert !@institution.valid?
-
   end
 
   def test_bad_values_for_name_and_country_id

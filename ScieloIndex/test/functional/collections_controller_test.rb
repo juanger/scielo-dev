@@ -51,12 +51,12 @@ class CollectionsControllerTest < Test::Unit::TestCase
 
   def test_create
     num_collections = Collection.count
-
-    post :create, :collection => {}
-
+    
+    post :create, :record => {:id => 1, :title => 'Atmósfera', :country_id => 484, :state => 'Distrito Federal', :city => 'Ciudad de México', :publisher_id => 4000, :url => 'www.atmosfera.com', :email => 'atmosfera@dgb.com', :other => 'en proceso'}
+    
     assert_response :redirect
     assert_redirected_to :action => 'list'
-
+    
     assert_equal num_collections + 1, Collection.count
   end
 
@@ -66,8 +66,8 @@ class CollectionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:collection)
-    assert assigns(:collection).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

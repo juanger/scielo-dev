@@ -1,5 +1,22 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+atmosfera:
   id: 1
-two:
+  title: Atmósfera
+  country_id: 484
+  state: Distrito Federal
+  city: Ciudad de México
+  publisher_id: 40
+  url: www.atmosfera.com
+  email: atmosfera@dgb.com
+  other: en proceso
+	
+medicina:
   id: 2
+  title: Medicina
+  country_id: 484
+  state: Distrito Federal
+  city: Ciudad de México
+  publisher_id: 50
+  url: www.medicina.com
+  email: medicina@medi.com
+  other: a dos columanas
