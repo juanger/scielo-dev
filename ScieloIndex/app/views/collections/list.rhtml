@@ -7,7 +7,7 @@
   <% end %>
   </tr>
   
-<% for collection in @collections %>
+<% for collection in @collection %>
   <tr>
   <% for column in Collection.content_columns %>
     <td><%=h collection.send(column.name) %></td>
@@ -17,10 +17,11 @@
     <td><%= link_to 'Destroy', { :action => 'destroy', :id => collection }, :confirm => 'Are you sure?', :method => :post %></td>
   </tr>
 <% end %>
+
 </table>
 
-<%= link_to 'Previous page', { :page => @collection_pages.current.previous } if @collection_pages.current.previous %>
-<%= link_to 'Next page', { :page => @collection_pages.current.next } if @collection_pages.current.next %> 
+<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
+<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
 
 <br />
 

@@ -2,28 +2,27 @@
 
 <!--[form:collection]-->
 <p><label for="collection_title">Title</label><br/>
-<%= text_area 'collection', 'title'  %></p>
+<%= text_area 'record', 'title', 'cols' => 45, 'rows' => 3, 'maxsize' => 500 %></p>
 
 <p><label for="collection_country_id">Country</label><br/>
 <%= simple_select("record",Country) %></p>
 
 <p><label for="collection_state">State</label><br/>
-<%= text_area 'collection', 'state'  %></p>
+<%= text_field 'record', 'state', 'size' => 40 %></p>
 
 <p><label for="collection_city">City</label><br/>
-<%= text_area 'collection', 'city'  %></p>
+<%= text_field 'record', 'city', 'size' => 40 %></p>
 
 <p><label for="collection_publisher_id">Publisher</label><br/>
 <%= simple_select("record",Publisher) %></p>
 
 <p><label for="collection_url">Url</label><br/>
-<%= text_area 'collection', 'url'  %></p>
+<%= text_field 'record', 'url', 'size' => 50  %></p>
 
 <p><label for="collection_email">Email</label><br/>
-<%= text_area 'collection', 'email'  %></p>
+<%= text_field 'record', 'email', 'size' => 50 %></p>
 
 <p><label for="collection_other">Other</label><br/>
-<%= text_area 'collection', 'other'  %></p>
-
+<%= text_field 'record', 'other', 'size' => 50 %></p>
 <!--[eoform:collection]-->
 

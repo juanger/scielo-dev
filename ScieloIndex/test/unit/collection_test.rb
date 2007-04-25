@@ -1,12 +1,13 @@
 require File.dirname(__FILE__) + '/../test_helper'
+
 class CollectionTest < Test::Unit::TestCase
   fixtures :collections
-
+  
   def setup
-    @collections = [:atmosfera, :medicina]
+    @collections = [:atmosfera]
   end
 
-  # RIGHT CRUD (Create, Update and Delete)
+    # RIGHT CRUD (Create, Update and Delete)
   def test_creating_collections_from_fixtures
     @collections.each { |collection|
       @collection = collections(collection)
@@ -69,16 +70,7 @@ class CollectionTest < Test::Unit::TestCase
     assert !@collection.save
   end
 
-# Boundary
-  def test_bad_values_for_id
-  #@collection is the object, here is created
-    @collection = Collection.new({:id => 1, :title => 'Atmósfera', :country_id => 484, :state => 'Distrito Federal', :city => 'Ciudad de México', :publisher_id => 40, :url => 'www.atmosfera.com', :email => 'atmosfera@dgb.com', :other => 'en proceso'})
-    # Checking for empty ID 
-    @collection.id = nil
-    assert !@collection.valid?
-  end
-
-  def test_bad_values_for_title_and_country_id
+ def test_bad_values_for_title_and_country_id
   #@collection is the object, here is created
     @collection = Collection.new({:id => 1, :title => 'Atmósfera', :country_id => 484, :state => 'Distrito Federal', :city => 'Ciudad de México', :publisher_id => 40, :url => 'www.atmosfera.com', :email => 'atmosfera@dgb.com', :other => 'en proceso'})
     # Checking for empty values constraints
@@ -89,5 +81,6 @@ class CollectionTest < Test::Unit::TestCase
     assert !@collection.valid?
 
   end
+
 
 end
