@@ -12,7 +12,7 @@ class CollectionsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = collections(:first).id
+    @first_id = collections(:atmosfera).id
   end
 
   def test_index
@@ -27,7 +27,7 @@ class CollectionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:collections)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class CollectionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:collection)
-    assert assigns(:collection).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,14 +46,12 @@ class CollectionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:collection)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_collections = Collection.count
-
-    post :create, :collection => {}
-
+    post :create, :record => {:id => 3, :title => 'Atmosfera', :country_id => 484, :state => 'Distrito Federal', :city => 'Ciudad de Mexico', :publisher_id => 1, :url => 'www.atmosfera.com', :email => 'atmosfera@dgb.com', :other => 'en proceso'}
     assert_response :redirect
     assert_redirected_to :action => 'list'
 
@@ -66,8 +64,8 @@ class CollectionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:collection)
-    assert assigns(:collection).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

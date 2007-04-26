@@ -1,10 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 atmosfera:
   id: 1
-  title: Atmósfera
+  title: Atmosfera
   country_id: 484
   state: Distrito Federal
-  city: Ciudad de México
+  city: Ciudad de Mexico
   publisher_id: 40
   url: www.atmosfera.com
   email: atmosfera@dgb.com
@@ -15,7 +15,7 @@ medicina:
   title: Medicina
   country_id: 484
   state: Distrito Federal
-  city: Ciudad de México
+  city: Ciudad de Mexico
   publisher_id: 50
   url: www.medicina.com
   email: medicina@medi.com
