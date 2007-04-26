@@ -1,12 +1,7 @@
 
 2007-04-25  Juan Germán Castañeda  <juanger@gmail>
 
-	* collections.yml: Se modificaron los fixtures quitándole los
-	acentos.
+	* countries.yml: Se añadió usa a los fixtures
 
-	* collections_controller_test.rb: Se hicieron las pruebas de
-	funcionalidad .
-
-	* collection_test.rb: Se crearon las pruebas de unidad.
-
-	* collections_test.rb: Se hicieron las pruebas de integridad
+	* collection_test.rb: Se añadieron los fixtures de publishers y
+	countries

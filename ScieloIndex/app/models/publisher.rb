@@ -9,4 +9,6 @@ class Publisher < ActiveRecord::Base
   validates_inclusion_of :id, :in => 1..9999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_uniqueness_of :name
+  
+  has_one :collection
 end

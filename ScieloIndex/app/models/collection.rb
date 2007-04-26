@@ -12,4 +12,7 @@ class Collection < ActiveRecord::Base
   validates_inclusion_of :id, :in => 1..9999, :allow_nil => true, :only_integer => true
   validates_numericality_of :country_id, :publisher_id, :only_integer => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
+  
+  belongs_to :country
+  belongs_to :publisher
 end

@@ -7,3 +7,7 @@ brasil:
   id: 123
   name: Brasil
   code: br
+usa:
+  id: 840
+  name: Estados Unidos
+  code: US

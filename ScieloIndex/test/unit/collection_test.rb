@@ -2,6 +2,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class CollectionTest < Test::Unit::TestCase
   fixtures :collections
+  fixtures :publishers
+  fixtures :countries
   
   def setup
     @collections = [:atmosfera, :medicina]
@@ -66,7 +68,7 @@ class CollectionTest < Test::Unit::TestCase
 
   # Boundary
   def test_bad_values_for_id
-    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
     
     # Checking for ID constraints
     @collection.id = nil
@@ -80,7 +82,7 @@ class CollectionTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_title
-    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
 
     # Checking title constraints
     @collection.title = nil
@@ -97,7 +99,7 @@ class CollectionTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_publisher_id
-    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids' })
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids' })
 
     # Checking publisher_id constraints
     @collection.publisher_id = nil
@@ -114,7 +116,7 @@ class CollectionTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_state
-    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
 
     # Checking state constraints
     @collection.state = nil
@@ -131,7 +133,7 @@ class CollectionTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_city
-    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
 
     # Checking city constraints
     @collection.city = nil
@@ -148,7 +150,7 @@ class CollectionTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_country_id
-    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
 
     # Checking country_id constraints
     @collection.country_id = nil
@@ -165,7 +167,7 @@ class CollectionTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_url
-    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
 
     # Checking url constraints
     @collection.url = nil
@@ -182,7 +184,7 @@ class CollectionTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_email
-    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
 
     # Checking email constraints
     @collection.email = nil
@@ -200,7 +202,7 @@ class CollectionTest < Test::Unit::TestCase
 
 
   def test_bad_values_for_other
-    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
 
     # Checking other constraints
     @collection.other = nil
@@ -215,4 +217,21 @@ class CollectionTest < Test::Unit::TestCase
     @collection.other = "Cool kinds like comics |foo|"
     assert !@collection.valid?
   end
+
+  def test_belongs_to_country
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    assert @collection.country.id, 840
+    assert @collection.country.name, 'Estados Unidos'
+    assert @collection.country.code, 'US'
+  end
+
+  def test_belongs_to_publisher
+    @collection = Collection.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'})
+    assert @collection.publisher.id, 1
+    assert @collection.publisher.name, 'MIT Press'
+    assert @collection.publisher.descr, 'Cool books for cool guy' 
+    assert @collection.publisher.url, 'http://www.mit.edu'
+  end
+
+
 end

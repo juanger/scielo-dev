@@ -1,0 +1,8 @@
+2007-04-25  Juan Germán Castañeda  <juanger@gmail.com>
+
+	* collection.rb: Se añadió belongs_to :country y belongs_to :publisher
+
+	* country.rb: Se añadió has_one :collection
+
+	* publisher.rb: Se añadió has_one :collection
+
