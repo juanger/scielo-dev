@@ -1,6 +1,5 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
-
-class AuthorsTest < ActionController::IntegrationTest
+class AuthorTest < ActionController::IntegrationTest
   fixtures :authors
 
   def setup
@@ -19,9 +18,8 @@ class AuthorsTest < ActionController::IntegrationTest
      assert_equal '/authors/new', path
    end
 
-   
    def  test_creating_new_author
-     post "authors/create", :record =>  {:id => 100, :firstname => 'Fernando', :lastname => 'Maldonado'}
+     post "authors/create", :record =>  {:id => 4, :firstname => 'Martin', :lastname => 'Rey'}
      assert_equal 302, status
      follow_redirect!
      assert_equal '/authors/list', path
@@ -45,7 +43,7 @@ class AuthorsTest < ActionController::IntegrationTest
 
    def test_updating_name
      @authors.each { | author |
-       post "/authors/update", :id => authors(author).id, :firstname => authors(author).firstname.reverse, :lastname => authors(author).lastname.reverse 
+       post "/authors/update", :id => authors(author).id, :firstname => authors(author).firstname.reverse, :middlename => authors(author).middlename.reverse, :lastname => authors(author).lastname.reverse, :suffix => authors(author).suffix.reverse
        assert 302, status
        follow_redirect!
        assert "/authors/show/#{authors(author).id}", path

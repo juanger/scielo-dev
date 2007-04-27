@@ -9,7 +9,9 @@ hector:
 memo:
   id: 2
   firstname: Guillermo
+  middlename: Nepomuseno
   lastname: Giron
+  suffix: PhD.
 mono:
   id: 3
   firstname: David
