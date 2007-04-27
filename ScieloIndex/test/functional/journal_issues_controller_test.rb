@@ -12,7 +12,7 @@ class JournalIssuesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = journal_issues(:first).id
+    @first_id = journal_issues(:atmosfera).id
   end
 
   def test_index
@@ -27,7 +27,7 @@ class JournalIssuesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:journal_issues)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class JournalIssuesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:journal_issue)
-    assert assigns(:journal_issue).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,14 +46,13 @@ class JournalIssuesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:journal_issue)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_journal_issues = JournalIssue.count
 
-    post :create, :journal_issue => {}
-
+    post :create, :record => {:id => 1, :journal_id => 2, :number => '19', :volume => '1', :year => 2006}
     assert_response :redirect
     assert_redirected_to :action => 'list'
 
@@ -66,8 +65,8 @@ class JournalIssuesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:journal_issue)
-    assert assigns(:journal_issue).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

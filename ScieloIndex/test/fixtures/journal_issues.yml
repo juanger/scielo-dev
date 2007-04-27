@@ -1,5 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+
+atmosfera:
   id: 1
-two:
+  journal_id: 2 
+  number: 19
+  volume: 1
+  year: 2006
+
+csalud:
   id: 2
+  journal_id: 2
+  number: 1
+  volume: 10
+  year: 2005
