@@ -5,6 +5,8 @@ require 'author_institutions_controller'
 class AuthorInstitutionsController; def rescue_action(e) raise e end; end
 
 class AuthorInstitutionsControllerTest < Test::Unit::TestCase
+  fixtures :authors
+  fixtures :institutions
   fixtures :author_institutions
 
   def setup
@@ -12,7 +14,7 @@ class AuthorInstitutionsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = author_institutions(:first).id
+    @first_id = author_institutions(:monoipn).id
   end
 
   def test_index
@@ -27,7 +29,7 @@ class AuthorInstitutionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:author_institutions)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +38,8 @@ class AuthorInstitutionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:author_institution)
-    assert assigns(:author_institution).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +48,13 @@ class AuthorInstitutionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:author_institution)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_author_institutions = AuthorInstitution.count
 
-    post :create, :author_institution => {}
+    post :create, :record => {:id => 3, :author_id => 1, :institution_id => 2}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +68,8 @@ class AuthorInstitutionsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:author_institution)
-    assert assigns(:author_institution).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

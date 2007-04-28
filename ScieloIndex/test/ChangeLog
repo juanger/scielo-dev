@@ -1,7 +1,25 @@
+2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * unit/author_institution_test.rb (AuthorInstitutionTest::setup):
+        se crearon las pruebas de unidad
+
+        * functional/author_institutions_controller_test.rb:  Se crearon
+        las pruebas de funcionalidad
+
+        * fixtures/author_institutions.yml: Se creo el fixture
+
+        * integration/author_institutions_test.rb: se crearon las pruebas
+        de integridad
+
+        * fixtures/authors.yml: se anadieron datos para mantener los
+        atributos no nulos
+
+        * unit/author_institution_test.rb (AuthorInstitutionTest::setup):
+
+
 
 2007-04-25  Juan Germán Castañeda  <juanger@gmail>
 
-	* countries.yml: Se añadió usa a los fixtures
+        * countries.yml: Se añadió estados unidos  a los fixtures
 
-	* collection_test.rb: Se añadieron los fixtures de publishers y
-	countries
+        * collection_test.rb: Se añadieron los fixtures de publishers y countries

@@ -1,0 +1,4 @@
+2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * select_helper.rb (SelectHelper::select_journal_issues): Se
+        anadio un FIXME para select_authors cuando se usan atributos nulos

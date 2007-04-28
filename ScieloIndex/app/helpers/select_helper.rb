@@ -16,11 +16,7 @@ module SelectHelper
     select(form, "journal_issue_id", collection, { :prompt => 'Seleccionar' })
   end
 
-  def select_journal_issues(form)
-    collection = JournalIssue.find(:all).collect{|record| [record.journal.title + '/' + record.number + '-' + record.volume, record.id]}
-    select(form, "journal_issue_id", collection, { :prompt => 'Seleccionar' })
-  end
-
+  # FIXME: Se usan atributos que pueden ser nulos como suffix y posiblemente middlename.
   def select_authors(form)
     collection = Author.find(:all).collect{|record| [record.suffix + ' ' + record.firstname + ' ' + record.lastname, record.id]}
     select(form, "author_id", collection, { :prompt => 'Seleccionar' })

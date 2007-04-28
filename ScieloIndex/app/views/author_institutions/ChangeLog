@@ -1,0 +1,5 @@
+2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * edit.rhtml, Show.rhtml, list.rhtml, _form.rhtml: Se cambiaron
+        las vistas para su uso con el controlador generico
+

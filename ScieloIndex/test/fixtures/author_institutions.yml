@@ -1,5 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+monoipn:
   id: 1
-two:
+  author_id: 3
+  institution_id: 2
+hectorunam:
   id: 2
+  author_id: 1
+  institution_id: 1

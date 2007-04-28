@@ -1,0 +1,5 @@
+2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * author_institutions_controller.rb: Ahora deriva del controlador
+        generico ScieloIndexController
+

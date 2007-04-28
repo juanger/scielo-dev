@@ -1,10 +1,9 @@
-<%= error_messages_for 'author_institution' %>
+<%= error_messages_for 'record' %>
 
 <!--[form:author_institution]-->
-<p><label for="author_institution_created_on">Created on</label><br/>
-<%= datetime_select 'author_institution', 'created_on'  %></p>
-
-<p><label for="author_institution_updated_on">Updated on</label><br/>
-<%= datetime_select 'author_institution', 'updated_on'  %></p>
+<p><label for="author_institution_author_id">Author</label><br/>
+<%= select_authors("record") %></p>
+<p><label for="author_institution_institution_id">Institution</label><br/>
+<%= simple_select("record",Institution) %></p>
 <!--[eoform:author_institution]-->
 

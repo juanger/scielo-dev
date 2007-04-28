@@ -1,8 +1,14 @@
+2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * institution.rb: Ahora se usa has_and_belongs_to_many junto con join_table
+
+        * author.rb: Ahora se usa has_and_belongs_to_many junto con join_table
+
 2007-04-25  Juan Germán Castañeda  <juanger@gmail.com>
 
-	* collection.rb: Se añadió belongs_to :country y belongs_to :publisher
+        * collection.rb: Se añadió belongs_to :country y belongs_to :publisher
 
-	* country.rb: Se añadió has_one :collection
+        * country.rb: Se añadió has_one :collection
 
-	* publisher.rb: Se añadió has_one :collection
+        * publisher.rb: Se añadió has_one :collection
 
