@@ -1,5 +1,14 @@
 2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
 
+        * journal_issue.rb: Cambio menor se uso un simnolo en lugar de un
+        string para la relacion.
+
+        * article_author.rb: Se agregaron las validaciones necesarias para
+        las distintas llaves foraneas contenidas en el modelo.
+
+        * author_institution.rb: Se agregaron las relaciones con las
+        tablas author e institution.
+
         * institution.rb: Ahora se usa has_and_belongs_to_many junto con join_table
 
         * author.rb: Ahora se usa has_and_belongs_to_many junto con join_table

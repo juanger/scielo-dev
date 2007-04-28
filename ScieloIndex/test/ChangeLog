@@ -1,5 +1,14 @@
 2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
 
+        * fixtures/articles.yaml: Se agrego un registro de articulo
+        en relacion a medicina.
+
+        * fixtures/article_author.yaml: Se agregaron tres ejemplos en base
+        a los ejemplos contenidos en los demas fixtures.
+
+        * unit/article_author_test.rb: Se hicieron las pruebas para el
+        modelo article_author solo faltan las pruebas de relacion.
+
         * unit/author_institution_test.rb (AuthorInstitutionTest::setup):
         se crearon las pruebas de unidad
 

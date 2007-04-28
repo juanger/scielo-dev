@@ -6,7 +6,7 @@ article1:
   url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en
   pacsnum: 12 sss
   other: Atmósfera
-  	
+
 article2:
   id: 2
   title: Lightning induced heating of the ionosphere
@@ -14,3 +14,10 @@ article2:
   url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100003&lng=es&nrm=iso&tlng=en
   pacsnum: 31 sss
   other: Atmósfera
+article3:
+  id: 3
+  title: Efectos Secundarios a la exposicion prolongada a un monitor LCD
+  pages: 10 pages
+  url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100003&lng=es&nrm=iso&tlng=en
+  pacsnum: 1331
+  other: Segunda parte
