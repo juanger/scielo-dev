@@ -115,4 +115,31 @@ class ArticleAuthorTest < Test::Unit::TestCase
     @article_author.author_id = 5.6
     assert !@article_author.valid?
   end
+
+  def test_belongs_to_journal_issue
+    @article_author = ArticleAuthor.new({:id => 1, :author_id => 1, :journal_issue_id => 2, :article_id => 1})
+    assert @article_author.journal_issue.id, 2
+    assert @article_author.journal_issue.number, 1
+    assert @article_author.journal_issue.volume, 10
+    assert @article_author.journal_issue.year, 2005
+  end
+
+  def test_belongs_to_article
+    @article_author = ArticleAuthor.new({:id => 1, :author_id => 1, :journal_issue_id => 2, :article_id => 1})
+    assert @article_author.article.id, 1
+    assert @article_author.article.title, 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis'
+    assert @article_author.article.pages, '12 p.p'
+    assert @article_author.article.url, 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en'
+    assert @article_author.article.pacsnum, '12 sss'
+    assert @article_author.article.other, 'Atmósfera'
+  end
+
+  def test_belongs_to_author
+    @article_author = ArticleAuthor.new({:id => 1, :author_id => 1, :journal_issue_id => 2, :article_id => 1})
+    assert @article_author.author.id, 1
+    assert @article_author.author.firstname, 'Hector'
+    assert @article_author.author.middlename, 'E.'
+    assert @article_author.author.lastname, 'Reyes'
+    assert @article_author.author.suffix, 'Mr.'
+  end
 end

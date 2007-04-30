@@ -52,7 +52,7 @@ class JournalIssuesControllerTest < Test::Unit::TestCase
   def test_create
     num_journal_issues = JournalIssue.count
 
-    post :create, :record => {:id => 1, :journal_id => 2, :number => '19', :volume => '1', :year => 2006}
+    post :create, :record => {:id => 3, :journal_id => 1, :number => '21', :volume => '11', :year => 2006}
     assert_response :redirect
     assert_redirected_to :action => 'list'
 

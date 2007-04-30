@@ -12,7 +12,7 @@ class ArticleAuthorsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = article_authors(:first).id
+    @first_id = article_authors(:monoatmart2).id
   end
 
   def test_index
@@ -27,7 +27,7 @@ class ArticleAuthorsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:article_authors)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class ArticleAuthorsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:article_author)
-    assert assigns(:article_author).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +46,13 @@ class ArticleAuthorsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:article_author)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_article_authors = ArticleAuthor.count
 
-    post :create, :article_author => {}
+    post :create, :record => {:id => 1, :author_id => 1, :journal_issue_id => 2, :article_id => 1}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +66,8 @@ class ArticleAuthorsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:article_author)
-    assert assigns(:article_author).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

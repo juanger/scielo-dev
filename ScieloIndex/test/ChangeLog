@@ -1,4 +1,16 @@
-2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-04-30  Hector E. Gomez Morales  <hectoregm@gmail.com>
+
+        * unit/article_author_test.rb: Se agregaron las pruebas de
+        relacion con los modelos journal_issue, article y author.
+        * functional/journal_issues_controller_test.rb: Se corrigio el hash
+        para el metodo que checa el metodo create.
+        * functional/article_authors_controller_test.rb: Se crearon las
+        pruebas de funcionalidad del controlador para el modelo
+        article_author.
+        * integration/article_author_test.rb: Se hicieron las pruebas de
+        integridad para el modelo article_author.
+
+2007-04-27  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * fixtures/articles.yaml: Se agrego un registro de articulo
         en relacion a medicina.
