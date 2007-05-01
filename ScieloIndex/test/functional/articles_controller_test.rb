@@ -52,7 +52,7 @@ class ArticlesControllerTest < Test::Unit::TestCase
   def test_create
     num_articles = Article.count
 
-    post :create, :record => {:id => 100, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis Second Part', :pages => '12 p.p', :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'}
+    post :create, :record => {:id => 100, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis Second Part', :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'

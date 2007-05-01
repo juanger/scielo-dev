@@ -2,7 +2,9 @@
 article1:
   id: 1
   title: Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis
-  pages: 12 p.p
+  fpage: 3
+  lpage: 10
+  page_range: 3-12
   url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en
   pacsnum: 12 sss
   other: Atmósfera
@@ -10,14 +12,18 @@ article1:
 article2:
   id: 2
   title: Lightning induced heating of the ionosphere
-  pages: 31 pages
+  fpage: 12
+  lpage: 34
+  page_range: 12-30, 34
   url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100003&lng=es&nrm=iso&tlng=en
   pacsnum: 31 sss
   other: Atmósfera
 article3:
   id: 3
   title: Efectos Secundarios a la exposicion prolongada a un monitor LCD
-  pages: 10 pages
+  fpage: 41
+  lpage: 51
+  page_range: 41-51
   url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100003&lng=es&nrm=iso&tlng=en
   pacsnum: 1331
   other: Segunda parte

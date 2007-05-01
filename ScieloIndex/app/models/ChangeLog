@@ -1,3 +1,8 @@
+2007-04-30  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * article.rb: Se quitó belongs_to en favor de
+        has_and_belongs_to_many para relacionarlo con los journal_issues
+
 2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
 
         * journal_issue.rb: Cambio menor se uso un simnolo en lugar de un

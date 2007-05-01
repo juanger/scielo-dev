@@ -4,8 +4,14 @@
 <p><label for="article_title">Title</label><br/>
 <%= text_area 'record', 'title', 'cols' => 80, 'rows' => 5 %></p>
 
-<p><label for="article_pages">Pages</label><br/>
-<%= text_field 'record', 'pages'  %></p>
+<p><label for="article_fpage">First page</label><br/>
+<%= text_field 'record', 'fpage'  %></p>
+
+<p><label for="article_lpage">Last page</label><br/>
+<%= text_field 'record', 'lpage'  %></p>
+
+<p><label for="article_page_range">Page Range</label><br/>
+<%= text_field 'record', 'page_range'  %></p>
 
 <p><label for="article_url">Url</label><br/>
 <%= text_field 'record', 'url'  %></p>

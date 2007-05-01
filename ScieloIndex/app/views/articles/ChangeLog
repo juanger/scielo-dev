@@ -1,0 +1,4 @@
+2007-04-30  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * _form.rhtml: Se añadieron los campos para fpage, lpage, page_range
+

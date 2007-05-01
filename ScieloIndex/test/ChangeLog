@@ -1,3 +1,17 @@
+2007-04-30  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * unit/article_test.rb: Se hicieron cambios para apegarnos al uso
+        de fpage, lpage y page_range
+
+        * unit/article_author_test.rb: Se hicieron cambios para apegarnos
+        al uso de fpage, lpage y page_range
+
+        * functional/articles_controller_test.rb:Se hicieron cambios para
+        apegarnos al uso de fpage, lpage y page_range
+
+        * fixtures/articles.yml: Se agregaron fpage, lpage y page_range a
+        cada registro
+
 2007-04-30  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * unit/article_author_test.rb: Se agregaron las pruebas de

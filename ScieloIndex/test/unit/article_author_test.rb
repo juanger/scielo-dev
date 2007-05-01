@@ -128,7 +128,9 @@ class ArticleAuthorTest < Test::Unit::TestCase
     @article_author = ArticleAuthor.new({:id => 1, :author_id => 1, :journal_issue_id => 2, :article_id => 1})
     assert @article_author.article.id, 1
     assert @article_author.article.title, 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis'
-    assert @article_author.article.pages, '12 p.p'
+    assert @article_author.article.fpage, '41'
+    assert @article_author.article.lpage, '51'
+    assert @article_author.article.page_range, '41-51'
     assert @article_author.article.url, 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en'
     assert @article_author.article.pacsnum, '12 sss'
     assert @article_author.article.other, 'Atmósfera'
