@@ -70,6 +70,9 @@ public class AtmNormalizer : INormalizable {
 	public string MarkText ()
 	{
 		MarkTitle ();
+		MarkDate ();
+		MarkAuthors ();
+		MarkAff ();
 		MarkMinorSections ();
 		MarkFootFigure ();
 		MarkParagraphs ();
@@ -279,7 +282,78 @@ public class AtmNormalizer : INormalizable {
 			#endif
 			
 			index = smatch.IndexOf ("\n");
-			result = "[title] " +  smatch.Substring (index).Trim () + " [/title]";
+			result = "[title] " +  smatch.Substring (index).Trim () + " [/title]\n";
+			front = front.Replace (smatch, result);
+		}
+	}
+
+	private void MarkDate ()
+	{
+		Match [] matches;
+		
+     		#if DEBUG
+		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar la fecha del articulo.");
+		#endif
+		
+		matches = GetMatches (@"\n[ ]+Received.*\n", front);
+		foreach (Match m in matches) {
+			string smatch, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			result = "\n[date] " +  smatch.Trim () + " [/date]\n";
+			front = front.Replace (smatch, result);
+		}
+	}
+	
+	private void MarkAuthors ()
+	{
+		Match [] matches;
+		
+     		#if DEBUG
+		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar los autores del articulo.");
+		#endif
+		
+		matches = GetMatches (@"[ ]*(([A-Z]{1,2}\. ([A-Z]{1,2}[.]? )*[-A-Z][-a-zA-Z&;]+( [-a-zA-Z&;]+)?)(, | and )?)+[\n]+", front);
+		foreach (Match m in matches) {
+			string smatch, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+
+			result = "[author] " +  smatch.Trim () + " [/author]\n";
+			front = front.Replace (smatch, result);
+		}
+	}
+	
+	private void MarkAff ()
+	{
+		Match [] matches;
+		
+     		#if DEBUG
+		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar las afiliaciones de los autores del articulo.");
+		#endif
+		
+		matches = GetMatches (@"\[/author\]\n(.|\n)+?(\[author\]|\[date\]|\[res\])", front);
+		foreach (Match m in matches) {
+			int index;
+			string smatch, tag, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+
+			index = smatch.IndexOf ("\n");
+			result = smatch.Substring (index);
+			index = result.LastIndexOf ("[");
+			tag = result.Substring (index);
+			result= "[/author]\n[aff] " + result.Substring (0, index).Trim () + " [/aff]\n" + tag;
 			front = front.Replace (smatch, result);
 		}
 	}

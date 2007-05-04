@@ -1,10 +1,9 @@
 [title] Synoptic scale features of the tropospheric circulation over tropical
-    South America during the WETAMC TRMM/LBA experiment [/title]                          N. J. FERREIRA, A. A. CORREIA and M. C. V. RAM&Iacute;REZ
-                                  Instituto Nacional de Pesquisas Espaciais
-                            C. P. 515, 12210-010 São Jos&eacute; dos Campos, SP, Brazil
-
-
-                           Received February 5, 2002; accepted September 1, 2003
+    South America during the WETAMC TRMM/LBA experiment [/title]
+[author] N. J. FERREIRA, A. A. CORREIA and M. C. V. RAM&Iacute;REZ [/author]
+[aff] Instituto Nacional de Pesquisas Espaciais
+                            C. P. 515, 12210-010 São Jos&eacute; dos Campos, SP, Brazil [/aff]
+[date] Received February 5, 2002; accepted September 1, 2003 [/date]
 [res] Resumen [/res]
 Este trabajo analiza las caracter&iacute;sticas sin&oacute;pticas de la circulaci&oacute;n de los niveles altos y bajos de la troposfera
 sobre Am&eacute;rica del Sur, durante la primera campa&ntilde;a para colecta de datos atmosf&eacute;ricos en mesoescala en la

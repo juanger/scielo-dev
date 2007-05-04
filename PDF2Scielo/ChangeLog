@@ -1,3 +1,12 @@
+2007-05-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/v17n01a02-norm.txt, PDF2Text/Test/v17n2a02-norm.txt,
+	  PDF2Text/Test/v17n4a03-norm.txt: Se modificaron los archivos en su
+	  estado normalizado agregandole las etiquetas [date], [author] y
+	  [aff]
+	* PDF2Text/AtmNormalizer.cs: Se agregaron los metodos para marcar la
+	  fecha, los autores y las afiliaciones
+
 2007-05-03  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/v17n01a02-norm.txt, PDF2Text/Test/v17n2a02-norm.txt,

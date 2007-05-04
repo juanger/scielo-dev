@@ -1,10 +1,10 @@
 [title] Stochastic analysis of time series of temperatures in the
-                     south-west of the Iberian Peninsula [/title]                                         L. GARC&Iacute;A-BARR&Oacute;N
-                   Departamento de F&iacute;sica Aplicada II, Universidad de Sevilla, Espa&ntilde;a
-                                          e-mail: leoncio@us.es
-
-                                      MA. FERNANDA PITA
-              Departamento de Geograf&iacute;a F&iacute;sica y A.G.. R.., Universidad de Sevilla, Espa&ntilde;a
+                     south-west of the Iberian Peninsula [/title]
+[author] L. GARC&Iacute;A-BARR&Oacute;N [/author]
+[aff] Departamento de F&iacute;sica Aplicada II, Universidad de Sevilla, Espa&ntilde;a
+                                          e-mail: leoncio@us.es [/aff]
+[author] MA. FERNANDA PITA [/author]
+[aff] Departamento de Geograf&iacute;a F&iacute;sica y A.G.. R.., Universidad de Sevilla, Espa&ntilde;a [/aff]
 [res] Resumen [/res]
 Se han elaborado los modelos autorregresivos integrados de media m&oacute;vil (ARIMA) para las series mensuales
 de larga duraci&oacute;n, de temperaturas m&aacute;ximas y m&iacute;nimas, de los observatorios del suroeste espa&ntilde;ol. Se han

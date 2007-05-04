@@ -1,10 +1,10 @@
 [title] Sequence patterns of 1000 hPa and 500 hPa geopotential height fields
-         associated with cold surges over Central Argentina [/title]                            G. ESCOBAR, R. COMPAGNUCCI and S. BISCHOFF
-                                 Departamento de Ciencias de la Atm&oacute;sfera
+         associated with cold surges over Central Argentina [/title]
+[author] G. ESCOBAR, R. COMPAGNUCCI and S. BISCHOFF [/author]
+[aff] Departamento de Ciencias de la Atm&oacute;sfera
                                          Universidad de Buenos Aires,
-                         Ciudad Universitaria &#8211; Pab. II, (1428) Buenos Aires, Argentina
-
-                             Received May 20, 2002; accepted December 3, 2003
+                         Ciudad Universitaria &#8211; Pab. II, (1428) Buenos Aires, Argentina [/aff]
+[date] Received May 20, 2002; accepted December 3, 2003 [/date]
 [res] Resumen [/res]
 En este trabajo se realiz&oacute; una clasificaci&oacute;n objetiva de secuencias de campos de altura geopotencial en 500
 hPa y 1000 hPa asociadas a irrupciones de aire fr&iacute;o en el centro de Argentina. Las irrupciones de aire fr&iacute;o
