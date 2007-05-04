@@ -69,6 +69,7 @@ public class AtmNormalizer : INormalizable {
 	
 	public string MarkText ()
 	{
+		MarkTitle ();
 		MarkMinorSections ();
 		MarkFootFigure ();
 		MarkParagraphs ();
@@ -256,6 +257,30 @@ public class AtmNormalizer : INormalizable {
 			#endif
 			
 			body = body.Replace (smatch, "\n");
+		}
+	}
+	
+	private void MarkTitle ()
+	{
+		Match [] matches;
+		
+     		#if DEBUG
+		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar el titulo del articulo.");
+		#endif
+		
+		matches = GetMatches (@"^Atm.*[\n]+[^|]+?\n[\n]+", front);
+		foreach (Match m in matches) {
+			int index;
+			string smatch, result;
+			smatch = m.Value;
+			
+			#if DEBUG
+			Console.WriteLine ("MATCH: " + smatch);
+			#endif
+			
+			index = smatch.IndexOf ("\n");
+			result = "[title] " +  smatch.Substring (index).Trim () + " [/title]";
+			front = front.Replace (smatch, result);
 		}
 	}
 	

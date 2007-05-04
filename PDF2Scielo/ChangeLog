@@ -1,3 +1,12 @@
+2007-05-03  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/v17n01a02-norm.txt, PDF2Text/Test/v17n2a02-norm.txt,
+	  PDF2Text/Test/v17n4a03-norm.txt: Se modifico los archivos que
+	  representan al documento en su estado normalizado se agrego la
+	  etiqueta de [title] para marcar el titulo del articulo.
+	* PDF2Text/AtmNormalizer.cs: Se agrego el metodo MarkTitle que busca en
+	  el bloque de front el titulo del documento.
+
 2007-04-13  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/INormalizable.cs, PDF2Text/NormDocument.cs: Cambios a la

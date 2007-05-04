@@ -1,12 +1,5 @@
-Atm&oacute;sfera (2004) 13-30
-
-
-
-
-  Synoptic scale features of the tropospheric circulation over tropical
-    South America during the WETAMC TRMM/LBA experiment
-
-                          N. J. FERREIRA, A. A. CORREIA and M. C. V. RAM&Iacute;REZ
+[title] Synoptic scale features of the tropospheric circulation over tropical
+    South America during the WETAMC TRMM/LBA experiment [/title]                          N. J. FERREIRA, A. A. CORREIA and M. C. V. RAM&Iacute;REZ
                                   Instituto Nacional de Pesquisas Espaciais
                             C. P. 515, 12210-010 São Jos&eacute; dos Campos, SP, Brazil
 
