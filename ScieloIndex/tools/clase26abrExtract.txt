@@ -1,0 +1,100 @@
+000000001 008   L $$eMéxico
+000000001 022   L $$a0071-1675
+000000001 041   L $$aEspañol
+000000001 100   L $$aLeón-Portilla, Miguel
+000000001 100   L $$uUniversidad Nacional Autónoma de México,$$vInstituto de Investigaciones Históricas,$$wMéxico, Distrito Federal.$$xMéxico
+000000001 222   L $$aEstudios de cultura náhuatl
+000000001 245   L $$aEncuentro de dos mundos
+000000001 260   L $$b1992
+000000001 300   L $$bN22$$eP15-27
+000000001 504   L $$a11
+000000001 590   L $$aEnsayo.$$bHistórico, socioeconómico
+000000001 650   L $$aHistoria social
+000000001 650   L $$aHistoria de la cultura
+000000001 650   L $$aFilosofía de la historia
+000000001 650   L $$aAntropología de la cultura
+000000001 650   L $$aEtnología y antropología social
+000000001 653   L $$a1492
+000000001 653   L $$aAmérica
+000000001 653   L $$aIndígenas
+000000001 653   L $$aCentenario-V
+000000001 653   L $$aDescubrimiento de América
+000000002 022   L $$a0071-1675
+000000002 041   L $$aEspañol
+000000002 100   L $$aJohansson, Patrick
+000000002 222   L $$aEstudios de cultura náhuatl
+000000002 245   L $$aYaocuicatl : cantos de guerra y guerra de cantos
+000000002 260   L $$b1992
+000000002 300   L $$bN22$$eP29-43
+000000002 504   L $$a0004
+000000002 590   L $$aEnsayo.$$bHistórico, descriptivo
+000000002 650   L $$aSociolingüística
+000000002 650   L $$aAntropología lingüística
+000000002 650   L $$aAntropología de la cultura
+000000002 650   L $$aEtnología y antropología social
+000000002 653   L $$aMéxico
+000000002 653   L $$aAztecas
+000000002 653   L $$aYaocuicatl
+000000002 653   L $$aLingüística
+000000002 653   L $$aCanto-guerra
+000000002 653   L $$aRitual magico
+000000003 022   L $$a0071-1675
+000000003 041   L $$aInglés
+000000003 100   L $$aSchroeder, S.
+000000003 222   L $$aEstudios de cultura náhuatl
+000000003 245   L $$aThe noblewomen of chalco
+000000003 260   L $$b1992
+000000003 300   L $$bN22$$eP45-86
+000000003 504   L $$a0035
+000000003 590   L $$aArtículo.$$bHistórico, socioeconómico
+000000003 650   L $$aSociología de la mujer
+000000003 650   L $$aAntropología de la cultura
+000000003 650   L $$aEtnología y antropología social
+000000003 653   L $$aMéxico
+000000003 653   L $$aChalco
+000000003 653   L $$aAutoridad
+000000003 653   L $$aMatrimonio
+000000003 653   L $$aMesoamérica
+000000003 653   L $$aChimalpáin
+000000003 653   L $$aMujeres
+000000004 022   L $$a0071-1675
+000000004 041   L $$aEspañol
+000000004 100   L $$aGraulich, M.
+000000004 222   L $$aEstudios de cultura náhuatl
+000000004 245   L $$aLas brujas de las peregrinaciones aztecas
+000000004 260   L $$b1992
+000000004 300   L $$bN22$$eP87-98
+000000004 504   L $$a0029
+000000004 590   L $$aEnsayo.$$bHistórico, descriptivo
+000000004 650   L $$aEtnohistoria
+000000004 650   L $$aAntropología de la cultura
+000000004 650   L $$aEtnología y antropología social
+000000004 653   L $$aRitos
+000000004 653   L $$aMagia
+000000004 653   L $$aBrujas
+000000004 653   L $$aMéxico
+000000004 653   L $$aAztecas
+000000004 653   L $$aMalinalxochitl
+000000004 653   L $$aPeregrinaciones
+000000005 022   L $$a0071-1675
+000000005 041   L $$aInglés
+000000005 100   L $$aKendall, J.
+000000005 100   L $$uYale University,$$wNew Haven, Connecticut.$$xEstados Unidos de América
+000000005 222   L $$aEstudios de cultura náhuatl
+000000005 245   L $$aThe thirteen volatiles representation and symbolism
+000000005 260   L $$b1992
+000000005 300   L $$bN22$$eP99-131
+000000005 504   L $$a0036
+000000005 590   L $$aArtículo.$$bHistórico, descriptivo
+000000005 650   L $$aEtnohistoria
+000000005 650   L $$aPintura
+000000005 650   L $$aAntropología de la cultura
+000000005 650   L $$aEtnología y antropología social
+000000005 653   L $$aAves
+000000005 653   L $$aDioses
+000000005 653   L $$aMéxico
+000000005 653   L $$aAztecas
+000000005 653   L $$aSimbolismo
+000000005 653   L $$aCultura maya
+000000005 653   L $$aCódice Borgia
+000000005 653   L $$aCodice tudela
