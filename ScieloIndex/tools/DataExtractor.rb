@@ -1,3 +1,4 @@
+require "Country"
 class DataExtractor 
   def initialize( nameOpen, nameExit )
     @name_open = nameOpen
@@ -89,8 +90,8 @@ class DataExtractor
       if key == "100" && value =~ /\$\$u/
         value = value.gsub("\$\$u","")
         if value =~ /\$\$x/
-          value.split("\$\$x")
-          countryName = value[1]
+          content = value.split("$$x")
+          countryName = content[1]
         end
         if value =~ /\$\$/
           data = value.split("\$\$")
@@ -98,13 +99,13 @@ class DataExtractor
         else
           name = data
         end
-
-       #Country.find(:all).each {|country|
-        #  if countryName == country.name
-        #    countryID = country.id
-        #  end
-        #}
-        @institutionLine = "INSERT INTO institutions VALUES ('"+name+"', '', '', , '',#{countryName}, '', '', '', '','','');"
+        
+        Country.find(:all).each {|country|
+          if countryName == country.name
+            countryID = country.id
+          end
+        }
+        @institutionLine = "INSERT INTO institutions VALUES ('"+name+"', '', '', , '',#{countryID}, '', '', '', '','','');"
       end
     }
   end
