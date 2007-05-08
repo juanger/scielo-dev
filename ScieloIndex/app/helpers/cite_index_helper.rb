@@ -1,0 +1,2 @@
+module CiteIndexHelper
+end

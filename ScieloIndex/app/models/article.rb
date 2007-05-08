@@ -12,8 +12,8 @@ class Article < ActiveRecord::Base
   validates_inclusion_of :id, :in => 1..999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
 
-#  validates_uniqueness_of :journal_issue_id, :scope => :title 
+  validates_uniqueness_of :journal_issue_id, :scope => :title 
 
-#  belongs_to :journal_issue
-#  has_many :authors, :through => 'article_authors'
+  belongs_to :journal_issue
+  has_and_belongs_to_many :authors, :join_table => 'article_authors'
 end

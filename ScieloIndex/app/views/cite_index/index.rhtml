@@ -1,0 +1,18 @@
+<h1>Scielo Citation Index</h1>
+<% form_tag :action => 'search' do %>
+<%= error_messages_for 'record' %>
+
+<!--[form:author]-->
+<p><label for="author_firstname">Firstname</label><br/>
+<%= text_field 'record', 'firstname', 'size' => 20, 'maxsize' => 30  %></p>
+
+<p><label for="author_middlename">Middlename</label><br/>
+<%= text_field 'record', 'middlename', 'size' => 20, 'maxsize' => 30 %></p>
+
+<p><label for="author_lastname">Lastname</label><br/>
+<%= text_field 'record', 'lastname', 'size' => 20, 'maxsize' => 30 %></p>
+
+<!--[eoform:author]-->
+
+  <%= submit_tag "Search" %>
+<% end %>
