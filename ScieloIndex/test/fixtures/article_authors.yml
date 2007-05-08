@@ -1,16 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 hectoratmart1:
   id: 1
-  journal_issue_id: 1
   article_id: 1
   author_id: 1
 memocsaludart3:
   id: 2
-  journal_issue_id: 2
   article_id: 3
   author_id: 2
 monoatmart2:
   id: 3
-  journal_issue_id: 1
   article_id: 2
   author_id: 3

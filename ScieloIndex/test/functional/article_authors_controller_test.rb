@@ -5,7 +5,7 @@ require 'article_authors_controller'
 class ArticleAuthorsController; def rescue_action(e) raise e end; end
 
 class ArticleAuthorsControllerTest < Test::Unit::TestCase
-  fixtures :article_authors
+  fixtures :journals, :journal_issues, :articles, :authors, :article_authors
 
   def setup
     @controller = ArticleAuthorsController.new
@@ -52,7 +52,7 @@ class ArticleAuthorsControllerTest < Test::Unit::TestCase
   def test_create
     num_article_authors = ArticleAuthor.count
 
-    post :create, :record => {:id => 1, :author_id => 1, :journal_issue_id => 2, :article_id => 1}
+    post :create, :record => {:id => 1, :author_id => 2, :article_id => 1}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'

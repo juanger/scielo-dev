@@ -1,9 +1,5 @@
 <%= error_messages_for 'record' %>
 
-<!--[form:article_author]-->
-<p><label for="article_author_journal_issue_id">Journal</label><br/>
-<%= select_journal_issues("record") %></p>
-
 <p><label for="article_author_article_id">Article</label><br/>
 <%= select_by_attribute("record", Article, 'title') %></p>
 

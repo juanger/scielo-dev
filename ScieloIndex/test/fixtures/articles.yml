@@ -2,6 +2,7 @@
 article1:
   id: 1
   title: Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis
+  journal_issue_id: 1
   fpage: 3
   lpage: 10
   page_range: 3-12
@@ -12,6 +13,7 @@ article1:
 article2:
   id: 2
   title: Lightning induced heating of the ionosphere
+  journal_issue_id: 1
   fpage: 12
   lpage: 34
   page_range: 12-30, 34
@@ -21,6 +23,7 @@ article2:
 article3:
   id: 3
   title: Efectos Secundarios a la exposicion prolongada a un monitor LCD
+  journal_issue_id: 2
   fpage: 41
   lpage: 51
   page_range: 41-51

@@ -1,9 +1,11 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
 class ArticlesTest < ActionController::IntegrationTest
-  fixtures :articles
+  fixtures :journals, :journal_issues, :articles
+
   def setup
-    @articles = [:article1, :article2]
+    @articles = [:article1, :article2, :article3]
+    @myarticle = {:title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis Part 2', :journal_issue_id => 1, :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'}
   end
 
    def test_getting_index
@@ -19,7 +21,8 @@ class ArticlesTest < ActionController::IntegrationTest
    end
    
    def  test_creating_new_articles
-     post "articles/create", :record => articles(:article1).attributes
+     post "articles/create", :record => @myarticle
+     puts path
      assert_equal 302, status
      follow_redirect!
      assert_equal '/articles/list', path

@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :articles
   fixtures :journal_issues
-  fixtures :article_authors
+  fixtures :articles
+  #fixtures :article_authors
 
   def setup
     @articles = [:article1, :article2, :article3]
@@ -16,6 +16,7 @@ class ArticleTest < Test::Unit::TestCase
       @article_db = Article.find_by_title(@article.title)
       assert_equal @article.id, @article_db.id
       assert_equal @article.title, @article_db.title
+      assert_equal @article.journal_issue_id, @article_db.journal_issue_id	
       assert_equal @article.fpage, @article_db.fpage
       assert_equal @article.lpage, @article_db.lpage
       assert_equal @article.page_range, @article_db.page_range
@@ -66,7 +67,7 @@ class ArticleTest < Test::Unit::TestCase
 
     # Boundary
   def test_bad_values_for_id
-    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
+    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :journal_issue_id => 1, :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
 
     # Checking for ID constraints
     @article.id = nil
@@ -133,23 +134,5 @@ class ArticleTest < Test::Unit::TestCase
     # Checking for pages constraints
     @article.other = "A" * 100001
     assert !@article.valid?
-  end
-
-  def test_has_and_belongs_to_many_journal_issues
-    @article = articles(:article3)
-    assert @article.journal_issues[0].id, 2
-    assert @article.journal_issues[0].journal_id, 2
-    assert @article.journal_issues[0].number, 1
-    assert @article.journal_issues[0].volume, 10
-    assert @article.journal_issues[0].year, 2005
-  end
-
-  def test_has_and_belongs_to_many_authors
-    @article = articles(:article3)
-    assert @article.authors[0].id, 2
-    assert @article.authors[0].firstname, 'Guillermo'
-    assert @article.authors[0].middlename, 'Mojo'
-    assert @article.authors[0].lastname, 'Giron'
-    assert @article.authors[0].suffix, 'PhD.'
   end
 end
