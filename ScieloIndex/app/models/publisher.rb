@@ -10,5 +10,5 @@ class Publisher < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_uniqueness_of :name
   
-  has_one :collection
+  has_many :collections
 end
