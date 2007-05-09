@@ -5,9 +5,7 @@ require 'author_institutions_controller'
 class AuthorInstitutionsController; def rescue_action(e) raise e end; end
 
 class AuthorInstitutionsControllerTest < Test::Unit::TestCase
-  fixtures :authors
-  fixtures :institutions
-  fixtures :author_institutions
+  fixtures :authors, :institutions, :author_institutions
 
   def setup
     @controller = AuthorInstitutionsController.new

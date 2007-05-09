@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AuthorInstitutionTest < Test::Unit::TestCase
-  fixtures :author_institutions,:authors,:institutions
+  fixtures :authors, :institutions, :author_institutions
 
   def setup
     @author_institutions = [:monoipn, :hectorunam]
-    @myauthor_institution = {:id => 3, :author_id => 1, :institution_id => 1}
+    @myauthor_institution = {:id => 3, :author_id => 1, :institution_id => 2}
   end
 
   # RIGHT
@@ -25,9 +25,9 @@ class AuthorInstitutionTest < Test::Unit::TestCase
       @author_institution_db = AuthorInstitution.find(@author_institution.id)
       @author_institution_db.id = @author_institution_db.id
       assert @author_institution_db.update
-      @author_institution_db.author_id = @author_institution_db.author_id + 1
+      @author_institution_db.author_id = @author_institution_db.author_id
       assert @author_institution_db.update
-      @author_institution_db.institution_id = @author_institution_db.institution_id + 1
+      @author_institution_db.institution_id = @author_institution_db.institution_id
     }
   end
 
@@ -49,6 +49,7 @@ class AuthorInstitutionTest < Test::Unit::TestCase
 
   def test_checking_uniqueness
     @author_institution = AuthorInstitution.new(@myauthor_institution)
+    @author_institution.institution_id = '1'
     assert !@author_institution.save
   end
 
@@ -58,7 +59,7 @@ class AuthorInstitutionTest < Test::Unit::TestCase
 
     # Checking for ID constraints
     @author_institution.id = nil
-    assert !@author_institution.valid?
+    assert @author_institution.valid?
 
     @author_institution.id = -2
     assert !@author_institution.valid?
@@ -70,7 +71,7 @@ class AuthorInstitutionTest < Test::Unit::TestCase
   def test_bad_values_for_author_id
     @author_institution = AuthorInstitution.new(@myauthor_institution)
 
-    # Checking for ID constraints
+    # Checking for author_id constraints
     @author_institution.author_id = nil
     assert !@author_institution.valid?
 
@@ -84,7 +85,7 @@ class AuthorInstitutionTest < Test::Unit::TestCase
   def test_bad_values_for_institution_id
     @author_institution = AuthorInstitution.new(@myauthor_institution)
 
-    # Checking for ID constraints
+    # Checking for institution_id constraints
     @author_institution.institution_id = nil
     assert !@author_institution.valid?
 
@@ -99,13 +100,13 @@ class AuthorInstitutionTest < Test::Unit::TestCase
     @author_institution = AuthorInstitution.new(@myauthor_institution)
 
     @institution = institutions(:unam)
-    assert @institution.authors.size, 2
+    assert_equal @institution.authors.size, 2
   end
 
   def test_belongs_to_institution
     @author_institution = AuthorInstitution.new(@myauthor_institution)
 
     @author = authors(:hector)
-    assert @author.institutions.size, 2
+    assert_equal @author.institutions.size, 1
   end
 end

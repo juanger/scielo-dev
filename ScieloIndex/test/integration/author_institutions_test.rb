@@ -1,10 +1,10 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
 class AuthorInstitutionsTest < ActionController::IntegrationTest
-  fixtures :author_institutions
+  fixtures :authors, :institutions, :author_institutions
 
   def setup
-    @author_institutions = [:monoipn, :hectorunam]
+    @author_institutions = [:monoipn, :hectorunam, :memounam]
   end
 
    def test_getting_index
@@ -21,7 +21,7 @@ class AuthorInstitutionsTest < ActionController::IntegrationTest
 
 
    def  test_creating_new_author_institutions
-     post "author_institutions/create", :record =>  {:id => 3, :author_id => 2, :institution_id => 1}
+     post "author_institutions/create", :record =>  {:id => 4, :author_id => 2, :institution_id => 2}
      assert_equal 302, status
      follow_redirect!
      assert_equal '/author_institutions/list', path

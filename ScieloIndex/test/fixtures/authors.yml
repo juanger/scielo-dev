@@ -5,7 +5,6 @@ hector:
   middlename: E.
   lastname: Reyes
   suffix: Mr.
-
 memo:
   id: 2
   firstname: Guillermo
