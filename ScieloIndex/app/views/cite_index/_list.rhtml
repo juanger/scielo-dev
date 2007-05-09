@@ -1,0 +1,11 @@
+<table>
+  <tr>
+    <th>Articles</th>
+  </tr>
+
+  <% for record in @collection %>
+  <tr>
+    <td ><%=h apply_article_style(record) %><br/><hr/></td>
+  </tr>
+<% end %>
+</table>

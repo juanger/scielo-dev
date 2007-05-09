@@ -1,27 +1,6 @@
-<h1>Listing authors</h1>
-
-<table>
-  <tr>
-  <% for column in Author.content_columns %>
-    <th><%= column.human_name %></th>
-  <% end %>
-  </tr>
-  
-<% for author in @collection %>
-  <tr>
-  <% for column in Author.content_columns %>
-    <td><%=h author.send(column.name) %></td>
-  <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => author %></td>
-    <td><%= link_to 'Edit', :action => 'edit', :id => author %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => author }, :confirm => 'Are you sure?', :method => :post %></td>
-  </tr>
-<% end %>
-</table>
-
-<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
-<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
-
+<h1>Listing articles</h1>
+<%= render :partial => 'list' %>
 <br />
+<hr/>
 
-<%= link_to 'New author', :action => 'new' %>
+<%= link_to 'New Search', :action => 'index' %>
