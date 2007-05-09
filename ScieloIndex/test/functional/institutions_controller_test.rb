@@ -5,7 +5,7 @@ require 'institutions_controller'
 class InstitutionsController; def rescue_action(e) raise e end; end
 
 class InstitutionsControllerTest < Test::Unit::TestCase
-  fixtures :institutions
+  fixtures :countries, :institutions
 
   def setup
     @controller = InstitutionsController.new

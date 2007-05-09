@@ -5,7 +5,7 @@ class CountryTest < Test::Unit::TestCase
 
   def setup
     @countries = [:mexico, :brasil, :usa]
-    @mycountry = {:id => 484, :name => 'México', :code => 'MX'}
+    @mycountry = {:id => 124, :name => 'Canadá', :code => 'CA'}
   end
 
   # RIGHT

@@ -1,9 +1,9 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
 class InstitutionTest < ActionController::IntegrationTest
-  fixtures :institutions
+  fixtures :countries, :institutions
   def setup
-    @institutions = [:unam, :ipn]
+    @institutions = [:unam, :ipn, :nyu]
   end
 
    def test_getting_index
@@ -23,7 +23,7 @@ class InstitutionTest < ActionController::IntegrationTest
      assert_equal 302, status
      follow_redirect!
      assert_equal '/institutions/list', path
-   end
+7   end
 
    def test_showing
      @institutions.each { | institution |

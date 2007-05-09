@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class InstitutionTest < Test::Unit::TestCase
-  fixtures :institutions, :countries, :authors, :author_institutions
+  fixtures :countries, :institutions, :authors, :author_institutions
 
   def setup
-    @institutions = [:unam]
-    @myinstitution = {:id => 1, :name => 'Universidad Nacional Autónoma de México', :url => 'http://www.unam.mx', :abbrev => 'UNAM', :parent_id => 1, :address => 'Ciudad Universitaria, Delegación Coyoacán', :country_id => 484, :state => 'Distrito Federal', :city => 'México', :zipcode => '04510', :phone => ' ', :fax => ' ',  :other => ' ' }
+    @institutions = [:unam, :ipn, :nyu]
+    @myinstitution = {:id => 4, :name => 'University of California: San Diego', :url => 'http://www.ucsd.edu', :abbrev => 'UCSD', :parent_id => 4, :address => 'Nobel Drive #12, La Jolla', :country_id => 840, :state => 'California', :city => 'San Diego', :zipcode => '04511', :phone => ' ', :fax => ' ',  :other => ' '}
   end
 
   # RIGHT CRUD (Create, Update and Delete)
@@ -41,11 +41,11 @@ class InstitutionTest < Test::Unit::TestCase
       assert @institution_db.update
       @institution_db.abbrev.reverse
       assert @institution_db.update
-      @institution_db.parent_id = @institution_db.parent_id + 1
+      @institution_db.parent_id = @institution_db.parent_id
       assert @institution_db.update
       @institution_db.address.reverse
       assert @institution_db.update
-      @institution_db.country_id = @institution_db.country_id + 1
+      @institution_db.country_id = @institution_db.country_id
       assert @institution_db.update
       @institution_db.state.reverse
       assert @institution_db.update
@@ -80,27 +80,191 @@ class InstitutionTest < Test::Unit::TestCase
 
   def test_checking_uniqueness
     @institution = Institution.new(@myinstitution)
+    @institution.name = 'Universidad Nacional Autónoma de México'
+    @institution.country_id = '484'
     assert !@institution.save
   end
 
 # Boundary
   def test_bad_values_for_id
-  #@institution is the object, here is created
     @institution = Institution.new(@myinstitution)
 
-    # Checking for empty ID
+    # Checking for id constraints
     @institution.id = nil
+    assert @institution.valid?
+
+    @institution.id = 5.2
+    assert !@institution.valid?
+
+    @institution.id = -10
     assert !@institution.valid?
   end
 
-  def test_bad_values_for_name_and_country_id
-  #@institution is the object, here is created
-    @institution = Institution.new(@myinsitution)
-    # Checking for empty values constraints
+  def test_bad_values_for_name
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for name constraints
     @institution.name = nil
     assert !@institution.valid?
+    
+    @institution.name = "AA"
+    assert !@institution.valid?
 
+    @institution.name = "A"*501
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_parent_id
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for parent_id constraints
+    @institution.parent_id = nil
+    assert @institution.valid?
+    
+    @institution.parent_id = 5.2
+    assert !@institution.valid?
+
+    @institution.parent_id = -10
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_url
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for url constraints
+    @institution.parent_id = nil
+    assert @institution.valid?
+    
+    @institution.parent_id = ''
+    assert @institution.valid?
+
+    @institution.parent_id = 'A'*201
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_abbrev
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for abbrev constraints
+    @institution.parent_id = nil
+    assert @institution.valid?
+    
+    @institution.parent_id = ''
+    assert @institution.valid?
+
+    @institution.parent_id = 'A'*201
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_address
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for address constraints
+    @institution.address = nil
+    assert @institution.valid?
+    
+    @institution.address = ''
+    assert @institution.valid?
+
+    @institution.address = 'A'*201
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_country_id
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for country_id constraints
     @institution.country_id = nil
+    assert !@institution.valid?
+    
+    @institution.country_id = 5.2
+    assert !@institution.valid?
+
+    @institution.country_id = -10
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_state
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for state constraints
+    @institution.state = nil
+    assert @institution.valid?
+    
+    @institution.state = ''
+    assert @institution.valid?
+
+    @institution.state = 'A'*201
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_city
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for city constraints
+    @institution.city = nil
+    assert @institution.valid?
+    
+    @institution.city = ''
+    assert @institution.valid?
+
+    @institution.city = 'A'*201
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_zipcode
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for zipcode constraints
+    @institution.zipcode = nil
+    assert @institution.valid?
+    
+    @institution.zipcode = ''
+    assert @institution.valid?
+
+    @institution.zipcode = 'A'*51
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_phone
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for phone constraints
+    @institution.phone = nil
+    assert @institution.valid?
+    
+    @institution.phone = ''
+    assert @institution.valid?
+
+    @institution.phone = 'A'*51
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_fax
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for fax constraints
+    @institution.fax = nil
+    assert @institution.valid?
+    
+    @institution.fax = ''
+    assert @institution.valid?
+
+    @institution.fax = 'A'*51
+    assert !@institution.valid?
+  end
+
+  def test_bad_values_for_other
+    @institution = Institution.new(@myinstitution)
+
+    # Checking for other constraints
+    @institution.other = nil
+    assert @institution.valid?
+    
+    @institution.other = ''
+    assert @institution.valid?
+
+    @institution.other = 'A'*101
     assert !@institution.valid?
   end
 
