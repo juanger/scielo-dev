@@ -1,3 +1,10 @@
+2007-05-09  Juan Germán Castañeda Echevarría <Email Address> 
+
+	* Markup/Test/TestMarkupHTML.cs: se agregaron el titulo, autor y
+	  afiliacion al test del front
+	* Markup/MarkupHTML.cs: Se agregaron los cambios de tags del titulo,
+	  autor y afiliación
+
 2007-05-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/v17n01a02-norm.txt, PDF2Text/Test/v17n2a02-norm.txt,

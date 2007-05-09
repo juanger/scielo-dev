@@ -21,17 +21,26 @@ public class TestMarkupHTML
 	[Test]
 	public void MarkupFrontCorrect()
 	{
-		string front  = "[res]Res[/res]Texto";
+		string front  = "[title]Titulo[/title]";
+			   front += "[author]Nombre del Autor[/author]";
+			   front += "[aff]Afiliacion[/aff]";
+			   front += "[res]Res[/res]Texto";
 		       front += "[abs]Abs[/abs]Texto";
 		       front += "[key]Keywords:el1,el2.[/key]";
 		string body = "Body";
 		string back = "References";
-		string result  = "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>Res</b></font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">Texto";
+		string result  = "<p align=\"center\"><font face=\"verdana\" size=\"4\"><b>Titulo</b></font></p>\n<p align=\"center\"><font face=\"verdana\" size=\"2\">&nbsp;</font></p>";
+			   result += "<p align=\"center\"><font face=\"verdana\" size=\"2\">Nombre del Autor<i><br>";
+			   result += "Afiliacion</i></font></p>";
+			   result += "<p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>Res</b></font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">Texto";
 		       result += "</font></p>\n<br><p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>Abs</b></font></p>\n<p align=\"justify\"><font face=\"verdana\" size=\"2\">Texto";
 		       result += "</font></p>\n<br><p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>Keywords:</b>el1,el2.</font></p>\n<br>";
 		MarkupHTML mark = new MarkupHTML (front, body, back);
 		mark.MarkFront ();		
 		Assert.AreEqual (mark.Front, result, "MUFC");
+		
+				
+				
 	}
 	
 	[Test]

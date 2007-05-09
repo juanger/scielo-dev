@@ -102,6 +102,9 @@ public class MarkupHTML {
 	
 	public void MarkFront ()
 	{
+		ReplaceTitleTag ();
+		ReplaceAuthorTag ();
+		ReplaceAffTag ();
 		ReplaceResTag ();
 		ReplaceAbsTag ();
 		ReplaceKeyTag ();
@@ -121,6 +124,39 @@ public class MarkupHTML {
 		ReplaceCitTag ();
 	}
 	
+	private void ReplaceTitleTag ()		
+	{	
+		string startTag = @"\[title\]";
+		string endTag = @"\[/title\]";
+		string startSustitute = "<p align=\"center\"><font face=\"verdana\" size=\"4\"><b>";
+		string endSustitute = "</b></font></p>\n<p align=\"center\"><font face=\"verdana\" size=\"2\">&nbsp;</font></p>";
+
+		front = Regex.Replace (front, startTag, startSustitute);
+		front = Regex.Replace (front, endTag, endSustitute);			
+	}		
+		
+	private void ReplaceAuthorTag ()		
+	{	
+		string startTag = @"\[author\]";
+		string endTag = @"\[/author\]";
+		string startSustitute = "<p align=\"center\"><font face=\"verdana\" size=\"2\">";
+		string endSustitute = "<i><br>";
+
+		front = Regex.Replace (front, startTag, startSustitute);
+		front = Regex.Replace (front, endTag, endSustitute);			
+	}		
+		
+		private void ReplaceAffTag ()		
+	{	
+		string startTag = @"\[aff\]";
+		string endTag = @"\[/aff\]";
+		string startSustitute = "";
+		string endSustitute = "</i></font></p>";
+
+		front = Regex.Replace (front, startTag, startSustitute);
+		front = Regex.Replace (front, endTag, endSustitute);			
+	}	
+			
 	private void ReplaceResTag ()		
 	{
 		string label = @"\[res\] Resumen \[/res\]";
