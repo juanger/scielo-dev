@@ -1,11 +1,12 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AuthorTest < Test::Unit::TestCase
-  fixtures :authors
-  
+  fixtures :journals, :journal_issues, :articles, :authors, :article_authors
+
   def setup
     @authors = [:hector, :memo, :mono]
-  end 
+    @myauthor = {:id => 100, :firstname => 'Lars', :lastname => 'Adame'}
+  end
 
   # RIGHT
   def test_creating_authors_from_fixtures
@@ -50,8 +51,8 @@ class AuthorTest < Test::Unit::TestCase
 
   # Boundary
   def test_bad_values_for_id
-    @author = Author.new({:id => 100, :firstname => 'Lars', :lastname => 'Adame'})
-    
+    @author = Author.new(@myauthor)
+
     # Checking for ID constraints
     @author.id = nil
     assert @author.valid?
@@ -64,7 +65,7 @@ class AuthorTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_firstname
-    @author = Author.new({:id => 100, :firstname => 'Lars', :lastname => 'Adame'})
+    @author = Author.new(@myauthor)
 
     # Checking first name constraints
     @author.firstname = nil
@@ -81,7 +82,7 @@ class AuthorTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_lastname
-    @author = Author.new({:id => 100, :firstname => 'Lars', :lastname => 'Adame'})
+    @author = Author.new(@myauthor)
 
     # Checking last name constraints
     @author.lastname = nil
@@ -98,7 +99,7 @@ class AuthorTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_middlename
-    @author = Author.new({:id => 100, :firstname => 'Lars', :lastname => 'Adame'})
+    @author = Author.new(@myauthor)
 
     # Checking middle name constraints
     #@author.middlename = nil
@@ -115,7 +116,7 @@ class AuthorTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_suffix
-    @author = Author.new({:id => 100, :firstname => 'Lars', :lastname => 'Adame'})
+    @author = Author.new(@myauthor)
 
     # Checking middle name constraints
     #@author.suffix = nil
@@ -129,5 +130,19 @@ class AuthorTest < Test::Unit::TestCase
 
     @author.suffix = "F2"
     assert !@author.valid?
+  end
+
+  def test_has_and_belongs_to_many_articles
+    @author = Author.find(1)
+    assert_equal @author.articles[0].title, 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis'
+    assert_equal @author.articles[0].page_range, '3-12'
+    assert_equal @author.articles[0].url, 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en'
+  end
+
+  def test_has_and_belongs_to_many_institutions
+    @author = Author.find(1)
+    assert_equal @author.institutions[0].institution_id, '1'
+    assert_equal @author.institutions[0].abbrev, 'UNAM'
+    assert_equal @author.institutions[0].city,'México'
   end
 end

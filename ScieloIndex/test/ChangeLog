@@ -1,3 +1,8 @@
+2007-05-08  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * unit/country_test.rb, unit/institution_test.rb, unit/author_test.rb, unit/author_institution_test.rb: Modificacion en la relacion de
+        las tablas y modificacion de las pruebas correspondientes
+
 2007-04-30  Hector E. Gomez Morales  <hector@scielo-dev2>
 
         * unit/article_test.rb: Se hicieron cambios para apegarnos al uso

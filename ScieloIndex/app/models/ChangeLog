@@ -1,3 +1,7 @@
+2007-05-08  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * institution.rb, country.rb, author.rb: Cambio en las relaciones de las tablas
+
 2007-04-30  Hector E. Gomez Morales  <hector@scielo-dev2>
 
         * article.rb: Se quitó belongs_to en favor de

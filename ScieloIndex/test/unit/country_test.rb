@@ -1,10 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CountryTest < Test::Unit::TestCase
-  fixtures :countries
-  
+  fixtures :countries, :collections, :institutions
+
   def setup
-    @countries = [:mexico, :brasil]
+    @countries = [:mexico, :brasil, :usa]
+    @mycountry = {:id => 484, :name => 'México', :code => 'MX'}
   end
 
   # RIGHT
@@ -45,17 +46,17 @@ class CountryTest < Test::Unit::TestCase
   def test_creating_empty_country
     @country = Country.new()
     assert !@country.save
-  end 
+  end
 
   def test_checking_uniqueness
-    @country = Country.new({:id => 484, :name => 'México', :code => 'MX'})
+    @country = Country.new(@mycountry)
     assert !@country.save
-  end 
+  end
 
   # Boundary
   def test_bad_values_for_id
-    @country = Country.new({:id => 156, :name => 'China', :code => 'CN'})
-    
+    @country = Country.new(@mycountry)
+
     # Checking for ID constraints
     @country.id = nil
     assert !@country.valid?
@@ -68,8 +69,8 @@ class CountryTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_name
-    @country = Country.new({:id => 156, :name => 'China', :code => 'CN'})
-    
+    @country = Country.new(@mycountry)
+
     # Checking for name constraints
     @country.name = nil
     assert !@country.valid?
@@ -85,8 +86,8 @@ class CountryTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_code
-    @country = Country.new({:id => 156, :name => 'China', :code => 'CN'})
-    
+    @country = Country.new(@mycountry)
+
     # Checking for country code constraints
     @country.code = nil
     assert !@country.valid?
@@ -99,5 +100,19 @@ class CountryTest < Test::Unit::TestCase
 
     @country.code = "A2"
     assert !@country.valid?
+  end
+
+  def test_has_many_collections
+    @country = Country.find(484)
+    assert_equal @country.collections[1].id, 1
+    assert_equal @country.collections[1].title, 'Atmosfera'
+    assert_equal @country.collections[1].email, 'atmosfera@dgb.com'
+  end
+
+  def test_has_many_institutions
+    @country = Country.find(484)
+    assert_equal @country.institutions[0].id, 2
+    assert_equal @country.institutions[0].abbrev, 'IPN'
+    assert_equal @country.institutions[0].zipcode, '45100'
   end
 end

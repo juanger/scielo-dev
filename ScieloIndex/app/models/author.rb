@@ -7,7 +7,6 @@ class Author < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_format_of :firstname, :lastname, :middlename, :suffix, :with => /^[-a-zA-ZáéíóúÁÉÍÓÚñÑ. ]*$/
 
-  # FIXME: No funciona esta relacion con la tabla article.
   has_and_belongs_to_many :articles, :join_table => :article_authors
-#  has_and_belongs_to_many :institutions, :join_table => :author_institutions
+  has_and_belongs_to_many :institutions, :join_table => :author_institutions
 end

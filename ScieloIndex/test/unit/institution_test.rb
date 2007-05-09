@@ -1,10 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class InstitutionTest < Test::Unit::TestCase
-  fixtures :institutions
-  
+  fixtures :institutions, :countries, :authors, :author_institutions
+
   def setup
     @institutions = [:unam]
+    @myinstitution = {:id => 1, :name => 'Universidad Nacional Autónoma de México', :url => 'http://www.unam.mx', :abbrev => 'UNAM', :parent_id => 1, :address => 'Ciudad Universitaria, Delegación Coyoacán', :country_id => 484, :state => 'Distrito Federal', :city => 'México', :zipcode => '04510', :phone => ' ', :fax => ' ',  :other => ' ' }
   end
 
   # RIGHT CRUD (Create, Update and Delete)
@@ -55,7 +56,7 @@ class InstitutionTest < Test::Unit::TestCase
       @institution_db.phone.reverse
       assert @institution_db.update
       @institution_db.fax.reverse
-      assert @institution_db.update      
+      assert @institution_db.update
       @institution_db.other.reverse
       assert @institution_db.update
       #puts @institution_db.code.reverse
@@ -78,29 +79,42 @@ class InstitutionTest < Test::Unit::TestCase
   end
 
   def test_checking_uniqueness
-    @institution = Institution.new({:id => 1, :name => 'Universidad Nacional Autónoma de México', :country_id => 484})
+    @institution = Institution.new(@myinstitution)
     assert !@institution.save
   end
 
 # Boundary
   def test_bad_values_for_id
   #@institution is the object, here is created
-    @institution = Institution.new({:id => 1, :name => 'Universidad Nacional Autónoma de México', :url => 'http://www.unam.mx', :abbrev => 'UNAM', :parent_id => 1, :address => 'Ciudad Universitaria, Delegación Coyoacán', :country_id => 484, :state => 'Distrito Federal', :city => 'México', :zipcode => '04510', :phone => ' ', :fax => ' ',  :other => ' ' })
+    @institution = Institution.new(@myinstitution)
 
-    # Checking for empty ID 
+    # Checking for empty ID
     @institution.id = nil
     assert !@institution.valid?
   end
 
   def test_bad_values_for_name_and_country_id
   #@institution is the object, here is created
-    @institution = Institution.new({:id => 1, :name => 'Universidad Nacional Autónoma de México', :url => 'http://www.unam.mx', :abbrev => 'UNAM', :parent_id => 1, :address => 'Ciudad Universitaria, Delegación Coyoacán', :country_id => 484, :state => 'Distrito Federal', :city => 'México', :zipcode => '04510', :phone => ' ', :fax => ' ',  :other => ' ' })
+    @institution = Institution.new(@myinsitution)
     # Checking for empty values constraints
     @institution.name = nil
     assert !@institution.valid?
 
     @institution.country_id = nil
     assert !@institution.valid?
+  end
 
+  def test_belongs_to_country
+    @institution = Institution.find(1)
+    assert_equal @institution.country.id, 484
+    assert_equal @institution.country.name, 'México'
+    assert_equal @institution.country.code, 'MX'
+  end
+
+  def test_has_and_belongs_to_authors
+    @institution = Institution.find(1)
+    assert_equal @institution.authors[0].firstname, 'Hector'
+    assert_equal @institution.authors[0].author_id, '1'
+    assert_equal @institution.authors[0].suffix, 'Mr.'
   end
 end

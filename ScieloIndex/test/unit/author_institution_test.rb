@@ -1,12 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AuthorInstitutionTest < Test::Unit::TestCase
-  fixtures :author_institutions
-  fixtures :authors
-  fixtures :institutions
+  fixtures :author_institutions,:authors,:institutions
 
   def setup
     @author_institutions = [:monoipn, :hectorunam]
+    @myauthor_institution = {:id => 3, :author_id => 1, :institution_id => 1}
   end
 
   # RIGHT
@@ -49,17 +48,17 @@ class AuthorInstitutionTest < Test::Unit::TestCase
   end
 
   def test_checking_uniqueness
-    @author_institution = AuthorInstitution.new({:id => 3, :author_id => 1, :institution_id => 1})
+    @author_institution = AuthorInstitution.new(@myauthor_institution)
     assert !@author_institution.save
   end
 
   # Boundary
   def test_bad_values_for_id
-    @author_institution = AuthorInstitution.new({:id => 3, :author_id => 1, :institution_id => 2})
+    @author_institution = AuthorInstitution.new(@myauthor_institution)
 
     # Checking for ID constraints
     @author_institution.id = nil
-    assert @author_institution.valid?
+    assert !@author_institution.valid?
 
     @author_institution.id = -2
     assert !@author_institution.valid?
@@ -69,7 +68,7 @@ class AuthorInstitutionTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_author_id
-    @author_institution = AuthorInstitution.new({:id => 3, :author_id => 1, :institution_id => 2})
+    @author_institution = AuthorInstitution.new(@myauthor_institution)
 
     # Checking for ID constraints
     @author_institution.author_id = nil
@@ -83,7 +82,7 @@ class AuthorInstitutionTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_institution_id
-    @author_institution = AuthorInstitution.new({:id => 3, :author_id => 1, :institution_id => 2})
+    @author_institution = AuthorInstitution.new(@myauthor_institution)
 
     # Checking for ID constraints
     @author_institution.institution_id = nil
@@ -96,15 +95,15 @@ class AuthorInstitutionTest < Test::Unit::TestCase
     assert !@author_institution.valid?
   end
 
-  def test_has_and_belongs_to_many_author
-    @author_institution = AuthorInstitution.new({ :id => 3, :author_id => 2, :institution_id => 1})
+  def test_belongs_to_author
+    @author_institution = AuthorInstitution.new(@myauthor_institution)
 
     @institution = institutions(:unam)
     assert @institution.authors.size, 2
   end
 
-  def test_has_and_belongs_to_many_institution
-    @author_institution = AuthorInstitution.new({ :id => 3, :author_id => 1, :institution_id => 2})
+  def test_belongs_to_institution
+    @author_institution = AuthorInstitution.new(@myauthor_institution)
 
     @author = authors(:hector)
     assert @author.institutions.size, 2
