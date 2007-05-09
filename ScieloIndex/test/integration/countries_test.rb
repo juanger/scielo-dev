@@ -2,8 +2,9 @@ require "#{File.dirname(__FILE__)}/../test_helper"
 
 class CountriesTest < ActionController::IntegrationTest
   fixtures :countries
+
   def setup
-    @countries = [:mexico, :brasil]
+    @countries = [:mexico, :brasil, :usa]
   end
 
    def test_getting_index
@@ -20,7 +21,7 @@ class CountriesTest < ActionController::IntegrationTest
 
    
    def  test_creating_new_country
-     post "countries/create", :country =>  {:id => 156, :name => 'China', :code => 'CN'}
+     post "countries/create", :record =>  {:id => 156, :name => 'China', :code => 'CN'}
      assert_equal 302, status
      follow_redirect!
      assert_equal '/countries/list', path

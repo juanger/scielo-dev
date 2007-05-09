@@ -7,20 +7,20 @@
   <% end %>
   </tr>
   
-<% for country in @countries %>
+<% for country in @collection %>
   <tr>
   <% for column in Country.content_columns %>
     <td><%=h country.send(column.name) %></td>
   <% end %>
     <td><%= link_to 'Show', :action => 'show', :id => country %></td>
     <td><%= link_to 'Edit', :action => 'edit', :id => country %></td>
-    <td><%= link_to 'Destroy', { :action => 'destroy', :id => country }, :confirm => 'Are you sure?' %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => country }, :confirm => 'Are you sure?', :method => :post %></td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @country_pages.current.previous } if @country_pages.current.previous %>
-<%= link_to 'Next page', { :page => @country_pages.current.next } if @country_pages.current.next %> 
+<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
+<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
 
 <br />
 

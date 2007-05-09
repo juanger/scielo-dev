@@ -27,7 +27,7 @@ class CountriesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:countries)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class CountriesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:country)
-    assert assigns(:country).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +46,13 @@ class CountriesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:country)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_countries = Country.count
 
-    post :create, :country =>{:id => "90", :name => "Argentina", :code => "AR"}
+    post :create, :record =>{:id => "90", :name => "Argentina", :code => "AR"}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +66,8 @@ class CountriesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:country)
-    assert assigns(:country).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update
