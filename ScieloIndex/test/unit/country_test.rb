@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CountryTest < Test::Unit::TestCase
-  fixtures :countries, :collections, :institutions
+  fixtures :countries, :institutions
 
   def setup
     @countries = [:mexico, :brasil, :usa]
@@ -110,9 +110,9 @@ class CountryTest < Test::Unit::TestCase
   end
 
   def test_has_many_institutions
-    @country = Country.find(484)
-    assert_equal @country.institutions[0].id, 2
-    assert_equal @country.institutions[0].abbrev, 'IPN'
-    assert_equal @country.institutions[0].zipcode, '45100'
+    @country = Country.find(840)
+    assert_equal @country.institutions[0].id, 3
+    assert_equal @country.institutions[0].abbrev, 'NYU'
+    assert_equal @country.institutions[0].zipcode, '85754'
   end
 end

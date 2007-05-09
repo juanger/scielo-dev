@@ -29,3 +29,18 @@ ipn:
   phone: 5666666
   fax: 5000000
   other: algox
+
+nyu:
+  id: 3
+  name: New York University 
+  url: http://www.nyu.edu
+  abbrev: NYU
+  parent_id: 3
+  address: Central Park 
+  country_id: 840
+  state: New York
+  city: New York City
+  zipcode: 85754
+  phone: 56726768
+  fax: 5000000
+  other: algo

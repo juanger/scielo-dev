@@ -6,7 +6,7 @@ mexico:
 brasil:
   id: 123
   name: Brasil
-  code: br
+  code: BR
 usa:
   id: 840
   name: Estados Unidos
