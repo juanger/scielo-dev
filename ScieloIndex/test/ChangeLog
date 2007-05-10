@@ -1,3 +1,14 @@
+2007-05-09  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * fixtures/collections.yml: Se modificaron los campos de
+        publisher_id para que concuerden con los id's de los publishers
+
+        * fixtures/publishers.yml: Se agregaron dos publishers, fisica y
+        med para relacionarlos con los collections correspondientes
+
+        * unit/publisher_test.rb: Se agrego el test para probar la
+        relacion con collections y se definio mypublisher
+
 2007-05-08  Hector E. Gomez Morales  <hector@scielo-dev2>
 
         * unit/country_test.rb, unit/institution_test.rb, unit/author_test.rb, unit/author_institution_test.rb: Modificacion en la relacion de

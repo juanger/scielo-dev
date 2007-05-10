@@ -14,3 +14,13 @@ black:
   name: Black Dog Factory
   descr: Big bad stories for big boys
   url: http://www.black-dog.com
+fisica:
+  id: 4
+  name: Fisica Editores
+  descr: Revistas para fisicos
+  url: http://www.fisicaeditores.com
+med:
+  id: 5
+  name: Ediciones Medicas
+  descr: Enfermedades y tratamientos novedosos
+  url: http://www.medicas.com

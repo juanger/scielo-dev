@@ -1,10 +1,12 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class PublisherTest < Test::Unit::TestCase
-  fixtures :publishers
+  fixtures :publishers, :collections
 
   def setup
     @publishers = [:mit, :white, :black]
+    @myexistingpublisher = {:id => 4, :name => 'MIT Press', :descr => 'For cool kids'}
+    @mypublisher = {:id => 100, :name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'}
   end
 
   # RIGHT
@@ -48,14 +50,14 @@ class PublisherTest < Test::Unit::TestCase
   end
 
   def test_checking_uniqueness
-    @publisher = Publisher.new({:id => 4, :name => 'MIT Press', :descr => 'For cool kids'})
+    @publisher = Publisher.new(@myexistingpublisher)
     assert !@publisher.save
   end
 
   # Boundary
   def test_bad_values_for_id
-    @publisher = Publisher.new({:id => 100, :name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'})
-    
+    @publisher = Publisher.new(@mypublisher)
+
     # Checking for ID constraints
     @publisher.id = nil
     assert @publisher.valid?
@@ -68,7 +70,7 @@ class PublisherTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_name
-    @publisher = Publisher.new({:id => 100, :name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'})
+    @publisher = Publisher.new(@mypublisher)
 
     # Checking name constraints
     @publisher.name = nil
@@ -85,7 +87,7 @@ class PublisherTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_descr
-    @publisher = Publisher.new({:id => 100, :name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'})
+    @publisher = Publisher.new(@mypublisher)
 
     # Checking descr constraints
     @publisher.descr = nil
@@ -102,7 +104,7 @@ class PublisherTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_url
-    @publisher = Publisher.new({:id => 100, :name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'})
+    @publisher = Publisher.new(@mypublisher)
 
     # Checking url constraints
     @publisher.url = nil
@@ -116,5 +118,12 @@ class PublisherTest < Test::Unit::TestCase
 
     @publisher.url = "http://[]"
     assert !@publisher.valid?
+  end
+
+  def test_has_many_collections
+    @publisher = Publisher.find(4)
+    assert_equal @publisher.collections[0].title, 'Atmosfera'
+    assert_equal @publisher.collections.first.url, 'www.atmosfera.com'
+    assert_equal @publisher.collections.first.state, 'Distrito Federal'
   end
 end

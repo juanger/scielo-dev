@@ -5,18 +5,18 @@ atmosfera:
   country_id: 484
   state: Distrito Federal
   city: Ciudad de Mexico
-  publisher_id: 40
+  publisher_id: 4
   url: www.atmosfera.com
   email: atmosfera@dgb.com
   other: en proceso
-	
+
 medicina:
   id: 2
   title: Medicina
   country_id: 484
   state: Distrito Federal
   city: Ciudad de Mexico
-  publisher_id: 50
+  publisher_id: 5
   url: www.medicina.com
   email: medicina@medi.com
   other: a dos columanas
