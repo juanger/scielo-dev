@@ -1,3 +1,8 @@
+2007-05-09  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * collection.rb: Se hace una validacion en las llaves foraneas
+        para los modelos country y publisher.
+
 2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
 
         * author_institutions_controller.rb: Ahora deriva del controlador

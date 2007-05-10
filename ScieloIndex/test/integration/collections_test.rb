@@ -1,10 +1,10 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
 class CollectionsTest < ActionController::IntegrationTest
-  fixtures :collections
+  fixtures :countries, :publishers, :collections
 
   def setup
-    @collections = [:atmosfera, :medicina ]
+    @collections = [:atmosfera, :medicina]
   end
 
    def test_getting_index
@@ -19,7 +19,7 @@ class CollectionsTest < ActionController::IntegrationTest
      assert_equal '/collections/new', path
    end
 
-   
+
    def  test_creating_new_collection
      post "collections/create", :record =>  {:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'}
      assert_equal 302, status

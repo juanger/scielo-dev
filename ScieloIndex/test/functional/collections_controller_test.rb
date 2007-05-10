@@ -5,7 +5,7 @@ require 'collections_controller'
 class CollectionsController; def rescue_action(e) raise e end; end
 
 class CollectionsControllerTest < Test::Unit::TestCase
-  fixtures :collections
+  fixtures :countries, :publishers, :collections
 
   def setup
     @controller = CollectionsController.new
@@ -51,7 +51,7 @@ class CollectionsControllerTest < Test::Unit::TestCase
 
   def test_create
     num_collections = Collection.count
-    post :create, :record => {:id => 3, :title => 'Atmosfera', :country_id => 484, :state => 'Distrito Federal', :city => 'Ciudad de Mexico', :publisher_id => 1, :url => 'www.atmosfera.com', :email => 'atmosfera@dgb.com', :other => 'en proceso'}
+    post :create, :record => {:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'}
     assert_response :redirect
     assert_redirected_to :action => 'list'
 
