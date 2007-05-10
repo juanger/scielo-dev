@@ -1,10 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class JournalTest < Test::Unit::TestCase
-  fixtures :journals
+  fixtures :journals, :journal_issues
 
   def setup
-    @journals = [:watchmen, :vendetta]
+    @journals = [:watchmen, :vendetta, :succus, :octopus]
+    @myjournal = {:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'}
   end
 
   # RIGHT
@@ -71,14 +72,17 @@ class JournalTest < Test::Unit::TestCase
   end
 
   def test_checking_uniqueness
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1234'})
+    @journal = Journal.new(@myjournal)
+
+    @journal.issn = '1234-1234'
+
     assert !@journal.save
   end
 
   # Boundary
   def test_bad_values_for_id
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
-    
+    @journal = Journal.new(@myjournal)
+
     # Checking for ID constraints
     @journal.id = nil
     assert @journal.valid?
@@ -91,7 +95,7 @@ class JournalTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_title
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking title constraints
     @journal.title = nil
@@ -108,7 +112,7 @@ class JournalTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_publisher_id
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking publisher_id constraints
     @journal.publisher_id = nil
@@ -125,7 +129,7 @@ class JournalTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_state
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking state constraints
     @journal.state = nil
@@ -142,7 +146,7 @@ class JournalTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_city
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking city constraints
     @journal.city = nil
@@ -159,7 +163,7 @@ class JournalTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_country_id
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking country_id constraints
     @journal.country_id = nil
@@ -176,7 +180,7 @@ class JournalTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_url
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking url constraints
     @journal.url = nil
@@ -187,13 +191,13 @@ class JournalTest < Test::Unit::TestCase
 
     @journal.url = "A"*201
     assert !@journal.valid?
-    
+
     @journal.url = "http://[]"
     assert !@journal.valid?
   end
 
   def test_bad_values_for_email
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking email constraints
     @journal.email = nil
@@ -204,13 +208,13 @@ class JournalTest < Test::Unit::TestCase
 
     @journal.email = "A"*21
     assert !@journal.valid?
-    
+
     @journal.email = "foo@[].com"
     assert !@journal.valid?
   end
 
   def test_bad_values_for_abbrev
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking abbrev constraints
     @journal.abbrev = nil
@@ -221,13 +225,13 @@ class JournalTest < Test::Unit::TestCase
 
     @journal.abbrev = "A"*21
     assert !@journal.valid?
-    
+
     @journal.abbrev = "FOO[]"
     assert !@journal.valid?
   end
 
   def test_bad_values_for_issn
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking issn constraints
     @journal.issn = nil
@@ -238,13 +242,13 @@ class JournalTest < Test::Unit::TestCase
 
     @journal.issn = "A"*10
     assert !@journal.valid?
-    
+
     @journal.issn = "1234-123#"
     assert !@journal.valid?
   end
 
   def test_bad_values_for_other
-    @journal = Journal.new({:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'})
+    @journal = Journal.new(@myjournal)
 
     # Checking other constraints
     @journal.other = nil
@@ -255,8 +259,15 @@ class JournalTest < Test::Unit::TestCase
 
     @journal.other = "A"*201
     assert !@journal.valid?
-    
+
     @journal.other = "Cool kinds like comics |foo|"
     assert !@journal.valid?
+  end
+
+  def test_has_many_journal_issues
+    @journal = Journal.find(3)
+    assert_equal @journal.journal_issues.first.id, 1
+    assert_equal @journal.journal_issues.first.number, '19'
+    assert_equal @journal.journal_issues.first.year, 2006
   end
 end

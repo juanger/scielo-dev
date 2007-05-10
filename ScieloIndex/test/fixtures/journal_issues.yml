@@ -2,14 +2,14 @@
 
 atmosfera:
   id: 1
-  journal_id: 2 
+  journal_id: 3
   number: 19
   volume: 1
   year: 2006
 
 csalud:
   id: 2
-  journal_id: 2
+  journal_id: 4
   number: 1
   volume: 10
   year: 2005

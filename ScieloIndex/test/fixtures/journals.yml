@@ -23,3 +23,27 @@ vendetta:
   abbrev: VfV
   other: Cool as Ice.
   issn: 4321-1234
+succus:
+  id: 3
+  title: Boletin Succus
+  country_id: 484
+  state: Distrito Federal
+  city: Ciudad de Mexico
+  publisher_id: 1
+  url: http://www.boletin.com
+  email: boletin@succus.com
+  abbrev: BS
+  other: boletin bimestral
+  issn: 5512-2591
+octopus:
+  id: 4
+  title: Dr. Octopus Series
+  country_id: 840
+  state: New York
+  city: New York City
+  publisher_id: 3
+  url: http://www.comics.com
+  email: octopus@comics.com
+  abbrev: DOS
+  other: no more spiderman
+  issn: 8873-9652
