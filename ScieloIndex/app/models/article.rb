@@ -17,5 +17,22 @@ class Article < ActiveRecord::Base
   belongs_to :journal_issue
 
   has_many :article_authors
-  has_many :authors, :through => :article_authors
+  has_many :authors, :through => :article_authors,  :order => "article_authors.author_order ASC"
+
+  # Quizás un artículo puede aparecer en diferente journals,
+  # como esto es *incierto* lo dejaremos comentado, nomás pa' meter mas ruido
+  # has_many :journal_issues
+  # has_many :journals, :through => :journal_issues
+
+  def journal
+    info = [ self.journal_issue.journal.title ]
+    if self.journal_issue.volume != nil and self.journal_issue.number != nil
+      info << "#{self.journal_issue.volume}(#{self.journal_issue.number})"
+    else
+      info << self.journal_issue.volume if self.journal_issue.volume != nil
+      info << self.journal_issue.number if self.journal_issue.number != nil
+    end
+    info << self.journal_issue.year
+    info.join(', ')
+  end
 end

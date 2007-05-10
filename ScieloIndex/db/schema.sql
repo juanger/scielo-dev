@@ -135,7 +135,7 @@ CREATE TABLE journal_issues (
         id SERIAL,
         journal_id int4 NOT NULL
                 REFERENCES journals
-		ON DELETE CASCADE
+                ON DELETE CASCADE
                 ON UPDATE CASCADE
                 DEFERRABLE,
         number text NULL,
@@ -180,6 +180,7 @@ CREATE TABLE article_authors (
                 ON UPDATE CASCADE
                 ON DELETE CASCADE
                 DEFERRABLE,
+        author_order int4 NOT NULL,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),

@@ -4,7 +4,7 @@ class JournalIssue < ActiveRecord::Base
   validates_inclusion_of :year, :in => (Date.today.year - 1000)..(Date.today.year + 1)
 
   belongs_to :journal
-  has_many :articles, :through => :articles
+  has_many :articles
 
-  validates_associated :journal
+  validates_associated :journal, :articles
 end
