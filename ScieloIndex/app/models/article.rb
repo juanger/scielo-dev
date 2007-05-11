@@ -19,15 +19,14 @@ class Article < ActiveRecord::Base
   has_many :article_authors
   has_many :authors, :through => :article_authors,  :order => "article_authors.author_order ASC"
 
-  # has_many :cites
+  has_many :cites
 
   def as_vancouver
     [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join(', ') + '.'
   end
 
   def cites_number
-    #self.cites.size
-    0
+    self.cites.size
   end
 
   def author_names_as_vancouver

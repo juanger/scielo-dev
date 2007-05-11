@@ -186,3 +186,22 @@ CREATE TABLE article_authors (
         PRIMARY KEY (id),
         UNIQUE(article_id, author_id)
 );
+
+CREATE TABLE cites (
+        id SERIAL,
+        article_id int4 NOT NULL
+                REFERENCES articles(id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+                DEFERRABLE,
+        cited_by_article_id int4 NOT NULL
+                REFERENCES articles(id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+                DEFERRABLE,
+        cite_order int4 NOT NULL,
+        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        UNIQUE(article_id, cited_by_article_id)
+);
