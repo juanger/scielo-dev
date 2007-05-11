@@ -7,6 +7,6 @@ class ArticleAuthor < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_uniqueness_of :article_id, :scope => [:article_id, :author_id]
 
-  belongs_to :article, :include => [:journal]
+  belongs_to :article
   belongs_to :author
 end

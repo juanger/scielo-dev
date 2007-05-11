@@ -19,20 +19,43 @@ class Article < ActiveRecord::Base
   has_many :article_authors
   has_many :authors, :through => :article_authors,  :order => "article_authors.author_order ASC"
 
+  # has_many :cites
+
   # Quizás un artículo puede aparecer en diferente journals,
   # como esto es *incierto* lo dejaremos comentado, nomás pa' meter mas ruido
   # has_many :journal_issues
   # has_many :journals, :through => :journal_issues
 
+  def as_vancouver
+    [ author_names, self.title, journal].join(', ') + '.'
+  end
+
+  def cites_number
+    self.cites.size
+  end
+
+  def author_names
+    limit = 6
+    if self.authors.size < limit
+      self.authors.collect { |author| author.name }.join(', ')
+    else
+      (self.authors.values_at(0..(limit - 1)).collect { |author| author.name } + ['Et. all']).join(', ')
+    end
+  end
+
   def journal
-    info = [ self.journal_issue.journal.title ]
+    [ self.journal_issue.journal.title, issue].join(', ')
+  end
+
+  def issue
+    info = []
     if self.journal_issue.volume != nil and self.journal_issue.number != nil
       info << "#{self.journal_issue.volume}(#{self.journal_issue.number})"
-    else
-      info << self.journal_issue.volume if self.journal_issue.volume != nil
-      info << self.journal_issue.number if self.journal_issue.number != nil
+    elsif self.journal_issue.volume != nil
+      info << self.journal_issue.volume + '()'
+    elsif self.journal_issue.number != nil
+      info <<"(#{self.journal_issue.number})"
     end
-    info << self.journal_issue.year
-    info.join(', ')
+    (info + [self.journal_issue.year]).join(', ')
   end
 end

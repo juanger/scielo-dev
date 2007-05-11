@@ -8,12 +8,12 @@ class Author < ActiveRecord::Base
   validates_format_of :firstname, :lastname, :middlename, :suffix, :with => /^[-a-zA-ZáéíóúÁÉÍÓÚñÑ. ]*$/
 
   has_many :article_authors
-  has_many :articles, :through => :article_authors
-  # Queda pendiente agregar el siguiente query al has_many :articles, con el objetivo
-  # de ofrecer la lista los artículos de forma ordenada
-  # :include => [:journal_issue, :journal, :article],
-  # :conditions => '',
-  # :order => 'journal_issues.year, journal_issues.volume, journal_issues.number, articles.title, journals.title DESC'
+  has_many :articles, :through => :article_authors,
+  :finder_sql => 'SELECT * FROM article_authors INNER JOIN articles ON articles.id = article_authors.article_id ' +
+    'INNER JOIN journal_issues ON articles.journal_issue_id = journal_issues.id ' +
+    'INNER JOIN journals ON journal_issues.journal_id = journals.id ' +
+    'AND article_authors.author_id = #{id} ORDER BY journal_issues.year, ' +
+    'journal_issues.volume, journal_issues.number, journals.title, articles.title DESC'
 
   has_many :author_institutions
   has_many :institutions, :through => :author_institutions
