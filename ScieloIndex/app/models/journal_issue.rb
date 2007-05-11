@@ -7,4 +7,17 @@ class JournalIssue < ActiveRecord::Base
   has_many :articles
 
   validates_associated :journal, :articles
+
+  #FIXME: Checar el schema para agregar atributos para contener el mes y dia.
+  def as_vancouver
+    info = self.year.to_s + ";"
+    if self.volume != nil and self.number != nil
+      info << "#{self.volume}(#{self.number})"
+    elsif self.volume != nil
+      info << self.volume
+    elsif self.number != nil
+      info << "(#{self.number})"
+    end
+    info
+  end
 end

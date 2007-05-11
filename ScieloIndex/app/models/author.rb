@@ -18,9 +18,9 @@ class Author < ActiveRecord::Base
   has_many :author_institutions
   has_many :institutions, :through => :author_institutions
 
-  def name(style='vancouver') #Quizá este estilo nunca cambie :)
-    author_name = [ self.lastname ]
-    author_name << self.firstname.first.upcase + self.middlename.split(' ').collect { |md| md.first }.flatten.to_s
-    author_name.join(' ')
+  def as_vancouver
+    [ self.lastname,
+      self.firstname.first.upcase + self.middlename.split(' ').collect { |md| md.first }.flatten.to_s
+    ].join(', ')
   end
 end

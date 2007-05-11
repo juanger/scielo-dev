@@ -1,3 +1,8 @@
+2007-05-11  Hector E. Gomez Morales  <hector@enigma>
+
+	* author.rb, journal_issue.rb, article.rb, journal.rb: Se agregaron a cada modelo
+	metodos que regresan la informacion dentro del modelo segun la forma vancouver.
+
 2007-05-08  Hector E. Gomez Morales  <hector@scielo-dev2>
 
         * institution.rb, country.rb, author.rb: Cambio en las relaciones de las tablas

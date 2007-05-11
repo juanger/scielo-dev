@@ -5,7 +5,7 @@
 
   <% for record in @collection %>
   <tr>
-    <td ><%=h apply_article_style(record) %><br/><hr/></td>
+    <td ><%=h record[0] %><br/>Cites: <%=h record[2] %><hr/></td>
   </tr>
 <% end %>
 </table>

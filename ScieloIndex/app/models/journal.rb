@@ -10,4 +10,9 @@ class Journal < Collection
   validates_uniqueness_of :issn
 
   has_many :journal_issues
+
+  #FIXME: Checar en MedLine su guideline para la creacion de abreviaciones para los titulos.
+  def as_vancouver
+    self.title
+  end
 end

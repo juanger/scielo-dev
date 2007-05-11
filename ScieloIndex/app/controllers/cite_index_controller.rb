@@ -12,7 +12,8 @@ class CiteIndexController < ApplicationController
     @collection = [ ]
     @authors.each { |author|
       author.articles.each { |article|
-        @collection.push(article)
+        logger.info "VANCOUVER" + article.as_vancouver
+        @collection.push([article.as_vancouver, article.id, article.cites_number])
       }
     }
    if @collection.size > 0

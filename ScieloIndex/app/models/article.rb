@@ -21,41 +21,29 @@ class Article < ActiveRecord::Base
 
   # has_many :cites
 
-  # Quizás un artículo puede aparecer en diferente journals,
-  # como esto es *incierto* lo dejaremos comentado, nomás pa' meter mas ruido
-  # has_many :journal_issues
-  # has_many :journals, :through => :journal_issues
-
   def as_vancouver
-    [ author_names, self.title, journal].join(', ') + '.'
+    [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join(', ') + '.'
   end
 
   def cites_number
-    self.cites.size
+    #self.cites.size
+    0
   end
 
-  def author_names
+  def author_names_as_vancouver
     limit = 6
     if self.authors.size < limit
-      self.authors.collect { |author| author.name }.join(', ')
+      self.authors.collect { |author| author.as_vancouver }.join(', ')
     else
-      (self.authors.values_at(0..(limit - 1)).collect { |author| author.name } + ['Et. all']).join(', ')
+      (self.authors.values_at(0..(limit - 1)).collect { |author| author.as_vancouver } + ['et al.']).join(', ')
     end
   end
 
-  def journal
-    [ self.journal_issue.journal.title, issue].join(', ')
+  def title_as_vancouver
+    self.title.capitalize
   end
 
-  def issue
-    info = []
-    if self.journal_issue.volume != nil and self.journal_issue.number != nil
-      info << "#{self.journal_issue.volume}(#{self.journal_issue.number})"
-    elsif self.journal_issue.volume != nil
-      info << self.journal_issue.volume + '()'
-    elsif self.journal_issue.number != nil
-      info <<"(#{self.journal_issue.number})"
-    end
-    (info + [self.journal_issue.year]).join(', ')
+  def journal_as_vancouver
+    [ self.journal_issue.journal.as_vancouver, self.journal_issue.as_vancouver + ':' + self.page_range].join(', ')
   end
 end
