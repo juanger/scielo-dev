@@ -105,6 +105,7 @@ public class MarkupHTML {
 		ReplaceTitleTag ();
 		ReplaceAuthorTag ();
 		ReplaceAffTag ();
+		ReplaceDateTag ();
 		ReplaceResTag ();
 		ReplaceAbsTag ();
 		ReplaceKeyTag ();
@@ -146,7 +147,7 @@ public class MarkupHTML {
 		front = Regex.Replace (front, endTag, endSustitute);			
 	}		
 		
-		private void ReplaceAffTag ()		
+	private void ReplaceAffTag ()		
 	{	
 		string startTag = @"\[aff\]";
 		string endTag = @"\[/aff\]";
@@ -156,6 +157,17 @@ public class MarkupHTML {
 		front = Regex.Replace (front, startTag, startSustitute);
 		front = Regex.Replace (front, endTag, endSustitute);			
 	}	
+	
+	private void ReplaceDateTag ()		
+	{	
+		string startTag = @"\[date\]";
+		string endTag = @"\[/date\]";
+		string startSustitute = "<font face=\"verdana\" size=\"2\">&nbsp;</font></p><p align=\"justify\"><font face=\"verdana\" size=\"2\">";
+		string endSustitute = "</font></p><p align=\"justify\"><font face=\"verdana\" size=\"2\">&nbsp;</font></p>";
+
+		front = Regex.Replace (front, startTag, startSustitute);
+		front = Regex.Replace (front, endTag, endSustitute);			
+	}		
 			
 	private void ReplaceResTag ()		
 	{

@@ -1,3 +1,7 @@
+2007-05-11  Juan Germán Castañeda Echevarría <Email Address> 
+
+	* Markup/MarkupHTML.cs: Se agregó el reemplazo del tag [date] por HTML
+
 2007-05-09  Juan Germán Castañeda Echevarría <Email Address> 
 
 	* Markup/Test/TestMarkupHTML.cs: se agregaron el titulo, autor y
