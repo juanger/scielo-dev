@@ -5,7 +5,7 @@
 
   <% for record in @collection %>
   <tr>
-    <td ><%=h record[0] %><br/>Cites: <%=h record[2] %><hr/></td>
+    <td ><%=h record[0] %><br/><%= link_to "Cites: #{record[2]}", { :action => 'search_cites', :id => record[1] } %> <hr/></td>
   </tr>
 <% end %>
 </table>

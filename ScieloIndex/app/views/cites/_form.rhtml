@@ -5,9 +5,8 @@
 <%= select_by_attribute("record", Article, 'title') %></p>
 
 <p><label for="cite_cited_by_article_id">Cited by Article</label><br/>
-<%= text_field 'record', 'cited_by_article_id' %></p>
+<%= select_by_attribute("record", Article, 'title', 'cited_by_article_id') %></p>
 
 <p><label for="cite_cite_order">Cite order</label><br/>
 <%= text_field 'record', 'cite_order'  %></p>
 <!--[eoform:cite]-->
-

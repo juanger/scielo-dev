@@ -1,7 +1,11 @@
+2007-05-11  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * cite_index_controller.rb: Se agregó la función search_cites
+
 2007-05-11  Hector E. Gomez Morales  <hector@enigma>
 
-	* cite_index_controller.rb: Se hace uso de las metodos as_vancouver en los modelos
-	para crear la lista de articulos publicados en formato vancouver.
+        * cite_index_controller.rb: Se hace uso de las metodos as_vancouver en los modelos
+        para crear la lista de articulos publicados en formato vancouver.
 
 2007-05-09  Hector E. Gomez Morales  <hector@scielo-dev2>
 

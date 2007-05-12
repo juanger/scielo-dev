@@ -1,0 +1,18 @@
+<h1>Listing articles</h1>
+
+<table>
+  <tr>
+    <th>Articles</th>
+  </tr>
+
+  <% for record in @collection %>
+  <tr>
+    <td ><%=h record[0] %><br/>Cites: <%=h record[2] %><hr/></td>
+  </tr>
+<% end %>
+</table
+
+<br />
+<hr/>
+
+<%= link_to 'New Search', :action => 'index' %>

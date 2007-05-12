@@ -22,4 +22,17 @@ class CiteIndexController < ApplicationController
      render :action => 'index'
    end
   end
+
+  def search_cites
+    @article = Article.find(params[:id])
+    @collection = []
+    @article.cites.each { |cited_by|
+      @collection.push([cited_by.cite.as_vancouver])
+    }
+   if @collection.size > 0
+     render :action => 'search_cites'
+   else
+     render :action => 'index'
+   end
+  end
 end

@@ -5,8 +5,14 @@ module SelectHelper
     select(form, attribute_id, collection, { :prompt => 'Seleccionar' })
   end
 
-  def select_by_attribute(form, model, attribute)
-    attribute_id = Inflector.foreign_key(model)
+#   def select_by_attribute(form, model, attribute)
+#     attribute_id = Inflector.foreign_key(model)
+#     collection = model.find(:all).collect{|record|[record.send(attribute), record.id]}
+#     select(form, attribute_id, collection, { :prompt => 'Seleccionar' })
+#   end
+
+  def select_by_attribute(form, model, attribute, attribute_id=nil)
+    attribute_id ||= Inflector.foreign_key(model)
     collection = model.find(:all).collect{|record|[record.send(attribute), record.id]}
     select(form, attribute_id, collection, { :prompt => 'Seleccionar' })
   end
