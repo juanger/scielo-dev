@@ -1,0 +1,8 @@
+2007-05-11  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * search_cites.rhtml: Se creó el archivo para que liste los
+        artículos que hacen las citas en estilo Vancouver
+
+        * _list.rhtml: Se modificó para que tenga un link en el número de
+        citas el cual lleva a los artículos con las citas en cuestión
+

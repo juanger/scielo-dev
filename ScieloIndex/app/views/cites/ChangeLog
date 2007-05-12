@@ -1,0 +1,5 @@
+2007-05-11  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+        * _form.rhtml: Se cambió la fomra para que use una lista en vez de
+        un campo de texto para seleccionar el artículo que cita.
+
