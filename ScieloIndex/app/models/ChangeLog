@@ -1,3 +1,10 @@
+2007-05-14  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+	* author.rb: Se cambio el join de ', ' a ' ' puesto que solo debe
+	de haber un espacio entre el apellido y las inciales en vancouver.
+	* journal.rb: Se quitaron las lineas comentadas sobre la
+	validacion de los campos country_id y publisher_id
+
 2007-05-11  Hector E. Gomez Morales  <hector@scielo-dev2>
 
         * cite.rb: Se agregaron las validaciones de unicidad y de

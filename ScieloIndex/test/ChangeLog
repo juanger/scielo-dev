@@ -1,3 +1,11 @@
+2007-05-14  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+	* unit/author_test.rb: Se agrego una prueba para el metodo
+	as_vancouver del modelo, ademas se hicieron cambios menores a las
+	demas prubeas.
+	* fixtures/article_authors.yml: Se agrego el campo author_order
+	a las pruebas dado el cambio del modelo en el schema.
+
 2007-05-09  Hector E. Gomez Morales  <hector@scielo-dev2>
 
         * fixtures/journals.yml: se agregaron dos definiciones nuevas,

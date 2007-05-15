@@ -3,11 +3,14 @@ hectoratmart1:
   id: 1
   article_id: 1
   author_id: 1
+  author_order: 1
 memocsaludart3:
   id: 2
   article_id: 3
   author_id: 2
+  author_order: 1
 monoatmart2:
   id: 3
   article_id: 2
   author_id: 3
+  author_order: 1

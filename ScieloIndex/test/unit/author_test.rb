@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AuthorTest < Test::Unit::TestCase
-  fixtures :journals, :journal_issues, :articles, :authors, :article_authors
+  fixtures :countries, :journals, :journal_issues, :articles, :authors, :institutions, :author_institutions, :article_authors
 
   def setup
     @authors = [:hector, :memo, :mono]
@@ -108,7 +108,7 @@ class AuthorTest < Test::Unit::TestCase
     @author.middlename = ""
     assert @author.valid?
 
-    @author.middlename = "A"*21
+    @author.middlename = "A"*101
     assert !@author.valid?
 
     @author.middlename = "F2"
@@ -141,8 +141,15 @@ class AuthorTest < Test::Unit::TestCase
 
   def test_has_and_belongs_to_many_institutions
     @author = Author.find(1)
-    assert_equal @author.institutions[0].institution_id, '1'
+    assert_equal @author.institutions[0].id, 1
     assert_equal @author.institutions[0].abbrev, 'UNAM'
     assert_equal @author.institutions[0].city,'México'
+  end
+
+  def test_as_vancouver
+    @author = Author.find(1)
+    assert_equal @author.as_vancouver, 'Reyes HE'
+    @author = Author.find(2)
+    assert_equal @author.as_vancouver, 'Giron GN'
   end
 end

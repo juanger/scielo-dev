@@ -1,7 +1,7 @@
 class Author < ActiveRecord::Base
   validates_presence_of :firstname, :lastname
   validates_length_of :firstname, :lastname, :in => 3..30
-  validates_length_of :middlename, :maximum  => 20, :allow_nil => true
+  validates_length_of :middlename, :maximum  => 100, :allow_nil => true
   validates_length_of :suffix, :maximum => 8, :allow_nil => true
   validates_inclusion_of :id, :in => 1..9999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
@@ -20,7 +20,7 @@ class Author < ActiveRecord::Base
 
   def as_vancouver
     [ self.lastname,
-      self.firstname.first.upcase + self.middlename.split(' ').collect { |md| md.first }.flatten.to_s
-    ].join(', ')
+      self.firstname.first.upcase + self.middlename.split(' ').collect { |md| md.first.upcase }.to_s
+    ].join(' ')
   end
 end
