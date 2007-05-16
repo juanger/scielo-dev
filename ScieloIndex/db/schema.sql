@@ -147,6 +147,17 @@ CREATE TABLE journal_issues (
         UNIQUE(journal_id, number, volume, year)
 );
 
+CREATE TABLE associated_files (
+        id SERIAL,
+        name text NOT NULL,
+        pdfdata bytea NOT NULL,
+        htmldata bytea NOT NULL,
+        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        UNIQUE(name)
+);
+
 CREATE TABLE articles (
         id SERIAL,
         title text NOT NULL,
@@ -161,6 +172,11 @@ CREATE TABLE articles (
         url text NULL,
         pacsnum text NULL,
         other text NULL,
+        associated_file_id int4 NULL
+                REFERENCES associated_files(id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+                DEFERRABLE,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),

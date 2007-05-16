@@ -1,4 +1,11 @@
-2007-05-14  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-16  Hector E. Gomez Morales  <hectoregm@gmail.com>
+
+	* unit/associated_file_test.rb,
+	functional/associated_files_controller_test.rb,
+	fixtures/associated_files.yml: Commit inicial del modelo associated_files.
+	
+
+2007-05-14  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* unit/author_test.rb: Se agrego una prueba para el metodo
 	as_vancouver del modelo, ademas se hicieron cambios menores a las
@@ -6,7 +13,7 @@
 	* fixtures/article_authors.yml: Se agrego el campo author_order
 	a las pruebas dado el cambio del modelo en el schema.
 
-2007-05-09  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-09  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * fixtures/journals.yml: se agregaron dos definiciones nuevas,
         succus y octopus
@@ -31,12 +38,12 @@
         * unit/publisher_test.rb: Se agrego el test para probar la
         relacion con collections y se definio mypublisher
 
-2007-05-08  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-08  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * unit/country_test.rb, unit/institution_test.rb, unit/author_test.rb, unit/author_institution_test.rb: Modificacion en la relacion de
         las tablas y modificacion de las pruebas correspondientes
 
-2007-04-30  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-04-30  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * unit/article_test.rb: Se hicieron cambios para apegarnos al uso
         de fpage, lpage y page_range

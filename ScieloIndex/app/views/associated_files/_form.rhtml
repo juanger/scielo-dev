@@ -1,0 +1,19 @@
+<%= error_messages_for 'associated_file' %>
+
+<!--[form:associated_file]-->
+<p><label for="associated_file_name">Name</label><br/>
+<%= text_area 'associated_file', 'name'  %></p>
+
+<p><label for="associated_file_pdfdata">Pdfdata</label><br/>
+</p>
+
+<p><label for="associated_file_htmldata">Htmldata</label><br/>
+</p>
+
+<p><label for="associated_file_created_on">Created on</label><br/>
+<%= datetime_select 'associated_file', 'created_on'  %></p>
+
+<p><label for="associated_file_updated_on">Updated on</label><br/>
+<%= datetime_select 'associated_file', 'updated_on'  %></p>
+<!--[eoform:associated_file]-->
+

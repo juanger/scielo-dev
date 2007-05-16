@@ -1,0 +1,27 @@
+<h1>Listing associated_files</h1>
+
+<table>
+  <tr>
+  <% for column in AssociatedFile.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for associated_file in @associated_files %>
+  <tr>
+  <% for column in AssociatedFile.content_columns %>
+    <td><%=h associated_file.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => associated_file %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => associated_file %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => associated_file }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @associated_file_pages.current.previous } if @associated_file_pages.current.previous %>
+<%= link_to 'Next page', { :page => @associated_file_pages.current.next } if @associated_file_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New associated_file', :action => 'new' %>

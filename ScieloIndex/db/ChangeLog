@@ -1,0 +1,6 @@
+2007-05-16  Hector E. Gomez Morales  <hectoregm@gmail.com>
+
+	* schema.sql: Se agrego la tabla associated_files que contiene los
+	archivos PDF y HTML de un articulo dado. Tambien se añadio la
+	llave foranea associated_file_id a la tabla articles 
+
