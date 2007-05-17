@@ -4,7 +4,7 @@ class JournalTest < Test::Unit::TestCase
   fixtures :journals, :journal_issues
 
   def setup
-    @journals = [:watchmen, :vendetta, :succus, :octopus]
+    @journals = [:atmosfera, :csalud, :octopus]
     @myjournal = {:title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'}
   end
 
@@ -73,7 +73,6 @@ class JournalTest < Test::Unit::TestCase
 
   def test_checking_uniqueness
     @journal = Journal.new(@myjournal)
-
     @journal.issn = '1234-1234'
 
     assert !@journal.save
@@ -265,7 +264,7 @@ class JournalTest < Test::Unit::TestCase
   end
 
   def test_has_many_journal_issues
-    @journal = Journal.find(3)
+    @journal = Journal.find(1)
     assert_equal @journal.journal_issues.first.id, 1
     assert_equal @journal.journal_issues.first.number, '19'
     assert_equal @journal.journal_issues.first.year, 2006

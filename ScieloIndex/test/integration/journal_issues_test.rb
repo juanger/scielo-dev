@@ -4,7 +4,7 @@ class JournalIssuesTest < ActionController::IntegrationTest
   fixtures :journal_issues
 
   def setup
-    @journal_issues = [:atmosfera, :csalud]
+    @journal_issues = [:atm19_1, :csalud1_10]
   end
 
    def test_getting_index

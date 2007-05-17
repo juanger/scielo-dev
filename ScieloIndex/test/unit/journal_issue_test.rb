@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class JournalIssueTest < Test::Unit::TestCase
-  fixtures :journals
-  fixtures :journal_issues
+  fixtures :journals, :journal_issues
 
   def setup
-    @journal_issues = [:atmosfera, :csalud]
+    @journal_issues = [:atm19_1, :csalud1_10]
+    @myjournal_issue = {:journal_id => 2, :number => '19', :volume => '1', :year => 2006}
   end
 
   # RIGHT CRUD (Create, Update and Delete)
@@ -53,26 +53,100 @@ class JournalIssueTest < Test::Unit::TestCase
     assert !@journal_issue.save
   end
 
+  def test_uniqueness
+    @journal_issue = JournalIssue.new(@myjournal_issue)
+    assert @journal_issue.save
+    @journal_issue.journal_id = '1'
+    assert !@journal_issue.save
+  end
+
   # Boundary
   def test_bad_values_for_id
-    @journal_issue = JournalIssue.new({:id => 1, :journal_id => 2, :number => '19', :volume => '1', :year => 2006})
-    
+    @journal_issue = JournalIssue.new(@myjournal_issue)
+
     # Checking for ID constraints
     @journal_issue.id = nil
     assert @journal_issue.valid?
+
+    @journal_issue.id = -2
+    assert !@journal_issue.valid?
+
+    @journal_issue.id = 5.6
+    assert !@journal_issue.valid?
   end
-  
-  def test_bad_values_for_fields_nil
-    @journal_issue = JournalIssue.new({:id => 1, :journal_id => 2, :number => '19', :volume => '1', :year => 2006})
-    
-     # Checking title constraints
+
+  def test_bad_values_for_journal_id
+    @journal_issue = JournalIssue.new(@myjournal_issue)
+
+    # Checking for journal_id constraints
+    @journal_issue.journal_id = nil
+    assert !@journal_issue.valid?
+
+    @journal_issue.journal_id = -2
+    assert !@journal_issue.valid?
+
+    @journal_issue.journal_id = 5.6
+    assert !@journal_issue.valid?
+  end
+
+  def test_bad_values_for_number
+    @journal_issue = JournalIssue.new(@myjournal_issue)
+
+    # Checking for number constraints
     @journal_issue.number = nil
     assert @journal_issue.valid?
-    
+
+    @journal_issue.number = ""
+    assert @journal_issue.valid?
+
+    @journal_issue.number = "A"*101
+    assert !@journal_issue.valid?
+  end
+
+  def test_bad_values_for_volume
+    @journal_issue = JournalIssue.new(@myjournal_issue)
+
+    # Checking for volume constraints
     @journal_issue.volume = nil
     assert @journal_issue.valid?
-     
+
+    @journal_issue.volume = ""
+    assert @journal_issue.valid?
+
+    @journal_issue.volume = "A"*101
+    assert !@journal_issue.valid?
+  end
+
+  def test_bad_values_for_year
+    @journal_issue = JournalIssue.new(@myjournal_issue)
+
+    # Checking for year constraints
     @journal_issue.year = nil
-    assert !@journal_issue.valid?  
+    assert !@journal_issue.valid?
+
+    @journal_issue.year = -1
+    assert !@journal_issue.valid?
+
+    @journal_issue.year = 2007.2
+    assert !@journal_issue.valid?
+
+    @journal_issue.year = Date.today.year - 1001
+    assert !@journal_issue.valid?
+
+    @journal_issue.year = Date.today.year + 2
+    assert !@journal_issue.valid?
+  end
+
+  def test_belongs_to_journal
+    @journal_issue = journal_issues(:atm19_1)
+    @journal = journals(:atmosfera)
+    assert_equal @journal_issue.journal.title, @journal.title
+    assert_equal @journal_issue.journal.country_id, @journal.country_id
+    assert_equal @journal_issue.journal.url, @journal.url
+  end
+
+  def test_has_many_articles
+    @journal_issue = journal_issues(:atm19_1)
+    assert_equal @journal_issue.articles.size, 2
   end
 end

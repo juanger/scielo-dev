@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :journals, :journal_issues, :articles
-  #fixtures :article_authors
+  fixtures :authors, :journals, :journal_issues, :articles, :article_authors
 
   def setup
     @articles = [:article1, :article2, :article3]
+    @myarticle = {:title => 'Analisis de la Temporada de lluvias 2005 en la Cd de Mexico.', :journal_issue_id => 1, :fpage => '3', :lpage => '10', :page_range => '3-10' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'}
   end
 
   # RIGHT CRUD (Create, Update and Delete)
@@ -29,23 +29,22 @@ class ArticleTest < Test::Unit::TestCase
       @articles.each { |article|
       @article = articles(article)
       @article_db = Article.find_by_title(@article.title)
-      #@article_db.id = @article_db.id + 1 Es serial, se cambia?
-      #assert @article_db.update
-      @article_db.title.reverse
+      @article_db.id = @article_db.id
       assert @article_db.update
-      @article_db.fpage.reverse
+      @article_db.title.reverse!
       assert @article_db.update
-      @article_db.lpage.reverse
+      @article_db.fpage.reverse!
       assert @article_db.update
-      @article_db.page_range.reverse
+      @article_db.lpage.reverse!
       assert @article_db.update
-      @article_db.url.reverse
+      @article_db.page_range.reverse!
       assert @article_db.update
-      @article_db.pacsnum.reverse
+      @article_db.url.reverse!
       assert @article_db.update
-      @article_db.other.reverse
+      @article_db.pacsnum.reverse!
       assert @article_db.update
-      #puts @article_db.code.reverse
+      @article_db.other.reverse!
+      assert @article_db.update
     }
    end
 
@@ -64,74 +63,137 @@ class ArticleTest < Test::Unit::TestCase
     assert !@article.save
   end
 
-    # Boundary
-  def test_bad_values_for_id
-    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :journal_issue_id => 1, :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
+  def test_uniqueness
+    @article = Article.new(@myarticle)
+    assert @article.save
+    @article.title = articles(:article1).title
+    assert !@article.save
+  end
 
-    # Checking for ID constraints
+  # Boundary
+  def test_bad_values_for_id
+    @article = Article.new(@myarticle)
+
+    # Checking for id constraints
     @article.id = nil
     assert @article.valid?
+
+    @article.id = -2
+    assert !@article.valid?
+
+    @article.id = 5.6
+    assert !@article.valid?
   end
 
   def test_bad_values_for_title
-    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
+    @article = Article.new(@myarticle)
 
-    # Checking for title constraints
+    # Checking title constraints
     @article.title = nil
     assert !@article.valid?
 
     @article.title = ""
     assert !@article.valid?
 
-    @article.title = "A" * 999999
+    @article.title = "A"*100000
     assert !@article.valid?
-    end
+  end
+
+  def test_bad_values_for_journal_issue_id
+    @article = Article.new(@myarticle)
+
+    # Checking for journal_issue_id constraints
+    @article.journal_issue_id = nil
+    assert !@article.valid?
+
+    @article.journal_issue_id = -2
+    assert !@article.valid?
+
+    @article.journal_issue_id = 5.6
+    assert !@article.valid?
+  end
 
   def test_bad_values_for_fpage
-    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
+    @article = Article.new(@myarticle)
 
-    # Checking for fpage constraints
-    @article.fpage = "A" * 101
+    # Checking fpage constraints
+    @article.fpage = nil
+    assert @article.valid?
+
+    @article.fpage = ""
+    assert @article.valid?
+
+    @article.fpage = "A"*101
     assert !@article.valid?
   end
 
   def test_bad_values_for_lpage
-    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
+    @article = Article.new(@myarticle)
 
-    # Checking for lpage constraints
-    @article.lpage = "A" * 101
+    # Checking lpage constraints
+    @article.lpage = nil
+    assert @article.valid?
+
+    @article.lpage = ""
+    assert @article.valid?
+
+    @article.lpage = "A"*101
     assert !@article.valid?
   end
 
   def test_bad_values_for_page_range
-    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
+    @article = Article.new(@myarticle)
 
-    # Checking for page_range constraints
-    @article.page_range = "A" * 101
+    # Checking page_range constraints
+    @article.page_range = nil
+    assert @article.valid?
+
+    @article.page_range = ""
+    assert @article.valid?
+
+    @article.page_range = "A"*101
     assert !@article.valid?
   end
 
   def test_bad_values_for_url
-    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
+    @article = Article.new(@myarticle)
 
-    # Checking for url constraints
-    @article.url = "A" * 201
+    # Checking url constraints
+    @article.url = nil
+    assert @article.valid?
+
+    @article.url = ""
+    assert @article.valid?
+
+    @article.url = "A"*501
     assert !@article.valid?
   end
 
   def test_bad_values_for_pacsnum
-    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
+    @article = Article.new(@myarticle)
 
-    # Checking for pages constraints
-    @article.pacsnum = "A" * 201
+    # Checking pacsnum constraints
+    @article.pacsnum = nil
+    assert @article.valid?
+
+    @article.pacsnum = ""
+    assert @article.valid?
+
+    @article.pacsnum = "A"*501
     assert !@article.valid?
   end
 
   def test_bad_values_for_other
-    @article = Article.new({:id => 1, :title => 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', :fpage => '12', :lpage => '15', :page_range => '12-15' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'})
+    @article = Article.new(@myarticle)
 
-    # Checking for pages constraints
-    @article.other = "A" * 100001
+    # Checking other constraints
+    @article.other = nil
+    assert @article.valid?
+
+    @article.other = ""
+    assert @article.valid?
+
+    @article.other = "A"*501
     assert !@article.valid?
   end
 end

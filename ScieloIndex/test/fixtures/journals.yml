@@ -1,42 +1,30 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-watchmen:
+atmosfera:
   id: 1
-  title: Watchmen
-  country_id: 840
-  state: California
-  city: San Diego
-  publisher_id: 10
-  url: http://www.dccomics.com
-  email: editor@dccomics.com
-  abbrev: Wt
-  other: First rate comic.
-  issn: 1234-1234
-vendetta:
-  id: 2
-  title: V for Vendetta
-  country_id: 840
-  state: California
-  city: Los Angeles
-  publisher_id: 11
-  url: http://www.dccomics.com
-  email: dc@comics.com
-  abbrev: VfV
-  other: Cool as Ice.
-  issn: 4321-1234
-succus:
-  id: 3
-  title: Boletin Succus
+  title: Atmosfera
   country_id: 484
   state: Distrito Federal
-  city: Ciudad de Mexico
-  publisher_id: 1
-  url: http://www.boletin.com
-  email: boletin@succus.com
-  abbrev: BS
-  other: boletin bimestral
-  issn: 5512-2591
+  city: Mexico
+  publisher_id: 4
+  url: http://atmosfera.unam.mx
+  email: atm@unam.mx
+  abbrev: ATM
+  other: First rate journal.
+  issn: 1234-1234
+csalud:
+  id: 2
+  title: Revista de la Salud.
+  country_id: 484
+  state: Distrito Federal
+  city: Mexico
+  publisher_id: 5
+  url: http://www.csalud.com
+  email: calsud@salud.com
+  abbrev: RS
+  other: Cool as Ice.
+  issn: 4321-1234
 octopus:
-  id: 4
+  id: 3
   title: Dr. Octopus Series
   country_id: 840
   state: New York

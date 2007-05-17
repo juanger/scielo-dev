@@ -1,8 +1,11 @@
 <%= error_messages_for 'record' %>
 
 <!--[form:associated_file]-->
-<p><label for="associated_file_name">Name</label><br/>
-<%= text_field 'record', 'name', 'size' => 30 %></p>
+<p><label for="associated_file_article_id">Associated Article</label><br/>
+<%= select_by_attribute("record", Article, 'title') %></p>
+
+<p><label for="associated_file_filename">Filename</label><br/>
+<%= text_field 'record', 'filename', 'size' => 30 %></p>
 
 <p><label for="associated_file_pdfdata">Cargar archivo PDF</label><br/>
 <%= file_field "record", "pdfdata" %></p>

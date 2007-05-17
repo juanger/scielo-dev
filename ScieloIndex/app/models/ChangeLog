@@ -1,5 +1,9 @@
 2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* article.rb: Se hicieron cambios en las funciones para obtener la cita en
+	estilo vancouver.
+	* journal_issue.rb: Se agregaron validaciones del campo id y de journal_id.
+	* associated_file.rb: Se cambio el atributo name por filename.
 	* author.rb: Se hace ahora validacion de unicidad y se validan nuevos campos
 	que se agregaron al modelo.
 	* institution.rb: Se agrego la relacion parent_institution y se cambio

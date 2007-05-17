@@ -12,7 +12,7 @@ class JournalsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = journals(:watchmen).id
+    @first_id = journals(:atmosfera).id
   end
 
   def test_index

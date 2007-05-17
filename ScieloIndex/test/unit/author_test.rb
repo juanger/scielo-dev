@@ -179,16 +179,16 @@ class AuthorTest < Test::Unit::TestCase
 
   def test_has_many_articles
     @author = Author.find(1)
-    assert_equal @author.articles[0].title, 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis'
-    assert_equal @author.articles[0].page_range, '3-12'
-    assert_equal @author.articles[0].url, 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en'
+    assert_equal @author.articles.first.title, articles(:article1).title 
+    assert_equal @author.articles[0].page_range,  articles(:article1).page_range
+    assert_equal @author.articles[0].url, articles(:article1).url
   end
 
   def test_has_many_institutions
     @author = Author.find(1)
-    assert_equal @author.institutions[0].id, 1
-    assert_equal @author.institutions[0].abbrev, 'UNAM'
-    assert_equal @author.institutions[0].city,'México'
+    assert_equal @author.institutions.first.id, institutions(:unam).id
+    assert_equal @author.institutions[0].abbrev, institutions(:unam).abbrev
+    assert_equal @author.institutions[0].city, institutions(:unam).city
   end
 
   def test_as_vancouver

@@ -2,6 +2,8 @@
 
 	* schema.sql: Se hicieron cambios a la tabla authors, se agregaron
 	los campos suffix y degree, tambien se puso un constraint de unicidad.
+	Se cambio articles y se removio la referencia a associated_files, y a esta
+	se le agrego una referencia a la tabla articles
 
 2007-05-16  Hector E. Gomez Morales  <hectoregm@gmail.com>
 

@@ -4,7 +4,7 @@ class JournalsTest < ActionController::IntegrationTest
   fixtures :journals
 
   def setup
-    @journals = [:watchmen, :vendetta]
+    @journals = [:atmosfera, :csalud, :octopus]
   end
 
    def test_getting_index

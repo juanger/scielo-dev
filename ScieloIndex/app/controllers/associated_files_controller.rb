@@ -7,7 +7,7 @@ class AssociatedFilesController < ScieloIndexController
 
   def create
     @record = @model.new
-    @record.name = params[:record][:name]
+    @record.filename = params[:record][:filename]
     @record.pdfdata = params[:record][:pdfdata].read
     @record.htmldata = params[:record][:htmldata].read
 

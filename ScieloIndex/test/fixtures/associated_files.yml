@@ -1,5 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+art1files:
   id: 1
-two:
+  article_id: 1
+  filename: v19n1c1
+  pdfdata: PDF1
+  htmldata: HTML1
+art2files:
   id: 2
+  article_id: 2
+  filename: v11n09c43
+  pdfdata: PDF2
+  htmldata: HTML2
+

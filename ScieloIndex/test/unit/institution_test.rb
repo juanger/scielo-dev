@@ -286,13 +286,13 @@ class InstitutionTest < Test::Unit::TestCase
   def test_many_authors
     @institution = Institution.find(1)
     @author = @institution.authors.find(1)
-    assert_equal @author.firstname, 'Hector'
-    assert_equal @author.lastname, 'Reyes'
-    assert_equal @author.suffix, 'Mr.'
+    assert_equal @author.firstname, authors(:hector).firstname
+    assert_equal @author.lastname, authors(:hector).lastname
+    assert_equal @author.suffix, authors(:hector).suffix
 
     @author = @institution.authors.find(2)
-    assert_equal @author.firstname, 'Guillermo'
-    assert_equal @author.lastname, 'Giron'
-    assert_equal @author.suffix, 'PhD.'
+    assert_equal @author.firstname, authors(:memo).firstname
+    assert_equal @author.lastname, authors(:memo).lastname
+    assert_equal @author.suffix, authors(:memo).suffix
   end
 end

@@ -2,14 +2,16 @@
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Associated Article</th>
+    <th>Filename</th>
     <th>PDF</th>
     <th>HTML</th>
   </tr>
 
 <% for associated_file in @collection %>
   <tr>
-    <td><%=h associated_file.send(:name) %></td>
+    <td><%=h associated_file.article.title %></td>
+    <td><%=h associated_file.filename %></td>
     <td><%= link_to 'Download PDF', :action => 'send_file', :id =>
     associated_file, :format => "PDF" %></td>
     <td><%= link_to 'Download HTML', :action => 'send_file', :id =>

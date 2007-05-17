@@ -1,10 +1,21 @@
 2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* fixtures/associated_files.yml, fixtures/journal_issues.yml,
+	fixtures/articles.yml, fixtures/article_authors.yml, fixtures/journals.yml:
+	Se cambiaron los datos de varias de los fixtures.
+	* integration/journal_issues_test.rb, integration/journals_test.rb: Cambios
+	menores en las pruebas de integracion.
+	* functional/journals_controller_test.rb, functional/associated_files_controller_test.rb,
+	functional/journal_issues_controller_test.rb: Se hicieron cambios menores
+	en las pruebas de funcionalidad de los modelos journal_issues, associated_files y journals.
+	* unit/journal_issue_test.rb: Se cambiaron las pruebas en el fixture y ademas se arreglaron varias pruebas
+	del modelo.
+	* unit/associated_file_test.rb: Se crearon las pruebas para la parte RIGHT del modelo associated_file.
 	* unit/author_institution_test.rb: Cambios menores.
 	* unit/author_test.rb, fixtures/authors.yml: Se modificarion las pruebas puesto que se hicieron modificaciones
 	al modelo author.
 	* unit/institution_test.rb: Se agrego una prueba para la relacion con parent_institution.
-	* unit/article_test.rb: Se quito un puts para debuggear.
+	* unit/article_test.rb: Se creo la hizo una modificacion de la mayoria de las pruebas del modelo.
 	* unit/country_test.rb: Se agregaron las pruebas de unicidad de los diferentes
 	campos, tambien se hicieron cambios en los fixtures
 	* functional/countries_controller_test.rb, integration/countries_test.rb:

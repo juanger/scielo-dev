@@ -12,7 +12,7 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = associated_files(:first).id
+    @first_id = associated_files(:art1files).id
   end
 
   def test_index
@@ -27,7 +27,7 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:associated_files)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:associated_file)
-    assert assigns(:associated_file).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +46,13 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:associated_file)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_associated_files = AssociatedFile.count
 
-    post :create, :associated_file => {}
+    post :create, :record => {:article_id => 3, :filename => 'n1212c122', :pdfdata => 'PDF3', :htmldata => 'pdfdata'}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +66,8 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:associated_file)
-    assert assigns(:associated_file).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update
