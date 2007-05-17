@@ -4,7 +4,7 @@ class ArticleAuthorsTest < ActionController::IntegrationTest
   fixtures :article_authors
 
   def setup
-    @article_authors = [:hectoratmart1, :memocsaludart3, :monoatmart2]
+    @article_authors = [:hectorart1, :memoart3, :monoart2]
   end
 
    def test_getting_index
@@ -21,7 +21,7 @@ class ArticleAuthorsTest < ActionController::IntegrationTest
 
 
    def  test_creating_new_collection
-     post "article_authors/create", :record =>  {:id => 1, :author_id => 1, :journal_issue_id => 2, :article_id => 1}
+     post "article_authors/create", :record =>  {:author_id => 2, :article_id => 1, :author_order => 2}
      assert_equal 302, status
      follow_redirect!
      assert_equal '/article_authors/list', path

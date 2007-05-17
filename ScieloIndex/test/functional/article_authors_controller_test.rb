@@ -12,7 +12,7 @@ class ArticleAuthorsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = article_authors(:monoatmart2).id
+    @first_id = article_authors(:monoart2).id
   end
 
   def test_index

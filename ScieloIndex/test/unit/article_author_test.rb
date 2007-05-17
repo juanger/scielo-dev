@@ -4,7 +4,8 @@ class ArticleAuthorTest < Test::Unit::TestCase
   fixtures :journals, :journal_issues, :articles, :authors, :article_authors
 
   def setup
-    @article_authors = [:hectoratmart1, :memocsaludart3, :monoatmart2]
+    @article_authors = [:hectorart1, :memoart3, :monoart2]
+    @myarticle_author = {:author_id => 2, :article_id => 1, :author_order => 2}
   end
 
   # RIGHT
@@ -47,15 +48,16 @@ class ArticleAuthorTest < Test::Unit::TestCase
   end
 
   def test_checking_uniqueness
-    @article_author = ArticleAuthor.new({:author_id => 1, :article_id => 1})
-    assert !@article_author.save
-    @article_author = ArticleAuthor.new({:author_id => 2, :article_id => 1})
+    @article_author = ArticleAuthor.new(@myarticle_author)
     assert @article_author.save
+    @article_author.author_id = authors(:hector).id
+    @article_author = ArticleAuthor.new(@myarticle_author)
+    assert !@article_author.save
   end
 
   # Boundary
   def test_bad_values_for_id
-    @article_author = ArticleAuthor.new({:id => 1, :author_id => 2, :article_id => 1})
+    @article_author = ArticleAuthor.new(@myarticle_author)
 
     # Checking for ID constraints
     @article_author.id = nil
@@ -69,7 +71,7 @@ class ArticleAuthorTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_article_id
-    @article_author = ArticleAuthor.new({:id => 1, :author_id => 1, :article_id => 1})
+    @article_author = ArticleAuthor.new(@myarticle_author)
 
     # Checking for article_id constraints
     @article_author.article_id = nil
@@ -83,7 +85,7 @@ class ArticleAuthorTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_author_id
-    @article_author = ArticleAuthor.new({:id => 1, :author_id => 1, :article_id => 1})
+    @article_author = ArticleAuthor.new(@myarticle_author)
 
     # Checking for author_id constraints
     @article_author.author_id = nil
@@ -97,23 +99,24 @@ class ArticleAuthorTest < Test::Unit::TestCase
   end
 
   def test_belongs_to_article
-    @article_author = ArticleAuthor.new({:id => 1, :author_id => 1, :article_id => 1})
-    assert @article_author.article.id, 1
-    assert @article_author.article.title, 'Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis'
-    assert @article_author.article.fpage, '41'
-    assert @article_author.article.lpage, '51'
-    assert @article_author.article.page_range, '41-51'
-    assert @article_author.article.url, 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en'
-    assert @article_author.article.pacsnum, '12 sss'
-    assert @article_author.article.other, 'Atmósfera'
+    @article_author = ArticleAuthor.new(@myarticle_author)
+    assert @article_author.article.id, articles(:article1).id
+    assert @article_author.article.title, articles(:article1).title
+    assert @article_author.article.fpage, articles(:article1).fpage
+    assert @article_author.article.lpage, articles(:article1).lpage
+    assert @article_author.article.page_range, articles(:article1).page_range
+    assert @article_author.article.url, articles(:article1).url
+    assert @article_author.article.pacsnum, articles(:article1).pacsnum
+    assert @article_author.article.other, articles(:article1).other
   end
 
   def test_belongs_to_author
-    @article_author = ArticleAuthor.new({:id => 1, :author_id => 1, :article_id => 1})
-    assert @article_author.author.id, 1
-    assert @article_author.author.firstname, 'Hector'
-    assert @article_author.author.middlename, 'E.'
-    assert @article_author.author.lastname, 'Reyes'
-    assert @article_author.author.suffix, 'Mr.'
+    @article_author = ArticleAuthor.new(@myarticle_author)
+    assert_equal @article_author.author.id, authors(:memo).id
+    assert_equal @article_author.author.firstname, authors(:memo).firstname
+    assert_equal @article_author.author.middlename, authors(:memo).middlename
+    assert_equal @article_author.author.lastname, authors(:memo).lastname
+    assert_equal @article_author.author.degree, authors(:memo).degree
+    assert_equal @article_author.author.suffix, authors(:memo).suffix
   end
 end
