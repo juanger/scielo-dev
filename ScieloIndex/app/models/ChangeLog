@@ -1,5 +1,7 @@
 2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* institution.rb: Se agrego la relacion parent_institution y se cambio
+	la relacion hatm.
 	* country.rb: Cambios menores en la validacion del modelo.
 
 2007-05-16  Hector E. Gomez Morales  <hector@scielo-dev2>

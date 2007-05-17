@@ -1,5 +1,6 @@
 2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* unit/institution_test.rb: Se agrego una prueba para la relacion con parent_institution.
 	* unit/article_test.rb: Se quito un puts para debuggear.
 	* unit/country_test.rb: Se agregaron las pruebas de unicidad de los diferentes
 	campos, tambien se hicieron cambios en los fixtures

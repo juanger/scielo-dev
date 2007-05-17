@@ -275,10 +275,24 @@ class InstitutionTest < Test::Unit::TestCase
     assert_equal @institution.country.code, 'MX'
   end
 
-  def test_has_and_belongs_to_authors
+  def test_belongs_to_parent_institutions
+    institution_fixture = institutions(:unam)
+    @institution = Institution.new({:name => 'Direccion General de Bibliotecas', :url => 'http://www.dgb.unam.mx', :abbrev => 'DGB', :parent_id => institution_fixture.id, :address => 'Ciudad Universitaria, Delegacion Coyocan', :country_id => 484, :state => 'Distrito Federal', :city => 'México', :zipcode => '04510', :phone => ' ', :fax => ' ',  :other => ' '})
+    assert_equal @institution.parent_institution.name, institution_fixture.name
+    assert_equal @institution.parent_institution.abbrev, institution_fixture.abbrev
+    assert_equal @institution.parent_institution.state, institution_fixture.state
+  end
+
+  def test_many_authors
     @institution = Institution.find(1)
-    assert_equal @institution.authors[0].firstname, 'Hector'
-    assert_equal @institution.authors[0].author_id, '1'
-    assert_equal @institution.authors[0].suffix, 'Mr.'
+    @author = @institution.authors.find(1)
+    assert_equal @author.firstname, 'Hector'
+    assert_equal @author.lastname, 'Reyes'
+    assert_equal @author.suffix, 'Mr.'
+
+    @author = @institution.authors.find(2)
+    assert_equal @author.firstname, 'Guillermo'
+    assert_equal @author.lastname, 'Giron'
+    assert_equal @author.suffix, 'PhD.'
   end
 end
