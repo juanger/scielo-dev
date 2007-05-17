@@ -5,7 +5,7 @@ class CollectionTest < Test::Unit::TestCase
 
   def setup
     @collections = [:atmosfera, :medicina]
-    @mycollection = {:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'}
+    @mycollection = {:title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'}
   end
 
   # RIGHT CRUD (Create, Update and Delete)

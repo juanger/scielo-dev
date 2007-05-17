@@ -4,9 +4,9 @@ class PublisherTest < Test::Unit::TestCase
   fixtures :publishers, :collections
 
   def setup
-    @publishers = [:mit, :white, :black]
-    @myexistingpublisher = {:id => 4, :name => 'MIT Press', :descr => 'For cool kids'}
-    @mypublisher = {:id => 100, :name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'}
+    @publishers = [:mit, :white, :black, :fisica, :med]
+    @myexistingpublisher = {:name => 'MIT Press', :descr => 'For cool kids'}
+    @mypublisher = {:name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'}
   end
 
   # RIGHT
@@ -52,6 +52,9 @@ class PublisherTest < Test::Unit::TestCase
   def test_checking_uniqueness
     @publisher = Publisher.new(@myexistingpublisher)
     assert !@publisher.save
+
+    @publisher.name = 'New MIT'
+    assert @publisher.save
   end
 
   # Boundary
@@ -122,8 +125,9 @@ class PublisherTest < Test::Unit::TestCase
 
   def test_has_many_collections
     @publisher = Publisher.find(4)
-    assert_equal @publisher.collections[0].title, 'Atmosfera'
-    assert_equal @publisher.collections.first.url, 'www.atmosfera.com'
-    assert_equal @publisher.collections.first.state, 'Distrito Federal'
+    @collection = @publisher.collections.find(1)
+    assert_equal @collection.title, 'Atmosfera'
+    assert_equal @collection.url, 'www.atmosfera.com'
+    assert_equal @collection.state, 'Distrito Federal'
   end
 end

@@ -5,7 +5,7 @@ class JournalTest < Test::Unit::TestCase
 
   def setup
     @journals = [:watchmen, :vendetta, :succus, :octopus]
-    @myjournal = {:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'}
+    @myjournal = {:title => 'Technology Review', :country_id => 840, :publisher_id => 1, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids', :issn => '1234-1235'}
   end
 
   # RIGHT
