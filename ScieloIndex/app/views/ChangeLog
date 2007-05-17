@@ -1,0 +1,5 @@
+2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* authors/_form.rhtml: Se hizo cambios en la forma para agregar los nuevos
+	atributos del modelo.
+

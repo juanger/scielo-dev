@@ -1,6 +1,9 @@
 <%= error_messages_for 'record' %>
 
 <!--[form:author]-->
+<p><label for="author_prefix">Prefix</label><br/>
+<%= text_field 'record', 'prefix', 'size' => 10, 'maxsize' => 10  %></p>
+
 <p><label for="author_firstname">Firstname</label><br/>
 <%= text_field 'record', 'firstname', 'size' => 20, 'maxsize' => 30  %></p>
 
@@ -11,7 +14,9 @@
 <%= text_field 'record', 'lastname', 'size' => 20, 'maxsize' => 30 %></p>
 
 <p><label for="author_suffix">Suffix</label><br/>
-<%= text_field 'record', 'suffix', 'size' => 3, 'maxsize' => 3 %></p>
+<%= text_field 'record', 'suffix', 'size' => 10, 'maxsize' => 10 %></p>
 
+<p><label for="author_degree">Degree</label><br/>
+<%= text_field 'record', 'degree', 'size' => 10, 'maxsize' => 10  %></p>
 <!--[eoform:author]-->
 

@@ -2,10 +2,12 @@ class Author < ActiveRecord::Base
   validates_presence_of :firstname, :lastname
   validates_length_of :firstname, :lastname, :in => 3..30
   validates_length_of :middlename, :maximum  => 100, :allow_nil => true
-  validates_length_of :suffix, :maximum => 8, :allow_nil => true
+  validates_length_of :suffix, :prefix, :degree, :maximum => 10, :allow_nil => true
   validates_inclusion_of :id, :in => 1..9999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
-  validates_format_of :firstname, :lastname, :middlename, :suffix, :with => /^[-a-zA-ZáéíóúÁÉÍÓÚñÑ. ]*$/
+  validates_format_of :firstname, :lastname, :middlename, :prefix, :degree, :with => /^[-a-zA-ZáéíóúÁÉÍÓÚñÑ. ]*$/
+  validates_format_of :suffix, :with => /^[-a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.]*$/
+  validates_uniqueness_of :lastname, :scope => [:firstname, :middlename, :suffix]
 
   has_many :article_authors
   has_many :articles, :through => :article_authors,

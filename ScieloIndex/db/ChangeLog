@@ -1,6 +1,11 @@
+2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* schema.sql: Se hicieron cambios a la tabla authors, se agregaron
+	los campos suffix y degree, tambien se puso un constraint de unicidad.
+
 2007-05-16  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* schema.sql: Se agrego la tabla associated_files que contiene los
 	archivos PDF y HTML de un articulo dado. Tambien se añadio la
-	llave foranea associated_file_id a la tabla articles 
+	llave foranea associated_file_id a la tabla articles.
 

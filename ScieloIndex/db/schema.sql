@@ -50,13 +50,16 @@ COMMENT ON COLUMN institutions.parent_id IS
 
 CREATE TABLE authors (
         id SERIAL,
+        prefix text NULL,
         firstname text NOT NULL,
         middlename text NULL,
         lastname text NOT NULL,
         suffix text NULL,
+        degree text NULL,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id)
+        PRIMARY KEY (id),
+        UNIQUE(firstname, middlename, lastname, suffix)
 );
 
 CREATE TABLE author_institutions (

@@ -43,7 +43,7 @@ class AuthorTest < ActionController::IntegrationTest
 
    def test_updating_name
      @authors.each { | author |
-       post "/authors/update", :id => authors(author).id, :firstname => authors(author).firstname.reverse, :middlename => authors(author).middlename.reverse, :lastname => authors(author).lastname.reverse, :suffix => authors(author).suffix.reverse
+       post "/authors/update", :id => authors(author).id, :firstname => authors(author).firstname.reverse, :middlename => authors(author).middlename.reverse, :lastname => authors(author).lastname.reverse
        assert 302, status
        follow_redirect!
        assert "/authors/show/#{authors(author).id}", path

@@ -1,19 +1,25 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 hector:
   id: 1
+  prefix: Mr.
   firstname: Hector
-  middlename: E.
-  lastname: Reyes
-  suffix: Mr.
+  middlename: Enrique
+  lastname: Gomez
+  suffix: 
+  degree: Lic.
 memo:
   id: 2
+  prefix: Mr.
   firstname: Guillermo
   middlename: Nepomuseno
   lastname: Giron
-  suffix: PhD.
+  suffix:
+  degree: PhD.
 mono:
   id: 3
+  prefix: Mr.
   firstname: David
   middlename: Mojo
   lastname: Gudino
-  suffix: PhD.
+  suffix:
+  degree: PhD.
