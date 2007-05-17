@@ -24,7 +24,15 @@ module SelectHelper
 
   # FIXME: Se usan atributos que pueden ser nulos como suffix y posiblemente middlename.
   def select_authors(form)
-    collection = Author.find(:all).collect{|record| [record.suffix + ' ' + record.firstname + ' ' + record.lastname, record.id]}
+    collection = Author.find(:all).collect{|record| [insert_not_nil(record.degree) + record.firstname + ' ' + record.lastname, record.id]}
     select(form, "author_id", collection, { :prompt => 'Seleccionar' })
+  end
+  
+  def insert_not_nil(value)
+    if value != nil
+      value + ' '
+    else
+      ''
+    end
   end
 end

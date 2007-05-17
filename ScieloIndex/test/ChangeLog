@@ -1,5 +1,6 @@
 2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* unit/author_institution_test.rb: Cambios menores.
 	* unit/author_test.rb, fixtures/authors.yml: Se modificarion las pruebas puesto que se hicieron modificaciones
 	al modelo author.
 	* unit/institution_test.rb: Se agrego una prueba para la relacion con parent_institution.

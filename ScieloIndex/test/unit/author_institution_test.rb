@@ -4,8 +4,8 @@ class AuthorInstitutionTest < Test::Unit::TestCase
   fixtures :authors, :institutions, :author_institutions
 
   def setup
-    @author_institutions = [:monoipn, :hectorunam]
-    @myauthor_institution = {:id => 3, :author_id => 1, :institution_id => 2}
+    @author_institutions = [:monoipn, :hectorunam, :memounam]
+    @myauthor_institution = {:author_id => 1, :institution_id => 2}
   end
 
   # RIGHT
@@ -97,16 +97,15 @@ class AuthorInstitutionTest < Test::Unit::TestCase
   end
 
   def test_belongs_to_author
-    @author_institution = AuthorInstitution.new(@myauthor_institution)
-
     @institution = institutions(:unam)
     assert_equal @institution.authors.size, 2
   end
 
   def test_belongs_to_institution
     @author_institution = AuthorInstitution.new(@myauthor_institution)
+    @author_institution.save
 
     @author = authors(:hector)
-    assert_equal @author.institutions.size, 1
+    assert_equal @author.institutions.size, 2
   end
 end
