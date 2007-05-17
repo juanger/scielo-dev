@@ -1,3 +1,7 @@
+2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* country.rb: Cambios menores en la validacion del modelo.
+
 2007-05-16  Hector E. Gomez Morales  <hector@scielo-dev2>
 
 	* associated_file.rb: Se agregó la relación con la tabla article. 

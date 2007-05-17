@@ -22,7 +22,6 @@ class ArticlesTest < ActionController::IntegrationTest
    
    def  test_creating_new_articles
      post "articles/create", :record => @myarticle
-     puts path
      assert_equal 302, status
      follow_redirect!
      assert_equal '/articles/list', path

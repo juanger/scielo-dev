@@ -1,3 +1,11 @@
+2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* unit/article_test.rb: Se quito un puts para debuggear.
+	* unit/country_test.rb: Se agregaron las pruebas de unicidad de los diferentes
+	campos, tambien se hicieron cambios en los fixtures
+	* functional/countries_controller_test.rb, integration/countries_test.rb:
+	Se hicieron cambios en los fixtures que se llaman al iniciar la prueba.
+
 2007-05-16  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* unit/associated_file_test.rb,

@@ -5,14 +5,14 @@ require 'countries_controller'
 class CountriesController; def rescue_action(e) raise e end; end
 
 class CountriesControllerTest < Test::Unit::TestCase
-  fixtures :countries
+  fixtures :countries, :publishers, :collections, :institutions
 
   def setup
     @controller = CountriesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = countries(:mexico).id
+    @first_id = countries(:brasil).id
   end
 
   def test_index

@@ -1,7 +1,7 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
 class CountriesTest < ActionController::IntegrationTest
-  fixtures :countries
+  fixtures :countries, :publishers, :collections, :institutions
 
   def setup
     @countries = [:mexico, :brasil, :usa]
