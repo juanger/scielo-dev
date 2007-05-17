@@ -1,9 +1,9 @@
 <h1>Editing associated_file</h1>
 
-<% form_tag :action => 'update', :id => @associated_file do %>
+<% form_tag :action => 'update', :id => @record do %>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @associated_file %> |
+<%= link_to 'Show', :action => 'show', :id => @record %> |
 <%= link_to 'Back', :action => 'list' %>

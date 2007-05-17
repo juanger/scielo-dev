@@ -1,19 +1,12 @@
-<%= error_messages_for 'associated_file' %>
+<%= error_messages_for 'record' %>
 
 <!--[form:associated_file]-->
 <p><label for="associated_file_name">Name</label><br/>
-<%= text_area 'associated_file', 'name'  %></p>
+<%= text_field 'record', 'name', 'size' => 30 %></p>
 
-<p><label for="associated_file_pdfdata">Pdfdata</label><br/>
-</p>
+<p><label for="associated_file_pdfdata">Cargar archivo PDF</label><br/>
+<%= file_field "record", "pdfdata" %></p>
 
-<p><label for="associated_file_htmldata">Htmldata</label><br/>
-</p>
-
-<p><label for="associated_file_created_on">Created on</label><br/>
-<%= datetime_select 'associated_file', 'created_on'  %></p>
-
-<p><label for="associated_file_updated_on">Updated on</label><br/>
-<%= datetime_select 'associated_file', 'updated_on'  %></p>
+<p><label for="associated_file_htmldata">Cargar archivo HTML</label><br/>
+<%= file_field "record", "htmldata" %></p>
 <!--[eoform:associated_file]-->
-

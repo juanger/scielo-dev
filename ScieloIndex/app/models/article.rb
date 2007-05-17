@@ -15,6 +15,7 @@ class Article < ActiveRecord::Base
   validates_uniqueness_of :journal_issue_id, :scope => :title
 
   belongs_to :journal_issue
+  belongs_to :associated_file
 
   has_many :article_authors
   has_many :authors, :through => :article_authors,  :order => "article_authors.author_order ASC"

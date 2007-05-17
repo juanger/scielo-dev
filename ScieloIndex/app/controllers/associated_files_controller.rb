@@ -1,51 +1,31 @@
-class AssociatedFilesController < ApplicationController
-  def index
-    list
-    render :action => 'list'
-  end
-
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
-  def list
-    @associated_file_pages, @associated_files = paginate :associated_files, :per_page => 10
-  end
-
-  def show
-    @associated_file = AssociatedFile.find(params[:id])
-  end
-
-  def new
-    @associated_file = AssociatedFile.new
+class AssociatedFilesController < ScieloIndexController
+  def initialize
+    @model = AssociatedFile
+    @created_msg = "The files were created!"
+    @updated_msg = "The files were updated!"
   end
 
   def create
-    @associated_file = AssociatedFile.new(params[:associated_file])
-    if @associated_file.save
-      flash[:notice] = 'AssociatedFile was successfully created.'
+    @record = @model.new
+    @record.name = params[:record][:name]
+    @record.pdfdata = params[:record][:pdfdata].read
+    @record.htmldata = params[:record][:htmldata].read
+
+    if @record.save
+      flash[:notice] = @created_msg
       redirect_to :action => 'list'
     else
       render :action => 'new'
     end
   end
 
-  def edit
-    @associated_file = AssociatedFile.find(params[:id])
-  end
+  def send_file
+    @record = @model.find(params[:id])
 
-  def update
-    @associated_file = AssociatedFile.find(params[:id])
-    if @associated_file.update_attributes(params[:associated_file])
-      flash[:notice] = 'AssociatedFile was successfully updated.'
-      redirect_to :action => 'show', :id => @associated_file
-    else
-      render :action => 'edit'
+    if params[:format] == 'PDF'
+      send_data @record.pdfdata, :filename => @record.name + ".pdf", :type => 'application/pdf'
+    elsif params[:format] == 'HTML'
+      send_data @record.htmldata, :filename => @record.name + ".htm", :type => 'text/html'
     end
-  end
-
-  def destroy
-    AssociatedFile.find(params[:id]).destroy
-    redirect_to :action => 'list'
   end
 end

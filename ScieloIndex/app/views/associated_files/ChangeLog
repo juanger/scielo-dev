@@ -1,0 +1,13 @@
+2007-05-16  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+	* _form.rhtml: Se modificó la vista para que hagan los uploads de
+	los archivos por medio de un choose file.
+
+	* show.rhtml: Cambios menores en la vista.
+
+	* new.rhtml: Se modificó la vista para que se puedan hacer uploads.
+
+	* list.rhtml: Se modificó la vista para que ponga links a los archivos.
+
+	* edit.rhtml: Se modificó la vista de la edición.
+

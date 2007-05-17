@@ -1,3 +1,9 @@
+2007-05-16  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+	* associated_file.rb: Se agregó la relación con la tabla article. 
+
+	* article.rb: Se agregó la relacion con la tabla associated file
+
 2007-05-14  Hector E. Gomez Morales  <hector@scielo-dev2>
 
 	* author.rb: Se cambio el join de ', ' a ' ' puesto que solo debe
