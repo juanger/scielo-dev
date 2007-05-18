@@ -1,0 +1,97 @@
+#container {
+	margin:0 auto;
+	width:900px;
+	height:600px;
+	background-color:#FFF;
+}
+
+#bannerSup {
+	margin:0 auto;
+	width:900px;
+	padding:10px;
+	height:100px;
+	background-color:#FFF;
+	background-position:top center;
+}
+
+#bannerInf {
+	margin:0 auto;
+	width:900px;
+	padding:10px;
+	height:500px;
+	background-color:#FFF;
+	background-position:top center;
+}
+
+#logoScielo{
+	width:174px;
+	height:100px;	
+	background:url(../images/scielomexico.jpg);
+	background-color:#AAA;
+	float:left;
+}
+
+#headerBar {
+	width:726px;
+	height:57px;
+	background:url(../images/barra-superior.jpg);
+	background-color:#000;
+	background-position:0% 100%;
+	float:right;
+}
+
+#texto {
+	width:900px;
+	height:300px;
+	font-family:Verdana;
+	font-size:16px;
+	text-align:justify;
+	background-color: #FFF;
+	float:right;
+}
+
+#footerBar {
+	width:900px;
+	height:36px;
+	background:url(../images/footerBar.jpg) repeat-x;
+	background-color:#000;
+	background-position:bottom center;
+}
+
+table{ 
+	width:650px; 
+	border:5px solid #bdbab2;
+	align:center;
+	font-family:Verdana;
+	margin: 0 auto;
+	border-left: .1em solid #bdbab2;
+	border-right: .1em solid #bdbab2;
+}
+
+h1 {
+	margin: 0 auto;
+	padding-bottom:1em;	
+	letter-spacing:.1em;
+	font-size:16px;
+	text-align: center;
+}
+
+table th{
+	font-size:17px;
+	padding:5px;
+	background-color: #FFF;
+}
+
+table tr:hover {
+	background-color: #DDD8DB;
+	color: #333
+}
+
+table td{
+	font-size:14px;
+}
+
+a{
+	font-family:Verdana;
+	font-size:14px;
+} 
