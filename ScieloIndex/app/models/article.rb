@@ -16,6 +16,7 @@ class Article < ActiveRecord::Base
   has_many :authors, :through => :article_authors,  :order => "article_authors.author_order ASC"
 
   has_many :cites
+  has_one :associated_file
 
   def as_vancouver
     [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join('. ')
