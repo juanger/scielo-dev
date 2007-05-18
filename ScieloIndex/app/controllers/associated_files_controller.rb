@@ -14,23 +14,21 @@ class AssociatedFilesController < ScieloIndexController
     @record.filename = params[:record][:filename]
 
     if @record.article_id and @record.filename.size > 2
-      dir = "#{DIR}/#{@record.article_id}"
+      dir = File.join(DIR, @record.article_id.to_s)
 
-      if !File.exists?(dir)
-        Dir.mkdir(dir)
-      end
+      Dir.mkdir(dir) if !File.exists?(dir)
 
       pdf_stream = params[:record][:pdfdata]
       html_stream = params[:record][:htmldata]
       if pdf_stream.class == Tempfile and html_stream.class == Tempfile
-        @record.pdf_path = dir + '/'+ @record.filename + '.pdf'
+        @record.pdf_path = File.join(dir, @record.filename + '.pdf')
         File.open(@record.pdf_path, "wb") do |f|
-          f.write(pdf_stream)
+          f.write(pdf_stream.read)
         end
 
-        @record.html_path = dir + '/' + @record.filename + '.htm'
+        @record.html_path = File.join(dir, @record.filename + '.htm')
         File.open(@record.html_path, "wb") do |f|
-          f.write(html_stream)
+          f.write(html_stream.read)
         end
       end
     end
@@ -67,7 +65,7 @@ class AssociatedFilesController < ScieloIndexController
   def delete_directory(dir)
     Dir.foreach(dir) {|file|
       next if file =~ /^\.\.?$/
-      file = dir + '/' + file
+      file = File.join(dir, file)
       File.delete(file)
     }
     Dir.delete(dir)

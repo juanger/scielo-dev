@@ -13,16 +13,13 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = associated_files(:art1files).id
-    # @pdf= Tempfile.new("#{RAILS_ROOT}/test/files/v17n01a01.pdf")
-    # @html = Tempfile.new("#{RAILS_ROOT}/test/files/v17n01a01.htm")
-    @myassociated_file = {:article_id => 3, :filename => 'v17n01a01', :pdfdata => @pdf, :htmldata => @html}
-    @pdf= Tempfile.new("pdf")
+    @pdf = Tempfile.new("pdf")
     @pdf.write(File.open("#{RAILS_ROOT}/test/files/v17n01a01.pdf", 'r').read())
     @pdf.open()
     @html = Tempfile.new("html")
     @html.write(File.open("#{RAILS_ROOT}/test/files/v17n01a01.htm", 'r').read())
     @html.open()
-
+    @myassociated_file = {:article_id => 3, :filename => 'v17n01a01', :pdfdata => @pdf, :htmldata => @html}
   end
 
   def test_index
@@ -62,7 +59,7 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
   def test_create
     num_associated_files = AssociatedFile.count
 
-    post :create, :record => {:article_id => 3, :filename => 'v17n01a01', :pdfdata => @pdf, :htmldata => @html}
+    post :create, :record => @myassociated_file
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
