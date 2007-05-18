@@ -5,7 +5,7 @@ class AssociatedFileTest < Test::Unit::TestCase
 
   def setup
     @associated_files = [:art1files, :art2files]
-    @myassociated_file = {:article_id => 3, :filename => 'n1231c123132', :pdfdata => 'PDF3', :htmldata => 'HTML3' }
+    @myassociated_file = {:article_id => 3, :filename => 'n1231c123132', :pdf_path => 'PDF3', :html_path => 'HTML3' }
   end
 
   # RIGHT CRUD (Create, Update and Delete)
@@ -23,14 +23,14 @@ class AssociatedFileTest < Test::Unit::TestCase
   def test_updating
       @associated_files.each { |associated_file|
       @associated_file = associated_files(associated_file)
-      @associated_file_db = AssociatedFile.find_by_filename(@associated_file.filename)
+      @associated_file_db = AssociatedFile.find_by_article_id(@associated_file.article_id)
       @associated_file_db.id = @associated_file_db.id
       assert @associated_file_db.update
       @associated_file_db.filename.reverse!
       assert @associated_file_db.update
-      @associated_file_db.pdfdata.reverse!
+      @associated_file_db.pdf_path.reverse!
       assert @associated_file_db.update
-      @associated_file_db.htmldata.reverse!
+      @associated_file_db.html_path.reverse!
       assert @associated_file_db.update
     }
    end
@@ -53,7 +53,7 @@ class AssociatedFileTest < Test::Unit::TestCase
   def test_uniqueness
     @associated_file = AssociatedFile.new(@myassociated_file)
     assert @associated_file.save
-    @associated_file.filename = associated_files(:art1files).filename
+    @associated_file.article_id = associated_files(:art1files).article_id
     assert !@associated_file.save
   end
 

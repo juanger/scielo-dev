@@ -1,3 +1,7 @@
+2007-05-17  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+	* associated_file.rb: Se cambió para que use el sistema de archivos
+
 2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* article.rb: Se hicieron cambios en las funciones para obtener la cita en

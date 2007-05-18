@@ -178,12 +178,12 @@ CREATE TABLE associated_files (
                 ON DELETE CASCADE
                 DEFERRABLE,
         filename text NOT NULL,
-        pdfdata bytea NOT NULL,
-        htmldata bytea NOT NULL,
+        pdf_path text NOT NULL,
+        html_path text NOT NULL,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
-        UNIQUE(filename)
+        UNIQUE(article_id)
 );
 
 CREATE TABLE article_authors (

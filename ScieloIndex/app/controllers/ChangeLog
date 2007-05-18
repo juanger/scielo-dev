@@ -1,3 +1,9 @@
+2007-05-17  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+	* associated_files_controller.rb: Se modificó para que lanze los
+	errores necesarios al validar los campos y para que use el sistema
+	de archivos  
+
 2007-05-16  Hector E. Gomez Morales  <hector@scielo-dev2>
 
 	* associated_files_controller.rb: Se añadieron los métodos del

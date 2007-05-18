@@ -1,3 +1,16 @@
+2007-05-17  Hector E. Gomez Morales  <hector@scielo-dev2>
+
+	* fixtures/articles.yml: Se quitaron los acentos
+
+	* fixtures/associated_files.yml: Se cambió para que use los paths
+	en vez de data
+
+	* unit/associated_file_test.rb: Se modificaron las pruebas para
+	que usen el sistema de arhivos en vez de la base de datos
+
+	* functional/associated_files_controller_test.rb: Se modificaron
+	las pruebas para que funcionen con los cambios hechos al controlador
+
 2007-05-17  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* fixtures/associated_files.yml, fixtures/journal_issues.yml,

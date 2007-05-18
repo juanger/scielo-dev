@@ -5,7 +5,7 @@ require 'associated_files_controller'
 class AssociatedFilesController; def rescue_action(e) raise e end; end
 
 class AssociatedFilesControllerTest < Test::Unit::TestCase
-  fixtures :associated_files
+  fixtures :articles, :associated_files
 
   def setup
     @controller = AssociatedFilesController.new
@@ -13,6 +13,16 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = associated_files(:art1files).id
+    # @pdf= Tempfile.new("#{RAILS_ROOT}/test/files/v17n01a01.pdf")
+    # @html = Tempfile.new("#{RAILS_ROOT}/test/files/v17n01a01.htm")
+    @myassociated_file = {:article_id => 3, :filename => 'v17n01a01', :pdfdata => @pdf, :htmldata => @html}
+    @pdf= Tempfile.new("pdf")
+    @pdf.write(File.open("#{RAILS_ROOT}/test/files/v17n01a01.pdf", 'r').read())
+    @pdf.open()
+    @html = Tempfile.new("html")
+    @html.write(File.open("#{RAILS_ROOT}/test/files/v17n01a01.htm", 'r').read())
+    @html.open()
+
   end
 
   def test_index
@@ -52,7 +62,7 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
   def test_create
     num_associated_files = AssociatedFile.count
 
-    post :create, :record => {:article_id => 3, :filename => 'n1212c122', :pdfdata => 'PDF3', :htmldata => 'pdfdata'}
+    post :create, :record => {:article_id => 3, :filename => 'v17n01a01', :pdfdata => @pdf, :htmldata => @html}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -80,6 +90,8 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     assert_nothing_raised {
       AssociatedFile.find(@first_id)
     }
+
+    Dir.mkdir("#{RAILS_ROOT}/public/associated_files/1")
 
     post :destroy, :id => @first_id
     assert_response :redirect
