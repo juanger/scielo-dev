@@ -4,7 +4,7 @@ class ArticleTest < Test::Unit::TestCase
   fixtures :authors, :journals, :journal_issues, :articles, :article_authors
 
   def setup
-    @articles = [:article1, :article2, :article3]
+    @articles = [:article1, :article2, :article3, :article4, :article5]
     @myarticle = {:title => 'Analisis de la Temporada de lluvias 2005 en la Cd de Mexico.', :journal_issue_id => 1, :fpage => '3', :lpage => '10', :page_range => '3-10' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'}
   end
 
@@ -15,7 +15,7 @@ class ArticleTest < Test::Unit::TestCase
       @article_db = Article.find_by_title(@article.title)
       assert_equal @article.id, @article_db.id
       assert_equal @article.title, @article_db.title
-      assert_equal @article.journal_issue_id, @article_db.journal_issue_id	
+      assert_equal @article.journal_issue_id, @article_db.journal_issue_id
       assert_equal @article.fpage, @article_db.fpage
       assert_equal @article.lpage, @article_db.lpage
       assert_equal @article.page_range, @article_db.page_range

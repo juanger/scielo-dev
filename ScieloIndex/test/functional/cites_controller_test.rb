@@ -5,14 +5,14 @@ require 'cites_controller'
 class CitesController; def rescue_action(e) raise e end; end
 
 class CitesControllerTest < Test::Unit::TestCase
-  fixtures :cites
+  fixtures :journals, :journal_issues, :articles, :authors, :article_authors, :cites
 
   def setup
     @controller = CitesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = cites(:first).id
+    @first_id = cites(:cite1).id
   end
 
   def test_index
@@ -27,7 +27,7 @@ class CitesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:cites)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class CitesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:cite)
-    assert assigns(:cite).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +46,13 @@ class CitesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:cite)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_cites = Cite.count
 
-    post :create, :cite => {}
+    post :create, :record => {:article_id => 1, :cited_by_article_id => 5, :cite_order => 3}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +66,8 @@ class CitesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:cite)
-    assert assigns(:cite).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

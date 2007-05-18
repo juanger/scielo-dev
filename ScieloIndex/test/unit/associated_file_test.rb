@@ -85,4 +85,41 @@ class AssociatedFileTest < Test::Unit::TestCase
     @associated_file.filename = "A"*201
     assert !@associated_file.valid?
   end
+
+  def test_bad_values_for_pdf_path
+    @associated_file = AssociatedFile.new(@myassociated_file)
+
+    # Checking pdf_path constraints
+    @associated_file.pdf_path = nil
+    assert !@associated_file.valid?
+
+    @associated_file.pdf_path = "Fo"
+    assert !@associated_file.valid?
+
+    @associated_file.pdf_path = "A"*201
+    assert !@associated_file.valid?
+  end
+
+  def test_bad_values_for_html_path
+    @associated_file = AssociatedFile.new(@myassociated_file)
+
+    # Checking html_path constraints
+    @associated_file.html_path = nil
+    assert !@associated_file.valid?
+
+    @associated_file.html_path = "Fo"
+    assert !@associated_file.valid?
+
+    @associated_file.html_path = "A"*201
+    assert !@associated_file.valid?
+  end
+
+  def test_belongs_to_article
+    @associated_file = associated_files(:art2files)
+    assert_equal @associated_file.article.id, articles(:article2).id
+    assert_equal @associated_file.article.title, articles(:article2).title
+    assert_equal @associated_file.article.page_range, articles(:article2).page_range
+    assert_equal @associated_file.article.url, articles(:article2).url
+    assert_equal @associated_file.article.pacsnum, articles(:article2).pacsnum
+  end
 end

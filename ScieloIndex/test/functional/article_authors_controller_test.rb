@@ -52,7 +52,7 @@ class ArticleAuthorsControllerTest < Test::Unit::TestCase
   def test_create
     num_article_authors = ArticleAuthor.count
 
-    post :create, :record => {:id => 1, :author_id => 2, :article_id => 1}
+    post :create, :record => {:author_id => 2, :article_id => 1, :author_order => 2}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'

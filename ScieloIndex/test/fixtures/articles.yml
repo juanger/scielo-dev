@@ -9,7 +9,6 @@ article1:
   url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en
   pacsnum: 12 sss
   other: Atmosfera
-
 article2:
   id: 2
   title: Lightning induced heating of the ionosphere
@@ -19,7 +18,7 @@ article2:
   page_range: 12-30, 34
   url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100003&lng=es&nrm=iso&tlng=en
   pacsnum: 31 sss
-  other: Atmosfera
+  other: At mosfera
 article3:
   id: 3
   title: Efectos Secundarios a la exposicion prolongada a un monitor LCD
@@ -30,3 +29,23 @@ article3:
   url: http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100003&lng=es&nrm=iso&tlng=en
   pacsnum: 1331
   other: Segunda parte
+article4:
+  id: 4
+  title: Implicaciones del Calentamiento Global en la precipitacion en la zona Norte de Mexico
+  journal_issue_id: 1
+  fpage: 61
+  lpage: 71
+  page_range: 61-71
+  url: http://atm.unam.mx
+  pacsnum: 1332
+  other: Primera parte
+article5:
+  id: 5
+  title: Calentamiento Global y Teoria del Caos
+  journal_issue_id: 1
+  fpage: 91
+  lpage: 101
+  page_range: 91-101
+  url: http://atm.unam.mx
+  pacsnum: 1333
+  other: Exclusivo

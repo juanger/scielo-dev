@@ -98,4 +98,16 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
       AssociatedFile.find(@first_id)
     }
   end
+
+  def teardown
+    dir = "#{RAILS_ROOT}/public/associated_files/3"
+    if File.exists?(dir)
+      Dir.foreach(dir) {|file|
+        next if file =~ /^\.\.?$/
+        file = File.join(dir, file)
+        File.delete(file)
+      }
+      Dir.delete(dir)
+    end
+  end
 end

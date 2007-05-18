@@ -16,6 +16,7 @@ class ArticleAuthorTest < Test::Unit::TestCase
       assert_equal @article_author.id, @article_author_db.id
       assert_equal @article_author.article_id, @article_author_db.article_id
       assert_equal @article_author.author_id, @article_author_db.author_id
+      assert_equal @article_author.author_order, @article_author_db.author_order
     }
   end
 
@@ -28,6 +29,9 @@ class ArticleAuthorTest < Test::Unit::TestCase
       @article_author_db.article_id = @article_author_db.article_id
       assert @article_author_db.update
       @article_author_db.author_id = @article_author_db.author_id
+      assert @article_author_db.update
+      @article_author_db.author_order = @article_author_db.author_order + 1
+      assert @article_author_db.update
     }
   end
 
