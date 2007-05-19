@@ -4,23 +4,17 @@ class CiteIndexController < ApplicationController
     render :action => 'index'
   end
 
-  verify :method => :post, :only => [ :search ],
-  :redirect_to => { :action => :index }
+  #verify :method => :post, :only => [ :search ],
+  #:redirect_to => { :action => :index }
 
   def search
-    @authors = Author.find(:all, :conditions => params[:record])
-    @collection = [ ]
-    @authors.each { |author|
-      author.articles.each { |article|
-        logger.info "VANCOUVER" + article.as_vancouver
-        @collection.push([article.as_vancouver, article.id, article.cites_number])
-      }
-    }
-   if @collection.size > 0
-     render :action => 'results'
-   else
-     render :action => 'index'
-   end
+    @record = params[:record]
+    @pages, @collection = paginate Inflector.pluralize(Article).to_sym, :per_page => 10, :joins =>
+      "JOIN article_authors ON articles.id = article_authors.author_id JOIN authors ON authors.id = article_authors.author_id " +
+      "WHERE (authors.middlename = '#{params[:record][:middlename]}' AND authors.lastname = '#{params[:record][:lastname]}' AND authors.firstname = '#{params[:record][:firstname]}')",
+    :select => "authors.id, authors.firstname, authors.middlename, authors.lastname, " +
+      "articles.id, articles.title, articles.journal_issue_id, articles.fpage, articles.lpage, " +
+      "articles.page_range, articles.url, articles.pacsnum, articles.other"
   end
 
   def search_cites
