@@ -1,13 +1,10 @@
-<%= error_messages_for 'subject' %>
+<%= error_messages_for 'record' %>
 
 <!--[form:subject]-->
+<p><label for="subject_parent_id">Parent Subject</label><br/>
+<%= simple_select("record",Subject,'parent_id') %></p>
+
 <p><label for="subject_name">Name</label><br/>
-<%= text_area 'subject', 'name'  %></p>
-
-<p><label for="subject_created_on">Created on</label><br/>
-<%= datetime_select 'subject', 'created_on'  %></p>
-
-<p><label for="subject_updated_on">Updated on</label><br/>
-<%= datetime_select 'subject', 'updated_on'  %></p>
+<%= text_field 'record', 'name', 'size' => 40  %></p>
 <!--[eoform:subject]-->
 

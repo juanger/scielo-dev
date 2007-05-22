@@ -1,5 +1,7 @@
-2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+2007-05-22  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
+	* keywords_controller.rb, subjects_controller.rb: Se scaffoldero y generalizo los controladores de los modelos
+	keyword y subject
 	* cite_index_controller.rb: Se implmeneto la autocomplementacion de los campos de busqueda, tambien se agrego,
 	acciones para la busqueda de articulos por medio del titulo, tambien se implemento los paginadores para cada
 	una de las vistas.

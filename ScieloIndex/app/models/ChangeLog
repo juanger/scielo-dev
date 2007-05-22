@@ -1,5 +1,7 @@
-2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+2007-05-22  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
+	* keyword.rb, subject.rb: Se scaffoldeo, se definieron validaciones para los modelos
+	keyword y subject.
 	* author.rb: Se creo un metodo total_cites para obtener el numero total de citas de un author.
 
 2007-05-17  Hector E. Gomez Morales  <hectoregm@gmail.com>
