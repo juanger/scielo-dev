@@ -5,7 +5,10 @@
 
   <% for record in @collection %>
   <tr>
-    <td ><%= record.class %><hr/></td>
+    <td ><%= record.as_vancouver %><br/>
+              <%= link_to "Cites: #{record.cites_number}", {:action => 'search_cites', :id => record} %>
+              <%= pdf_download_link(record) %>
+              <%= html_view_link(record) %><hr/></td>
   </tr>
 <% end %>
 </table>
