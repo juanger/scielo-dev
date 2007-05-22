@@ -1,3 +1,7 @@
+2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* catalogs/devel-info.sql: Se agregaron mas citas.
+
 2007-05-18  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* index-dev.sql, catalogs/devel-info.sql: Se creo un catálogo con información de prueba para el desarrollo.

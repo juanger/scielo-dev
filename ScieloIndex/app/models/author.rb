@@ -25,4 +25,9 @@ class Author < ActiveRecord::Base
       self.firstname.first.upcase + self.middlename.split(' ').collect { |md| md.first.upcase }.to_s
     ].join(' ')
   end
+
+  def total_cites
+    citesperart = self.articles.collect { |article| article.cites_number }
+    citesperart.inject() { |sum,element| sum + element}
+  end
 end

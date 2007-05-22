@@ -1,18 +1,8 @@
 <h1>Listing Cites</h1>
 
-<table>
-  <tr>
-    <th>Articles</th>
-  </tr>
-
-  <% for record in @collection %>
-  <tr>
-    <td ><%=h record[0] %><br/><hr/></td>
-  </tr>
-<% end %>
-</table
-
+<%= render :partial => 'list' %>
 <br />
+<%= render :partial =>'paginator' %>
 <hr/>
 
 <%= link_to 'New Search', :action => 'index' %>

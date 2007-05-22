@@ -1,4 +1,8 @@
-2007-05-17  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* author.rb: Se creo un metodo total_cites para obtener el numero total de citas de un author.
+
+2007-05-17  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* associated_file.rb: Se cambió para que use el sistema de archivos
 
@@ -14,39 +18,39 @@
 	la relacion hatm.
 	* country.rb: Cambios menores en la validacion del modelo.
 
-2007-05-16  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-16  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* associated_file.rb: Se agregó la relación con la tabla article. 
 
 	* article.rb: Se agregó la relacion con la tabla associated file
 
-2007-05-14  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-14  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* author.rb: Se cambio el join de ', ' a ' ' puesto que solo debe
 	de haber un espacio entre el apellido y las inciales en vancouver.
 	* journal.rb: Se quitaron las lineas comentadas sobre la
 	validacion de los campos country_id y publisher_id
 
-2007-05-11  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-11  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * cite.rb: Se agregaron las validaciones de unicidad y de
         presencia
 
-2007-05-11  Hector E. Gomez Morales  <hector@enigma>
+2007-05-11  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * author.rb, journal_issue.rb, article.rb, journal.rb: Se agregaron a cada modelo
         metodos que regresan la informacion dentro del modelo segun la forma vancouver.
 
-2007-05-08  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-08  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * institution.rb, country.rb, author.rb: Cambio en las relaciones de las tablas
 
-2007-04-30  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-04-30  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * article.rb: Se quitó belongs_to en favor de
         has_and_belongs_to_many para relacionarlo con los journal_issues
 
-2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-04-27  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * journal_issue.rb: Cambio menor se uso un simnolo en lugar de un
         string para la relacion.

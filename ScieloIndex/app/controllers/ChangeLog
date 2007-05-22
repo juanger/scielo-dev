@@ -1,29 +1,35 @@
-2007-05-17  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* cite_index_controller.rb: Se implmeneto la autocomplementacion de los campos de busqueda, tambien se agrego,
+	acciones para la busqueda de articulos por medio del titulo, tambien se implemento los paginadores para cada
+	una de las vistas.
+
+2007-05-17  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* associated_files_controller.rb: Se modificó para que lanze los
 	errores necesarios al validar los campos y para que use el sistema
 	de archivos  
 
-2007-05-16  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-16  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* associated_files_controller.rb: Se añadieron los métodos del
 	controlador para crear y enviar archivos
 
-2007-05-11  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-11  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * cite_index_controller.rb: Se agregó la función search_cites
 
-2007-05-11  Hector E. Gomez Morales  <hector@enigma>
+2007-05-11  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * cite_index_controller.rb: Se hace uso de las metodos as_vancouver en los modelos
         para crear la lista de articulos publicados en formato vancouver.
 
-2007-05-09  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-05-09  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * collection.rb: Se hace una validacion en las llaves foraneas
         para los modelos country y publisher.
 
-2007-04-27  Hector E. Gomez Morales  <hector@scielo-dev2>
+2007-04-27  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
         * author_institutions_controller.rb: Ahora deriva del controlador
         generico ScieloIndexController
