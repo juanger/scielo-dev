@@ -1,0 +1,8 @@
+<% for column in Keyword.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @keyword.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @keyword %> |
+<%= link_to 'Back', :action => 'list' %>

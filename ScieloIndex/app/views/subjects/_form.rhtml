@@ -1,0 +1,13 @@
+<%= error_messages_for 'subject' %>
+
+<!--[form:subject]-->
+<p><label for="subject_name">Name</label><br/>
+<%= text_area 'subject', 'name'  %></p>
+
+<p><label for="subject_created_on">Created on</label><br/>
+<%= datetime_select 'subject', 'created_on'  %></p>
+
+<p><label for="subject_updated_on">Updated on</label><br/>
+<%= datetime_select 'subject', 'updated_on'  %></p>
+<!--[eoform:subject]-->
+

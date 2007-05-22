@@ -17,6 +17,17 @@ INSERT INTO journal_issues (journal_id, number, volume, year) VALUES (1, 10, 8, 
 INSERT INTO journal_issues (journal_id, number, volume, year) VALUES (1, 11, 7, 2007);
 INSERT INTO journal_issues (journal_id, number, volume, year) VALUES (2, 12, 1, 2007);
 
+INSERT INTO subjects (parent_id, name) VALUES (NULL, 'Física');
+INSERT INTO subjects (parent_id, name) VALUES (1, 'Geofísica');
+INSERT INTO subjects (parent_id, name) VALUES (2, 'Ciencias de la Atmosfera');
+INSERT INTO subjects (parent_id, name) VALUES (NULL, 'Quimica');
+INSERT INTO subjects (parent_id, name) VALUES (4, 'Bioquimica');
+
+INSERT INTO journal_subjects (journal_id, subject_id) VALUES (1, 1);
+INSERT INTO journal_subjects (journal_id, subject_id) VALUES (1, 2);
+INSERT INTO journal_subjects (journal_id, subject_id) VALUES (1, 3);
+INSERT INTO journal_subjects (journal_id, subject_id) VALUES (2, 1);
+
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Calentamiento Global', 2, '100', '120', '100-120', NULL, NULL, NULL);
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', 1, '1', '12', '1-12', NULL, NULL, NULL);
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Lightning induced heating of the ionosphere', 1, '31', '38', '31-38', NULL, NULL, NULL);
@@ -30,7 +41,6 @@ INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pa
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Chalk dust and lung cancer', 3, '25', '26', '25-26', NULL, NULL, NULL);
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Laptops and fertility in men', 1, '67', '82', '67-82', NULL, NULL, NULL);
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Junk 101', 2, '34', '41', '34-41', NULL, NULL, NULL);
-
 
 INSERT INTO associated_files (article_id, filename, pdf_path, html_path) VALUES (1, 'v17n01a01','public/associated_files/1/v17n01a01.pdf', 'public/associated_files/1/v17n01a01.htm');
 INSERT INTO associated_files (article_id, filename, pdf_path, html_path) VALUES (2, 'v17n01a03','public/associated_files/2/v17n01a03.pdf', 'public/associated_files/2/v17n01a03.htm');
@@ -46,7 +56,30 @@ INSERT INTO associated_files (article_id, filename, pdf_path, html_path) VALUES 
 INSERT INTO associated_files (article_id, filename, pdf_path, html_path) VALUES (12, 'v18n3a02','public/associated_files/12/v18n3a02.pdf', 'public/associated_files/12/v18n3a02.htm');
 INSERT INTO associated_files (article_id, filename, pdf_path, html_path) VALUES (13, 'v18n4a01','public/associated_files/13/v18n4a01.pdf', 'public/associated_files/13/v18n4a01.htm');
 
+INSERT INTO keywords (name) VALUES ('global warming');
+INSERT INTO keywords (name) VALUES ('equivalent potential temperature');
+INSERT INTO keywords (name) VALUES ('saturated equivalent potential temperature');
+INSERT INTO keywords (name) VALUES ('convective instability');
+INSERT INTO keywords (name) VALUES ('conditional instability');
+INSERT INTO keywords (name) VALUES ('principal component analysis');
 
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (1, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (2, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (3, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (4, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (4, 2);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (4, 3);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (5, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (6, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (7, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (7, 4);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (8, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (8, 5);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (9, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (10, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (11, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (12, 1);
+INSERT INTO article_keywords (article_id, keyword_id) VALUES (13, 1);
 
 INSERT INTO article_authors (article_id, author_id, author_order) VALUES (1, 1, 1);
 INSERT INTO article_authors (article_id, author_id, author_order) VALUES (2, 1, 1);

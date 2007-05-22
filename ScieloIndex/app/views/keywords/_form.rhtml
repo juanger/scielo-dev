@@ -1,0 +1,13 @@
+<%= error_messages_for 'keyword' %>
+
+<!--[form:keyword]-->
+<p><label for="keyword_name">Name</label><br/>
+<%= text_area 'keyword', 'name'  %></p>
+
+<p><label for="keyword_created_on">Created on</label><br/>
+<%= datetime_select 'keyword', 'created_on'  %></p>
+
+<p><label for="keyword_updated_on">Updated on</label><br/>
+<%= datetime_select 'keyword', 'updated_on'  %></p>
+<!--[eoform:keyword]-->
+

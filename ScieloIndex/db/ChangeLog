@@ -1,5 +1,6 @@
 2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* schema.sql: Se agregaron las tablas para keywords, subjects y las relaciones con article y journal(journal_subjects y article_keywords).
 	* catalogs/devel-info.sql: Se agregaron mas citas.
 
 2007-05-18  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
