@@ -11,15 +11,13 @@ class CiteIndexController < ApplicationController
   def search_by_author
     session[:seach_data] ||= Author.new(params[:record])
     record = session[:search_data]
-    @record = params[:record]
     @pages, @collection = paginate Inflector.pluralize(Article).to_sym,
     :select => 'articles.id, articles.title, articles.journal_issue_id, articles.fpage, articles.lpage,' +
     ' articles.page_range, articles.url, articles.pacsnum, articles.other, authors.id as author_id,' +
     ' authors.firstname, authors.lastname, authors.middlename',
-    :joins => 'JOIN article_authors ON articles.id = articles_authors.article_id JOIN authors ON' +
-    " authors.id = articles_authors.author_id WHERE (authors.middlename = '#{record.middlename}' AND" +
+    :joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
+    " authors.id = article_authors.author_id WHERE (authors.middlename = '#{record.middlename}' AND" +
     " authors.lastname = '#{record.lastname}' AND authors.firstname = '#{record.firstname}')", :per_page => 10
-
   end
 
   def search_cites
