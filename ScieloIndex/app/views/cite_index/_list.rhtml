@@ -3,12 +3,9 @@
     <th>Articles</th>
   </tr>
 
-  <% for record in @collection %>
-  <tr>
-    <td ><%= record.as_vancouver %><br/>
-              <%= link_to "Cites: #{record.cites_number}", {:action => 'search_cites', :id => record} %>
-              <%= pdf_download_link(record) %>
-              <%= html_view_link(record) %><hr/></td>
-  </tr>
-<% end %>
+<%= render :partial => 'article', :collection => @collection %>
 </table>
+<br />
+<%= render :partial =>'paginator' %>
+<hr/>
+<%= link_to 'New Search', :action => 'index' %>

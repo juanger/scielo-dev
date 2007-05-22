@@ -1,0 +1,6 @@
+  <tr>
+    <td ><%= article.as_vancouver %><br/>
+              <%= link_to "Cites: #{article.cites_number}", {:action => 'search_cites', :id => article} %>
+              <%= pdf_download_link(article) %>
+              <%= html_view_link(article) %><hr/></td>
+  </tr>
