@@ -1,7 +1,7 @@
 class CiteIndexController < ApplicationController
 
   def index
-    sessions[:seach_data] = nil
+    session[:seach_data] = nil
     render :action => 'index'
   end
 
@@ -9,7 +9,7 @@ class CiteIndexController < ApplicationController
   #:redirect_to => { :action => :index }
 
   def search_by_author
-    sessions[:seach_data] ||= Author.new(params[:record])
+    session[:seach_data] ||= Author.new(params[:record])
     record = session[:search_data]
     @record = params[:record]
     @pages, @collection = paginate Inflector.pluralize(Article).to_sym,
