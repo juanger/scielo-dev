@@ -17,7 +17,7 @@ class SubjectTest < Test::Unit::TestCase
       assert_equal @subject.parent_id, @subject_db.parent_id
       assert_equal @subject.name, @subject_db.name
     }
-   end
+  end
 
   def test_updating
     @subjects.each { |subject|
@@ -30,7 +30,7 @@ class SubjectTest < Test::Unit::TestCase
       @subject_db.name.reverse
       assert @subject_db.update
     }
-   end
+  end
 
   def test_deleting
     @subjects.each { |subject|

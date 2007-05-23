@@ -17,17 +17,6 @@ INSERT INTO journal_issues (journal_id, number, volume, year) VALUES (1, 10, 8, 
 INSERT INTO journal_issues (journal_id, number, volume, year) VALUES (1, 11, 7, 2007);
 INSERT INTO journal_issues (journal_id, number, volume, year) VALUES (2, 12, 1, 2007);
 
-INSERT INTO subjects (parent_id, name) VALUES (NULL, 'Física');
-INSERT INTO subjects (parent_id, name) VALUES (1, 'Geofísica');
-INSERT INTO subjects (parent_id, name) VALUES (2, 'Ciencias de la Atmosfera');
-INSERT INTO subjects (parent_id, name) VALUES (NULL, 'Quimica');
-INSERT INTO subjects (parent_id, name) VALUES (4, 'Bioquimica');
-
-INSERT INTO journal_subjects (journal_id, subject_id) VALUES (1, 1);
-INSERT INTO journal_subjects (journal_id, subject_id) VALUES (1, 2);
-INSERT INTO journal_subjects (journal_id, subject_id) VALUES (1, 3);
-INSERT INTO journal_subjects (journal_id, subject_id) VALUES (2, 1);
-
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Calentamiento Global', 2, '100', '120', '100-120', NULL, NULL, NULL);
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', 1, '1', '12', '1-12', NULL, NULL, NULL);
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Lightning induced heating of the ionosphere', 1, '31', '38', '31-38', NULL, NULL, NULL);
@@ -80,6 +69,32 @@ INSERT INTO article_keywords (article_id, keyword_id) VALUES (10, 1);
 INSERT INTO article_keywords (article_id, keyword_id) VALUES (11, 1);
 INSERT INTO article_keywords (article_id, keyword_id) VALUES (12, 1);
 INSERT INTO article_keywords (article_id, keyword_id) VALUES (13, 1);
+
+INSERT INTO subjects (parent_id, name) VALUES (NULL, 'Física');
+INSERT INTO subjects (parent_id, name) VALUES (1, 'Geofísica');
+INSERT INTO subjects (parent_id, name) VALUES (2, 'Ciencias de la Atmosfera');
+INSERT INTO subjects (parent_id, name) VALUES (NULL, 'Quimica');
+INSERT INTO subjects (parent_id, name) VALUES (4, 'Bioquimica');
+INSERT INTO subjects (parent_id, name) VALUES (4, 'Quimica Cuantica');
+
+INSERT INTO article_subjects (article_id, subject_id) VALUES (1, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (1, 2);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (1, 3);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (2, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (3, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (4, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (4, 4);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (5, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (5, 2);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (6, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (7, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (8, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (9, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (9, 2);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (9, 4);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (10, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (11, 1);
+INSERT INTO article_subjects (article_id, subject_id) VALUES (12, 1);
 
 INSERT INTO article_authors (article_id, author_id, author_order) VALUES (1, 1, 1);
 INSERT INTO article_authors (article_id, author_id, author_order) VALUES (2, 1, 1);

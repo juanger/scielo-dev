@@ -12,7 +12,8 @@ class KeywordsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = keywords(:first).id
+    @first_id = keywords(:quakes).id
+    @mykeyword = { :name => 'tornados'}
   end
 
   def test_index
@@ -27,7 +28,7 @@ class KeywordsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:keywords)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +37,8 @@ class KeywordsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:keyword)
-    assert assigns(:keyword).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +47,13 @@ class KeywordsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:keyword)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_keywords = Keyword.count
 
-    post :create, :keyword => {}
+    post :create, :record => @mykeyword
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +67,8 @@ class KeywordsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:keyword)
-    assert assigns(:keyword).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

@@ -1,5 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+quakes:
   id: 1
-two:
+  name: earthquakes
+storms:
   id: 2
+  name: Electric storms
+eruptions:
+  id: 3
+  name: volcanic eruptions
+floods:
+  id: 4
+  name: massive floods

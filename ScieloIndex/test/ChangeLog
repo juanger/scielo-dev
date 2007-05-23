@@ -1,3 +1,12 @@
+2007-05-23  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* fixtures/keywords.yml: Se hicieron los stubs para las pruebas del modelo keyword.
+	* functional/associated_files_controller_test.rb: Cambio menor para al limpiar al finalizar la prueba.
+	* functional/keywords_controller_test.rb: Se hicieron las pruebas de funcionalidad del controlador
+	para el modelo keyword.
+	* integration/keywords_test.rb: Se hicieron las pruebas de integracion del modelo keyword.
+	* unit/keyword_test.rb, unit/subject_test.rb: Se hicieron las pruebas unitarias para el modelo keyword.
+
 2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* unit/article_test.rb, journal_issues_test.rb, unit/associated_file_test.rb: Cambios menores resultado del cambio 

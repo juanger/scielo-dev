@@ -150,38 +150,6 @@ CREATE TABLE journal_issues (
         UNIQUE(journal_id, number, volume, year)
 );
 
-CREATE TABLE subjects (
-        id SERIAL,
-        parent_id int4 NULL
-                REFERENCES subjects(id)
-                ON UPDATE CASCADE
-                ON DELETE CASCADE
-                DEFERRABLE,
-        name text NOT NULL,
-        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id),
-        UNIQUE(name)
-);
-
-CREATE TABLE journal_subjects (
-        id SERIAL,
-        journal_id int4  NOT NULL
-                REFERENCES journals(id)
-                ON UPDATE CASCADE
-                ON DELETE CASCADE
-                DEFERRABLE,
-        subject_id int4 NOT NULL
-                REFERENCES subjects(id)
-                ON UPDATE CASCADE
-                ON DELETE CASCADE
-                DEFERRABLE,
-        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id),
-        UNIQUE(journal_id, subject_id)
-);
-
 CREATE TABLE articles (
         id SERIAL,
         title text NOT NULL,
@@ -243,6 +211,38 @@ CREATE TABLE article_keywords (
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
         UNIQUE(article_id, keyword_id)
+);
+
+CREATE TABLE subjects (
+        id SERIAL,
+        parent_id int4 NULL
+                REFERENCES subjects(id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+                DEFERRABLE,
+        name text NOT NULL,
+        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        UNIQUE(name)
+);
+
+CREATE TABLE article_subjects (
+        id SERIAL,
+        article_id int4  NOT NULL
+                REFERENCES articles(id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+                DEFERRABLE,
+        subject_id int4 NOT NULL
+                REFERENCES subjects(id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+                DEFERRABLE,
+        created_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        UNIQUE(article_id, subject_id)
 );
 
 CREATE TABLE article_authors (

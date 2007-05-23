@@ -100,7 +100,7 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
   end
 
   def teardown
-    dir = "#{RAILS_ROOT}/public/associated_files/3"
+    dir = "#{RAILS_ROOT}/public/associated_files/9999"
     if File.exists?(dir)
       Dir.foreach(dir) {|file|
         next if file =~ /^\.\.?$/
