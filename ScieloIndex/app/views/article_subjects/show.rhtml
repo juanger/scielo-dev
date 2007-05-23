@@ -1,0 +1,8 @@
+<% for column in ArticleSubject.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @article_subject.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @article_subject %> |
+<%= link_to 'Back', :action => 'list' %>

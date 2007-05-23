@@ -1,0 +1,2 @@
+module ArticleKeywordsHelper
+end
