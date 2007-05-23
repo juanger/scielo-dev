@@ -1,7 +1,12 @@
 2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* unit/article_test.rb, journal_issues_test.rb, unit/associated_file_test.rb: Cambios menores resultado del cambio 
+	en los fixtures.
+	* integration/associated_files_test.rb: Se implemento la prueba de integracion del modelo associated_file.
+	* functional/subjects_controller_test.rb: Cambios menores para la prueba.
+	* functional/associated_files_controller_test.rb:  Cambios menores debido al cambio en los fixtures.
+	* fixtures/associated_files.yml, fixtures/articles.yml: Se crearon stubs para las pruebas en el modelo associated_file.
 	* fixtures/subjects.yml: Se crearon las definiciones de fisica, geo, atm, quimica y bioqui
-
 	* unit/subject_test.rb:  Se crearon las pruebas de unidad
 
 2007-05-17  Hector E. Gomez Morales  <hector@scielo-dev2>

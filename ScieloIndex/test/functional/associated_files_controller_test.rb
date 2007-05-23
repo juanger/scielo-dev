@@ -12,7 +12,7 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = associated_files(:art1files).id
+    @first_id = associated_files(:art4files).id
     @pdf = Tempfile.new("pdf")
     @pdf.write(File.open("#{RAILS_ROOT}/test/files/v17n01a01.pdf", 'r').read())
     @pdf.open()
@@ -88,7 +88,7 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
       AssociatedFile.find(@first_id)
     }
 
-    Dir.mkdir("#{RAILS_ROOT}/public/associated_files/1")
+    Dir.mkdir("#{RAILS_ROOT}/public/associated_files/9997")
 
     post :destroy, :id => @first_id
     assert_response :redirect

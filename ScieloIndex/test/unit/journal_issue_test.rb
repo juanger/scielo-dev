@@ -147,6 +147,6 @@ class JournalIssueTest < Test::Unit::TestCase
 
   def test_has_many_articles
     @journal_issue = journal_issues(:atm19_1)
-    assert_equal @journal_issue.articles.size, 4
+    assert_equal @journal_issue.articles.size, 5
   end
 end

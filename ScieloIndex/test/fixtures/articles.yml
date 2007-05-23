@@ -30,7 +30,7 @@ article3:
   pacsnum: 1331
   other: Segunda parte
 article4:
-  id: 4
+  id: 9997
   title: Implicaciones del Calentamiento Global en la precipitacion en la zona Norte de Mexico
   journal_issue_id: 1
   fpage: 61
@@ -40,7 +40,7 @@ article4:
   pacsnum: 1332
   other: Primera parte
 article5:
-  id: 5
+  id: 9998
   title: Calentamiento Global y Teoria del Caos
   journal_issue_id: 1
   fpage: 91
@@ -49,3 +49,13 @@ article5:
   url: http://atm.unam.mx
   pacsnum: 1333
   other: Exclusivo
+article6:
+  id: 9999
+  title: Calentamiento Global y Mecanica de Fluidos
+  journal_issue_id: 1
+  fpage: 201
+  lpage: 257
+  page_range: 201-257
+  url: http://atm.unam.mx
+  pacsnum: 1334
+  other: Extra

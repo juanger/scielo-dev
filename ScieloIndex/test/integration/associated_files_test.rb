@@ -4,14 +4,14 @@ class AssociatedFilesTest < ActionController::IntegrationTest
   fixtures :articles, :associated_files
 
   def setup
-    @associated_files = [:art1files, :art2files]
+    @associated_files = [:art4files, :art5files]
     @pdf = Tempfile.new("pdf")
     @pdf.write(File.open("#{RAILS_ROOT}/test/files/v17n01a01.pdf", 'r').read())
     @pdf.open()
     @html = Tempfile.new("html")
     @html.write(File.open("#{RAILS_ROOT}/test/files/v17n01a01.htm", 'r').read())
     @html.open()
-    @myassociated_file = {:article_id => 3, :filename => 'v17n01a01', :pdfdata => @pdf, :htmldata => @html}
+    @myassociated_file = {:article_id => 9999, :filename => 'v17n01a01', :pdfdata => @pdf, :htmldata => @html}
   end
 
    def test_getting_index

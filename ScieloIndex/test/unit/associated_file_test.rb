@@ -4,8 +4,8 @@ class AssociatedFileTest < Test::Unit::TestCase
   fixtures :journals, :journal_issues, :articles, :associated_files
 
   def setup
-    @associated_files = [:art1files, :art2files]
-    @myassociated_file = {:article_id => 3, :filename => 'n1231c123132', :pdf_path => 'PDF3', :html_path => 'HTML3' }
+    @associated_files = [:art4files, :art5files]
+    @myassociated_file = {:article_id =>  9999, :filename => 'n1231c123132', :pdf_path => 'PDF3', :html_path => 'HTML3' }
   end
 
   # RIGHT CRUD (Create, Update and Delete)
@@ -53,7 +53,7 @@ class AssociatedFileTest < Test::Unit::TestCase
   def test_uniqueness
     @associated_file = AssociatedFile.new(@myassociated_file)
     assert @associated_file.save
-    @associated_file.article_id = associated_files(:art1files).article_id
+    @associated_file.article_id = associated_files(:art4files).article_id
     assert !@associated_file.save
   end
 
@@ -115,11 +115,11 @@ class AssociatedFileTest < Test::Unit::TestCase
   end
 
   def test_belongs_to_article
-    @associated_file = associated_files(:art2files)
-    assert_equal @associated_file.article.id, articles(:article2).id
-    assert_equal @associated_file.article.title, articles(:article2).title
-    assert_equal @associated_file.article.page_range, articles(:article2).page_range
-    assert_equal @associated_file.article.url, articles(:article2).url
-    assert_equal @associated_file.article.pacsnum, articles(:article2).pacsnum
+    @associated_file = associated_files(:art5files)
+    assert_equal @associated_file.article.id, articles(:article5).id
+    assert_equal @associated_file.article.title, articles(:article5).title
+    assert_equal @associated_file.article.page_range, articles(:article5).page_range
+    assert_equal @associated_file.article.url, articles(:article5).url
+    assert_equal @associated_file.article.pacsnum, articles(:article5).pacsnum
   end
 end

@@ -12,7 +12,8 @@ class SubjectsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = subjects(:first).id
+    @first_id = subjects(:fisica).id
+    @mysubject = {:parent_id => 1, :name => 'Mecanica Cuantica'}
   end
 
   def test_index
@@ -27,7 +28,7 @@ class SubjectsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:subjects)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +37,8 @@ class SubjectsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:subject)
-    assert assigns(:subject).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +47,13 @@ class SubjectsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:subject)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_subjects = Subject.count
 
-    post :create, :subject => {}
+    post :create, :record => @mysubject
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +67,8 @@ class SubjectsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:subject)
-    assert assigns(:subject).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

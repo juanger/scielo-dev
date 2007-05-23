@@ -1,3 +1,7 @@
+2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* article.rb: Cambio menor del limite superior del atributo id para article.
+
 2007-05-22  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* keyword.rb, subject.rb: Se scaffoldeo, se definieron validaciones para los modelos
