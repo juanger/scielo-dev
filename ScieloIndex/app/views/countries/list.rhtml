@@ -18,9 +18,10 @@
 <% end %>
 </table>
 <%= link_to 'Previous page', {:page => @pages.current.previous } if @pages.current.previous %>
+<div id="navigator">
 <%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
+</div>
 <br />
-
-<div id="buttonNew">
-<%= link_to 'New country', {:action => 'new'} , :class => 'navigator'%>
+<div id="navigator">
+<%= link_to 'New country', {:action => 'new'}, :class => 'buttonNavigator' %>
 </div>

@@ -5,28 +5,29 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Countries: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold', 'insertimages'%>
+  <%= stylesheet_link_tag 'scaffold', 'style-scielo-mexico'%>
 </head>
 <body>
 <div id="container">
-    <div id="bannerSup">
-	<div id="logoScielo"></div>
+    <div id="header">
+        <div id="logoScielo"></div>
 	<div id="headerBar"></div>
+	<div class="topMenu">
+	   <ul>
+             <li><a href="#">Principal</a></li>
+             <li><a href="#">Informaci&oacute;n</a></li>
+             <li><a href="#">B&uacute;squedas</a></li>
+             <li><a href="#">Contacto</a></li>
+             <li><a href="#">Ubicaci&oacute;n</a></li>
+           </ul>
+	</div>
+	<div id="lineBar"></div>
     </div>
-    <div id="bannerInf">
-	<div id="texto">
+    <div id="main">
 	<p style="color: green"><%= flash[:notice] %></p>
 	<%= yield  %>
-	</div>
     </div>
-<div class="roundedcornr_box_381787">
-   <div class="roundedcornr_top_381787"><div></div></div>
-      <div class="roundedcornr_content_381787">
-      Anaid
-      </div>
-   <div class="roundedcornr_bottom_381787"><div></div></div>
-</div>
-   <div id="footerBar"></div>
+    <div id="footer"></div>
 </div>
 </body>
 </html>
