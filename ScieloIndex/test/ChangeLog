@@ -1,3 +1,9 @@
+2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* fixtures/subjects.yml: Se crearon las definiciones de fisica, geo, atm, quimica y bioqui
+
+	* unit/subject_test.rb:  Se crearon las pruebas de unidad
+
 2007-05-17  Hector E. Gomez Morales  <hector@scielo-dev2>
 
 	* fixtures/articles.yml: Se quitaron los acentos

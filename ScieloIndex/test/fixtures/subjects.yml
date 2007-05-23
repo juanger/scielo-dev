@@ -1,5 +1,22 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-two:
-  id: 2
+--- !omap
+   - fisica:
+       id: 1
+       parent_id:  NULL
+       name: Fisica
+   - geo:
+       id: 2
+       parent_id:  1
+       name: Geofisica
+   - atm:
+       id: 3
+       parent_id:  2
+       name: Ciencias de la Atmosfera
+   - quimica:
+       id: 4
+       parent_id:  NULL
+       name: Quimica
+   - bioqui:
+       id: 5
+       parent_id:  4
+       name: Bioquimica
