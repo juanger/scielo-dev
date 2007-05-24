@@ -1,0 +1,10 @@
+<% form_tag :action => 'find_article' do %>
+<%= error_messages_for 'article' %>
+
+<!--[form:article]-->
+<p><label for="author_title">Title</label><br/>
+<%= text_field_with_auto_complete :article, :title %></p>
+<!--[eoform:article]-->
+
+  <%= submit_tag "Search" %>
+<% end %>

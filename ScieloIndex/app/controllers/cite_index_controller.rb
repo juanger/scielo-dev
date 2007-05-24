@@ -6,13 +6,20 @@ class CiteIndexController < ApplicationController
 
   def index
     session[:search_data] = nil
+    if session[:form]
+      @form = session[:form]
+    end
     render :action => 'index'
+  end
+
+  def show_form
+    @form = session[:form] = params[:form]
   end
 
   verify :method => :post, :only => [ :find_author, :find_article ], :redirect_to => { :action => :index }
 
   def find_author
-    session[:search_data] ||= Author.find(:first, :conditions => params[:author])
+    session[:search_data] = Author.find(:first, :conditions => params[:author])
     if session[:search_data].nil?
       flash[:notice] = "Author not found, please try another search"
       redirect_to :action => 'index'
@@ -22,7 +29,7 @@ class CiteIndexController < ApplicationController
   end
 
   def find_article
-    session[:search_data] ||= Article.find(:first, :conditions => params[:article])
+    session[:search_data] = Article.find(:first, :conditions => params[:article])
     if session[:search_data].nil?
       flash[:notice] = "Article not found, please try another search"
       redirect_to :action => 'index'

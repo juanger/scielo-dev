@@ -1,3 +1,7 @@
+2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* cite_index_helper.rb: Se creo un helper para dependiendo de la condicion se oculte un tag <div>.
+
 2007-05-11  Hector E. Gomez Morales  <hector@scielo-dev2>
 
         * select_helper.rb: Se modificó la definición de la función

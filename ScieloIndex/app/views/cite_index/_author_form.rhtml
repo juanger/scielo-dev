@@ -1,0 +1,17 @@
+<% form_tag :action => 'find_author' do %>
+<%= error_messages_for 'author' %>
+
+<!--[form:author]-->
+<p><label for="author_firstname">Firstname</label><br/>
+<%= text_field_with_auto_complete :author, :firstname %></p>
+
+<p><label for="author_middlename">Middlename</label><br/>
+<%= text_field_with_auto_complete :author, :middlename %></p>
+
+<p><label for="author_lastname">Lastname</label><br/>
+<%= text_field_with_auto_complete :author, :lastname %></p>
+<!--[eoform:author]-->
+
+  <%= submit_tag "Search" %>
+<% end %>
+

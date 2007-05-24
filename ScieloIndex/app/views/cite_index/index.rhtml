@@ -1,29 +1,18 @@
 <h1>Scielo Citation Index</h1>
 <%= javascript_include_tag :defaults %>
-<% form_tag :action => 'find_author' do %>
-<%= error_messages_for 'author' %>
-
-<!--[form:author]-->
-<p><label for="author_firstname">Firstname</label><br/>
-<%= text_field_with_auto_complete :author, :firstname %></p>
-
-<p><label for="author_middlename">Middlename</label><br/>
-<%= text_field_with_auto_complete :author, :middlename %></p>
-
-<p><label for="author_lastname">Lastname</label><br/>
-<%= text_field_with_auto_complete :author, :lastname %></p>
-<!--[eoform:author]-->
-
-  <%= submit_tag "Search" %>
+<table>
+<% form_remote_tag :url => { :action => :show_form, :form => 'author'} do %>
+  <%= submit_tag "Search by Author" %>
 <% end %>
 
-<% form_tag :action => 'find_article' do %>
-<%= error_messages_for 'article' %>
+<% form_remote_tag :url => { :action => :show_form, :form => 'article'} do %>
+  <%= submit_tag "Search by Article" %>
+<% end %>
+</table>
+<% hidden_div_if((@form.nil? or @form == 'article'), :id => "author") do %>
+<%= render(:partial => "author_form") %>
+<% end %>
 
-<!--[form:article]-->
-<p><label for="author_title">Title</label><br/>
-<%= text_field_with_auto_complete :article, :title %></p>
-<!--[eoform:article]-->
-
-  <%= submit_tag "Search" %>
+<% hidden_div_if((@form.nil? or @form == 'author'), :id => "article") do %>
+<%= render(:partial => "article_form") %>
 <% end %>

@@ -1,6 +1,8 @@
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
-	* article_subjects_controller.rb: Se generalizo el controlador para el modelo article_subject.
+	* cite_index_controller.rb: Se agrego una accion que recibe los requests de AJAX.
+
+	* article_subjects_controller.rb: Se generalizo el controlador para el modelo article_subject.xo
 
 2007-05-23  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
