@@ -6,7 +6,7 @@ class Article < ActiveRecord::Base
   validates_format_of :fpage, :lpage, :page_range,  :with => /^[-a-zA-Z0-9áéíóúÁÉÍÓÚñÑ:,.& ]*$/
   validates_inclusion_of :journal_issue_id, :in => 1..9999
   validates_numericality_of :journal_issue_id, :only_integer => true
-  validates_inclusion_of :id, :in => 1..9999, :allow_nil => true
+  validates_inclusion_of :id, :in => 1..99999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_uniqueness_of :journal_issue_id, :scope => :title
 
@@ -14,6 +14,9 @@ class Article < ActiveRecord::Base
 
   has_many :article_authors
   has_many :authors, :through => :article_authors,  :order => "article_authors.author_order ASC"
+
+  has_many :article_keywords
+  has_many :keywords, :through => :article_keywords
 
   has_many :cites
   has_one :associated_file

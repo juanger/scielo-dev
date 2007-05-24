@@ -1,3 +1,11 @@
+2007-05-23  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* article_keyword.rb: Se agregaron las validaciones y las relaciones con article y keyword
+
+	* article_author.rb: Se agregaron las relaciones con article y author
+
+	* article.rb: Se agregaron las relaciones con las tablas article_authors y article_keywords
+
 2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* article.rb: Cambio menor del limite superior del atributo id para article.

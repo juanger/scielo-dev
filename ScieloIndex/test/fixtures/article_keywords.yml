@@ -1,5 +1,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+art1quakes:
   id: 1
-two:
+  article_id: 1
+  keyword_id: 1
+art2storms:
   id: 2
+  article_id: 2
+  keyword_id: 2
+art3eruptions:
+  id: 3
+  article_id: 3
+  keyword_id: 3
+art3floods:
+  id: 4
+  article_id: 3
+  keyword_id: 4

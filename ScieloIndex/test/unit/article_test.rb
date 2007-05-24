@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :authors, :journals, :journal_issues, :articles, :article_authors
+  fixtures :keywords, :authors, :journals, :journal_issues, :articles, :article_authors
 
   def setup
     @articles = [:article1, :article2, :article3, :article4, :article5, :article6]
@@ -196,4 +196,40 @@ class ArticleTest < Test::Unit::TestCase
     @article.other = "A"*501
     assert !@article.valid?
   end
+
+  def test_belongs_to_journal_issue
+    @myarticle = Article.new(@myarticle)
+
+    assert_equal journal_issues(:atm19_1).id , @myarticle.journal_issue.id
+    assert_equal journal_issues(:atm19_1).journal_id , @myarticle.journal_issue.journal_id
+    assert_equal journal_issues(:atm19_1).number , @myarticle.journal_issue.number
+    assert_equal journal_issues(:atm19_1).volume , @myarticle.journal_issue.volume
+    assert_equal journal_issues(:atm19_1).year , @myarticle.journal_issue.year
+  end
+
+  def test_has_many_authors
+    @myarticle = Article.create(@myarticle)
+    @myarticle_author = ArticleAuthor.create(:article_id  => @myarticle.id, :author_id => 1, :author_order => 1)
+    assert_equal authors(:hector).id, @myarticle.authors.first.id
+    assert_equal authors(:hector).firstname, @myarticle.authors.first.firstname
+    assert_equal authors(:hector).middlename, @myarticle.authors.first.middlename
+    assert_equal authors(:hector).lastname, @myarticle.authors.first.lastname
+  end
+
+  def test_has_many_keywords
+    @myarticle = Article.create(@myarticle)
+    @myarticle_keywords = ArticleKeyword.create(:article_id  => @myarticle.id, :keyword_id => 3)
+    assert_equal keywords(:eruptions).id, @myarticle.keywords.first.id
+    assert_equal keywords(:eruptions).name, @myarticle.keywords.first.name
+  end
+
+ #  def test_has_many_cites
+#     @myarticle = Article.create(@myarticle)
+#     @myarticle_keywords = Cite.create(:article_id  => @myarticle.id, :cited_by_article_id => 1, :cite_order => 1)
+#     assert_equal articles(:article1).id, @myarticle.cites.first.cite.id
+#     assert_equal articles(:article1).title, @myarticle.cites.first.article.title
+#     assert_equal articles(:article1).journal_issue_id, @myarticle.cites.first.article.journal_issue_id
+#     assert_equal articles(:article1).fpage, @myarticle.cites.first.article.fpage
+#     assert_equal articles(:article1).lpage, @myarticle.cites.first.article.lpage
+#   end
 end

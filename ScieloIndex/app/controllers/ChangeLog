@@ -1,5 +1,7 @@
 2007-05-23  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* article_keywords_controller.rb: Se scaffoldeo y generalizo los controladores del modelo 
+
 	* keywords_controller.rb: Cambio menor en le mensaje al actualizar.
 
 2007-05-22  Hector E. Gomez Morales  <hectoregm@gmail.com>

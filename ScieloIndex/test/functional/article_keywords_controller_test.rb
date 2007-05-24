@@ -12,7 +12,8 @@ class ArticleKeywordsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = article_keywords(:first).id
+    @first_id = article_keywords(:art1quakes).id
+    @myarticle_keyword = {:article_id => 1, :keyword_id => 2}
   end
 
   def test_index
@@ -27,7 +28,7 @@ class ArticleKeywordsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:article_keywords)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +37,8 @@ class ArticleKeywordsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:article_keyword)
-    assert assigns(:article_keyword).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +47,13 @@ class ArticleKeywordsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:article_keyword)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_article_keywords = ArticleKeyword.count
 
-    post :create, :article_keyword => {}
+    post :create, :record => @myarticle_keyword
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +67,8 @@ class ArticleKeywordsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:article_keyword)
-    assert assigns(:article_keyword).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update
