@@ -1,0 +1,10 @@
+<% form_tag :action => 'find_keyword' do %>
+<%= error_messages_for 'keyword' %>
+
+<!--[form:keyword]-->
+<p><label for="keyword_name">Keyword</label><br/>
+<%= text_field_with_auto_complete :keyword, :name %></p>
+<!--[eoform:keyword]-->
+
+  <%= submit_tag "Search" %>
+<% end %>

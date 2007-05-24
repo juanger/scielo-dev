@@ -1,5 +1,6 @@
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* *.rhtml: Se agregaron los parciales para agregar la busqueda por keyword.
 	* *.rhtml: Se hicieron modifcaciones a casi todos los parciales, se puso las formas de busqueda cada uno en un 
 	parcial que es llamado para aparecer por medio de AJAX.
 	* show_form.rjs: Template RJS que hace los efectos segun la forma que seleciono el usuario.

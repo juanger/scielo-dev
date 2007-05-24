@@ -1,8 +1,13 @@
 page.replace_html("author" , :partial => "author_form")
 page.replace_html("article", :partial => "article_form")
+page.replace_html("keyword", :partial => "keyword_form")
 
 page[:article].visual_effect :blind_up if @form == 'author'
+page[:keyword].visual_effect :blind_up if @form == 'author'
 page[:author].visual_effect :blind_down if @form == 'author'
 page[:author].visual_effect :blind_up if @form == 'article'
+page[:keyword].visual_effect :blind_up if @form == 'article'
 page[:article].visual_effect :blind_down if @form == 'article'
-
+page[:author].visual_effect :blind_up if @form == 'keyword'
+page[:article].visual_effect :blind_up if @form == 'keyword'
+page[:keyword].visual_effect :blind_down if @form == 'keyword'
