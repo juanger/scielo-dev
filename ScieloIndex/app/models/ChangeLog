@@ -1,3 +1,12 @@
+2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* article.rb, cite.rb: Se replantearon las relaciones con el modelo cite, ademas se agregaron relaciones
+	con los modelos subject y keyword.
+	
+	* article_subject.rb: Se implemento las validaciones y relaciones con los otros modelos.
+	
+	* subject.rb: Se plantearon relaciones con la tabla article_subjects.
+
 2007-05-23  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* article_keyword.rb: Se agregaron las validaciones y las relaciones con article y keyword

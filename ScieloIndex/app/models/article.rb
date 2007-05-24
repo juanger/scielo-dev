@@ -18,7 +18,15 @@ class Article < ActiveRecord::Base
   has_many :article_keywords
   has_many :keywords, :through => :article_keywords
 
-  has_many :cites
+  has_many :article_subjects
+  has_many :subjects, :through => :article_subjects
+
+  has_many :article_citations, :foreign_key => :article_id, :class_name => 'Cite'
+  has_many :cites, :through => :article_citations
+
+  has_many :article_references, :foreign_key => :cited_by_article_id, :class_name => 'Cite'
+  has_many :references, :through => :article_references, :source => :article
+
   has_one :associated_file
 
   def as_vancouver

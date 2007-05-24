@@ -1,3 +1,15 @@
+2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* fixtures/article_subjects.yml: Se crearon stubs para las pruebas unitarias.
+
+	* functional/article_subjects_controller_test.rb: Se hicieron las pruebas para el controlador del modelo article_subjects.
+
+	* integration/article_subjects_test.rb: Se hicieron las pruebas de integracion del modelo article_subjects.
+
+	* unit/article_keyword_test.rb, unit/article_subject_test.rb, unit/article_test.rb, unit/keyword_test.rb, unit/subject_test.rb: 
+	Se hicieron las pruebas unitarias de los modelos article_subject y article_keyword. Tambien se hicieron pruebas de
+	relacion entre estos modelos y los modelos subject, keyword y article.
+
 2007-05-23  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* unit/article_test.rb: Se crearon las pruebas para las relaciones con authors y keywords. TODO modificar el modelo Cite para agregar pruebas del has_many cites de artículo 
@@ -11,10 +23,14 @@
 	* fixtures/article_keywords.yml: Se agregaron los stubs para las pruebas del modelo article_keywords
 
 	* fixtures/keywords.yml: Se hicieron los stubs para las pruebas del modelo keyword.
+	
 	* functional/associated_files_controller_test.rb: Cambio menor para al limpiar al finalizar la prueba.
+	
 	* functional/keywords_controller_test.rb: Se hicieron las pruebas de funcionalidad del controlador
 	para el modelo keyword.
+	
 	* integration/keywords_test.rb: Se hicieron las pruebas de integracion del modelo keyword.
+	
 	* unit/keyword_test.rb, unit/subject_test.rb: Se hicieron las pruebas unitarias para el modelo keyword.
 
 2007-05-22  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>

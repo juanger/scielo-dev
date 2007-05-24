@@ -1,10 +1,10 @@
-<%= error_messages_for 'article_subject' %>
+<%= error_messages_for 'record' %>
 
 <!--[form:article_subject]-->
-<p><label for="article_subject_created_on">Created on</label><br/>
-<%= datetime_select 'article_subject', 'created_on'  %></p>
+<p><label for="article_keyword_article_id">Article</label><br/>
+<%= select_by_attribute("record", Article, 'title')  %></p>
 
-<p><label for="article_subject_updated_on">Updated on</label><br/>
-<%= datetime_select 'article_subject', 'updated_on'  %></p>
+<p><label for="article_keyword_subject_id">Subject</label><br/>
+<%= select_by_attribute("record", Subject, 'name') %></p>
 <!--[eoform:article_subject]-->
 

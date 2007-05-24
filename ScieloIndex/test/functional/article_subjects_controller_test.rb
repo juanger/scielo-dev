@@ -12,7 +12,8 @@ class ArticleSubjectsControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = article_subjects(:first).id
+    @first_id = article_subjects(:art1fisica).id
+    @myarticle_subject = {:article_id => 1, :subject_id => 3}
   end
 
   def test_index
@@ -27,7 +28,7 @@ class ArticleSubjectsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:article_subjects)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +37,8 @@ class ArticleSubjectsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:article_subject)
-    assert assigns(:article_subject).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +47,13 @@ class ArticleSubjectsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:article_subject)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_article_subjects = ArticleSubject.count
 
-    post :create, :article_subject => {}
+    post :create, :record => @myarticle_subject
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +67,8 @@ class ArticleSubjectsControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:article_subject)
-    assert assigns(:article_subject).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

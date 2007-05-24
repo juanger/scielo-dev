@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class KeywordTest < Test::Unit::TestCase
-  fixtures :keywords
+  fixtures :articles, :keywords
 
   def setup
     @keywords = [:quakes, :storms, :eruptions, :floods]
@@ -79,5 +79,14 @@ class KeywordTest < Test::Unit::TestCase
 
     @keyword.name = "A"*501
     assert !@keyword.valid?
+  end
+
+  def test_has_many_articles
+    @mykeyword = Keyword.create(@mykeyword)
+    @article_keyword = ArticleKeyword.create(:article_id => 1, :keyword_id => @mykeyword.id)
+    assert_equal articles(:article1).id, @mykeyword.articles.first.id
+    assert_equal articles(:article1).title, @mykeyword.articles.first.title
+    assert_equal articles(:article1).fpage, @mykeyword.articles.first.fpage
+    assert_equal articles(:article1).lpage, @mykeyword.articles.first.lpage
   end
 end

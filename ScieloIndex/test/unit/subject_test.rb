@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SubjectTest < Test::Unit::TestCase
-  fixtures :subjects
+  fixtures :articles, :subjects
 
   def setup
     @subjects = [:geo, :atm, :bioqui, :fisica, :quimica]
@@ -96,5 +96,20 @@ class SubjectTest < Test::Unit::TestCase
 
     @subject.name = "A"*501
     assert !@subject.valid?
+  end
+
+  def test_belongs_to_parent_subject
+    @mysubject = Subject.create(@mysubject)
+    assert_equal subjects(:quimica).id, @mysubject.parent_subject.id
+    assert_equal subjects(:quimica).name, @mysubject.parent_subject.name
+  end
+
+  def test_has_many_articles
+    @mysubject = Subject.create(@mysubject)
+    @article_subject = ArticleSubject.create(:article_id => 1, :subject_id => @mysubject.id)
+    assert_equal articles(:article1).id, @mysubject.articles.first.id
+    assert_equal articles(:article1).title, @mysubject.articles.first.title
+    assert_equal articles(:article1).fpage, @mysubject.articles.first.fpage
+    assert_equal articles(:article1).lpage, @mysubject.articles.first.lpage
   end
 end

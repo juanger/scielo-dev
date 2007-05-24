@@ -6,4 +6,7 @@ class Subject < ActiveRecord::Base
   validates_uniqueness_of :name
 
   belongs_to :parent_subject, :class_name => "Subject", :foreign_key => "parent_id"
+
+  has_many :article_subjects
+  has_many :articles, :through => :article_subjects
 end

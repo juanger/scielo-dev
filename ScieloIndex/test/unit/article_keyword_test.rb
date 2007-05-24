@@ -110,7 +110,7 @@ class ArticleKeywordTest < Test::Unit::TestCase
     assert_equal articles(:article1).other , @myarticle_keyword.article.other
   end
 
-    def test_belongs_to_keyword
+  def test_belongs_to_keyword
     @myarticle_keyword = ArticleKeyword.new(@myarticle_keyword)
     assert_equal keywords(:storms).id , @myarticle_keyword.keyword.id
     assert_equal keywords(:storms).name , @myarticle_keyword.keyword.name

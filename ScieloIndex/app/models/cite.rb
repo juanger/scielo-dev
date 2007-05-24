@@ -6,6 +6,6 @@ class Cite < ActiveRecord::Base
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_uniqueness_of :article_id, :scope => :cited_by_article_id
 
-  belongs_to :article
-  belongs_to :cite, :class_name => "Article", :foreign_key => "cited_by_article_id"
+  belongs_to :article, :class_name => 'Article', :foreign_key => 'article_id'
+  belongs_to :cite, :class_name => 'Article', :foreign_key => 'cited_by_article_id'
 end

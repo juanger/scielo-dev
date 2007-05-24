@@ -1,3 +1,8 @@
+2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* article_subjects/, article_keywords/: Se scaffoldeo la vista y se realizaron los cambios para que usara el controlador
+	generico.
+
 2007-05-22  Hector E. Gomez Morales  <hectoregm@gmail.com>
 
 	* subjects/, keywords/: Se scaffoldeo la vista y se realizaron los cambios para que usara el controlador

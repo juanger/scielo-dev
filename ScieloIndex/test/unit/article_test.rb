@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ArticleTest < Test::Unit::TestCase
-  fixtures :keywords, :authors, :journals, :journal_issues, :articles, :article_authors
+  fixtures :keywords, :subjects, :authors, :journals, :journal_issues, :articles, :article_authors
 
   def setup
     @articles = [:article1, :article2, :article3, :article4, :article5, :article6]
@@ -223,13 +223,30 @@ class ArticleTest < Test::Unit::TestCase
     assert_equal keywords(:eruptions).name, @myarticle.keywords.first.name
   end
 
- #  def test_has_many_cites
-#     @myarticle = Article.create(@myarticle)
-#     @myarticle_keywords = Cite.create(:article_id  => @myarticle.id, :cited_by_article_id => 1, :cite_order => 1)
-#     assert_equal articles(:article1).id, @myarticle.cites.first.cite.id
-#     assert_equal articles(:article1).title, @myarticle.cites.first.article.title
-#     assert_equal articles(:article1).journal_issue_id, @myarticle.cites.first.article.journal_issue_id
-#     assert_equal articles(:article1).fpage, @myarticle.cites.first.article.fpage
-#     assert_equal articles(:article1).lpage, @myarticle.cites.first.article.lpage
-#   end
+  def test_has_many_subjects
+    @myarticle = Article.create(@myarticle)
+    @myarticle_subjects = ArticleSubject.create(:article_id => @myarticle.id, :subject_id => 1)
+    assert_equal subjects(:fisica).id, @myarticle.subjects.first.id
+    assert_equal subjects(:fisica).name, @myarticle.subjects.first.name
+  end
+
+  def test_has_many_cites
+    @myarticle = Article.create(@myarticle)
+    @myarticle_keywords = Cite.create(:article_id  => @myarticle.id, :cited_by_article_id => 1, :cite_order => 1)
+    assert_equal articles(:article1).id, @myarticle.cites.first.id
+    assert_equal articles(:article1).title, @myarticle.cites.first.title
+    assert_equal articles(:article1).journal_issue_id, @myarticle.cites.first.journal_issue_id
+    assert_equal articles(:article1).fpage, @myarticle.cites.first.fpage
+    assert_equal articles(:article1).lpage, @myarticle.cites.first.lpage
+  end
+
+  def test_has_many_references
+    @myarticle = Article.create(@myarticle)
+    @myarticle_keywords = Cite.create(:article_id  => 1, :cited_by_article_id => @myarticle.id, :cite_order => 1)
+    assert_equal articles(:article1).id, @myarticle.references.first.id
+    assert_equal articles(:article1).title, @myarticle.references.first.title
+    assert_equal articles(:article1).journal_issue_id, @myarticle.references.first.journal_issue_id
+    assert_equal articles(:article1).fpage, @myarticle.references.first.fpage
+    assert_equal articles(:article1).lpage, @myarticle.references.first.lpage
+  end
 end

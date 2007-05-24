@@ -1,5 +1,21 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+art1fisica:
   id: 1
-two:
+  article_id: 1
+  subject_id: 1
+art1geo:
   id: 2
+  article_id: 1
+  subject_id: 2
+art2fisica:
+  id: 3
+  article_id: 2
+  subject_id: 4
+art3quimica:
+  id: 4
+  article_id: 3
+  subject_id: 4
+art3bio:
+  id: 5
+  article_id: 3
+  subject_id: 5

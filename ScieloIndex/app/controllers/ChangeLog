@@ -1,3 +1,7 @@
+2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* article_subjects_controller.rb: Se generalizo el controlador para el modelo article_subject.
+
 2007-05-23  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* article_keywords_controller.rb: Se scaffoldeo y generalizo los controladores del modelo 
