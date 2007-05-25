@@ -5,22 +5,19 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Institutions: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold', 'insertimages'%>
+  <%= stylesheet_link_tag 'scaffold', 'style-scielo-mexico'%>
 </head>
 <body>
 <div id="container">
-    <div id="bannerSup">
-	<div id="logoScielo"></div>
-	<div id="headerBar"></div>
+    <div id="header">
+    <!-- render here -->
+    <%= render(:partial => "shared/headerScielo") %>
     </div>
-    <div id="bannerInf">
-	<div id="texto">
+    <div id="main">
 	<p style="color: green"><%= flash[:notice] %></p>
-
 	<%= yield  %>
-	</div>
     </div>
-    <div id="footerBar"></div>
+    <div id="footer"></div>
 </div>
 </body>
 </html>

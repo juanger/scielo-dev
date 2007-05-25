@@ -4,6 +4,7 @@
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
 <% end %>
-
-<%= link_to 'Show', :action => 'show', :id => @record %> |
-<%= link_to 'Back', :action => 'list' %>
+<div id="buttonsNavigator">
+<%= link_to 'Show', {:action => 'show', :id => @record}, :class => 'cssbutton' %> |
+<%= link_to 'Back', {:action => 'list'}, :class => 'cssbutton' %>
+</div>

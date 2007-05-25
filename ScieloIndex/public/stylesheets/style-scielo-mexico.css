@@ -42,12 +42,48 @@ a{
 	color:#b32732;
 	text-align: center;
 	text-decoration: none;
+
+}
+
+form {
+	padding: 30px 100px;
+}
+
+input[type="submit"]{
+	background-color: #DFDFDF;
+	border: 2px #d1ec4c outset;
+	padding: 2px 4px;
+	color: black;
+	text-decoration: none;
+	font: bold 12px Verdana;
+	margin: 0px auto;
+}
+
+.inputButton{
+	text-align: center;
+}
+
+input[type="submit"]:active{
+	color: black;
+}
+
+input[type="submit"]:focus{
+	border-style: inset;
+	background-color:  #bdbab2;
+	color: white;
+	padding: 2px 3px 0 5px; /*shift text 1px to the right and down*/
+}
+
+#containerForm{
+	border-top: 5px solid #bdbab2;
+	border-bottom: 5px solid #bdbab2;
+	padding: 30px 100px;
 }
 
 #container {
-  margin: 0px auto;	
+  margin: 0 auto;	
   width: 900px;
-  height: 600px;
+  height: auto;
 }
 
 #header{
@@ -58,16 +94,16 @@ a{
 }
 
 #main {
-
-  height: 450px;
+  width: 900px;
+  height: auto;
 }
 
 #footer{
   width:900px;
   height:36px;
+  margin: 50px 0px;	
   background:url(../images/footerBar.jpg) repeat-x;
-  margin:0 auto;
-  background-
+  background-color: #000;
 }
 
 #logoScielo{
@@ -135,18 +171,33 @@ a{
 	color: #eceeec;
 }
 
-
-#navigator a{
-	width:120px;
-	height:34px;
-	background: url(../images/next-page-button.jpg);
-	font-size:15px;
-	font-weight: bold;
-        text-align: center;
-	display: block;
-	color:#fff;
-	margin: 0px auto;
+.cssbutton {
+	background-color: #DFDFDF;
+	border: 2px #d1ec4c outset;
+	padding: 2px 4px;
+	color: black;
+	text-decoration: none;
+	font: bold 12px Verdana;
 }
 
-.buttonNavigator{
+.cssbutton:visited{
+	color: black;
 }
+
+.cssbutton:hover{
+	border-style: inset;
+	background-color:  #bdbab2;
+	color: white;
+	padding: 2px 3px 0 5px; /*shift text 1px to the right and down*/
+}
+
+.cssbutton:active{
+	color: black;
+}
+
+#buttonsNavigator{
+	padding: 0px 0px 0px 0px;
+	margin-bottom: 10px; 
+	text-align:center;
+}
+
