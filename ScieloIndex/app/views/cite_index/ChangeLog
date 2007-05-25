@@ -1,5 +1,9 @@
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* list_author_matches.rhtml: Se añadió el archivo para desplegar los autores resultantes de una búsqueda inexacta
+
+	* _author.rhtml: Se añadió el archivo para desplegar los autores resultantes de una búsqueda inexacta
+
 	* *.rhtml: Se agregaron los parciales para agregar la busqueda por keyword.
 	* *.rhtml: Se hicieron modifcaciones a casi todos los parciales, se puso las formas de busqueda cada uno en un 
 	parcial que es llamado para aparecer por medio de AJAX.

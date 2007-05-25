@@ -1,3 +1,7 @@
+2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* catalogs/devel-info.sql: Se agregaron INSERT's para authors y article_authors con el propósito de que haya posibles resultados en búsquedas inexactas.
+
 2007-05-23  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* schema.sql: Se cambio la relacion journal_subjects por la relacion article_subjects que esta mas en congruencia

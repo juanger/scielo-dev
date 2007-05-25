@@ -1,0 +1,12 @@
+<h1>Listing authors</h1>
+
+<table>
+  <tr>
+    <th>Results</th>
+  </tr>
+<%= render :partial => 'author', :collection => @collection %>
+</table>
+<br />
+<%= render :partial =>'paginator', :object => @þages %>
+<hr/>
+<%= link_to 'New Search', :action => 'index' %>

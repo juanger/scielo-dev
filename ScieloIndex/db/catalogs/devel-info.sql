@@ -3,6 +3,14 @@ INSERT INTO institutions (name, url, abbrev, parent_id, address, country_id, sta
 INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES ('Mr.', 'Héctor', 'Enrique', 'Gómez', NULL, 'Lic.');
 INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES ('Mr.', 'Lars', '', 'Adame', NULL, 'Lic.');
 INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES (NULL, 'David', 'Ezequiel Enoch', 'Garcia', NULL, 'PhD.');
+INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES ('Mr.', 'Héctor', 'Eduardo', 'Balbuena', NULL, 'Lic.');
+INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES ('Mr.', 'María', 'Enriqueta', 'Castillo', NULL, 'PhD.');
+INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES ('Mr.', 'Lars', 'Koo', 'Strasse', NULL, 'Lic.');
+INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES ('Mr.', 'Marina', 'Adams', 'Castañeda', NULL, 'Lic.');
+INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES (NULL, 'Héctor', 'Tenoch', 'Garza', NULL, 'PhD.');
+INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES (NULL, 'Dante', NULL, 'Garcia', NULL, 'PhD.');
+INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES ('Mr.', 'María', 'Adame', 'Castro', NULL, 'PhD.');
+INSERT INTO authors (prefix, firstname, middlename, lastname, suffix, degree) VALUES ('Mr.', 'Héctorino', 'Adam', 'de la Garza', NULL, 'PhD.');
 
 INSERT INTO author_institutions (author_id, institution_id) VALUES (1, 1);
 INSERT INTO author_institutions (author_id, institution_id) VALUES (2, 1);
@@ -113,6 +121,23 @@ INSERT INTO article_authors (article_id, author_id, author_order) VALUES (1, 2, 
 INSERT INTO article_authors (article_id, author_id, author_order) VALUES (1, 3, 3);
 INSERT INTO article_authors (article_id, author_id, author_order) VALUES (3, 2, 2);
 INSERT INTO article_authors (article_id, author_id, author_order) VALUES (4, 3, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (1, 4, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (2, 5, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (3, 6, 3);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (4, 7, 3);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (5, 8, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (6, 9, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (7, 10, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (8, 11, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (6, 4, 3);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (7, 5, 3);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (8, 6, 3);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (9, 7, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (10, 8, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (11, 9, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (12, 10, 2);
+INSERT INTO article_authors (article_id, author_id, author_order) VALUES (13, 11, 2);
+
 
 INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 2, 1);
 INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 3, 2);

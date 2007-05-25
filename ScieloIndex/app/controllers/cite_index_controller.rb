@@ -20,12 +20,15 @@ class CiteIndexController < ApplicationController
   verify :method => :post, :only => [ :find_author, :find_article ], :redirect_to => { :action => :index }
 
   def find_author
-    session[:search_data] = Author.find(:first, :conditions => params[:author])
+    session[:search_data] = params[:author]
+
+
+
     if session[:search_data].nil?
       flash[:notice] = "Author not found, please try another search"
       redirect_to :action => 'index'
     else
-      redirect_to :action => 'search_by_author'
+      redirect_to :action => 'list_author_matches'
     end
   end
 
@@ -34,9 +37,27 @@ class CiteIndexController < ApplicationController
     redirect_to :action => 'search_by_article'
   end
 
+  def find_auxiliar
+      session[:search_data] = Author.find(params[:id])
+      redirect_to :action => 'search_by_author'
+  end
+
   def find_keyword
     session[:search_data] = params[:keyword]
     redirect_to :action => 'search_by_keyword'
+  end
+
+  def list_author_matches
+    @author =   session[:search_data]
+     @pages, @collection = paginate Inflector.pluralize(Author).to_sym,
+    :conditions => ["authors.middlename ILIKE :middlename AND authors.lastname ILIKE :lastname AND authors.firstname ILIKE :firstname",
+                    {:middlename => '%' + @author[:midlename].to_s + '%', :lastname => '%' + @author[:lastname].to_s + '%', :firstname => '%' + @author[:firstname].to_s + '%' }],
+    :per_page => 10
+
+    if @collection.empty?
+      flash[:notice] = "No matches found, please try another search"
+      redirect_to :action => 'index'
+    end
   end
 
   def search_by_author

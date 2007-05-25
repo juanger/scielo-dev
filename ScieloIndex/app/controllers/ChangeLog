@@ -1,7 +1,7 @@
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* cite_index_controller.rb: Se agrego una accion que recibe los requests de AJAX. Se agrego la vista para busqueda
-	por medio de keyword.
+	por medio de keyword. Se cambiaron los métodos para búsqueda, de tal forma que queden preparados para búsquedas inexactas. 
 
 	* article_subjects_controller.rb: Se generalizo el controlador para el modelo article_subject.xo
 
