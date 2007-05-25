@@ -1,3 +1,7 @@
+2007-05-25  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* cite_index_controller.rb:  Se arregló la búsqueda por autores inexacta.
+
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* cite_index_controller.rb: Se agrego una accion que recibe los requests de AJAX. Se agrego la vista para busqueda

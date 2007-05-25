@@ -21,15 +21,7 @@ class CiteIndexController < ApplicationController
 
   def find_author
     session[:search_data] = params[:author]
-
-
-
-    if session[:search_data].nil?
-      flash[:notice] = "Author not found, please try another search"
-      redirect_to :action => 'index'
-    else
-      redirect_to :action => 'list_author_matches'
-    end
+    redirect_to :action => 'list_author_matches'
   end
 
   def find_article
@@ -38,8 +30,8 @@ class CiteIndexController < ApplicationController
   end
 
   def find_auxiliar
-      session[:search_data] = Author.find(params[:id])
-      redirect_to :action => 'search_by_author'
+    session[:search_data] = {:object => Author.find(params[:id]), :cites => params[:cites]}
+    redirect_to :action => 'search_by_author'
   end
 
   def find_keyword
@@ -48,10 +40,10 @@ class CiteIndexController < ApplicationController
   end
 
   def list_author_matches
-    @author =   session[:search_data]
+    @author =  session[:search_data]
      @pages, @collection = paginate Inflector.pluralize(Author).to_sym,
     :conditions => ["authors.middlename ILIKE :middlename AND authors.lastname ILIKE :lastname AND authors.firstname ILIKE :firstname",
-                    {:middlename => '%' + @author[:midlename].to_s + '%', :lastname => '%' + @author[:lastname].to_s + '%', :firstname => '%' + @author[:firstname].to_s + '%' }],
+                    {:middlename => '%' + @author[:middlename].to_s + '%', :lastname => '%' + @author[:lastname].to_s + '%', :firstname => '%' + @author[:firstname].to_s + '%' }],
     :per_page => 10
 
     if @collection.empty?
@@ -61,7 +53,8 @@ class CiteIndexController < ApplicationController
   end
 
   def search_by_author
-    @author = session[:search_data]
+    @author = session[:search_data][:object]
+    @cites = session[:search_data][:cites]
     @pages, @collection = paginate Inflector.pluralize(Article).to_sym,
     :select => 'articles.*',
     :joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
@@ -74,7 +67,7 @@ class CiteIndexController < ApplicationController
   def search_by_article
     @article = session[:search_data]
     @pages, @collection = paginate Inflector.pluralize(Article).to_sym,
-    :conditions => @article,
+    :conditions => ["articles.title ILIKE :title", { :title => '%' + @article[:title] + '%' }],
     :per_page => 10
 
     if @collection.empty?
@@ -89,7 +82,7 @@ class CiteIndexController < ApplicationController
     :select => 'articles.*',
     :joins => "JOIN article_keywords ON articles.id = article_keywords.article_id JOIN keywords ON" +
     " keywords.id = article_keywords.keyword_id",
-    :conditions => ["keywords.name = :name", {:name => @keyword[:name]}],
+    :conditions => ["keywords.name ILIKE :name", {:name => '%' + @keyword[:name] + '%'}],
     :per_page => 10
 
     if @collection.empty?

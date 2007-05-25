@@ -1,3 +1,7 @@
+2007-05-25  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* _author.rhtml: Se modificó para que no calcule muchas veces el total de citas.
+
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* list_author_matches.rhtml: Se añadió el archivo para desplegar los autores resultantes de una búsqueda inexacta

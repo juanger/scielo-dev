@@ -21,9 +21,17 @@ class Author < ActiveRecord::Base
   has_many :institutions, :through => :author_institutions
 
   def as_vancouver
-    [ self.lastname,
-      self.firstname.first.upcase + self.middlename.split(' ').collect { |md| md.first.upcase }.to_s
-    ].join(' ')
+    if self.middlename
+      m_initials = self.middlename.split(' ').collect { |md| md.first.upcase }.to_s
+    else
+      m_initials = ""
+    end
+
+    [ self.lastname, self.firstname.first.upcase + m_initials ].join(' ')
+  end
+
+  def as_human
+    [ self.degree.to_s, self.firstname, self.middlename.to_s, self.lastname ].join(' ')
   end
 
   def total_cites

@@ -1,4 +1,4 @@
  <tr>
-    <td ><%= author.as_vancouver %><br/>
-              <%= link_to "Total Cites: #{author.total_cites}", {:action => 'find_auxiliar', :id => author} %>
+    <td ><%= author.as_human %><br/>
+              <%= link_to "Total Cites: #{author.total_cites}", {:action => 'find_auxiliar', :id => author, :cites => author.total_cites} %>
   </tr>

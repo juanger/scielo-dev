@@ -1,3 +1,8 @@
+2007-05-25  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* author.rb: Se agregó el método as_human para que nos regrese los nombres de los autores
+	de una forma leible y útil para desplegar los resultados de las búsquedas .
+
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* article.rb, cite.rb: Se replantearon las relaciones con el modelo cite, ademas se agregaron relaciones
