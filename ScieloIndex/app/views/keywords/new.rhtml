@@ -1,8 +1,11 @@
 <h1>New keyword</h1>
 
 <% form_tag :action => 'create' do %>
+  <div id="containerForm">
   <%= render :partial => 'form' %>
-  <%= submit_tag "Create" %>
+  </div>
+  <%= submit_tag "Create", :class => "inputButton" %>
 <% end %>
-
-<%= link_to 'Back', :action => 'list' %>
+<div id="buttonsNavigator">
+<%= link_to 'Back', {:action => 'list'}, :class => 'cssbutton' %>
+</div>

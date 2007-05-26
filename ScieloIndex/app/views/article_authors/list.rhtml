@@ -19,8 +19,8 @@
 <% end %>
 </table>
 <div id="buttonsNavigator">
-<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
-<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %> 
+<%= link_to 'Previous page', { :page => @pages.current.previous }, :class => 'cssbutton' if @pages.current.previous %>
+<%= link_to 'Next page', { :page => @pages.current.next }, :class => 'cssbutton' if @pages.current.next %> 
 </div>
 <br />
 <div id="buttonsNavigator">
