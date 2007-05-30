@@ -48,7 +48,7 @@ form {
 	padding: 0px 100px 30px 100px;
 }
 
-input[type="submit"]{
+input[type="submit"] {
 	background-color: #DFDFDF;
 	border: 2px #d1ec4c outset;
 	padding: 2px 4px;
@@ -56,6 +56,13 @@ input[type="submit"]{
 	text-decoration: none;	
 	font: bold 12px Verdana;
 	margin: 0px auto;
+}
+
+input[type="submit"]:hover {
+	border-style: inset;
+        background-color:  #bdbab2;
+        color: white;
+        padding: 2px 4px; /*shift text 1px to the right and down*/
 }
 
 .inputButton{
@@ -97,12 +104,17 @@ input[type="submit"]:focus{
   height: auto;
 }
 
+#mainCite_Index {
+  width: 900px;
+  height: 450px;
+}
 #footer{
   width:900px;
-  height:70px;
-  margin: 50px 0px;	
+  height:45px;
+  margin: 50px 0px;
   background:url(../images/barra3.jpg);
   background-color: #000;
+  padding: 0px;
 }
 
 #logoScielo{
@@ -125,7 +137,7 @@ input[type="submit"]:focus{
 #headerBar {
 	width:726px;
 	height:45px;
-	background:url(../images/barra-superior.jpg);
+	background:url(../images/barra-superior2.jpg);
 	background-color:#000;
 	background-position:0% 100%;
 	float:right;
@@ -138,6 +150,15 @@ input[type="submit"]:focus{
 	background-color:#000;
 	background-position:0% 100%;
 	float:right;
+}
+
+#lineBarDown {
+       width:900px;
+	height:4px;
+	background:url(../images/top-line.jpg) repeat-x;
+	background-color:#000;
+	background-position:0% 100%;
+	float:center;
 }
 
 .topMenu{

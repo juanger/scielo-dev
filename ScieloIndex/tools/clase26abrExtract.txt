@@ -76,6 +76,17 @@
 000000004 653   L $$aAztecas
 000000004 653   L $$aMalinalxochitl
 000000004 653   L $$aPeregrinaciones
+000000392 022   L $$a0188-6363
+000000392 041   L $$aEspañol
+000000392 100   L $$aGil Juarez, A.
+000000392 222   L $$aLa revista de cultura psicológica
+000000392 245   L $$aVariaciones sobre un mismo tema o como publicar quince articulos diferentes sobre los mismos datos
+000000392 260   L $$b1993
+000000392 300   L $$aV2$$bN1$$dverano$$eP45-46
+000000392 590   L $$aEnsayo.$$bCrítico, analítico
+000000392 650   L $$aCiencia
+000000392 653   L $$aArtículos científicos
+000000392 653   L $$aInvestigación científica
 000000005 022   L $$a0071-1675
 000000005 041   L $$aInglés
 000000005 100   L $$aKendall, J.
