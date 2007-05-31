@@ -1,15 +1,17 @@
 require "Country"
+require "Author"
+
 class DataExtractor_new 
   def initialize( nameOpen, nameExit )
     @name_open = nameOpen
     @name_exit = nameExit
     @data = Array::new()
     @recordCollection = Array::new()
-    @authorLine = ""
     @institutionLine = ""
     @articleLine = ""
     @journalLine = ""
     @journal_issueLine = ""
+    @collectionLine = ""
   end # of unitialize
   
   def preProcessingFile( )
@@ -63,17 +65,23 @@ class DataExtractor_new
   end
   
   def prepareInsert( )
+    Author.find(:all).each { |author|
+      puts "Firstname: #{author.firstname}, Last: #{author.lastname}"
+    }
     @recordCollection.each{ |record|
       getDataAuthor( record )
-      getDataInstitution( record )
-      getDataArticle( record )
-      getDataJournal( record )
-      getDataJournalIssue( record )
-      puts "#{@authorLine}"
-      puts "#{@institutionLine}"
-      puts "#{@articleLine}"
-      puts "#{@journalLine}"
-      puts "#{@journal_issueLine}"
+      #getDataInstitution( record )
+      #getDataArticle( record )
+      #getDataJournal( record )
+      #getDataJournalIssue( record )
+      #puts "#{@institutionLine}"
+      #puts "#{@articleLine}"
+      #puts "#{@journalLine}"
+      #puts "#{@journal_issueLine}"
+      #puts "#{@collecionLine}"
+    }
+    Author.find(:all).each { |author|
+      puts "Firstname: #{author.firstname}, Last: #{author.lastname}"
     }
   end
   
@@ -81,10 +89,18 @@ class DataExtractor_new
     record.each { |element|
       key = element[0]
       value = element[1]
+      
       if key == "100" && value =~ /\$\$a/
         value = value.gsub("\$\$a","")
         data = value.split(", ")
-        @authorLine = "INSERT INTO authors VALUES ('"+data[1]+"', '', '"+data[0]+"', '');"
+        
+        author = Author.new(:firstname => data[1], :lastname => data[0])
+        if author.save
+          puts "here"
+          id = author.id
+        else
+          puts "algo"
+        end
       end
     }
   end
@@ -186,7 +202,7 @@ class DataExtractor_new
         content = value.split("\$\$b")
         content2 = content[1].split("\$\$")
         number = content2[0]
-        @journal_issueLine = "INSERT INTO journal_issues VALUES ('','"+number+"', '"+volume+"', #{year});"
+        @collectionLine = "INSERT INTO collections VALUES ('','"+number+"', '"+volume+"', #{year});"
       end
       }
   end

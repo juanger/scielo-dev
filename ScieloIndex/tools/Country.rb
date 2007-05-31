@@ -10,7 +10,6 @@ ActiveRecord::Base.establish_connection(
   :username => "scielo",
   :password => "" 
 )
-
 class Country < ActiveRecord::Base
 end
 
