@@ -1,0 +1,19 @@
+<!ELEMENT style (global,front,body,back)>
+<!ATTLIST style name CDATA #REQUIRED>
+<!ATTLIST style ncolumns CDATA "1">
+<!ELEMENT global (rule+)>
+<!ELEMENT front (rule*)>
+<!ELEMENT body (rule*)>
+<!ELEMENT back (rule*)>
+<!ELEMENT rule (regexp,sust,functions?)>
+<!ATTLIST rule name CDATA #REQUIRED>
+<!ATTLIST rule depends CDATA #IMPLIED>
+<!ATTLIST rule limit CDATA #IMPLIED>
+<!ELEMENT regexp (#CDATA)>
+<!ELEMENT sust (#CDATA)>
+<!ELEMENT modifiers (modifier*)>
+<!ELEMENT modifier (param*)>
+<!ATTLIST modifier name CDATA #REQUIRED>
+<!ELEMENT param EMPTY>
+<!ATTLIST param name CDATA #REQUIRED>
+<!ATTLIST param value CDATA #REQUIRED>

@@ -1,3 +1,11 @@
+2007-05-30  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/test.xml, PDF2Text/PDF2Text.mdp, PDF2Text/Data,
+	  PDF2Text/Data/style.dtd: Se agregó el directorio Data donde se
+	  encuentra el DTD para un xml que contenga las expresiones regulares
+	  para marcar un documento y se agregó el archivo test.xml donde se
+	  creó la implementación del xml para la revista Atmósfera.
+
 2007-05-11  Juan Germán Castañeda Echevarría <Email Address> 
 
 	* Markup/MarkupHTML.cs: Se agregó el reemplazo del tag [date] por HTML
