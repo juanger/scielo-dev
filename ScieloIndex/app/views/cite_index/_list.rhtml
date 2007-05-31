@@ -8,4 +8,6 @@
 <br />
 <%= render :partial =>'paginator', :object => @þages %>
 <hr/>
-<%= link_to 'New Search', :action => 'index' %>
+<div id="buttonsNavigator">
+<%= link_to 'New Search', {:action => 'index'}, :class => 'cssbutton' %>
+</div>

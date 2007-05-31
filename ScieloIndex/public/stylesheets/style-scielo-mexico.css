@@ -137,7 +137,7 @@ input[type="submit"]:focus{
 #headerBar {
 	width:726px;
 	height:45px;
-	background:url(../images/barra-superior2.jpg);
+	background:url(../images/barra-superior.jpg) repeat-x;
 	background-color:#000;
 	background-position:0% 100%;
 	float:right;
