@@ -1,5 +1,10 @@
 require "Country"
 require "Author"
+require "Institution"
+require "Journal"
+require "JournalIssue"
+require "Publisher"
+require "Article"
 
 class DataExtractor_new 
   def initialize( nameOpen, nameExit )
@@ -7,9 +12,13 @@ class DataExtractor_new
     @name_exit = nameExit
     @data = Array::new()
     @recordCollection = Array::new()
-    @institutionLine = ""
-    @articleLine = ""
-    @journalLine = ""
+    @countryID
+    @authorID 
+    @institutionID
+    @articleID
+    @journalID
+    @journalIssueID
+    @titleJournal
     @journal_issueLine = ""
     @collectionLine = ""
   end # of unitialize
@@ -65,26 +74,27 @@ class DataExtractor_new
   end
   
   def prepareInsert( )
-    Author.find(:all).each { |author|
-      puts "Firstname: #{author.firstname}, Last: #{author.lastname}"
-    }
+    DataPublisher()
     @recordCollection.each{ |record|
       getDataAuthor( record )
-      #getDataInstitution( record )
-      #getDataArticle( record )
-      #getDataJournal( record )
-      #getDataJournalIssue( record )
-      #puts "#{@institutionLine}"
-      #puts "#{@articleLine}"
-      #puts "#{@journalLine}"
-      #puts "#{@journal_issueLine}"
-      #puts "#{@collecionLine}"
+      getDataInstitution( record )
+      getDataCollection( record )
+      getDataJournal( record )
+      getDataJournalIssue( record )
+      getDataArticle( record )
     }
-    Author.find(:all).each { |author|
-      puts "Firstname: #{author.firstname}, Last: #{author.lastname}"
-    }
+    #Author.find(:all).each { |author|
+    #  puts "Id: #{author.id} Fname: #{author.firstname}, Lname: #{author.lastname}"
+    #}
+    #Institution.find(:all).each { |institution|
+    #  puts "Id: #{institution.id} name: #{institution.name}, country: #{institution.country_id}"
+    #}
   end
   
+  def DataPublisher
+    Publisher.new(:name => "NO_SPECIFIED")
+  end
+
   def getDataAuthor( record )
     record.each { |element|
       key = element[0]
@@ -96,10 +106,9 @@ class DataExtractor_new
         
         author = Author.new(:firstname => data[1], :lastname => data[0])
         if author.save
-          puts "here"
-          id = author.id
+          @authorID = author.id
         else
-          puts "algo"
+          puts"ERROR::getDataAuthor:NoInsercion"
         end
       end
     }
@@ -108,7 +117,6 @@ class DataExtractor_new
   def getDataInstitution( record )
     name = ""
     countryName = ""
-    countryID = -1
     record.each { |element|
       key = element[0]
       value = element[1]
@@ -127,11 +135,19 @@ class DataExtractor_new
         
         Country.find(:all).each {|country|
           if countryName == country.name
-            countryID = country.id
+            
+            @countryID = country.id
+            institution = Institution.new(:name => name, :country_id => @countryID);
+            
+            if(!Institution.exists?(:name => name, :country_id => @countryID))
+              if(institution.save)
+                @institutionID = institution.id
+              else
+                puts"ERROR::getDataInstitution:NoInsercion"
+              end
+            end
           end
         }
-        
-        @institutionLine = "INSERT INTO institutions VALUES ('"+name+"', '', '', , '',#{countryID}, '', '', '', '','','');"
       end
     }
   end
@@ -148,9 +164,20 @@ class DataExtractor_new
       end
       if key == "245" && value =~ /\$\$a/
         value = value.gsub("\$\$a","")
-        title = value
+        @title = value
       end
-      @articleLine = "INSERT INTO articles VALUES ('"+title+"', '', '', '"+page_range+"', '', '', '');"
+      article = Article.new(:title => title, :page_range => page_range, :journal_issue_id => @journalIssueID)
+      if(!Article.exists?(:title => title, :journal_issue_id => @journalIssueID ))
+        if( @journalIssueID == nil )
+          puts "ERROR::getDataArticle:JournalIssueID_NIL"
+        else
+          if(article.save)
+            @articleID = article.id
+          else
+            puts "ERROR::getDataArticle:NoInsercion"
+          end
+        end
+      end
     }
   end
   
@@ -162,7 +189,17 @@ class DataExtractor_new
       if key == "022" && value =~ /\$\$a/
         value = value.gsub("\$\$a","")
         issn = value
-        @journalLine = "INSERT INTO journals VALUES ('','"+issn+"', '');"
+        
+        journal = Journal.new(:issn => issn, :title => @titleJournal, :country_id => @countryID, :publisher_id => 1 )
+        
+        if(!Journal.exists?(:issn => issn))
+          if(journal.save)
+            @journalID = journal.id
+          else
+            puts"ERROR::getDataJournal:NoInsercion"
+          end
+        end
+        
       end
     }
   end
@@ -189,22 +226,33 @@ class DataExtractor_new
         value = value.gsub("\$\$b","")
         year = value
       end
-      @journal_issueLine = "INSERT INTO journal_issues VALUES ('','"+number+"', '"+volume+"', #{year});"
+
+      journal_issue = JournalIssue.new(:journal_id => @journalID, :number => number, :volume => volume, :year => year )
+      
+      if( @journalID == nil )
+        puts"ERROR::getDataJournalIssue:JournalID_NIL"
+      else
+        if(!JournalIssue.exists?(:journal_id => @journalID, :number => number, :volume => volume, :year => year))
+          if(journal_issue.save)
+            @journalIssueID = journal_issue.id
+          else
+            puts"ERROR::getDataJournalIssue:NoInsercion"
+          end
+        end
+      end
+      
     }
   end
 
   def getDataCollection( record )
-    title = ""
     record.each {|element|
       key = element[0]
       value = element[1]
-      if key == "222" && value =~ /\$\$b/
-        content = value.split("\$\$b")
-        content2 = content[1].split("\$\$")
-        number = content2[0]
-        @collectionLine = "INSERT INTO collections VALUES ('','"+number+"', '"+volume+"', #{year});"
+      if key == "222"
+        title = value.gsub("\$\$b", "")
+        @titleJournal = title
       end
-      }
+    }
   end
   
 end
