@@ -1,3 +1,15 @@
+2007-05-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/PDF2Text.mdp, PDF2Text/Data/style.dtd, PDF2Scielo/Driver.cs,
+	  PDF2Scielo/PDF2Scielo.mdp: Cambios menores para su funcionamiento
+	  con los cambios
+	* PDF2Text/Test/test-schema.xml: Se agregó el archivo XML copia de
+	  test.xml con cambios para su uso con XML Schema
+	* PDF2Text/Test/test.xml: Cambios menores
+	* PDF2Text/StyleReader.cs: Se creó la clase para validar y leer los XML
+	* PDF2Text/Data/style.xsd: Se agregó el archivo donde definimos un XML
+	  Schema a partir de el DTD
+
 2007-05-30  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/test.xml, PDF2Text/PDF2Text.mdp, PDF2Text/Data,

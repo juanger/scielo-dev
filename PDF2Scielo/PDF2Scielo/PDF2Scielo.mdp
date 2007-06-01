@@ -22,4 +22,5 @@
     <ProjectReference type="Project" localcopy="True" refto="PDF2Text" />
     <ProjectReference type="Project" localcopy="True" refto="Markup" />
   </References>
+  <Deployment.LinuxDeployData scriptName="pdf2scielo" />
 </Project>

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
-<!DOCTYPE style SYSTEM "style.dtd">
-<style name="atm" ncolumns="1">
+<style xmlns="http://www.scielo.org.mx"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.scielo.org.mx style.xsd" name="atm" ncolumns="1">
   <global>
     <rule name="RemoveHeaders">
       <regexp>[\n]+[\u000c]+[0-9]+[ ]*[-a-zA-Z. \u00f1\u002f\u0050-\u00ff’,()&amp;;]+[\n]+</regexp>

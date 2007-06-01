@@ -90,6 +90,8 @@ public class Driver {
 		filepath = args [0];
 		uri = ParsePath (filepath);
 		
+		StyleReader style = new StyleReader ();
+		
 		if (uri != null) {
 			try {
 				reader = new PDFPoppler (uri, "atm");

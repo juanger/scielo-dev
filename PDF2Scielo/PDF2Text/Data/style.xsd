@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.scielo.org.mx"
+xmlns="http://www.scielo.org.mx"
+elementFormDefault="qualified">
+
+<xs:complexType name="paramtype">
+  <xs:attribute name="name" type="nametype" use="required" />
+  <xs:attribute name="value" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="modifiertype">
+  <xs:all>
+    <xs:element name="param" type="paramtype" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:all>
+  <xs:attribute name="name" type="nametype" use="required" />
+  <xs:attribute name="target" type="nametype"/>
+  <xs:attribute name="return" type="nametype"/>
+</xs:complexType>
+
+<xs:complexType name="modifierstype">
+  <xs:all>
+    <xs:element name="modifier" type="modifiertype" minOccures="0" maxOccurs="unbounded"/>
+  </xs:all>
+</xs:complexType>
+
+<xs:complexType name="dependstype">
+  <xs:all>
+    <xs:element name="depend" type="nametype" minOccures="0" maxOccurs="unbounded"/>
+  </xs:all>
+</xs:complexType>
+
+<xs:simpleType name="limittype">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="one"/>
+    <xs:enumeration value="unbounded"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="ruletype">
+  <xs:sequence>
+    <xs:element name="depends" type="dependstype" minOccurs="0"/>
+    <xs:element name="regexp" type="xs:string"/>
+    <xs:element name="sust" type="xs:string"/>
+    <xs:element name="modifiers" type="modifierstype" minOccurs="0"/>
+  </xs:sequence>
+  <xs:attribute name="name" type="nametype" use="required" />
+  <xs:attribute name="limit" type="limittype" default="one" />
+</xs:complexType>
+
+<xs:complexType name="globaltype">
+  <xs:all>
+    <xs:element name="rule" type="ruletype" maxOccurs="unbounded"/>
+  </xs:all>
+</xs:complexType>
+
+<xs:complexType name="blocktype">
+  <xs:all>
+    <xs:element name="rule" type="ruletype" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:all>
+</xs:complexType>
+
+<xs:simpleType name="nametype">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="([a-zA-Z])+"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="columntype">
+  <xs:restriction base="xs:positiveInteger" >
+    <xs:pattern value="[0-3]" />
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="styletype">
+  <xs:sequence>
+    <xs:element name="global" type="globaltype" />
+    <xs:element name="front" type="blocktype" />
+    <xs:element name="body" type="blocktype" />
+    <xs:element name="back" type="blocktype" />
+  </xs:sequence>
+  <xs:attribute name="name" type="nametype" use="required" />
+  <xs:attribute name="ncolumns" type="columntype" default="1" />
+</xs:complexType>
+
+<xs:element name="style" type="styletype" />
+
+</xs:schema>

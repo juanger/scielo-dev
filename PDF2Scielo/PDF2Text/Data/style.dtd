@@ -5,15 +5,18 @@
 <!ELEMENT front (rule*)>
 <!ELEMENT body (rule*)>
 <!ELEMENT back (rule*)>
-<!ELEMENT rule (regexp,sust,functions?)>
+<!ELEMENT rule (depends?,regexp,sust,modifiers?)>
 <!ATTLIST rule name CDATA #REQUIRED>
-<!ATTLIST rule depends CDATA #IMPLIED>
 <!ATTLIST rule limit CDATA #IMPLIED>
-<!ELEMENT regexp (#CDATA)>
-<!ELEMENT sust (#CDATA)>
+<!ELEMENT depends (depend+)>
+<!ELEMENT depend (#PCDATA)>
+<!ELEMENT regexp (#PCDATA)>
+<!ELEMENT sust (#PCDATA)>
 <!ELEMENT modifiers (modifier*)>
 <!ELEMENT modifier (param*)>
 <!ATTLIST modifier name CDATA #REQUIRED>
+<!ATTLIST modifier target CDATA #IMPLIED>
+<!ATTLIST modifier return CDATA #IMPLIED>
 <!ELEMENT param EMPTY>
 <!ATTLIST param name CDATA #REQUIRED>
 <!ATTLIST param value CDATA #REQUIRED>
