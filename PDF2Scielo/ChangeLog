@@ -1,3 +1,12 @@
+2007-06-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/PDF2Text.mdp, PDF2Text/Test/test-schema.xml,
+	  PDF2Text/Test/test.xml, PDF2Text/StyleReader.cs,
+	  PDF2Text/Data/style.nrg, PDF2Text/Data/style.xsd: Se completaron
+	  los archivos para definir el schema tanto en versión dtd como en
+	  xsd y se inició la primera parte para implementarlo en Relax NG.
+	  Faltan por realizar pruebas al final.
+
 2007-05-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/PDF2Text.mdp, PDF2Text/Data/style.dtd, PDF2Scielo/Driver.cs,

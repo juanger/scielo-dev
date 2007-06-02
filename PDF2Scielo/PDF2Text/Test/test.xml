@@ -2,11 +2,11 @@
 <!DOCTYPE style SYSTEM "style.dtd">
 <style name="atm" ncolumns="1">
   <global>
-    <rule name="RemoveHeaders">
+    <rule name="RemoveHeaders" limit="unbounded">
       <regexp>[\n]+[\u000c]+[0-9]+[ ]*[-a-zA-Z. \u00f1\u002f\u0050-\u00ff’,()&amp;;]+[\n]+</regexp>
       <sust>\n</sust>
     </rule>
-    <rule name="DeadText">
+    <rule name="DeadText" limit="unbounded">
       <depends>
       	<depend>RemoveHeaders</depend>
       </depends>
@@ -33,7 +33,7 @@
       <regexp>[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&amp;\u002d \n]+[\n]+</regexp>
       <sust>#{result}</sust>
       <modifiers>
-        <modifier name="Trim" />
+        <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="\n[key] "/>
           <param name="postfix" value=" [/key]\n\n"/>
@@ -52,7 +52,7 @@
         <modifier name="Substring">
          <param name="index" value="#{index}"/>
         </modifier>
-        <modifier name="Trim" />
+        <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="[title] "/>
           <param name="postfix" value=" [/title]\n"/>
@@ -63,25 +63,25 @@
       <regexp>\n[ ]+Received.*\n</regexp>
       <sust>#{result}</sust>
       <modifiers>
-        <modifier name="Trim" />
+        <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="\n[date] "/>
           <param name="postfix" value=" [/date]\n"/>
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkAuthors">
+    <rule name="MarkAuthors" limit="unbounded">
       <regexp>[ ]*(([A-Z]{1,2}\. ([A-Z]{1,2}[.]? )*[-A-Z][-a-zA-Z&amp;;]+( [-a-zA-Z&amp;;]+)?)(, | and )?)+[\n]+</regexp>
       <sust>#{result}</sust>
       <modifiers>
-        <modifier name="Trim" />
+        <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="[author] "/>
           <param name="postfix" value=" [/author]\n"/>
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarAff">
+    <rule name="MarAff" limit="unbounded">
       <depends>
       	<depend>MarkAuthors</depend>
       	<depend>MarkDate</depend>
@@ -92,7 +92,7 @@
       	<modifier name="IndexOf" return="#{index}">
       	  <param name="string" value="\n"/>
       	</modifier>
-      	<modifier name="Substring" return="#{result}" >
+      	<modifier name="Substring" return="#{result}">
       	  <param name="index" value="#{index}"/>
       	</modifier>
       	<modifier name="LastIndexOf" return="#{index}" target="#{result}">
@@ -101,7 +101,7 @@
       	<modifier name="Substring" return="#{tag}" target="#{result}">
       	  <param name="index" value="#{index}"/>
       	</modifier>
-        <modifier name="Substring" target="#{result}" >
+        <modifier name="Substring" target="#{result}">
       	  <param name="sindex" value="0"/>
       	  <param name="lindex" value="#{index}" />
       	</modifier>
@@ -117,55 +117,55 @@
     </rule>
   </front>
   <body>
-    <rule name="RemoveExtras">
+    <rule name="RemoveExtras" limit="unbounded">
       <regexp>\n[ ]*[-0-9.]+\n</regexp>
       <sust>\n</sust>
     </rule>
-    <rule name="MarkSections">
+    <rule name="MarkSections" limit="unbounded">
       <regexp>[\n]+[0-9]+[.][ ].*\n</regexp>
       <sust>#{result}</sust>
       <modifiers>
-        <modifier name="Trim" />
+        <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="\n[sec] "/>
           <param name="postfix" value=" [/sec]\n"/>
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkSubSections">
+    <rule name="MarkSubSections" limit="unbounded">
       <regexp>[\n]+[ ]*[0-9][.][0-9]+[.]*[ ].*\n</regexp>
       <sust>#{result}</sust>
       <modifiers>
-        <modifier name="Trim" />
+        <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="\n[subsec] "/>
           <param name="postfix" value=" [/subsec]\n"/>
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkAlternSubSections">
+    <rule name="MarkAlternSubSections" limit="unbounded">
       <regexp>[\n]+[a-z]\) .*\n</regexp>
       <sust>#{result}</sust>
       <modifiers>
-        <modifier name="Trim" />
+        <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="\n[subsec] "/>
           <param name="postfix" value=" [/subsec]\n"/>
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkSubSubSections">
+    <rule name="MarkSubSubSections" limit="unbounded">
       <regexp>[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n</regexp>
       <sust>#{result}</sust>
       <modifiers>
-        <modifier name="Trim" />
+        <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="\n[subsubsec] "/>
           <param name="postfix" value=" [/subsubsec]\n"/>
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkStartParagraphs0">
+    <rule name="MarkStartParagraphs0" limit="unbounded">
       <regexp>[\n]+[ ]{3,5}[A-Zi].*</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -175,7 +175,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkStartParagraphs1">
+    <rule name="MarkStartParagraphs1" limit="unbounded">
       <depends>
       	<depend>MarkSections</depend>
       	<depend>MarkaAlternSubsections</depend>
@@ -191,7 +191,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkEndParagraphs">
+    <rule name="MarkEndParagraphs" limit="unbounded">
       <depends>
       	<depend>MarkStartParagraphs0</depend>
       	<depend>MarkStartParagraphs1</depend>
@@ -209,7 +209,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkStartFootFigure">
+    <rule name="MarkStartFootFigure" limit="unbounded">
       <regexp>[\n]+[ ]*Fig[.][ ]?[0-9]+[.] .*</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -219,7 +219,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkEndFootFigure">
+    <rule name="MarkEndFootFigure" limit="unbounded">
     <depends>
       <depend>MarkStartFootFigure</depend>
     </depends>
@@ -234,7 +234,7 @@
     </rule>
   </body>
   <back>
-    <rule name="MarkStartCitations">
+    <rule name="MarkStartCitations" limit="unbounded">
       <regexp>[\n]+[A-Z].*</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -243,7 +243,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkEndCitations">
+    <rule name="MarkEndCitations" limit="unbounded">
       <regexp>[\n]+[A-Z].*</regexp>
       <sust>#{result}</sust>
       <modifiers>
