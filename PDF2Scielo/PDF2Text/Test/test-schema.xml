@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
-<style xmlns="http://www.scielo.org.mx"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.scielo.org.mx style.xsd" name="atm" ncolumns="1">
+<style name="" ncolumns="3" xmlns="http://www.scielo.org.mx" >
   <global>
     <rule name="RemoveHeaders" limit="unbounded">
       <regexp>[\n]+[\u000c]+[0-9]+[ ]*[-a-zA-Z. \u00f1\u002f\u0050-\u00ff’,()&amp;;]+[\n]+</regexp>
@@ -9,7 +7,7 @@ xsi:schemaLocation="http://www.scielo.org.mx style.xsd" name="atm" ncolumns="1">
     </rule>
     <rule name="DeadText" limit="unbounded">
       <depends>
-      	<depend>RemoveHeaders</depend>
+        <depend>RemoveHeaders</depend>
       </depends>
       <regexp>[\n]+[\u000c]+[ ]*[-a-zA-Z0-9. \u00f1\u002f\u0050-\u00ff#’,()&amp;;]+</regexp>
       <sust>\n</sust>
@@ -84,29 +82,29 @@ xsi:schemaLocation="http://www.scielo.org.mx style.xsd" name="atm" ncolumns="1">
     </rule>
     <rule name="MarAff" limit="unbounded">
       <depends>
-      	<depend>MarkAuthors</depend>
-      	<depend>MarkDate</depend>
+        <depend>MarkAuthors</depend>
+        <depend>MarkDate</depend>
       </depends>
       <regexp>\[/author\]\n(.|\n)+?(\[author\]|\[date\]|\[res\])</regexp>
       <sust>#{result}</sust>
       <modifiers>
-      	<modifier name="IndexOf" return="rindex">
-      	  <param name="string" value="\n"/>
-      	</modifier>
-      	<modifier name="Substring" return="result">
-      	  <param name="index" value="rindex"/>
-      	</modifier>
-      	<modifier name="LastIndexOf" return="rindex" target="result">
-      	  <param name="string" value="["/>
-      	</modifier>
-      	<modifier name="Substring" return="tag" target="result">
-      	  <param name="index" value="rindex"/>
-      	</modifier>
+        <modifier name="IndexOf" return="rindex">
+          <param name="string" value="\n"/>
+        </modifier>
+        <modifier name="Substring" return="result">
+          <param name="index" value="rindex"/>
+        </modifier>
+        <modifier name="LastIndexOf" return="rindex" target="result">
+          <param name="string" value="["/>
+        </modifier>
+        <modifier name="Substring" return="tag" target="result">
+          <param name="index" value="rindex"/>
+        </modifier>
         <modifier name="Substring" target="result">
-      	  <param name="sindex" value="0"/>
-      	  <param name="lindex" value="rindex" />
-      	</modifier>
-      	<modifier name="Trim"/>
+          <param name="sindex" value="0"/>
+          <param name="lindex" value="rindex" />
+        </modifier>
+        <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="[/author]\n[aff] "/>
           <param name="postfix" value=" [/aff]\n"/>
@@ -178,10 +176,10 @@ xsi:schemaLocation="http://www.scielo.org.mx style.xsd" name="atm" ncolumns="1">
     </rule>
     <rule name="MarkStartParagraphs1" limit="unbounded">
       <depends>
-      	<depend>MarkSections</depend>
-      	<depend>MarkaAlternSubsections</depend>
-      	<depend>MarkSubSections</depend>
-      	<depend>MarkSubSubSections</depend>
+        <depend>MarkSections</depend>
+        <depend>MarkaAlternSubsections</depend>
+        <depend>MarkSubSections</depend>
+        <depend>MarkSubSubSections</depend>
       </depends>
       <regexp>(\[sec\]|\[subsec\]|\[subsubsec\]).*\n</regexp>
       <sust>#{result}</sust>
@@ -194,13 +192,13 @@ xsi:schemaLocation="http://www.scielo.org.mx style.xsd" name="atm" ncolumns="1">
     </rule>
     <rule name="MarkEndParagraphs" limit="unbounded">
       <depends>
-      	<depend>MarkStartParagraphs0</depend>
-      	<depend>MarkStartParagraphs1</depend>
-      	<depend>MarkSections</depend>
-      	<depend>MarkAlternSubSections</depend>
-      	<depend>MarkSubSections</depend>
-      	<depend>MarkSubSubSections</depend>
-      	<depend>MarkAciknowledge</depend>
+        <depend>MarkStartParagraphs0</depend>
+        <depend>MarkStartParagraphs1</depend>
+        <depend>MarkSections</depend>
+        <depend>MarkAlternSubSections</depend>
+        <depend>MarkSubSections</depend>
+        <depend>MarkSubSubSections</depend>
+        <depend>MarkAciknowledge</depend>
       </depends>
       <regexp>(\[sec\]|\[subsec\]|\[subsubsec\]).*\n</regexp>
       <sust>#{result}</sust>

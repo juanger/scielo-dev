@@ -1,3 +1,12 @@
+2007-06-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/test-schema.xml: Se modificó el name space y se
+	  quitaron atributos inecesarios
+	* PDF2Text/Data/style.rnc: Nueva version usando Relax NG Compact para
+	  el style
+	* PDF2Text/Data/style.nrg: Se modificó para usar la versión compacta de
+	  Relax NG, la cual es usada por Emacs para validar
+
 2007-06-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/PDF2Text.mdp, PDF2Text/Test/test-schema.xml,

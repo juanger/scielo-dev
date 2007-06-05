@@ -1,0 +1,44 @@
+default namespace = "http://www.scielo.org.mx"
+grammar {
+
+
+  start =
+  element style {
+      element global { globalContent },
+      element front {blockContent},
+      element body {blockContent},
+      element back {blockContent},
+      attribute name { text },
+      attribute ncolumns { "1" | "2" | "3" }?
+    }
+
+  globalContent =
+    element  rule { ruleContent }+
+
+  blockContent =
+    element rule { ruleContent }*
+
+  ruleContent =
+    element depends { dependsContent }?,
+    element regexp { text },
+    element sust { text },
+    element modifiers { modifiersContent }?,
+    attribute name { text },
+    attribute limit { "one" | "unbounded" }?
+
+  dependsContent =
+    element depend { text }*
+
+  modifiersContent =
+    element modifier { modifierContent }*
+
+  modifierContent =
+    element param { paramContent }*,
+    attribute name { text },
+    attribute target { text }?,
+    attribute return { text }?
+
+  paramContent =
+    attribute name { text },
+    attribute value {text }
+}
