@@ -27,47 +27,17 @@ public class StyleReader {
 	XmlSchema schema;
 	bool val_success = true;
 	
-	public StyleReader()
+	public StyleReader(string format)
 	{
-		XmlTextReader reader = new XmlTextReader ("/home/hector/Projects/PDF2Scielo/PDF2Text/Test/test.xml");
-		ValidateWithDTD (reader);
-		reader = new XmlTextReader ("/home/hector/Projects/PDF2Scielo/PDF2Text/Test/test-schema.xml");
+		XmlTextReader reader = new XmlTextReader (GetStyleFile (format));
 		ValidateWithXSD (reader);
 	}
 	
-	//Display the validation error.
   	public void ValidationCallBack (object sender, ValidationEventArgs args)
   	{
   		val_success = false;
   		Console.WriteLine("\r\n\tValidation error: " + args.Message );
   	}
-  	
-  	private class StyleDTDResolver : XmlUrlResolver {
-  		public override object GetEntity (Uri absoluteUri, string role, Type ofObjectToReturn)
-  		{
-			return Assembly.GetExecutingAssembly ().GetManifestResourceStream ("style.dtd");
-  		}
-	}
-	
-	private bool ValidateWithDTD (XmlReader reader) 
-	{
-		val_reader = new XmlValidatingReader (reader);
-		val_reader.XmlResolver = new StyleDTDResolver ();
-		val_reader.ValidationType = ValidationType.DTD;
-		
-		// Set the validation event handler
-		val_reader.ValidationEventHandler += new ValidationEventHandler (ValidationCallBack);
-		
-		while (val_reader.Read()){}
-		
-		Console.WriteLine ("Validation finished. Validation {0}", 
-			(val_success == true ? "successful!" : "failed."));
-		
-		//Close the reader.
-		val_reader.Close();
-		
-		return val_success;
-	}
 	
 	private bool ValidateWithXSD (XmlReader reader)
 	{
@@ -84,13 +54,21 @@ public class StyleReader {
 		val_reader.Schemas.Add (schema);
 		while (val_reader.Read()){}
 		
-		Console.WriteLine ("Validation finished. Validation {0}", 
-			(val_success == true ? "successful!" : "failed."));
+		#if DEBUG
+		Console.WriteLine ("DEBUG: Validando estilo. La validacion fue {0}", 
+			(val_success == true ? "exitosa!" : "no exitosa."));
+		#endif
 		
 		//Close the reader.
 		val_reader.Close();
 		
 		return val_success;
+	}
+	
+	private string GetStyleFile (string format)
+	{	
+		string stylepath = Environment.CurrentDirectory.Replace ("PDF2Scielo/bin/Debug", "Styles");
+		return Path.Combine (stylepath, format + ".xml");
 	}
 }
 }

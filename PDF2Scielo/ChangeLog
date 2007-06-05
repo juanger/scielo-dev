@@ -1,3 +1,12 @@
+2007-06-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/test-schema.xml, PDF2Text/StyleReader.cs,
+	  PDF2Text/AtmNormalizer.cs, PDF2Text/Data/style.xsd,
+	  PDF2Scielo/Driver.cs: cambios menores para su generalización
+	* Styles: Carpeta donde se guardarán los estilos para cada revista en
+	  un xml
+	* Styles/atm.xml: estilo para atmósfera
+
 2007-06-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/test-schema.xml: Se modificó el name space y se
