@@ -1,5 +1,10 @@
 2007-06-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/StyleReader.cs: FIX: se cambió para que se use la ruta a los
+	  estilos 
+
+2007-06-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/test-schema.xml, PDF2Text/StyleReader.cs,
 	  PDF2Text/AtmNormalizer.cs, PDF2Text/Data/style.xsd,
 	  PDF2Scielo/Driver.cs: cambios menores para su generalización

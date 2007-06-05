@@ -67,7 +67,7 @@ public class StyleReader {
 	
 	private string GetStyleFile (string format)
 	{	
-		string stylepath = Environment.CurrentDirectory.Replace ("PDF2Scielo/bin/Debug", "Styles");
+		string stylepath = Assembly.GetExecutingAssembly ().Location.Replace ("PDF2Scielo/bin/Debug/PDF2Text.dll", "Styles");
 		return Path.Combine (stylepath, format + ".xml");
 	}
 }
