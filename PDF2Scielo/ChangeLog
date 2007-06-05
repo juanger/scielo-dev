@@ -1,5 +1,10 @@
 2007-06-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/AtmNormalizer.cs: se añadió \p{L}\p{M}* a la expresión
+	  regular de keywords para que encuentre caracteres acentuados
+
+2007-06-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/StyleReader.cs: FIX: se cambió para que se use la ruta a los
 	  estilos 
 

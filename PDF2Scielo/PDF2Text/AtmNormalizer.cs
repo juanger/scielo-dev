@@ -203,7 +203,7 @@ public class AtmNormalizer : INormalizable {
 		GlobalReplaceRegex (@"[\n]+[ ]*(Acknowledgement|Acknowledgment)[s]?\n", "\n[ack] Acknowledgements [/ack]\n");
 		
 		//Etiquetado de KEYWORD.		
-		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d \n]+[\n]+", text);
+		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d (\p{L}\p{M})\n]+[\n]+", text);
 		match = matches [0];
 		smatch = match.Value;
 		
