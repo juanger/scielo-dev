@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <style name="atm" ncolumns="3" xmlns="http://www.scielo.org.mx" >
   <global>
-    <rule name="RemoveHeaders" limit="unbounded">
+    <rule name="RemoveHeaders" expectedMatches="unbounded">
       <regexp>[\n]+[\u000c]+[0-9]+[ ]*[-a-zA-Z. \u00f1\u002f\u0050-\u00ff’,()&amp;;]+[\n]+</regexp>
       <sust>\n</sust>
     </rule>
-    <rule name="DeadText" limit="unbounded">
+    <rule name="DeadText" expectedMatches="unbounded">
       <depends>
         <depend>RemoveHeaders</depend>
       </depends>
@@ -69,7 +69,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkAuthors" limit="unbounded">
+    <rule name="MarkAuthors" expectedMatches="unbounded">
       <regexp>[ ]*(([A-Z]{1,2}\. ([A-Z]{1,2}[.]? )*[-A-Z][-a-zA-Z&amp;;]+( [-a-zA-Z&amp;;]+)?)(, | and )?)+[\n]+</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -80,7 +80,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarAff" limit="unbounded">
+    <rule name="MarAff" expectedMatches="unbounded">
       <depends>
         <depend>MarkAuthors</depend>
         <depend>MarkDate</depend>
@@ -116,11 +116,11 @@
     </rule>
   </front>
   <body>
-    <rule name="RemoveExtras" limit="unbounded">
+    <rule name="RemoveExtras" expectedMatches="unbounded">
       <regexp>\n[ ]*[-0-9.]+\n</regexp>
       <sust>\n</sust>
     </rule>
-    <rule name="MarkSections" limit="unbounded">
+    <rule name="MarkSections" expectedMatches="unbounded">
       <regexp>[\n]+[0-9]+[.][ ].*\n</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -131,7 +131,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkSubSections" limit="unbounded">
+    <rule name="MarkSubSections" expectedMatches="unbounded">
       <regexp>[\n]+[ ]*[0-9][.][0-9]+[.]*[ ].*\n</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -142,7 +142,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkAlternSubSections" limit="unbounded">
+    <rule name="MarkAlternSubSections" expectedMatches="unbounded">
       <regexp>[\n]+[a-z]\) .*\n</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -153,7 +153,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkSubSubSections" limit="unbounded">
+    <rule name="MarkSubSubSections" expectedMatches="unbounded">
       <regexp>[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -164,7 +164,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkStartParagraphs0" limit="unbounded">
+    <rule name="MarkStartParagraphs0" expectedMatches="unbounded">
       <regexp>[\n]+[ ]{3,5}[A-Zi].*</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -174,7 +174,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkStartParagraphs1" limit="unbounded">
+    <rule name="MarkStartParagraphs1" expectedMatches="unbounded">
       <depends>
         <depend>MarkSections</depend>
         <depend>MarkaAlternSubsections</depend>
@@ -190,7 +190,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkEndParagraphs" limit="unbounded">
+    <rule name="MarkEndParagraphs" expectedMatches="unbounded">
       <depends>
         <depend>MarkStartParagraphs0</depend>
         <depend>MarkStartParagraphs1</depend>
@@ -208,7 +208,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkStartFootFigure" limit="unbounded">
+    <rule name="MarkStartFootFigure" expectedMatches="unbounded">
       <regexp>[\n]+[ ]*Fig[.][ ]?[0-9]+[.] .*</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -218,7 +218,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkEndFootFigure" limit="unbounded">
+    <rule name="MarkEndFootFigure" expectedMatches="unbounded">
     <depends>
       <depend>MarkStartFootFigure</depend>
     </depends>
@@ -233,7 +233,7 @@
     </rule>
   </body>
   <back>
-    <rule name="MarkStartCitations" limit="unbounded">
+    <rule name="MarkStartCitations" expectedMatches="unbounded">
       <regexp>[\n]+[A-Z].*</regexp>
       <sust>#{result}</sust>
       <modifiers>
@@ -242,7 +242,7 @@
         </modifier>
       </modifiers>
     </rule>
-    <rule name="MarkEndCitations" limit="unbounded">
+    <rule name="MarkEndCitations" expectedMatches="unbounded">
       <regexp>[\n]+[A-Z].*</regexp>
       <sust>#{result}</sust>
       <modifiers>

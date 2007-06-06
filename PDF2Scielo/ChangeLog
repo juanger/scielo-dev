@@ -1,5 +1,10 @@
 2007-06-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/test-schema.xml, PDF2Text/Data/style.xsd,
+	  Styles/atm.xml: Cambio del atributo limit a minMatches.
+
+2007-06-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/AtmNormalizer.cs: se añadió \p{L}\p{M}* a la expresión
 	  regular de keywords para que encuentre caracteres acentuados
 
