@@ -27,11 +27,14 @@ public class AtmNormalizer : INormalizable {
 	private string front;
 	private string body;
 	private string back;
+	private const string ALET = "\\w";
+	private const string ASYM = "\\p{S}";
+	private const string APUC = "\\p{P}";
 		
 	public AtmNormalizer (string source, string format)
 	{
 		// Construimos el XML reader para obtener las regexp.
-		StyleReader style = new StyleReader (format);
+		//StyleReader style = new StyleReader (format);
 		
 		StringEncoding encoder = new StringEncoding (source);
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
@@ -49,7 +52,7 @@ public class AtmNormalizer : INormalizable {
 	public AtmNormalizer (RawDocument document)
 	{
 		// Construimos el XML reader para obtener las regexp.
-		StyleReader style = new StyleReader (document.Format);
+		//StyleReader style = new StyleReader (document.Format);
 		
 		StringEncoding encoder = new StringEncoding (document.GetText ());
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
@@ -168,24 +171,24 @@ public class AtmNormalizer : INormalizable {
 		
 		// Remueve encabezados y numeros de pagina.
 	 	#if DEBUG
-	 	matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[-a-zA-Z. \u00f1\u002f\u0050-\u00ff’,()&;]+[\n]+", text);
+	 	matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", text);
 	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
 	 	foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
 		#endif
 		
-		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[-a-zA-Z. \u00f1\u002f\u0050-\u00ff’,()&;]+[\n]+", "\n");
+		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", "\n");
 		
 		// Remueve texto muerto (ie. ejes de graficas) dejados al extraer el texto.
 	 	#if DEBUG
-	 	matches = GetMatches (@"[\n]+[\u000c]+[ ]*[-a-zA-Z0-9. \u00f1\u002f\u0050-\u00ff#’,()&;]+", text);
+	 	matches = GetMatches (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", text);
 	 	foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
 		#endif
 		
-		GlobalReplaceRegex (@"[\n]+[\u000c]+[ ]*[-a-zA-Z0-9. \u00f1\u002f\u0050-\u00ff#’,()&;]+[ ]*[\n]*[0-9]*[\n]+", "\n");
+		GlobalReplaceRegex (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", "\n");
 	}
 	
 	private void MarkMajorSections ()
