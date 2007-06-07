@@ -1,3 +1,8 @@
+2007-06-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/test-schema.xml, PDF2Text/AtmNormalizer.cs: Cambios a
+	  las exp reg.
+
 2007-06-06  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/AtmNormalizer.cs: Se agregaron variables constantes globales

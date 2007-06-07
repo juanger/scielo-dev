@@ -27,9 +27,9 @@ public class AtmNormalizer : INormalizable {
 	private string front;
 	private string body;
 	private string back;
-	private const string ALET = "\\w";
-	private const string ASYM = "\\p{S}";
-	private const string APUC = "\\p{P}";
+	private const string ALET = @"\w";
+	private const string ASYM = @"\p{S}";
+	private const string APUC = @"\p{P}";
 		
 	public AtmNormalizer (string source, string format)
 	{
@@ -180,7 +180,6 @@ public class AtmNormalizer : INormalizable {
 		
 		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", "\n");
 		
-		// Remueve texto muerto (ie. ejes de graficas) dejados al extraer el texto.
 	 	#if DEBUG
 	 	matches = GetMatches (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", text);
 	 	foreach (Match m in matches) {
@@ -206,7 +205,7 @@ public class AtmNormalizer : INormalizable {
 		GlobalReplaceRegex (@"[\n]+[ ]*(Acknowledgement|Acknowledgment)[s]?\n", "\n[ack] Acknowledgements [/ack]\n");
 		
 		//Etiquetado de KEYWORD.		
-		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&\u002d (\p{L}\p{M})\n]+[\n]+", text);
+		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ " + ALET + APUC + "\n]+?[\n]+", text);
 		match = matches [0];
 		smatch = match.Value;
 		
@@ -223,7 +222,7 @@ public class AtmNormalizer : INormalizable {
 	{
 		string temp;
 		Match [] matches;
-		matches = GetMatches (@"Atm(.|\s)* \[/key\]\n", text);
+		matches = GetMatches (@"^(.|\s)* \[/key\]\n", text);
 		front = matches [0].Value;
 		
 		#if DEBUG

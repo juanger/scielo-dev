@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <style name="atm" ncolumns="3" xmlns="http://www.scielo.org.mx" >
   <global>
-    <rule name="RemoveHeaders" expectedMatches="unbounded">
-      <regexp>[\n]+[\u000c]+[0-9]+[ ]*[-a-zA-Z. \u00f1\u002f\u0050-\u00ff’,()&amp;;]+[\n]+</regexp>
+    <rule name="RemoveHeaders0" expectedMatches="unbounded">
+      <regexp>[\n]+[\u000c]+[0-9]+[ ]*[ #{ALET}#{ASYM}#{APUC}]+[\n]+</regexp>
       <sust>\n</sust>
     </rule>
-    <rule name="DeadText" expectedMatches="unbounded">
+    <rule name="RemoveHeaders1" expectedMatches="unbounded">
       <depends>
         <depend>RemoveHeaders</depend>
       </depends>
-      <regexp>[\n]+[\u000c]+[ ]*[-a-zA-Z0-9. \u00f1\u002f\u0050-\u00ff#’,()&amp;;]+</regexp>
+      <regexp>[\n]+[\u000c]+[ ]*[0-9 #{ALET}#{ASYM}#{APUC}]+[ ]*[\n]*[0-9]*[\n]+</regexp>
       <sust>\n</sust>
     </rule>
     <rule name="MarkResumen">
@@ -29,7 +29,7 @@
       <sust>\n[ack] Acknowledgements [/ack]\n</sust>
     </rule>
     <rule name="MarkKeyword">
-      <regexp>[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[a-zA-Z,;.&amp;\u002d \n]+[\n]+</regexp>
+      <regexp>[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ #{ALET}#{APUC}\n]+?[\n]+</regexp>
       <sust>#{result}</sust>
       <modifiers>
         <modifier name="Trim"/>
