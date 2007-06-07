@@ -34,7 +34,7 @@ public class AtmNormalizer : INormalizable {
 	public AtmNormalizer (string source, string format)
 	{
 		// Construimos el XML reader para obtener las regexp.
-		//StyleReader style = new StyleReader (format);
+		StyleReader style = new StyleReader (format);
 		
 		StringEncoding encoder = new StringEncoding (source);
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
@@ -52,7 +52,7 @@ public class AtmNormalizer : INormalizable {
 	public AtmNormalizer (RawDocument document)
 	{
 		// Construimos el XML reader para obtener las regexp.
-		//StyleReader style = new StyleReader (document.Format);
+		StyleReader style = new StyleReader (document.Format);
 		
 		StringEncoding encoder = new StringEncoding (document.GetText ());
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);

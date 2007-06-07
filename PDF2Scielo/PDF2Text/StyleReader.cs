@@ -23,10 +23,9 @@ namespace PDF2Text {
 	
 public class StyleReader {
 	
-	XmlValidatingReader val_reader;
-	XmlSchema schema;
-	bool val_success = true;
-	
+	private string styles_path;
+	private bool val_success = true;
+
 	public StyleReader(string format)
 	{
 		XmlTextReader reader = new XmlTextReader (GetStyleFile (format));
@@ -41,34 +40,41 @@ public class StyleReader {
 	
 	private bool ValidateWithXSD (XmlReader reader)
 	{
-		val_reader = new XmlValidatingReader (reader);
-		val_reader.ValidationType = ValidationType.Schema;
+		XmlValidatingReader valReader;
+		XmlSchema schema;
+		Stream xsdStream;
+		
+		valReader = new XmlValidatingReader (reader);
+		valReader.ValidationType = ValidationType.Schema;
 		
 		// Set the validation event handler
-		val_reader.ValidationEventHandler += new ValidationEventHandler (ValidationCallBack);
+		valReader.ValidationEventHandler += new ValidationEventHandler (ValidationCallBack);
 		
-		Stream xsd = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("style.xsd");
-		schema = XmlSchema.Read (xsd, null);
+		xsdStream = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("style.xsd");
+		schema = XmlSchema.Read (xsdStream, null);
 		schema.Compile (null);
 		
-		val_reader.Schemas.Add (schema);
-		while (val_reader.Read()){}
+		valReader.Schemas.Add (schema);
+		while (valReader.Read()){}
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Validando estilo. La validacion fue {0}", 
 			(val_success == true ? "exitosa!" : "no exitosa."));
 		#endif
 		
-		//Close the reader.
-		val_reader.Close();
+		valReader.Close();
 		
 		return val_success;
 	}
 	
 	private string GetStyleFile (string format)
 	{	
-		string stylepath = Assembly.GetExecutingAssembly ().Location.Replace ("PDF2Scielo/bin/Debug/PDF2Text.dll", "Styles");
-		return Path.Combine (stylepath, format + ".xml");
+		Assembly assem = Assembly.GetExecutingAssembly ();
+		string path = assem.Location.Replace ("/bin/Debug/PDF2Text.dll", String.Empty);
+		path = Path.GetDirectoryName (path);
+		styles_path = Path.Combine (path, "Styles");
+		
+		return Path.Combine (styles_path, format + ".xml");
 	}
 }
 }

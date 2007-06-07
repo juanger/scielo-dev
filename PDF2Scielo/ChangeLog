@@ -1,5 +1,10 @@
 2007-06-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/StyleReader.cs, PDF2Text/AtmNormalizer.cs: Temporaly
+	  hardcoding the path to the directory with the XML of styles.
+
+2007-06-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/test-schema.xml, PDF2Text/AtmNormalizer.cs: Cambios a
 	  las exp reg.
 
