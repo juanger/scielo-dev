@@ -46,6 +46,35 @@ public class Test {
 		
 		return result;
 	}
+	
+	public static string GetPDFFileName (string line)
+	{
+		int index = line.IndexOf ("\t");
+		return line.Substring (0, index);
+	}
+	
+	public static string GetRawFileName (string line)
+	{
+		int sindex = line.IndexOf ("\t") + 1;
+		int length = line.IndexOf ("\t", sindex) - sindex;
+		return line.Substring (sindex, length);
+	}
+	
+	public static string GetNormFileName (string line)
+	{
+		int sindex = line.IndexOf ("\t")  + 1;
+		sindex = line.IndexOf ("\t", sindex) + 1;
+		int length = line.IndexOf ("\t", sindex) - sindex;
+		return line.Substring (sindex, length);
+	}
+	
+	public static string GetHTMLFileName (string line)
+	{
+		int sindex = line.IndexOf ("\t")  + 1;
+		sindex = line.IndexOf ("\t", sindex) + 1;
+		sindex = line.IndexOf ("\t", sindex) + 1;
+		return line.Substring (sindex);
+	}
 }
 }
 }

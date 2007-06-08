@@ -1,5 +1,16 @@
 2007-06-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/PDFPoppler.cs: Cambios menores. Se creó un método
+	  CreateWorkDir para que sea llamado por el constructor.
+	* PDF2Text/Test/TestPDFPoppler.cs: Se añadió el método Initialize y es
+	  modificaron los otros para que usen el archivo unit-test,sources
+	* PDF2Text/Test/unit-test.sources: Archivo creado. Contiene los nombres
+	  de los archivos de cada tipo para las pruebas
+	* Utils/Test.cs: Se añadieron métodos para encontrar el nombre de un
+	  archivo html, pdf, norm o txt en PDF2Text/Test/unit-test.sources
+
+2007-06-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/StyleReader.cs, PDF2Text/AtmNormalizer.cs: Temporaly
 	  hardcoding the path to the directory with the XML of styles.
 

@@ -12,6 +12,7 @@
 //
 
 using System;
+using System.Collections;
 using System.IO;
 using NUnit.Framework;
 using Scielo.Utils;
@@ -21,7 +22,43 @@ namespace PDF2Text {
 
 [TestFixture()]
 public class TestPDFPoppler {
+	
+	private ArrayList test_docs;
+	private ArrayList raw_docs;
+	
+	[SetUp]
+	public void Initialize ()
+	{
+		string line, path, testPath, source;
+		Uri uri;
+		test_docs = new ArrayList ();
+		raw_docs = new ArrayList ();
 		
+		testPath = Test.PathOfTest ();
+		source = Path.Combine (testPath, "unit-test.sources");
+
+		FileStream fileReader = new FileStream (source, FileMode.Open);
+		StreamReader streamReader = new StreamReader (fileReader);
+		
+		while (streamReader.Peek() > -1) {
+			line = streamReader.ReadLine ();
+			
+			path = Path.Combine (testPath, Test.GetPDFFileName (line));
+			uri = new Uri (path);
+			test_docs.Add (new PDFPoppler (uri, "atm"));
+
+			path = Path.Combine (testPath, Test.GetRawFileName (line));
+			Console.WriteLine (path);
+			raw_docs.Add (Test.ReadFile (path));
+			
+			Console.WriteLine ("Norm: " + Test.GetNormFileName (line));
+			Console.WriteLine ("HTML: " + Test.GetHTMLFileName (line));
+		}
+		
+		streamReader.Close ();
+	}
+	
+	
 	[Test]
 	public void CreateInstanceWithInvalidUri ()
 	{
@@ -39,88 +76,39 @@ public class TestPDFPoppler {
 	
 	[Test]
 	public void CreateInstanceWithValidUri ()
-	{
-		string path = Test.PathOfTest ();
-
-		string path0 = Path.Combine (path, "v17n01a02.pdf");
-		string path1 = Path.Combine (path, "v17n4a03.pdf");
-		string path2 = Path.Combine (path, "v18n4a02.pdf");
-		
-		Uri uri0 = new Uri (path0);
-		Uri uri1 = new Uri (path1);
-		Uri uri2 = new Uri (path2);
-		
-		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
-		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
-		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
-		
+	{		
 		Type etype = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
-		Assert.IsInstanceOfType (etype, doc0, "CI01");
-		Assert.IsInstanceOfType (etype, doc1, "CI02");
-		Assert.IsInstanceOfType (etype, doc2, "CI03");
+		
+		foreach (PDFPoppler doc in test_docs) {
+			Assert.IsInstanceOfType (etype, doc);
+		}
 	}
 	
 	[Test]
 	public void CreateRawDocument ()
 	{
-		string path = Test.PathOfTest ();
-
-		string path0 = Path.Combine (path, "v17n01a02.pdf");
-		string path1 = Path.Combine (path, "v17n4a03.pdf");
-		string path2 = Path.Combine (path, "v18n4a02.pdf");
-		
-		Uri uri0 = new Uri (path0);
-		Uri uri1 = new Uri (path1);
-		Uri uri2 = new Uri (path2);
-		
-		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
-		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
-		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
-		
-		RawDocument raw0 = doc0.CreateRawDocument ();
-		RawDocument raw1 = doc1.CreateRawDocument ();
-		RawDocument raw2 = doc2.CreateRawDocument ();
-		
 		Type etype = Type.GetType ("Scielo.PDF2Text.RawDocument");
-		Assert.IsInstanceOfType (etype, raw0, "CI01");
-		Assert.IsInstanceOfType (etype, raw1, "CI02");
-		Assert.IsInstanceOfType (etype, raw2, "CI03");	
+		foreach (PDFPoppler doc in test_docs) {
+			RawDocument raw = doc.CreateRawDocument ();
+			Assert.IsInstanceOfType (etype, raw);
+		}
 	}
 		
 	[Test]
 	public void GetRawText ()
 	{
-		string path = Test.PathOfTest ();
-
-		// Rutas a los PDF a usar en el test unit.
-		string path0 = Path.Combine (path, "v17n01a02.pdf");
-		string path1 = Path.Combine (path, "v17n4a03.pdf");
-		string path2 = Path.Combine (path, "v17n2a02.pdf");
-		
-		Uri uri0 = new Uri (path0);
-		Uri uri1 = new Uri (path1);
-		Uri uri2 = new Uri (path2);
-		
-		PDFPoppler doc0 = new PDFPoppler (uri0, "atm");
-		PDFPoppler doc1 = new PDFPoppler (uri1, "atm");
-		PDFPoppler doc2 = new PDFPoppler (uri2, "atm");
-		
-		path0 = Path.Combine (path, "v17n01a02-raw.txt");
-		path1 = Path.Combine (path, "v17n4a03-raw.txt");
-		path2 = Path.Combine (path, "v17n2a02-raw.txt");
-		
-		string text0 = Test.ReadFile (path0);
-		string text1 = Test.ReadFile (path1);
-		string text2 = Test.ReadFile (path2);
-		
-		string pdftext0 = doc0.GetRawText ();
-		string pdftext1 = doc1.GetRawText ();
-		string pdftext2 = doc2.GetRawText ();
-		
-		Assert.AreEqual (text0, pdftext0, "GR01");
-		Assert.AreEqual (text1, pdftext1, "GR02");
-		Assert.AreEqual (text2, pdftext2, "GR03");
+	
+		string pdftext, rawtext;
+	
+		int count = 0;
+		foreach ( PDFPoppler doc in test_docs) {
+			pdftext = doc.GetRawText ();
+			Assert.AreEqual (raw_docs[count], pdftext, "GR" + count);
+			count += 1;
+		}
 	}
+	
+
 }
 }
 }

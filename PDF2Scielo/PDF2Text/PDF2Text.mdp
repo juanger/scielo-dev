@@ -45,6 +45,7 @@
     <File name="./StyleReader.cs" subtype="Code" buildaction="Compile" />
     <File name="./Data/style.xsd" subtype="Code" buildaction="EmbedAsResource" />
     <File name="./Test/test-schema.xml" subtype="Code" buildaction="Compile" />
+    <File name="./Test/unit-test.sources" subtype="Code" buildaction="Compile" />
   </Contents>
   <References>
     <ProjectReference type="Gac" localcopy="True" refto="System, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
