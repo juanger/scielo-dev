@@ -1,3 +1,26 @@
+2007-06-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/PDF2Text.mdp, PDF2Text/Test/TestPDFPoppler.cs,
+	  PDF2Text/Test/atm, PDF2Text/Test/atm/v17n01a02-raw.txt,
+	  PDF2Text/Test/atm/v17n2a02-raw.txt,
+	  PDF2Text/Test/atm/v17n01a02.htm,
+	  PDF2Text/Test/atm/v17n01a02-norm.txt,
+	  PDF2Text/Test/atm/v17n01a02.pdf, PDF2Text/Test/atm/v17n2a02.htm,
+	  PDF2Text/Test/atm/v17n2a02-norm.txt,
+	  PDF2Text/Test/atm/v17n2a02.pdf, PDF2Text/Test/atm/v17n4a03-raw.txt,
+	  PDF2Text/Test/atm/v17n4a03.htm,
+	  PDF2Text/Test/atm/v17n4a03-norm.txt,
+	  PDF2Text/Test/atm/v17n4a03.pdf, PDF2Text/Test/v17n2a02-raw.txt,
+	  PDF2Text/Test/v17n01a02.htm, PDF2Text/Test/v17n01a02-norm.txt,
+	  PDF2Text/Test/v17n4a03-raw.txt, PDF2Text/Test/v17n2a02.pdf,
+	  PDF2Text/Test/v17n4a03.pdf, PDF2Text/Test/v17n01a02-raw.txt,
+	  PDF2Text/Test/v17n01a02.pdf, PDF2Text/Test/v17n2a02.htm,
+	  PDF2Text/Test/v17n2a02-norm.txt, PDF2Text/Test/v17n4a03.htm,
+	  PDF2Text/Test/v17n4a03-norm.txt, PDF2Text/AtmNormalizer.cs: Se crea
+	  un directorio nuevo en Test para albergar los documentos para
+	  prueba para el estilo "atm", asi se hara un directorio para cada
+	  estilo con sus respectivos documentos de prueba.
+
 2007-06-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/PDFPoppler.cs: Cambios menores. Se creó un método

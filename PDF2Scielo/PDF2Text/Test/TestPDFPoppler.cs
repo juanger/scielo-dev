@@ -6,6 +6,7 @@
 //   Anaid V. Velazquez Rivera (anaidv@gmail.com)
 //   Virginia Teodosio Procopio (ainigriv_t@hotmail.com)
 //   Alejandro Rosendo Robles (rosendo69@hotmail.com)
+//   Juan Germán Castañeda Echevarría (juanger@gmail.com)
 //
 //
 // Copyright (C) 2007 UNAM DGB
@@ -30,9 +31,9 @@ public class TestPDFPoppler {
 	public void Initialize ()
 	{
 		string line, path, testPath, source;
-		Uri uri;
 		test_docs = new ArrayList ();
 		raw_docs = new ArrayList ();
+		Uri uri;
 		
 		testPath = Test.PathOfTest ();
 		source = Path.Combine (testPath, "unit-test.sources");
@@ -77,31 +78,34 @@ public class TestPDFPoppler {
 	[Test]
 	public void CreateInstanceWithValidUri ()
 	{		
+		int count = 0;
 		Type etype = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
 		
 		foreach (PDFPoppler doc in test_docs) {
-			Assert.IsInstanceOfType (etype, doc);
+			Assert.IsInstanceOfType (etype, doc, "CI" + count);
+			count += 1;
 		}
 	}
 	
 	[Test]
 	public void CreateRawDocument ()
 	{
+		int count = 0;
 		Type etype = Type.GetType ("Scielo.PDF2Text.RawDocument");
 		foreach (PDFPoppler doc in test_docs) {
 			RawDocument raw = doc.CreateRawDocument ();
-			Assert.IsInstanceOfType (etype, raw);
+			Assert.IsInstanceOfType (etype, raw, "CR" + count);
+			count += 1;
 		}
 	}
 		
 	[Test]
 	public void GetRawText ()
 	{
-	
-		string pdftext, rawtext;
-	
+		string pdftext;
 		int count = 0;
-		foreach ( PDFPoppler doc in test_docs) {
+		
+		foreach (PDFPoppler doc in test_docs) {
 			pdftext = doc.GetRawText ();
 			Assert.AreEqual (raw_docs[count], pdftext, "GR" + count);
 			count += 1;

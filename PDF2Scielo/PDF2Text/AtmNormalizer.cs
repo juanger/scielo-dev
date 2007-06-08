@@ -7,6 +7,7 @@
 //   Anaid V. Velazquez Rivera (anaidv@gmail.com)
 //   Virginia Teodosio Procopio (ainigriv_t@hotmail.com)
 //   Alejandro Rosendo Robles (rosendo69@hotmail.com)
+//   Juan Germán Castañeda Echevarría (juanger@gmail.com)
 //
 //
 // Copyright (C) 2007 UNAM DGB
