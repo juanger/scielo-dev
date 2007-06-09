@@ -1,5 +1,9 @@
 2007-06-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestNormDocument.cs: Eliminando codigo comentado.
+
+2007-06-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestRawDocument.cs, PDF2Text/Test/TestNormDocument.cs:
 	  Restructuracion de las pruebas usando las funciones generales para
 	  obtener los documentos de prueba.

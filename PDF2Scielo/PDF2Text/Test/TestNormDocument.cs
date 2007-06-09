@@ -90,26 +90,6 @@ public class TestNormDocument {
 			Assert.AreEqual (norm_docs[count], normtext, "GT" + count);
 			count += 1;
 		}
-		
-//		NormDocument ndoc0 = rdoc0.Normalize ();
-//		NormDocument ndoc1 = rdoc1.Normalize ();
-//		NormDocument ndoc2 = rdoc2.Normalize ();
-//		
-//		string ntext0 = ndoc0.GetText ();
-//		string ntext1 = ndoc1.GetText ();
-//		string ntext2 = ndoc2.GetText ();
-//		
-//		path0 = Path.Combine (path, "v17n01a02-norm.txt");
-//		path1 = Path.Combine (path, "v17n4a03-norm.txt");
-//		path2 = Path.Combine (path, "v17n2a02-norm.txt");
-//		
-//		string text0 = Test.ReadFile (path0);
-//		string text1 = Test.ReadFile (path1);
-//		string text2 = Test.ReadFile (path2);
-//		
-//		Assert.AreEqual (text0, ntext0, "GT01");
-//		Assert.AreEqual (text1, ntext1, "GT02");
-//		Assert.AreEqual (text2, ntext2, "GT03");
 	}
 }
 }
