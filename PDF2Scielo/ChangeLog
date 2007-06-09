@@ -1,5 +1,11 @@
 2007-06-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestRawDocument.cs, PDF2Text/Test/TestNormDocument.cs:
+	  Restructuracion de las pruebas usando las funciones generales para
+	  obtener los documentos de prueba.
+
+2007-06-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestPDFPoppler.cs: Sea cambió la implementación para
 	  usar los métodos generales en Util.Test
 	* PDF2Text/Test/atm/atm.sources: se cambió el separador de tab a ':'
