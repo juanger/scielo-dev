@@ -30,33 +30,20 @@ public class TestPDFPoppler {
 	[SetUp]
 	public void Initialize ()
 	{
-		string line, path, testPath, source;
+		ArrayList temp_docs;
 		test_docs = new ArrayList ();
 		raw_docs = new ArrayList ();
-		Uri uri;
 		
-		testPath = Test.PathOfTest ();
-		source = Path.Combine (testPath, "unit-test.sources");
-
-		FileStream fileReader = new FileStream (source, FileMode.Open);
-		StreamReader streamReader = new StreamReader (fileReader);
-		
-		while (streamReader.Peek() > -1) {
-			line = streamReader.ReadLine ();
-			
-			path = Path.Combine (testPath, Test.GetPDFFileName (line));
-			uri = new Uri (path);
-			test_docs.Add (new PDFPoppler (uri, "atm"));
-
-			path = Path.Combine (testPath, Test.GetRawFileName (line));
-			Console.WriteLine (path);
-			raw_docs.Add (Test.ReadFile (path));
-			
-			Console.WriteLine ("Norm: " + Test.GetNormFileName (line));
-			Console.WriteLine ("HTML: " + Test.GetHTMLFileName (line));
+		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.PDF);
+		foreach (string[] array in temp_docs) {
+			Uri uri = new Uri(array[1]);
+			test_docs.Add (new PDFPoppler (uri, array [0]));
 		}
 		
-		streamReader.Close ();
+		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.RAW);
+		foreach (string[] array in temp_docs) {
+			raw_docs.Add (Test.ReadFile (array [1]));
+		}
 	}
 	
 	

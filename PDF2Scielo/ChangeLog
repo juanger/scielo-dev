@@ -1,5 +1,15 @@
 2007-06-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/Test/TestPDFPoppler.cs: Sea cambió la implementación para
+	  usar los métodos generales en Util.Test
+	* PDF2Text/Test/atm/atm.sources: se cambió el separador de tab a ':'
+	* PDF2Text/Test/unit-test.sources: Archivo que contiene la lista de
+	  estilos a probar
+	* Utils/Test.cs: Se añadió la definición de los métodos generales para
+	  obtener los archivos para pruebas
+
+2007-06-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/PDF2Text.mdp, PDF2Text/Test/TestPDFPoppler.cs,
 	  PDF2Text/Test/atm, PDF2Text/Test/atm/v17n01a02-raw.txt,
 	  PDF2Text/Test/atm/v17n2a02-raw.txt,

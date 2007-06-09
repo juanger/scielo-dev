@@ -14,12 +14,21 @@
 
 using System;
 using System.IO;
+using System.Collections;
 
 namespace Scielo {
 namespace Utils {
 
 public class Test {
-			
+	
+	public enum DocTypes :int 
+	{
+		PDF = 0,
+		RAW = 1,
+		NORM = 2,
+		HTML = 3,
+	}
+	
 	public static string PathOfTest ()
 	{
 		// FIXME: Este es un hack para correr los casos que depende de la
@@ -46,34 +55,49 @@ public class Test {
 		
 		return result;
 	}
-	
-	public static string GetPDFFileName (string line)
+
+	// Regresa un ArrayList de arreglos de dos cadenas, la primera es el
+	// estilo y la segunda es el path al archivo
+	public static ArrayList GetAllFilesByType (int type)
 	{
-		int index = line.IndexOf ("\t");
-		return line.Substring (0, index);
+		string line, style, path, testPath, stylePath, source;
+		ArrayList docs = new ArrayList ();
+		
+		testPath = PathOfTest ();
+		source = Path.Combine (testPath, "unit-test.sources");
+
+		FileStream mainReader = new FileStream (source, FileMode.Open);
+		StreamReader smainReader = new StreamReader (mainReader);
+		
+		while (smainReader.Peek () > -1) {
+			style = smainReader.ReadLine ();
+			stylePath = Path.Combine (testPath, style);
+			source = Path.Combine (stylePath, style + ".sources");
+			
+			FileStream sourceReader = new FileStream (source, FileMode.Open);
+			StreamReader styleReader = new StreamReader (sourceReader);
+			
+			while (styleReader.Peek () > -1) {
+				string[] array = new string [2];
+				line = styleReader.ReadLine ();
+			
+				path = Path.Combine (stylePath, Test.GetFileNameByType (line, type));
+				array [0] = style;
+				array [1] = path;
+				docs.Add (array);
+			}
+			styleReader.Close ();
+		}
+		smainReader.Close ();
+		
+		return docs;
 	}
-	
-	public static string GetRawFileName (string line)
+
+	// regresa el nombre del archivo correspondiente aal tipo dado	
+	public static string GetFileNameByType (string line,int type)
 	{
-		int sindex = line.IndexOf ("\t") + 1;
-		int length = line.IndexOf ("\t", sindex) - sindex;
-		return line.Substring (sindex, length);
-	}
-	
-	public static string GetNormFileName (string line)
-	{
-		int sindex = line.IndexOf ("\t")  + 1;
-		sindex = line.IndexOf ("\t", sindex) + 1;
-		int length = line.IndexOf ("\t", sindex) - sindex;
-		return line.Substring (sindex, length);
-	}
-	
-	public static string GetHTMLFileName (string line)
-	{
-		int sindex = line.IndexOf ("\t")  + 1;
-		sindex = line.IndexOf ("\t", sindex) + 1;
-		sindex = line.IndexOf ("\t", sindex) + 1;
-		return line.Substring (sindex);
+		string [] array = line.Split (':');
+		return array[type];
 	}
 }
 }
