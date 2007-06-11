@@ -1,0 +1,4 @@
+2007-06-11  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* migrator.rb: se creo el esqueleto del script para recorrer el árbol de directorios 
+

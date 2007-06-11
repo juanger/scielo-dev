@@ -1,0 +1,6 @@
+# SERIAL_ROOT es la ruta absoluta hacia el directorio
+# raiz que contiene las revistas de scielo
+SERIAL_ROOT: /home/hector/serial
+
+# COUNTRY es el nombre del Pais que por default se asocia a una revista
+COUNTRY: México
