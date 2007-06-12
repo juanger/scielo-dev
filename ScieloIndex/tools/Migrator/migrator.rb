@@ -13,6 +13,7 @@ class Migrator
       }
     else
       puts "Por favor crear un archivo config."
+
     end
   end
 
@@ -21,13 +22,33 @@ class Migrator
     case array[0]
       when 'SERIAL_ROOT'
                 @serial_root = array[1].strip
-                #puts 'SERIAL_ROOT ' + array[1]
       when 'COUNTRY'
-                @origin_country = array[1].strip
-                #puts 'COUNTRY ' + array[1]
+                @default_country_id = get_country_id(array[1].strip)
       else
                 puts 'Archivo de configuración ilegal'
     end
+  end
+
+  def get_country_id(name)
+    country = Country.find_by_name(name)
+
+    #TODO: Lanzar un error si no se encuentra en la DB el pais requerido.
+    puts "Country ID por default: #{country.id}"
+
+    country.id
+  end
+
+  def default_publisher
+    publisher = Publisher.find_by_name("Unassigned")
+    if publisher == nil
+      publisher = Publisher.new
+      publisher.name = "Unassigned"
+      publisher.save
+    end
+
+    puts "Publisher id: #{publisher.id}"
+
+    publisher.id
   end
 
   def process_scielo
@@ -47,12 +68,17 @@ class Migrator
   def process_journal(journal_dir)
     puts "Migrando la revista: " + @current_journal
 
+    # TODO: Obtener el publisher de la revista
+    @current_publisher = default_publisher()
+    @current_journal_id = nil
+
     if File.directory? journal_dir
       Dir.foreach(journal_dir) { |issue_dir|
                 next if issue_dir =~ /^(\.|_notes|paginasinformativas)\.?$/
 
                 full_dir = File.join(journal_dir, issue_dir)
                 if File.directory? full_dir
+                  @current_issue_full_dir = full_dir
                   @current_issue = issue_dir
                   process_issue(full_dir)
                 end
@@ -62,6 +88,12 @@ class Migrator
 
   def process_issue(issue_dir)
     puts "Migrando numero: " + @current_issue
+
+    #TODO: Encontrar una forma de llegar al título completo de la revista
+    process_pdf(issue_dir)
+  end
+
+  def process_pdf(issue_dir)
     pdf_dir = File.join(issue_dir, "pdf")
 
     if File.directory? pdf_dir
@@ -70,8 +102,10 @@ class Migrator
         next unless pdf =~ /^.*(\.)(pdf|PDF)$/
 
         if File.file? full_dir
-          @current_article = pdf
-          process_pdf(full_dir)
+          @current_article = pdf.sub(/\.(pdf|PDF)/, "")
+
+          process_article(full_dir)
+          puts "Procesando articulo: " + @current_article
         end
       }
     else
@@ -79,8 +113,22 @@ class Migrator
     end
   end
 
-  def process_pdf(pdf_dir)
-    puts "Procesando articulo: " + @current_article
+  def process_article(full_path)
+    if !@current_journal_id
+      marked_file = File.join(@current_issue_full_dir, "markup")
+      marked_file = File.join(marked_file, @current_article + ".txt")
+
+      if File.exists? marked_file
+        create_journal(marked_file)
+      else
+        "Error: No existe el archivo: #{marked_file}"
+      end
+    end
+  end
+
+  def create_journal(file_dir)
+    puts 'Creando registro del journal'
+    @current_journal_id = 1
   end
 end
 
