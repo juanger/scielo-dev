@@ -1,3 +1,12 @@
+2007-06-12  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* sgmlarticle.rb: Se creó la clase SGMLArticle para manipular la información contenida en un 
+	archivo sgml. Se crearon los métodos para obtener matches a partir de regexps y obtener el language
+	y el título del journal
+
+	* migrator.rb: Cambios menores. Se añadieron las llamadas a la clase SGMLArticle para obtener
+	los atributos del sgml
+
 2007-06-11  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* migrator.rb: se creo el esqueleto del script para recorrer el árbol de directorios 

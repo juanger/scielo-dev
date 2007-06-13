@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 RAILS_ENV = 'development'
 require File.dirname(__FILE__) + '/../../config/environment'
+require 'sgmlarticle'
 
 class Migrator
   def initialize
@@ -13,7 +14,6 @@ class Migrator
       }
     else
       puts "Por favor crear un archivo config."
-
     end
   end
 
@@ -104,8 +104,8 @@ class Migrator
         if File.file? full_dir
           @current_article = pdf.sub(/\.(pdf|PDF)/, "")
 
-          process_article(full_dir)
           puts "Procesando articulo: " + @current_article
+          process_article(full_dir)
         end
       }
     else
@@ -119,11 +119,18 @@ class Migrator
       marked_file = File.join(marked_file, @current_article + ".txt")
 
       if File.exists? marked_file
-        create_journal(marked_file)
+        begin
+          article = SgmlArticle.new(marked_file)
+          puts "Lenguaje: #{article.language}, Titulo: #{article.title}"
+          create_journal(marked_file)
+        rescue TypeError
+          puts "Archivo #{marked_file} no es un article."
+        end
       else
-        "Error: No existe el archivo: #{marked_file}"
+        puts "Error: No existe el archivo: #{marked_file}"
       end
     end
+
   end
 
   def create_journal(file_dir)
