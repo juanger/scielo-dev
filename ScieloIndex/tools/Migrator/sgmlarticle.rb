@@ -1,22 +1,18 @@
-$KCODE='u'
-require 'jcode'
-
 class SgmlArticle
   attr_reader :language, :title, :volume, :number, :year, :fpage, :lpage, :issn
 
   def initialize(doc_path)
     if File.file? doc_path
-      @document = open(doc_path, "r") { |doc| doc.read }
-      #puts @document
+      buffer = open(doc_path, "r") { |doc| doc.read }
+      @document = Iconv.iconv("UTF-8", "ISO-8859-15", buffer).to_s
     end
 
     tag_article = /\[article.*?\]/m.match(@document).to_s
 
     if tag_article.empty?
-      raise TypeError, "No es un documento de tipo article"
+      raise ArgumentError, "No es un documento de tipo article"
     end
 
-    puts tag_article
     @language = get_language(tag_article)
     @title = get_title(tag_article)
 

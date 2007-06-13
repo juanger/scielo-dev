@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 RAILS_ENV = 'development'
+$KCODE='u'
 require File.dirname(__FILE__) + '/../../config/environment'
 require 'sgmlarticle'
+require 'jcode'
+require 'iconv'
+
 
 class Migrator
   def initialize
@@ -123,7 +127,7 @@ class Migrator
           article = SgmlArticle.new(marked_file)
           puts "Lenguaje: #{article.language}, Titulo: #{article.title}"
           create_journal(marked_file)
-        rescue TypeError
+        rescue ArgumentError
           puts "Archivo #{marked_file} no es un article."
         end
       else

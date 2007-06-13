@@ -1,5 +1,7 @@
 2007-06-12  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* migrator.rb: Cambios menores. Se arregló para que se use UTF-8 
+
 	* sgmlarticle.rb: Se creó la clase SGMLArticle para manipular la información contenida en un 
 	archivo sgml. Se crearon los métodos para obtener matches a partir de regexps y obtener el language
 	y el título del journal
