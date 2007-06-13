@@ -1,3 +1,7 @@
+2007-06-12  Full Name <Email Address> 
+
+	Se modificó la clase PDFTextColumn para extraer texto PDF de dos columnas y se generó TestPDFTextColumns
+
 2007-06-11  Full Name <Email Address> 
 
 	Se agrego la clase para trabajar el texto de pdf a 2 columnas.

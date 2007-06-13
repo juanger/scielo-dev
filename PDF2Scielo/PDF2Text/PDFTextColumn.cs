@@ -44,28 +44,39 @@ public class PDFTextColumn
 		return text.Split (new Char [] {'\u000c'});
 	}
 	
-	public void GetInfoInPage (int index)
+	public ArrayList GetInfoInPage (int index)
 	{
 		ArrayList totalValues = new ArrayList ();
-		int [] valuesRaw = new int[2];
-		int space = 0;
-		int position = 0;
 		string [] rawCollection = (pages[index]).Split (new Char [] {'\n'} );
-		for (int i=0; i< rawCollection.Length; i++){	
-			if (pages[i] == " "){
-				position = i;
-				if (pages[i-1] == " ")
-					space ++;	
+		foreach (string line in rawCollection) {
+			int [] valuesRaw = new int[2];
+			int count = 0;
+			int space = 0;
+			int position = 0;
+			int position_value = 0;
+			foreach (char character in line) {
+				Console.WriteLine("char::"+character+"::pos::"+count);
+				if (character == ' '){
+					position = count;
+					if (count>0 && line[count-1] == ' '){
+						space ++;
+						position_value = count;
+					}
+				}
+				count++;
 			}
+			Console.WriteLine("::::::::::::::::::::...end line");
+			if (space >= 2){
+				valuesRaw[0] = position_value;
+				valuesRaw[1] = space;
+			}
+			totalValues.Add(valuesRaw);			
 		}
-		//al terminar el renglon
-		if (space > 3){
-			valuesRaw[0] = position;
-			valuesRaw[1] = space;
+		foreach (int [] elements in totalValues){
+			Console.WriteLine("position::"+ elements[0]+"::spaces::"+elements[1]);
 		}
-		totalValues.Add(valuesRaw);
+		return totalValues;
 	}
-	
 }
 }
 }
