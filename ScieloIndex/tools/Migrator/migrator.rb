@@ -21,6 +21,22 @@ class Migrator
     end
   end
 
+  def process_scielo
+    if File.directory? @serial_root
+      Dir.foreach(@serial_root) { |dir|
+                next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
+
+                full_dir = File.join(@serial_root, dir)
+                if File.directory? full_dir
+                  @current_journal = dir
+                  process_journal(full_dir)
+                end
+      }
+    end
+  end
+
+  private
+
   def obtain_value(line)
     array = line.split(':')
     case array[0]
@@ -55,25 +71,11 @@ class Migrator
     publisher.id
   end
 
-  def process_scielo
-    if File.directory? @serial_root
-      Dir.foreach(@serial_root) { |dir|
-                next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
-
-                full_dir = File.join(@serial_root, dir)
-                if File.directory? full_dir
-                  @current_journal = dir
-                  process_journal(full_dir)
-                end
-      }
-    end
-  end
-
   def process_journal(journal_dir)
     puts "Migrando la revista: " + @current_journal
 
     # TODO: Obtener el publisher de la revista
-    @current_publisher = default_publisher()
+    @current_publisher_id = default_publisher()
     @current_journal_id = nil
 
     if File.directory? journal_dir
@@ -92,7 +94,7 @@ class Migrator
 
   def process_issue(issue_dir)
     puts "Migrando numero: " + @current_issue
-
+    @current_journal_issue_id = nil
     #TODO: Encontrar una forma de llegar al título completo de la revista
     process_pdf(issue_dir)
   end
@@ -118,23 +120,71 @@ class Migrator
   end
 
   def process_article(full_path)
-    if !@current_journal_id
-      marked_file = File.join(@current_issue_full_dir, "markup")
-      marked_file = File.join(marked_file, @current_article + ".txt")
+    marked_file = File.join(@current_issue_full_dir, "markup")
+    marked_file = File.join(marked_file, @current_article + ".txt")
 
-      if File.exists? marked_file
+    if File.exists? marked_file
         begin
           article = SgmlArticle.new(marked_file)
-          puts "Lenguaje: #{article.language}, Titulo: #{article.title}"
-          create_journal(marked_file)
+          puts ""
+          puts "Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}"
+          puts "Volumen: #{article.volume}, Numero: #{article.number}"
+          puts "Año: #{article.year}, Revista ISSN: #{article.journal_issn}"
+          puts "Primera pagina: #{article.fpage}, Ultima pagina: #{article.lpage}"
+          puts ""
+
+          if !@current_journal_id
+            journal = Journal.new
+            journal.title = article.journal_title
+            journal.country_id = @default_country_id
+            journal.publisher_id = @current_publisher_id
+            journal.abbrev = article.journal_title
+            journal.issn = article.journal_issn
+
+            puts "Journal Title: #{journal.title}"
+            puts "Journal Country ID: #{journal.country_id}"
+            puts "Journal Publisher ID: #{journal.publisher_id}"
+            puts "Journal Abbrev: #{journal.abbrev}"
+            puts "Journal ISSN: #{journal.issn}"
+
+            if journal.save
+              @current_journal_id = journal.id
+              puts "Creando journal #{@current_journal_id}"
+            else
+              puts "Error: #{journal.errors[:title].to_s}"
+              puts "Error: #{journal.errors[:country_id].to_s}"
+              puts "Error: #{journal.errors[:publisher_id].to_s}"
+              puts "Error: #{journal.errors[:abbrev].to_s}"
+              puts "Error: #{journal.errors[:issn].to_s}"
+            end
+          end
+
+          if !@current_journal_issue_id && @current_journal_id
+            journal_issue = JournalIssue.new
+            journal_issue.journal_id = @current_journal_id
+            journal_issue.number = article.number
+            journal_issue.volume = article.volume
+            journal_issue.supplement =article.supplement
+            journal_issue.year = article.year
+
+            if journal_issue.save
+              @current_journal_issue_id = journal_issue.id
+              puts "Creando journal issue #{@current_journal_issue_id}"
+            else
+              puts "Error: #{journal_issue.errors[:journal_id].to_s}"
+              puts "Error: #{journal_issue.errors[:number].to_s}"
+              puts "Error: #{journal_issue.errors[:volume].to_s}"
+              puts "Error: #{journal_issue.errors[:supplement].to_s}"
+              puts "Error: #{journal_issue.errors[:year].to_s}"
+            end
+          end
+
         rescue ArgumentError
           puts "Archivo #{marked_file} no es un article."
         end
-      else
-        puts "Error: No existe el archivo: #{marked_file}"
-      end
+    else
+      puts "Error: No existe el archivo: #{marked_file}"
     end
-
   end
 
   def create_journal(file_dir)

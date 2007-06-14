@@ -136,18 +136,20 @@ COMMENT ON TABLE journals IS
 
 CREATE TABLE journal_issues (
         id SERIAL,
+        title text NULL,
         journal_id int4 NOT NULL
                 REFERENCES journals
                 ON DELETE CASCADE
                 ON UPDATE CASCADE
                 DEFERRABLE,
-        number text NULL,
         volume text NULL,
+        number text NULL,
+        supplement text NULL,
         year integer NOT NULL,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
-        UNIQUE(journal_id, number, volume, year)
+        UNIQUE(journal_id, number, volume, year, supplement)
 );
 
 CREATE TABLE articles (

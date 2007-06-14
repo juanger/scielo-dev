@@ -4,8 +4,14 @@
 <p><label for="journal_issue_journal_id">Journal</label><br/>
 <%= select_by_attribute("record",Journal, "title") %></p>
 
+<p><label for="journal_issue_title">Title</label><br/>
+<%= text_field 'record', 'title', 'size' => 10  %></p>
+
 <p><label for="journal_issue_number">Number</label><br/>
 <%= text_field 'record', 'number', 'size' => 10  %></p>
+
+<p><label for="journal_issue_supplement">Supplement</label><br/>
+<%= text_field 'record', 'supplement', 'size' => 10  %></p>
 
 <p><label for="journal_issue_volume">Volume</label><br/>
 <%= text_field 'record', 'volume', 'size' => 10 %></p>

@@ -222,7 +222,7 @@ class JournalTest < Test::Unit::TestCase
     @journal.abbrev = ""
     assert @journal.valid?
 
-    @journal.abbrev = "A"*21
+    @journal.abbrev = "A"*201
     assert !@journal.valid?
 
     @journal.abbrev = "FOO[]"

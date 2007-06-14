@@ -5,7 +5,7 @@ class Country < ActiveRecord::Base
   validates_length_of :code, :in => 2..3
   validates_numericality_of :id, :only_integer => true
   validates_format_of :name, :with => /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,80}$/
-  validates_format_of :code, :with => /^[a-zA-Z]{2,3}$/
+  validates_format_of :code, :with => /^[a-zA-Z]{2,3}[ ]?$/
   validates_uniqueness_of :name, :code, :id
 
   has_many :collections

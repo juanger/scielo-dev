@@ -5,7 +5,7 @@ class JournalIssueTest < Test::Unit::TestCase
 
   def setup
     @journal_issues = [:atm19_1, :csalud1_10]
-    @myjournal_issue = {:journal_id => 2, :number => '19', :volume => '1', :year => 2006}
+    @myjournal_issue = {:journal_id => 2, :title => 'Santo contra las momias', :number => '19', :volume => '1', :year => 2006}
   end
 
   # RIGHT CRUD (Create, Update and Delete)
@@ -88,6 +88,35 @@ class JournalIssueTest < Test::Unit::TestCase
     @journal_issue.journal_id = 5.6
     assert !@journal_issue.valid?
   end
+
+   def test_bad_values_for_title
+    @journal_issue = JournalIssue.new(@myjournal_issue)
+
+    # Checking for volume constraints
+    @journal_issue.title = nil
+    assert @journal_issue.valid?
+
+    @journal_issue.title = ""
+    assert @journal_issue.valid?
+
+    @journal_issue.title = "A"*201
+    assert !@journal_issue.valid?
+  end
+
+  def test_bad_values_for_supplement
+    @journal_issue = JournalIssue.new(@myjournal_issue)
+
+    # Checking for volume constraints
+    @journal_issue.supplement = nil
+    assert @journal_issue.valid?
+
+    @journal_issue.supplement = ""
+    assert @journal_issue.valid?
+
+    @journal_issue.supplement = "A"*101
+    assert !@journal_issue.valid?
+  end
+
 
   def test_bad_values_for_number
     @journal_issue = JournalIssue.new(@myjournal_issue)

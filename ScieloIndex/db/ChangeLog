@@ -1,3 +1,7 @@
+2007-06-13  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* schema.sql: Se añadieron los atributos supplement y title a la tabla journal_issues
+
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* catalogs/devel-info.sql: Se agregaron INSERT's para authors y article_authors con el propósito de que haya posibles resultados en búsquedas inexactas.

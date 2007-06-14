@@ -1,3 +1,7 @@
+2007-06-13  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* journal_issues/_form.rhtml: Se añadieron los campos de supplement y title
+
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* article_subjects/, article_keywords/: Se scaffoldeo la vista y se realizaron los cambios para que usara el controlador

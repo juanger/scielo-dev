@@ -1,3 +1,10 @@
+2007-06-13  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* sgmlarticle.rb: Se añadieron los métodos de acceso para los atributos supplement y journal_title recientemente 
+	incorporados a la base de datos
+
+	* migrator.rb: Se hicieron cambios para que se agregen los journals y los journal_issues con los datos obtenidos 
+
 2007-06-12  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* migrator.rb: Cambios menores. Se arregló para que se use UTF-8 
