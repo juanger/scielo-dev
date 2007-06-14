@@ -17,31 +17,31 @@ namespace PDF2Text{
 			Assert.AreEqual(pagesTmp.Length, 5, "CP");
 		}
 			
-		//[Test()]
-		/*public void CreateColumns()
+		[Test()]
+		public void CreateColumns()
 		{
-			PDFTextColumn pdftc = new PDFTextColumn("columna 1   columna2 \n columna1       Columna 2 \n COLUMNA 1        COLUMNA2");
+			PDFTextColumn pdftc = new PDFTextColumn("columna 1   columna2 \n columna1   Columna 2 \n COLUMNA 1        COLUMNA2");
 			string page = pdftc.pages[1];
-			pdftc.GetInfoInPage (1);			
-		}*/
+			//pdftc.GetInfoInPage (1);			
+		}
 		
 		[Test()]
 		public void TextColumns()
-		{
-			PDFTextColumn pdftc = new PDFTextColumn(" Resumen "+
-                    +"\n"+
-                    +"Se exponen los criterios electrofisiolÓgicos para              ELECTROCARDIOGRAPHIC\n"+
-                    +"                                                                            F E A ~ OF ~\n"+
-                    +"                                                                                        R RIGHT\n"+
-                    +"el diagnóstico electrocardiográfico de los creci-         VfNiRICüLAR HYERTROPHY IN CHRONlC COR PULMONALE\n"+
-                    +"mientos ventriculares derechos, a la luz de la su-\n"+
-                    +"cesión del proceso de activación del miocardio           The electrophysiological criteria for diagnosing\n"+
-                    +"ventricular. La hipertrofia ventricular derecha por      right ventricular hypertrophy, characteristic of\n"+
-                    +"sobrecarga sistólica sostenida puede ser global o        chronic cor pulmonale, are described. Right ven-\n"+
-                    +"segmentaria. En el primer caso, p. ej. cardiopatía       tricular hypertrophy due to a sustained systolic\n"+
-                    +"hipertensiva pulmonar crónica de origen vascu-           overload can be global or regional.      \n"+
-                    +""+
-                    +"columna1                 columna2\n");
+		{       
+			string text = "Presentación del caso                                      normal y sin fenómenos agregados, no se aus-\n";
+				text += "ombre de 69 años de edad, originario\n";
+				text += "				\n";
+                    		text += "\n";
+                                text += "                                               culta frote pericárdico.    Pulmones con estertores\n";
+                             	text += "del estado de Guerrero. Ocupación cam-            crepitantes basales derechos. Abdomen plano,\n";
+                                text += "                                               blando y depresible, no se encuentran viscero-\n";
+                             	text += "pesino,     con alcoholismo suspendido.\n";
+                    		text += "Sin otros antecedentes de importancia para el              megalias ni puntos álgidos,     peristaltisrno nor-\n";
+                    		text += "padecimiento actual.       Negó enfermedades cardio-             mal. Miembros pélvicos con edema hasta tercio        \n";
+                    		text += "vasculares previas.     Ingresa a nuestro hospital con         proximal de ambas piernas, blando y no doloro-\n";
+                    		text += "cuadro clínico de tres meses y medio de evolu-             so.            Pulsos periféricos normales.";
+				
+			PDFTextColumn pdftc = new PDFTextColumn(text);
 			string page = pdftc.pages[1];
 			pdftc.GetInfoInPage (1);
 		}		

@@ -54,8 +54,8 @@ public class PDFTextColumn
 			int space = 0;
 			int position = 0;
 			int position_value = 0;
+			Hashtable ht = new Hashtable ();
 			foreach (char character in line) {
-				Console.WriteLine("char::"+character+"::pos::"+count);
 				if (character == ' '){
 					position = count;
 					if (count>0 && line[count-1] == ' '){
@@ -63,19 +63,32 @@ public class PDFTextColumn
 						position_value = count;
 					}
 				}
+				if (space >= 2 && count<line.Length -1 && line[count+1] != ' '){
+					if (!ht.Contains(position_value))
+						ht.Add (position_value, space);
+				}
 				count++;
 			}
-			Console.WriteLine("::::::::::::::::::::...end line");
-			if (space >= 2){
-				valuesRaw[0] = position_value;
-				valuesRaw[1] = space;
-			}
-			totalValues.Add(valuesRaw);			
-		}
-		foreach (int [] elements in totalValues){
-			Console.WriteLine("position::"+ elements[0]+"::spaces::"+elements[1]);
+			Console.WriteLine("line:::"+line);
+			Console.WriteLine("::::::::::::::::::::...end line");			
+			totalValues.Add(ht);			
 		}
 		return totalValues;
+	}
+	
+	public float GetArithmeticAverageInPage (ArrayList values)
+	{
+		int sum = 0;
+		int count = 0;
+		float average = 0;
+		foreach (Hashtable ht in values){
+			if (ht.Count == 1){
+				sum = sum + (int)ht[count];	
+				count ++;
+			}
+		}
+		average = sum / count;
+		return average;
 	}
 }
 }

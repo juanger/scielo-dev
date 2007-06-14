@@ -1,3 +1,7 @@
+2007-06-13  Full Name <Email Address> 
+
+	La clase cuenta todos los espacios de un renglon por pagina.
+
 2007-06-12  Full Name <Email Address> 
 
 	Se modificó la clase PDFTextColumn para extraer texto PDF de dos columnas y se generó TestPDFTextColumns
