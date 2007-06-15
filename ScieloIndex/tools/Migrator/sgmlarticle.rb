@@ -1,5 +1,5 @@
 class SgmlArticle
-  attr_reader :language, :journal_title, :volume, :number, :supplement, :year, :fpage, :lpage, :journal_issn
+  attr_reader :front, :body, :back, :title, :language, :journal_title, :volume, :number, :supplement, :year, :fpage, :lpage, :journal_issn
 
   def initialize(doc_path)
     if File.file? doc_path
@@ -13,6 +13,12 @@ class SgmlArticle
       raise ArgumentError, "No es un documento de tipo article"
     end
 
+    @front = /\[front\].*\[\/front\]/m.match(@document).to_s
+    @body = /\[body\].*\[\/body\]/m.match(@document).to_s
+    @back = /\[back\].*\[\/back\]/m.match(@document).to_s
+
+    @title = get_title()
+
     @language = get_language()
     @journal_title = get_journal_title()
     @volume = get_volume()
@@ -23,9 +29,6 @@ class SgmlArticle
     @lpage = get_lpage()
     @journal_issn = get_journal_issn()
 
-    @front = /\[front\].*\[\/front\]/m.match(@document).to_s
-    @body = /\[body\].*\[\/body\]/m.match(@document).to_s
-    @back = /\[back\].*\[\/back\]/m.match(@document).to_s
   end
 
   def get_matches(regexp, part)
@@ -41,6 +44,15 @@ class SgmlArticle
 
 
   private
+
+  def get_title
+    match = /(\[title.*\])(.*)(\[\/title\])/m.match(@front)
+    if match
+      match[2].to_s
+    else
+      ""
+    end
+  end
 
   def get_language
     match = /(language=)(.{2})/.match(@article_tag)

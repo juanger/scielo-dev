@@ -1,3 +1,13 @@
+2007-06-14  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* associated_authors.rb: Se creó la clase AssociatedAuthors para crear autores a partir de la información
+	de artículos 
+
+	* sgmlarticle.rb: Cambios menores, se agregaron los accesores para front, body, back 
+
+	* migrator.rb: Se añadió el código para utilizar SGMLArticle y AssociatedAuthors y obtener la información
+	de artículos, journal_issues y autores y meterlos a la base de datos
+
 2007-06-13  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* sgmlarticle.rb: Se añadieron los métodos de acceso para los atributos supplement y journal_title recientemente 

@@ -13,7 +13,7 @@ class JournalIssue < ActiveRecord::Base
   belongs_to :journal
   has_many :articles
 
-  validates_associated :journal, :articles
+  #validates_associated :journal, :articles
 
   #FIXME: Checar el schema para agregar atributos para contener el mes y dia.
   def as_vancouver
