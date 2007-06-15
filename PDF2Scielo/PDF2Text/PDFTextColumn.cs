@@ -32,12 +32,6 @@ public class PDFTextColumn
 		text = data;
 		pages = GetTextInPages ();
 	}
-			
-	public void DataPreprocessing()
-	{
-		/* This method eliminates the spaces*/
-		;//text
-	}
 	
 	public string [] GetTextInPages ( )
 	{
@@ -64,13 +58,18 @@ public class PDFTextColumn
 					}
 				}
 				if (space >= 2 && count<line.Length -1 && line[count+1] != ' '){
-					if (!ht.Contains(position_value))
+					if (!ht.Contains(position_value)){
 						ht.Add (position_value, space);
-				}
-				count++;
+						Console.WriteLine("Position: "+position_value+" Spaces: "+space);
+					}
+				}	
+				count++;	
 			}
 			Console.WriteLine("line:::"+line);
-			Console.WriteLine("::::::::::::::::::::...end line");			
+			Console.WriteLine("::::::::::::::::::::...end line");
+			foreach (DictionaryEntry de in ht){
+				Console.WriteLine("element in hash Key = {0}, Value = {1}", de.Key, de.Value);
+			}			
 			totalValues.Add(ht);			
 		}
 		return totalValues;
@@ -83,12 +82,52 @@ public class PDFTextColumn
 		float average = 0;
 		foreach (Hashtable ht in values){
 			if (ht.Count == 1){
-				sum = sum + (int)ht[count];	
-				count ++;
+				foreach (DictionaryEntry de in ht){
+					sum = sum + (int)de.Key;
+					count ++;
+				}
 			}
 		}
 		average = sum / count;
 		return average;
+	}
+	
+	public void GetTextInColumns (int indexPage, ArrayList values, float average){
+
+		string column1 = "";
+		string column2 = "";
+		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} );
+		int number_raw = 0;
+		foreach (Hashtable ht in values){
+			float distance_now = 0;
+			float distance = 0;
+			int position = 0;
+			string line = rawCollection [number_raw];
+			foreach (DictionaryEntry de in ht){
+				distance = Math.Abs ((int)de.Key - average);
+				if (distance > distance_now){
+					Console.WriteLine("se considera la distancia de ::" + (int)de.Key);
+					distance = distance_now;
+					position = (int)de.Key;
+					//Console.WriteLine("line:::"+line.Substring(0,position)
+				}
+			}
+			if( position == 0 )
+				column1 += line;
+			else{
+				column1 +=  line.Substring (0,position) + "\n";
+				column2 += line.Substring (position) + "\n";
+			}
+			number_raw ++;
+		}
+		Console.WriteLine("--------------------LAS COLUMAS----------------");
+		Console.WriteLine("--------------Columna1 ------------------------");
+		Console.WriteLine(column1);
+		Console.WriteLine("-----------------------------------------------");
+		Console.WriteLine("--------------Columna2 ------------------------");
+		Console.WriteLine(column2);
+		Console.WriteLine("-----------------------------------------------");
+
 	}
 }
 }

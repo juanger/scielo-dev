@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using NUnit.Framework;
 
 namespace Scielo {
@@ -21,12 +22,11 @@ namespace PDF2Text{
 		public void CreateColumns()
 		{
 			PDFTextColumn pdftc = new PDFTextColumn("columna 1   columna2 \n columna1   Columna 2 \n COLUMNA 1        COLUMNA2");
-			string page = pdftc.pages[1];
-			//pdftc.GetInfoInPage (1);			
+			string page = pdftc.pages[1];		
 		}
 		
 		[Test()]
-		public void TextColumns()
+		public void ColumnsAverage()
 		{       
 			string text = "Presentación del caso                                      normal y sin fenómenos agregados, no se aus-\n";
 				text += "ombre de 69 años de edad, originario\n";
@@ -43,16 +43,13 @@ namespace PDF2Text{
 				
 			PDFTextColumn pdftc = new PDFTextColumn(text);
 			string page = pdftc.pages[1];
-			pdftc.GetInfoInPage (1);
-		}		
+			ArrayList aL = pdftc.GetInfoInPage (1);
+			float average = pdftc.GetArithmeticAverageInPage (aL);
+			pdftc.GetTextInColumns (1, aL, average);
+			//Assert.AreEqual (average, 41, "CA");			
+		}
+		
 	}
 	
 }
 }
-
-
-
-
-
-
-
