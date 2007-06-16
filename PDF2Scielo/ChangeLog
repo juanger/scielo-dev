@@ -1,3 +1,7 @@
+2007-06-15  Full Name <Email Address> 
+
+	Se continuaron con las pruebas en el TestPDFTextColumn para el análisis del método que separa las dos columnas
+
 2007-06-14  Full Name <Email Address> 
 
 	* PDF2Text/PDFTextColumn.cs: Se agrego el metodo que separa por dos

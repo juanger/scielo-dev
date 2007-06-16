@@ -89,6 +89,7 @@ public class PDFTextColumn
 			}
 		}
 		average = sum / count;
+		Console.WriteLine("Average"+average);
 		return average;
 	}
 	
@@ -109,7 +110,7 @@ public class PDFTextColumn
 					Console.WriteLine("se considera la distancia de ::" + (int)de.Key);
 					distance = distance_now;
 					position = (int)de.Key;
-					//Console.WriteLine("line:::"+line.Substring(0,position)
+					//Console.WriteLine("line:::"+line.Substring(0,position));
 				}
 			}
 			if( position == 0 )

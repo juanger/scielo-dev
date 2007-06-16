@@ -32,14 +32,14 @@ namespace PDF2Text{
 				text += "ombre de 69 años de edad, originario\n";
 				text += "				\n";
                     		text += "\n";
-                                text += "                                               culta frote pericárdico.    Pulmones con estertores\n";
-                             	text += "del estado de Guerrero. Ocupación cam-            crepitantes basales derechos. Abdomen plano,\n";
+                                text += "                                               culta frote pericárdico. Pulmones con estertores\n";
+                             	text += "        del estado de Guerrero. Ocupación cam-            crepitantes basales derechos. Abdomen plano,\n";
                                 text += "                                               blando y depresible, no se encuentran viscero-\n";
-                             	text += "pesino,     con alcoholismo suspendido.\n";
-                    		text += "Sin otros antecedentes de importancia para el              megalias ni puntos álgidos,     peristaltisrno nor-\n";
-                    		text += "padecimiento actual.       Negó enfermedades cardio-             mal. Miembros pélvicos con edema hasta tercio        \n";
-                    		text += "vasculares previas.     Ingresa a nuestro hospital con         proximal de ambas piernas, blando y no doloro-\n";
-                    		text += "cuadro clínico de tres meses y medio de evolu-             so.            Pulsos periféricos normales.";
+                             	text += "        pesino, con alcoholismo suspendido.\n";
+                    		text += "Sin otros antecedentes de importancia para el              megalias ni puntos álgidos, peristaltisrno nor-\n";
+                    		text += "padecimiento actual. Negó enfermedades cardio-             mal. Miembros pélvicos con edema hasta tercio\n";
+                    		text += "vasculares previas. Ingresa a nuestro hospital con         proximal de ambas piernas, blando y no doloro-\n";
+                    		text += "cuadro clínico de tres meses y medio de evolu-             so. Pulsos periféricos normales.";
 				
 			PDFTextColumn pdftc = new PDFTextColumn(text);
 			string page = pdftc.pages[1];
