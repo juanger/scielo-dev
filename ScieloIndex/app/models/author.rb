@@ -1,6 +1,6 @@
 class Author < ActiveRecord::Base
   validates_presence_of :firstname, :lastname
-  validates_length_of :firstname, :lastname, :in => 3..30
+  validates_length_of :firstname, :lastname, :in => 1..30
   validates_length_of :middlename, :maximum  => 100, :allow_nil => true
   validates_length_of :suffix, :prefix, :degree, :maximum => 10, :allow_nil => true
   validates_inclusion_of :id, :in => 1..9999, :allow_nil => true

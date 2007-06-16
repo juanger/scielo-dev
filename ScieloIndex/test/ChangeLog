@@ -1,3 +1,8 @@
+2007-06-15  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* unit/author_test.rb: Se modificó el test para lastname y firstname para que acepten el cambio hecho a las
+	validaciones
+
 2007-05-24  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* fixtures/article_subjects.yml: Se crearon stubs para las pruebas unitarias.

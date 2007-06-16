@@ -1,3 +1,9 @@
+2007-06-15  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* migrator.rb: Se arregló un error que se daba cuando un artículo no tiene autores 
+
+	* associated_authors.rb: Se arregló el manejo de nombres para tomar en cuenta middlenames
+
 2007-06-14  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* associated_authors.rb: Se creó la clase AssociatedAuthors para crear autores a partir de la información

@@ -210,7 +210,11 @@ class Migrator
           puts "Pagina inicial: #{new_article.fpage}, Pagina final: #{new_article.lpage}"
 
           authors = AssociatedAuthors.new(article.front)
-          authors.insert_authors()
+          begin
+            authors.insert_authors()
+          rescue ArgumentError
+            puts 'El articulo no tiene autores.'
+          end
         else
           puts "Error: #{new_article.errors[:journal_issue_id]}"
           puts "Error: #{new_article.errors[:title].to_s}"

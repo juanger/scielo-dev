@@ -99,7 +99,7 @@ class AuthorTest < Test::Unit::TestCase
     @author.firstname = nil
     assert !@author.valid?
 
-    @author.firstname = "Fo"
+    @author.firstname = ""
     assert !@author.valid?
 
     @author.firstname = "A"*31
@@ -116,7 +116,7 @@ class AuthorTest < Test::Unit::TestCase
     @author.lastname = nil
     assert !@author.valid?
 
-    @author.lastname = "Fo"
+    @author.lastname = ""
     assert !@author.valid?
 
     @author.lastname = "A"*31
@@ -179,7 +179,7 @@ class AuthorTest < Test::Unit::TestCase
 
   def test_has_many_articles
     @author = Author.find(1)
-    assert_equal @author.articles.first.title, articles(:article1).title 
+    assert_equal @author.articles.first.title, articles(:article1).title
     assert_equal @author.articles[0].page_range,  articles(:article1).page_range
     assert_equal @author.articles[0].url, articles(:article1).url
   end
