@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 RAILS_ENV = 'development'
 $KCODE='u'
+
 require File.dirname(__FILE__) + '/../../config/environment'
 require 'sgmlarticle'
 require 'associated_authors'
@@ -100,26 +101,6 @@ class Migrator
     process_articles(issue_dir)
   end
 
-  def process_pdf(issue_dir)
-    pdf_dir = File.join(issue_dir, "pdf")
-
-    if File.directory? pdf_dir
-      Dir.foreach(pdf_dir) { |pdf|
-        full_dir = File.join(pdf_dir, pdf)
-        next unless pdf =~ /^.*(\.)(pdf|PDF)$/
-
-        if File.file? full_dir
-          @current_article = pdf.sub(/\.(pdf|PDF)/, "")
-
-          puts "Procesando articulo: " + @current_article
-          process_article(full_dir)
-        end
-      }
-    else
-      puts "El numero no contiene documentos PDF"
-    end
-  end
-
   def process_articles(issue_dir)
     article_dir = File.join(issue_dir, "markup")
 
@@ -151,92 +132,104 @@ class Migrator
       puts ""
 
       if !@current_journal_id
-        journal = Journal.new
-        journal.title = article.journal_title
-        journal.country_id = @default_country_id
-        journal.publisher_id = @current_publisher_id
-        journal.abbrev = article.journal_title
-        journal.issn = article.journal_issn
-
-        puts "Journal Title: #{journal.title}"
-        puts "Journal Country ID: #{journal.country_id}"
-        puts "Journal Publisher ID: #{journal.publisher_id}"
-        puts "Journal Abbrev: #{journal.abbrev}"
-        puts "Journal ISSN: #{journal.issn}"
-
-        if journal.save
-          @current_journal_id = journal.id
-          puts "Creando journal #{@current_journal_id}"
-        else
-          puts "Error: #{journal.errors[:title].to_s}"
-          puts "Error: #{journal.errors[:country_id].to_s}"
-          puts "Error: #{journal.errors[:publisher_id].to_s}"
-          puts "Error: #{journal.errors[:abbrev].to_s}"
-          puts "Error: #{journal.errors[:issn].to_s}"
-        end
+        create_journal(article)
       end
 
       if !@current_journal_issue_id && @current_journal_id
-        journal_issue = JournalIssue.new
-        journal_issue.journal_id = @current_journal_id
-        journal_issue.number = article.number
-        journal_issue.volume = article.volume
-        journal_issue.supplement =article.supplement
-        journal_issue.year = article.year
-
-        if journal_issue.save
-          @current_journal_issue_id = journal_issue.id
-          puts "Creando journal issue #{@current_journal_issue_id}"
-        else
-          puts "Error: #{journal_issue.errors[:journal_id].to_s}"
-          puts "Error: #{journal_issue.errors[:number].to_s}"
-          puts "Error: #{journal_issue.errors[:volume].to_s}"
-          puts "Error: #{journal_issue.errors[:supplement].to_s}"
-          puts "Error: #{journal_issue.errors[:year].to_s}"
-        end
+        create_journal_issue(article)
       end
 
       if @current_journal_issue_id && @current_journal_id
-        new_article = Article.new
-        new_article.title = article.title
-        new_article.journal_issue_id = @current_journal_issue_id
-        new_article.fpage = article.fpage
-        new_article.lpage = article.lpage
-
-        if new_article.save
-          puts "Creando articulo: #{new_article.id}"
-          puts "Tituto: #{new_article.title}"
-          puts "Titulo Revista: #{new_article.journal_issue.journal.title}"
-          puts "Pagina inicial: #{new_article.fpage}, Pagina final: #{new_article.lpage}"
-
-          authors = AssociatedAuthors.new(article.front)
-          begin
-            authors.insert_authors()
-          rescue ArgumentError
-            puts 'El articulo no tiene autores.'
-          end
-        else
-          puts "Error: #{new_article.errors[:journal_issue_id]}"
-          puts "Error: #{new_article.errors[:title].to_s}"
-        end
+        create_article(article)
       end
     rescue ArgumentError
       puts "Archivo #{marked_file} no es un article."
     end
   end
+
+  def create_journal(article)
+    journal = Journal.new
+    journal.title = article.journal_title
+    journal.country_id = @default_country_id
+    journal.publisher_id = @current_publisher_id
+    journal.abbrev = article.journal_title
+    journal.issn = article.journal_issn
+
+    puts "Titulo de la Revista: #{journal.title}"
+    puts "ID del pais: #{journal.country_id}"
+    puts "ID del publicador: #{journal.publisher_id}"
+    puts "Abreviacion: #{journal.abbrev}"
+    puts "ISSN: #{journal.issn}"
+    puts ""
+
+    if journal.save
+      @current_journal_id = journal.id
+      puts "Creando journal #{@current_journal_id}"
+    else
+      puts "Error: #{journal.errors[:title].to_s}"
+      puts "Error: #{journal.errors[:country_id].to_s}"
+      puts "Error: #{journal.errors[:publisher_id].to_s}"
+      puts "Error: #{journal.errors[:abbrev].to_s}"
+      puts "Error: #{journal.errors[:issn].to_s}"
+    end
+  end
+
+  def create_journal_issue(article)
+    journal_issue = JournalIssue.new
+    journal_issue.journal_id = @current_journal_id
+    journal_issue.number = article.number
+    journal_issue.volume = article.volume
+    journal_issue.supplement =article.supplement
+    journal_issue.year = article.year
+
+    puts ""
+    puts "ID Revista: #{journal_issue.journal_id}"
+    puts "Numero: #{journal_issue.number}"
+    puts "Volumen: #{journal_issue.volume}"
+    puts "Suplemento: #{journal_issue.supplement}"
+    puts "Año: #{journal_issue.year}"
+    puts ""
+
+    if journal_issue.save
+      @current_journal_issue_id = journal_issue.id
+      puts "Creando journal issue #{@current_journal_issue_id}"
+    else
+      puts "Error: #{journal_issue.errors[:journal_id].to_s}"
+      puts "Error: #{journal_issue.errors[:number].to_s}"
+      puts "Error: #{journal_issue.errors[:volume].to_s}"
+      puts "Error: #{journal_issue.errors[:supplement].to_s}"
+      puts "Error: #{journal_issue.errors[:year].to_s}"
+    end
+  end
+
+  def create_article(article)
+    new_article = Article.new
+    new_article.title = article.title
+    new_article.journal_issue_id = @current_journal_issue_id
+    new_article.fpage = article.fpage
+    new_article.lpage = article.lpage
+
+    puts "Tituto Articulo: #{new_article.title}"
+    puts "Titulo Revista: #{new_article.journal_issue.journal.title}"
+    puts "Pagina inicial: #{new_article.fpage}, Pagina final: #{new_article.lpage}"
+
+    if new_article.save
+      puts "Creando articulo: #{new_article.id}"
+      authors = AssociatedAuthors.new(article.front, new_article.id)
+
+      begin
+        authors.insert_authors()
+      rescue ArgumentError
+        puts 'El articulo no tiene autores.'
+      end
+    else
+      puts "Error: #{new_article.errors[:journal_issue_id]}"
+      puts "Error: #{new_article.errors[:title].to_s}"
+      puts "Error: #{new_article.errors[:fpage].to_s}"
+      puts "Error: #{new_article.errors[:lpage].to_s}"
+    end
+  end
 end
-
-# Country.find(:all).each { |country|
-#   puts "Id: #{country.id}, Nombre: #{country.name}, Code: #{country.code}"
-# }
-
-# Publisher.find(:all).each { |publisher|
-#   puts "id: #{publisher.id}, Titulo: #{publisher.name}"
-# }
-
-# Journal.find(:all).each { |journal|
-#   puts "id: #{journal.id}, Title: #{journal.title}, Country: #{journal.country.name}, Publisher: #{journal.publisher.name}, Abbrev: #{journal.abbrev}, ISSN: #{journal.issn}"
-# }
 
 migrator = Migrator.new()
 migrator.process_scielo()

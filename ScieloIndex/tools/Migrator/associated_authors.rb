@@ -1,7 +1,8 @@
 class AssociatedAuthors
 
-  def initialize(front)
+  def initialize(front, article_id)
     @front = front
+    @article_id = article_id
 
     match = /\[authgrp\](.*)\[\/authgrp\]/m.match(@front)
 
@@ -10,14 +11,15 @@ class AssociatedAuthors
     else
       raise ArgumentError, "El documento no tiene autores asociados."
     end
-    puts @authgrp
+    puts "DEBUG: #{@authgrp}"
   end
 
   def insert_authors
-    solo_authors = @authgrp.gsub(/\[ign\].*?\[\/ign\]/m, '')
-    @authors = solo_authors.split("[/author]")
-    puts @authors
+    @authors = @authgrp.scan(/\[author.*?\](.*?)\[\/author\]/).flatten
+
+    count = 1
     for author in @authors
+      puts "DEBUG: #{author}"
       author_hash = {
         :firstname => '',
         :middlename => '',
@@ -47,36 +49,65 @@ class AssociatedAuthors
         names.delete_at(0)
         mname = names.join(' ')
       else
-        if new_fname = /([[:upper:]])([[:upper:]].*)/.match(fname)
-          fname = new_fname[1].to_s
-          mname = new_fname[2].to_s
-        else
-          mname = ''
-        end
+        fname = names[0].to_s
+        mname = ''
       end
 
       author_hash[:firstname] = fname
       author_hash[:lastname] = sname
       author_hash[:middlename] = mname
 
-      puts "Creando autor con Nombre: #{author_hash[:firstname]}"
-      puts "Creando autor con Apellido: #{author_hash[:lastname]}"
+      search = Author.find(:first, :conditions => author_hash)
+      if !(search.nil?)
+        puts "MSG: El autor ya ha sido creado"
 
-      if !Author.find(:all, :conditions => author_hash).empty?
-        puts 'MSG: El autor ya ha sido creado'
+        create_association(search.id, count)
+        count += 1
       else
         new_author = Author.new
         new_author.firstname = author_hash[:firstname]
         new_author.middlename = author_hash[:middlename]
         new_author.lastname = author_hash[:lastname]
 
-        if new_author.save()
+        puts "Autor Nombre de Pila: #{new_author.firstname}"
+        puts "Autor Nombres: #{new_author.middlename}"
+        puts "Autor Apellidos: #{new_author.lastname}"
+        puts ""
+
+
+
+        if new_author.save
           puts "Creando autor #{new_author.id}"
+          puts ""
+
+         create_association(new_author.id, count)
+          count += 1
         else
           puts "Error: #{new_author.errors[:firstname].to_s}"
           puts "Error: #{new_author.errors[:lastname].to_s}"
         end
       end
+    end
+  end
+
+  def create_association (author_id, order)
+    article_author = ArticleAuthor.new
+    article_author.article_id = @article_id
+    article_author.author_id = author_id
+    article_author.author_order = order
+
+    puts "Creando asociacion articulo-autor"
+    puts "ID Articulo: #{article_author.article_id}"
+    puts "ID Autor: #{article_author.author_id}"
+    puts "Orden: #{article_author.author_order}"
+
+    if article_author.save
+      puts "Creando articulo-autor #{article_author.id}"
+
+    else
+      puts "Error: #{article_author.errors[:article_id].to_s}"
+      puts "Error: #{article_author.errors[:author_id].to_s}"
+      puts "Error: #{article_author.errors[:author_order].to_s}"
     end
   end
 end

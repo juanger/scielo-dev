@@ -5,7 +5,7 @@ class Author < ActiveRecord::Base
   validates_length_of :suffix, :prefix, :degree, :maximum => 10, :allow_nil => true
   validates_inclusion_of :id, :in => 1..9999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
-  validates_format_of :firstname, :lastname, :middlename, :prefix, :degree, :with => /^[-a-zA-ZáéíóúÁÉÍÓÚñÑ. ]*$/
+  validates_format_of :firstname, :lastname, :middlename, :prefix, :degree, :with => /^[-\w[:punct:]. ]*$/
   validates_format_of :suffix, :with => /^[-a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.]*$/
   validates_uniqueness_of :lastname, :scope => [:firstname, :middlename, :suffix]
 

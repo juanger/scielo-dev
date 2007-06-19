@@ -1,3 +1,9 @@
+2007-06-18  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* associated_authors.rb: Se arregló la obtebción de los nombres para que no de errores en los nombres
+
+	* migrator.rb: Se elimino el metodo process_pdf y se hicieron cambios en otros metodos. 
+
 2007-06-15  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* migrator.rb: Se arregló un error que se daba cuando un artículo no tiene autores 
