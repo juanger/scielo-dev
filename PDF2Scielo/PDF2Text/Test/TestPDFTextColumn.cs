@@ -29,7 +29,7 @@ namespace PDF2Text{
 		public void ColumnsAverage()
 		{       
 			string text = "Presentación del caso                                      normal y sin fenómenos agregados, no se aus-\n";
-				text += "ombre de 69 años de edad, originario\n";
+				text += "        ombre de 69 años de edad, originario\n";
 				text += "				\n";
                     		text += "\n";
                                 text += "                                               culta frote pericárdico. Pulmones con estertores\n";

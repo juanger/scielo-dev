@@ -94,7 +94,6 @@ public class PDFTextColumn
 	}
 	
 	public void GetTextInColumns (int indexPage, ArrayList values, float average){
-
 		string column1 = "";
 		string column2 = "";
 		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} );
@@ -104,20 +103,37 @@ public class PDFTextColumn
 			float distance = 0;
 			int position = 0;
 			string line = rawCollection [number_raw];
+			int count = 1;
+			Console.WriteLine("----------start-------");
 			foreach (DictionaryEntry de in ht){
-				distance = Math.Abs ((int)de.Key - average);
-				if (distance > distance_now){
-					Console.WriteLine("se considera la distancia de ::" + (int)de.Key);
-					distance = distance_now;
-					position = (int)de.Key;
-					//Console.WriteLine("line:::"+line.Substring(0,position));
+				if (count == 1){
+					distance = distance_now = Math.Abs ((int)de.Key - average);
+					count = 2;
+				}else{
+					Console.WriteLine("hererrrrrrrrrrrrrrrrrrrrr");
+					distance_now = Math.Abs ((int)de.Key - average);
+					Console.WriteLine("d::"+distance+"::dn::"+distance_now);
+					Console.WriteLine("line:::"+line);
+					Console.WriteLine("----------end-------");
+					if (distance > distance_now){
+						distance = distance_now;
+						position = (int)de.Key;
+						Console.WriteLine( "en if distance::");
+						//Console.WriteLine("se considera la distancia de ::" + (int)de.Key+"::"+distance);
+						//Console.WriteLine("line:::"+line.Substring(0,position));
+						//Console.WriteLine("line2::"+line.Substring(position));		
+					}
 				}
 			}
-			if( position == 0 )
-				column1 += line;
+			if (position == 0 || position < average){
+				column1 += line + "\n";
+				column2 +="\n";
+				Console.WriteLine("en if");
+			}
 			else{
 				column1 +=  line.Substring (0,position) + "\n";
 				column2 += line.Substring (position) + "\n";
+				Console.WriteLine("en else");
 			}
 			number_raw ++;
 		}
