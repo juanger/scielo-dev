@@ -42,7 +42,7 @@ class Article < ActiveRecord::Base
     if self.authors.size < limit
       self.authors.collect { |author| author.as_vancouver }.join(', ')
     else
-      (self.authors.values_at(0..(limit - 1)).collect { |author| author.as_vancouver }.join(', ') + [' et al.'])
+      (self.authors.values_at(0..(limit - 1)).collect { |author| author.as_vancouver }.join(', ') + ' et al.')
     end
   end
 
@@ -51,6 +51,6 @@ class Article < ActiveRecord::Base
   end
 
   def journal_as_vancouver
-    self.journal_issue.journal.as_vancouver + ' ' + self.journal_issue.as_vancouver + ':' + self.page_range + '.'
+    self.journal_issue.journal.as_vancouver + ' ' + self.journal_issue.as_vancouver + ':' + self.fpage + '-' + self.lpage + '.'
   end
 end

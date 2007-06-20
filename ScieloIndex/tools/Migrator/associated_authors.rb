@@ -38,6 +38,8 @@ class AssociatedAuthors
       if match
         sname = match[1].to_s
         sname = sname.sub(/\n/, '')
+        array = sname.split(' ')
+        sname = array.collect { |name| name.capitalize }.join(' ')
       else
         sname = ''
       end

@@ -1,4 +1,10 @@
+2007-06-19  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* migrator.rb: Cambios menores.
+
 2007-06-18  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* migrator.rb:  cambios menores. 
 
 	* associated_authors.rb: Se arregló la obtebción de los nombres para que no de errores en los nombres
 
