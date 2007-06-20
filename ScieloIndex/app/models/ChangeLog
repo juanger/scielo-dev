@@ -1,3 +1,8 @@
+2007-06-20  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* article.rb: Se agregó la validación para el nuevo atributo subtitle y se modificó la validación para
+	fpage, lpage y page_range,
+
 2007-06-18  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* author.rb: Cambios menores. Se modificó la expresión regular  de firstname y lastname para que 

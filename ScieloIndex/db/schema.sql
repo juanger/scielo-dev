@@ -119,6 +119,7 @@ CREATE TABLE collections (
         url  text NULL,
         email text NULL,
         other text NULL,
+        incomplete boolean DEFAULT false,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id)
@@ -146,6 +147,7 @@ CREATE TABLE journal_issues (
         number text NULL,
         supplement text NULL,
         year integer NOT NULL,
+        incomplete boolean DEFAULT false,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
@@ -155,6 +157,7 @@ CREATE TABLE journal_issues (
 CREATE TABLE articles (
         id SERIAL,
         title text NOT NULL,
+        subtitle text NULL,
         journal_issue_id int4 NOT NULL
                 REFERENCES journal_issues(id)
                 ON UPDATE CASCADE

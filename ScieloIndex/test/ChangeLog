@@ -1,3 +1,9 @@
+2007-06-20  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* unit/journal_issue_test.rb: Se agregó el test para el nuevo campo incomplete
+
+	* unit/journal_test.rb: Se agregó el test para el nuevo campo incomplete 
+
 2007-06-15  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* unit/author_test.rb: Se modificó el test para lastname y firstname para que acepten el cambio hecho a las

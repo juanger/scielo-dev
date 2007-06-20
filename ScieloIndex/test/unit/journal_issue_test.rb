@@ -146,6 +146,18 @@ class JournalIssueTest < Test::Unit::TestCase
     assert !@journal_issue.valid?
   end
 
+    def test_incompleteness
+    @journal_issue = JournalIssue.new(@myjournal)
+    @journal_issue.save()
+
+    assert_equal  false, @journal_issue.incomplete
+
+    @journal_issue.incomplete = true
+    @journal_issue.save()
+
+    assert_equal true, @journal_issue.incomplete
+  end
+
   def test_bad_values_for_year
     @journal_issue = JournalIssue.new(@myjournal_issue)
 

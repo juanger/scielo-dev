@@ -1,3 +1,7 @@
+2007-06-20  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* schema.sql: Se añadió el atributo incomplete a journal y a journal_issue
+
 2007-06-13  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* schema.sql: Se añadieron los atributos supplement y title a la tabla journal_issues
