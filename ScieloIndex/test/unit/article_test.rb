@@ -99,6 +99,20 @@ class ArticleTest < Test::Unit::TestCase
     assert !@article.valid?
   end
 
+  def test_bad_values_for_subtitle
+    @article = Article.new(@myarticle)
+
+    # Checking subtitle constraints
+    @article.subtitle = nil
+    assert @article.valid?
+
+    @article.subtitle = ""
+    assert @article.valid?
+
+    @article.subtitle = "A"*100000
+    assert !@article.valid?
+  end
+
   def test_bad_values_for_journal_issue_id
     @article = Article.new(@myarticle)
 

@@ -1,3 +1,8 @@
+2007-06-20  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* migrator.rb, sgmlarticle.rb: Cambios menores. Se modificó para que use volume y 
+	number supplement.
+
 2007-06-19  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* migrator.rb: Cambios menores.

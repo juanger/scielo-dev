@@ -154,6 +154,7 @@ class Migrator
     journal.publisher_id = @current_publisher_id
     journal.abbrev = article.journal_title
     journal.issn = article.journal_issn
+    journal.incomplete = true
 
     puts "Titulo de la Revista: #{journal.title}"
     puts "ID del pais: #{journal.country_id}"
@@ -179,14 +180,16 @@ class Migrator
     journal_issue.journal_id = @current_journal_id
     journal_issue.number = article.number
     journal_issue.volume = article.volume
-    journal_issue.supplement =article.supplement
+    journal_issue.volume_supplement = article.volume_supplement
+    journal_issue.number_supplement = article.number_supplement
     journal_issue.year = article.year
 
     puts ""
     puts "ID Revista: #{journal_issue.journal_id}"
     puts "Numero: #{journal_issue.number}"
     puts "Volumen: #{journal_issue.volume}"
-    puts "Suplemento: #{journal_issue.supplement}"
+    puts "Volumen Suplemento: #{journal_issue.volume_supplement}"
+    puts "Numero Suplemento: #{journal_issue.number_supplement}"
     puts "Año: #{journal_issue.year}"
     puts ""
 

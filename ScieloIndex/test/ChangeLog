@@ -1,6 +1,9 @@
 2007-06-20  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
-	* unit/journal_issue_test.rb: Se agregó el test para el nuevo campo incomplete
+	* unit/article_test.rb: Se agregó el test para el atributo subtitle 
+
+	* unit/journal_issue_test.rb: Se agregó el test para el nuevo campo incomplete y para los campos volume 
+	y number supplement
 
 	* unit/journal_test.rb: Se agregó el test para el nuevo campo incomplete 
 

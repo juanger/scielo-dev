@@ -1,5 +1,8 @@
 2007-06-20  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
+	* journal_issue.rb: Se agregaron volume y number supplement a las validaciones. Se modificó la expresión
+	regular para number, volume, number_supplement y volume_supplement.
+
 	* article.rb: Se agregó la validación para el nuevo atributo subtitle y se modificó la validación para
 	fpage, lpage y page_range,
 

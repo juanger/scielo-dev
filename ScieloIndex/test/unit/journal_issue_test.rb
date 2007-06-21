@@ -53,6 +53,7 @@ class JournalIssueTest < Test::Unit::TestCase
     assert !@journal_issue.save
   end
 
+  #TODO agregar pruebas con relacion a number y volume supplement.
   def test_uniqueness
     @journal_issue = JournalIssue.new(@myjournal_issue)
     assert @journal_issue.save
@@ -89,7 +90,7 @@ class JournalIssueTest < Test::Unit::TestCase
     assert !@journal_issue.valid?
   end
 
-   def test_bad_values_for_title
+  def test_bad_values_for_title
     @journal_issue = JournalIssue.new(@myjournal_issue)
 
     # Checking for volume constraints
@@ -103,20 +104,33 @@ class JournalIssueTest < Test::Unit::TestCase
     assert !@journal_issue.valid?
   end
 
-  def test_bad_values_for_supplement
+  def test_bad_values_for_volume_supplement
     @journal_issue = JournalIssue.new(@myjournal_issue)
 
-    # Checking for volume constraints
-    @journal_issue.supplement = nil
+    # Checking for volume_supplement constraints
+    @journal_issue.volume_supplement = nil
     assert @journal_issue.valid?
 
-    @journal_issue.supplement = ""
+    @journal_issue.volume_supplement = ""
     assert @journal_issue.valid?
 
-    @journal_issue.supplement = "A"*101
+    @journal_issue.volume_supplement = "A"*101
     assert !@journal_issue.valid?
   end
 
+  def test_bad_values_for_number_supplement
+    @journal_issue = JournalIssue.new(@myjournal_issue)
+
+    # Checking for number_supplement constraints
+    @journal_issue.number_supplement = nil
+    assert @journal_issue.valid?
+
+    @journal_issue.number_supplement = ""
+    assert @journal_issue.valid?
+
+    @journal_issue.number_supplement = "A"*101
+    assert !@journal_issue.valid?
+  end
 
   def test_bad_values_for_number
     @journal_issue = JournalIssue.new(@myjournal_issue)

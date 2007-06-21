@@ -1,3 +1,8 @@
+2007-06-20  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* journal_issues/_form.rhtml: Se removió el campo supplement para sustituirlo por volume y number
+	supplement
+
 2007-06-13  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* journal_issues/_form.rhtml: Se añadieron los campos de supplement y title

@@ -1,5 +1,6 @@
 class SgmlArticle
-  attr_reader :front, :body, :back, :title, :language, :journal_title, :volume, :number, :supplement, :year, :fpage, :lpage, :journal_issn
+  attr_reader :front, :body, :back, :title, :language, :journal_title, :volume, :number, :volume_supplement
+  attr_reader :number_supplement, :year, :fpage, :lpage, :journal_issn
 
   def initialize(doc_path)
     if File.file? doc_path
@@ -23,7 +24,8 @@ class SgmlArticle
     @journal_title = get_journal_title()
     @volume = get_volume()
     @number = get_number()
-    @supplement = get_supplement()
+    @volume_supplement = get_volume_supplement()
+    @number_supplement = get_number_supplement()
     @year = get_year()
     @fpage = get_fpage()
     @lpage = get_lpage()
@@ -126,10 +128,21 @@ class SgmlArticle
     end
   end
 
-  def get_supplement
+  def get_volume_supplement
     match = /(supplvol=)(\d+)/.match(@article_tag)
     if match
       match[2].to_s
+    else
+      ""
+    end
+  end
+
+  def get_number_supplement
+    match = /(supplno=)(\d+)/.match(@article_tag)
+    if match
+      match[2].to_s
+    else
+      ""
     end
   end
 end

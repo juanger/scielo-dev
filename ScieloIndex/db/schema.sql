@@ -145,13 +145,15 @@ CREATE TABLE journal_issues (
                 DEFERRABLE,
         volume text NULL,
         number text NULL,
-        supplement text NULL,
+        volume_supplement text NULL,
+        number_supplement text NULL,
         year integer NOT NULL,
         incomplete boolean DEFAULT false,
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
-        UNIQUE(journal_id, number, volume, year, supplement)
+        UNIQUE(journal_id, number, volume, year, volume_supplement),
+        UNIQUE(journal_id, number, volume, year, number_supplement)
 );
 
 CREATE TABLE articles (
