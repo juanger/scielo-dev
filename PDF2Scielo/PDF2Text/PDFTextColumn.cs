@@ -72,22 +72,56 @@ public class PDFTextColumn
 		return totalValues;
 	}
 	
-	public float GetArithmeticAverageInPage (ArrayList values)
+	public float GetArithmeticAverageInPage (ArrayList values, int index)
 	{
 		int sum = 0;
 		int count = 0;
 		float average = 0;
+		string [] rawCollection = (pages[index]).Split (new Char [] {'\n'} );
+		int i = 0;
 		foreach (Hashtable ht in values){
 			if (ht.Count == 1){
 				foreach (DictionaryEntry de in ht){
 					sum = sum + (int)de.Key;
 					count ++;
 				}
+				Console.WriteLine("line::"+i+rawCollection[i]+"::");
 			}
+			i++;
 		}
 		average = sum / count;
 		Console.WriteLine("Average::"+average);
 		return average;
+	}
+	
+	public float getRepeatPosition (ArrayList values, int index){
+		int i = 0;
+		Hashtable vr = new Hashtable ();
+		foreach (Hashtable ht in values){
+			if (ht.Count == 1){
+				foreach (DictionaryEntry de in ht){
+					if(!vr.ContainsKey((int)de.Key)){
+						vr.Add(de.Key,1);
+					}else{
+						int val = (int) vr[de.Key];
+						vr[de.Key] = val+1;
+					}
+				}
+			}
+			i++;
+		}
+		
+		int valM = 0;
+		int valK = 0;
+		foreach(DictionaryEntry de in vr){
+			if( (int)de.Value > valM ){
+				valM = (int)de.Value;
+				valK = (int)de.Key;
+			}
+		}
+		
+		Console.WriteLine("ahora la mas grande ::" + valM + "::"+valK);
+        	return (float)valK;
 	}
 	
 	public void GetTextInColumns (int indexPage, ArrayList values, float average){
@@ -110,20 +144,21 @@ public class PDFTextColumn
  						count = 2;
  					}else{
 	 					distance_now = Math.Abs ((int)de.Key - average); 
- 						if (distance > distance_now){ 
+ 						if (distance >= distance_now){ 
  							distance = distance_now; 
  							position = (int)de.Key; 
- 			       	   		} 
+ 						} 
  		       	   		}	
  	    			} 
- 			if( position == 0 || position < average){ 
+ 			if (position == 0 || position < average){ 
  				column1 += line + "\n";
  				column2 +="\n";
- 				Console.WriteLine("Position:: "+position+" Average::"+average+" line::"+line);
+ 				//Console.WriteLine("Position para columna 1:: "+position+"::"+ line[position]+"::line::"+line);
  			}
  			else{ 
  				column1 +=  line.Substring (0,position) + "\n"; 
  				column2 += line.Substring (position) + "\n";
+ 				//Console.WriteLine("Position para columna 2::"+position+"::"+line[position+1]+"::line::"+line);
  			}
  			number_raw ++; 
  		} 

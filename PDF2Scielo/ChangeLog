@@ -1,3 +1,7 @@
+2007-06-20  Full Name <Email Address> 
+
+	Se crea en la clase PDFTextColumn un método diferente para calcular la división de columnas
+
 2007-06-19  Full Name <Email Address> 
 
 	* PDF2Text/PDFTextColumn.cs: Modificamos el método que separa el texto

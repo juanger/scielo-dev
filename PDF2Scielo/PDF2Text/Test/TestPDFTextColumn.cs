@@ -74,7 +74,7 @@ text += "                                                                       
 text += "                                                 Ild\n";
 text += "                     QRS,                                                     los electrodos de V,. V,, y a veces V,, exploran la\n";
 text += "                                                                              zona trabecular de dicho ventrículo.\n";
-text += "                   Fig. 2. Proyección de los principales vectores resul-\n";
+text += "		    Fig. 2. Proyección de los principales vectores resul-\n";
 text += "                                                                              Los datos electrocardiográficos relacionados con\n";
 text += "                   tantes de la activaci6n ventricular en la curva\n";
 text += "                   vectocardiogrtífica correspondiente. QRSF:Plano fron-      cambios de la posición cardíaca por enfisema se\n";
@@ -115,7 +115,9 @@ text += "                                                                       
 			PDFTextColumn pdftc = new PDFTextColumn(text);
 			string page = pdftc.pages[1];
 			ArrayList aL = pdftc.GetInfoInPage (1);
-			float average = pdftc.GetArithmeticAverageInPage (aL);
+			//float average = pdftc.GetArithmeticAverageInPage (aL, 1);
+			float average = pdftc.getRepeatPosition (aL, 1);
+
 			pdftc.GetTextInColumns (1, aL, average);
 			//Assert.AreEqual (average, 41, "CA");			
 		}
