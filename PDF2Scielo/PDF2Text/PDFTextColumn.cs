@@ -111,16 +111,42 @@ public class PDFTextColumn
 			i++;
 		}
 		
-		int valM = 0;
+		int valV = 0;
 		int valK = 0;
 		foreach(DictionaryEntry de in vr){
-			if( (int)de.Value > valM ){
-				valM = (int)de.Value;
+			if( (int)de.Value > valV ){
+				valV = (int)de.Value;
 				valK = (int)de.Key;
 			}
+			Console.WriteLine("valores almacenados::"+(int)de.Value+"::"+(int)de.Key);
 		}
+		Console.WriteLine("ahora la mas grande ::" + valV + "::"+valK);
 		
-		Console.WriteLine("ahora la mas grande ::" + valM + "::"+valK);
+		int valM = 0;
+		int valN = 0;
+		foreach(DictionaryEntry de in vr){
+			if ((int)de.Value > valM && (int)de.Value != valV) {
+				valM = (int)de.Value;
+				valN = (int)de.Key;
+			}
+		}
+		Console.WriteLine("El penultimo::"+valM+"::"+valN);
+		int valD = 0;
+		int j= 0;
+		int number_raw = 0;
+		string [] rawCollection = (pages[index]).Split (new Char [] {'\n'} );
+		foreach (Hashtable ht in values){
+			if (ht.Count == 1) {
+				foreach (DictionaryEntry de in ht) { 
+					valD = (int)de.Key;
+					if (valD == valK) {
+						Console.WriteLine("line:"+j+"::"+rawCollection[j]+"::");
+					}
+				}
+			}
+			Console.WriteLine("long::"+rawCollection[j].Length);
+			j++;
+		}
         	return (float)valK;
 	}
 	
