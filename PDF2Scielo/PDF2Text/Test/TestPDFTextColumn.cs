@@ -21,8 +21,7 @@ namespace PDF2Text{
 		[Test()]
 		public void CreateColumns()
 		{
-			PDFTextColumn pdftc = new PDFTextColumn("columna 1   columna2 \n columna1   Columna 2 \n COLUMNA 1        COLUMNA2");
-			string page = pdftc.pages[1];		
+			PDFTextColumn pdftc = new PDFTextColumn("columna 1   columna2 \n columna1   Columna 2 \n COLUMNA 1        COLUMNA2");	
 		}
 		
 		[Test()]
@@ -132,10 +131,9 @@ text += "                                                                       
 
           				
 			PDFTextColumn pdftc = new PDFTextColumn(text);
-			string page = pdftc.pages[1];
 			ArrayList aL = pdftc.GetInfoInPage (1);
 			//float average = pdftc.GetArithmeticAverageInPage (aL, 1);
-			float average = pdftc.getRepeatPosition (aL, 1);
+			float average = pdftc.GetRepeatPosition (aL, 1);
 
 			pdftc.GetTextInColumns (1, aL, average);
 			//Assert.AreEqual (average, 41, "CA");			

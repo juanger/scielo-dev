@@ -43,10 +43,8 @@ public class PDFTextColumn
 		ArrayList totalValues = new ArrayList ();
 		string [] rawCollection = (pages[index]).Split (new Char [] {'\n'} );
 		foreach (string line in rawCollection) {
-			int [] valuesRaw = new int[2];
 			int count = 0;
 			int space = 0;
-			int position = 0;
 			int position_value = 0;
 			Hashtable ht = new Hashtable ();
 			foreach (char character in line) {
@@ -63,10 +61,6 @@ public class PDFTextColumn
 				}	
 				count++;	
 			}
-			/*foreach (DictionaryEntry de in ht){
-				Console.Write("element in hash Key = {0}, Value = {1}", de.Key, de.Value);
-			}
-			Console.WriteLine("\n");*/
 			totalValues.Add(ht);
 		}
 		return totalValues;
@@ -94,7 +88,8 @@ public class PDFTextColumn
 		return average;
 	}
 	
-	public float getRepeatPosition (ArrayList values, int index){
+	public float GetRepeatPosition (ArrayList values, int index)
+	{
 		int i = 0;
 		Hashtable vr = new Hashtable ();
 		foreach (Hashtable ht in values){
@@ -110,48 +105,43 @@ public class PDFTextColumn
 			}
 			i++;
 		}
+		int division = UpperLength ((pages[index]).Split (new Char [] {'\n'}));
 		
+		return UpperValue(vr);
+	}
+	
+	public float UpperValue(Hashtable vr)
+	{
 		int valV = 0;
 		int valK = 0;
 		foreach(DictionaryEntry de in vr){
 			if( (int)de.Value > valV ){
 				valV = (int)de.Value;
 				valK = (int)de.Key;
-			}
-			Console.WriteLine("valores almacenados::"+(int)de.Value+"::"+(int)de.Key);
-		}
-		Console.WriteLine("ahora la mas grande ::" + valV + "::"+valK);
-		
-		int valM = 0;
-		int valN = 0;
-		foreach(DictionaryEntry de in vr){
-			if ((int)de.Value > valM && (int)de.Value != valV) {
-				valM = (int)de.Value;
-				valN = (int)de.Key;
+	
 			}
 		}
-		Console.WriteLine("El penultimo::"+valM+"::"+valN);
-		int valD = 0;
-		int j= 0;
-		int number_raw = 0;
-		string [] rawCollection = (pages[index]).Split (new Char [] {'\n'} );
-		foreach (Hashtable ht in values){
-			if (ht.Count == 1) {
-				foreach (DictionaryEntry de in ht) { 
-					valD = (int)de.Key;
-					if (valD == valK) {
-						Console.WriteLine("line:"+j+"::"+rawCollection[j]+"::");
-					}
-				}
-			}
-			Console.WriteLine("long::"+rawCollection[j].Length);
-			j++;
-		}
-        	return (float)valK;
+		return (float)valK;
 	}
 	
-	public void GetTextInColumns (int indexPage, ArrayList values, float average){
-		
+	public DictionaryEntry Value(Hashtable vr, int index)
+	{
+		DictionaryEntry de = new DictionaryEntry();
+		return de;
+	}
+	
+	public int UpperLength (string[] rawCollection){
+		int leng = 0;
+		foreach(string element in rawCollection){
+			if( element.Length > leng )
+				leng = element.Length;
+		}
+		//Console.WriteLine("La longitud mas grande::" + leng);		
+		return leng;
+	}
+	
+	public void GetTextInColumns (int indexPage, ArrayList values, float average)
+	{	
 		string column1 = ""; 
  		string column2 = ""; 
  		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
