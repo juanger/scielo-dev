@@ -1,0 +1,29 @@
+Requisitos mínimos:
+
+* Una instalación de Ruby y Ruby on Rails 
+	http://www.rubyonrails.org/down
+	http://wiki.rubyonrails.org/rails/pages/RailsOnUbuntu
+	http://wiki.rubyonrails.org/rails/pages/HowtosInstallation
+	http://www.onlamp.com/pub/a/onlamp/2006/12/14/revisiting-ruby-on-rails-revisited.html
+* Una instalación de PostgreSQL  
+	http://www.postgresql.org/ftp/binary/v8.2.4/
+	http://www.postgresql.org/docs/8.2/static/tutorial-install.html
+	http://wiki.rubyonrails.org/rails/pages/PostgreSQL
+
+Para inicializar la base de datos:
+
+$ createuser scielo
+
+$ createdb -U scielo scielo_development
+
+$ psql -U scielo scielo_development < index.sql
+
+$ createdb -U scielo scielo_test
+
+$ psql -U scielo scielo_test < schema.sql
+
+Para inicializar el servidor:
+
+$ cd {Directorio raiz de ScieloIndex}
+
+$ ./script/server 
