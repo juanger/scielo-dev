@@ -1,0 +1,28 @@
+Requisitos:
+
+* Cualquier distribución Linux con los siguientes paquetes (incluyendo de desarrollo):
+	mono  1.2.3.1 
+	poppler 0.5.4
+
+Para poder construir el proyecto es necesario el uso de nant 0.85 o monodevelop 0.14
+
+-- Instrucciones para nant --
+
+Para construir y correr PDF2Scielo se debe hacer lo siguiente:
+
+$ cd {Ruta a raiz de PDF2Scielo}
+
+$ nant build
+
+$ nant run
+
+-- Instrucciones para monodevelop--
+
+Para construir y correr desde monodevelop:
+
+File -> Open...
+
+Ir a la raiz de PDF2Scielo
+
+Seleccionar el archivo PDF2Scielo.mds
+
