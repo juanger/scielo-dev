@@ -50,7 +50,12 @@ class SgmlArticle
   def get_title
     match = /(\[title.*\])(.*)(\[\/title\])/m.match(@front)
     if match
-      match[2].to_s
+      titulo =  match[2].to_s
+      if titulo.chars.upcase.to_s == titulo
+        titulo.chars.capitalize.to_s
+      else
+        titulo
+      end
     else
       ""
     end

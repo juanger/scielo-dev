@@ -5,6 +5,7 @@ $KCODE='u'
 require File.dirname(__FILE__) + '/../../config/environment'
 require 'sgmlarticle'
 require 'associated_authors'
+require 'associated_references'
 require 'jcode'
 require 'iconv'
 
@@ -219,7 +220,7 @@ class Migrator
     if new_article.save
       puts "Creando articulo: #{new_article.id}"
       authors = AssociatedAuthors.new(article.front, new_article.id)
-
+      references = AssociatedReferences.new(article.back, new_article.id)
       begin
         authors.insert_authors()
       rescue ArgumentError
