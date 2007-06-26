@@ -134,7 +134,7 @@ text += "                                                                       
 			ArrayList aL = pdftc.GetInfoInPage (1);
 			//float average = pdftc.GetArithmeticAverageInPage (aL, 1);
 			float average = pdftc.GetRepeatPosition (aL, 1);
-
+			Console.WriteLine("valor::::::::::::::::::::#########################################"+average);
 			pdftc.GetTextInColumns (1, aL, average);
 			//Assert.AreEqual (average, 41, "CA");			
 		}

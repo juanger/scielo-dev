@@ -1,5 +1,5 @@
 // PDFTextColumn: This class works with text in two columns and separate in two 
-//		  columns.
+// columns.
 // Archivos de Cardiología de México
 //
 // Author:
@@ -18,6 +18,8 @@ namespace PDF2Text
 	
 public class PDFTextColumn
 {
+	private Hashtable vr = new Hashtable ();
+	private int threshold = -1;
 	public string [] pages;
 	public string text;
 		
@@ -57,6 +59,7 @@ public class PDFTextColumn
 				if (space >= 2 && count < line.Length-1 && line[count+1] != ' '){
 					if (!ht.Contains(position_value)){
 						ht.Add (position_value, space);
+						Console.WriteLine("insert::key::"+position_value+":value:"+space+"::line::"+line);
 					}
 				}	
 				count++;	
@@ -91,8 +94,9 @@ public class PDFTextColumn
 	public float GetRepeatPosition (ArrayList values, int index)
 	{
 		int i = 0;
-		Hashtable vr = new Hashtable ();
+		string [] rawCollection = pages[index].Split (new Char [] {'\n'});
 		foreach (Hashtable ht in values){
+			
 			if (ht.Count == 1){
 				foreach (DictionaryEntry de in ht){
 					if(!vr.ContainsKey((int)de.Key)){
@@ -101,16 +105,26 @@ public class PDFTextColumn
 						int val = (int) vr[de.Key];
 						vr[de.Key] = val+1;
 					}
+					Console.WriteLine("index::"+i+":key:"+de.Key+":value:"+de.Value);
 				}
+				Console.WriteLine("line:"+i+"::" + rawCollection[i]);
 			}
 			i++;
 		}
-		int division = UpperLength ((pages[index]).Split (new Char [] {'\n'}));
-		
-		return UpperValue(vr);
+		int maxL = UpperLength ((pages[index]).Split (new Char [] {'\n'}));
+		threshold = 5*(maxL/11);
+ 		float upper_value = (float)UpperValue();
+ 		for (int k=0; k<vr.Count; k++){
+ 			if ( upper_value > threshold){
+ 				Console.WriteLine ("regresamos la position::"+upper_value+"::thr::"+threshold);
+ 				break;
+ 			}
+ 			upper_value = (float)UpperValue();
+ 		}
+ 		return upper_value;
 	}
 	
-	public float UpperValue(Hashtable vr)
+	public float UpperValue ()
 	{
 		int valV = 0;
 		int valK = 0;
@@ -118,9 +132,9 @@ public class PDFTextColumn
 			if( (int)de.Value > valV ){
 				valV = (int)de.Value;
 				valK = (int)de.Key;
-	
 			}
 		}
+		vr.Remove(valK);
 		return (float)valK;
 	}
 	
@@ -166,7 +180,7 @@ public class PDFTextColumn
  						} 
  		       	   		}	
  	    			} 
- 			if (position == 0 || position < average){ 
+ 			if (position == 0 || position < threshold){ 
  				column1 += line + "\n";
  				column2 +="\n";
  				//Console.WriteLine("Position para columna 1:: "+position+"::"+ line[position]+"::line::"+line);
