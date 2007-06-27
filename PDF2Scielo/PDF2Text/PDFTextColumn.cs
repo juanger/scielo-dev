@@ -107,12 +107,13 @@ public class PDFTextColumn
 					}
 					Console.WriteLine("index::"+i+":key:"+de.Key+":value:"+de.Value);
 				}
-				Console.WriteLine("line:"+i+"::" + rawCollection[i]);
+				Console.WriteLine("line:"+i+"::" + rawCollection[i]+"::"+rawCollection[i].Length);
 			}
 			i++;
 		}
 		int maxL = UpperLength ((pages[index]).Split (new Char [] {'\n'}));
-		threshold = 5*(maxL/11);
+		Console.WriteLine ("longitud mas grande::"+maxL);
+		threshold = (maxL/2)-7;
  		float upper_value = (float)UpperValue();
  		for (int k=0; k<vr.Count; k++){
  			if ( upper_value > threshold){

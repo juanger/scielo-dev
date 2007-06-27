@@ -1,3 +1,8 @@
+2007-06-26  Full Name <Email Address> 
+
+	* PDF2Text/PDFTextColumn.cs: El método de separación de columas fue
+	  mejorado.
+
 2007-06-25  Full Name <Email Address> 
 
 	Metodo diferente para obtener el punto de division de dos columnas.
