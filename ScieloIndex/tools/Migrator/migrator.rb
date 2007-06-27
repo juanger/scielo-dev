@@ -220,9 +220,12 @@ class Migrator
     if new_article.save
       puts "Creando articulo: #{new_article.id}"
       authors = AssociatedAuthors.new(article.front, new_article.id)
+
+      #TODO: Si no hay autores no se crea las referencias asociadas al articulo.
       references = AssociatedReferences.new(article.back, new_article.id)
       begin
         authors.insert_authors()
+        references.insert_references()
       rescue ArgumentError
         puts 'El articulo no tiene autores.'
       end

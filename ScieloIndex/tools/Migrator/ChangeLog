@@ -1,3 +1,9 @@
+2007-06-26  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* associated_references.rb: Se obtuvieron las partes con las citas para los tipos vanvouver y other. 
+
+	* migrator.rb : Se agregaron las llamadas a los métodos para que obtenga las referencias.
+
 2007-06-25  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* sgmlarticle.rb: Cambio menor. Se modificó get_title para que arregle las mayúsculas en los títulos. 
