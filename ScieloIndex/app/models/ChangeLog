@@ -1,3 +1,9 @@
+2007-06-27  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* collection.rb: Se modificaron las cotas de la longitud del título. 
+
+	* journal.rb: Se agregó  allow_nil como true para la unicidad del issn. 
+
 2007-06-20  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* journal_issue.rb: Se agregaron volume y number supplement a las validaciones. Se modificó la expresión

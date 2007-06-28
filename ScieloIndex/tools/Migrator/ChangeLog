@@ -1,3 +1,13 @@
+2007-06-27  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* associated_authors.rb: Se modificó la forma de revisar los datos de los autores para que no se inserten datos
+	erroneos o cadenas vacías en vez de nil.
+
+	* associated_references.rb: Se completó el método create_other_journal para que meta a la base de datos 
+	el journal de las citas si no existe.
+
+	* migrator.rb: Se modificó para que pase como parámetros al AssociatedReferences el country_id y el publisher_id 
+
 2007-06-26  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* associated_references.rb: Se obtuvieron las partes con las citas para los tipos vanvouver y other. 

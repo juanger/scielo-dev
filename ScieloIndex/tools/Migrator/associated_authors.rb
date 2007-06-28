@@ -31,7 +31,7 @@ class AssociatedAuthors
         fname = match[1].to_s
         fname = fname.sub(/\n/, '')
       else
-        fname = ''
+        author_hash.delete(:firstname)
       end
 
       match =  /\[surname\](.*)\[\/surname\]/m.match(author)
@@ -40,8 +40,9 @@ class AssociatedAuthors
         sname = sname.sub(/\n/, '')
         array = sname.split(' ')
         sname = array.collect { |name| name.chars.capitalize.to_s }.join(' ')
+        author_hash[:lastname] = sname
       else
-        sname = ''
+        author_hash.delete(:lastname)
       end
 
       names = fname.split(' ');
@@ -50,14 +51,13 @@ class AssociatedAuthors
         fname = names[0]
         names.delete_at(0)
         mname = names.join(' ')
+        author_hash[:firstname] = fname
+        author_hash[:middlename] = mname
       else
         fname = names[0].to_s
-        mname = ''
+        author_hash[:firstname] = fname
+        author_hash.delete(:middlename)
       end
-
-      author_hash[:firstname] = fname
-      author_hash[:lastname] = sname
-      author_hash[:middlename] = mname
 
       search = Author.find(:first, :conditions => author_hash)
       if !(search.nil?)

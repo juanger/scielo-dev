@@ -222,7 +222,7 @@ class Migrator
       authors = AssociatedAuthors.new(article.front, new_article.id)
 
       #TODO: Si no hay autores no se crea las referencias asociadas al articulo.
-      references = AssociatedReferences.new(article.back, new_article.id)
+      references = AssociatedReferences.new(article.back, new_article.id, @default_country_id, @current_publisher_id)
       begin
         authors.insert_authors()
         references.insert_references()

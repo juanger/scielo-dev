@@ -2,11 +2,11 @@ class Journal < Collection
   set_table_name "journals"
   validates_length_of :abbrev, :maximum => 200, :allow_nil => true
   validates_length_of :issn, :maximum => 9, :allow_nil => true
-  validates_format_of :abbrev, :with => /^[-a-zA-ZáéíóúÁÉÍÓÚñÑ:,.&() ]*$/
+  validates_format_of :abbrev, :with => /^[^\t\r\n\f]*$/
   validates_format_of :issn, :with => /^([0-9]{4}-[0-9]{3}[0-9X])?$/
   validates_inclusion_of :id, :in => 1..9999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
-  validates_uniqueness_of :issn
+  validates_uniqueness_of :issn, :allow_nil => true
 
   has_many :journal_issues
 
