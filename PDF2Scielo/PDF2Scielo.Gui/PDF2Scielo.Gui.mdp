@@ -31,6 +31,7 @@
     <ProjectReference type="Gac" localcopy="True" refto="glade-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <ProjectReference type="Gac" localcopy="True" refto="pango-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <ProjectReference type="Gac" localcopy="True" refto="Mono.Posix, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
+    <ProjectReference type="Project" localcopy="True" refto="PDF2Text" />
   </References>
   <Deployment.LinuxDeployData scriptName="pdf2scielo-gui" />
   <GtkDesignInfo partialTypes="True" />

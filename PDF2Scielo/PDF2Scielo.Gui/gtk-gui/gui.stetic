@@ -29,12 +29,6 @@
         <property name="Label" translatable="yes">_Tools</property>
         <property name="ShortLabel" translatable="yes">_Tools</property>
       </action>
-      <action id="Markup">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Markup</property>
-        <property name="ShortLabel" translatable="yes">_Markup</property>
-        <property name="StockId">gtk-execute</property>
-      </action>
       <action id="Help">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Help</property>
@@ -46,11 +40,13 @@
         <property name="ShortLabel" translatable="yes">About</property>
         <property name="StockId">gnome-stock-about</property>
       </action>
-      <action id="MarkupDocument">
+      <action id="Markup">
         <property name="Type">Action</property>
-        <property name="Label" translatable="yes">_Markup Document</property>
-        <property name="ShortLabel" translatable="yes">_Markup Document</property>
+        <property name="Label" translatable="yes">_Markup</property>
+        <property name="Sensitive">False</property>
+        <property name="ShortLabel" translatable="yes">_Markup</property>
         <property name="StockId">gtk-convert</property>
+        <signal name="Activated" handler="OnMarkupActivated" />
       </action>
       <action id="Save">
         <property name="Type">Action</property>
@@ -85,7 +81,7 @@
                 <node type="Menuitem" action="Quit" />
               </node>
               <node type="Menu" action="Tools">
-                <node type="Menuitem" action="MarkupDocument" />
+                <node type="Menuitem" action="Markup" />
               </node>
               <node type="Menu" action="Help">
                 <node type="Menuitem" action="About" />
@@ -106,7 +102,7 @@
             <property name="ButtonStyle">Icons</property>
             <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="Open" />
-              <node type="Toolitem" action="MarkupDocument" />
+              <node type="Toolitem" action="Markup" />
             </node>
           </widget>
           <packing>
@@ -124,9 +120,10 @@
             <property name="HscrollbarPolicy">Automatic</property>
             <property name="ShadowType">In</property>
             <child>
-              <widget class="Gtk.TextView" id="textview1">
+              <widget class="Gtk.TextView" id="text_view">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
+                <property name="Editable">False</property>
                 <property name="Text" translatable="yes" />
               </widget>
             </child>
@@ -171,6 +168,7 @@
         <child>
           <widget class="Gtk.FileChooserWidget" id="open_dialog">
             <property name="MemberName" />
+            <signal name="FileActivated" handler="OnOpenDialogFileActivated" />
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -213,6 +211,7 @@
             <property name="StockId">gtk-ok</property>
             <property name="IsDialogButton">True</property>
             <property name="ResponseId">-5</property>
+            <signal name="Clicked" handler="OnButtonOkClicked" />
             <property name="label">gtk-ok</property>
           </widget>
           <packing>

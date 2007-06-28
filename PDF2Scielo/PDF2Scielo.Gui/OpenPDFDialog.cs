@@ -1,4 +1,4 @@
-//
+	//
 // OpenPDFDialog: Dialog that uses a file chooser to open a PDF document.
 //
 // Author:
@@ -13,6 +13,7 @@ using System.IO;
 
 namespace Scielo.PDF2Scielo{
 public partial class OpenPDFDialog : Gtk.Dialog {
+	private string filename = String.Empty;
 	
 	public OpenPDFDialog()
 	{
@@ -29,6 +30,41 @@ public partial class OpenPDFDialog : Gtk.Dialog {
 		
 		open_dialog.AddFilter (pdfFiles);
 		open_dialog.AddFilter (allFiles);
+		
+		string homePath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
+		open_dialog.SetCurrentFolder (homePath);
 	}
+	
+	private void OnButtonOkClicked (object sender, System.EventArgs e)
+	{
+		filename = open_dialog.Filename;
+		
+		#if DEBUG
+		Console.WriteLine ("Filename: {0}", filename);
+		#endif
+		
+		if (Directory.Exists (filename))
+			open_dialog.SetCurrentFolder (filename);
+		else
+			Respond (ResponseType.Ok);
+	}
+	
+	private void OnOpenDialogFileActivated (object sender, System.EventArgs e)
+	{
+		filename = open_dialog.Filename;
+		Respond (ResponseType.Ok);
+		
+		#if DEBUG
+		Console.WriteLine ("Filename: {0}", filename);
+		#endif
+	}
+	
+	public string Document {
+		get {
+			return filename;
+		}
+	}
+	
+	
 }
 }

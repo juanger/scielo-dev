@@ -21,13 +21,11 @@ namespace Scielo.PDF2Scielo {
         
         private Gtk.Action Tools;
         
-        private Gtk.Action Markup;
-        
         private Gtk.Action Help;
         
         private Gtk.Action About;
         
-        private Gtk.Action MarkupDocument;
+        private Gtk.Action Markup;
         
         private Gtk.Action Save;
         
@@ -41,7 +39,7 @@ namespace Scielo.PDF2Scielo {
         
         private Gtk.ScrolledWindow scrolledwindow1;
         
-        private Gtk.TextView textview1;
+        private Gtk.TextView text_view;
         
         private Gtk.Statusbar statusbar1;
         
@@ -62,18 +60,16 @@ namespace Scielo.PDF2Scielo {
             this.Tools = new Gtk.Action("Tools", Mono.Unix.Catalog.GetString("_Tools"), null, null);
             this.Tools.ShortLabel = Mono.Unix.Catalog.GetString("_Tools");
             w2.Add(this.Tools, null);
-            this.Markup = new Gtk.Action("Markup", Mono.Unix.Catalog.GetString("_Markup"), null, "gtk-execute");
-            this.Markup.ShortLabel = Mono.Unix.Catalog.GetString("_Markup");
-            w2.Add(this.Markup, null);
             this.Help = new Gtk.Action("Help", Mono.Unix.Catalog.GetString("_Help"), null, null);
             this.Help.ShortLabel = Mono.Unix.Catalog.GetString("_Help");
             w2.Add(this.Help, null);
             this.About = new Gtk.Action("About", Mono.Unix.Catalog.GetString("About"), null, "gnome-stock-about");
             this.About.ShortLabel = Mono.Unix.Catalog.GetString("About");
             w2.Add(this.About, null);
-            this.MarkupDocument = new Gtk.Action("MarkupDocument", Mono.Unix.Catalog.GetString("_Markup Document"), null, "gtk-convert");
-            this.MarkupDocument.ShortLabel = Mono.Unix.Catalog.GetString("_Markup Document");
-            w2.Add(this.MarkupDocument, null);
+            this.Markup = new Gtk.Action("Markup", Mono.Unix.Catalog.GetString("_Markup"), null, "gtk-convert");
+            this.Markup.Sensitive = false;
+            this.Markup.ShortLabel = Mono.Unix.Catalog.GetString("_Markup");
+            w2.Add(this.Markup, null);
             this.Save = new Gtk.Action("Save", Mono.Unix.Catalog.GetString("_Save"), null, "gtk-save");
             this.Save.ShortLabel = Mono.Unix.Catalog.GetString("_Save");
             w2.Add(this.Save, null);
@@ -89,7 +85,7 @@ namespace Scielo.PDF2Scielo {
             this.vbox1 = new Gtk.VBox();
             this.vbox1.Name = "vbox1";
             // Container child vbox1.Gtk.Box+BoxChild
-            w1.AddUiFromString("<ui><menubar name='menubar1'><menu action='File'><menuitem action='Open'/><separator/><menuitem action='Save'/><menuitem action='SaveAs'/><separator/><menuitem action='Quit'/></menu><menu action='Tools'><menuitem action='MarkupDocument'/></menu><menu action='Help'><menuitem action='About'/></menu></menubar></ui>");
+            w1.AddUiFromString("<ui><menubar name='menubar1'><menu action='File'><menuitem action='Open'/><separator/><menuitem action='Save'/><menuitem action='SaveAs'/><separator/><menuitem action='Quit'/></menu><menu action='Tools'><menuitem action='Markup'/></menu><menu action='Help'><menuitem action='About'/></menu></menubar></ui>");
             this.menubar1 = ((Gtk.MenuBar)(w1.GetWidget("/menubar1")));
             this.menubar1.Name = "menubar1";
             this.vbox1.Add(this.menubar1);
@@ -98,7 +94,7 @@ namespace Scielo.PDF2Scielo {
             w3.Expand = false;
             w3.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
-            w1.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem action='Open'/><toolitem action='MarkupDocument'/></toolbar></ui>");
+            w1.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem action='Open'/><toolitem action='Markup'/></toolbar></ui>");
             this.toolbar1 = ((Gtk.Toolbar)(w1.GetWidget("/toolbar1")));
             this.toolbar1.Name = "toolbar1";
             this.toolbar1.ShowArrow = false;
@@ -116,10 +112,11 @@ namespace Scielo.PDF2Scielo {
             this.scrolledwindow1.HscrollbarPolicy = ((Gtk.PolicyType)(1));
             this.scrolledwindow1.ShadowType = ((Gtk.ShadowType)(1));
             // Container child scrolledwindow1.Gtk.Container+ContainerChild
-            this.textview1 = new Gtk.TextView();
-            this.textview1.CanFocus = true;
-            this.textview1.Name = "textview1";
-            this.scrolledwindow1.Add(this.textview1);
+            this.text_view = new Gtk.TextView();
+            this.text_view.CanFocus = true;
+            this.text_view.Name = "text_view";
+            this.text_view.Editable = false;
+            this.scrolledwindow1.Add(this.text_view);
             this.vbox1.Add(this.scrolledwindow1);
             Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox1[this.scrolledwindow1]));
             w6.Position = 2;
@@ -142,6 +139,7 @@ namespace Scielo.PDF2Scielo {
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
             this.Open.Activated += new System.EventHandler(this.OnOpenActivated);
             this.Quit.Activated += new System.EventHandler(this.OnQuitActivated);
+            this.Markup.Activated += new System.EventHandler(this.OnMarkupActivated);
         }
     }
 }
