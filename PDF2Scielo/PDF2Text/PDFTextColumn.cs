@@ -193,7 +193,7 @@ public class PDFTextColumn
  			}
  			number_raw ++; 
  		} 
- 		Console.WriteLine("--------------------LAS COLUMAS----------------"); 
+ 		Console.WriteLine("--------------------LAS COLUMNAS----------------"); 
  		Console.WriteLine("--------------Columna1 ------------------------"); 
  		Console.WriteLine(column1); 
  		Console.WriteLine("-----------------------------------------------"); 
