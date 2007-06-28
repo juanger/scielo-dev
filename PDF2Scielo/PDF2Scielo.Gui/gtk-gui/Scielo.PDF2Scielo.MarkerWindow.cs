@@ -13,17 +13,131 @@ namespace Scielo.PDF2Scielo {
     
     public partial class MarkerWindow {
         
+        private Gtk.Action File;
+        
+        private Gtk.Action Open;
+        
+        private Gtk.Action Quit;
+        
+        private Gtk.Action Tools;
+        
+        private Gtk.Action Markup;
+        
+        private Gtk.Action Help;
+        
+        private Gtk.Action About;
+        
+        private Gtk.Action MarkupDocument;
+        
+        private Gtk.Action Save;
+        
+        private Gtk.Action SaveAs;
+        
+        private Gtk.VBox vbox1;
+        
+        private Gtk.MenuBar menubar1;
+        
+        private Gtk.Toolbar toolbar1;
+        
+        private Gtk.ScrolledWindow scrolledwindow1;
+        
+        private Gtk.TextView textview1;
+        
+        private Gtk.Statusbar statusbar1;
+        
         protected virtual void Build() {
             Stetic.Gui.Initialize();
             // Widget Scielo.PDF2Scielo.MarkerWindow
+            Gtk.UIManager w1 = new Gtk.UIManager();
+            Gtk.ActionGroup w2 = new Gtk.ActionGroup("Default");
+            this.File = new Gtk.Action("File", Mono.Unix.Catalog.GetString("_File"), null, null);
+            this.File.ShortLabel = Mono.Unix.Catalog.GetString("_File");
+            w2.Add(this.File, null);
+            this.Open = new Gtk.Action("Open", Mono.Unix.Catalog.GetString("_Open"), null, "gtk-open");
+            this.Open.ShortLabel = Mono.Unix.Catalog.GetString("_Open");
+            w2.Add(this.Open, null);
+            this.Quit = new Gtk.Action("Quit", Mono.Unix.Catalog.GetString("_Quit"), null, "gtk-quit");
+            this.Quit.ShortLabel = Mono.Unix.Catalog.GetString("_Quit");
+            w2.Add(this.Quit, null);
+            this.Tools = new Gtk.Action("Tools", Mono.Unix.Catalog.GetString("_Tools"), null, null);
+            this.Tools.ShortLabel = Mono.Unix.Catalog.GetString("_Tools");
+            w2.Add(this.Tools, null);
+            this.Markup = new Gtk.Action("Markup", Mono.Unix.Catalog.GetString("_Markup"), null, "gtk-execute");
+            this.Markup.ShortLabel = Mono.Unix.Catalog.GetString("_Markup");
+            w2.Add(this.Markup, null);
+            this.Help = new Gtk.Action("Help", Mono.Unix.Catalog.GetString("_Help"), null, null);
+            this.Help.ShortLabel = Mono.Unix.Catalog.GetString("_Help");
+            w2.Add(this.Help, null);
+            this.About = new Gtk.Action("About", Mono.Unix.Catalog.GetString("About"), null, "gnome-stock-about");
+            this.About.ShortLabel = Mono.Unix.Catalog.GetString("About");
+            w2.Add(this.About, null);
+            this.MarkupDocument = new Gtk.Action("MarkupDocument", Mono.Unix.Catalog.GetString("_Markup Document"), null, "gtk-convert");
+            this.MarkupDocument.ShortLabel = Mono.Unix.Catalog.GetString("_Markup Document");
+            w2.Add(this.MarkupDocument, null);
+            this.Save = new Gtk.Action("Save", Mono.Unix.Catalog.GetString("_Save"), null, "gtk-save");
+            this.Save.ShortLabel = Mono.Unix.Catalog.GetString("_Save");
+            w2.Add(this.Save, null);
+            this.SaveAs = new Gtk.Action("SaveAs", Mono.Unix.Catalog.GetString("Save _As"), null, "gtk-save-as");
+            this.SaveAs.ShortLabel = Mono.Unix.Catalog.GetString("Save _As");
+            w2.Add(this.SaveAs, null);
+            w1.InsertActionGroup(w2, 0);
+            this.AddAccelGroup(w1.AccelGroup);
             this.Name = "Scielo.PDF2Scielo.MarkerWindow";
-            this.Title = Mono.Unix.Catalog.GetString("MainWindow");
+            this.Title = Mono.Unix.Catalog.GetString("Marcador Automatico PDF2Scielo");
             this.WindowPosition = ((Gtk.WindowPosition)(4));
+            // Container child Scielo.PDF2Scielo.MarkerWindow.Gtk.Container+ContainerChild
+            this.vbox1 = new Gtk.VBox();
+            this.vbox1.Name = "vbox1";
+            // Container child vbox1.Gtk.Box+BoxChild
+            w1.AddUiFromString("<ui><menubar name='menubar1'><menu action='File'><menuitem action='Open'/><separator/><menuitem action='Save'/><menuitem action='SaveAs'/><separator/><menuitem action='Quit'/></menu><menu action='Tools'><menuitem action='MarkupDocument'/></menu><menu action='Help'><menuitem action='About'/></menu></menubar></ui>");
+            this.menubar1 = ((Gtk.MenuBar)(w1.GetWidget("/menubar1")));
+            this.menubar1.Name = "menubar1";
+            this.vbox1.Add(this.menubar1);
+            Gtk.Box.BoxChild w3 = ((Gtk.Box.BoxChild)(this.vbox1[this.menubar1]));
+            w3.Position = 0;
+            w3.Expand = false;
+            w3.Fill = false;
+            // Container child vbox1.Gtk.Box+BoxChild
+            w1.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem action='Open'/><toolitem action='MarkupDocument'/></toolbar></ui>");
+            this.toolbar1 = ((Gtk.Toolbar)(w1.GetWidget("/toolbar1")));
+            this.toolbar1.Name = "toolbar1";
+            this.toolbar1.ShowArrow = false;
+            this.toolbar1.ToolbarStyle = ((Gtk.ToolbarStyle)(0));
+            this.vbox1.Add(this.toolbar1);
+            Gtk.Box.BoxChild w4 = ((Gtk.Box.BoxChild)(this.vbox1[this.toolbar1]));
+            w4.Position = 1;
+            w4.Expand = false;
+            w4.Fill = false;
+            // Container child vbox1.Gtk.Box+BoxChild
+            this.scrolledwindow1 = new Gtk.ScrolledWindow();
+            this.scrolledwindow1.CanFocus = true;
+            this.scrolledwindow1.Name = "scrolledwindow1";
+            this.scrolledwindow1.VscrollbarPolicy = ((Gtk.PolicyType)(1));
+            this.scrolledwindow1.HscrollbarPolicy = ((Gtk.PolicyType)(1));
+            this.scrolledwindow1.ShadowType = ((Gtk.ShadowType)(1));
+            // Container child scrolledwindow1.Gtk.Container+ContainerChild
+            this.textview1 = new Gtk.TextView();
+            this.textview1.CanFocus = true;
+            this.textview1.Name = "textview1";
+            this.scrolledwindow1.Add(this.textview1);
+            this.vbox1.Add(this.scrolledwindow1);
+            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox1[this.scrolledwindow1]));
+            w6.Position = 2;
+            // Container child vbox1.Gtk.Box+BoxChild
+            this.statusbar1 = new Gtk.Statusbar();
+            this.statusbar1.Name = "statusbar1";
+            this.statusbar1.Spacing = 6;
+            this.vbox1.Add(this.statusbar1);
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
+            w7.Position = 3;
+            w7.Expand = false;
+            w7.Fill = false;
+            this.Add(this.vbox1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 400;
-            this.DefaultHeight = 300;
+            this.DefaultWidth = 614;
+            this.DefaultHeight = 396;
             this.Show();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
         }
