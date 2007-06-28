@@ -17,7 +17,7 @@
       <Entry build="True" name="Utils" configuration="Release" />
     </Configuration>
   </Configurations>
-  <StartMode startupentry="PDF2Scielo.Gui" single="True">
+  <StartMode startupentry="PDF2Scielo" single="True">
     <Execute type="None" entry="PDF2Scielo" />
     <Execute type="None" entry="PDF2Scielo.Gui" />
     <Execute type="None" entry="PDF2Text" />

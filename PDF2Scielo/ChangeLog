@@ -1,5 +1,9 @@
 2007-06-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Scielo.mds: Dejo como startup project a PDF2Scielo CLI.
+
+2007-06-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Scielo.Gui/OpenPDFDialog.cs,
 	  PDF2Scielo.Gui/gtk-gui/Scielo.PDF2Scielo.MarkerWindow.cs,
 	  PDF2Scielo.Gui/gtk-gui/Scielo.PDF2Scielo.OpenPDFDialog.cs,
