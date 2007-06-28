@@ -100,13 +100,13 @@ class JournalTest < Test::Unit::TestCase
     @journal.title = nil
     assert !@journal.valid?
 
-    @journal.title = "Fo"
+    @journal.title = "F"
     assert !@journal.valid?
 
-    @journal.title = "A"*101
+    @journal.title = "A"*401
     assert !@journal.valid?
 
-    @journal.title = "Lars1"
+    @journal.title = "Lars\t"
     assert !@journal.valid?
   end
 
@@ -225,7 +225,7 @@ class JournalTest < Test::Unit::TestCase
     @journal.abbrev = "A"*201
     assert !@journal.valid?
 
-    @journal.abbrev = "FOO[]"
+    @journal.abbrev = "FOO\t"
     assert !@journal.valid?
   end
 

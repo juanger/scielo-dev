@@ -87,13 +87,13 @@ class CollectionTest < Test::Unit::TestCase
     @collection.title = nil
     assert !@collection.valid?
 
-    @collection.title = "Fo"
+    @collection.title = "F"
     assert !@collection.valid?
 
-    @collection.title = "A"*101
+    @collection.title = "A"*401
     assert !@collection.valid?
 
-    @collection.title = "Lars1"
+    @collection.title = "Lars\t"
     assert !@collection.valid?
   end
 

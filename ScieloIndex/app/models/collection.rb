@@ -4,7 +4,8 @@ class Collection < ActiveRecord::Base
   validates_length_of :state, :city, :maximum => 30, :allow_nil => true
   validates_length_of :url, :other, :maximum => 200, :allow_nil => true
   validates_length_of :email, :maximum => 20, :allow_nil => true
-  validates_format_of :title, :state, :city, :with => /^[^\t\r\n\f]*$/
+  validates_format_of :title, :with => /^[^\t\r\n\f]*$/
+  validates_format_of :state, :city, :with => /^[\D]*$/
   validates_format_of :url, :email, :with => /^[-a-zA-Z0-9\/.:@]*$/
   validates_format_of :other, :with => /^[-a-zA-Z0-9áéíóúÁÉÍÓÚñÑ:;'",.&?!() ]*$/
   validates_inclusion_of :country_id, :in => 1..999

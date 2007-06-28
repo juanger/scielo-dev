@@ -1,3 +1,9 @@
+2007-06-28  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* unit/journal_test.rb: Cambios en las pruebas de title y abbrev a causa de los cambios en el modelo.
+
+	* unit/collection_test.rb: Cambioes en las pruebas de title, state y city a causa de los cambios en el modelo.
+
 2007-06-20  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
 
 	* unit/article_test.rb: Se agregó el test para el atributo subtitle 
