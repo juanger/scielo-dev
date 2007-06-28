@@ -17,7 +17,6 @@ namespace Scielo {
 namespace PDF2Scielo {
 
 public class Driver {
-
 	private static void Header ()
 	{
 		Console.WriteLine (new AssemblyInfo ().ToString ());
