@@ -140,6 +140,8 @@ namespace Scielo.PDF2Scielo {
             this.DefaultHeight = 396;
             this.Show();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
+            this.Open.Activated += new System.EventHandler(this.OnOpenActivated);
+            this.Quit.Activated += new System.EventHandler(this.OnQuitActivated);
         }
     }
 }

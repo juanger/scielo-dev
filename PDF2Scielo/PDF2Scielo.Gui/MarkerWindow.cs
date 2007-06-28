@@ -18,10 +18,20 @@ public partial class MarkerWindow: Gtk.Window {
 		Build ();
 	}
 	
-	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
+	private void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
 		a.RetVal = true;
+	}
+	
+	private void OnQuitActivated (object sender, System.EventArgs e)
+	{
+		Application.Quit ();
+	}
+
+	private void OnOpenActivated (object sender, System.EventArgs e)
+	{
+		OpenPDFDialog dialog = new OpenPDFDialog ();
 	}
 }
 }
