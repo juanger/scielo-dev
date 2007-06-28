@@ -1,55 +1,55 @@
-2007-06-27  Full Name <Email Address> 
+2007-06-27  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Se realizaron pruebas para evaluar los metodos de la clase PDF2Text/PDFTextColumn.cs
 
-2007-06-26  Full Name <Email Address> 
+2007-06-26  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	* PDF2Text/PDFTextColumn.cs: El método de separación de columas fue
 	  mejorado.
 
-2007-06-25  Full Name <Email Address> 
+2007-06-25  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Metodo diferente para obtener el punto de division de dos columnas.
 
-2007-06-22  Full Name <Email Address> 
+2007-06-22  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Se modificó la forma de obtener la división de dos columnas.
 
-2007-06-21  Full Name <Email Address> 
+2007-06-21  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Se continuan con las pruebas del algoritmo para la división de columnas
 
-2007-06-20  Full Name <Email Address> 
+2007-06-20  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Se crea en la clase PDFTextColumn un método diferente para calcular la división de columnas
 
-2007-06-19  Full Name <Email Address> 
+2007-06-19  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	* PDF2Text/PDFTextColumn.cs: Modificamos el método que separa el texto
 	  en dos columnas.
 
-2007-06-18  Full Name <Email Address> 
+2007-06-18  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	pruebas de funcionamiento de la clase.
 
-2007-06-15  Full Name <Email Address> 
+2007-06-15  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Se continuaron con las pruebas en el TestPDFTextColumn para el análisis del método que separa las dos columnas
 
-2007-06-14  Full Name <Email Address> 
+2007-06-14  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	* PDF2Text/PDFTextColumn.cs: Se agrego el metodo que separa por dos
 	  columnas.
 
-2007-06-13  Full Name <Email Address> 
+2007-06-13  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	La clase cuenta todos los espacios de un renglon por pagina.
 
-2007-06-12  Full Name <Email Address> 
+2007-06-12  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Se modificó la clase PDFTextColumn para extraer texto PDF de dos columnas y se generó TestPDFTextColumns
 
-2007-06-11  Full Name <Email Address> 
+2007-06-11  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Se agrego la clase para trabajar el texto de pdf a 2 columnas.
 
@@ -228,11 +228,11 @@
 	* PDF2Scielo/Driver.cs: Por el momento se crea un archivo con extension
 	  .norm que tiene la representacion intermedia del documento PDF.
 
-2007-04-12  Full Name <Email Address> 
+2007-04-12  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Se agregaron pruebas de unidad para el método ReplaceAckTag()
 
-2007-04-12  Full Name <Email Address> 
+2007-04-12  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	* Markup/MarkupHTML.cs: Agregamos el reemplazo del tag interno ack y
 	  comentarios de modificación para de patrones de busqueda para
@@ -538,7 +538,7 @@
 	  MarkupHTML/MarkupHTML.mdp: Se cambio la version de nunint de 2.2.0
 	  a 2.2.9.
 
-2007-03-08  Full Name <Email Address> 
+2007-03-08  Virginia Teodosio P <ainigriv_t@hotmail.com> 
 
 	Modificaciones para enmarcar correctamente los pies de figuras
 
