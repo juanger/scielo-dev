@@ -10,10 +10,13 @@
 using Gtk;
 using System;
 using Scielo.PDF2Text;
+using Scielo.Markup;
 
 namespace Scielo.PDF2Scielo {
 public partial class MarkerWindow: Gtk.Window {
 	private RawDocument rdocument;
+	private NormDocument ndocument;
+	private HTMLDocument html_document;
 	
 	public MarkerWindow (): base (Gtk.WindowType.Toplevel)
 	{
@@ -47,7 +50,11 @@ public partial class MarkerWindow: Gtk.Window {
 
 	private void OnMarkupActivated (object sender, System.EventArgs e)
 	{
-		
+		ndocument = rdocument.Normalize ();
+		MarkupHTML marker = new MarkupHTML (ndocument);
+		html_document = marker.CreateHTMLDocument ();
+		text_view.Buffer.Text = html_document.GetText ();
+		Markup.Sensitive = false;
 	}
 }
 }
