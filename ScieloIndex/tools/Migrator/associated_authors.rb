@@ -66,6 +66,10 @@ class AssociatedAuthors
         create_association(search.id, count)
         count += 1
       else
+        if !author_hash[:middlename]
+          author_hash[:middlename] = ''
+        end
+
         new_author = Author.new
         new_author.firstname = author_hash[:firstname]
         new_author.middlename = author_hash[:middlename]
