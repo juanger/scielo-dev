@@ -31,6 +31,10 @@ namespace Scielo.PDF2Scielo {
         
         private Gtk.Action SaveAs;
         
+        private Gtk.Action Normalize;
+        
+        private Gtk.Action Preview;
+        
         private Gtk.VBox vbox1;
         
         private Gtk.MenuBar menubar1;
@@ -69,13 +73,21 @@ namespace Scielo.PDF2Scielo {
             this.Markup = new Gtk.Action("Markup", Mono.Unix.Catalog.GetString("_Markup"), null, "gtk-convert");
             this.Markup.Sensitive = false;
             this.Markup.ShortLabel = Mono.Unix.Catalog.GetString("_Markup");
-            w2.Add(this.Markup, null);
+            w2.Add(this.Markup, "<Control><Mod2>m");
             this.Save = new Gtk.Action("Save", Mono.Unix.Catalog.GetString("_Save"), null, "gtk-save");
             this.Save.ShortLabel = Mono.Unix.Catalog.GetString("_Save");
             w2.Add(this.Save, null);
             this.SaveAs = new Gtk.Action("SaveAs", Mono.Unix.Catalog.GetString("Save _As"), null, "gtk-save-as");
             this.SaveAs.ShortLabel = Mono.Unix.Catalog.GetString("Save _As");
             w2.Add(this.SaveAs, null);
+            this.Normalize = new Gtk.Action("Normalize", Mono.Unix.Catalog.GetString("_Normalize"), null, "gtk-execute");
+            this.Normalize.Sensitive = false;
+            this.Normalize.ShortLabel = Mono.Unix.Catalog.GetString("_Normalize");
+            w2.Add(this.Normalize, "<Control><Mod2>n");
+            this.Preview = new Gtk.Action("Preview", Mono.Unix.Catalog.GetString("_Preview"), null, "gtk-print-preview");
+            this.Preview.Sensitive = false;
+            this.Preview.ShortLabel = Mono.Unix.Catalog.GetString("_Preview");
+            w2.Add(this.Preview, null);
             w1.InsertActionGroup(w2, 0);
             this.AddAccelGroup(w1.AccelGroup);
             this.Name = "Scielo.PDF2Scielo.MarkerWindow";
@@ -85,7 +97,7 @@ namespace Scielo.PDF2Scielo {
             this.vbox1 = new Gtk.VBox();
             this.vbox1.Name = "vbox1";
             // Container child vbox1.Gtk.Box+BoxChild
-            w1.AddUiFromString("<ui><menubar name='menubar1'><menu action='File'><menuitem action='Open'/><separator/><menuitem action='Save'/><menuitem action='SaveAs'/><separator/><menuitem action='Quit'/></menu><menu action='Tools'><menuitem action='Markup'/></menu><menu action='Help'><menuitem action='About'/></menu></menubar></ui>");
+            w1.AddUiFromString("<ui><menubar name='menubar1'><menu action='File'><menuitem action='Open'/><separator/><menuitem action='Save'/><menuitem action='SaveAs'/><separator/><menuitem action='Quit'/></menu><menu action='Tools'><menuitem action='Normalize'/><menuitem action='Markup'/><menuitem action='Preview'/></menu><menu action='Help'><menuitem action='About'/></menu></menubar></ui>");
             this.menubar1 = ((Gtk.MenuBar)(w1.GetWidget("/menubar1")));
             this.menubar1.Name = "menubar1";
             this.vbox1.Add(this.menubar1);
@@ -94,7 +106,7 @@ namespace Scielo.PDF2Scielo {
             w3.Expand = false;
             w3.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
-            w1.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem action='Open'/><toolitem action='Markup'/></toolbar></ui>");
+            w1.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem action='Open'/><toolitem action='Normalize'/><toolitem action='Markup'/></toolbar></ui>");
             this.toolbar1 = ((Gtk.Toolbar)(w1.GetWidget("/toolbar1")));
             this.toolbar1.Name = "toolbar1";
             this.toolbar1.ShowArrow = false;
@@ -140,6 +152,8 @@ namespace Scielo.PDF2Scielo {
             this.Open.Activated += new System.EventHandler(this.OnOpenActivated);
             this.Quit.Activated += new System.EventHandler(this.OnQuitActivated);
             this.Markup.Activated += new System.EventHandler(this.OnMarkupActivated);
+            this.Normalize.Activated += new System.EventHandler(this.OnNormalizeActivated);
+            this.Preview.Activated += new System.EventHandler(this.OnPreviewActivated);
         }
     }
 }

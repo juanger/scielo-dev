@@ -1,4 +1,4 @@
-	//
+//
 // OpenPDFDialog: Dialog that uses a file chooser to open a PDF document.
 //
 // Author:
@@ -11,11 +11,11 @@ using Gtk;
 using System;
 using System.IO;
 
-namespace Scielo.PDF2Scielo{
+namespace Scielo.PDF2Scielo {
 public partial class OpenPDFDialog : Gtk.Dialog {
 	private string filename = String.Empty;
 	
-	public OpenPDFDialog()
+	public OpenPDFDialog ()
 	{
 		this.Build();
 		FileFilter allFiles = new FileFilter ();

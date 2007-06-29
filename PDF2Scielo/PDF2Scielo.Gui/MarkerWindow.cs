@@ -21,6 +21,9 @@ public partial class MarkerWindow: Gtk.Window {
 	public MarkerWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		rdocument = null;
+		ndocument = null;
+		html_document = null;
 	}
 	
 	private void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -33,7 +36,7 @@ public partial class MarkerWindow: Gtk.Window {
 	{
 		Application.Quit ();
 	}
-
+	
 	private void OnOpenActivated (object sender, System.EventArgs e)
 	{
 		OpenPDFDialog dialog = new OpenPDFDialog ();
@@ -43,18 +46,33 @@ public partial class MarkerWindow: Gtk.Window {
 			rdocument = reader.CreateRawDocument ();
 			text_view.Buffer.Text = rdocument.GetText ();
 			Markup.Sensitive = true;
+			Normalize.Sensitive = true;
 		}
 		
 		dialog.Destroy ();
 	}
-
+	
 	private void OnMarkupActivated (object sender, System.EventArgs e)
 	{
-		ndocument = rdocument.Normalize ();
+		if (ndocument == null)
+			ndocument = rdocument.Normalize ();	
+		
 		MarkupHTML marker = new MarkupHTML (ndocument);
 		html_document = marker.CreateHTMLDocument ();
 		text_view.Buffer.Text = html_document.GetText ();
 		Markup.Sensitive = false;
+		Preview.Sensitive = true;
+	}
+
+	private void OnNormalizeActivated (object sender, System.EventArgs e)
+	{
+		ndocument = rdocument.Normalize ();
+		text_view.Buffer.Text = ndocument.GetText ();
+		Normalize.Sensitive = false;
+	}
+
+	private void OnPreviewActivated (object sender, System.EventArgs e)
+	{
 	}
 }
 }

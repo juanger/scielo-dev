@@ -42,6 +42,7 @@
       </action>
       <action id="Markup">
         <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;m</property>
         <property name="Label" translatable="yes">_Markup</property>
         <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">_Markup</property>
@@ -59,6 +60,23 @@
         <property name="Label" translatable="yes">Save _As</property>
         <property name="ShortLabel" translatable="yes">Save _As</property>
         <property name="StockId">gtk-save-as</property>
+      </action>
+      <action id="Normalize">
+        <property name="Type">Action</property>
+        <property name="Accelerator">&lt;Control&gt;&lt;Mod2&gt;n</property>
+        <property name="Label" translatable="yes">_Normalize</property>
+        <property name="Sensitive">False</property>
+        <property name="ShortLabel" translatable="yes">_Normalize</property>
+        <property name="StockId">gtk-execute</property>
+        <signal name="Activated" handler="OnNormalizeActivated" />
+      </action>
+      <action id="Preview">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Preview</property>
+        <property name="Sensitive">False</property>
+        <property name="ShortLabel" translatable="yes">_Preview</property>
+        <property name="StockId">gtk-print-preview</property>
+        <signal name="Activated" handler="OnPreviewActivated" />
       </action>
     </action-group>
     <property name="MemberName" />
@@ -81,7 +99,9 @@
                 <node type="Menuitem" action="Quit" />
               </node>
               <node type="Menu" action="Tools">
+                <node type="Menuitem" action="Normalize" />
                 <node type="Menuitem" action="Markup" />
+                <node type="Menuitem" action="Preview" />
               </node>
               <node type="Menu" action="Help">
                 <node type="Menuitem" action="About" />
@@ -102,6 +122,7 @@
             <property name="ButtonStyle">Icons</property>
             <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="Open" />
+              <node type="Toolitem" action="Normalize" />
               <node type="Toolitem" action="Markup" />
             </node>
           </widget>

@@ -1,3 +1,11 @@
+2007-06-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* OpenPDFDialog.cs: Cambios Menores.
+	* gtk-gui/Scielo.PDF2Scielo.MarkerWindow.cs, gtk-gui/gui.stetic: Se
+	  añadieron las acciones de Normalize y Preview.
+	* MarkerWindow.cs: Implementacion de un handler para el evento de la
+	  activacion de Normalize Action.
+
 2007-06-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* OpenPDFDialog.cs, gtk-gui/Scielo.PDF2Scielo.MarkerWindow.cs,
