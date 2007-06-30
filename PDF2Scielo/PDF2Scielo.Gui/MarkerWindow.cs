@@ -9,6 +9,7 @@
 
 using Gtk;
 using System;
+using System.IO;
 using Scielo.PDF2Text;
 using Scielo.Markup;
 
@@ -73,6 +74,8 @@ public partial class MarkerWindow: Gtk.Window {
 
 	private void OnPreviewActivated (object sender, System.EventArgs e)
 	{
+//		System.IO.StreamWriter html = File.CreateText();
+		Preview preview = new Preview (html_document.GetText ());
 	}
 }
 }

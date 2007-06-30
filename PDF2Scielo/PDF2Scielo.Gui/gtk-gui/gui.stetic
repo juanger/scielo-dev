@@ -73,7 +73,6 @@
       <action id="Preview">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Preview</property>
-        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">_Preview</property>
         <property name="StockId">gtk-print-preview</property>
         <signal name="Activated" handler="OnPreviewActivated" />

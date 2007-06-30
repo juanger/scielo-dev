@@ -85,7 +85,6 @@ namespace Scielo.PDF2Scielo {
             this.Normalize.ShortLabel = Mono.Unix.Catalog.GetString("_Normalize");
             w2.Add(this.Normalize, "<Control><Mod2>n");
             this.Preview = new Gtk.Action("Preview", Mono.Unix.Catalog.GetString("_Preview"), null, "gtk-print-preview");
-            this.Preview.Sensitive = false;
             this.Preview.ShortLabel = Mono.Unix.Catalog.GetString("_Preview");
             w2.Add(this.Preview, null);
             w1.InsertActionGroup(w2, 0);
