@@ -70,8 +70,8 @@ namespace Scielo.PDF2Scielo {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 597;
-            this.DefaultHeight = 410;
+            this.DefaultWidth = 680;
+            this.DefaultHeight = 509;
             this.Show();
             this.open_dialog.FileActivated += new System.EventHandler(this.OnOpenDialogFileActivated);
             this.buttonOk.Clicked += new System.EventHandler(this.OnButtonOkClicked);

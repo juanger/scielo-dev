@@ -12,12 +12,14 @@ using System;
 using System.IO;
 using Scielo.PDF2Text;
 using Scielo.Markup;
+using Gecko;
 
 namespace Scielo.PDF2Scielo {
 public partial class MarkerWindow: Gtk.Window {
 	private RawDocument rdocument;
 	private NormDocument ndocument;
 	private HTMLDocument html_document;
+	private PreviewDialog preview = null;
 	
 	public MarkerWindow (): base (Gtk.WindowType.Toplevel)
 	{
@@ -62,6 +64,7 @@ public partial class MarkerWindow: Gtk.Window {
 		html_document = marker.CreateHTMLDocument ();
 		text_view.Buffer.Text = html_document.GetText ();
 		Markup.Sensitive = false;
+		Normalize.Sensitive = false;
 		Preview.Sensitive = true;
 	}
 
@@ -74,8 +77,11 @@ public partial class MarkerWindow: Gtk.Window {
 
 	private void OnPreviewActivated (object sender, System.EventArgs e)
 	{
-//		System.IO.StreamWriter html = File.CreateText();
-		Preview preview = new Preview (html_document.GetText ());
+		if (preview == null)
+			preview = new PreviewDialog (html_document.GetText ());
+		
+		preview.Run ();
+		preview.Hide ();
 	}
 }
 }

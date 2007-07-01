@@ -73,6 +73,7 @@
       <action id="Preview">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Preview</property>
+        <property name="Sensitive">False</property>
         <property name="ShortLabel" translatable="yes">_Preview</property>
         <property name="StockId">gtk-print-preview</property>
         <signal name="Activated" handler="OnPreviewActivated" />
@@ -121,8 +122,11 @@
             <property name="ButtonStyle">Icons</property>
             <node name="toolbar1" type="Toolbar">
               <node type="Toolitem" action="Open" />
+              <node type="Separator" />
               <node type="Toolitem" action="Normalize" />
               <node type="Toolitem" action="Markup" />
+              <node type="Separator" />
+              <node type="Toolitem" action="Preview" />
             </node>
           </widget>
           <packing>
@@ -174,7 +178,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Dialog" id="Scielo.PDF2Scielo.OpenPDFDialog" design-size="597 410">
+  <widget class="Gtk.Dialog" id="Scielo.PDF2Scielo.OpenPDFDialog" design-size="680 509">
     <property name="MemberName" />
     <property name="Title" translatable="yes">Open PDF...</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -236,6 +240,50 @@
           </widget>
           <packing>
             <property name="Position">1</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Dialog" id="Scielo.PDF2Scielo.PreviewDialog" design-size="734 642">
+    <property name="MemberName" />
+    <property name="Visible">False</property>
+    <property name="Title" translatable="yes">Preview</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Buttons">1</property>
+    <property name="HelpButton">False</property>
+    <property name="HasSeparator">False</property>
+    <child internal-child="VBox">
+      <widget class="Gtk.VBox" id="dialog1_VBox">
+        <property name="MemberName" />
+        <property name="BorderWidth">2</property>
+        <child>
+          <placeholder />
+        </child>
+      </widget>
+    </child>
+    <child internal-child="ActionArea">
+      <widget class="Gtk.HButtonBox" id="dialog1_ActionArea">
+        <property name="MemberName" />
+        <property name="Spacing">6</property>
+        <property name="BorderWidth">5</property>
+        <property name="Size">1</property>
+        <property name="LayoutStyle">End</property>
+        <child>
+          <widget class="Gtk.Button" id="buttonCancel">
+            <property name="MemberName" />
+            <property name="CanDefault">True</property>
+            <property name="CanFocus">True</property>
+            <property name="UseStock">True</property>
+            <property name="Type">StockItem</property>
+            <property name="StockId">gtk-close</property>
+            <property name="IsDialogButton">True</property>
+            <property name="ResponseId">-7</property>
+            <property name="label">gtk-close</property>
+          </widget>
+          <packing>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
           </packing>

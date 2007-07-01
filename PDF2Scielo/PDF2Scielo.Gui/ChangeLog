@@ -1,3 +1,15 @@
+2007-07-01  Hector E. Gomez Morales <hectoregm@gmail.com> 
+
+	* Preview.cs, PreviewDialog.cs,
+	  gtk-gui/Scielo.PDF2Scielo.PreviewDialog.cs: Se borra Preview y se
+	  agrega PreviewDialog.
+	* gtk-gui/Scielo.PDF2Scielo.MarkerWindow.cs,
+	  gtk-gui/Scielo.PDF2Scielo.OpenPDFDialog.cs: Cambios menores.
+	* PDF2Scielo.Gui.mdp: Se añade PreviewDialog.cs al projecto y se
+	  elimina Preview.cs
+	* MarkerWindow.cs: Se implemento la accion de Preview usando
+	  PreviewDialog.
+
 2007-06-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* OpenPDFDialog.cs: Cambios Menores.

@@ -85,6 +85,7 @@ namespace Scielo.PDF2Scielo {
             this.Normalize.ShortLabel = Mono.Unix.Catalog.GetString("_Normalize");
             w2.Add(this.Normalize, "<Control><Mod2>n");
             this.Preview = new Gtk.Action("Preview", Mono.Unix.Catalog.GetString("_Preview"), null, "gtk-print-preview");
+            this.Preview.Sensitive = false;
             this.Preview.ShortLabel = Mono.Unix.Catalog.GetString("_Preview");
             w2.Add(this.Preview, null);
             w1.InsertActionGroup(w2, 0);
@@ -105,7 +106,7 @@ namespace Scielo.PDF2Scielo {
             w3.Expand = false;
             w3.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
-            w1.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem action='Open'/><toolitem action='Normalize'/><toolitem action='Markup'/></toolbar></ui>");
+            w1.AddUiFromString("<ui><toolbar name='toolbar1'><toolitem action='Open'/><separator/><toolitem action='Normalize'/><toolitem action='Markup'/><separator/><toolitem action='Preview'/></toolbar></ui>");
             this.toolbar1 = ((Gtk.Toolbar)(w1.GetWidget("/toolbar1")));
             this.toolbar1.Name = "toolbar1";
             this.toolbar1.ShowArrow = false;
