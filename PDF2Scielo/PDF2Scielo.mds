@@ -10,7 +10,7 @@
     </Configuration>
     <Configuration name="Release" ctype="CombineConfiguration">
       <Entry build="True" name="PDF2Scielo" configuration="Release" />
-      <Entry build="True" name="PDF2Scielo" configuration="Release" />
+      <Entry build="True" name="PDF2Scielo.Gui" configuration="Release" />
       <Entry build="True" name="PDF2Text" configuration="Release" />
       <Entry build="True" name="Markup" configuration="Release" />
       <Entry build="True" name="PDFImage" configuration="Release" />
