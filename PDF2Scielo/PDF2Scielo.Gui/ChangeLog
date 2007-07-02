@@ -1,5 +1,12 @@
 2007-07-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* gtk-gui/Scielo.PDF2Scielo.MarkerWindow.cs,
+	  gtk-gui/Scielo.PDF2Scielo.AboutDialog.cs, gtk-gui/gui.stetic,
+	  PDF2Scielo.Gui.mdp, MarkerWindow.cs, AboutDialog.cs: Se añadio un
+	  dialogo sobre la aplicación.
+
+2007-07-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PreviewDialog.cs, MarkerWindow.cs: Cambio menor. Se arregló el
 	  borrado del archivo temporal.
 	* gtk-gui/Scielo.PDF2Scielo.OpenPDFDialog.cs, gtk-gui/gui.stetic: Se

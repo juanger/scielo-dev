@@ -151,6 +151,7 @@ namespace Scielo.PDF2Scielo {
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
             this.Open.Activated += new System.EventHandler(this.OnOpenActivated);
             this.Quit.Activated += new System.EventHandler(this.OnQuitActivated);
+            this.About.Activated += new System.EventHandler(this.OnAboutActivated);
             this.Markup.Activated += new System.EventHandler(this.OnMarkupActivated);
             this.Normalize.Activated += new System.EventHandler(this.OnNormalizeActivated);
             this.Preview.Activated += new System.EventHandler(this.OnPreviewActivated);

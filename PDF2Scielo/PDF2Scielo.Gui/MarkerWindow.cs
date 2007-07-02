@@ -85,5 +85,11 @@ public partial class MarkerWindow: Gtk.Window {
 		preview.Run ();
 		preview.Hide ();
 	}
+
+	private void OnAboutActivated (object sender, System.EventArgs e)
+	{
+		AboutDialog dialog = new AboutDialog ();
+		dialog.Run ();
+	}
 }
 }
