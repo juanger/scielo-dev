@@ -16,7 +16,6 @@ namespace Scielo.PDF2Scielo {
 public partial class PreviewDialog : Gtk.Dialog {
 	private WebControl preview;
 	private string tmp_path;
-	private static int tmp_file = 0;
 	
 	public PreviewDialog (string data)
 	{
@@ -31,15 +30,20 @@ public partial class PreviewDialog : Gtk.Dialog {
 	
 	public void Render (string data) 
 	{
-		string filename = (tmp_file++) + ".html";
-		string file_path = System.IO.Path.Combine (tmp_path, filename);
-		using (FileStream file = new FileStream (file_path, FileMode.Create)) {
-			StreamWriter sw = new StreamWriter (file);
-			sw.Write (data);
-			sw.Close ();
-		}
+		try {
+			string filename = "cachedDoc.html";
+			string file_path = System.IO.Path.Combine (tmp_path, filename);
+			using (FileStream file = new FileStream (file_path, FileMode.Create)) {
+				StreamWriter sw = new StreamWriter (file);
+				sw.Write (data);
+				sw.Close ();
+			}
 		
-		preview.LoadUrl (file_path);
+			preview.LoadUrl (file_path);
+			File.Delete (file_path);
+		}catch(IOException except){
+			Console.WriteLine ("ERROR: "+ except.Message);
+		}
 	}
 }
 }

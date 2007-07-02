@@ -1,3 +1,8 @@
+2007-07-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PreviewDialog.cs, PDF2Scielo.Gui.mdp: Cambio menor. Se agregó el
+	  borrado de los archivos temporales.
+
 2007-07-01  Hector E. Gomez Morales <hectoregm@gmail.com> 
 
 	* Preview.cs, PreviewDialog.cs,
