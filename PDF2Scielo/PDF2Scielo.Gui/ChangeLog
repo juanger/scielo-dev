@@ -1,5 +1,12 @@
 2007-07-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PreviewDialog.cs, MarkerWindow.cs: Cambio menor. Se arregló el
+	  borrado del archivo temporal.
+	* gtk-gui/Scielo.PDF2Scielo.OpenPDFDialog.cs, gtk-gui/gui.stetic: Se
+	  cambió el nombre del botón del diálogo a open
+
+2007-07-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PreviewDialog.cs, PDF2Scielo.Gui.mdp: Cambio menor. Se agregó el
 	  borrado de los archivos temporales.
 

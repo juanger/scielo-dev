@@ -79,6 +79,8 @@ public partial class MarkerWindow: Gtk.Window {
 	{
 		if (preview == null)
 			preview = new PreviewDialog (html_document.GetText ());
+		else
+			preview.Render (html_document.GetText ());
 		
 		preview.Run ();
 		preview.Hide ();

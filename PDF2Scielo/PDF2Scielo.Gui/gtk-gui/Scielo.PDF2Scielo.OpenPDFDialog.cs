@@ -61,7 +61,7 @@ namespace Scielo.PDF2Scielo {
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseStock = true;
             this.buttonOk.UseUnderline = true;
-            this.buttonOk.Label = "gtk-ok";
+            this.buttonOk.Label = "gtk-open";
             this.AddActionWidget(this.buttonOk, -5);
             Gtk.ButtonBox.ButtonBoxChild w5 = ((Gtk.ButtonBox.ButtonBoxChild)(w3[this.buttonOk]));
             w5.Position = 1;

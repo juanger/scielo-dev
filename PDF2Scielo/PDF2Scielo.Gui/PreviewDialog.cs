@@ -22,7 +22,8 @@ public partial class PreviewDialog : Gtk.Dialog {
 		this.Build();
 		tmp_path = System.IO.Path.GetTempPath ();
 		tmp_path = System.IO.Path.Combine (tmp_path, "editor");
-		this.preview = new WebControl (tmp_path, "EditorGecko");
+		preview = new WebControl (tmp_path, "EditorGecko");
+		preview.NetStop += OnComplete;
 		Render (data);
 		this.VBox.Add (preview);
 		preview.Show ();
@@ -40,9 +41,17 @@ public partial class PreviewDialog : Gtk.Dialog {
 			}
 		
 			preview.LoadUrl (file_path);
-			File.Delete (file_path);
 		}catch(IOException except){
 			Console.WriteLine ("ERROR: "+ except.Message);
+		}
+	}
+	
+	public void OnComplete (object o, EventArgs e)
+	{
+		try {
+			File.Delete ("cachedDoc.html");
+		} catch(IOException except){
+			Console.WriteLine ("ERROR: " + except.Message);
 		}
 	}
 }
