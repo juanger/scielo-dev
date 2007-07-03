@@ -29,11 +29,11 @@
     <File name="./Test/TestNormDocument.cs" subtype="Code" buildaction="Compile" />
     <File name="./Data" subtype="Directory" buildaction="Compile" />
     <File name="./Data/style.dtd" subtype="Code" buildaction="EmbedAsResource" />
-    <File name="./Test/test.xml" subtype="Code" buildaction="Compile" />
+    <File name="./Test/test.xml" subtype="Code" buildaction="Nothing" />
     <File name="./StyleReader.cs" subtype="Code" buildaction="Compile" />
     <File name="./Data/style.xsd" subtype="Code" buildaction="EmbedAsResource" />
-    <File name="./Test/test-schema.xml" subtype="Code" buildaction="Compile" />
-    <File name="./Test/unit-test.sources" subtype="Code" buildaction="Compile" />
+    <File name="./Test/test-schema.xml" subtype="Code" buildaction="Nothing" />
+    <File name="./Test/unit-test.sources" subtype="Code" buildaction="Nothing" />
     <File name="./Test/atm" subtype="Directory" buildaction="Compile" />
     <File name="./Test/atm/v17n01a02.htm" subtype="Code" buildaction="Nothing" />
     <File name="./Test/atm/v17n01a02.pdf" subtype="Code" buildaction="Nothing" />
