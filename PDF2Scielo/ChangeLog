@@ -1,3 +1,7 @@
+2007-07-04  Hector E. Gomez Morales  <hectorgm@ciencias.unam.mx>
+
+	* */*.build: Minor changes in Nant build files.
+
 2007-07-03  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Markup/Markup.mdp, PDF2Text/PDF2Text.mdp, PDF2Scielo.mds: Cambios

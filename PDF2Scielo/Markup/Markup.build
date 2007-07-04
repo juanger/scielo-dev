@@ -1,66 +1,66 @@
 <?xml version="1.0"?>
 <project name="Markup" default="build" basedir=".">
-   <description>Library that contains classes that mark text with HTML or XML tags of SciELO.</description>
-   <property name="libname" value="Markup" overwrite="true" />
-   <target name="clean" description="remove all generated files">
-      <delete dir="bin" failonerror="false" />
-      <delete dir="test-results" failonerror="false" />
-   </target>
-   <target name="build-release" description="compiles the source code">
-   <property name="profile" value="Release" overwrite="false" />
-       <mkdir dir="bin/${profile}" />
-       <csc target="library" output="./bin/${profile}/${libname}.dll" debug="false">
-          <sources>
-             <include name="*.cs" />
-          </sources>
-          <references>
-             <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
-          </references>
-       </csc>
-   </target>
-   <target name="build" description="compiles the source code">
-   <property name="profile" value="Debug" overwrite="false" />
-       <mkdir dir="bin/${profile}" />
-       <csc target="library" output="./bin/${profile}/${libname}.dll" debug="true">
-          <sources>
-             <include name="*.cs" />
-          </sources>
-          <references>
-             <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
-          </references>
-       </csc>
-   </target>
-   <target name="test" depends="build-release" description="Runs test units.">
-   <property name="profile" value="Release" overwrite="false" />
+  <description>Library that contains classes that mark text with HTML or XML tags of SciELO.</description>
+  <property name="libname" value="Markup" overwrite="true" />
+  <target name="build-release" description="Compiles Markup library. Release Codepath.">
+    <property name="profile" value="Release" overwrite="false" />
+    <mkdir dir="bin/${profile}" />
+    <csc target="library" output="./bin/${profile}/${libname}.dll" debug="false">
+      <sources>
+        <include name="*.cs" />
+      </sources>
+      <references>
+        <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
+      </references>
+    </csc>
+  </target>
+  <target name="build" description="Compules Markup library. Debug Codepath">
+    <property name="profile" value="Debug" overwrite="false" />
+    <mkdir dir="bin/${profile}" />
+    <csc target="library" output="./bin/${profile}/${libname}.dll" debug="true">
+      <sources>
+        <include name="*.cs" />
+      </sources>
+      <references>
+        <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
+      </references>
+    </csc>
+  </target>
+  <target name="test" depends="build-release" description="Runs test units.">
+    <property name="profile" value="Release" overwrite="false" />
     <copy todir="./bin/${profile}" flatten="true">
-       <fileset basedir=".">
-          <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
-       </fileset>
+      <fileset basedir=".">
+        <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
+      </fileset>
     </copy>
     <csc target="library" output="./bin/${profile}/Test${libname}.dll" debug="false">
       <sources>
-        <include name="./Test/TestMarkupHTML.cs" />
+        <include name="./Test/*.cs" />
       </sources>
-          <pkg-references>
-            <package name="nunit" />
-          </pkg-references>
+      <pkg-references>
+        <package name="nunit" />
+      </pkg-references>
       <references>
         <include name="./bin/${profile}/${libname}.dll" />
         <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
       </references>
     </csc>
-    	<if test="${platform::is-unix()}">
-	  <property name="nunit.exe" value="/usr/bin/nunit-console.exe" />
-           <echo message="./bin/${profile}/Test${libname}.dll" />
-           <exec program="${nunit.exe}" workingdir="./bin/${profile}" useruntimeengine="true">
-	     <arg value="Test${libname}.dll" />
-           </exec>
-	</if>
-    	<if test="${not platform::is-unix()}">
-	  <nunit2 verbose="true">
-	    <formatter type="Plain" />
-	    <test assemblyname="./bin/${profile}/Test{libname}.dll" appconfig="Test.config" />
-	  </nunit2>
-        </if>
-    </target>
+    <if test="${platform::is-unix()}">
+      <property name="nunit.exe" value="/usr/bin/nunit-console.exe" />
+      <echo message="./bin/${profile}/Test${libname}.dll" />
+      <exec program="${nunit.exe}" workingdir="./bin/${profile}" useruntimeengine="true">
+        <arg value="Test${libname}.dll" />
+      </exec>
+    </if>
+    <if test="${not platform::is-unix()}">
+      <nunit2 verbose="true">
+        <formatter type="Plain" />
+        <test assemblyname="./bin/${profile}/Test{libname}.dll" appconfig="Test.config" />
+      </nunit2>
+    </if>
+  </target>
+  <target name="clean" description="Remove all generated files">
+    <delete dir="bin" failonerror="false" />
+    <delete dir="test-results" failonerror="false" />
+  </target>
 </project>

@@ -1,26 +1,26 @@
 <?xml version="1.0"?>
 <project name="PDFImage" default="build" basedir=".">
-   <description>Library that implements classes to manipulate images in PDF documents.</description>
-   <property name="libname" value="PDFImage" overwrite="true" />
-   <target name="clean" description="remove all generated files">
-      <delete dir="bin" failonerror="false" />
-   </target>
-   <target name="build-release" description="compiles the source code">
-   <property name="profile" value="Release" overwrite="false" />
-       <mkdir dir="bin/${profile}" />
-       <csc target="library" output="./bin/${profile}/${libname}.dll" debug="false">
-          <sources>
-             <include name="*.cs" />
-          </sources>
-       </csc>
-   </target>
-   <target name="build" description="compiles the source code">
-   <property name="profile" value="Debug" overwrite="false" />
-       <mkdir dir="bin/${profile}" />
-       <csc target="library" output="./bin/${profile}/${libname}.dll" debug="true">
-          <sources>
-             <include name="*.cs" />
-          </sources>
-       </csc>
-   </target>
+  <description>Library that implements classes to manipulate images in PDF documents.</description>
+  <property name="libname" value="PDFImage" overwrite="true" />
+  <target name="build-release" description="Compiles the PDFImage library. Release Codepath.">
+    <property name="profile" value="Release" overwrite="false" />
+    <mkdir dir="bin/${profile}" />
+    <csc target="library" output="./bin/${profile}/${libname}.dll" debug="false">
+      <sources>
+        <include name="*.cs" />
+      </sources>
+    </csc>
+  </target>
+  <target name="build" description="Compiles the PDFImage library. Debug Codepath.">
+    <property name="profile" value="Debug" overwrite="false" />
+    <mkdir dir="bin/${profile}" />
+    <csc target="library" output="./bin/${profile}/${libname}.dll" debug="true">
+      <sources>
+        <include name="*.cs" />
+      </sources>
+    </csc>
+  </target>
+  <target name="clean" description="Remove all generated files">
+    <delete dir="bin" failonerror="false" />
+  </target>
 </project>

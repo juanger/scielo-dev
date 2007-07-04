@@ -1,40 +1,40 @@
 <?xml version="1.0"?>
 <project name="PDF2Scielo" default="build" basedir=".">
-   <description>Executable that takes a PDF document and outputs a HTML SciELO document.</description>
-   <property name="exename" value="pdf2scielo.exe" overwrite="true" />
-   <target name="clean" description="remove all generated files">
-      <delete dir="bin" failonerror="false" />
-   </target>
-   <target name="build-release" description="compiles the source code">
-   <property name="profile" value="Release" overwrite="false" />
-       <mkdir dir="bin/${profile}" />
-       <csc target="exe" output="./bin/${profile}/${exename}" debug="false">
-          <sources>
-             <include name="*.cs" />
-          </sources>
-	  <pkg-references>
-	    <package name="gtk-sharp-2.0" />
-	  </pkg-references>
-          <references>
-             <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
-             <include name="../Markup/bin/${profile}/Markup.dll" />
-          </references>
-       </csc>
-   </target>
-   <target name="build" description="compiles the source code">
-   <property name="profile" value="Debug" overwrite="false" />
-       <mkdir dir="bin/${profile}" />
-       <csc target="exe" output="./bin/${profile}/${exename}" debug="true">
-          <sources>
-             <include name="*.cs" />
-          </sources>
-	  <pkg-references>
-	    <package name="gtk-sharp-2.0" />
-	  </pkg-references>
-          <references>
-             <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
-             <include name="../Markup/bin/${profile}/Markup.dll" />
-          </references>
-       </csc>
-   </target>
+  <description>Executable that takes a PDF document and outputs a HTML SciELO document.</description>
+  <property name="exename" value="pdf2scielo.exe" overwrite="true" />
+  <target name="build-release" description="Compiles the CLI frontend of pdf2scielo. Release Codepath.">
+    <property name="profile" value="Release" overwrite="false" />
+    <mkdir dir="bin/${profile}" />
+    <csc target="exe" output="./bin/${profile}/${exename}" debug="false">
+      <sources>
+        <include name="*.cs" />
+      </sources>
+      <pkg-references>
+        <package name="gtk-sharp-2.0" />
+      </pkg-references>
+      <references>
+        <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
+        <include name="../Markup/bin/${profile}/Markup.dll" />
+      </references>
+    </csc>
+  </target>
+  <target name="build" description="Compiles the CLI frontend of pdf2scielo. Debug Codepath.">
+    <property name="profile" value="Debug" overwrite="false" />
+    <mkdir dir="bin/${profile}" />
+    <csc target="exe" output="./bin/${profile}/${exename}" debug="true">
+      <sources>
+        <include name="*.cs" />
+      </sources>
+      <pkg-references>
+        <package name="gtk-sharp-2.0" />
+      </pkg-references>
+      <references>
+        <include name="../PDF2Text/bin/${profile}/PDF2Text.dll" />
+        <include name="../Markup/bin/${profile}/Markup.dll" />
+      </references>
+    </csc>
+  </target>
+  <target name="clean" description="Remove all generated files">
+    <delete dir="bin" failonerror="false" />
+  </target>
 </project>

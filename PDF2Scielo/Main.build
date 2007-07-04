@@ -1,92 +1,92 @@
 <?xml version="1.0"?>
 <project name="PDF2Scielo" default="build" basedir=".">
-   <description>Program that takes a  PDF document and outputs a HTML SciELO document.</description>
-   <target name="clean" description="remove all generated files">
-     <nant target="clean">
-       <buildfiles>
-           <include name="**/*.build" />
-           <!-- avoid recursive execution of current build file -->
-           <exclude name="${project::get-buildfile-path()}" />
-       </buildfiles>
+  <description>Program that takes a  PDF document and outputs a HTML SciELO document.</description>
+  <target name="build-libraries-release" description="Compiles all the libraries needed for pdf2scielo. Release Codepath.">
+    <nant target="build-release">
+      <buildfiles>
+        <include name="Utils/Utils.build" />
+        <include name="PDFImage/PDFImage.build" />
+        <include name="PDF2Text/PDF2Text.build" />
+        <include name="Markup/Markup.build" />
+        <!-- avoid recursive execution of current build file -->
+        <exclude name="${project::get-buildfile-path()}" />
+      </buildfiles>
+    </nant>
+  </target>
+  <target name="build-release" depends="build-libraries-release" description="Compiles the frontends of pdf2scielo. Release Codepath.">
+    <property name="profile" value="Release" overwrite="false" />
+    <nant target="build-release">
+      <buildfiles>
+        <include name="PDF2Scielo/PDF2Scielo.build" />
+        <!-- avoid recursive execution of current build file -->
+        <exclude name="${project::get-buildfile-path()}" />
+      </buildfiles>
+    </nant>
+  </target>
+  <target name="build-libraries" description="Compiles all the libraries needed for pdf2scielo. Debug Codepath.">
+    <nant target="build">
+      <buildfiles>
+        <include name="Utils/Utils.build" />
+        <include name="PDFImage/PDFImage.build" />
+        <include name="PDF2Text/PDF2Text.build" />
+        <include name="Markup/Markup.build" />
+        <!-- avoid recursive execution of current build file -->
+        <exclude name="${project::get-buildfile-path()}" />
+      </buildfiles>
+    </nant>
+  </target>
+  <target name="build" depends="build-libraries" description="Compiles the frontends of pdf2scielo. Debug Codepath.">
+    <property name="profile" value="Debug" overwrite="false" />
+    <nant target="build">
+      <buildfiles>
+        <include name="PDF2Scielo/PDF2Scielo.build" />
+        <!-- avoid recursive execution of current build file -->
+        <exclude name="${project::get-buildfile-path()}" />
+      </buildfiles>
+    </nant>
+  </target>
+  <target name="run" depends="build" description="Executes the pdf2scielo program. Debug Codepath">
+    <copy todir="PDF2Scielo/bin/Debug" flatten="true">
+      <fileset basedir=".">
+        <include name="PDF2Text/bin/Debug/PDF2Text.dll" />
+        <include name="Markup/bin/Debug/Markup.dll" />
+      </fileset>
+    </copy>
+    <exec program="PDF2Scielo/bin/Debug/pdf2scielo.exe">
+      <arg value="--version" />
+    </exec>
+  </target>
+  <target name="run-release" depends="build-release" description="Executes the pdf2scielo program. Release Codepath">
+    <copy todir="PDF2Scielo/bin/Release" flatten="true">
+      <fileset basedir=".">
+        <include name="PDF2Text/bin/Release/PDF2Text.dll" />
+        <include name="Markup/bin/Release/Markup.dll" />
+      </fileset>
+    </copy>
+    <exec program="PDF2Scielo/bin/Debug/pdf2scielo.exe">
+      <arg value="--version" />
+    </exec>
+  </target>
+  <target name="test" depends="build-release" description="compiles the source code.">
+    <property name="profile" value="Debug" overwrite="false" />
+    <nant target="test">
+      <buildfiles>
+        <include name="Markup/Markup.build" />
+        <include name="Utils/Utils.build" />
+        <include name="PDF2Text/PDF2Text.build" />
+        <!-- avoid recursive execution of current build file -->
+        <exclude name="${project::get-buildfile-path()}" />
+      </buildfiles>
+    </nant>
+  </target>
+  <target name="clean" description="Remove all generated files">
+    <nant target="clean">
+      <buildfiles>
+        <include name="**/*.build" />
+        <!-- avoid recursive execution of current build file -->
+        <exclude name="${project::get-buildfile-path()}" />
+      </buildfiles>
     </nant>
     <delete dir="test-results" failonerror="false" />
-   </target>
-   <target name="build-libraries-release" description="compiles the source code.">
-     <nant target="build-release">
-       <buildfiles>
-	   <include name="Utils/Utils.build" />
-	   <include name="PDFImage/PDFImage.build" />
-	   <include name="PDF2Text/PDF2Text.build" />
-           <include name="Markup/Markup.build" />
-           <!-- avoid recursive execution of current build file -->
-           <exclude name="${project::get-buildfile-path()}" />
-       </buildfiles>
-    </nant>
-   </target>
-   <target name="build-release" depends="build-libraries-release" description="compiles the source code.">
-   <property name="profile" value="Release" overwrite="false" />
-     <nant target="build-release">
-       <buildfiles>
-           <include name="PDF2Scielo/PDF2Scielo.build" />
-           <!-- avoid recursive execution of current build file -->
-           <exclude name="${project::get-buildfile-path()}" />
-       </buildfiles>
-    </nant>
-   </target>
-   <target name="build-libraries" description="compiles the source code.">
-     <nant target="build">
-       <buildfiles>
-	   <include name="Utils/Utils.build" />
-	   <include name="PDFImage/PDFImage.build" />
-	   <include name="PDF2Text/PDF2Text.build" />
-           <include name="Markup/Markup.build" />
-           <!-- avoid recursive execution of current build file -->
-           <exclude name="${project::get-buildfile-path()}" />
-       </buildfiles>
-    </nant>
-   </target>
-   <target name="build" depends="build-libraries" description="compiles the source code.">
-   <property name="profile" value="Debug" overwrite="false" />
-     <nant target="build">
-       <buildfiles>
-           <include name="PDF2Scielo/PDF2Scielo.build" />
-           <!-- avoid recursive execution of current build file -->
-           <exclude name="${project::get-buildfile-path()}" />
-       </buildfiles>
-    </nant>
-   </target>
-   <target name="run" depends="build" description="executes the pdf2scielo program.">
-     <copy todir="PDF2Scielo/bin/Debug" flatten="true">
-       <fileset basedir=".">
-          <include name="PDF2Text/bin/Debug/PDF2Text.dll" />
-          <include name="Markup/bin/Debug/Markup.dll" />
-       </fileset>
-     </copy>
-     <exec program="PDF2Scielo/bin/Debug/pdf2scielo.exe">
-        <arg value="--version" />
-     </exec>
-   </target>
-   <target name="run-release" depends="build-release" description="executes the pdf2scielo program.">
-     <copy todir="PDF2Scielo/bin/Release" flatten="true">
-       <fileset basedir=".">
-          <include name="PDF2Text/bin/Release/PDF2Text.dll" />
-          <include name="Markup/bin/Release/Markup.dll" />
-       </fileset>
-     </copy>
-     <exec program="PDF2Scielo/bin/Debug/pdf2scielo.exe">
-        <arg value="--version" />
-     </exec>
-   </target>
-   <target name="test" depends="build-release" description="compiles the source code.">
-   <property name="profile" value="Debug" overwrite="false" />
-     <nant target="test">
-       <buildfiles>
-           <include name="Markup/Markup.build" />
-	   <include name="Utils/Utils.build" />
-	   <include name="PDF2Text/PDF2Text.build" />
-           <!-- avoid recursive execution of current build file -->
-           <exclude name="${project::get-buildfile-path()}" />
-       </buildfiles>
-    </nant>
-   </target>
+  </target>
 </project>
