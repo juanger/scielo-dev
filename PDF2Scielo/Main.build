@@ -18,6 +18,7 @@
     <nant target="build-release">
       <buildfiles>
         <include name="PDF2Scielo/PDF2Scielo.build" />
+        <include name="PDF2Scielo.Gui/PDF2Scielo.Gui.build" />
         <!-- avoid recursive execution of current build file -->
         <exclude name="${project::get-buildfile-path()}" />
       </buildfiles>
@@ -40,19 +41,21 @@
     <nant target="build">
       <buildfiles>
         <include name="PDF2Scielo/PDF2Scielo.build" />
+        <include name="PDF2Scielo.Gui/PDF2Scielo.Gui.build" />
         <!-- avoid recursive execution of current build file -->
         <exclude name="${project::get-buildfile-path()}" />
       </buildfiles>
     </nant>
   </target>
   <target name="run" depends="build" description="Executes the pdf2scielo program. Debug Codepath">
-    <copy todir="PDF2Scielo/bin/Debug" flatten="true">
+    <copy todir="PDF2Scielo.Gui/bin/Debug" flatten="true">
       <fileset basedir=".">
         <include name="PDF2Text/bin/Debug/PDF2Text.dll" />
         <include name="Markup/bin/Debug/Markup.dll" />
+        <include name="Utils/bin/Debug/Utils.dll" />
       </fileset>
     </copy>
-    <exec program="PDF2Scielo/bin/Debug/pdf2scielo.exe">
+    <exec program="PDF2Scielo.Gui/bin/Debug/pdf2scielo-gui.exe">
       <arg value="--version" />
     </exec>
   </target>
@@ -61,6 +64,7 @@
       <fileset basedir=".">
         <include name="PDF2Text/bin/Release/PDF2Text.dll" />
         <include name="Markup/bin/Release/Markup.dll" />
+        <include name="Utils/bin/Release/Utils.dll" />
       </fileset>
     </copy>
     <exec program="PDF2Scielo/bin/Debug/pdf2scielo.exe">
