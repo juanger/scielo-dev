@@ -1,0 +1,6 @@
+Name: PDFImage
+Description: PDFImage
+Version: 0.1
+
+Requires: 
+Libs: -r:@prefix@/lib/@PACKAGE@/PDFImage.dll

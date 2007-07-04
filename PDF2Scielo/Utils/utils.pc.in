@@ -1,0 +1,6 @@
+Name: Utils
+Description: Utils
+Version: 0.1
+
+Requires: 
+Libs: -r:@prefix@/lib/@PACKAGE@/Utils.dll

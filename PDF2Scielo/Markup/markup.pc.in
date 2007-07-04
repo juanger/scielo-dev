@@ -1,0 +1,6 @@
+Name: Markup
+Description: Markup
+Version: 0.1
+
+Requires: 
+Libs: -r:@prefix@/lib/@PACKAGE@/Markup.dll

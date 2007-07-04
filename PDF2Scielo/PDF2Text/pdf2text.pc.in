@@ -1,0 +1,6 @@
+Name: PDF2Text
+Description: PDF2Text
+Version: 0.1
+
+Requires: 
+Libs: -r:@prefix@/lib/@PACKAGE@/PDF2Text.dll
