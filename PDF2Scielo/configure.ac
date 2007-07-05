@@ -49,6 +49,40 @@ if test -z "$CONFIG_REQUESTED" ; then
 fi
 
 
+
+MOZILLA_HOME="`$PKG_CONFIG --variable=libdir mozilla-gtkmozembed`"
+if !(test -n "$MOZILLA_HOME"); then
+        MOZILLA_HOME="`$PKG_CONFIG --variable=libdir firefox-gtkmozembed`"
+fi
+if !(test -n "$MOZILLA_HOME"); then
+        MOZILLA_HOME="`$PKG_CONFIG --variable=libdir xulrunner-gtkmozembed`"
+fi
+
+if !(test -n "$MOZILLA_HOME"); then
+        if test -n "$MOZILLA_FIVE_HOME"; then
+                MOZILLA_HOME=$MOZILLA_FIVE_HOME
+        elif grep GRE_PATH /etc/gre.d/*.conf > /dev/null ; then
+                MOZILLA_HOME=$(grep -h GRE_PATH= /etc/gre.d/*.conf | cut -d '"' -f 2 -d = | head -n 1)
+        elif [ $(which mozilla 2>/dev/null) ] && grep MOZILLA_FIVE_HOME= "$(which mozilla)" > /dev/null ; then
+                MOZILLA_HOME=$(grep MOZILLA_FIVE_HOME= $(which mozilla) | cut -d '"' -f 2 | cut -d '=' -f 2 )
+        elif [ $(which firefox 2>/dev/null) ] && grep MOZILLA_FIVE_HOME= "$(which firefox)" > /dev/null ; then
+                MOZILLA_HOME=$(grep MOZILLA_FIVE_HOME= $(which firefox) | cut -d '"' -f 2 | cut -d '=' -f 2 )
+        elif [ $(which firefox 2>/dev/null) ] && grep MOZILLA_LIBDIR= "$(which firefox)" > /dev/null ; then
+                MOZILLA_HOME=$(grep MOZILLA_LIBDIR= $(which firefox) | cut -d '"' -f 2 | cut -d '=' -f 2)
+        else
+                if test "x$enable_aspnetedit" = "xyes"; then
+                        AC_MSG_ERROR([Cannot detect Mozilla library directory. AspNetEdit addin cannot be built.])
+                else
+                        AC_MSG_WARN([Cannot detect Mozilla library directory. WelcomePage addin may not be able to function.])
+                fi
+        fi
+fi
+
+AC_SUBST(MOZILLA_HOME)
+
+
+
+
 AC_CONFIG_FILES([
 Utils/Makefile
 Markup/markup.pc
