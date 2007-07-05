@@ -6,7 +6,7 @@
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
 //   Anaid V. Velazquez Rivera (anaidv@gmail.com)
 //   Virginia Teodosio Procopio (ainigriv_t@hotmail.com)
-//   Juan Germán Castañeda Echevarría.
+//   Juan Germán Castañeda Echevarría (juanger@gmail.com)
 //
 // Copyright (C) 2007 UNAM DGB
 //
@@ -82,21 +82,21 @@ public class PDFTextColumn
 					sum = sum + (int)de.Key;
 					count ++;
 				}
-				Console.WriteLine("line::"+i+rawCollection[i]+"::");
+				//Console.WriteLine("line::"+i+rawCollection[i]+"::");
 			}
 			i++;
 		}
 		average = sum / count;
-		Console.WriteLine("Average::"+average);
+		//Console.WriteLine("Average::"+average);
 		return average;
 	}
 	
 	public float GetRepeatPosition (ArrayList values, int index)
 	{
 		int i = 0;
+		float average_presition = 0;
 		string [] rawCollection = pages[index].Split (new Char [] {'\n'});
 		foreach (Hashtable ht in values){
-			
 			if (ht.Count == 1){
 				foreach (DictionaryEntry de in ht){
 					if(!vr.ContainsKey((int)de.Key)){
@@ -105,15 +105,20 @@ public class PDFTextColumn
 						int val = (int) vr[de.Key];
 						vr[de.Key] = val+1;
 					}
-					Console.WriteLine("index::"+i+":key:"+de.Key+":value:"+de.Value);
+					//Console.WriteLine("index::"+i+":key:"+de.Key+":value:"+de.Value);
 				}
-				Console.WriteLine("line:"+i+"::" + rawCollection[i]+"::"+rawCollection[i].Length);
+				//Console.WriteLine("line:"+i+"::" + rawCollection[i]+"::"+rawCollection[i].Length);
 			}
 			i++;
 		}
+		
+		foreach (DictionaryEntry de in vr){
+			Console.WriteLine("key:"+de.Key+":value:"+de.Value);
+		}
+		
 		int maxL = UpperLength ((pages[index]).Split (new Char [] {'\n'}));
 		Console.WriteLine ("longitud mas grande::"+maxL);
-		threshold = (maxL/2)-7;
+		threshold = (maxL/2)-3;
  		float upper_value = (float)UpperValue();
  		for (int k=0; k<vr.Count; k++){
  			if ( upper_value > threshold){
@@ -122,7 +127,9 @@ public class PDFTextColumn
  			}
  			upper_value = (float)UpperValue();
  		}
- 		return upper_value;
+ 		//return upper_value;
+ 		average_presition = upper_value-6;
+ 		return average_presition;
 	}
 	
 	public float UpperValue ()
@@ -164,6 +171,7 @@ public class PDFTextColumn
  		foreach (Hashtable ht in values){ 
  			float distance_now = 0; 
  			float distance = 0; 
+ 			//float origin_distance = 0;
  			int position = 0;
  			string line = rawCollection [number_raw];
  			int count = 1;
@@ -171,20 +179,24 @@ public class PDFTextColumn
 			foreach (DictionaryEntry de in ht){
 					if(count == 1){
  						distance = distance_now = Math.Abs ((int)de.Key - average);
+ 						//origin_distance = Math.Abs ((int)de.Key);
  						position = (int)de.Key;
  						count = 2;
+ 						Console.WriteLine ("DISTANCE1:::"+line+"::dis::"+position);
  					}else{
-	 					distance_now = Math.Abs ((int)de.Key - average); 
+	 					distance_now = Math.Abs ((int)de.Key - average);
+	 					//origin_distance = Math.Abs ((int)de.Key);
  						if (distance >= distance_now){ 
  							distance = distance_now; 
- 							position = (int)de.Key; 
+ 							position = (int)de.Key;
+ 							Console.WriteLine ("DISTANCE2:::"+line+"::dis::"+position);
  						} 
  		       	   		}	
  	    			} 
- 			if (position == 0 || position < threshold){ 
+ 			if (position==0 || position<average){ 
  				column1 += line + "\n";
  				column2 +="\n";
- 				//Console.WriteLine("Position para columna 1:: "+position+"::"+ line[position]+"::line::"+line);
+ 				//Console.WriteLine("Position para columna 1:: "+position+"::line::"+line);
  			}
  			else{ 
  				column1 +=  line.Substring (0,position) + "\n"; 
