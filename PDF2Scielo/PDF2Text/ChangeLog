@@ -1,3 +1,11 @@
+2007-07-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* AtmNormalizer.cs: Se borraron los métodos ReplacePattern y
+	  RemovePattern. Se comentó la declaración del StyleReader y se quitó
+	  el uso de Get matches para ahora utilizar GetStringMatches
+	* INormalizable.cs: Se quitaron  los métodos ReplacePattern,
+	  ReplaceFootNotes, ReplaceChars, RemovePattern y GetMatches
+
 2007-07-30  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/TestAtmNormalizer.cs: Se agregó el test para el nuevo método

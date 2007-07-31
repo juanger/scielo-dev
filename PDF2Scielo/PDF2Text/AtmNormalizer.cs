@@ -35,7 +35,7 @@ public class AtmNormalizer : INormalizable {
 	public AtmNormalizer (string source, string format)
 	{
 		// Construimos el XML reader para obtener las regexp.
-		StyleReader style = new StyleReader (format);
+		//StyleReader style = new StyleReader (format);
 		
 		StringEncoding encoder = new StringEncoding (source);
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
@@ -53,7 +53,7 @@ public class AtmNormalizer : INormalizable {
 	public AtmNormalizer (RawDocument document)
 	{
 		// Construimos el XML reader para obtener las regexp.
-		StyleReader style = new StyleReader (document.Format);
+		//StyleReader style = new StyleReader (document.Format);
 		
 		StringEncoding encoder = new StringEncoding (document.GetText ());
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
@@ -68,13 +68,6 @@ public class AtmNormalizer : INormalizable {
 	public void SetEncoding (string encoding)
 	{
 		//TODO: To be implemented.
-	}
-	
-
-	
-	public string RemovePattern (string regexp, string source)
-	{
-		return ReplacePattern (regexp, String.Empty, source);
 	}
 	
 	public string MarkText ()
@@ -96,18 +89,6 @@ public class AtmNormalizer : INormalizable {
 		return false;
 	}
 	
-	public string ReplacePattern (string regexp, string substitute, string source)
-	{
-		Regex regex = new Regex (regexp);	
-		return regex.Replace (source, substitute);
-	}
-	
-	public string ReplaceFootNotes (string regexp)
-	{
-		//TODO: To be implemented.
-		return null;
-	}
-	
 	public string ReplaceChars (ArrayList rechar)
 	{
 		StringEncoding encoder = new StringEncoding (text);
@@ -117,7 +98,7 @@ public class AtmNormalizer : INormalizable {
 		return text;
 	}
 	
-	public Match [] GetMatches (string regexp, string source)
+	private Match [] GetMatches (string regexp, string source)
 	{
 		Match [] result;
 		Regex regex = new Regex (regexp);
@@ -234,11 +215,10 @@ public class AtmNormalizer : INormalizable {
 		
 		result = "\n[key] " + smatch.Trim () + " [/key]\n\n";
 		text = text.Replace (smatch, result);
-     	}
+	}
 	
 	private void GetBlocks ()
 	{
-		string temp;
 		Match [] matches;
 		matches = GetMatches (@"^(.|\s)* \[/key\]\n", text);
 		front = matches [0].Value;
@@ -248,11 +228,9 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("MATCH: " + front);
 		#endif
 		
-		matches = GetMatches (@"\[/key\](.|\s)*\[ref\]", text);
-		temp = matches [0].Value;
-		
-		// FIXME: Documentar o hacer mejor la extracion de body.
-		body = temp.Substring (7, temp.Length - 12);
+		// NOTE: "?:" Sirve para que no tome un grupo como un backreference
+		string [] stringMatches = GetStringMatches (@"\[/key\](?<Result>(?:.|\s)*)\[ref\]", text);
+		body = stringMatches [0];
 		
 		#if DEBUG
 	 	Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el body"); 	
