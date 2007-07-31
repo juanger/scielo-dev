@@ -22,6 +22,7 @@ public class PDFTextColumn
 	private int threshold = -1;
 	public string [] pages;
 	public string text;
+	private bool referencesFlag = false;
 		
 	public PDFTextColumn (RawDocument document)
 	{
@@ -59,7 +60,7 @@ public class PDFTextColumn
 				if (space >= 2 && count < line.Length-1 && line[count+1] != ' '){
 					if (!ht.Contains(position_value)){
 						ht.Add (position_value, space);
-						Console.WriteLine("insert::key::"+position_value+":value:"+space+"::line::"+line);
+						Console.WriteLine("insert::key::"+position_value+":space:"+space+"::line::"+line);
 					}
 				}	
 				count++;	
