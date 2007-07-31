@@ -129,6 +129,23 @@ public class AtmNormalizer : INormalizable {
 		return result;
 	}
 	
+	public static string [] GetStringMatches (string regexp, string source)
+	{
+		string [] result;
+		Regex regex = new Regex (regexp);
+		MatchCollection matches = regex.Matches (source);
+		result = new string[matches.Count];
+		
+		int counter = 0;
+		foreach (Match match in matches)
+		{
+			result[counter] = match.Groups["Result"].Value;
+			counter++;
+		}
+		
+		return result;
+	}
+	
 	public NormDocument CreateNormDocument ()
 	{
 		MarkText ();
@@ -205,7 +222,7 @@ public class AtmNormalizer : INormalizable {
 		GlobalReplaceRegex (@"[\n]+References\n", "\n[ref] References [/ref]\n");
 		GlobalReplaceRegex (@"[\n]+[ ]*(Acknowledgement|Acknowledgment)[s]?\n", "\n[ack] Acknowledgements [/ack]\n");
 		
-		//Etiquetado de KEYWORD.		
+		//Etiquetado de KEYWORD.
 		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ " + ALET + APUC + "\n]+?[\n]+", text);
 		match = matches [0];
 		smatch = match.Value;

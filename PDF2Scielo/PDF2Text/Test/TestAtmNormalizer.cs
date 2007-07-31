@@ -30,6 +30,16 @@ public class TestAtmNormalizer {
 		Assert.IsNotNull (atmN, "CI02");
 	}
 	
+	[Test]
+	public void GetStringMatches ()
+	{
+		string source = "Foo and Bar. Foo blahFoo blah. oFooFoo. BARFoo\n Foo";
+		string [] results = AtmNormalizer.GetStringMatches (@"\b(?<Result>Foo)\b", source);
+		Assert.AreEqual(3,results.Length, "GSM1");
+		source = "\n\nAlgo: Bar Bar Bar \n\nAlgo: Bar Bar \n\n";
+		results = AtmNormalizer.GetStringMatches (@"[\n]+Algo:(?<Result>[\p{L} ]*?)[\n]+", source);
+		Assert.AreEqual(1, results.Length, "GSM2");
+	}
 }
 }
 }

@@ -30,7 +30,6 @@ public abstract class Document {
 			return format;
 		}
 	}
-
 	public void WriteDocument (string filepath, string filename, string extension)
 	{
 		string fullpath, name;
@@ -38,13 +37,13 @@ public abstract class Document {
 		fullpath = Path.Combine (filepath, name);
 		
 		FileStream filestream = null;
-                using (filestream = File.Create (fullpath)) {
-                	StreamWriter writer = new StreamWriter (filestream);
-                	writer.Write (GetText ());
-                	writer.Flush ();
-                	writer.Close ();
-                }
-        }
+		using (filestream = File.Create (fullpath)) {
+		StreamWriter writer = new StreamWriter (filestream);
+		writer.Write (GetText ());
+		writer.Flush ();
+		writer.Close ();
+		}
+	}
 }
 }
 }

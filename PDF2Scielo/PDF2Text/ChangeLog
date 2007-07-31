@@ -1,3 +1,11 @@
+2007-07-30  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/TestAtmNormalizer.cs: Se agregó el test para el nuevo método
+	  GetStringMatches de AtmNormalizer
+	* Document.cs: Se arreglaron los tabs post-emacs
+	* AtmNormalizer.cs: Se agregó el método GetStringMatches que usa un
+	  backreference llamado Result para obtener las cadenas del Match
+
 2007-07-30  Full Name <Email Address> 
 
 	Se realizaron pruebas en TestPDFTexColumn
