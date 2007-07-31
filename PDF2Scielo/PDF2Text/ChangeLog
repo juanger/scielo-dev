@@ -1,5 +1,9 @@
 2007-07-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* AtmNormalizer.cs: Cambios de espacios en el archivo.
+
+2007-07-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* AtmNormalizer.cs: Se borraron los métodos ReplacePattern y
 	  RemovePattern. Se comentó la declaración del StyleReader y se quitó
 	  el uso de Get matches para ahora utilizar GetStringMatches

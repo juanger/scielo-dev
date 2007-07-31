@@ -169,9 +169,9 @@ public class AtmNormalizer : INormalizable {
 		Match [] matches;
 		
 		// Remueve encabezados y numeros de pagina.
-	 	#if DEBUG
-	 	matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", text);
-	 	Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
+		#if DEBUG
+		matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", text);
+		Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
 	 	foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
@@ -179,9 +179,9 @@ public class AtmNormalizer : INormalizable {
 		
 		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", "\n");
 		
-	 	#if DEBUG
-	 	matches = GetMatches (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", text);
-	 	foreach (Match m in matches) {
+		#if DEBUG
+		matches = GetMatches (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", text);
+		foreach (Match m in matches) {
 			Console.WriteLine ("MATCH: " + m.Value);
 		}
 		#endif
@@ -190,14 +190,14 @@ public class AtmNormalizer : INormalizable {
 	}
 	
 	private void MarkMajorSections ()
-     	{
-     		string smatch, result;
-     		Match match;
-     		Match [] matches;
-     		
-     		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
-     		// FIXME: No marca todos los articulos con [ack] y [/ack]. Un ejemplo que encontramos es que el patron debe ser:Acknowledgement
-     		// Sin embargo también hay casos, que con los ya dados, tampoco cacha. Ejemplo: v17n2a01.pdf	
+	{
+	string smatch, result;
+	Match match;
+	Match [] matches;
+		
+		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
+		// FIXME: No marca todos los articulos con [ack] y [/ack]. Un ejemplo que encontramos es que el patron debe ser:Acknowledgement
+		// Sin embargo también hay casos, que con los ya dados, tampoco cacha. Ejemplo: v17n2a01.pdf	
 		GlobalReplaceRegex (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
 		GlobalReplaceRegex (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
 		GlobalReplaceRegex (@"[\n]+References\n", "\n[ref] References [/ref]\n");
@@ -224,7 +224,7 @@ public class AtmNormalizer : INormalizable {
 		front = matches [0].Value;
 		
 		#if DEBUG
-	 	Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el front"); 	
+		Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el front"); 	
 		Console.WriteLine ("MATCH: " + front);
 		#endif
 		
@@ -233,8 +233,8 @@ public class AtmNormalizer : INormalizable {
 		body = stringMatches [0];
 		
 		#if DEBUG
-	 	Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el body"); 	
-	 	Console.WriteLine ("MATCH: " + body);
+		Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el body"); 	
+		Console.WriteLine ("MATCH: " + body);
 		#endif
 		
 		matches = GetMatches (@"\[ref\](.|\s)*", text);
@@ -250,7 +250,7 @@ public class AtmNormalizer : INormalizable {
 	{
 		Match [] matches;
 		
-     		#if DEBUG
+		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar texto muerto");
 		#endif
 		
@@ -271,7 +271,7 @@ public class AtmNormalizer : INormalizable {
 	{
 		Match [] matches;
 		
-     		#if DEBUG
+		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar el titulo del articulo.");
 		#endif
 		
@@ -295,7 +295,7 @@ public class AtmNormalizer : INormalizable {
 	{
 		Match [] matches;
 		
-     		#if DEBUG
+		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar la fecha del articulo.");
 		#endif
 		
@@ -317,7 +317,7 @@ public class AtmNormalizer : INormalizable {
 	{
 		Match [] matches;
 		
-     		#if DEBUG
+		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar los autores del articulo.");
 		#endif
 		
@@ -329,7 +329,7 @@ public class AtmNormalizer : INormalizable {
 			#if DEBUG
 			Console.WriteLine ("MATCH: " + smatch);
 			#endif
-
+			
 			result = "[author] " +  smatch.Trim () + " [/author]\n";
 			front = front.Replace (smatch, result);
 		}
@@ -339,7 +339,7 @@ public class AtmNormalizer : INormalizable {
 	{
 		Match [] matches;
 		
-     		#if DEBUG
+		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar las afiliaciones de los autores del articulo.");
 		#endif
 		
@@ -352,7 +352,7 @@ public class AtmNormalizer : INormalizable {
 			#if DEBUG
 			Console.WriteLine ("MATCH: " + smatch);
 			#endif
-
+			
 			index = smatch.IndexOf ("\n");
 			result = smatch.Substring (index);
 			index = result.LastIndexOf ("[");
@@ -362,17 +362,17 @@ public class AtmNormalizer : INormalizable {
 		}
 	}
 	
-     	private void MarkMinorSections ()
-     	{
-     		Match [] matches;
-     		
-     		// Etiquetado de las secciones del tipo <num>. <string>
-     		// FIXME: No se estan agarrando las secciones que son mayores a una linea de texto.
-     		#if DEBUG
+	private void MarkMinorSections ()
+	{
+	Match [] matches;
+	
+	// Etiquetado de las secciones del tipo <num>. <string>
+	// FIXME: No se estan agarrando las secciones que son mayores a una linea de texto.
+	#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las secciones.");
 		#endif
-     		
-     		matches = GetMatches (@"[\n]+[0-9]+[.][ ].*\n", body);
+		
+		matches = GetMatches (@"[\n]+[0-9]+[.][ ].*\n", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
@@ -438,18 +438,18 @@ public class AtmNormalizer : INormalizable {
 			result = "\n[subsubsec] " + smatch.Trim () + " [/subsubsec]\n";
 			body = body.Replace (smatch, result);
 		}
-     	}
-     	
-     	private void MarkParagraphs ()
-     	{
-     		Match [] matches;
-     		
-     		// Etiquetado de los parrafos.
+	}
+	
+	private void MarkParagraphs ()
+	{
+	Match [] matches;
+	
+	// Etiquetado de los parrafos.
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar los parrafos.");
 		#endif
-     		
-     		matches = GetMatches (@"[\n]+[ ]{3,5}[A-Zi].*", body);
+		
+		matches = GetMatches (@"[\n]+[ ]{3,5}[A-Zi].*", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
@@ -495,13 +495,13 @@ public class AtmNormalizer : INormalizable {
 			result = " [/para]" + smatch;
 			body = body.Replace (smatch, result);
 		}
-     	}
-     	
-     	private void MarkCitations ()
-     	{
-     		Match [] matches;
-     		
-     		// Etiquetado de las citas.
+	}
+	
+	private void MarkCitations ()
+	{
+	Match [] matches;
+	
+		// Etiquetado de las citas.
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para las citas.");
 		#endif
@@ -532,18 +532,18 @@ public class AtmNormalizer : INormalizable {
 			result = result + " [/cit]\n";
 			back = back.Replace (smatch, result);
 		}
-     	}
-     	
-     	private void MarkFootFigure ()
-     	{
-     		Match [] matches;
-     		
-     		// Etiquetado de los pies de figura.
+	}
+	
+	private void MarkFootFigure ()
+	{
+		Match [] matches;
+		
+		// Etiquetado de los pies de figura.
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para los pies de figura.");
 		#endif
-     		
-     		matches = GetMatches (@"[\n]+[ ]*Fig[.][ ]?[0-9]+[.] .*", body);
+		
+		matches = GetMatches (@"[\n]+[ ]*Fig[.][ ]?[0-9]+[.] .*", body);
 		foreach (Match m in matches) {
 			string smatch, result;
 			smatch = m.Value;
@@ -572,7 +572,7 @@ public class AtmNormalizer : INormalizable {
 			
 			body = body.Replace (smatch, result);
 		}
-     	}
+	}
 }
 }
 }
