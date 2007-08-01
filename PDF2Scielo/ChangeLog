@@ -1,3 +1,8 @@
+2007-07-31  Full Name <Email Address> 
+
+	* PDF2Text/PDFTextColumn.cs: Modificacion de la forma de division de
+	  las columnas en un mismo texto.
+
 2007-07-04  Full Name <Email Address> 
 
 	cambios minimos

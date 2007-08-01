@@ -12,6 +12,7 @@
 //
 using System;
 using System.Collections;
+using System.Text.RegularExpressions;
 namespace Scielo {
 namespace PDF2Text
 {	
@@ -83,12 +84,12 @@ public class PDFTextColumn
 					sum = sum + (int)de.Key;
 					count ++;
 				}
-				//Console.WriteLine("line::"+i+rawCollection[i]+"::");
+				
 			}
 			i++;
 		}
 		average = sum / count;
-		//Console.WriteLine("Average::"+average);
+		
 		return average;
 	}
 	
@@ -106,9 +107,7 @@ public class PDFTextColumn
 						int val = (int) vr[de.Key];
 						vr[de.Key] = val+1;
 					}
-					//Console.WriteLine("index::"+i+":key:"+de.Key+":value:"+de.Value);
 				}
-				//Console.WriteLine("line:"+i+"::" + rawCollection[i]+"::"+rawCollection[i].Length);
 			}
 			i++;
 		}
@@ -123,12 +122,10 @@ public class PDFTextColumn
  		float upper_value = (float)UpperValue();
  		for (int k=0; k<vr.Count; k++){
  			if ( upper_value > threshold){
- 				Console.WriteLine ("regresamos la position::"+upper_value+"::thr::"+threshold);
  				break;
  			}
  			upper_value = (float)UpperValue();
  		}
- 		//return upper_value;
  		average_presition = upper_value-6;
  		return average_presition;
 	}
@@ -159,53 +156,60 @@ public class PDFTextColumn
 			if( element.Length > leng )
 				leng = element.Length;
 		}
-		//Console.WriteLine("La longitud mas grande::" + leng);		
 		return leng;
 	}
 	
 	public void GetTextInColumns (int indexPage, ArrayList values, float average)
-	{	
+	{			
 		string column1 = ""; 
  		string column2 = ""; 
  		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
- 		int number_raw = 0; 
+ 		int number_raw = 0;
+ 		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");
  		foreach (Hashtable ht in values){ 
  			float distance_now = 0; 
  			float distance = 0; 
- 			//float origin_distance = 0;
  			int position = 0;
- 			string line = rawCollection [number_raw];
+ 			string line = rawCollection [number_raw]+"\n";
  			int count = 1;
+ 			
+ 			if (regex.IsMatch(line) == true)
+ 				referencesFlag = true;
  			
 			foreach (DictionaryEntry de in ht){
 					if(count == 1){
  						distance = distance_now = Math.Abs ((int)de.Key - average);
- 						//origin_distance = Math.Abs ((int)de.Key);
  						position = (int)de.Key;
  						count = 2;
- 						Console.WriteLine ("DISTANCE1:::"+line+"::dis::"+position);
  					}else{
 	 					distance_now = Math.Abs ((int)de.Key - average);
-	 					//origin_distance = Math.Abs ((int)de.Key);
  						if (distance >= distance_now){ 
  							distance = distance_now; 
  							position = (int)de.Key;
- 							Console.WriteLine ("DISTANCE2:::"+line+"::dis::"+position);
  						} 
  		       	   		}	
  	    			} 
- 			if (position==0 || position<average){ 
- 				column1 += line + "\n";
- 				column2 +="\n";
- 				//Console.WriteLine("Position para columna 1:: "+position+"::line::"+line);
- 			}
- 			else{ 
- 				column1 +=  line.Substring (0,position) + "\n"; 
- 				column2 += line.Substring (position) + "\n";
- 				//Console.WriteLine("Position para columna 2::"+position+"::"+line[position+1]+"::line::"+line);
+ 	    		if(referencesFlag){
+ 	    			if (position==0 || position<threshold){ 
+	 				column1 += line;
+	 				column2 +="\n";
+ 				}
+	 			else{ 
+ 					column1 +=  line.Substring (0,position)+"\n"; 
+ 					column2 += line.Substring (position);
+ 				}
+	 	    	}else{
+	 			if (position==0 || position<average){ 
+	 				column1 += line;
+	 				column2 +="\n";
+ 				}
+	 			else{ 
+ 					column1 +=  line.Substring (0,position)+"\n"; 
+ 					column2 += line.Substring (position);
+ 				}
  			}
  			number_raw ++; 
- 		} 
+ 		}
  		Console.WriteLine("--------------------LAS COLUMNAS----------------"); 
  		Console.WriteLine("--------------Columna1 ------------------------"); 
  		Console.WriteLine(column1); 
