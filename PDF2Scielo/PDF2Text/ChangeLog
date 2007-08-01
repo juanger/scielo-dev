@@ -1,5 +1,16 @@
 2007-07-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Test/TestAtmNormalizer.cs: Se cambió la prueba para obtener dos
+	  nuevas para cada tipo de match.
+	* PDF2Text.mdp: Se agregaron las nuevas clases.
+	* StringMatch.cs: Nueva clase para optimizar el uso de los resultados
+	  de las expresiones regulares
+	* AtmNormalizer.cs: Se modificó para usar las nuevas clases.
+	* StringMatchCollection.cs: Nueva clase para implementar una colección
+	  de StringMatch
+
+2007-07-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* AtmNormalizer.cs: Cambios de espacios en el archivo.
 
 2007-07-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 

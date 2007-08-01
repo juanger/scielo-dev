@@ -89,16 +89,18 @@ public class AtmNormalizer : INormalizable {
 		return false;
 	}
 	
-	public string ReplaceChars (ArrayList rechar)
+	public static string [] NewGetMatches (string regexp, string source)
 	{
-		StringEncoding encoder = new StringEncoding (text);
-		encoder.ReplaceCodesTable (rechar);
-		text = encoder.GetStringUnicode ();
-		
-		return text;
+		string [] result;
+		if (regexp.IndexOf ("(?<Result>") != -1)
+			result = GetNamedMatches (regexp, source);
+		else
+			result = GetUnamedMatches (regexp, source);
+			
+		return result;
 	}
 	
-	private Match [] GetMatches (string regexp, string source)
+	private static Match [] GetMatches (string regexp, string source)
 	{
 		Match [] result;
 		Regex regex = new Regex (regexp);
@@ -110,7 +112,25 @@ public class AtmNormalizer : INormalizable {
 		return result;
 	}
 	
-	public static string [] GetStringMatches (string regexp, string source)
+	private static string [] GetUnamedMatches (string regexp, string source)
+	{
+		string [] result;
+		Regex regex = new Regex (regexp);
+		MatchCollection matches = regex.Matches (source);
+		
+		result = new string [matches.Count];
+		
+		int counter = 0;
+		foreach (Match match in matches)
+		{
+			result[counter] = match.Groups[0].Value;
+			counter++;
+		}
+		
+		return result;
+	}
+	
+	private static string [] GetNamedMatches (string regexp, string source)
 	{
 		string [] result;
 		Regex regex = new Regex (regexp);
@@ -166,23 +186,23 @@ public class AtmNormalizer : INormalizable {
 	
 	private void RemoveHeaders ()
 	{
-		Match [] matches;
+		StringMatchCollection matches;
 		
 		// Remueve encabezados y numeros de pagina.
 		#if DEBUG
-		matches = GetMatches (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", text);
+		matches = new StringMatchCollection (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", text);
 		Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
-	 	foreach (Match m in matches) {
-			Console.WriteLine ("MATCH: " + m.Value);
+	 	foreach (StringMatch match in matches.matches) {
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 		}
 		#endif
 		
 		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", "\n");
 		
 		#if DEBUG
-		matches = GetMatches (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", text);
-		foreach (Match m in matches) {
-			Console.WriteLine ("MATCH: " + m.Value);
+		matches = new StringMatchCollection (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", text);
+		foreach (StringMatch match in matches.matches) {
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 		}
 		#endif
 		
@@ -219,9 +239,9 @@ public class AtmNormalizer : INormalizable {
 	
 	private void GetBlocks ()
 	{
-		Match [] matches;
-		matches = GetMatches (@"^(.|\s)* \[/key\]\n", text);
-		front = matches [0].Value;
+		StringMatchCollection matches;
+		matches = new StringMatchCollection (@"^(.|\s)* \[/key\]\n", text);
+		front = matches [0].FullMatch;
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el front"); 	
@@ -229,16 +249,16 @@ public class AtmNormalizer : INormalizable {
 		#endif
 		
 		// NOTE: "?:" Sirve para que no tome un grupo como un backreference
-		string [] stringMatches = GetStringMatches (@"\[/key\](?<Result>(?:.|\s)*)\[ref\]", text);
-		body = stringMatches [0];
+		matches = new StringMatchCollection (@"\[/key\](?<Result>(?:.|\s)*)\[ref\]", text);
+		body = matches [0].ResultMatch;
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el body"); 	
 		Console.WriteLine ("MATCH: " + body);
 		#endif
 		
-		matches = GetMatches (@"\[ref\](.|\s)*", text);
-		back = matches [0].Value;
+		matches = new StringMatchCollection (@"\[ref\](.|\s)*", text);
+		back = matches [0].FullMatch;
 		
 		#if DEBUG
 	 	Console.WriteLine ("DEBUG: Resultados obtenidos para obtener el back"); 	
@@ -248,46 +268,40 @@ public class AtmNormalizer : INormalizable {
 	
 	private void RemoveExtras ()
 	{
-		Match [] matches;
+		StringMatchCollection matches;
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar texto muerto");
 		#endif
 		
-		matches = GetMatches (@"\n[ ]*[-0-9.]+\n", body);
-		foreach (Match m in matches) {
-			string smatch;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"\n[ ]*[-0-9.]+\n", body);
+		foreach (StringMatch match in matches.matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			body = body.Replace (smatch, "\n");
+			body = body.Replace (match.FullMatch, "\n");
 		}
 	}
 	
 	private void MarkTitle ()
 	{
-		Match [] matches;
+		StringMatchCollection matches;
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar el titulo del articulo.");
 		#endif
 		
-		matches = GetMatches (@"^Atm.*[\n]+[^|]+?\n[\n]+", front);
-		foreach (Match m in matches) {
-			int index;
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"^Atm.*[\n ]+(?<Result>[^|]+?)\n[\n]+", front);
+		foreach (StringMatch match in matches.matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			index = smatch.IndexOf ("\n");
-			result = "[title] " +  smatch.Substring (index).Trim () + " [/title]\n";
-			front = front.Replace (smatch, result);
+			string result = "[title] " +  match.ResultMatch + " [/title]\n";
+			front = front.Replace (match.FullMatch, result);
 		}
 	}
 
