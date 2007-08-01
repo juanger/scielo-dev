@@ -29,22 +29,6 @@ public class TestAtmNormalizer {
 		Assert.IsInstanceOfType (etype, atmN, "CI01");
 		Assert.IsNotNull (atmN, "CI02");
 	}
-	
-	[Test]
-	public void GetMatchesNamed ()
-	{
-		string source = "Foo and Bar. Foo blahFoo blah. oFooFoo. BARFoo\n Foo";
-		string [] results = AtmNormalizer.NewGetMatches (@"\b(?<Result>Foo)\b", source);
-		Assert.AreEqual(3,results.Length, "GSM1");
-	}
-	
-	[Test]
-	public void GetMatchesUnamed ()
-	{
-		string source = "\n\nAlgo: Bar Bar Bar \n\nAlgo: Bar Bar \n\n";
-		string [] results = AtmNormalizer.NewGetMatches (@"[\n]+Algo:[\p{L} ]*?[\n]+", source);
-		Assert.AreEqual(1, results.Length, "GSM2");
-	}
 }
 }
 }

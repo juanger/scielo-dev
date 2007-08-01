@@ -89,64 +89,6 @@ public class AtmNormalizer : INormalizable {
 		return false;
 	}
 	
-	public static string [] NewGetMatches (string regexp, string source)
-	{
-		string [] result;
-		if (regexp.IndexOf ("(?<Result>") != -1)
-			result = GetNamedMatches (regexp, source);
-		else
-			result = GetUnamedMatches (regexp, source);
-			
-		return result;
-	}
-	
-	private static Match [] GetMatches (string regexp, string source)
-	{
-		Match [] result;
-		Regex regex = new Regex (regexp);
-		MatchCollection matches = regex.Matches (source);
-		
-		result = new Match [matches.Count];
-		matches.CopyTo (result, 0);
-		
-		return result;
-	}
-	
-	private static string [] GetUnamedMatches (string regexp, string source)
-	{
-		string [] result;
-		Regex regex = new Regex (regexp);
-		MatchCollection matches = regex.Matches (source);
-		
-		result = new string [matches.Count];
-		
-		int counter = 0;
-		foreach (Match match in matches)
-		{
-			result[counter] = match.Groups[0].Value;
-			counter++;
-		}
-		
-		return result;
-	}
-	
-	private static string [] GetNamedMatches (string regexp, string source)
-	{
-		string [] result;
-		Regex regex = new Regex (regexp);
-		MatchCollection matches = regex.Matches (source);
-		result = new string[matches.Count];
-		
-		int counter = 0;
-		foreach (Match match in matches)
-		{
-			result[counter] = match.Groups["Result"].Value;
-			counter++;
-		}
-		
-		return result;
-	}
-	
 	public NormDocument CreateNormDocument ()
 	{
 		MarkText ();
@@ -192,7 +134,7 @@ public class AtmNormalizer : INormalizable {
 		#if DEBUG
 		matches = new StringMatchCollection (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", text);
 		Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
-	 	foreach (StringMatch match in matches.matches) {
+	 	foreach (StringMatch match in matches) {
 			Console.WriteLine ("MATCH: " + match.FullMatch);
 		}
 		#endif
@@ -201,7 +143,7 @@ public class AtmNormalizer : INormalizable {
 		
 		#if DEBUG
 		matches = new StringMatchCollection (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", text);
-		foreach (StringMatch match in matches.matches) {
+		foreach (StringMatch match in matches) {
 			Console.WriteLine ("MATCH: " + match.FullMatch);
 		}
 		#endif
@@ -211,9 +153,7 @@ public class AtmNormalizer : INormalizable {
 	
 	private void MarkMajorSections ()
 	{
-	string smatch, result;
-	Match match;
-	Match [] matches;
+		StringMatchCollection matches;
 		
 		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
 		// FIXME: No marca todos los articulos con [ack] y [/ack]. Un ejemplo que encontramos es que el patron debe ser:Acknowledgement
@@ -224,17 +164,16 @@ public class AtmNormalizer : INormalizable {
 		GlobalReplaceRegex (@"[\n]+[ ]*(Acknowledgement|Acknowledgment)[s]?\n", "\n[ack] Acknowledgements [/ack]\n");
 		
 		//Etiquetado de KEYWORD.
-		matches = GetMatches (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ " + ALET + APUC + "\n]+?[\n]+", text);
-		match = matches [0];
-		smatch = match.Value;
+		matches = new StringMatchCollection (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ " + ALET + APUC + "\n]+?[\n]+", text);
+		StringMatch match = matches [0];
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar la seccion Keyword.");
-		Console.WriteLine ("MATCH: " + smatch);
+		Console.WriteLine ("MATCH: " + match.FullMatch);
 		#endif
 		
-		result = "\n[key] " + smatch.Trim () + " [/key]\n\n";
-		text = text.Replace (smatch, result);
+		string result = "\n[key] " + match.FullMatch.Trim () + " [/key]\n\n";
+		text = text.Replace (match.FullMatch, result);
 	}
 	
 	private void GetBlocks ()
@@ -275,7 +214,7 @@ public class AtmNormalizer : INormalizable {
 		#endif
 		
 		matches = new StringMatchCollection (@"\n[ ]*[-0-9.]+\n", body);
-		foreach (StringMatch match in matches.matches) {
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
 			Console.WriteLine ("MATCH: " + match.FullMatch);
@@ -294,7 +233,7 @@ public class AtmNormalizer : INormalizable {
 		#endif
 		
 		matches = new StringMatchCollection (@"^Atm.*[\n ]+(?<Result>[^|]+?)\n[\n]+", front);
-		foreach (StringMatch match in matches.matches) {
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
 			Console.WriteLine ("MATCH: " + match.FullMatch);
@@ -304,99 +243,89 @@ public class AtmNormalizer : INormalizable {
 			front = front.Replace (match.FullMatch, result);
 		}
 	}
-
+	
 	private void MarkDate ()
 	{
-		Match [] matches;
+		StringMatchCollection matches;
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar la fecha del articulo.");
 		#endif
 		
-		matches = GetMatches (@"\n[ ]+Received.*\n", front);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"\n[ ]+(?<Result>Received.*)\n", front);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			result = "\n[date] " +  smatch.Trim () + " [/date]\n";
-			front = front.Replace (smatch, result);
+			string result = "\n[date] " + match.ResultMatch + " [/date]\n";
+			front = front.Replace (match.FullMatch, result);
 		}
 	}
 	
 	private void MarkAuthors ()
 	{
-		Match [] matches;
+		StringMatchCollection 
+		matches;
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar los autores del articulo.");
 		#endif
 		
-		matches = GetMatches (@"[ ]*(([A-Z]{1,2}\. ([A-Z]{1,2}[.]? )*[-A-Z][-a-zA-Z&;]+( [-a-zA-Z&;]+)?)(, | and )?)+[\n]+", front);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"[ ]*(?<Result>(([A-Z]{1,2}\. ([A-Z]{1,2}[.]? )*[-A-Z][-a-zA-Z&;]+( [-a-zA-Z&;]+)?)(, | and )?)+)[\n]+", front);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			result = "[author] " +  smatch.Trim () + " [/author]\n";
-			front = front.Replace (smatch, result);
+			string result = "[author] " +  match.ResultMatch + " [/author]\n";
+			front = front.Replace (match.FullMatch, result);
 		}
 	}
 	
 	private void MarkAff ()
 	{
-		Match [] matches;
+		StringMatchCollection matches;
 		
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar las afiliaciones de los autores del articulo.");
 		#endif
 		
-		matches = GetMatches (@"\[/author\]\n(.|\n)+?(\[author\]|\[date\]|\[res\])", front);
-		foreach (Match m in matches) {
-			int index;
-			string smatch, tag, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"\[/author\]\n(?<Result>(.|\n)+?)(\[author\]|\[date\]|\[res\])", front);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			index = smatch.IndexOf ("\n");
-			result = smatch.Substring (index);
-			index = result.LastIndexOf ("[");
-			tag = result.Substring (index);
-			result= "[/author]\n[aff] " + result.Substring (0, index).Trim () + " [/aff]\n" + tag;
-			front = front.Replace (smatch, result);
+			int index = match.FullMatch.LastIndexOf ("[");
+			string tag = match.FullMatch.Substring (index);
+			string result= "[/author]\n[aff] " + match.ResultMatch.Trim () + " [/aff]\n" + tag;
+			front = front.Replace (match.FullMatch, result);
 		}
 	}
 	
 	private void MarkMinorSections ()
 	{
-	Match [] matches;
-	
-	// Etiquetado de las secciones del tipo <num>. <string>
-	// FIXME: No se estan agarrando las secciones que son mayores a una linea de texto.
-	#if DEBUG
+		StringMatchCollection matches;
+		
+		// Etiquetado de las secciones del tipo <num>. <string>
+		// FIXME: No se estan agarrando las secciones que son mayores a una linea de texto.
+		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las secciones.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[0-9]+[.][ ].*\n", body);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"[\n]+[0-9]+[.][ ].*\n", body);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			result = "\n[sec] " + smatch.Trim () + " [/sec]\n";
-			body = body.Replace (smatch, result);
+			string result = "\n[sec] " + match.FullMatch.Trim () + " [/sec]\n";
+			body = body.Replace (match.FullMatch, result);
 		}
 		
 		// Etiquetado de las secciones del tipo <num>.<num>[.] <string>
@@ -404,17 +333,15 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsecciones.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[ ]*[0-9][.][0-9]+[.]*[ ].*\n", body);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"[\n]+[ ]*[0-9][.][0-9]+[.]*[ ].*\n", body);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			result = "\n[subsec] " + smatch.Trim () + " [/subsec]\n";
-			body = body.Replace (smatch, result);
+			string result = "\n[subsec] " + match.FullMatch.Trim () + " [/subsec]\n";
+			body = body.Replace (match.FullMatch, result);
 		}
 		
 		// Etiquetado de las secciones del tipo <letter>) <string>
@@ -422,17 +349,15 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsecciones alternas.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[a-z]\) .*\n", body);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"[\n]+[a-z]\) .*\n", body);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			result = "\n[subsec] " + smatch.Trim () + " [/subsec]\n";
-			body = body.Replace (smatch, result);
+			string result = "\n[subsec] " + match.FullMatch.Trim () + " [/subsec]\n";
+			body = body.Replace (match.FullMatch, result);
 		}
 		
 		// Etiquetado de las secciones del tipo <num>.<num>.<num> <string>
@@ -440,151 +365,128 @@ public class AtmNormalizer : INormalizable {
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsubsecciones.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n", body);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n", body);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			result = "\n[subsubsec] " + smatch.Trim () + " [/subsubsec]\n";
-			body = body.Replace (smatch, result);
+			string result = "\n[subsubsec] " + match.FullMatch.Trim () + " [/subsubsec]\n";
+			body = body.Replace (match.FullMatch, result);
 		}
 	}
 	
 	private void MarkParagraphs ()
 	{
-	Match [] matches;
-	
-	// Etiquetado de los parrafos.
+		StringMatchCollection matches;
+		
+		// Etiquetado de los parrafos.
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar los parrafos.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[ ]{3,5}[A-Zi].*", body);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"[\n]+[ ]{3,5}(?<Result>[A-Zi].*)", body);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			result = smatch.TrimStart ();
-			result = "\n[para] " + result;
-
-			body = body.Replace (smatch, result);
+			string result = "\n[para] " + match.ResultMatch;
+			body = body.Replace (match.FullMatch, result);
 		}
 		
-		
-		matches = GetMatches (@"(\[sec\]|\[subsec\]|\[subsubsec\]).*\n", body); 
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"(\[sec\]|\[subsec\]|\[subsubsec\]).*\n", body); 
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			result = "[para] " + smatch.TrimStart ();
-			body = body.Replace (smatch, result);
+			string result = "[para] " + match.FullMatch;
+			body = body.Replace (match.FullMatch, result);
 		}
 		
- 		
-		matches = GetMatches (@"\n(\[para\]|\[sec\]|\[subsec\]|\[subsubsec\]|\[ack\]).*", body);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"\n(\[para\]|\[sec\]|\[subsec\]|\[subsubsec\]|\[ack\]).*", body);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
 			// FIXME: Caso para no poner un [/para] extra antes de la primera seccion.
-			if (smatch.StartsWith ("\n[para] [sec] 1. "))
+			if (match.FullMatch.StartsWith ("\n[para] [sec] 1. "))
 				continue;
 			
-			result = " [/para]" + smatch;
-			body = body.Replace (smatch, result);
+			string result = " [/para]" + match.FullMatch;
+			body = body.Replace (match.FullMatch, result);
 		}
 	}
 	
 	private void MarkCitations ()
 	{
-	Match [] matches;
-	
+		StringMatchCollection matches;
+		
 		// Etiquetado de las citas.
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para las citas.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[A-Z].*", back);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value.TrimStart ();
+		matches = new StringMatchCollection (@"[\n]+(?<Result>[A-Z].*)", back);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.ResultMatch);
 			#endif
 			
-			result = "[cit] " + smatch ;
-			back = back.Replace (smatch, result);
+			string result = "[cit] " + match.ResultMatch;
+			back = back.Replace (match.ResultMatch, result);
 		}
 		
-		matches = GetMatches (@"\[cit\][^[]*", back);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"\[cit\][^[]*", back);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH: " + smatch);
+			Console.WriteLine ("MATCH: " + match.FullMatch);
 			#endif
 			
-			result = smatch.TrimEnd ();
-			result = result + " [/cit]\n";
-			back = back.Replace (smatch, result);
+			string result = match.FullMatch.TrimEnd () + " [/cit]\n";
+			back = back.Replace (match.FullMatch, result);
 		}
 	}
 	
 	private void MarkFootFigure ()
 	{
-		Match [] matches;
+		StringMatchCollection matches;
 		
 		// Etiquetado de los pies de figura.
 		#if DEBUG
 		Console.WriteLine ("DEBUG: Resultados obtenidos para los pies de figura.");
 		#endif
 		
-		matches = GetMatches (@"[\n]+[ ]*Fig[.][ ]?[0-9]+[.] .*", body);
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"[\n]+[ ]*(?<Result>Fig[.][ ]?[0-9]+[.] .*)", body);
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH figura: " + smatch);
+			Console.WriteLine ("MATCH figura: " + match.FullMatch);
 			#endif
 			
-			result = smatch.TrimStart ();
-			result = "\n[fig] " + result;
+			string result = "\n[fig] " + match.ResultMatch;
 			
-			body = body.Replace (smatch, result);
+			body = body.Replace (match.FullMatch, result);
 		}
 		
-		matches = GetMatches (@"\[fig\] Fig[.][ ]?[0-9]+[.] [-a-zA-Z0-9.,:;´&#()/ \n\u00f6]*?[.]\n", body);		
-		foreach (Match m in matches) {
-			string smatch, result;
-			smatch = m.Value;
+		matches = new StringMatchCollection (@"(?<Result>\[fig\] Fig[.][ ]?[0-9]+[.] [-a-zA-Z0-9.,:;´&#()/ \n\u00f6]*?[.])\n", body);		
+		foreach (StringMatch match in matches) {
 			
 			#if DEBUG
-			Console.WriteLine ("MATCH figura2: " + smatch);
+			Console.WriteLine ("MATCH figura2: " + match.FullMatch);
 			#endif
 			
-			result = smatch.TrimEnd ();
-			result = result + " [/fig]\n";
+			string result = match.ResultMatch + " [/fig]\n";
 			
-			body = body.Replace (smatch, result);
+			body = body.Replace (match.FullMatch, result);
 		}
 	}
 }

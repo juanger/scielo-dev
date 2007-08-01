@@ -18,13 +18,53 @@ using System.Collections;
 using System.Text.RegularExpressions;
 
 namespace Scielo.PDF2Text {
-public class StringMatchCollection {
-	public ArrayList matches;
+public class StringMatchCollection : IEnumerable {
+	private ArrayList matches;
 	
 	public StringMatchCollection (string regexp, string source)
 	{
 		matches = GetMatches (regexp, source);
 	}
+	
+	// Implementacion privada de StringMatchCollectionEnumerator que implementa IEnumerator.
+	private class StringMatchCollectionEnumerator : IEnumerator {
+		private StringMatchCollection match_collection;
+		private int index;
+		
+		public StringMatchCollectionEnumerator (StringMatchCollection collection)
+		{
+			match_collection = collection;
+			index = -1;
+		}
+		
+		public bool MoveNext ()
+		{
+			index++;
+			if (index >= match_collection.matches.Count)
+				return false;
+			else
+				return true;
+		}
+		
+		public void Reset ()
+		{
+			index = -1;
+		}
+		
+		public object Current {
+			get {
+				return match_collection [index];
+			}
+		}
+	}
+	
+	// NOTE: Para implementar la interfase IEnumerable es necesario implementar
+	// el metodo GetEnumerator ().
+	public IEnumerator GetEnumerator ()
+	{
+		return (IEnumerator) new StringMatchCollectionEnumerator (this);
+	}
+	
 	
 	private ArrayList GetMatches (string regexp, string source)
 	{

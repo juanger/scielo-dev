@@ -1,3 +1,17 @@
+2007-08-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/TestAtmNormalizer.cs: Se eliminaron las pruebas para los métodos
+	  que fueron reemplazados por la funcionalidad de la clase
+	  StringMatchCollection.
+	* Test/test-schema.xml: Se modificaron las reglas para que muestren los
+	  cambios hechos con la utilización de la nueva clase
+	  StringMatchCollection.
+	* AtmNormalizer.cs: Cambios para usar las nuevas clases StringMatch y
+	  StringMatchCollection para manejar el emparejamiento de patrones.
+	* StringMatchCollection.cs: Se agregó la clase interna que implementa
+	  IEnumerator para obtener un enumerador que se usa para poder usar
+	  foreach
+
 2007-07-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/TestAtmNormalizer.cs: Se cambió la prueba para obtener dos
