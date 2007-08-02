@@ -13,7 +13,7 @@ namespace PDF2Text{
 		public void CreatePages()
 		{
 			PDFTextColumn pdftc = new PDFTextColumn("page1  page 2    page 3  page 4     ");
-			string [] pagesTmp = pdftc.pages;
+			string [] pagesTmp = pdftc.Pages;
 			Assert.AreEqual(pagesTmp.Length, 5, "CP");
 		}
 			
@@ -106,19 +106,21 @@ text += "                         R,                                           p
 text += "    Hyprrterzsive Prrltnorzary Vascular Disease. Arch                  ventricular septutn. Arch Intem Med 195 1; 87:\n";
 text += "    Pathol 1974; 97: 187- 188.                                         2 18-226.\n";
 
-
-
-          				
-			PDFTextColumn pdftc = new PDFTextColumn(text);
+      			PDFTextColumn pdftc = new PDFTextColumn(text);
 			ArrayList aL = pdftc.GetInfoInPage (1);
 			//float average = pdftc.GetArithmeticAverageInPage (aL, 1);
 			float average = pdftc.GetRepeatPosition (aL, 1);
 			Console.WriteLine("valor:::::::#########################"+average);
 			pdftc.GetTextInColumns (1, aL, average);
+			Console.WriteLine("--------------------LAS COLUMNAS----------------"); 
+ 			Console.WriteLine("--------------Columna1 ------------------------"); 
+ 			Console.WriteLine(pdftc.Column1); 
+ 			Console.WriteLine("-----------------------------------------------"); 
+ 			Console.WriteLine("--------------Columna2 ------------------------"); 
+ 			Console.WriteLine(pdftc.Column2); 
+ 			Console.WriteLine("-----------------------------------------------"); 
 			//Assert.AreEqual (average, 41, "CA");			
 		}
-		
 	}
-	
 }
 }

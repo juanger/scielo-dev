@@ -19,11 +19,12 @@ namespace PDF2Text
 	
 public class PDFTextColumn
 {
-	private Hashtable vr = new Hashtable ();
 	private int threshold = -1;
-	public string [] pages;
-	public string text;
+	private string [] pages;
+	private string text;
 	private bool referencesFlag = false;
+	private string column1 = "";
+	private string column2 = "";
 		
 	public PDFTextColumn (RawDocument document)
 	{
@@ -40,6 +41,24 @@ public class PDFTextColumn
 	public string [] GetTextInPages ( )
 	{
 		return text.Split (new Char [] {'\u000c'});
+	}
+	
+	public string Column1{
+		get {
+			return column1;
+		}
+	}
+	
+	public string Column2{
+		get {
+			return column2;
+		}
+	}
+	
+	public string[] Pages{
+		get {
+			return pages;
+		}
 	}
 	
 	public ArrayList GetInfoInPage (int index)
@@ -61,7 +80,6 @@ public class PDFTextColumn
 				if (space >= 2 && count < line.Length-1 && line[count+1] != ' '){
 					if (!ht.Contains(position_value)){
 						ht.Add (position_value, space);
-						Console.WriteLine("insert::key::"+position_value+":space:"+space+"::line::"+line);
 					}
 				}	
 				count++;	
@@ -76,28 +94,24 @@ public class PDFTextColumn
 		int sum = 0;
 		int count = 0;
 		float average = 0;
-		string [] rawCollection = (pages[index]).Split (new Char [] {'\n'} );
 		int i = 0;
 		foreach (Hashtable ht in values){
 			if (ht.Count == 1){
 				foreach (DictionaryEntry de in ht){
 					sum = sum + (int)de.Key;
 					count ++;
-				}
-				
+				}			
 			}
 			i++;
 		}
 		average = sum / count;
-		
 		return average;
 	}
 	
 	public float GetRepeatPosition (ArrayList values, int index)
 	{
+		Hashtable vr = new Hashtable ();
 		int i = 0;
-		float average_presition = 0;
-		string [] rawCollection = pages[index].Split (new Char [] {'\n'});
 		foreach (Hashtable ht in values){
 			if (ht.Count == 1){
 				foreach (DictionaryEntry de in ht){
@@ -111,30 +125,33 @@ public class PDFTextColumn
 			}
 			i++;
 		}
-		
-		foreach (DictionaryEntry de in vr){
-			Console.WriteLine("key:"+de.Key+":value:"+de.Value);
-		}
-		
+		SetThreshold (index);
+ 		return UpperValueOnThreshold (vr);
+	}
+	
+	private void SetThreshold (int index)
+	{
 		int maxL = UpperLength ((pages[index]).Split (new Char [] {'\n'}));
-		Console.WriteLine ("longitud mas grande::"+maxL);
 		threshold = (maxL/2)-3;
- 		float upper_value = (float)UpperValue();
+	}
+	
+	private float UpperValueOnThreshold (Hashtable vr)
+	{
+		float upper_value = (float)UpperValue (vr);
  		for (int k=0; k<vr.Count; k++){
  			if ( upper_value > threshold){
  				break;
  			}
- 			upper_value = (float)UpperValue();
+ 			upper_value = (float)UpperValue (vr);
  		}
- 		average_presition = upper_value-6;
- 		return average_presition;
+ 		return (upper_value-6);
 	}
 	
-	public float UpperValue ()
+	public float UpperValue (Hashtable vr)
 	{
 		int valV = 0;
 		int valK = 0;
-		foreach(DictionaryEntry de in vr){
+		foreach (DictionaryEntry de in vr){
 			if( (int)de.Value > valV ){
 				valV = (int)de.Value;
 				valK = (int)de.Key;
@@ -144,79 +161,74 @@ public class PDFTextColumn
 		return (float)valK;
 	}
 	
-	public DictionaryEntry Value(Hashtable vr, int index)
-	{
-		DictionaryEntry de = new DictionaryEntry();
-		return de;
-	}
-	
 	public int UpperLength (string[] rawCollection){
 		int leng = 0;
-		foreach(string element in rawCollection){
+		foreach (string element in rawCollection){
 			if( element.Length > leng )
 				leng = element.Length;
 		}
 		return leng;
 	}
+
+	private void DivideLine (string line, int position, float average){
+		if (referencesFlag){
+   			if (position==0 || position<threshold){ 
+ 				column1 += line;
+ 				column2 +="\n";
+			}else{ 
+				column1 +=  line.Substring (0,position)+"\n"; 
+				column2 += line.Substring (position);
+			}
+ 	    	}else{
+ 			if (position==0 || position<average){ 
+ 				column1 += line;
+ 				column2 +="\n";
+			}else{ 
+ 				column1 +=  line.Substring (0,position)+"\n"; 
+ 				column2 += line.Substring (position);
+ 			}
+ 		}
+
+	}
+	
+	private int PositionToDivideLine (Hashtable ht, float average){
+		float distance_now = 0; 
+ 		float distance = 0; 
+ 		int position = 0;
+		int count = 1;
+
+		foreach (DictionaryEntry de in ht){
+			if(count == 1){
+ 				distance = distance_now = Math.Abs ((int)de.Key - average);
+ 				position = (int)de.Key;
+ 				count = 2;
+ 			}else{
+				distance_now = Math.Abs ((int)de.Key - average);
+ 				if (distance >= distance_now){ 
+ 					distance = distance_now; 
+ 					position = (int)de.Key;
+ 				} 
+ 	       		}	
+ 	 	}
+ 	 	return position;
+	}
 	
 	public void GetTextInColumns (int indexPage, ArrayList values, float average)
 	{			
-		string column1 = ""; 
- 		string column2 = ""; 
  		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
  		int number_raw = 0;
  		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");
+ 		
  		foreach (Hashtable ht in values){ 
- 			float distance_now = 0; 
- 			float distance = 0; 
- 			int position = 0;
- 			string line = rawCollection [number_raw]+"\n";
- 			int count = 1;
  			
+ 			string line = rawCollection [number_raw]+"\n"; 			
  			if (regex.IsMatch(line) == true)
  				referencesFlag = true;
  			
-			foreach (DictionaryEntry de in ht){
-					if(count == 1){
- 						distance = distance_now = Math.Abs ((int)de.Key - average);
- 						position = (int)de.Key;
- 						count = 2;
- 					}else{
-	 					distance_now = Math.Abs ((int)de.Key - average);
- 						if (distance >= distance_now){ 
- 							distance = distance_now; 
- 							position = (int)de.Key;
- 						} 
- 		       	   		}	
- 	    			} 
- 	    		if(referencesFlag){
- 	    			if (position==0 || position<threshold){ 
-	 				column1 += line;
-	 				column2 +="\n";
- 				}
-	 			else{ 
- 					column1 +=  line.Substring (0,position)+"\n"; 
- 					column2 += line.Substring (position);
- 				}
-	 	    	}else{
-	 			if (position==0 || position<average){ 
-	 				column1 += line;
-	 				column2 +="\n";
- 				}
-	 			else{ 
- 					column1 +=  line.Substring (0,position)+"\n"; 
- 					column2 += line.Substring (position);
- 				}
- 			}
+			int pos = PositionToDivideLine (ht, average);
+ 	    		DivideLine (line, pos, average);
  			number_raw ++; 
  		}
- 		Console.WriteLine("--------------------LAS COLUMNAS----------------"); 
- 		Console.WriteLine("--------------Columna1 ------------------------"); 
- 		Console.WriteLine(column1); 
- 		Console.WriteLine("-----------------------------------------------"); 
- 		Console.WriteLine("--------------Columna2 ------------------------"); 
- 		Console.WriteLine(column2); 
- 		Console.WriteLine("-----------------------------------------------"); 
 	}
 }
 }

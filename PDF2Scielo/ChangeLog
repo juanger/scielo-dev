@@ -1,3 +1,8 @@
+2007-08-01  Full Name <Email Address> 
+
+	* PDF2Text/PDFTextColumn.cs: Cambios mínimos en los métodos de la
+	  clase.
+
 2007-07-31  Full Name <Email Address> 
 
 	* PDF2Text/PDFTextColumn.cs: Modificacion de la forma de division de
