@@ -1,0 +1,63 @@
+Atmósfera (2004) 13-30
+
+
+
+
+  Synoptic scale features of the tropospheric circulation over tropical
+    South America during the WETAMC TRMM/LBA experiment
+
+                          N. J. FERREIRA, A. A. CORREIA and M. C. V. RAMÍREZ
+                                  Instituto Nacional de Pesquisas Espaciais
+                            C. P. 515, 12210-010 São José dos Campos, SP, Brazil
+
+
+                           Received February 5, 2002; accepted September 1, 2003
+
+
+                                                   RESUMEN
+
+Este trabajo analiza las características sinópticas de la circulación de los niveles altos y bajos de la troposfera
+sobre América del Sur, durante la primera campaña para colecta de datos atmosféricos en mesoescala en la
+época húmeda (Atmospheric Mesoscale Campaign in the Wet Season - WETAMC) del Experimento de Gran
+Escala en la Biosfera-Atmósfera de la Amazonia (LBA). Esta campaña fue realizada entre los meses de enero
+y febrero de 1999 simultáneamente con la validación de los datos del satélite Tropical Rainfall Measuring
+Mission (TRMM) sobre Brasil. Fueron utilizados datos puntuales reticulares de los National Centers for
+Environmental Predictions (NCEP) para analizar los vientos y sus campos de divergencia asociados, a manera
+de definir los patrones prevalecientes de la circulación troposférica en la región. Las imágenes TRMM fueron
+utilizadas para delinear los patrones de lluvia. Los resultados muestran que ocurrieron por lo menos cuatro
+patrones diferentes en los campos de viento en la alta troposfera, durante el período estudiado. Estos
+patrones están asociados, principalmente, a la circulación anticiclónica de Bolivia y a los vórtices ciclónicos
+en el noreste de Brasil. Los resultados también indican que, en general, la actividad convectiva sobre extensas
+áreas de América del Sur es dinámicamente sustentada por divergencias a niveles altos. Dos de los seis
+vórtices observados, presentaron desplazamientos anómalos en la Amazonia durante el período de estudio.
+En los niveles bajos de la Zona de Convergencia del Atlántico Sur (ZCAS) no hubo actividad, a excepción de
+la primera quincena de enero; adicionalmente, incursiones en dirección ecuatorial de sistemas frontales de
+latitud media modularon la actividad convectiva en la región occidental de la Amazonia. Durante el período de
+estudio, el flujo convergente de vapor de agua de nivel bajo derivado de los datos del NCEP presentó un
+patrón parcialmente consistente con los campos de lluvia del TRMM.
+
+
+                                                  ABSTRACT
+
+This paper analyzes the synoptic scale features of the upper and lower level tropospheric circulation over
+tropical South America during the first Atmospheric Mesoscale Campaign in the Wet Season (WETAMC) of
+the Large Scale Biosphere  Atmosphere Experiment in Amazonia (LBA). This campaign occurred in January
+14                                            N. J. Ferreira et al.
+
+
+and February, 1999 and concomitantly with the validation of the Tropical Rainfall Measuring Mission (TRMM)
+satellite over Brazil. National Centers for Environmental Predictions (NCEP) grid point data were used to
+analyze the winds and its associated divergence fields and define the prevailing patterns of the tropospheric
+circulation in that region. TRMM images were used to depict the rain patterns. The results show at least four
+distinct patterns in the upper air winds fields during the WETAMC-TRMM/LBA, involving mainly the
+Bolivian anticyclonic circulation and cyclonic vortices in the vicinity of Northeast Brazil. The results also
+suggest that, in general, the convective activity over vast areas of South America is dynamically supported
+by upper level divergence. Two out of a total of six vortices were observed to have anomalous displacements
+into the Amazonia during the study period. At lower levels, the South Atlantic Convergence Zone (SACZ),
+except for the first half of January, was not active but equatorward incursions of midlatitude frontal systems
+disturbed the convective activy in the Southwestern Amazon basin. Besides, during the period of the study,
+the low-level moisture divergence as derived from NCEP data does not show convergence where the TRMM
+rain field clearly reveals the existence of precipitation areas.
+
+
+Key words: Cyclonic vortices, TRMM, South Atlantic convergence zone, Bolivian High

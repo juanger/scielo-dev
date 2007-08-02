@@ -1,5 +1,13 @@
 2007-08-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Test/TestFront.txt, Test/TestBody.txt, Test/TestBack.txt: Archivos
+	  con las partes de un artículo para ser usados en pruebas
+	* Test/TestStringMatch.cs: Archivo de prueba para la clase StringMatch
+	* PDF2Text.mdp: Archivos de prueba agregados.
+	* StringMatch.cs: Se agregó el método HasResultMatch
+
+2007-08-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Test/TestAtmNormalizer.cs: Se eliminaron las pruebas para los métodos
 	  que fueron reemplazados por la funcionalidad de la clase
 	  StringMatchCollection.

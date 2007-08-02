@@ -37,5 +37,10 @@ public class StringMatch {
 			return named;
 		}
 	}
+	
+	public bool HasResultMatch ()
+	{
+		return !named.Equals (String.Empty);
+	}
 }
 }

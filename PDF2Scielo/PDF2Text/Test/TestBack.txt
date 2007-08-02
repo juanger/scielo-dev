@@ -1,0 +1,66 @@
+References
+Belassiano, M., 2000. Study of tropical heat sources impact (In Portuguese). Master Degree
+   Dissertation, Instituto Astrônomico e Geofísico, Universidade de São Paulo, São Paulo,
+   Brazil, 73 pp.
+Carvalho, L., C. Jones, and B. Liebmann, 2002. Extreme precipitation events in southeastern South
+   America and large-scale convective patterns in the South Atlantic Convergence Zone. J. Climate,
+   15, 2377-2394.
+Cifelli, R., W. A. Petersen, L. D. Carey, S. A. Rutledge and M. A. F. Silva, 2002. Radar observations
+   of the kinematic, microphysical, and precipitation characteristics of two MCSs in TRMM-LBA.
+   J. Geophys. Res., 107, NO.D20, 8077, doi:10.1029/2000JD000264.
+Doty, B. E., J. L. Kinter III, M. Fiorino, D. Hooper, R. Budich, K. Winger, U. Schulzweida, L.
+   Calori, T. Holt, and K. Meier, 1997. The grid analysis and display system (GrADS): An Update
+   for 1997. In: 13th International Conference on IIPS for Meteorology, Oceanography and Hydrology,
+   Amer. Meteor. Soc., Longbeach, CA., p.117.
+Ferreira, N. J., C. I. V. Lacava, and Z. R. Sobral, 2001. A climatological study of convective
+   cloudbands in northeastern Brazil. Part I: Preliminary analysis. Aust. Met. Mag, 50 105-113.
+Gandu, A. W. and J. E. Geisler, 1991. A primitive equations model study of the effect of topography
+   on the summer circulation over tropical South America. J. Atmos. Sci., 48, 1822-1836.
+Gandu, A. W. and P. L. Silva Dias, 1998. Impact of tropical heat sources on the South American
+   tropospheric upper circulation and subsidence. J. Geophys. Res., 103, 6001-6015.
+Greco, S., R. Swap, M. Garstang, S. Ulanski, M. Shiphom, R. C. Harris, R. Talbor, M. O. Andreae
+   and P. Artaxo, 1990. Rainfall and surface kinematic condition over central Amazonia during
+   ABLE 2B. J. Geophys. Res., 95, 17001-17014.
+Huffman, G. J., , R. F. Adler, B. Rudorlf, U. Schneider, P. R. Keehn, 1995, Global precipitation
+   estimates based on a technique for combining satellite-based estimates, rain gauges analysis,
+   and NWP model precipitation information. J. Clim., 8, 1284-1295.
+30                                        N. J. Ferreira et al.
+
+
+Kalnay, E., M. Kanamitsu, R. Kistler, W. Collins, D. Deaven, L. Gandin, M. Iredell, S. Saha, G.
+   White, J. Woollen, Y. Zhu, M. Chelliah, W. Ebisuzaki, W. Higgins, J. Janowiak, K. C. Mo, C.
+   Ropelewski, J. Wang, A. Leetmaa, R. Reynolds, R. Jenne, and D. Joseph, 1996. The NCEP/
+   NCAR 40-Year reanalysis project. Bull. Amer. Meteor. Soc., 77, 437-471.
+Kodama, Y., 1992. Large-scale common features of subtropical precipitation zones (the Baiu Frontal
+   Zone, the SPCZ, and the SACZ). Part I: Characteristics of subtropical frontal zones. J. Meteor.
+   Soc. Japan, 70, 813-836.
+Kousky, V. E. and M. A. Gan, 1981. Upper tropospheric cyclonic vortices in the tropical South-
+   Atlantic. Tellus, 33, 538-551.
+Mishra, S. K., V. B. Rao and M. A. Gan, 2001. Structure and evolution of the large-scale flow and
+   an embedded upper-tropospheric cyclonic vortex over Northeast Brazil. Mon. Wea. Rev., 129,
+   16731688.
+Paixão, E. B. and A. W. Gandu, 2000. Characteristics of the upper level cyclonic vortices over the
+   Northeastern Brazil (In Portuguese). XI Congresso Brasileiro Meteorologia, Rio de Janeiro.,
+   pp. 3422-3428.
+Petersen, W.A., and S. A. Rutledge, 2001. Regional variability in tropical convection: observations
+   from TRMM. J. Clim., 14, 3566-3586.
+Ramírez, M. C. V., M. T. Kayano and N. J. Ferreira, 1999. Statistical analysis of upper tropospheric
+   vortices in the vicinity of northeast Brazil during the 1980-1989 period. Atmósfera, 12, 75-88.
+Rao, V. B. and V. S. Marques, 1984. Water vapor characteristics over Northeast Brazil during two
+   contrasting years. J. Clim. Appl. Meteor., 23, 440-444.
+Rao, V. B. and K. Hada, 1999. Characteristics of rainfall over Brazil: annual variations and
+   connections with the southern oscillation. Theor. Appl. Climatol, 42, 81-91.
+Rutledge, S. A., W. A. Petersen, R. Cifelli, and L. D. Carey, 2000. Early results from TRMM-
+   LBA: kinematic and microphysical characteristics of convection in distinct meteorological regimes.
+   Preprint Volume, American Meteorological Society, 24th Conference on Hurricanes and Tropical
+   Meteorology, Fort Lauderdale, Florida.
+Silva Dias, P. L., W. H. Schubert, and M. DeMaria, 1983. Large-scale response of the tropical
+   atmosphere to transient forcing. J. Atmos. Sci., 40, 2689-2707.
+Silva Dias, M. A. F., S. Rutledge, P. Kabat, P. L. Silva Dias, C. A. Nobre, G. Fisch, A. J. Dolman,
+   E. Zipser, M. Garstang, A. O. Manzi, J. D. Fuentes, H. Rocha, J. Marengo, A. Plana-Fattori, L.
+   Sá, R. Alvalá, O. Andreae, P. Artaxo, R. Gielow, and L. Gatti, 2002. Clouds and rain processes
+   in a biosphere atmosphere interaction context in the Amazon Region. J. Geophys. Res.,107,
+   46.1-46.23.
+Virji, H., 1981. A preliminary-study of summertime tropospheric circulation patterns over South-
+   America estimated from cloud winds. Mon. Wea. Rev., 109, 599610.
+
