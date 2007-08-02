@@ -31,31 +31,26 @@ public class TestStringMatch {
 	{
 		string path = Path.Combine (Test.PathOfTest (), "TestBack.txt" );
 		
-		FileStream mainReader = new FileStream(path, FileMode.Open);
-		StreamReader sreader = new StreamReader(mainReader);
+		using (FileStream mainReader = new FileStream(path, FileMode.Open)) {
+			using (StreamReader sreader = new StreamReader(mainReader))
+				source = sreader.ReadToEnd ();
+		}
 		
-		source = sreader.ReadToEnd ();
 		full = new StringMatchCollection("(sub)?tropical", source);
-		result = new StringMatchCollection("\b(?<Result>tropical)", source);
+		result = new StringMatchCollection(" (?<Result>tropical)[ \n]", source);
 		
 	}
 	
 	[Test]
 	public void FullMatch ()
 	{
-		int counter = 0;
-		foreach (StringMatch match in full) 
-			counter++;
-		Assert.AreEqual(8, counter);
+		Assert.AreEqual(8, full.Count);
 	}
 	
 	[Test]
 	public void ResultMatch ()
 	{
-		int counter = 0;
-		foreach (StringMatch match in result) 
-			counter++;
-		Assert.AreEqual(6, counter);
+		Assert.AreEqual(6, result.Count);
 	}
 }
 }

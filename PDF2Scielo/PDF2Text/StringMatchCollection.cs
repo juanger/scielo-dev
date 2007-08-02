@@ -65,7 +65,6 @@ public class StringMatchCollection : IEnumerable {
 		return (IEnumerator) new StringMatchCollectionEnumerator (this);
 	}
 	
-	
 	private ArrayList GetMatches (string regexp, string source)
 	{
 		ArrayList result;
@@ -85,6 +84,12 @@ public class StringMatchCollection : IEnumerable {
 	public StringMatch Item (int index)
 	{
 		return (StringMatch) matches [index];
+	}
+	
+	public int Count {
+		get {
+			return matches.Count;
+		}
 	}
 	
 	public StringMatch this [int index] {

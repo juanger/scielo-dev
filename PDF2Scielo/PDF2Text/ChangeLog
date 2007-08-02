@@ -1,3 +1,8 @@
+2007-08-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/TestStringMatch.cs: Se cambió el uso del foreach por Count
+	* StringMatchCollection.cs: Método Count añadido
+
 2007-08-01  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/TestFront.txt, Test/TestBody.txt, Test/TestBack.txt: Archivos
