@@ -1,5 +1,19 @@
 2007-08-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Test/TestStringMatch.cs: Se modificó para que quedara la versión
+	  final y se migraron algunas pruebas a TestStringMatchCollection.
+	* Test/TestStringMatchCollection.cs: Clase de Prueba para
+	  StringMatchCollection.
+	* Test/TestRule.cs: Clase de prueba para la clase Rule.
+	* Test/test-schema.xml: Se comentaron los atributos del nodo raiz para
+	  quitar errores.
+	* PDF2Text.mdp: Se añadieron los archivos de prueba.
+	* StringMatch.cs: Cambios menores. Se agregó un caso de error. 
+	* StringMatchCollection.cs: Cambio menor. Se eliminó el método Item.
+	* Rule.cs: Nueva clase para representar una regla.
+
+2007-08-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Test/TestStringMatch.cs: Se cambió el uso del foreach por Count
 	* StringMatchCollection.cs: Método Count añadido
 

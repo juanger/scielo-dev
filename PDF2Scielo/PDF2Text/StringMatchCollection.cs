@@ -81,11 +81,6 @@ public class StringMatchCollection : IEnumerable {
 		return result;
 	}
 	
-	public StringMatch Item (int index)
-	{
-		return (StringMatch) matches [index];
-	}
-	
 	public int Count {
 		get {
 			return matches.Count;

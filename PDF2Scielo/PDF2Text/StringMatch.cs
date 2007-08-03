@@ -22,6 +22,9 @@ public class StringMatch {
 	
 	public StringMatch (string all, string named)
 	{
+		if (all == null || named == null)
+			throw new ArgumentNullException ("Error: no match for one regular expression.");
+		
 		this.all = all;
 		this.named = named;
 	}

@@ -1,5 +1,5 @@
 //
-// TestRawDocument.cs: Unit tests for the RawDocument class.
+// TestStringMatch.cs: Unit tests for the StringMatch class.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
@@ -14,8 +14,6 @@
 
 
 using System;
-using System.IO;
-using Scielo.Utils;
 using NUnit.Framework;
 
 namespace Scielo.PDF2Text {
@@ -23,34 +21,13 @@ namespace Scielo.PDF2Text {
 [TestFixture()]
 public class TestStringMatch {
 	
-	StringMatchCollection full, result;
-	string source;
-	
-	[SetUp]
-	public void Initialize ()
-	{
-		string path = Path.Combine (Test.PathOfTest (), "TestBack.txt" );
-		
-		using (FileStream mainReader = new FileStream(path, FileMode.Open)) {
-			using (StreamReader sreader = new StreamReader(mainReader))
-				source = sreader.ReadToEnd ();
-		}
-		
-		full = new StringMatchCollection("(sub)?tropical", source);
-		result = new StringMatchCollection(" (?<Result>tropical)[ \n]", source);
-		
-	}
-	
 	[Test]
-	public void FullMatch ()
+	public void HasResultMatch ()
 	{
-		Assert.AreEqual(8, full.Count);
-	}
-	
-	[Test]
-	public void ResultMatch ()
-	{
-		Assert.AreEqual(6, result.Count);
+		StringMatch fullMatch = new StringMatch ("Foo", "");
+		StringMatch resultMatch = new StringMatch ("Foo", "Bar");
+		Assert.AreEqual(false, fullMatch.HasResultMatch (), "HRM01");
+		Assert.AreEqual(true, resultMatch.HasResultMatch (), "HRM02");
 	}
 }
 }
