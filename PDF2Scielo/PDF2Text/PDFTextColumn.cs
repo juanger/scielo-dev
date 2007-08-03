@@ -84,6 +84,11 @@ public class PDFTextColumn
 				}	
 				count++;	
 			}
+			/*Console.WriteLine("------------------->la linea actual es:::"+line);
+			foreach (DictionaryEntry de in ht){
+				int ele= (int)de.Key;
+				Console.WriteLine("Posi::"+de.Key+"::sub::"+line.Substring(ele));
+			}*/	
 			totalValues.Add(ht);
 		}
 		return totalValues;
@@ -138,6 +143,7 @@ public class PDFTextColumn
 	private float UpperValueOnThreshold (Hashtable vr)
 	{
 		float upper_value = (float)UpperValue (vr);
+		Console.WriteLine("in upperValue"+upper_value);
  		for (int k=0; k<vr.Count; k++){
  			if ( upper_value > threshold){
  				break;
@@ -147,15 +153,19 @@ public class PDFTextColumn
  		return (upper_value-6);
 	}
 	
+	/* Finds the position with great number of frecuency repetition  
+	*/
 	public float UpperValue (Hashtable vr)
 	{
 		int valV = 0;
 		int valK = 0;
 		foreach (DictionaryEntry de in vr){
-			if( (int)de.Value > valV ){
+			if ((int)de.Value > valV){
 				valV = (int)de.Value;
 				valK = (int)de.Key;
 			}
+			Console.Write("key::pos::" + valK +" ");
+			Console.WriteLine("val::" + valV);	
 		}
 		vr.Remove(valK);
 		return (float)valK;
@@ -188,7 +198,6 @@ public class PDFTextColumn
  				column2 += line.Substring (position);
  			}
  		}
-
 	}
 	
 	private int PositionToDivideLine (Hashtable ht, float average){
@@ -196,7 +205,7 @@ public class PDFTextColumn
  		float distance = 0; 
  		int position = 0;
 		int count = 1;
-
+		
 		foreach (DictionaryEntry de in ht){
 			if(count == 1){
  				distance = distance_now = Math.Abs ((int)de.Key - average);
@@ -227,6 +236,7 @@ public class PDFTextColumn
  			
 			int pos = PositionToDivideLine (ht, average);
  	    		DivideLine (line, pos, average);
+ 	    		Console.Write("Aver:"+average+":Thres:"+threshold+"::Pos::"+pos+"::linea::"+line+"::subS::"+line.Substring(pos));
  			number_raw ++; 
  		}
 	}
