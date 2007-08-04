@@ -20,7 +20,19 @@ namespace PDF2Text{
 		[Test()]
 		public void CreateColumns()
 		{
-			PDFTextColumn pdftc = new PDFTextColumn("columna 1   columna2 \n columna1   Columna 2 \n COLUMNA 1        COLUMNA2");	
+			PDFTextColumn pdftc = new PDFTextColumn("columna 1   columna2 \n columna1   Columna 2 \n COLUMNA 1        COLUMNA2");
+			ArrayList aL = pdftc.GetInfoInPage (1);
+			float average = pdftc.GetRepeatPosition (aL, 1);
+			Console.WriteLine("valor:::::::#########################"+average);
+			pdftc.GetTextInColumns (1, aL, average);
+			Console.WriteLine("--------------------LAS COLUMNAS----------------"); 
+ 			Console.WriteLine("--------------Columna1 ------------------------"); 
+ 			Console.WriteLine(pdftc.Column1); 
+ 			Console.WriteLine("-----------------------------------------------"); 
+ 			Console.WriteLine("--------------Columna2 ------------------------"); 
+ 			Console.WriteLine(pdftc.Column2); 
+ 			Console.WriteLine("-----------------------------------------------"); 
+			//Assert.AreEqual (average, 41, "CA");			
 		}
 		
 		[Test()]

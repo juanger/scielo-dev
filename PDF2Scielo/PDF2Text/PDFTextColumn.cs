@@ -25,6 +25,7 @@ public class PDFTextColumn
 	private bool referencesFlag = false;
 	private string column1 = "";
 	private string column2 = "";
+	Hashtable vr = new Hashtable ();
 		
 	public PDFTextColumn (RawDocument document)
 	{
@@ -84,11 +85,11 @@ public class PDFTextColumn
 				}	
 				count++;	
 			}
-			/*Console.WriteLine("------------------->la linea actual es:::"+line);
+			Console.WriteLine("------------------->la linea actual es:::"+line);
 			foreach (DictionaryEntry de in ht){
 				int ele= (int)de.Key;
 				Console.WriteLine("Posi::"+de.Key+"::sub::"+line.Substring(ele));
-			}*/	
+			}	
 			totalValues.Add(ht);
 		}
 		return totalValues;
@@ -112,10 +113,12 @@ public class PDFTextColumn
 		average = sum / count;
 		return average;
 	}
-	
+	/*
+	Find the repetition position in the lines with only ONE spaces.
+	*/
 	public float GetRepeatPosition (ArrayList values, int index)
 	{
-		Hashtable vr = new Hashtable ();
+		//Hashtable vr = new Hashtable ();
 		int i = 0;
 		foreach (Hashtable ht in values){
 			if (ht.Count == 1){
@@ -127,11 +130,16 @@ public class PDFTextColumn
 						vr[de.Key] = val+1;
 					}
 				}
+				i++;
 			}
-			i++;
+		}
+		Console.WriteLine("En hashtable::"+i);
+		foreach (DictionaryEntry de in vr){
+			Console.WriteLine("K::"+de.Key+"::V::"+de.Value);
 		}
 		SetThreshold (index);
- 		return UpperValueOnThreshold (vr);
+		Console.WriteLine("here threshold:::"+threshold);
+ 		return UpperValueOnThreshold ();
 	}
 	
 	private void SetThreshold (int index)
@@ -140,22 +148,22 @@ public class PDFTextColumn
 		threshold = (maxL/2)-3;
 	}
 	
-	private float UpperValueOnThreshold (Hashtable vr)
+	private float UpperValueOnThreshold ()
 	{
-		float upper_value = (float)UpperValue (vr);
+		float upper_value = (float)UpperValue ();
 		Console.WriteLine("in upperValue"+upper_value);
  		for (int k=0; k<vr.Count; k++){
  			if ( upper_value > threshold){
  				break;
  			}
- 			upper_value = (float)UpperValue (vr);
+ 			upper_value = (float)UpperValue ();
  		}
- 		return (upper_value-6);
+ 		return (upper_value);
 	}
 	
 	/* Finds the position with great number of frecuency repetition  
 	*/
-	public float UpperValue (Hashtable vr)
+	public float UpperValue ()
 	{
 		int valV = 0;
 		int valK = 0;
