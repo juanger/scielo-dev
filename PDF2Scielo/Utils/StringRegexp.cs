@@ -26,8 +26,8 @@ public class StringRegexp {
 		string [][] entities = {new string [] {"&gt;", ">"}, 
 					new string [] {"&lt;", "<"},
 					new string [] {"&amp;", "&"}};
+		
 		string result = regexp;
-		System.Console.WriteLine(entities.Length);
 		foreach (string [] entity in entities)
 		{
 			result = result.Replace (entity [0], entity [1]);
