@@ -50,13 +50,13 @@ public class Rule {
 		// Aqui se obtiene la expresion de sustitucion.
 		sust = root.SelectSingleNode ("sust").FirstChild.Value;
 		sust = StringRegexp.Unescape (sust);
-
+		
 		// Aquí se obtiene el número de matches esperados.
-		string unique = root.SelectSingleNode ("@expectedMatches").Value;
-		if (unique.Equals ("one"))
-			unique_match = true;
-		else
-			unique_match = false;
+		XmlNode matchNode = root.SelectSingleNode ("@expectedMatches");
+		unique_match = true;
+		
+		if (matchNode != null)
+			unique_match = !matchNode.Value.Equals ("unbounded");
 		
 		// Aquí se obtiene el tipo de la regla.
 		if (regexp.IndexOf ("(?<Result>") != -1)
