@@ -1,3 +1,11 @@
+2007-08-03  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/TestRule.cs: Se agregaron las pruebas para los atributos de Rule
+	  inicializados en el constructor. 
+	* Rule.cs: Se añadió al constructor la inicialización de sust,
+	  unique_match y type. También se cambió el tipo de expected_matches
+	  de int a boolean y se cambió su nombre a unique_match
+
 2007-08-02  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/TestStringMatch.cs: Se modificó para que quedara la versión

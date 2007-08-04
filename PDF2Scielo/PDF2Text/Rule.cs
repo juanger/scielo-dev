@@ -14,13 +14,14 @@
 //
 
 using System;
+using Scielo.Utils;
 using System.Xml;
 
 namespace Scielo.PDF2Text {
 public class Rule {
 	string name;
 	RuleType type;
-	int expected_matches;
+	bool unique_match;
 	string [] depends;
 	string regexp;
 	string sust;
@@ -36,17 +37,35 @@ public class Rule {
 	{
 		if (root == null)
 			throw new ArgumentNullException ("Danger danger Mr. Robinson");
-		Console.WriteLine (root.OuterXml);
+		
+		// Aqui se obtiene el nombre de la regla.
 		XmlNode node = root.SelectSingleNode ("@name");
 		name = node.Value;
-		Console.WriteLine (node.OuterXml);
-		System.Console.WriteLine("DEBUG: Rule name: {0}", name);
+		
+		// Aqui se obtiene la expresion regular de la regla.
 		regexp = root.SelectSingleNode ("regexp").FirstChild.Value;
-		Console.WriteLine (regexp);
+		regexp = StringRegexp.Unescape (regexp);
+		regexp = StringRegexp.ReplaceEntities (regexp);
+		
+		// Aqui se obtiene la expresion de sustitucion.
 		sust = root.SelectSingleNode ("sust").FirstChild.Value;
-		Console.WriteLine (sust);
-		//expected_matches = int.root.SelectSingleNode ("@expectedMatches").Value;
-		//Console.WriteLine (expected_matches);
+		sust = StringRegexp.Unescape (sust);
+
+		// Aquí se obtiene el número de matches esperados.
+		string unique = root.SelectSingleNode ("@expectedMatches").Value;
+		if (unique.Equals ("one"))
+			unique_match = true;
+		else
+			unique_match = false;
+		
+		// Aquí se obtiene el tipo de la regla.
+		if (regexp.IndexOf ("(?<Result>") != -1)
+			type = RuleType.RESULT;
+		else if (sust.IndexOf ("#{Result}") == -1)
+			type = RuleType.STATIC;
+		else
+			type = RuleType.FULL;
+		
 	}
 	
 	public string Name {
@@ -61,9 +80,9 @@ public class Rule {
 		}
 	}
 	
-	public int ExpectedMatches {
+	public bool UniqueMatch {
 		get {
-			return expected_matches;
+			return unique_match;
 		}
 	}
 	

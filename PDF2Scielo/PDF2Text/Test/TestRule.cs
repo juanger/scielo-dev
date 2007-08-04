@@ -31,15 +31,18 @@ public class TestRule {
 	}
 	
 	[Test()]
-	public void TestAttributes()
+	public void TestStaticAttributes()
 	{
 		XmlNode root = document.DocumentElement;
 		//Console.WriteLine (root.OuterXml);
 		XmlNode ruleNode = document.SelectSingleNode ("/style/global/rule[1]");
 		Console.WriteLine (ruleNode.OuterXml);
 		Rule newRule = new Rule (ruleNode);
-		Assert.AreEqual("RemoveHeaders0", newRule.Name, "TA0");
-		Assert.AreEqual("[\n]+[\u000c]+[0-9]+[ ]*[ #{ALET}#{ASYM}#{APUC}]+[\n]+", newRule.Regexp, "TA1");
+		Assert.AreEqual ("RemoveHeaders0", newRule.Name, "TA0");
+		Assert.AreEqual (@"[\n]+[\u000c]+[0-9]+[ ]*[ #{ALET}#{ASYM}#{APUC}]+[\n]+", newRule.Regexp, "TA1");
+		Assert.AreEqual (@"\n", newRule.Sustitution, "TA2");
+		Assert.AreEqual (false, newRule.UniqueMatch, "TA3");
+		Assert.AreEqual (Rule.RuleType.STATIC, newRule.Type, "TA4");
 	}
 }
 }
