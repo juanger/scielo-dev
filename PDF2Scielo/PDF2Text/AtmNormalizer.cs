@@ -19,11 +19,8 @@ using System.Text;
 using System.Collections;
 using Scielo.Utils;
 
-namespace Scielo {
-namespace PDF2Text {
-	
+namespace Scielo.PDF2Text {
 public class AtmNormalizer : INormalizable {
-
 	private string text;
 	private string front;
 	private string body;
@@ -488,6 +485,5 @@ public class AtmNormalizer : INormalizable {
 			body = body.Replace (match.FullMatch, result);
 		}
 	}
-}
 }
 }

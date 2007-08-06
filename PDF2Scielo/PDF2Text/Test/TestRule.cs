@@ -25,7 +25,6 @@ public class TestRule {
 	{
 		document = new XmlDocument ();
 		string source = Path.Combine (Test.PathOfTest (), "test-schema.xml");
-		Console.WriteLine (source);
 		XmlTextReader reader = new XmlTextReader (source);
 		document.Load (reader);
 	}

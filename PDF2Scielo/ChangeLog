@@ -1,5 +1,10 @@
 2007-08-06  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Utils/Test/TestStringEncoding.cs, PDF2Text/Test/TestRule.cs,
+	  PDF2Text/AtmNormalizer.cs: Minor Change.
+
+2007-08-06  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/AtmNormalizer.cs, PDF2Text/Rule.cs: Cambios menores.
 
 2007-08-03  Full Name <Email Address> 
