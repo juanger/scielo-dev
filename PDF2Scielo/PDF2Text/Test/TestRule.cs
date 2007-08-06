@@ -33,36 +33,39 @@ public class TestRule {
 	public void TestStaticAttributes()
 	{
 		XmlNode ruleNode = document.SelectSingleNode ("/style/global/rule[1]");
-		Rule newRule = new Rule (ruleNode);
+		Rule newRule = new Rule (ruleNode, BlockType.GLOBAL);
 		Assert.AreEqual ("RemoveHeaders0", newRule.Name, "TSA0");
-		Assert.AreEqual (@"[\n]+[\u000c]+[0-9]+[ ]*[ #{ALET}#{ASYM}#{APUC}]+[\n]+", newRule.Regexp, "TSA1");
+		Assert.AreEqual (@"[\n]+[\u000c]+[0-9]+[ ]*[ \w\p{S}\p{P}]+[\n]+", newRule.Regexp, "TSA1");
 		Assert.AreEqual (@"\n", newRule.Sustitution, "TSA2");
 		Assert.AreEqual (false, newRule.UniqueMatch, "TSA3");
-		Assert.AreEqual (Rule.RuleType.STATIC, newRule.Type, "TSA4");
+		Assert.AreEqual (RuleType.STATIC, newRule.Type, "TSA4");
+		Assert.AreEqual (BlockType.GLOBAL, newRule.Block, "TSA5");
 	}
 	
 	[Test()]
 	public void TestFullAttributes()
 	{
 		XmlNode ruleNode = document.SelectSingleNode ("/style/global/rule[last()]");
-		Rule newRule = new Rule (ruleNode);
+		Rule newRule = new Rule (ruleNode, BlockType.GLOBAL);
 		Assert.AreEqual ("MarkKeyword", newRule.Name, "TFA0");
 		Assert.AreEqual (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ #{ALET}#{APUC}\n]+?[\n]+", newRule.Regexp, "TFA1");
 		Assert.AreEqual (@"#{Result}", newRule.Sustitution, "TFA2");
 		Assert.AreEqual (true, newRule.UniqueMatch, "TFA3");
-		Assert.AreEqual (Rule.RuleType.FULL, newRule.Type, "TFA4");
+		Assert.AreEqual (RuleType.FULL, newRule.Type, "TFA4");
+		Assert.AreEqual (BlockType.GLOBAL, newRule.Block, "TFA5");
 	}
 	
 	[Test()]
 	public void TestResultAttributes()
 	{
 		XmlNode ruleNode = document.SelectSingleNode ("/style/front/rule[1]");
-		Rule newRule = new Rule (ruleNode);
+		Rule newRule = new Rule (ruleNode, BlockType.FRONT);
 		Assert.AreEqual ("MarkTitle", newRule.Name, "TRA0");
 		Assert.AreEqual (@"^Atm.*[\n ]+(?<Result>[^|]+?)\n[\n]+", newRule.Regexp, "TRA1");
 		Assert.AreEqual (@"#{Result}", newRule.Sustitution, "TRA2");
 		Assert.AreEqual (true, newRule.UniqueMatch, "TRA3");
-		Assert.AreEqual (Rule.RuleType.RESULT, newRule.Type, "TRA4");
+		Assert.AreEqual (RuleType.RESULT, newRule.Type, "TRA4");
+		Assert.AreEqual (BlockType.FRONT, newRule.Block, "TRA5");
 	}
 }
 }

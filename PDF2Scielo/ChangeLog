@@ -1,5 +1,18 @@
 2007-08-06  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/PDF2Text.mdp: Se añadieron las nuevas clases BlockType y
+	  RuleType.
+	* PDF2Text/Test/TestRule.cs: Se añadieron pruebas para BlockType.
+	* PDF2Text/Test/test-schema.xml: Se aliminó el uso de APUC, ALET y
+	  ASYM.
+	* PDF2Text/AtmNormalizer.cs: Se agregó el método Eval y se modificaron
+	  los métodos para usarlo.
+	* PDF2Text/BlockType.cs: Clase para definir tipos de bloque.
+	* PDF2Text/Rule.cs: Se eliminaron los enum para usar las nuevas clases
+	* PDF2Text/RuleType.cs: Nueva clase para definir los tipos de regla.
+
+2007-08-06  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Utils/Test/TestStringEncoding.cs, PDF2Text/Test/TestRule.cs,
 	  PDF2Text/AtmNormalizer.cs: Minor Change.
 

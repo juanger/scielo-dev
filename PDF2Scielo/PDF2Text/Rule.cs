@@ -20,22 +20,19 @@ using System.Xml;
 namespace Scielo.PDF2Text {
 public class Rule {
 	string name;
+	BlockType block;
 	RuleType type;
 	bool unique_match;
 	string regexp;
 	string sust;
 	
-	public enum RuleType :int
-	{
-		STATIC = 0,
-		FULL = 1,
-		RESULT = 2,
-	}
-	
-	public Rule(XmlNode root)
+	public Rule(XmlNode root, BlockType block)
 	{
 		if (root == null)
 			throw new ArgumentNullException ("Danger danger Mr. Robinson");
+		
+		// Aquis e obtiene el nombre del bloque
+		this.block = block;
 		
 		// Aqui se obtiene el nombre de la regla.
 		XmlNode node = root.SelectSingleNode ("@name");
@@ -70,6 +67,12 @@ public class Rule {
 	public string Name {
 		get {
 			return name;
+		}
+	}
+	
+	public BlockType Block {
+		get {
+			return block;
 		}
 	}
 	

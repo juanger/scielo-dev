@@ -18,9 +18,12 @@ using System.Text.RegularExpressions;
 using System.Text;
 using System.Collections;
 using Scielo.Utils;
+using System.Xml;
+using System.IO;
 
 namespace Scielo.PDF2Text {
 public class AtmNormalizer : INormalizable {
+	private XmlDocument xml_document;
 	private string text;
 	private string front;
 	private string body;
@@ -37,6 +40,11 @@ public class AtmNormalizer : INormalizable {
 		StringEncoding encoder = new StringEncoding (source);
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
 		text = encoder.GetStringUnicode ();
+		
+		xml_document = new XmlDocument ();
+		string style_source = Path.Combine (Test.PathOfTest (), "test-schema.xml");
+		XmlTextReader reader = new XmlTextReader (style_source);
+		xml_document.Load (reader);
 		
 		RemoveHeaders ();
 		MarkMajorSections ();
@@ -56,10 +64,32 @@ public class AtmNormalizer : INormalizable {
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
 		text = encoder.GetStringUnicode ();
 		
+		xml_document = new XmlDocument ();
+		string style_source = Path.Combine (Test.PathOfTest (), "test-schema.xml");
+		XmlTextReader reader = new XmlTextReader (style_source);
+		xml_document.Load (reader);
+		
 		RemoveHeaders ();
 		MarkMajorSections ();
 		GetBlocks ();
 		RemoveExtras ();
+	}
+	
+	public void Eval (Rule rule)
+	{
+		if (rule.Block == BlockType.GLOBAL) {
+			StringMatchCollection matches;
+			
+			if (rule.Type == RuleType.STATIC) {
+				GlobalReplaceRegex (rule.Regexp, rule.Sustitution);
+			} else if (rule.Type == RuleType.FULL) {
+//				matches = new StringMatchCollection (rule.Regexp, text);
+//				
+//				if (rule.UniqueMatch) {
+//					StringMatch match = matches [0];
+//				}
+			}
+		}
 	}
 	
 	public void SetEncoding (string encoding)
@@ -135,7 +165,9 @@ public class AtmNormalizer : INormalizable {
 		}
 		#endif
 		
-		GlobalReplaceRegex (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", "\n");
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/global/rule[1]");
+		Rule rule = new Rule (ruleNode, BlockType.GLOBAL);
+		Eval (rule);
 		
 		#if DEBUG
 		matches = new StringMatchCollection (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", text);
@@ -144,7 +176,9 @@ public class AtmNormalizer : INormalizable {
 		}
 		#endif
 		
-		GlobalReplaceRegex (@"[\n]+[\u000c]+[ ]*[0-9 " + ALET + ASYM + APUC + "]+[ ]*[\n]*[0-9]*[\n]+", "\n");
+		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[2]");
+		rule = new Rule (ruleNode, BlockType.GLOBAL);
+		Eval (rule);
 	}
 	
 	private void MarkMajorSections ()
@@ -153,11 +187,26 @@ public class AtmNormalizer : INormalizable {
 		
 		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
 		// FIXME: No marca todos los articulos con [ack] y [/ack]. Un ejemplo que encontramos es que el patron debe ser:Acknowledgement
-		// Sin embargo también hay casos, que con los ya dados, tampoco cacha. Ejemplo: v17n2a01.pdf	
-		GlobalReplaceRegex (@"[\n]+[ ]+RESUMEN[\n]+", "\n[res] Resumen [/res]\n");
-		GlobalReplaceRegex (@"[\n]+[ ]+ABSTRACT[\n]+", "\n[abs] Abstract [/abs]\n");
-		GlobalReplaceRegex (@"[\n]+References\n", "\n[ref] References [/ref]\n");
-		GlobalReplaceRegex (@"[\n]+[ ]*(Acknowledgement|Acknowledgment)[s]?\n", "\n[ack] Acknowledgements [/ack]\n");
+		// Sin embargo también hay casos, que con los ya dados, tampoco cacha. Ejemplo: v17n2a01.pdf
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/global/rule[3]");
+		Rule rule = new Rule (ruleNode, BlockType.GLOBAL);
+		Eval (rule);
+		
+		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[4]");
+		rule = new Rule (ruleNode, BlockType.GLOBAL);
+		Eval (rule);
+		
+		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[5]");
+		rule = new Rule (ruleNode, BlockType.GLOBAL);
+		Eval (rule);
+		
+		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[6]");
+		rule = new Rule (ruleNode, BlockType.GLOBAL);
+		Eval (rule);
+		
+		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[7]");
+		rule = new Rule (ruleNode, BlockType.GLOBAL);
+		Eval (rule);
 		
 		//Etiquetado de KEYWORD.
 		matches = new StringMatchCollection (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ " + ALET + APUC + "\n]+?[\n]+", text);

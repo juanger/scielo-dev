@@ -2,14 +2,14 @@
 <style> <!-- name="atm" ncolumns="3" xmlns="http://www.scielo.org.mx" -->
   <global>
     <rule name="RemoveHeaders0" expectedMatches="unbounded">
-      <regexp>[\n]+[\u000c]+[0-9]+[ ]*[ #{ALET}#{ASYM}#{APUC}]+[\n]+</regexp>
+      <regexp>[\n]+[\u000c]+[0-9]+[ ]*[ \w\p{S}\p{P}]+[\n]+</regexp>
       <sust>\n</sust>
     </rule>
     <rule name="RemoveHeaders1" expectedMatches="unbounded">
       <depends>
         <depend>RemoveHeaders</depend>
       </depends>
-      <regexp>[\n]+[\u000c]+[ ]*[0-9 #{ALET}#{ASYM}#{APUC}]+[ ]*[\n]*[0-9]*[\n]+</regexp>
+      <regexp>[\n]+[\u000c]+[ ]*[0-9 \w\p{S}\p{P}]+[ ]*[\n]*[0-9]*[\n]+</regexp>
       <sust>\n</sust>
     </rule>
     <rule name="MarkResumen">
@@ -29,7 +29,7 @@
       <sust>\n[ack] Acknowledgements [/ack]\n</sust>
     </rule>
     <rule name="MarkKeyword">
-      <regexp>[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ #{ALET}#{APUC}\n]+?[\n]+</regexp>
+      <regexp>[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ \w\p{P}\n]+?[\n]+</regexp>
       <sust>#{Result}</sust>
       <modifiers>
         <modifier name="Trim"/>
