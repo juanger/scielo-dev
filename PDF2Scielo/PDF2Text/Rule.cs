@@ -22,7 +22,6 @@ public class Rule {
 	string name;
 	RuleType type;
 	bool unique_match;
-	string [] depends;
 	string regexp;
 	string sust;
 	
@@ -83,12 +82,6 @@ public class Rule {
 	public bool UniqueMatch {
 		get {
 			return unique_match;
-		}
-	}
-	
-	public string [] Depends {
-		get {
-			return depends;
 		}
 	}
 	

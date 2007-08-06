@@ -1,3 +1,7 @@
+2007-08-06  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/AtmNormalizer.cs, PDF2Text/Rule.cs: Cambios menores.
+
 2007-08-03  Full Name <Email Address> 
 
 	Cambios minimos en la division de columnas

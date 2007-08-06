@@ -128,10 +128,9 @@ public class AtmNormalizer : INormalizable {
 	
 	private void RemoveHeaders ()
 	{
-		StringMatchCollection matches;
-		
 		// Remueve encabezados y numeros de pagina.
 		#if DEBUG
+		StringMatchCollection matches;
 		matches = new StringMatchCollection (@"[\n]+[\u000c]+[0-9]+[ ]*[ " + ALET + ASYM + APUC + "]+[\n]+", text);
 		Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar los encabezados y numeros de pagina"); 	
 	 	foreach (StringMatch match in matches) {
