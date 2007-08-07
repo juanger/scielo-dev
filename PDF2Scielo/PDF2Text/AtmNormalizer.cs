@@ -78,22 +78,47 @@ public class AtmNormalizer : INormalizable {
 	public void Eval (Rule rule)
 	{
 		string result;
+		StringMatchCollection matches;
 		if (rule.Block == BlockType.GLOBAL) {
 			if (rule.Type == RuleType.STATIC) {
 				GlobalReplaceRegex (rule.Regexp, rule.Sustitution);
 			} else if (rule.Type == RuleType.FULL) {
-				StringMatchCollection matches;
 				matches = new StringMatchCollection (rule.Regexp, text);
 				
 				if (rule.UniqueMatch) {
 					StringMatch match = matches [0];
-					result = match.ApplyModifiers (rule.Modifiers, RuleType.FULL);
+					result = match.ApplyModifiers (rule.Modifiers, rule.Type);
 					Console.WriteLine ("Test Eval: " + result);
 					text = text.Replace (match.FullMatch, result);
 				} else {
 					foreach (StringMatch m in matches) {
-						result = m.ApplyModifiers (rule.Modifiers, RuleType.FULL);
+						result = m.ApplyModifiers (rule.Modifiers, rule.Type);
 						text.Replace (m.FullMatch, result);
+					}
+				}
+			}
+		} else if (rule.Block == BlockType.FRONT) {
+			if (rule.Type == RuleType.STATIC) {
+			} else if (rule.Type == RuleType.FULL) {
+			} else {
+				Console.WriteLine ("Test: " + rule.Regexp);
+				Console.WriteLine (front);
+				matches = new StringMatchCollection (rule.Regexp, front);
+				
+				if (rule.UniqueMatch) {
+					if (matches.Count == 0) {
+						Console.WriteLine ("Advertencia: No se encontraron matches con la regla " + rule.Name);
+						return;
+					} else if (matches.Count > 1) {
+						Console.WriteLine ("Advertencia: Se encontró más de un match en la regla " + rule.Name + ", se tomó el primero");
+					}
+					StringMatch match = matches [0];
+					result = match.ApplyModifiers (rule.Modifiers, rule.Type);
+					front = front.Replace (match.FullMatch, result);
+				} else {
+					foreach (StringMatch m in matches) {
+						result = m.ApplyModifiers (rule.Modifiers, rule.Type);
+						front.Replace (m.FullMatch, result);
 					}
 				}
 			}
@@ -191,8 +216,6 @@ public class AtmNormalizer : INormalizable {
 	
 	private void MarkMajorSections ()
 	{
-		StringMatchCollection matches;
-		
 		// Etiquetado de RESUMEN, ABSTRACT, REFERENCES y ACKNOWLEDGEMENTS.
 		// FIXME: No marca todos los articulos con [ack] y [/ack]. Un ejemplo que encontramos es que el patron debe ser:Acknowledgement
 		// Sin embargo también hay casos, que con los ya dados, tampoco cacha. Ejemplo: v17n2a01.pdf
@@ -215,19 +238,6 @@ public class AtmNormalizer : INormalizable {
 		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[7]");
 		rule = new Rule (ruleNode, BlockType.GLOBAL);
 		Eval (rule);
-		
-		//Etiquetado de KEYWORD.
-//		matches = new StringMatchCollection (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ " + ALET + APUC + "\n]+?[\n]+", text);
-//		StringMatch match = matches [0];
-//		
-//		#if DEBUG
-//		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar la seccion Keyword.");
-//		Console.WriteLine ("MATCH: " + match.FullMatch);
-//		#endif
-//		
-//		string result = "\n[key] " + match.FullMatch.Trim () + " [/key]\n\n";
-//		Console.WriteLine ("Test Eval: " + result);
-//		text = text.Replace (match.FullMatch, result);
 	}
 	
 	private void GetBlocks ()
@@ -280,42 +290,32 @@ public class AtmNormalizer : INormalizable {
 	
 	private void MarkTitle ()
 	{
-		StringMatchCollection matches;
-		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar el titulo del articulo.");
-		#endif
-		
-		matches = new StringMatchCollection (@"^Atm.*[\n ]+(?<Result>[^|]+?)\n[\n]+", front);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = "[title] " +  match.ResultMatch + " [/title]\n";
-			front = front.Replace (match.FullMatch, result);
-		}
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/front/rule[1]");
+		Rule rule = new Rule (ruleNode, BlockType.FRONT);
+		Eval (rule);
 	}
 	
 	private void MarkDate ()
 	{
-		StringMatchCollection matches;
-		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar la fecha del articulo.");
-		#endif
-		
-		matches = new StringMatchCollection (@"\n[ ]+(?<Result>Received.*)\n", front);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = "\n[date] " + match.ResultMatch + " [/date]\n";
-			front = front.Replace (match.FullMatch, result);
-		}
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/front/rule[2]");
+		Rule rule = new Rule (ruleNode, BlockType.FRONT);
+		Eval (rule);
+//		StringMatchCollection matches;
+//		
+//		#if DEBUG
+//		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar la fecha del articulo.");
+//		#endif
+//		
+//		matches = new StringMatchCollection (@"\n[ ]+(?<Result>Received.*)\n", front);
+//		foreach (StringMatch match in matches) {
+//			
+//			#if DEBUG
+//			Console.WriteLine ("MATCH: " + match.FullMatch);
+//			#endif
+//			
+//			string result = "\n[date] " + match.ResultMatch + " [/date]\n";
+//			front = front.Replace (match.FullMatch, result);
+//		}
 	}
 	
 	private void MarkAuthors ()

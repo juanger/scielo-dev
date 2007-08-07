@@ -44,7 +44,7 @@ public class Rule {
 		
 		// Aqui se obtiene la expresion de sustitucion.
 		sust = root.SelectSingleNode ("sust").FirstChild.Value;
-		
+		sust = StringRegexp.Unescape (sust);
 		// Aquí se obtiene el número de matches esperados.
 		XmlNode matchNode = root.SelectSingleNode ("@expectedMatches");
 		unique_match = true;

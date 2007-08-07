@@ -36,7 +36,7 @@ public class TestRule {
 		Rule newRule = new Rule (ruleNode, BlockType.GLOBAL);
 		Assert.AreEqual ("RemoveHeaders0", newRule.Name, "TSA0");
 		Assert.AreEqual (@"[\n]+[\u000c]+[0-9]+[ ]*[ \w\p{S}\p{P}]+[\n]+", newRule.Regexp, "TSA1");
-		Assert.AreEqual (@"\n", newRule.Sustitution, "TSA2");
+		Assert.AreEqual ("\n", newRule.Sustitution, "TSA2");
 		Assert.AreEqual (false, newRule.UniqueMatch, "TSA3");
 		Assert.AreEqual (RuleType.STATIC, newRule.Type, "TSA4");
 		Assert.AreEqual (BlockType.GLOBAL, newRule.Block, "TSA5");
@@ -50,7 +50,7 @@ public class TestRule {
 		Rule newRule = new Rule (ruleNode, BlockType.GLOBAL);
 		Assert.AreEqual ("MarkKeyword", newRule.Name, "TFA0");
 		Assert.AreEqual (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ \w\p{P}\n]+?[\n]+", newRule.Regexp, "TFA1");
-		Assert.AreEqual (@"#{Result}", newRule.Sustitution, "TFA2");
+		Assert.AreEqual ("#{Result}", newRule.Sustitution, "TFA2");
 		Assert.AreEqual (true, newRule.UniqueMatch, "TFA3");
 		Assert.AreEqual (RuleType.FULL, newRule.Type, "TFA4");
 		Assert.AreEqual (BlockType.GLOBAL, newRule.Block, "TFA5");

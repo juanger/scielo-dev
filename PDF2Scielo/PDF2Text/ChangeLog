@@ -1,5 +1,11 @@
 2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Test/TestRule.cs: Se quitó que sust sea literal.
+	* AtmNormalizer.cs: Se modificaron varios métodos para que usen Eval.
+	* Rule.cs: Se agregó que se quiten los escapes a sust.
+
+2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Test/TestStringMatch.cs: Se agregaron las pruebas para los nuevos
 	  métodos de StringMatch.
 	* Test/TestModifier.cs: Cambios menores.
