@@ -23,8 +23,8 @@ public class TestStringRegexp {
 	[Test()]
 	public void Unescape ()
 	{
-		string old = "\\[/author\\]\\n(?&lt;Result&gt;(.|\\n)+?)(\\[author\\]|\\[date\\]|\\[res\\])";
-		Assert.AreEqual (@"\[/author\]\n(?&lt;Result&gt;(.|\n)+?)(\[author\]|\[date\]|\[res\])", StringRegexp.Unescape (old));
+		string old = @"\n";
+		Assert.AreEqual ("\n", StringRegexp.Unescape (old));
 	}
 	
 	[Test()]

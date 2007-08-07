@@ -1,3 +1,8 @@
+2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/TestStringRegexp.cs: Se modificó la prueba para Unescape.
+	* StringRegexp.cs: Se agregó un chequeo para revisar que no sea null.
+
 2007-08-03  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* StringRegexp.cs: Cambios menores.

@@ -18,7 +18,10 @@ public class StringRegexp {
 	
 	public static string Unescape (string regexp)
 	{
-		return regexp.Replace (@"\\", @"\");
+		if (regexp == null)
+			return String.Empty;
+		
+		return regexp.Replace (@"\n", "\n");
 	}
 	
 	public static string ReplaceEntities (string regexp)
