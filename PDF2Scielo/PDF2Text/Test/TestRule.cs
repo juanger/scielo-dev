@@ -56,8 +56,8 @@ public class TestRule {
 		Assert.AreEqual (BlockType.GLOBAL, newRule.Block, "TFA5");
 		Assert.AreEqual ("Trim", newRule.Modifiers [0].Name, "TFA6");
 		Assert.AreEqual ("Concat", newRule.Modifiers [1].Name);
-		Assert.AreEqual (@"\n[key] ", newRule.Modifiers [1].Parameters ["prefix"]);
-		Assert.AreEqual (@" [/key]\n\n", newRule.Modifiers [1].Parameters ["postfix"]);
+		Assert.AreEqual ("\n[key] ", newRule.Modifiers [1].Parameters ["prefix"]);
+		Assert.AreEqual (" [/key]\n\n", newRule.Modifiers [1].Parameters ["postfix"]);
 	}
 	
 	[Test()]
@@ -73,8 +73,8 @@ public class TestRule {
 		Assert.AreEqual (BlockType.FRONT, newRule.Block, "TRA5");
 		Assert.AreEqual (1, newRule.Modifiers.Length);
 		Assert.AreEqual ("Concat", newRule.Modifiers [0].Name);
-		Assert.AreEqual (@"[title] ", newRule.Modifiers [0].Parameters ["prefix"]);
-		Assert.AreEqual (@" [/title]\n", newRule.Modifiers [0].Parameters ["postfix"]);
+		Assert.AreEqual ("[title] ", newRule.Modifiers [0].Parameters ["prefix"]);
+		Assert.AreEqual (" [/title]\n", newRule.Modifiers [0].Parameters ["postfix"]);
 	}
 }
 }

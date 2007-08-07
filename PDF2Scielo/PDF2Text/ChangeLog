@@ -1,3 +1,14 @@
+2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/TestStringMatch.cs: Se agregaron las pruebas para los nuevos
+	  métodos de StringMatch.
+	* Test/TestModifier.cs: Cambios menores.
+	* Test/TestRule.cs: Cambios menores
+	* StringMatch.cs: Se crearon los métodos ApplyModifier y
+	  ApplyModifiers.
+	* AtmNormalizer.cs: Se añadieron casos a Eval
+	* Modifier.cs: Se agregó un constructor nuevo.
+
 2007-08-06  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text.mdp: Se añadieron las nuevas clases.

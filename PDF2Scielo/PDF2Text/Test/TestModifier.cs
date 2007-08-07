@@ -42,8 +42,8 @@ public class TestModifier {
 		XmlNode node = document.SelectSingleNode ("/style/global/rule[last()]/modifiers/modifier[2]");
 		Modifier mod = new Modifier (node);
 		Assert.AreEqual ("Concat", mod.Name, "TMWPA1");
-		Assert.AreEqual (@"\n[key] ", mod.Parameters ["prefix"], "TMWPA2");
-		Assert.AreEqual (@" [/key]\n\n", mod.Parameters ["postfix"], "TMWPA3");
+		Assert.AreEqual ("\n[key] ", mod.Parameters ["prefix"], "TMWPA2");
+		Assert.AreEqual (" [/key]\n\n", mod.Parameters ["postfix"], "TMWPA3");
 	}
 }
 }

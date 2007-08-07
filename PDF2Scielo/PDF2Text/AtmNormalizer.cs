@@ -77,17 +77,25 @@ public class AtmNormalizer : INormalizable {
 	
 	public void Eval (Rule rule)
 	{
+		string result;
 		if (rule.Block == BlockType.GLOBAL) {
-			StringMatchCollection matches;
-			
 			if (rule.Type == RuleType.STATIC) {
 				GlobalReplaceRegex (rule.Regexp, rule.Sustitution);
 			} else if (rule.Type == RuleType.FULL) {
-//				matches = new StringMatchCollection (rule.Regexp, text);
-//				
-//				if (rule.UniqueMatch) {
-//					StringMatch match = matches [0];
-//				}
+				StringMatchCollection matches;
+				matches = new StringMatchCollection (rule.Regexp, text);
+				
+				if (rule.UniqueMatch) {
+					StringMatch match = matches [0];
+					result = match.ApplyModifiers (rule.Modifiers, RuleType.FULL);
+					Console.WriteLine ("Test Eval: " + result);
+					text = text.Replace (match.FullMatch, result);
+				} else {
+					foreach (StringMatch m in matches) {
+						result = m.ApplyModifiers (rule.Modifiers, RuleType.FULL);
+						text.Replace (m.FullMatch, result);
+					}
+				}
 			}
 		}
 	}
@@ -209,16 +217,17 @@ public class AtmNormalizer : INormalizable {
 		Eval (rule);
 		
 		//Etiquetado de KEYWORD.
-		matches = new StringMatchCollection (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ " + ALET + APUC + "\n]+?[\n]+", text);
-		StringMatch match = matches [0];
-		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar la seccion Keyword.");
-		Console.WriteLine ("MATCH: " + match.FullMatch);
-		#endif
-		
-		string result = "\n[key] " + match.FullMatch.Trim () + " [/key]\n\n";
-		text = text.Replace (match.FullMatch, result);
+//		matches = new StringMatchCollection (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ " + ALET + APUC + "\n]+?[\n]+", text);
+//		StringMatch match = matches [0];
+//		
+//		#if DEBUG
+//		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar la seccion Keyword.");
+//		Console.WriteLine ("MATCH: " + match.FullMatch);
+//		#endif
+//		
+//		string result = "\n[key] " + match.FullMatch.Trim () + " [/key]\n\n";
+//		Console.WriteLine ("Test Eval: " + result);
+//		text = text.Replace (match.FullMatch, result);
 	}
 	
 	private void GetBlocks ()

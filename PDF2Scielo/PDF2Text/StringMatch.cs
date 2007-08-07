@@ -13,37 +13,70 @@
 //
 
 using System;
+using Scielo.Utils;
 
 namespace Scielo.PDF2Text {
 public class StringMatch {
 	
-	string all;
-	string named;
+	string full_match;
+	string result_match;
 	
-	public StringMatch (string all, string named)
+	public StringMatch (string fullMatch, string resultMatch)
 	{
-		if (all == null || named == null)
+		if (fullMatch == null || resultMatch == null)
 			throw new ArgumentNullException ("Error: no match for one regular expression.");
 		
-		this.all = all;
-		this.named = named;
+		full_match = fullMatch;
+		result_match = resultMatch;
+	}
+	
+	public string ApplyModifiers (Modifier [] listModifiers, RuleType ruleType)
+	{
+		string result;
+		if (ruleType == RuleType.FULL) {
+			result = full_match;
+			foreach (Modifier modifier in listModifiers) {
+				result = ApplyModifier (result, modifier);
+			}
+		} else {
+			result = result_match;
+			foreach (Modifier modifier in listModifiers) {
+				result = ApplyModifier (result, modifier);
+			}
+		}
+		return result;
+	}
+	
+	public string ApplyModifier (string text,Modifier modifier)
+	{
+		string result = String.Empty;
+		switch (modifier.Name) {
+		case "Trim":
+			result = text.Trim ();
+			break;
+		case "Concat":
+			result = StringRegexp.Unescape ((string) modifier.Parameters ["prefix"]) + text + StringRegexp.Unescape ((string) modifier.Parameters ["postfix"]);
+			break;
+		}
+		
+		return result;
 	}
 	
 	public string FullMatch {
 		get {
-			return all;
+			return full_match;
 		}
 	}
 	
 	public string ResultMatch {
 		get {
-			return named;
+			return result_match;
 		}
 	}
 	
 	public bool HasResultMatch ()
 	{
-		return !named.Equals (String.Empty);
+		return !result_match.Equals (String.Empty);
 	}
 }
 }

@@ -25,7 +25,7 @@ public class Modifier {
 	private static Hashtable valid_modifiers;
 	private Hashtable parameters;
 	
-	public Modifier(XmlNode node)
+	public Modifier (XmlNode node)
 	{
 		string tempName = node.SelectSingleNode ("@name").Value;
 		
@@ -40,6 +40,12 @@ public class Modifier {
 		foreach (XmlNode newNode in node.ChildNodes) {
 			parameters.Add (newNode.Attributes ["name"].Value, StringRegexp.Unescape (newNode.Attributes ["value"].Value));
 		}
+	}
+	
+	public Modifier (string name, Hashtable parameters)
+	{
+		this.name = name;
+		this.parameters = parameters;
 	}
 	
 	public string Name {
