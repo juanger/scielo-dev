@@ -1,3 +1,13 @@
+2007-08-06  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text.mdp: Se añadieron las nuevas clases.
+	* Test/TestModifier.cs: Nueva clase de prueba para Modifier.
+	* Test/TestRule.cs: Se añadieron las pruebas para los modificadores.
+	* Modifier.cs: Nueva clase para implementar los modificadores de las
+	  reglas
+	* Rule.cs: Se agregó la inicialización de los modificadores al
+	  constructor.
+
 2007-08-03  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/TestRule.cs: Se agregaron las pruebas para los distintos tipos

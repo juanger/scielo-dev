@@ -25,6 +25,7 @@ public class Rule {
 	bool unique_match;
 	string regexp;
 	string sust;
+	Modifier [] modifiers;
 	
 	public Rule(XmlNode root, BlockType block)
 	{
@@ -35,17 +36,14 @@ public class Rule {
 		this.block = block;
 		
 		// Aqui se obtiene el nombre de la regla.
-		XmlNode node = root.SelectSingleNode ("@name");
-		name = node.Value;
+		name = root.SelectSingleNode ("@name").Value;
 		
 		// Aqui se obtiene la expresion regular de la regla.
 		regexp = root.SelectSingleNode ("regexp").FirstChild.Value;
-		regexp = StringRegexp.Unescape (regexp);
 		regexp = StringRegexp.ReplaceEntities (regexp);
 		
 		// Aqui se obtiene la expresion de sustitucion.
 		sust = root.SelectSingleNode ("sust").FirstChild.Value;
-		sust = StringRegexp.Unescape (sust);
 		
 		// Aquí se obtiene el número de matches esperados.
 		XmlNode matchNode = root.SelectSingleNode ("@expectedMatches");
@@ -62,6 +60,16 @@ public class Rule {
 		else
 			type = RuleType.FULL;
 		
+		// Aqui se obtiene los modificadores.
+		XmlNodeList nodeList = root.SelectNodes ("modifiers/*");
+		if (nodeList.Count != 0) {
+			modifiers = new Modifier [nodeList.Count];
+			int counter = 0;
+			foreach (XmlNode node in nodeList) {
+				modifiers [counter] = new Modifier (node);
+				counter++;
+		}	
+		}
 	}
 	
 	public string Name {
@@ -97,6 +105,12 @@ public class Rule {
 	public string Sustitution {
 		get {
 			return sust;
+		}
+	}
+	
+	public Modifier [] Modifiers {
+		get {
+			return modifiers;
 		}
 	}
 }

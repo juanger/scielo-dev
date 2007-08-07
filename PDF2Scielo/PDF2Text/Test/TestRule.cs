@@ -40,6 +40,7 @@ public class TestRule {
 		Assert.AreEqual (false, newRule.UniqueMatch, "TSA3");
 		Assert.AreEqual (RuleType.STATIC, newRule.Type, "TSA4");
 		Assert.AreEqual (BlockType.GLOBAL, newRule.Block, "TSA5");
+		Assert.IsNull (newRule.Modifiers, "TSA6");
 	}
 	
 	[Test()]
@@ -48,11 +49,15 @@ public class TestRule {
 		XmlNode ruleNode = document.SelectSingleNode ("/style/global/rule[last()]");
 		Rule newRule = new Rule (ruleNode, BlockType.GLOBAL);
 		Assert.AreEqual ("MarkKeyword", newRule.Name, "TFA0");
-		Assert.AreEqual (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ #{ALET}#{APUC}\n]+?[\n]+", newRule.Regexp, "TFA1");
+		Assert.AreEqual (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ \w\p{P}\n]+?[\n]+", newRule.Regexp, "TFA1");
 		Assert.AreEqual (@"#{Result}", newRule.Sustitution, "TFA2");
 		Assert.AreEqual (true, newRule.UniqueMatch, "TFA3");
 		Assert.AreEqual (RuleType.FULL, newRule.Type, "TFA4");
 		Assert.AreEqual (BlockType.GLOBAL, newRule.Block, "TFA5");
+		Assert.AreEqual ("Trim", newRule.Modifiers [0].Name, "TFA6");
+		Assert.AreEqual ("Concat", newRule.Modifiers [1].Name);
+		Assert.AreEqual (@"\n[key] ", newRule.Modifiers [1].Parameters ["prefix"]);
+		Assert.AreEqual (@" [/key]\n\n", newRule.Modifiers [1].Parameters ["postfix"]);
 	}
 	
 	[Test()]
@@ -66,6 +71,10 @@ public class TestRule {
 		Assert.AreEqual (true, newRule.UniqueMatch, "TRA3");
 		Assert.AreEqual (RuleType.RESULT, newRule.Type, "TRA4");
 		Assert.AreEqual (BlockType.FRONT, newRule.Block, "TRA5");
+		Assert.AreEqual (1, newRule.Modifiers.Length);
+		Assert.AreEqual ("Concat", newRule.Modifiers [0].Name);
+		Assert.AreEqual (@"[title] ", newRule.Modifiers [0].Parameters ["prefix"]);
+		Assert.AreEqual (@" [/title]\n", newRule.Modifiers [0].Parameters ["postfix"]);
 	}
 }
 }
