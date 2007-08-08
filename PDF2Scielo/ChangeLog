@@ -1,3 +1,8 @@
+2007-08-07  Full Name <Email Address> 
+
+	* PDF2Text/PDFTextColumn.cs: Pruebas de unidad a la clase
+	  TestPDFTextColumn y cambios minimos en PDFTextColumn. 
+
 2007-08-06  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/PDF2Text.mdp: Se añadieron las nuevas clases BlockType y

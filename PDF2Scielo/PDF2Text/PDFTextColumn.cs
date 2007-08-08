@@ -25,7 +25,7 @@ public class PDFTextColumn
 	private bool referencesFlag = false;
 	private string column1 = "";
 	private string column2 = "";
-	Hashtable vr = new Hashtable ();
+	private Hashtable pos_frecuency = new Hashtable ();
 		
 	public PDFTextColumn (RawDocument document)
 	{
@@ -62,7 +62,8 @@ public class PDFTextColumn
 		}
 	}
 	
-	public ArrayList GetInfoInPage (int index)
+	/* Returns an array with a hashtable(position, spacesNumber) for each line in this page (index)*/
+	public ArrayList GetInfoSpacesPage (int index)
 	{
 		ArrayList totalValues = new ArrayList ();
 		string [] rawCollection = (pages[index]).Split (new Char [] {'\n'} );
@@ -85,11 +86,11 @@ public class PDFTextColumn
 				}	
 				count++;	
 			}
-			Console.WriteLine("------------------->la linea actual es:::"+line);
+			/*Console.WriteLine("------------------->la linea actual es:::"+line);
 			foreach (DictionaryEntry de in ht){
 				int ele= (int)de.Key;
 				Console.WriteLine("Posi::"+de.Key+"::sub::"+line.Substring(ele));
-			}	
+			}*/	
 			totalValues.Add(ht);
 		}
 		return totalValues;
@@ -113,46 +114,50 @@ public class PDFTextColumn
 		average = sum / count;
 		return average;
 	}
+	
 	/*
-	Find the repetition position in the lines with only ONE spaces.
+	Finds the repetition of positions in the lines with only ONE space (the 
+	great than threshold)
 	*/
 	public float GetRepeatPosition (ArrayList values, int index)
 	{
-		//Hashtable vr = new Hashtable ();
+		//Hashtable pos_frecuency = new Hashtable ();
 		int i = 0;
 		foreach (Hashtable ht in values){
 			if (ht.Count == 1){
 				foreach (DictionaryEntry de in ht){
-					if(!vr.ContainsKey((int)de.Key)){
-						vr.Add(de.Key,1);
+					if(!pos_frecuency.ContainsKey((int)de.Key)){
+						pos_frecuency.Add(de.Key,1);
 					}else{
-						int val = (int) vr[de.Key];
-						vr[de.Key] = val+1;
+						int val = (int) pos_frecuency[de.Key];
+						pos_frecuency[de.Key] = val+1;
 					}
 				}
 				i++;
 			}
 		}
-		Console.WriteLine("En hashtable::"+i);
-		foreach (DictionaryEntry de in vr){
+		/*Console.WriteLine("En hashtable::"+i);
+		foreach (DictionaryEntry de in pos_frecuency){
 			Console.WriteLine("K::"+de.Key+"::V::"+de.Value);
-		}
+		}*/
 		SetThreshold (index);
-		Console.WriteLine("here threshold:::"+threshold);
+		/*Console.WriteLine("here threshold:::"+threshold);*/
  		return UpperValueOnThreshold ();
 	}
 	
 	private void SetThreshold (int index)
 	{
-		int maxL = UpperLength ((pages[index]).Split (new Char [] {'\n'}));
+		int maxL = UpperLengthLine ((pages[index]).Split (new Char [] {'\n'}));
 		threshold = (maxL/2)-3;
 	}
 	
+	/* the greater value than threshold in the frecuency of repetition	
+	*/
 	private float UpperValueOnThreshold ()
 	{
 		float upper_value = (float)UpperValue ();
-		Console.WriteLine("in upperValue"+upper_value);
- 		for (int k=0; k<vr.Count; k++){
+		/*Console.WriteLine("in upperValue"+upper_value);*/
+ 		for (int k=0; k<pos_frecuency.Count; k++){
  			if ( upper_value > threshold){
  				break;
  			}
@@ -163,23 +168,23 @@ public class PDFTextColumn
 	
 	/* Finds the position with great number of frecuency repetition  
 	*/
-	public float UpperValue ()
+	private float UpperValue ()
 	{
 		int valV = 0;
 		int valK = 0;
-		foreach (DictionaryEntry de in vr){
+		foreach (DictionaryEntry de in pos_frecuency){
 			if ((int)de.Value > valV){
 				valV = (int)de.Value;
 				valK = (int)de.Key;
 			}
-			Console.Write("key::pos::" + valK +" ");
-			Console.WriteLine("val::" + valV);	
+			/*Console.Write("key::pos::" + valK +" ");
+			Console.WriteLine("val::" + valV);*/	
 		}
-		vr.Remove(valK);
+		pos_frecuency.Remove(valK);
 		return (float)valK;
 	}
 	
-	public int UpperLength (string[] rawCollection){
+	private int UpperLengthLine (string[] rawCollection){
 		int leng = 0;
 		foreach (string element in rawCollection){
 			if( element.Length > leng )
@@ -244,7 +249,7 @@ public class PDFTextColumn
  			
 			int pos = PositionToDivideLine (ht, average);
  	    		DivideLine (line, pos, average);
- 	    		Console.Write("Aver:"+average+":Thres:"+threshold+"::Pos::"+pos+"::linea::"+line+"::subS::"+line.Substring(pos));
+ 	    		//Console.Write("Aver:"+average+":Thres:"+threshold+"::Pos::"+pos+"::linea::"+line+"::subS::"+line.Substring(pos));
  			number_raw ++; 
  		}
 	}
