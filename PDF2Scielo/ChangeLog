@@ -1,5 +1,9 @@
 2007-08-07  Full Name <Email Address> 
 
+	Cambios mínimos
+
+2007-08-07  Full Name <Email Address> 
+
 	* PDF2Text/PDFTextColumn.cs: Pruebas de unidad a la clase
 	  TestPDFTextColumn y cambios minimos en PDFTextColumn. 
 

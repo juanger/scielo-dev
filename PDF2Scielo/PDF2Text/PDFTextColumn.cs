@@ -253,6 +253,14 @@ public class PDFTextColumn
  			number_raw ++; 
  		}
 	}
+	
+	public void GetTextInColumn(){
+		for(int i=0; i<pages.Length;i++){
+			ArrayList elementsPage = GetInfoSpacesPage (i);
+			float positionDivision = GetRepeatPosition (elementsPage, i);
+			GetTextInColumns (i, elementsPage, positionDivision);
+		}
+	}
 }
 }
 }

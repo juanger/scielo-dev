@@ -191,7 +191,6 @@ text += "                          las arterias pulmonares en presencia de hiper
 
       			PDFTextColumn pdftc = new PDFTextColumn(text);
 			ArrayList aL = pdftc.GetInfoSpacesPage (1);
-			//float average = pdftc.GetArithmeticAverageInPage (aL, 1);
 			float average = pdftc.GetRepeatPosition (aL, 1);
 			Console.WriteLine("valor:::::::#########################"+average);
 			pdftc.GetTextInColumns (1, aL, average);
@@ -202,7 +201,6 @@ text += "                          las arterias pulmonares en presencia de hiper
  			Console.WriteLine("--------------Columna2 ------------------------"); 
  			Console.WriteLine(pdftc.Column2); 
  			Console.WriteLine("-----------------------------------------------"); 
-			//Assert.AreEqual (average, 41, "CA");			
 		}
 	}
 }
