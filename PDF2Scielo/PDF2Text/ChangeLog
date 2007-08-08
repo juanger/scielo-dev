@@ -1,5 +1,10 @@
 2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* AtmNormalizer.cs: Se cambió Eval por ApplyRule, una generalización de
+	  Eval.
+
+2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Test/TestRule.cs: Se quitó que sust sea literal.
 	* AtmNormalizer.cs: Se modificaron varios métodos para que usen Eval.
 	* Rule.cs: Se agregó que se quiten los escapes a sust.
