@@ -337,26 +337,21 @@ public class AtmNormalizer : INormalizable {
 		ruleNode = xml_document.SelectSingleNode ("/style/body/rule[7]");
 		rule = new Rule (ruleNode, BlockType.BODY);
 		ApplyRule (rule);
-//		
-//		ruleNode = xml_document.SelectSingleNode ("/style/body/rule[8]");
-//		rule = new Rule (ruleNode, BlockType.BODY);
-//		ApplyRule (rule);
-		StringMatchCollection matches;
 		
-		matches = new StringMatchCollection (@"\n(\[para\]|\[sec\]|\[subsec\]|\[subsubsec\]|\[ack\]).*", body);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			// FIXME: Caso para no poner un [/para] extra antes de la primera seccion.
-			if (match.FullMatch.StartsWith ("\n[para] [sec] 1. "))
-				continue;
-			
-			string result = " [/para]" + match.FullMatch;
-			body = body.Replace (match.FullMatch, result);
-		}
+		ruleNode = xml_document.SelectSingleNode ("/style/body/rule[8]");
+		rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
+//		StringMatchCollection matches;
+//		
+//		matches = new StringMatchCollection (@"(?<Result>\[para\](.|\s)*?)(?=(\[para\]|\[ack\]))", body);
+//		foreach (StringMatch match in matches) {
+//			
+//			#if DEBUG
+//			Console.WriteLine ("MATCH Paragraph: " + match.FullMatch);
+//			#endif
+//			string result = match.ResultMatch.Trim () + " [/para]\n";
+//			body = body.Replace (match.FullMatch, result);
+//		}
 	}
 	
 	private void MarkFootFigure ()
@@ -372,26 +367,12 @@ public class AtmNormalizer : INormalizable {
 	
 	private void MarkCitations ()
 	{
-		StringMatchCollection matches;
-		
-		// Etiquetado de las citas.
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para las citas.");
-		#endif
-		
-		matches = new StringMatchCollection (@"[\n]+(?<Result>[A-Z].*)", back);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.ResultMatch);
-			#endif
-			
-			string result = "[cit] " + match.ResultMatch;
-			back = back.Replace (match.ResultMatch, result);
-		}
-		
-		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/back/rule[2]");
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/back/rule[1]");
 		Rule rule = new Rule (ruleNode, BlockType.BACK);
+		ApplyRule (rule);
+		
+		ruleNode = xml_document.SelectSingleNode ("/style/back/rule[2]");
+		rule = new Rule (ruleNode, BlockType.BACK);
 		ApplyRule (rule);
 	}
 }

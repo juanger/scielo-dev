@@ -179,11 +179,12 @@
         <depend>MarkSubSubSections</depend>
         <depend>MarkAcknowledge</depend>
       </depends>
-      <regexp>\n(\[para\]|\[sec\]|\[subsec\]|\[subsubsec\]|\[ack\]).*</regexp>
+      <regexp>(?&lt;Result&gt;\[para\](.|\s)*?)(?=(\[para\]|\[ack\]))</regexp>
       <sust>#{Result}</sust>
       <modifiers>
+        <modifier name="Trim"/>
         <modifier name="Concat">
-          <param name="postfix" value="[/para] "/>
+          <param name="postfix" value=" [/para]\n"/>
         </modifier>
       </modifiers>
     </rule>
@@ -215,7 +216,7 @@
       <sust>#{Result}</sust>
       <modifiers>
         <modifier name="Concat">
-          <param name="prefix" value="[cit] "/>
+          <param name="prefix" value="\n[cit] "/>
         </modifier>
       </modifiers>
     </rule>

@@ -1,5 +1,11 @@
 2007-08-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Test/test-schema.xml: Se mejoraron las expresiones regulares y los
+	  postfijos para que presenten los cambios de AtmNormalizer.
+	* AtmNormalizer.cs: Se modificó para que se use ApplyModifier.
+
+2007-08-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Test/test-schema.xml: Se cambio la expresion regular para capturar
 	  los finales de las citas.
 	* AtmNormalizer.cs: Se removio la regla para terminar las citas.
