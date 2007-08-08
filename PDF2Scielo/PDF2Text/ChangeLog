@@ -1,3 +1,9 @@
+2007-08-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/test-schema.xml: Se cambio la expresion regular para capturar
+	  los finales de las citas.
+	* AtmNormalizer.cs: Se removio la regla para terminar las citas.
+
 2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/test-schema.xml: Se arregló el prefijo para MarkStartParagraph1.

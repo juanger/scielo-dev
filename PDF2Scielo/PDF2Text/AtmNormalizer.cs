@@ -390,19 +390,9 @@ public class AtmNormalizer : INormalizable {
 			back = back.Replace (match.ResultMatch, result);
 		}
 		
-//		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/back/rule[2]");
-//		Rule rule = new Rule (ruleNode, BlockType.BACK);
-//		ApplyRule (rule);
-		matches = new StringMatchCollection (@"\[cit\][^[]*", back);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = match.FullMatch.TrimEnd () + " [/cit]\n";
-			back = back.Replace (match.FullMatch, result);
-		}
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/back/rule[2]");
+		Rule rule = new Rule (ruleNode, BlockType.BACK);
+		ApplyRule (rule);
 	}
 }
 }

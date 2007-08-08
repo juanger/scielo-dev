@@ -220,7 +220,7 @@
       </modifiers>
     </rule>
     <rule name="MarkEndCitations" expectedMatches="unbounded">
-      <regexp>[\n]+[A-Z].*</regexp>
+      <regexp>\[cit\][^[]*</regexp>
       <sust>#{Result}</sust>
       <modifiers>
         <modifier name="TrimEnd" />
