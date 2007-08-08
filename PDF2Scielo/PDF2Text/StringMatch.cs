@@ -57,6 +57,9 @@ public class StringMatch {
 		case "Concat":
 			result = StringRegexp.Unescape ((string) modifier.Parameters ["prefix"]) + text + StringRegexp.Unescape ((string) modifier.Parameters ["postfix"]);
 			break;
+		case "TrimEnd":
+			result = text.TrimEnd ();
+			break;
 		}
 		
 		return result;

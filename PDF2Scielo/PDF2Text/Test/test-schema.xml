@@ -165,7 +165,7 @@
       <sust>#{Result}</sust>
       <modifiers>
         <modifier name="Concat">
-          <param name="prefix" value=" [/para]"/>
+          <param name="prefix" value="[para] "/>
         </modifier>
       </modifiers>
     </rule>

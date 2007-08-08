@@ -65,6 +65,7 @@ public class Modifier {
 		valid_modifiers = new Hashtable ();
 		valid_modifiers ["Trim"] = true;
 		valid_modifiers ["Concat"] = true;
+		valid_modifiers ["TrimEnd"] = true;
 	}
 	
 	public static bool ValidModifier (string name)

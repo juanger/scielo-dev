@@ -1,5 +1,12 @@
 2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Test/test-schema.xml: Se arregló el prefijo para MarkStartParagraph1.
+	* StringMatch.cs: Se implementó TrimEnd.
+	* AtmNormalizer.cs: Se quitó el uso de Eval.
+	* Modifier.cs: Se agregó TrimEnd
+
+2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* AtmNormalizer.cs: Se cambió Eval por ApplyRule, una generalización de
 	  Eval.
 

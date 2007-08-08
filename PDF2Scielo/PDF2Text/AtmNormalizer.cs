@@ -87,6 +87,12 @@ public class AtmNormalizer : INormalizable {
 		case BlockType.FRONT:
 			source = front;
 			break;
+		case BlockType.BODY:
+			source = body;
+			break;
+		case BlockType.BACK:
+			source = back;
+			break;
 		}
 		
 		matches = new StringMatchCollection (rule.Regexp, source);
@@ -121,6 +127,12 @@ public class AtmNormalizer : INormalizable {
 			break;
 		case BlockType.FRONT:
 			front = source;
+			break;
+		case BlockType.BODY:
+			body = source;
+			break;
+		case BlockType.BACK:
+			back = source;
 			break;
 		}
 	}
@@ -185,12 +197,10 @@ public class AtmNormalizer : INormalizable {
 		// Remueve encabezados y numeros de pagina.
 		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/global/rule[1]");
 		Rule rule = new Rule (ruleNode, BlockType.GLOBAL);
-		//Eval (rule);
 		ApplyRule (rule);
 		
 		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[2]");
 		rule = new Rule (ruleNode, BlockType.GLOBAL);
-		//Eval (rule);
 		ApplyRule (rule);
 	}
 	
@@ -201,27 +211,22 @@ public class AtmNormalizer : INormalizable {
 		// Sin embargo también hay casos, que con los ya dados, tampoco cacha. Ejemplo: v17n2a01.pdf
 		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/global/rule[3]");
 		Rule rule = new Rule (ruleNode, BlockType.GLOBAL);
-		//Eval (rule);
 		ApplyRule (rule);
 		
 		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[4]");
 		rule = new Rule (ruleNode, BlockType.GLOBAL);
-		//Eval (rule);
 		ApplyRule (rule);
 		
 		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[5]");
 		rule = new Rule (ruleNode, BlockType.GLOBAL);
-		//Eval (rule);
 		ApplyRule (rule);
 		
 		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[6]");
 		rule = new Rule (ruleNode, BlockType.GLOBAL);
-		//Eval (rule);
 		ApplyRule (rule);
 		
 		ruleNode = xml_document.SelectSingleNode ("/style/global/rule[7]");
 		rule = new Rule (ruleNode, BlockType.GLOBAL);
-		//Eval (rule);
 		ApplyRule (rule);
 	}
 	
@@ -254,30 +259,10 @@ public class AtmNormalizer : INormalizable {
 		#endif
 	}
 	
-	private void RemoveExtras ()
-	{
-		StringMatchCollection matches;
-		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para eliminar texto muerto");
-		#endif
-		
-		matches = new StringMatchCollection (@"\n[ ]*[-0-9.]+\n", body);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			body = body.Replace (match.FullMatch, "\n");
-		}
-	}
-	
 	private void MarkTitle ()
 	{
 		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/front/rule[1]");
 		Rule rule = new Rule (ruleNode, BlockType.FRONT);
-		//Eval (rule);
 		ApplyRule (rule);
 	}
 	
@@ -285,29 +270,14 @@ public class AtmNormalizer : INormalizable {
 	{
 		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/front/rule[2]");
 		Rule rule = new Rule (ruleNode, BlockType.FRONT);
-		//Eval (rule);
 		ApplyRule (rule);
 	}
 	
 	private void MarkAuthors ()
 	{
-		StringMatchCollection 
-		matches;
-		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para marcar los autores del articulo.");
-		#endif
-		
-		matches = new StringMatchCollection (@"[ ]*(?<Result>(([A-Z]{1,2}\. ([A-Z]{1,2}[.]? )*[-A-Z][-a-zA-Z&;]+( [-a-zA-Z&;]+)?)(, | and )?)+)[\n]+", front);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = "[author] " +  match.ResultMatch + " [/author]\n";
-			front = front.Replace (match.FullMatch, result);
-		}
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/front/rule[3]");
+		Rule rule = new Rule (ruleNode, BlockType.FRONT);
+		ApplyRule (rule);
 	}
 	
 	private void MarkAff ()
@@ -332,106 +302,46 @@ public class AtmNormalizer : INormalizable {
 		}
 	}
 	
+	private void RemoveExtras ()
+	{
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/body/rule[1]");
+		Rule rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
+	}
+	
 	private void MarkMinorSections ()
 	{
-		StringMatchCollection matches;
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/body/rule[2]");
+		Rule rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
 		
-		// Etiquetado de las secciones del tipo <num>. <string>
-		// FIXME: No se estan agarrando las secciones que son mayores a una linea de texto.
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las secciones.");
-		#endif
+		ruleNode = xml_document.SelectSingleNode ("/style/body/rule[3]");
+		rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
 		
-		matches = new StringMatchCollection (@"[\n]+[0-9]+[.][ ].*\n", body);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = "\n[sec] " + match.FullMatch.Trim () + " [/sec]\n";
-			body = body.Replace (match.FullMatch, result);
-		}
+		ruleNode = xml_document.SelectSingleNode ("/style/body/rule[4]");
+		rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
 		
-		// Etiquetado de las secciones del tipo <num>.<num>[.] <string>
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsecciones.");
-		#endif
-		
-		matches = new StringMatchCollection (@"[\n]+[ ]*[0-9][.][0-9]+[.]*[ ].*\n", body);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = "\n[subsec] " + match.FullMatch.Trim () + " [/subsec]\n";
-			body = body.Replace (match.FullMatch, result);
-		}
-		
-		// Etiquetado de las secciones del tipo <letter>) <string>
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsecciones alternas.");
-		#endif
-		
-		matches = new StringMatchCollection (@"[\n]+[a-z]\) .*\n", body);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = "\n[subsec] " + match.FullMatch.Trim () + " [/subsec]\n";
-			body = body.Replace (match.FullMatch, result);
-		}
-		
-		// Etiquetado de las secciones del tipo <num>.<num>.<num> <string>
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar las subsubsecciones.");
-		#endif
-		
-		matches = new StringMatchCollection (@"[\n]+[0-9][.][0-9]+[.][0-9][.]*.*\n", body);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = "\n[subsubsec] " + match.FullMatch.Trim () + " [/subsubsec]\n";
-			body = body.Replace (match.FullMatch, result);
-		}
+		ruleNode = xml_document.SelectSingleNode ("/style/body/rule[5]");
+		rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
 	}
 	
 	private void MarkParagraphs ()
 	{
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/body/rule[6]");
+		Rule rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
+		
+		ruleNode = xml_document.SelectSingleNode ("/style/body/rule[7]");
+		rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
+//		
+//		ruleNode = xml_document.SelectSingleNode ("/style/body/rule[8]");
+//		rule = new Rule (ruleNode, BlockType.BODY);
+//		ApplyRule (rule);
 		StringMatchCollection matches;
-		
-		// Etiquetado de los parrafos.
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para capturar los parrafos.");
-		#endif
-		
-		matches = new StringMatchCollection (@"[\n]+[ ]{3,5}(?<Result>[A-Zi].*)", body);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = "\n[para] " + match.ResultMatch;
-			body = body.Replace (match.FullMatch, result);
-		}
-		
-		matches = new StringMatchCollection (@"(\[sec\]|\[subsec\]|\[subsubsec\]).*\n", body); 
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH: " + match.FullMatch);
-			#endif
-			
-			string result = "[para] " + match.FullMatch;
-			body = body.Replace (match.FullMatch, result);
-		}
 		
 		matches = new StringMatchCollection (@"\n(\[para\]|\[sec\]|\[subsec\]|\[subsubsec\]|\[ack\]).*", body);
 		foreach (StringMatch match in matches) {
@@ -447,6 +357,17 @@ public class AtmNormalizer : INormalizable {
 			string result = " [/para]" + match.FullMatch;
 			body = body.Replace (match.FullMatch, result);
 		}
+	}
+	
+	private void MarkFootFigure ()
+	{
+		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/body/rule[9]");
+		Rule rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
+		
+		ruleNode = xml_document.SelectSingleNode ("/style/body/rule[10]");
+		rule = new Rule (ruleNode, BlockType.BODY);
+		ApplyRule (rule);
 	}
 	
 	private void MarkCitations ()
@@ -469,6 +390,9 @@ public class AtmNormalizer : INormalizable {
 			back = back.Replace (match.ResultMatch, result);
 		}
 		
+//		XmlNode ruleNode = xml_document.SelectSingleNode ("/style/back/rule[2]");
+//		Rule rule = new Rule (ruleNode, BlockType.BACK);
+//		ApplyRule (rule);
 		matches = new StringMatchCollection (@"\[cit\][^[]*", back);
 		foreach (StringMatch match in matches) {
 			
@@ -478,40 +402,6 @@ public class AtmNormalizer : INormalizable {
 			
 			string result = match.FullMatch.TrimEnd () + " [/cit]\n";
 			back = back.Replace (match.FullMatch, result);
-		}
-	}
-	
-	private void MarkFootFigure ()
-	{
-		StringMatchCollection matches;
-		
-		// Etiquetado de los pies de figura.
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Resultados obtenidos para los pies de figura.");
-		#endif
-		
-		matches = new StringMatchCollection (@"[\n]+[ ]*(?<Result>Fig[.][ ]?[0-9]+[.] .*)", body);
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH figura: " + match.FullMatch);
-			#endif
-			
-			string result = "\n[fig] " + match.ResultMatch;
-			
-			body = body.Replace (match.FullMatch, result);
-		}
-		
-		matches = new StringMatchCollection (@"(?<Result>\[fig\] Fig[.][ ]?[0-9]+[.] [-a-zA-Z0-9.,:;´&#()/ \n\u00f6]*?[.])\n", body);		
-		foreach (StringMatch match in matches) {
-			
-			#if DEBUG
-			Console.WriteLine ("MATCH figura2: " + match.FullMatch);
-			#endif
-			
-			string result = match.ResultMatch + " [/fig]\n";
-			
-			body = body.Replace (match.FullMatch, result);
 		}
 	}
 }
