@@ -26,6 +26,7 @@ public class PDFTextColumn
 	private string column1 = "";
 	private string column2 = "";
 	private Hashtable pos_frecuency = new Hashtable ();
+	//private int position = -1;
 		
 	public PDFTextColumn (RawDocument document)
 	{
@@ -239,12 +240,12 @@ public class PDFTextColumn
 	{			
  		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
  		int number_raw = 0;
- 		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");
+ 		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");		
  		
  		foreach (Hashtable ht in values){ 
  			
  			string line = rawCollection [number_raw]+"\n"; 			
- 			if (regex.IsMatch(line) == true)
+ 			if (regex.IsMatch (line) == true)
  				referencesFlag = true;
  			
 			int pos = PositionToDivideLine (ht, average);
@@ -254,12 +255,18 @@ public class PDFTextColumn
  		}
 	}
 	
-	public void GetTextInColumn(){
-		for(int i=0; i<pages.Length;i++){
+	public ArrayList GetText (){
+		
+		ArrayList pages_in_column = new ArrayList();
+		
+		for (int i=0; i<pages.Length;i++){
 			ArrayList elementsPage = GetInfoSpacesPage (i);
-			float positionDivision = GetRepeatPosition (elementsPage, i);
+			float positionDivision= GetRepeatPosition (elementsPage, i);
 			GetTextInColumns (i, elementsPage, positionDivision);
+			string pageText = column1 + column2 + "";
+			pages_in_column.Add (pageText);
 		}
+		return pages_in_column;
 	}
 }
 }
