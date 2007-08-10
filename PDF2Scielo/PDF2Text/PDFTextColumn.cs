@@ -26,7 +26,7 @@ public class PDFTextColumn
 	private string column1 = "";
 	private string column2 = "";
 	private Hashtable pos_frecuency = new Hashtable ();
-	//private int position = -1;
+	private string textInColumn = "";
 		
 	public PDFTextColumn (RawDocument document)
 	{
@@ -54,6 +54,12 @@ public class PDFTextColumn
 	public string Column2{
 		get {
 			return column2;
+		}
+	}
+	
+	public string TextInColumn{
+		get {
+			return textInColumn;
 		}
 	}
 	
@@ -87,11 +93,6 @@ public class PDFTextColumn
 				}	
 				count++;	
 			}
-			/*Console.WriteLine("------------------->la linea actual es:::"+line);
-			foreach (DictionaryEntry de in ht){
-				int ele= (int)de.Key;
-				Console.WriteLine("Posi::"+de.Key+"::sub::"+line.Substring(ele));
-			}*/	
 			totalValues.Add(ht);
 		}
 		return totalValues;
@@ -137,13 +138,8 @@ public class PDFTextColumn
 				i++;
 			}
 		}
-		/*Console.WriteLine("En hashtable::"+i);
-		foreach (DictionaryEntry de in pos_frecuency){
-			Console.WriteLine("K::"+de.Key+"::V::"+de.Value);
-		}*/
 		SetThreshold (index);
-		/*Console.WriteLine("here threshold:::"+threshold);*/
- 		return UpperValueOnThreshold ();
+		return UpperValueOnThreshold ();
 	}
 	
 	private void SetThreshold (int index)
@@ -157,8 +153,7 @@ public class PDFTextColumn
 	private float UpperValueOnThreshold ()
 	{
 		float upper_value = (float)UpperValue ();
-		/*Console.WriteLine("in upperValue"+upper_value);*/
- 		for (int k=0; k<pos_frecuency.Count; k++){
+		for (int k=0; k<pos_frecuency.Count; k++){
  			if ( upper_value > threshold){
  				break;
  			}
@@ -178,8 +173,6 @@ public class PDFTextColumn
 				valV = (int)de.Value;
 				valK = (int)de.Key;
 			}
-			/*Console.Write("key::pos::" + valK +" ");
-			Console.WriteLine("val::" + valV);*/	
 		}
 		pos_frecuency.Remove(valK);
 		return (float)valK;
@@ -250,23 +243,19 @@ public class PDFTextColumn
  			
 			int pos = PositionToDivideLine (ht, average);
  	    		DivideLine (line, pos, average);
- 	    		//Console.Write("Aver:"+average+":Thres:"+threshold+"::Pos::"+pos+"::linea::"+line+"::subS::"+line.Substring(pos));
  			number_raw ++; 
  		}
 	}
 	
-	public ArrayList GetText (){
-		
-		ArrayList pages_in_column = new ArrayList();
+	public void GetText (){
 		
 		for (int i=0; i<pages.Length;i++){
 			ArrayList elementsPage = GetInfoSpacesPage (i);
 			float positionDivision= GetRepeatPosition (elementsPage, i);
 			GetTextInColumns (i, elementsPage, positionDivision);
 			string pageText = column1 + column2 + "";
-			pages_in_column.Add (pageText);
+			textInColumn += pageText;
 		}
-		return pages_in_column;
 	}
 }
 }
