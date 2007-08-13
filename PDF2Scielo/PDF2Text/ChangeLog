@@ -1,3 +1,13 @@
+2007-08-13  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/test-schema.xml: Se modificaron algunas reglas usando positive
+	  lookahead para simplificarlas.
+	* StyleReader.cs: Se añadió el método GetRules para leer reglas del xml
+	  y se modificó el método GetStyleFile para eliminar un error al
+	  correrse en Release.
+	* AtmNormalizer.cs: Se eliminaron los métodos por regla para aplicarlas
+	  secuencialmente desde el arreglo de reglas.
+
 2007-08-08  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/test-schema.xml: Se mejoraron las expresiones regulares y los

@@ -76,22 +76,13 @@
         <depend>MarkAuthors</depend>
         <depend>MarkDate</depend>
       </depends>
-      <regexp>\[/author\]\n(?&lt;Result&gt;(.|\n)+?)(\[author\]|\[date\]|\[res\])</regexp>
+      <regexp>\[/author\]\n(?&lt;Result&gt;(.|\n)+?)(?=\[author\]|\[date\]|\[res\])</regexp>
       <sust>#{Result}</sust>
       <modifiers>
-        <modifier name="LastIndexOf" return="rindex" target="result">
-          <param name="string" value="["/>
-        </modifier>
-        <modifier name="Substring" return="tag" target="result">
-          <param name="index" value="rindex"/>
-        </modifier>
         <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="[/author]\n[aff] "/>
           <param name="postfix" value=" [/aff]\n"/>
-        </modifier>
-        <modifier name="Concat">
-          <param name="postfix" value="#{tag}"/>
         </modifier>
       </modifiers>
     </rule>
@@ -145,6 +136,27 @@
         </modifier>
       </modifiers>
     </rule>
+  <rule name="MarkStartFootFigure" expectedMatches="unbounded">
+      <regexp>[\n]+[ ]*(?&lt;Result&gt;Fig[.][ ]?[0-9]+[.] .*)</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Concat">
+          <param name="prefix" value="\n[fig] "/>
+        </modifier>
+      </modifiers>
+    </rule>
+    <rule name="MarkEndFootFigure" expectedMatches="unbounded">
+    <depends>
+      <depend>MarkStartFootFigure</depend>
+    </depends>
+      <regexp>(?&lt;Result&gt;\[fig\] Fig[.][ ]?[0-9]+[.] [-a-zA-Z0-9.,:;´&amp;#()/ \n\u00f6]*?[.])\n</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Concat">
+          <param name="postfix" value=" [/fig]\n"/>
+        </modifier>
+      </modifiers>
+    </rule>	
     <rule name="MarkStartParagraphs0" expectedMatches="unbounded">
       <regexp>[\n]+[ ]{3,5}(?&lt;Result&gt;[A-Zi].*)</regexp>
       <sust>#{Result}</sust>
@@ -185,27 +197,6 @@
         <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="postfix" value=" [/para]\n"/>
-        </modifier>
-      </modifiers>
-    </rule>
-    <rule name="MarkStartFootFigure" expectedMatches="unbounded">
-      <regexp>[\n]+[ ]*(?&lt;Result&gt;Fig[.][ ]?[0-9]+[.] .*)</regexp>
-      <sust>#{Result}</sust>
-      <modifiers>
-        <modifier name="Concat">
-          <param name="prefix" value="\n[fig] "/>
-        </modifier>
-      </modifiers>
-    </rule>
-    <rule name="MarkEndFootFigure" expectedMatches="unbounded">
-    <depends>
-      <depend>MarkStartFootFigure</depend>
-    </depends>
-      <regexp>(?&lt;Result&gt;\[fig\] Fig[.][ ]?[0-9]+[.] [-a-zA-Z0-9.,:;´&amp;#()/ \n\u00f6]*?[.])\n</regexp>
-      <sust>#{Result}</sust>
-      <modifiers>
-        <modifier name="Concat">
-          <param name="postfix" value=" [/fig]\n"/>
         </modifier>
       </modifiers>
     </rule>
