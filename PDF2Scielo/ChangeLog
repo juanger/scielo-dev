@@ -1,3 +1,7 @@
+2007-08-15  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* style/atm.xml: Se descomentó la parte del namespace
+
 2007-08-13  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Styles/atm.xml: Se modificaron reglas para simplificarlas.
