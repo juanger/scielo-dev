@@ -26,22 +26,29 @@ public class StyleReader {
 	private XmlDocument document;
 	private string styles_path;
 	private bool val_success = true;
+	private XmlNamespaceManager manager;
 
 	public StyleReader(string format)
 	{
-//		XmlTextReader reader = new XmlTextReader (GetStyleFile (format));
-//		ValidateWithXSD (reader);
+		// FIXME: Revisar posible bug en Mono cuando se tienen atributos
+		// en el elemento raiz del XML.
+		XmlTextReader reader1 = new XmlTextReader (GetStyleFile (format));
+		ValidateWithXSD (reader1);
+		
 		document = new XmlDocument ();
-		document.Load (new XmlTextReader (GetStyleFile (format)));
+		document.Load (GetStyleFile (format));
+		manager = new XmlNamespaceManager (document.NameTable);
+		
+		manager.AddNamespace ("def", "http://www.scielo.org.mx");
 	}
 	
-  	public void ValidationCallBack (object sender, ValidationEventArgs args)
-  	{
-  		val_success = false;
-  		Console.WriteLine("\r\n\tValidation error: " + args.Message );
-  	}
+	public void ValidationCallBack (object sender, ValidationEventArgs args)
+	{
+		val_success = false;
+		Console.WriteLine("\r\n\tValidation error: " + args.Message );
+	}
 	
-	private bool ValidateWithXSD (XmlReader reader)
+	public bool ValidateWithXSD (XmlReader reader)
 	{
 		XmlValidatingReader valReader;
 		XmlSchema schema;
@@ -74,45 +81,45 @@ public class StyleReader {
 	{	
 		Assembly assem = Assembly.GetExecutingAssembly ();
 		Console.WriteLine ("Test: {0}", assem.Location);
-		Regex regexp = new Regex (@"/PDF2Text/bin/[^/]*/PDF2Text.dll");
+		Regex regexp = new Regex (@"/(PDF2Text|PDF2Scielo.Gui)/bin/[^/]*/PDF2Text.dll");
 		string path = regexp.Replace (assem.Location, String.Empty);
 //		if (path.Equals (assem.Location))
 //			throw new DirectoryNotFoundException ();
 		
-		styles_path = Path.Combine (path, "Styles");
+		styles_path = Path.Combine (path, "style");
 		
 		return Path.Combine (styles_path, format + ".xml");
 	}
 	
 	public Rule [] GetRules ()
 	{
-		XmlNodeList fullList = document.SelectNodes ("//rule");
-		Console.WriteLine ("Numero de reglas: ", fullList.Count);
+		XmlNodeList fullList = document.SelectNodes ("//def:rule", manager);
+		Console.WriteLine ("Numero de reglas: {0}", fullList.Count);
 		Rule [] result = new Rule [fullList.Count];
 		
 		int counter = 0;
-		XmlNodeList globalList = document.SelectNodes ("/style/global/*");
+		XmlNodeList globalList = document.SelectNodes ("/def:style/def:global/*", manager);
+		Console.WriteLine ("Numero de reglas en global: {0}", globalList.Count); 
 		foreach (XmlNode node in globalList) {
-			result [counter] = new Rule (node, BlockType.GLOBAL);
-			Console.WriteLine ("Nombre regla: ", result [counter].Name);
+			result [counter] = new Rule (node, manager, BlockType.GLOBAL);
 			counter++;
 		}
 		
-		XmlNodeList frontList = document.SelectNodes ("/style/front/*");
+		XmlNodeList frontList = document.SelectNodes ("/def:style/def:front/*", manager);
 		foreach (XmlNode node in frontList) {
-			result [counter] = new Rule (node, BlockType.FRONT);
+			result [counter] = new Rule (node, manager, BlockType.FRONT);
 			counter++;
 		}
 		
-		XmlNodeList bodyList = document.SelectNodes ("/style/body/*");
+		XmlNodeList bodyList = document.SelectNodes ("/def:style/def:body/*", manager);
 		foreach (XmlNode node in bodyList) {
-			result [counter] = new Rule (node, BlockType.BODY);
+			result [counter] = new Rule (node, manager, BlockType.BODY);
 			counter++;
 		}
 		
-		XmlNodeList backList = document.SelectNodes ("/style/back/*");
+		XmlNodeList backList = document.SelectNodes ("/def:style/def:back/*", manager);
 		foreach (XmlNode node in backList) {
-			result [counter] = new Rule (node, BlockType.BACK);
+			result [counter] = new Rule (node, manager, BlockType.BACK);
 			counter++;
 		}
 		

@@ -19,6 +19,7 @@ namespace Scielo.PDF2Text {
 [TestFixture()]
 public class TestRule {
 	private XmlDocument document;
+	private XmlNamespaceManager manager;
 	
 	[SetUp()]
 	public void Initialize ()
@@ -27,13 +28,15 @@ public class TestRule {
 		string source = Path.Combine (Test.PathOfTest (), "test-schema.xml");
 		XmlTextReader reader = new XmlTextReader (source);
 		document.Load (reader);
+		manager = new XmlNamespaceManager (document.NameTable);
+		manager.AddNamespace ("def", "http://www.scielo.org.mx");
 	}
 	
 	[Test()]
 	public void TestStaticAttributes()
 	{
-		XmlNode ruleNode = document.SelectSingleNode ("/style/global/rule[1]");
-		Rule newRule = new Rule (ruleNode, BlockType.GLOBAL);
+		XmlNode ruleNode = document.SelectSingleNode ("/def:style/def:global/def:rule[1]", manager);
+		Rule newRule = new Rule (ruleNode, manager, BlockType.GLOBAL);
 		Assert.AreEqual ("RemoveHeaders0", newRule.Name, "TSA0");
 		Assert.AreEqual (@"[\n]+[\u000c]+[0-9]+[ ]*[ \w\p{S}\p{P}]+[\n]+", newRule.Regexp, "TSA1");
 		Assert.AreEqual ("\n", newRule.Sustitution, "TSA2");
@@ -46,8 +49,8 @@ public class TestRule {
 	[Test()]
 	public void TestFullAttributes()
 	{
-		XmlNode ruleNode = document.SelectSingleNode ("/style/global/rule[last()]");
-		Rule newRule = new Rule (ruleNode, BlockType.GLOBAL);
+		XmlNode ruleNode = document.SelectSingleNode ("/def:style/def:global/def:rule[last()]", manager);
+		Rule newRule = new Rule (ruleNode, manager, BlockType.GLOBAL);
 		Assert.AreEqual ("MarkKeyword", newRule.Name, "TFA0");
 		Assert.AreEqual (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ \w\p{P}\n]+?[\n]+", newRule.Regexp, "TFA1");
 		Assert.AreEqual ("#{Result}", newRule.Sustitution, "TFA2");
@@ -63,8 +66,8 @@ public class TestRule {
 	[Test()]
 	public void TestResultAttributes()
 	{
-		XmlNode ruleNode = document.SelectSingleNode ("/style/front/rule[1]");
-		Rule newRule = new Rule (ruleNode, BlockType.FRONT);
+		XmlNode ruleNode = document.SelectSingleNode ("/def:style/def:front/def:rule[1]", manager);
+		Rule newRule = new Rule (ruleNode, manager, BlockType.FRONT);
 		Assert.AreEqual ("MarkTitle", newRule.Name, "TRA0");
 		Assert.AreEqual (@"^Atm.*[\n ]+(?<Result>[^|]+?)\n[\n]+", newRule.Regexp, "TRA1");
 		Assert.AreEqual (@"#{Result}", newRule.Sustitution, "TRA2");

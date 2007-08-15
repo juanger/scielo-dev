@@ -1,3 +1,9 @@
+2007-08-15  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/TestModifier.cs, Test/TestRule.cs, StyleReader.cs, Modifier.cs,
+	  Rule.cs: Se modificaron para que usen el namespace
+	* Test/test-schema.xml: se descomentó la parte del namespace
+
 2007-08-13  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/test-schema.xml: Se modificaron algunas reglas usando positive

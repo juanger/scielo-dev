@@ -25,9 +25,9 @@ public class Modifier {
 	private static Hashtable valid_modifiers;
 	private Hashtable parameters;
 	
-	public Modifier (XmlNode node)
+	public Modifier (XmlNode node, XmlNamespaceManager manager)
 	{
-		string tempName = node.SelectSingleNode ("@name").Value;
+		string tempName = node.SelectSingleNode ("@name", manager).Value;
 		
 		if (ValidModifier (tempName))
 			name = tempName;
