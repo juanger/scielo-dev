@@ -22,7 +22,7 @@ public class TestModifier {
 	public void Initialize ()
 	{
 		document = new XmlDocument ();
-		string source = Path.Combine (Test.PathOfTest (), "test-schema.xml");
+		string source = Path.Combine (Test.PathOfTest (), "test-valid.xml");
 		XmlTextReader reader = new XmlTextReader (source);
 		document.Load (reader);
 		manager = new XmlNamespaceManager (document.NameTable);

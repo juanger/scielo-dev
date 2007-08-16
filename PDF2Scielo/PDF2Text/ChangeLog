@@ -1,5 +1,17 @@
 2007-08-15  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text.mdp: Se agregó el cambio de nombre
+	* Test/TestStyleReader.cs: Pruebas de unidad para la clase StyleReader
+	* Test/TestModifier.cs, Test/TestRule.cs: Cambios menores para reflejar
+	  el cambio de nombre de test-schema.
+	* Test/test-invalid.xml: Documento de estilo con errores.
+	* Test/test-valid.xml: El archivo de estilo antes llamado test-schema
+	* Test/test-schema.xml: se cambió su nombre a test-valid
+	* StyleReader.cs: Ahora lanza una excepción si el documento de estilo
+	  no es válido
+
+2007-08-15  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Test/TestModifier.cs, Test/TestRule.cs, StyleReader.cs, Modifier.cs,
 	  Rule.cs: Se modificaron para que usen el namespace
 	* Test/test-schema.xml: se descomentó la parte del namespace

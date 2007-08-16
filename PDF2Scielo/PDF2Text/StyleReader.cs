@@ -27,28 +27,44 @@ public class StyleReader {
 	private string styles_path;
 	private bool val_success = true;
 	private XmlNamespaceManager manager;
-
+	
 	public StyleReader(string format)
 	{
 		// FIXME: Revisar posible bug en Mono cuando se tienen atributos
 		// en el elemento raiz del XML.
-		XmlTextReader reader1 = new XmlTextReader (GetStyleFile (format));
-		ValidateWithXSD (reader1);
+		XmlTextReader reader = new XmlTextReader (GetStyleFile (format));
+		ValidateWithXSD (reader);
 		
-		document = new XmlDocument ();
-		document.Load (GetStyleFile (format));
-		manager = new XmlNamespaceManager (document.NameTable);
-		
-		manager.AddNamespace ("def", "http://www.scielo.org.mx");
+		if (val_success) {
+			document = new XmlDocument ();
+			document.Load (GetStyleFile (format));
+			manager = new XmlNamespaceManager (document.NameTable);
+			manager.AddNamespace ("def", "http://www.scielo.org.mx");
+		} else
+			throw new Exception ("Estilo de documento " + format + " no es valido.");
 	}
 	
-	public void ValidationCallBack (object sender, ValidationEventArgs args)
+	public StyleReader (Uri uri)
+	{
+		XmlTextReader reader = new XmlTextReader (uri.LocalPath);
+		ValidateWithXSD (reader);
+		
+		if (val_success) {
+			document = new XmlDocument ();
+			document.Load (uri.LocalPath);
+			manager = new XmlNamespaceManager (document.NameTable);
+			manager.AddNamespace ("def", "http://www.scielo.org.mx");
+		} else
+			throw new Exception ("Estilo de documento " + uri.LocalPath + " no es valido.");
+	}
+	
+	private void ValidationCallBack (object sender, ValidationEventArgs args)
 	{
 		val_success = false;
 		Console.WriteLine("\r\n\tValidation error: " + args.Message );
 	}
 	
-	public bool ValidateWithXSD (XmlReader reader)
+	private bool ValidateWithXSD (XmlReader reader)
 	{
 		XmlValidatingReader valReader;
 		XmlSchema schema;
