@@ -1,5 +1,5 @@
 <Project name="Utils" fileversion="2.0" language="C#" clr-version="Net_1_1" ctype="DotNetProject">
-  <Configurations active="Release">
+  <Configurations active="Debug">
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
       <Output directory="./bin/Debug" assembly="Utils" />
       <Build debugmode="True" target="Library" />

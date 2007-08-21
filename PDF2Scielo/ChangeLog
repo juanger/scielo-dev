@@ -1,5 +1,9 @@
 2007-08-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Utils/Utils.mdp: Cambio menor.
+
+2007-08-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* style/atm.xml: Se añadio tres reglas requeridas para obtener los
 	  principales bloques en que se divide un documento: front, body y
 	  back
