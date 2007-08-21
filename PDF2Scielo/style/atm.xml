@@ -39,6 +39,18 @@
         </modifier>
       </modifiers>
     </rule>
+    <rule name="GetFront">
+      <regexp>^(.|\s)* \[/key\]\n</regexp>
+      <sust>#{Front}</sust>
+    </rule>
+    <rule name="GetBody">
+      <regexp>\[/key\](?&lt;Result&gt;(?:.|\s)*)\[ref\]</regexp>
+      <sust>#{Body}</sust>
+    </rule>
+    <rule name="GetBack">
+      <regexp>\[ref\](.|\s)*</regexp>
+      <sust>#{Back}</sust>
+    </rule>
   </global>
   <front>
     <rule name="MarkTitle">

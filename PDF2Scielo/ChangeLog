@@ -1,3 +1,9 @@
+2007-08-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* style/atm.xml: Se añadio tres reglas requeridas para obtener los
+	  principales bloques en que se divide un documento: front, body y
+	  back
+
 2007-08-15  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* style/atm.xml: Se descomentó la parte del namespace
