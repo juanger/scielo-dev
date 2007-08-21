@@ -73,7 +73,6 @@ public class AtmNormalizer : INormalizable {
 			source = back;
 			break;
 		}
-		
 		matches = new StringMatchCollection (rule.Regexp, source);
 		
 		if (rule.UniqueMatch) {
@@ -84,11 +83,28 @@ public class AtmNormalizer : INormalizable {
 				Console.WriteLine ("Advertencia: Se encontró más de un match en la regla " + rule.Name + ", se tomó el primero");
 			}
 			StringMatch match = matches [0];
-			if (rule.Type == RuleType.STATIC)
+			
+			if (rule.Type == RuleType.STATIC) {
 				result = rule.Sustitution;
-			else
+				source = source.Replace (match.FullMatch, result);
+			} else {
 				result = match.ApplyModifiers (rule.Modifiers, rule.Type);
-			source = source.Replace (match.FullMatch, result);
+				switch (rule.Sustitution) {
+				case "#{Front}":
+					front = result;
+					break;
+				case "#{Body}":
+					body = result;
+					Console.WriteLine ();
+					break;
+				case "#{Back}":
+					back = result;
+					break;
+				case "#{Result}":
+					source = source.Replace (match.FullMatch, result);
+					break;
+				}
+			}
 		} else {
 			Console.WriteLine ("Test matches: " + matches.Count);
 			foreach (StringMatch m in matches) {
@@ -126,8 +142,6 @@ public class AtmNormalizer : INormalizable {
 		foreach (Rule rule in rules) {
 			Console.WriteLine ("Aplicando regla: " + rule.Name);
 			ApplyRule (rule);
-			if (rule.Name.Equals ("MarkKeyword"))
-				GetBlocks ();
 		}
 		
 		return Text;

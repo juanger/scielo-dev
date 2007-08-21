@@ -1,3 +1,13 @@
+2007-08-20  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/test-valid.xml: Se agregaron las reglas para obtener el front,
+	  body y back.
+	* StringMatch.cs: Se modificó ApplyModifiers para cuando una regla no
+	  estática no tiene modificadores
+	* AtmNormalizer.cs: Se agregaron los casos para las reglas que obtienen
+	  el front, body y back.
+	* Rule.cs: Cambios menores
+
 2007-08-15  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text.mdp: Se agregó el cambio de nombre

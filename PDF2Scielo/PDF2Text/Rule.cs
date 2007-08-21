@@ -55,7 +55,7 @@ public class Rule {
 		// Aquí se obtiene el tipo de la regla.
 		if (regexp.IndexOf ("(?<Result>") != -1)
 			type = RuleType.RESULT;
-		else if (sust.IndexOf ("#{Result}") == -1)
+		else if (sust.IndexOf ("#{") == -1)
 			type = RuleType.STATIC;
 		else
 			type = RuleType.FULL;
@@ -63,7 +63,11 @@ public class Rule {
 		// Aqui se obtiene los modificadores.
 		XmlNodeList nodeList = root.SelectNodes ("def:modifiers/*", manager);
 		if (nodeList.Count != 0) {
-			modifiers = new Modifier [nodeList.Count];
+			if (nodeList.Count != 0)
+				modifiers = new Modifier [nodeList.Count];
+			else
+				modifiers = null;
+			
 			int counter = 0;
 			foreach (XmlNode node in nodeList) {
 				modifiers [counter] = new Modifier (node, manager);

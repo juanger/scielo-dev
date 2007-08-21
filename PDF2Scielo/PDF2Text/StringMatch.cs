@@ -32,9 +32,20 @@ public class StringMatch {
 	
 	public string ApplyModifiers (Modifier [] listModifiers, RuleType ruleType)
 	{
+		if (listModifiers == null) {
+			switch (ruleType){
+			case RuleType.RESULT:
+				return result_match;
+			case RuleType.FULL:
+				return full_match;
+			}
+		}
+		
 		string result;
 		if (ruleType == RuleType.FULL) {
 			result = full_match;
+			if (listModifiers == null)
+				Console.WriteLine ("Foo");
 			foreach (Modifier modifier in listModifiers) {
 				result = ApplyModifier (result, modifier);
 			}
