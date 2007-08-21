@@ -1,5 +1,14 @@
 2007-08-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text.mdp, Test/TestNormalizer.cs, Test/TestAtmNormalizer.cs,
+	  Normalizer.cs, AtmNormalizer.cs, RawDocument.cs: Se cambio el
+	  nombre de la clase AtmNormalizer a Normalizer puesto que ahora es
+	  una clase generica que hace uso de los documentos de estilo para
+	  realizar la normalizacion del documento. Tambien se cambio el
+	  nombre de la prueba de unidad TestAtmNormalizer a TestNormalizer.
+
+2007-08-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* Test/TestModifier.cs, Test/TestRule.cs: Needed changes to get
 	  MarkKeyword Rule node from the XML.
 

@@ -18,8 +18,8 @@
     <File name="./Test" subtype="Directory" buildaction="Compile" />
     <File name="./IExtractable.cs" subtype="Code" buildaction="Compile" />
     <File name="./INormalizable.cs" subtype="Code" buildaction="Compile" />
-    <File name="./AtmNormalizer.cs" subtype="Code" buildaction="Compile" />
-    <File name="./Test/TestAtmNormalizer.cs" subtype="Code" buildaction="Compile" />
+    <File name="./Normalizer.cs" subtype="Code" buildaction="Compile" />
+    <File name="./Test/TestNormalizer.cs" subtype="Code" buildaction="Compile" />
     <File name="./PDFPoppler.cs" subtype="Code" buildaction="Compile" />
     <File name="./Test/TestPDFPoppler.cs" subtype="Code" buildaction="Compile" />
     <File name="./Document.cs" subtype="Code" buildaction="Compile" />

@@ -1,6 +1,6 @@
 //
-// AtmNormalizer: A class that implements a the interface INormalizer for
-// Atmosfera.
+// Normalizer: Una clase que implementa la interface INormalizable, usa documentos de estilo
+// para obtener las expresiones regulares a ejecutar y asi obtener un NormDocument.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
@@ -22,14 +22,14 @@ using System.Xml;
 using System.IO;
 
 namespace Scielo.PDF2Text {
-public class AtmNormalizer : INormalizable {
+public class Normalizer : INormalizable {
 	private string text;
 	private string front;
 	private string body;
 	private string back;
 	private Rule [] rules;
 		
-	public AtmNormalizer (string source, string format)
+	public Normalizer (string source, string format)
 	{
 		// Construimos el XML reader para obtener las regexp.
 		StyleReader style = new StyleReader (format);
@@ -43,7 +43,7 @@ public class AtmNormalizer : INormalizable {
 	// TODO: Hay que hacer general esta clase tal que usando el string format
 	// que define el formato del documento se elija el archivo XML con las ER
 	// correspondientes.
-	public AtmNormalizer (RawDocument document)
+	public Normalizer (RawDocument document)
 	{
 		// Construimos el XML reader para obtener las regexp.
 		StyleReader style = new StyleReader (document.Format);
@@ -182,20 +182,6 @@ public class AtmNormalizer : INormalizable {
 			text = Front + Body + Back;
 			return text;
 		}
-	}
-	
-	private void GetBlocks ()
-	{
-		StringMatchCollection matches;
-		matches = new StringMatchCollection (@"^(.|\s)* \[/key\]\n", text);
-		front = matches [0].FullMatch;
-		
-		// NOTE: "?:" Sirve para que no tome un grupo como un backreference
-		matches = new StringMatchCollection (@"\[/key\](?<Result>(?:.|\s)*)\[ref\]", text);
-		body = matches [0].ResultMatch;
-		
-		matches = new StringMatchCollection (@"\[ref\](.|\s)*", text);
-		back = matches [0].FullMatch;
 	}
 }
 }

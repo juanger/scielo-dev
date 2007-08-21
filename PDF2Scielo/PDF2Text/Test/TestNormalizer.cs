@@ -1,5 +1,5 @@
 //
-// TestAtmNormalizer.cs: Test for AtmNormalizer class.
+// TestNormalizer.cs: Test for Normalizer class.
 //
 // Author:
 //   Hector E. Gomez Morales (hectoregm@gmail.com)
@@ -18,12 +18,12 @@ namespace Scielo {
 namespace PDF2Text {
 
 [TestFixture()]
-public class TestAtmNormalizer {
+public class TestNormalizer {
 	
 	public void Constructor ()
 	{
 		string data = "sofisticadas, el Análisis de";
-		AtmNormalizer atmN = new AtmNormalizer (data, "atm");
+		Normalizer atmN = new Normalizer (data, "atm");
 		
 		Type etype = Type.GetType ("Scielo.PDF2Text.AtmNormalizer");
 		Assert.IsInstanceOfType (etype, atmN, "CI01");

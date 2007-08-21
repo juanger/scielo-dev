@@ -38,7 +38,7 @@ public class RawDocument : Document {
 	
 	public NormDocument Normalize ()
 	{
-		AtmNormalizer norm = new AtmNormalizer (this);
+		Normalizer norm = new Normalizer (this);
 		return norm.CreateNormDocument ();
 	}
 }
