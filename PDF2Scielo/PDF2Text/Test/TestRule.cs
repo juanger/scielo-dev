@@ -49,7 +49,7 @@ public class TestRule {
 	[Test()]
 	public void TestFullAttributes()
 	{
-		XmlNode ruleNode = document.SelectSingleNode ("/def:style/def:global/def:rule[last()]", manager);
+		XmlNode ruleNode = document.SelectSingleNode ("/def:style/def:global/def:rule[7]", manager);
 		Rule newRule = new Rule (ruleNode, manager, BlockType.GLOBAL);
 		Assert.AreEqual ("MarkKeyword", newRule.Name, "TFA0");
 		Assert.AreEqual (@"[\n]+(Key words|Keywords|Keyword|Key word):[ ]+[ \w\p{P}\n]+?[\n]+", newRule.Regexp, "TFA1");
