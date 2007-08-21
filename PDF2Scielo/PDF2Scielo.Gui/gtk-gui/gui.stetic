@@ -2,6 +2,7 @@
 <stetic-interface>
   <configuration>
     <images-root-path>../</images-root-path>
+    <target-gtk-version>2.10.0</target-gtk-version>
   </configuration>
   <widget class="Gtk.Window" id="Scielo.PDF2Scielo.MarkerWindow" design-size="614 396">
     <action-group name="Default">

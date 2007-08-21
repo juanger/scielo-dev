@@ -39,6 +39,6 @@
     <ProjectReference type="Project" localcopy="True" refto="Markup" />
     <ProjectReference type="Gac" localcopy="True" refto="gecko-sharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ccf7d78a55e9f021" />
   </References>
-  <Deployment.LinuxDeployData scriptName="pdf2scielo-gui" />
   <GtkDesignInfo partialTypes="True" />
+  <Deployment.LinuxDeployData scriptName="pdf2scielo-gui" />
 </Project>
