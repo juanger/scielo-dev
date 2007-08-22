@@ -97,7 +97,7 @@ public class StyleReader {
 	{	
 		Assembly assem = Assembly.GetExecutingAssembly ();
 		Console.WriteLine ("Test: {0}", assem.Location);
-		Regex regexp = new Regex (@"/(PDF2Text|PDF2Scielo.Gui)/bin/[^/]*/PDF2Text.dll");
+		Regex regexp = new Regex (@"/(PDF2Text|PDF2Scielo.Gui|PDF2Scielo)/bin/[^/]*/PDF2Text.dll");
 		string path = regexp.Replace (assem.Location, String.Empty);
 //		if (path.Equals (assem.Location))
 //			throw new DirectoryNotFoundException ();

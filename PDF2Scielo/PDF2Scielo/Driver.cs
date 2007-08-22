@@ -8,6 +8,7 @@
 // Copyright (C) 2007 UNAM DGB
 //
 
+using Gtk;
 using System;
 using System.IO;
 using Scielo.PDF2Text;
@@ -17,23 +18,6 @@ namespace Scielo {
 namespace PDF2Scielo {
 
 public class Driver {
-	private static void Header ()
-	{
-		Console.WriteLine (new AssemblyInfo ().ToString ());
-		Environment.Exit (0);
-	}
-	
-	private static void Help (int exitcode)
-	{
-		Console.WriteLine ("pdf2scielo <ARCHIVO>");
-		Console.WriteLine ("\tDonde <ARCHIVO> es la ruta a un documento PDF para convertir a un documento HTML SciELO.\n");
-		Console.WriteLine ("pdf2scielo --help");
-		Console.WriteLine ("\tMuestra la ayuda de esta herramienta.\n");
-		Console.WriteLine ("pdf2scielo --version");
-		Console.WriteLine ("\tMuestra informacion sobre esta herramienta.\n");
-		Environment.Exit (exitcode);
-	}
-	
 	private static Uri ParsePath (string filepath)
 	{
 		Uri uri;
@@ -47,17 +31,17 @@ public class Driver {
 		filext = Path.GetExtension (filepath);
 		pdf = (filename != String.Empty) && 
 			(filext != String.Empty) && (ext.IndexOf (filext) != -1);
-
-		#if DEBUG		
+		
+		#if DEBUG
 		Console.WriteLine ("DEBUG: " + "La extension del archivo: " + filext);
 		#endif
 		
-		if (pdf) {		
+		if (pdf) {
 			if (Path.IsPathRooted (filepath))
 				uri = new Uri (filepath);
 			else
 				uri = new Uri (Path.GetFullPath (filepath));
-				
+			
 			return uri;
 		} else 
 			return null;
@@ -71,48 +55,50 @@ public class Driver {
 		NormDocument ndoc;
 		MarkupHTML marker;
 		HTMLDocument htmldoc;
+		string filepath, format;
 		
-		string filepath;
+		AppOptions options = new AppOptions (args);
 		
-		if (args.Length == 1) {
-			switch (args [0]) {
-			case "--help":
-				Help (0);
-				break;
-			case "--version":
-				Header ();
-				break;
-			}
-		} else
-			Help (1);
-
-		filepath = args [0];
-		uri = ParsePath (filepath);
-		
-		if (uri != null) {
-			try {
-				reader = new PDFPoppler (uri, "atm");
-
-				Console.WriteLine ("Transformando PDF ... ");
-				
-				rdoc = reader.CreateRawDocument ();
-				ndoc = rdoc.Normalize ();
-				ndoc.WriteDocument (Environment.CurrentDirectory, 
-					Path.GetFileNameWithoutExtension (filepath), "norm");
-				marker = new MarkupHTML (ndoc);
-				htmldoc = marker.CreateHTMLDocument ();
-				htmldoc.WriteDocument (Environment.CurrentDirectory, 
-					Path.GetFileNameWithoutExtension (filepath), "htm");
-				reader.GetNonText ();
-				
-				Console.WriteLine ("Finalizando\n");
-			} catch (FileNotFoundException) {
-				Console.WriteLine ("Error: El archivo {0} no existe.", args[0]);
-				Environment.Exit (1);
-			}
+		if (options.GotNoArguments) {
+			Application.Init ();
+			MarkerWindow win = new MarkerWindow ();
+			win.Show ();
+			Application.Run ();
 		} else {
-			Console.WriteLine ("Error: Solo se acepta la ruta a un documento PDF.");
-			Environment.Exit (1);
+			if (!options.Format) {
+				options.DoHelp ();
+				Environment.Exit (0);
+			} else if (!options.GotNoArguments) {
+				format = options.FirstArgument;
+				filepath = options.SecondArgument;
+				uri = ParsePath (filepath);
+				
+				if (uri != null) {
+					try {
+						reader = new PDFPoppler (uri, format);
+						
+						Console.WriteLine ("Transformando PDF ... ");
+						
+						rdoc = reader.CreateRawDocument ();
+						ndoc = rdoc.Normalize ();
+						ndoc.WriteDocument (Environment.CurrentDirectory, 
+							Path.GetFileNameWithoutExtension (filepath), "norm");
+						marker = new MarkupHTML (ndoc);
+						htmldoc = marker.CreateHTMLDocument ();
+						htmldoc.WriteDocument (Environment.CurrentDirectory, 
+							Path.GetFileNameWithoutExtension (filepath), "htm");
+						reader.GetNonText ();
+						
+						Console.WriteLine ("Finalizando\n");
+					} catch (FileNotFoundException) {
+						Console.WriteLine ("Error: El archivo {0} no existe.", filepath);
+						Environment.Exit (1);
+					}
+				} else {
+					Console.WriteLine ("Error: Solo se acepta la ruta a un documento PDF.");
+					Environment.Exit (1);
+				}
+			}
 		}
 	}
 }

@@ -58,7 +58,7 @@ public partial class MarkerWindow: Gtk.Window {
 	private void OnMarkupActivated (object sender, System.EventArgs e)
 	{
 		if (ndocument == null)
-			ndocument = rdocument.Normalize ();	
+			ndocument = rdocument.Normalize ();
 		
 		MarkupHTML marker = new MarkupHTML (ndocument);
 		html_document = marker.CreateHTMLDocument ();
@@ -70,9 +70,19 @@ public partial class MarkerWindow: Gtk.Window {
 
 	private void OnNormalizeActivated (object sender, System.EventArgs e)
 	{
-		ndocument = rdocument.Normalize ();
-		text_view.Buffer.Text = ndocument.GetText ();
-		Normalize.Sensitive = false;
+		try {
+			ndocument = rdocument.Normalize ();
+			text_view.Buffer.Text = ndocument.GetText ();
+			Normalize.Sensitive = false;
+		} catch (Exception exception){
+			MessageDialog md = new MessageDialog (this,
+				DialogFlags.DestroyWithParent, 
+				MessageType.Error, 
+				ButtonsType.Ok, 
+				exception.Message);
+			md.Run ();
+			md.Destroy();
+		}
 	}
 
 	private void OnPreviewActivated (object sender, System.EventArgs e)

@@ -1,14 +1,14 @@
 <Project name="PDF2Scielo.Gui" fileversion="2.0" language="C#" clr-version="Net_1_1" ctype="DotNetProject">
   <Configurations active="Debug">
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Debug" assembly="pdf2scielo-gui" />
-      <Build debugmode="True" target="Exe" />
+      <Output directory="./bin/Debug" assemblyKeyFile="./" assembly="PDF2Scielo.Gui.dll" />
+      <Build debugmode="True" target="Library" />
       <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_1_1" />
       <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" generatexmldocumentation="False" win32Icon="./" ctype="CSharpCompilerParameters" />
     </Configuration>
     <Configuration name="Release" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Release" assembly="pdf2scielo-gui" />
-      <Build debugmode="False" target="Exe" />
+      <Output directory="./bin/Release" assemblyKeyFile="./" assembly="PDF2Scielo.Gui.dll" />
+      <Build debugmode="False" target="Library" />
       <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_1_1" />
       <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
     </Configuration>
@@ -17,7 +17,6 @@
     <File name="./gtk-gui/gui.stetic" subtype="Code" buildaction="EmbedAsResource" />
     <File name="./gtk-gui/generated.cs" subtype="Code" buildaction="Compile" />
     <File name="./MarkerWindow.cs" subtype="Code" buildaction="Compile" />
-    <File name="./Main.cs" subtype="Code" buildaction="Compile" />
     <File name="./AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
     <File name="./gtk-gui/Scielo.PDF2Scielo.MarkerWindow.cs" subtype="Code" buildaction="Compile" />
     <File name="./OpenPDFDialog.cs" subtype="Code" buildaction="Compile" />
@@ -40,5 +39,5 @@
     <ProjectReference type="Gac" localcopy="True" refto="gecko-sharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ccf7d78a55e9f021" />
   </References>
   <GtkDesignInfo partialTypes="True" />
-  <Deployment.LinuxDeployData scriptName="pdf2scielo-gui" />
+  <Deployment.LinuxDeployData generateScript="False" scriptName="pdf2scielo-gui" />
 </Project>

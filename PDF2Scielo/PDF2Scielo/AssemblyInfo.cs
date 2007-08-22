@@ -12,13 +12,22 @@ using System;
 using System.Text;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Mono.GetOptions;
 
 [assembly: AssemblyTitle("PDF2Scielo")]
 [assembly: AssemblyDescription("Convierte un archivo PDF a un archivo HTML con formato SciELO.")]
 [assembly: AssemblyCompany("UNAM - DGB")]
 [assembly: AssemblyProduct("pdf2scielo")]
 [assembly: AssemblyCopyright("Copyright 2007 DGB UNAM")]
-[assembly: AssemblyVersion("0.0.0.1")]
+[assembly: AssemblyVersion("0.1")]
+[assembly: Mono.About("Programa auspiciado por el Macroproyecto de la UNAM")]
+[assembly: Mono.Author("Hector E. Gomez Morales")]
+[assembly: Mono.Author("Anaid V. Velazquez Rivera")]
+[assembly: Mono.Author("Virginia Teodosio Procopio")]
+[assembly: Mono.Author("Juan Germán Castañeda Echevarría")]
+[assembly: Mono.UsageComplement ("[archivo]\nConvierte un archivo PDF a un achivo HTML con formato SciELO")]
+[assembly: Mono.AdditionalInfo("Sin argumentos inicia la interface grafica.")]
+[assembly: Mono.ReportBugsTo("hectoregm@gmail.com")]
 
 //[assembly: AssemblyConfiguration("")]
 //[assembly: AssemblyTrademark("")]
