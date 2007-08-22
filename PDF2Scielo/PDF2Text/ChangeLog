@@ -1,5 +1,12 @@
 2007-08-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Test/test-valid.xml: Se modificó la expresión regular para que tome
+	  encabezados de la nueva edición
+	* Normalizer.cs: Se lanza una excepción cuando una regla que obtiene un
+	  bloque no encuentra matches.
+
+2007-08-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text.mdp, Test/TestNormalizer.cs, Test/TestAtmNormalizer.cs,
 	  Normalizer.cs, AtmNormalizer.cs, RawDocument.cs: Se cambio el
 	  nombre de la clase AtmNormalizer a Normalizer puesto que ahora es

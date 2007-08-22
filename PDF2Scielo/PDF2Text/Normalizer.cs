@@ -77,7 +77,18 @@ public class Normalizer : INormalizable {
 		
 		if (rule.UniqueMatch) {
 			if (matches.Count == 0) {
-				Console.WriteLine ("Advertencia: No se encontraron matches con la regla " + rule.Name);
+				switch (rule.Sustitution) {
+				case "#{Front}":
+				case "#{Body}":
+				case "#{Back}":
+					throw new Exception ("La regla necesaria " + rule.Name + 
+						" no obtuvo resultados. "+
+						"La normalización se ha cancelado");
+				default:
+					Console.WriteLine ("Advertencia: No se encontraron matches con la regla " + rule.Name);
+					break;
+				}
+				
 				return;
 			} else if (matches.Count > 1) {
 				Console.WriteLine ("Advertencia: Se encontró más de un match en la regla " + rule.Name + ", se tomó el primero");

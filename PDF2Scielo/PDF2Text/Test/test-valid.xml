@@ -9,7 +9,7 @@
       <depends>
         <depend>RemoveHeaders</depend>
       </depends>
-      <regexp>[\n]+[\u000c]+[ ]*[0-9 \w\p{S}\p{P}]+[ ]*[\n]*[0-9]*[\n]+</regexp>
+      <regexp>[\n]+[\u000c]+[ ]*[ \d\p{L}\p{S}\p{P}]+[\n]{0,1}[ ]*[ \d\p{L}\p{S}\p{P}]*[\n]+</regexp>
       <sust>\n</sust>
     </rule>
     <rule name="MarkResumen">
