@@ -36,6 +36,18 @@ public class RawDocument : Document {
 		return text;
 	}
 	
+	public void SetText (string text)
+	{
+		this.text = text;
+	}
+	
+	public void BreakColumns ()
+	{
+		PDFTextColumn pdfTC = new PDFTextColumn (text);
+		pdfTC.GetTextInColumns();
+		text = pdfTC.TextInColumn; 
+	}
+	
 	public NormDocument Normalize ()
 	{
 		Normalizer norm = new Normalizer (this);

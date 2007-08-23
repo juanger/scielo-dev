@@ -1,13 +1,13 @@
 <Project name="PDF2Scielo.Gui" fileversion="2.0" language="C#" clr-version="Net_1_1" ctype="DotNetProject">
   <Configurations active="Debug">
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Debug" assemblyKeyFile="./" assembly="PDF2Scielo.Gui.dll" />
+      <Output directory="./bin/Debug" assembly="PDF2Scielo.Gui.dll" assemblyKeyFile="./" />
       <Build debugmode="True" target="Library" />
       <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_1_1" />
       <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" generatexmldocumentation="False" win32Icon="./" ctype="CSharpCompilerParameters" />
     </Configuration>
     <Configuration name="Release" ctype="DotNetProjectConfiguration">
-      <Output directory="./bin/Release" assemblyKeyFile="./" assembly="PDF2Scielo.Gui.dll" />
+      <Output directory="./bin/Release" assembly="PDF2Scielo.Gui.dll" assemblyKeyFile="./" />
       <Build debugmode="False" target="Library" />
       <Execution runwithwarnings="True" consolepause="True" runtime="MsNet" clr-version="Net_1_1" />
       <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
@@ -38,6 +38,6 @@
     <ProjectReference type="Project" localcopy="True" refto="Markup" />
     <ProjectReference type="Gac" localcopy="True" refto="gecko-sharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ccf7d78a55e9f021" />
   </References>
-  <GtkDesignInfo partialTypes="True" />
   <Deployment.LinuxDeployData generateScript="False" scriptName="pdf2scielo-gui" />
+  <GtkDesignInfo partialTypes="True" />
 </Project>

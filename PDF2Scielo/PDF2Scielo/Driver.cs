@@ -55,7 +55,7 @@ public class Driver {
 		NormDocument ndoc;
 		MarkupHTML marker;
 		HTMLDocument htmldoc;
-		string filepath, format;
+		string filepath, format, num;
 		
 		AppOptions options = new AppOptions (args);
 		
@@ -65,10 +65,10 @@ public class Driver {
 			win.Show ();
 			Application.Run ();
 		} else {
-			if (!options.Format) {
+			if (!options.Format && !options.numColumns) {
 				options.DoHelp ();
 				Environment.Exit (0);
-			} else if (!options.GotNoArguments) {
+			} else if (!options.GotNoArguments && options.Format) {
 				format = options.FirstArgument;
 				filepath = options.SecondArgument;
 				uri = ParsePath (filepath);
@@ -97,6 +97,31 @@ public class Driver {
 				} else {
 					Console.WriteLine ("Error: Solo se acepta la ruta a un documento PDF.");
 					Environment.Exit (1);
+				}
+			} else if (!options.GotNoArguments && options.numColumns) {
+				num = options.FirstArgument;
+				filepath = options.SecondArgument;
+				format = options.ThirdArgument;
+				uri = ParsePath (filepath);
+				
+				if (uri != null) {
+					try {
+						Console.WriteLine ("En opcion de columnas");
+						reader = new PDFPoppler (uri, format);
+						
+						Console.WriteLine ("Transformando PDF ... ");
+						
+						rdoc = reader.CreateRawDocument ();
+						
+						Console.WriteLine ("Buscando las {0} columnas.", num);
+						rdoc.BreakColumns();
+						rdoc.WriteDocument (Environment.CurrentDirectory, 
+						Path.GetFileNameWithoutExtension (filepath), "column");
+						Console.WriteLine ("Finalizando\n");										
+					} catch (FileNotFoundException) {
+						Console.WriteLine ("Error: El archivo {0} no existe.", filepath);
+						Environment.Exit (1);
+					}
 				}
 			}
 		}

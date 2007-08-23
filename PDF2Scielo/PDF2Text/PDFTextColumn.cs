@@ -27,12 +27,6 @@ public class PDFTextColumn
 	private string column2 = "";
 	private Hashtable pos_frecuency = new Hashtable ();
 	private string textInColumn = "";
-		
-	public PDFTextColumn (RawDocument document)
-	{
-		text = document.GetText ();
-		pages = GetTextInPages ();
-	}
 	
 	public PDFTextColumn (string data)
 	{
@@ -145,7 +139,7 @@ public class PDFTextColumn
 	private void SetThreshold (int index)
 	{
 		int maxL = UpperLengthLine ((pages[index]).Split (new Char [] {'\n'}));
-		threshold = (maxL/2)-3;
+		threshold = (maxL/2)-6;
 	}
 	
 	/* the greater value than threshold in the frecuency of repetition	
@@ -229,7 +223,7 @@ public class PDFTextColumn
  	 	return position;
 	}
 	
-	public void GetTextInColumns (int indexPage, ArrayList values, float average)
+	public void GetTextInCol (int indexPage, ArrayList values, float average)
 	{			
  		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
  		int number_raw = 0;
@@ -247,12 +241,12 @@ public class PDFTextColumn
  		}
 	}
 	
-	public void GetText (){
+	public void GetTextInColumns (){
 		
 		for (int i=0; i<pages.Length;i++){
 			ArrayList elementsPage = GetInfoSpacesPage (i);
 			float positionDivision= GetRepeatPosition (elementsPage, i);
-			GetTextInColumns (i, elementsPage, positionDivision);
+			GetTextInCol (i, elementsPage, positionDivision);
 			string pageText = column1 + column2 + "";
 			textInColumn += pageText;
 		}

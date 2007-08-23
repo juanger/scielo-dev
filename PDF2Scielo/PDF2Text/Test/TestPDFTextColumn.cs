@@ -65,7 +65,7 @@ public class TestPDFTextColumn
 		PDFTextColumn pdftc = new PDFTextColumn(text);
 		ArrayList aL = pdftc.GetInfoSpacesPage (1);
 		float average = pdftc.GetRepeatPosition (aL, 1);
-		pdftc.GetTextInColumns (1, aL, average);
+		pdftc.GetTextInCol(1, aL, average);
 		Assert.AreEqual (pdftc.Column1, columna1,"CC1");
 		Assert.AreEqual (pdftc.Column2, columna2,"CC2");
 	}
@@ -82,7 +82,7 @@ public class TestPDFTextColumn
 			page2 +="COLUMNA 1          COLUMNA2\n";
 		string text = page1 + page2;
    		PDFTextColumn pdftc = new PDFTextColumn(text);
-		pdftc.GetText ();
+		pdftc.GetTextInColumns ();
 		Console.WriteLine(pdftc.TextInColumn);		
 	}
 }
