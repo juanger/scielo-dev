@@ -249,6 +249,7 @@ public class PDFTextColumn
 			GetTextInCol (i, elementsPage, positionDivision);
 			string pageText = column1 + column2 + "";
 			textInColumn += pageText;
+			column1 = column2 = "";
 		}
 	}
 }
