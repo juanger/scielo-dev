@@ -1,3 +1,8 @@
+2007-08-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Driver.cs: Se modificó para usar el Logger.
+	* PDF2Scielo.mdp: Cambios menores
+
 2007-06-28  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Driver.cs: Minor change.

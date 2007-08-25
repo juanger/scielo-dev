@@ -13,6 +13,7 @@ using System;
 using System.IO;
 using Scielo.PDF2Text;
 using Scielo.Markup;
+using Scielo.Utils;
 
 namespace Scielo {
 namespace PDF2Scielo {
@@ -32,9 +33,7 @@ public class Driver {
 		pdf = (filename != String.Empty) && 
 			(filext != String.Empty) && (ext.IndexOf (filext) != -1);
 		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: " + "La extension del archivo: " + filext);
-		#endif
+		Logger.Log (Level.DEBUG, "La extensión del archivo: {0}",  filext);
 		
 		if (pdf) {
 			if (Path.IsPathRooted (filepath))
@@ -59,6 +58,10 @@ public class Driver {
 		
 		AppOptions options = new AppOptions (args);
 		
+		#if DEBUG
+		Logger.ActivateDebug ();
+		#endif
+		
 		if (options.GotNoArguments) {
 			Application.Init ();
 			MarkerWindow win = new MarkerWindow ();
@@ -77,7 +80,7 @@ public class Driver {
 					try {
 						reader = new PDFPoppler (uri, format);
 						
-						Console.WriteLine ("Transformando PDF ... ");
+						Logger.Log (Level.DEBUG, "Transformando PDF", null);
 						
 						rdoc = reader.CreateRawDocument ();
 						ndoc = rdoc.Normalize ();
@@ -89,13 +92,13 @@ public class Driver {
 							Path.GetFileNameWithoutExtension (filepath), "htm");
 						reader.GetNonText ();
 						
-						Console.WriteLine ("Finalizando\n");
+						Logger.Log (Level.DEBUG, "Finalizando", null);
 					} catch (FileNotFoundException) {
-						Console.WriteLine ("Error: El archivo {0} no existe.", filepath);
+						Logger.Log (Level.ERROR, "El archivo {0} no existe", filepath);
 						Environment.Exit (1);
 					}
 				} else {
-					Console.WriteLine ("Error: Solo se acepta la ruta a un documento PDF.");
+					Logger.Log (Level.ERROR, "Solo se acepta la ruta a un documento PDF", null);
 					Environment.Exit (1);
 				}
 			} else if (!options.GotNoArguments && options.numColumns) {

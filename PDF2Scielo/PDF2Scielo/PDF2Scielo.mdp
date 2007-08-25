@@ -25,6 +25,7 @@
     <ProjectReference type="Gac" localcopy="True" refto="Mono.GetOptions, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
     <ProjectReference type="Gac" localcopy="True" refto="gtk-sharp, Version=2.10.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <ProjectReference type="Project" localcopy="True" refto="PDF2Scielo.Gui" />
+    <ProjectReference type="Project" localcopy="True" refto="Utils" />
   </References>
   <Deployment.LinuxDeployData scriptName="pdf2scielo" />
 </Project>
