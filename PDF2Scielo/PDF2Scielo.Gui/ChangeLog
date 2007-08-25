@@ -1,3 +1,8 @@
+2007-08-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* OpenPDFDialog.cs, PreviewDialog.cs, PDF2Scielo.Gui.mdp: Se modificó
+	  para usar el Logger.
+
 2007-08-21  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* gtk-gui/gui.stetic, PDF2Scielo.Gui.mdp: Minor changes.

@@ -10,6 +10,7 @@
 using Gtk;
 using System;
 using System.IO;
+using Scielo.Utils;
 
 namespace Scielo.PDF2Scielo {
 public partial class OpenPDFDialog : Gtk.Dialog {
@@ -40,7 +41,7 @@ public partial class OpenPDFDialog : Gtk.Dialog {
 		filename = open_dialog.Filename;
 		
 		#if DEBUG
-		Console.WriteLine ("Filename: {0}", filename);
+			Logger.Log (Level.DEBUG, "Filename: {0}", filename);
 		#endif
 		
 		if (Directory.Exists (filename))
@@ -55,7 +56,7 @@ public partial class OpenPDFDialog : Gtk.Dialog {
 		Respond (ResponseType.Ok);
 		
 		#if DEBUG
-		Console.WriteLine ("Filename: {0}", filename);
+			Logger.Log (Level.DEBUG, "Filename: {0}", filename);
 		#endif
 	}
 	

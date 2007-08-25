@@ -11,6 +11,7 @@ using Gtk;
 using System;
 using System.IO;
 using Gecko;
+using Scielo.Utils;
 
 namespace Scielo.PDF2Scielo {
 public partial class PreviewDialog : Gtk.Dialog {
@@ -42,7 +43,7 @@ public partial class PreviewDialog : Gtk.Dialog {
 		
 			preview.LoadUrl (file_path);
 		}catch(IOException except){
-			Console.WriteLine ("ERROR: "+ except.Message);
+			Logger.Log (Level.ERROR, "{0}", except.Message);
 		}
 	}
 	
@@ -51,7 +52,7 @@ public partial class PreviewDialog : Gtk.Dialog {
 		try {
 			File.Delete ("cachedDoc.html");
 		} catch(IOException except){
-			Console.WriteLine ("ERROR: " + except.Message);
+			Logger.Log (Level.ERROR, "{0}", except.Message);
 		}
 	}
 }
