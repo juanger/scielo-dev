@@ -44,8 +44,7 @@ public class StringMatch {
 		string result;
 		if (ruleType == RuleType.FULL) {
 			result = full_match;
-			if (listModifiers == null)
-				Console.WriteLine ("Foo");
+			
 			foreach (Modifier modifier in listModifiers) {
 				result = ApplyModifier (result, modifier);
 			}

@@ -73,6 +73,9 @@ public class Normalizer : INormalizable {
 			source = back;
 			break;
 		}
+		
+		Logger.Log (Level.INFO, "Aplicando regla: {0}", rule.Name);
+		
 		matches = new StringMatchCollection (rule.Regexp, source);
 		
 		if (rule.UniqueMatch) {
@@ -81,17 +84,20 @@ public class Normalizer : INormalizable {
 				case "#{Front}":
 				case "#{Body}":
 				case "#{Back}":
+					Logger.Log (Level.ERROR, "La regla necesaria {0} no obtuvo resultados", rule.Name);
 					throw new Exception ("La regla necesaria " + rule.Name + 
 						" no obtuvo resultados. "+
 						"La normalización se ha cancelado");
 				default:
-					Console.WriteLine ("Advertencia: No se encontraron matches con la regla " + rule.Name);
+					//Console.WriteLine ("Advertencia: No se encontraron matches con la regla " + rule.Name);
+					Logger.Log (Level.WARNING, "No se encontraron matches con la regla {0}", rule.Name);
 					break;
 				}
 				
 				return;
 			} else if (matches.Count > 1) {
-				Console.WriteLine ("Advertencia: Se encontró más de un match en la regla " + rule.Name + ", se tomó el primero");
+				Logger.Log (Level.WARNING, "Se encontró m{as de un match en la regla {0}, se tomó el primero", rule.Name);
+				//Console.WriteLine ("Advertencia: Se encontró más de un match en la regla " + rule.Name + ", se tomó el primero");
 			}
 			StringMatch match = matches [0];
 			
@@ -106,7 +112,6 @@ public class Normalizer : INormalizable {
 					break;
 				case "#{Body}":
 					body = result;
-					Console.WriteLine ();
 					break;
 				case "#{Back}":
 					back = result;
@@ -117,7 +122,8 @@ public class Normalizer : INormalizable {
 				}
 			}
 		} else {
-			Console.WriteLine ("Test matches: " + matches.Count);
+			//Console.WriteLine ("Test matches: " + matches.Count);
+			Logger.Log (Level.INFO, "Matches: {0}", matches.Count );
 			foreach (StringMatch m in matches) {
 				if (rule.Type == RuleType.STATIC)
 					result = rule.Sustitution;
@@ -150,10 +156,8 @@ public class Normalizer : INormalizable {
 	
 	public string MarkText ()
 	{
-		foreach (Rule rule in rules) {
-			Console.WriteLine ("Aplicando regla: " + rule.Name);
+		foreach (Rule rule in rules) 
 			ApplyRule (rule);
-		}
 		
 		return Text;
 	}

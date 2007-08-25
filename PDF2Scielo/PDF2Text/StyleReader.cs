@@ -18,6 +18,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Schema;
 using System.Reflection;
+using Scielo.Utils;
 
 namespace Scielo {
 namespace PDF2Text {
@@ -40,8 +41,10 @@ public class StyleReader {
 			document.Load (GetStyleFile (format));
 			manager = new XmlNamespaceManager (document.NameTable);
 			manager.AddNamespace ("def", "http://www.scielo.org.mx");
-		} else
+		} else {
+			Logger.Log (Level.ERROR, "Estilo de documento {0} no es válido", format);
 			throw new Exception ("Estilo de documento " + format + " no es valido.");
+		}
 	}
 	
 	public StyleReader (Uri uri)
@@ -54,8 +57,10 @@ public class StyleReader {
 			document.Load (uri.LocalPath);
 			manager = new XmlNamespaceManager (document.NameTable);
 			manager.AddNamespace ("def", "http://www.scielo.org.mx");
-		} else
+		} else {
+			Logger.Log (Level.ERROR, "Estilo de documento {0} no es válido", uri.LocalPath);
 			throw new Exception ("Estilo de documento " + uri.LocalPath + " no es valido.");
+		}
 	}
 	
 	private void ValidationCallBack (object sender, ValidationEventArgs args)
@@ -83,10 +88,8 @@ public class StyleReader {
 		valReader.Schemas.Add (schema);
 		while (valReader.Read()){}
 		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: Validando estilo. La validacion fue {0}", 
+		Logger.Log (Level.DEBUG, "Validando estilo. La validacion fue {0}", 
 			(val_success == true ? "exitosa!" : "no exitosa."));
-		#endif
 		
 		valReader.Close();
 		
@@ -96,7 +99,7 @@ public class StyleReader {
 	public string GetStyleFile (string format)
 	{	
 		Assembly assem = Assembly.GetExecutingAssembly ();
-		Console.WriteLine ("Test: {0}", assem.Location);
+		Logger.Log (Level.INFO, "Test: {0}", assem.Location);
 		Regex regexp = new Regex (@"/(PDF2Text|PDF2Scielo.Gui|PDF2Scielo)/bin/[^/]*/PDF2Text.dll");
 		string path = regexp.Replace (assem.Location, String.Empty);
 //		if (path.Equals (assem.Location))
@@ -110,12 +113,12 @@ public class StyleReader {
 	public Rule [] GetRules ()
 	{
 		XmlNodeList fullList = document.SelectNodes ("//def:rule", manager);
-		Console.WriteLine ("Numero de reglas: {0}", fullList.Count);
+		Logger.Log (Level.INFO, "Número de reglas: {0}", fullList.Count);
 		Rule [] result = new Rule [fullList.Count];
 		
 		int counter = 0;
 		XmlNodeList globalList = document.SelectNodes ("/def:style/def:global/*", manager);
-		Console.WriteLine ("Numero de reglas en global: {0}", globalList.Count); 
+		Logger.Log (Level.INFO, "Numero de reglas en global: {0}", globalList.Count);
 		foreach (XmlNode node in globalList) {
 			result [counter] = new Rule (node, manager, BlockType.GLOBAL);
 			counter++;

@@ -15,6 +15,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
+using Scielo.Utils;
 
 namespace Scielo {
 namespace PDF2Text {
@@ -36,9 +37,7 @@ public class PDFPoppler : IExtractable {
 		
 		CreateWorkDir();
 		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: " + "Ruta del archivo: " + uri.LocalPath);
-		#endif
+		Logger.Log (Level.DEBUG, "Ruta del archivo: {0}", uri.LocalPath);
 		
 		doc_path = docpath;
 		file_name = Path.GetFileNameWithoutExtension (docpath);
@@ -93,9 +92,7 @@ public class PDFPoppler : IExtractable {
 		dir = Path.Combine (temp_dir, file_name);
 		filepath = Path.Combine (dir, file_name + ".txt");
 		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: " + "Ruta del directorio temporal: " + dir);
-		#endif
+		Logger.Log (Level.DEBUG, "Ruta del directorio temporal: {0}", dir);
 		
 		if (Directory.Exists (dir)) {
 			Directory.Delete (dir, true);
@@ -105,9 +102,7 @@ public class PDFPoppler : IExtractable {
 		Process proc = Process.Start ("pdftotext", " -layout " + doc_path + " " + filepath);
 		proc.WaitForExit ();
 		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: " + "Ruta del archivo temporal: " + filepath);
-		#endif
+		Logger.Log (Level.DEBUG, "Rutha del archivo temporal: {0}", filepath);
 		
 		FileStream filestream = null;
 		using (filestream = File.Open (filepath, FileMode.Open)) {
@@ -139,9 +134,7 @@ public class PDFPoppler : IExtractable {
 		
 		Environment.CurrentDirectory = oworkdir;
 		
-		#if DEBUG
-		Console.WriteLine ("DEBUG: "+ "Ruta del directorio de trabajo: " + Environment.CurrentDirectory);
-		#endif
+		Logger.Log (Level.DEBUG, "Ruta del directorio de trabajo: {0}", Environment.CurrentDirectory);
 	}
 }
 }
