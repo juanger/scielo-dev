@@ -1,3 +1,8 @@
+2007-08-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Utils.mdp, Logger.cs: Se creó la clase Logger para guardar los
+	  mensajes de la aplicación.
+
 2007-08-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/TestStringRegexp.cs: Se modificó la prueba para Unescape.
