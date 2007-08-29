@@ -12,23 +12,69 @@
 //
 
 using System;
+using System.Collections;
+using Scielo.Utils;
 using NUnit.Framework;
+using System.IO;
 
-namespace Scielo {
-namespace PDF2Text {
+namespace Scielo.PDF2Text {
 
 [TestFixture()]
 public class TestNormalizer {
+	private ArrayList raw_docs;
 	
-	public void Constructor ()
+	[SetUp()]
+	public void Initialize ()
 	{
-		string data = "sofisticadas, el Análisis de";
-		Normalizer atmN = new Normalizer (data, "atm");
+		ArrayList test_docs = new ArrayList ();
+		ArrayList temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.PDF);
 		
-		Type etype = Type.GetType ("Scielo.PDF2Text.AtmNormalizer");
-		Assert.IsInstanceOfType (etype, atmN, "CI01");
-		Assert.IsNotNull (atmN, "CI02");
+		foreach (string[] array in temp_docs) {
+			Uri uri = new Uri(array[1]);
+			test_docs.Add (new PDFPoppler (uri, array [0]));
+		}
+		
+		raw_docs = new ArrayList ();
+		foreach (PDFPoppler pdf in test_docs) {
+			raw_docs.Add (new RawDocument (pdf));
+		}
 	}
-}
+	
+	[Test()]
+	public void ConstructorRawDocument ()
+	{
+		Type etype = Type.GetType ("Scielo.PDF2Text.Normalizer");
+		
+		int count = 0;
+		foreach (RawDocument raw in raw_docs) {
+			Normalizer norm = new Normalizer (raw);
+			Assert.IsInstanceOfType (etype, norm, "CRD" + count);
+			count++;
+		}
+	}
+	
+	[Test()]
+	public void ConstructorString ()
+	{
+		Type etype = Type.GetType ("Scielo.PDF2Text.Normalizer");
+		
+		int count = 0;
+		foreach (RawDocument raw in raw_docs) {
+			Normalizer norm = new Normalizer (raw.GetText (), "atm");
+			Assert.IsInstanceOfType (etype, norm, "CS" + count);
+			count++;
+		}
+	}
+	
+	[Test()]
+	[ExpectedException(typeof (FileNotFoundException))]
+	public void ConstructorBadStyle ()
+	{
+		int count = 0;
+		foreach (RawDocument raw in raw_docs) {
+			Normalizer norm = new Normalizer (raw.GetText (), "atn");
+			count++;
+		}
+	}
 }
 }

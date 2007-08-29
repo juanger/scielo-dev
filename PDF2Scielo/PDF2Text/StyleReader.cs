@@ -97,13 +97,10 @@ public class StyleReader {
 	}
 	
 	public string GetStyleFile (string format)
-	{	
+	{
 		Assembly assem = Assembly.GetExecutingAssembly ();
-		Logger.Log (Level.INFO, "Test: {0}", assem.Location);
 		Regex regexp = new Regex (@"/(PDF2Text|PDF2Scielo.Gui|PDF2Scielo)/bin/[^/]*/PDF2Text.dll");
 		string path = regexp.Replace (assem.Location, String.Empty);
-//		if (path.Equals (assem.Location))
-//			throw new DirectoryNotFoundException ();
 		
 		styles_path = Path.Combine (path, "style");
 		
@@ -113,12 +110,11 @@ public class StyleReader {
 	public Rule [] GetRules ()
 	{
 		XmlNodeList fullList = document.SelectNodes ("//def:rule", manager);
-		Logger.Log (Level.INFO, "Número de reglas: {0}", fullList.Count);
+		Logger.Log (Level.INFO, "Número total de reglas: {0}", fullList.Count);
 		Rule [] result = new Rule [fullList.Count];
 		
 		int counter = 0;
 		XmlNodeList globalList = document.SelectNodes ("/def:style/def:global/*", manager);
-		Logger.Log (Level.INFO, "Numero de reglas en global: {0}", globalList.Count);
 		foreach (XmlNode node in globalList) {
 			result [counter] = new Rule (node, manager, BlockType.GLOBAL);
 			counter++;

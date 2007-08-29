@@ -1,3 +1,10 @@
+2007-08-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/Test/TestNormalizer.cs: Se crearon tres pruebas para el
+	  constructor y se modificó en Inicializador
+	* PDF2Text/StyleReader.cs: Se removió información que no era necesaria
+	  para el Log.
+
 2007-08-23  Full Name <Email Address> 
 
 	* PDF2Text/PDFTextColumn.cs: cambios menores
