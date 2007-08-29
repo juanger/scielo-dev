@@ -1,5 +1,12 @@
 2007-08-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* PDF2Text/PDF2Text.mdp, PDF2Text/Test/normalizer.txt,
+	  PDF2Text/Test/normalizer-rules.xml: Se añadio normalizer-rules.xml
+	  que contiene reglas basicas para ser usadas en TestNormalizer.cs,
+	  tambien se añadio un texto fuente llamado normalizer.txt
+
+2007-08-29  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDF2Text/Test/TestNormalizer.cs: Se crearon tres pruebas para el
 	  constructor y se modificó en Inicializador
 	* PDF2Text/StyleReader.cs: Se removió información que no era necesaria
