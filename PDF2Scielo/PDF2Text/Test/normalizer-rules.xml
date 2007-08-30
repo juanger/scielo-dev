@@ -1,16 +1,27 @@
 <?xml version="1.0"?>
 <style name="test" ncolumns="3" xmlns="http://www.scielo.org.mx" >
   <global>
-    <rule name="RemoveHeaders0" expectedMatches="unbounded">
-      <regexp>[\n]+[\u000c]+[0-9]+[ ]*[ \w\p{S}\p{P}]+[\n]+</regexp>
-      <sust>\n</sust>
+    <rule name="MarkTitle">
+      <regexp>Title:.*</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Trim"/>
+        <modifier name="Concat">
+          <param name="prefix" value="[title] "/>
+          <param name="postfix" value=" [/title]"/>
+        </modifier>
+      </modifiers>
+    </rule>
+    <rule name="MarkReferences">
+      <regexp>[\n]+References\n</regexp>
+      <sust>\n[ref] References [/ref]\n</sust>
     </rule>
     <rule name="GetFront">
-      <regexp>^(.|\s)* \[/key\]\n</regexp>
+      <regexp>^(.|\s)* \[/title\]\n</regexp>
       <sust>#{Front}</sust>
     </rule>
     <rule name="GetBody">
-      <regexp>\[/key\](?&lt;Result&gt;(?:.|\s)*)\[ref\]</regexp>
+      <regexp>\[/title\](?&lt;Result&gt;(?:.|\s)*)\[ref\]</regexp>
       <sust>#{Body}</sust>
     </rule>
     <rule name="GetBack">
@@ -19,37 +30,32 @@
     </rule>
   </global>
   <front>
-    <rule name="MarkTitle">
-      <regexp>^Atm.*[\n ]+(?&lt;Result&gt;[^|]+?)\n[\n]+</regexp>
-      <sust>#{Result}</sust>
-      <modifiers>
-        <modifier name="Concat">
-          <param name="prefix" value="[title] "/>
-          <param name="postfix" value=" [/title]\n"/>
-        </modifier>
-      </modifiers>
+    <rule name="MarkGnome">
+      <regexp>GNOME</regexp>
+      <sust>KDE</sust>
     </rule>
   </front>
   <body>
-    <rule name="MarkSections" expectedMatches="unbounded">
-      <regexp>[\n]+[0-9]+[.][ ].*\n</regexp>
+    <rule name="MarkAuthor" expectedMatches="unbounded">
+      <regexp>by[ ]*(?&lt;Result&gt;.*)[ ]*on</regexp>
       <sust>#{Result}</sust>
       <modifiers>
         <modifier name="Trim"/>
         <modifier name="Concat">
-          <param name="prefix" value="\n[sec] "/>
-          <param name="postfix" value=" [/sec]\n"/>
+          <param name="prefix" value="[author] "/>
+          <param name="postfix" value=" [/author]\n"/>
         </modifier>
       </modifiers>
     </rule>
   </body>
   <back>
-    <rule name="MarkStartCitations" expectedMatches="unbounded">
-      <regexp>[\n]+(?&lt;Result&gt;[A-Z].*)</regexp>
+    <rule name="MarkCitation" expectedMatches="unbounded">
+      <regexp>[\n]+(?&lt;Result&gt;http.*)</regexp>
       <sust>#{Result}</sust>
       <modifiers>
         <modifier name="Concat">
           <param name="prefix" value="\n[cit] "/>
+          <param name="postfix" value=" [/cit]\n"/>
         </modifier>
       </modifiers>
     </rule>

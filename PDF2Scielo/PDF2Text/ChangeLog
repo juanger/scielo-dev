@@ -1,3 +1,14 @@
+2007-08-30  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Test/TestNormalizer.cs: Se añadio una prueba unitaria para ApplyRule,
+	  haciendo uso de las reglas definidas en normalizer-rules.txt
+	* Test/normalizer-step1.txt: Texto resultante despues de aplicar a
+	  normalizer.txt las dos primeras reglas en normalizer-rules.xml.
+	* Test/normalizer-rules.xml, PDF2Text.mdp: Se añadieron reglas para
+	  usarse en pruebas de unidad.
+	* Normalizer.cs: Se agrego un nuevo constructor que toma el texto a
+	  normalizar y un arreglo de reglas a aplicar sobre el texto.
+
 2007-08-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDFPoppler.cs, Normalizer.cs, StringMatch.cs, StyleReader.cs: Se

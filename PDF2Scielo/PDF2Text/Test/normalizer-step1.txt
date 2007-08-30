@@ -1,0 +1,8 @@
+[title] Title: On GNOME's 10th Anniversary, De Icaza, Waugh Look Back, Ahead [/title]
+
+Linked by Thom Holwerda on 2007-08-29 01:07:52 UTC
+
+"It seems like just yesterday that the GNOME Project got its start, but actually it was a decade ago that Miguel de Icaza got the ball rolling. While de Icaza has largely focused his time on Mono recently, the GNOME community has kept making progress. To get some perspective on GNOME's history, I spoke to de Icaza and longtime GNOME contributor and GNOME Foundation board member Jeff Waugh."
+[ref] References [/ref]
+
+http://osnews.com/story.php/18526/On-GNOMEs-10th-Anniversary-De-Icaza-Waugh-Look-Back-Ahead

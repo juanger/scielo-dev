@@ -31,27 +31,38 @@ public class Normalizer : INormalizable {
 		
 	public Normalizer (string source, string format)
 	{
-		// Construimos el XML reader para obtener las regexp.
+		// Construimos un StyleReader para obtener las regexp.
 		StyleReader style = new StyleReader (format);
 		rules = style.GetRules ();
 		
-		StringEncoding encoder = new StringEncoding (source);
-		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
-		text = encoder.GetStringUnicode ();
+		EncodeText (source);
 	}
 	
-	// TODO: Hay que hacer general esta clase tal que usando el string format
-	// que define el formato del documento se elija el archivo XML con las ER
-	// correspondientes.
+	public Normalizer (string source, Rule[] rules)
+	{
+		// No se construye un StyleReader puesto que se recibe las regexp a usar
+		// mediante el arreglo rules, por ende no puede ser nulo.
+		if (rules == null)
+			throw new ArgumentNullException ("Error: El arreglo rules no puede ser null.");
+		
+		this.rules = rules;
+		EncodeText (source);
+	}
+	
 	public Normalizer (RawDocument document)
 	{
-		// Construimos el XML reader para obtener las regexp.
+		// Construimos un StyleReader para obtener las regexp.
 		StyleReader style = new StyleReader (document.Format);
 		rules = style.GetRules ();
 		
-		StringEncoding encoder = new StringEncoding (document.GetText ());
+		EncodeText (document.GetText ());
+	}
+	
+	private void EncodeText (string source)
+	{
+		StringEncoding encoder = new StringEncoding (source);
 		encoder.ReplaceCodesTable (StringEncoding.CharactersDefault);
-		text = encoder.GetStringUnicode ();
+		this.text = encoder.GetStringUnicode ();
 	}
 	
 	public void ApplyRule (Rule rule)
@@ -74,7 +85,7 @@ public class Normalizer : INormalizable {
 			break;
 		}
 		
-		Logger.Log (Level.INFO, "Aplicando regla: {0}", rule.Name);
+		Logger.Log (Level.INFO, "Aplicando regla: {0} en bloque {1}", rule.Name, rule.Block);
 		
 		matches = new StringMatchCollection (rule.Regexp, source);
 		
@@ -89,17 +100,17 @@ public class Normalizer : INormalizable {
 						" no obtuvo resultados. "+
 						"La normalización se ha cancelado");
 				default:
-					//Console.WriteLine ("Advertencia: No se encontraron matches con la regla " + rule.Name);
 					Logger.Log (Level.WARNING, "No se encontraron matches con la regla {0}", rule.Name);
 					break;
 				}
 				
 				return;
 			} else if (matches.Count > 1) {
-				Logger.Log (Level.WARNING, "Se encontró m{as de un match en la regla {0}, se tomó el primero", rule.Name);
-				//Console.WriteLine ("Advertencia: Se encontró más de un match en la regla " + rule.Name + ", se tomó el primero");
+				Logger.Log (Level.WARNING, "Se encontró mas de un match en la regla {0}, se tomó el primero", rule.Name);
 			}
+			
 			StringMatch match = matches [0];
+			Logger.Log (Level.DEBUG, "Match: {0}", match.FullMatch);
 			
 			if (rule.Type == RuleType.STATIC) {
 				result = rule.Sustitution;
@@ -120,16 +131,21 @@ public class Normalizer : INormalizable {
 					source = source.Replace (match.FullMatch, result);
 					break;
 				}
+				
+				Logger.Log (Level.DEBUG, "Result: {0}", result);
 			}
 		} else {
-			//Console.WriteLine ("Test matches: " + matches.Count);
-			Logger.Log (Level.INFO, "Matches: {0}", matches.Count );
+			Logger.Log (Level.INFO, "Total Matches: {0}", matches.Count );
 			foreach (StringMatch m in matches) {
+				Logger.Log (Level.DEBUG, "Match: {0}", m.FullMatch);
+				
 				if (rule.Type == RuleType.STATIC)
 					result = rule.Sustitution;
 				else
 					result = m.ApplyModifiers (rule.Modifiers, rule.Type);
+				
 				source = source.Replace (m.FullMatch, result);
+				Logger.Log (Level.DEBUG, "Result: {0}", result);
 			}
 		}
 		
@@ -194,7 +210,9 @@ public class Normalizer : INormalizable {
 		
 	public string Text {
 		get {
-			text = Front + Body + Back;
+			if (Front != null && Body != null && Back != null)
+				text = Front + Body + Back;
+			
 			return text;
 		}
 	}
