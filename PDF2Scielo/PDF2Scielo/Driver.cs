@@ -80,7 +80,7 @@ public class Driver {
 					try {
 						reader = new PDFPoppler (uri, format);
 						
-						Logger.Log (Level.DEBUG, "Transformando PDF", null);
+						Logger.Log (Level.DEBUG, "Transformando PDF", "");
 						
 						rdoc = reader.CreateRawDocument ();
 						ndoc = rdoc.Normalize ();

@@ -140,6 +140,14 @@ public class StyleReader {
 		
 		return result;
 	}
+	
+	public int GetNumColumns ()
+	{
+		XmlNode node = document.SelectSingleNode ("/def:style/@ncolumns", manager);
+		Logger.Log (Level.INFO, "Número total de columnas: {0}", node.Value);
+		
+		return Int32.Parse (node.Value);
+	}
 }
 }
 }

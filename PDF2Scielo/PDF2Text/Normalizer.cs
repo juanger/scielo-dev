@@ -55,6 +55,11 @@ public class Normalizer : INormalizable {
 		StyleReader style = new StyleReader (document.Format);
 		rules = style.GetRules ();
 		
+		// Si el estilo tiene mas de una columna se rompe y se convierte a una
+		// sola columna.
+		if (style.GetNumColumns () > 1)
+			document.BreakColumns ();
+		
 		EncodeText (document.GetText ());
 	}
 	

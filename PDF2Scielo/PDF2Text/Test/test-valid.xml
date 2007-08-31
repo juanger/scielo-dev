@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<style name="atm" ncolumns="3" xmlns="http://www.scielo.org.mx" >
+<style name="atm" ncolumns="1" xmlns="http://www.scielo.org.mx" >
   <global>
     <rule name="RemoveHeaders0" expectedMatches="unbounded">
       <regexp>[\n]+[\u000c]+[0-9]+[ ]*[ \w\p{S}\p{P}]+[\n]+</regexp>

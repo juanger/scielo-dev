@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<style name="arcame" ncolumns="2" xmlns="http://www.scielo.org.mx" >
+  <global>
+    <rule name="GetFront">
+      <regexp>^(.|\s)* \[/key\]\n</regexp>
+      <sust>#{Front}</sust>
+    </rule>
+    <rule name="GetBody">
+      <regexp>\[/key\](?&lt;Result&gt;(?:.|\s)*)\[ref\]</regexp>
+      <sust>#{Body}</sust>
+    </rule>
+    <rule name="GetBack">
+      <regexp>\[ref\](.|\s)*</regexp>
+      <sust>#{Back}</sust>
+    </rule>
+  </global>
+  <front>
+  </front>
+  <body>
+  </body>
+  <back>
+  </back>
+</style>
