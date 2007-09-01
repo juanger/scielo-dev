@@ -14,10 +14,11 @@
 
 using System;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Schema;
 using System.Reflection;
+using System.Collections;
+using System.Text.RegularExpressions;
 using Scielo.Utils;
 
 namespace Scielo {
@@ -25,8 +26,7 @@ namespace PDF2Text {
 	
 public class StyleReader {
 	private XmlDocument document;
-	private string styles_path;
-	private bool val_success = true;
+	private static bool val_success = true;
 	private XmlNamespaceManager manager;
 	
 	public StyleReader(string format)
@@ -63,18 +63,43 @@ public class StyleReader {
 		}
 	}
 	
-	private void ValidationCallBack (object sender, ValidationEventArgs args)
+	public static String [] GetStyleList ()
+	{
+		string path = GetStylePath ();
+		
+		ArrayList list = new ArrayList ();
+		foreach (String file in Directory.GetFiles (path)) {
+			Console.WriteLine ("DEBUG: {0}", file);
+			if (!ValidStyle (file))
+				continue;
+			
+			list.Add (Path.GetFileNameWithoutExtension (file));
+		}
+		
+		return (string []) list.ToArray (Type.GetType ("System.String"));
+	}
+	
+	private static bool ValidStyle (string file)
+	{
+		if (!file.EndsWith(".xml"))
+			return false;
+		XmlTextReader reader = new XmlTextReader (file);
+		return ValidateWithXSD (reader);
+	}
+	
+	private static void ValidationCallBack (object sender, ValidationEventArgs args)
 	{
 		val_success = false;
 		Console.WriteLine("\r\n\tValidation error: " + args.Message );
 	}
 	
-	private bool ValidateWithXSD (XmlReader reader)
+	private static bool ValidateWithXSD (XmlReader reader)
 	{
 		XmlValidatingReader valReader;
 		XmlSchema schema;
 		Stream xsdStream;
 		
+		val_success = true;
 		valReader = new XmlValidatingReader (reader);
 		valReader.ValidationType = ValidationType.Schema;
 		
@@ -96,15 +121,18 @@ public class StyleReader {
 		return val_success;
 	}
 	
-	public string GetStyleFile (string format)
+	private static string GetStylePath ()
 	{
 		Assembly assem = Assembly.GetExecutingAssembly ();
 		Regex regexp = new Regex (@"/(PDF2Text|PDF2Scielo.Gui|PDF2Scielo)/bin/[^/]*/PDF2Text.dll");
 		string path = regexp.Replace (assem.Location, String.Empty);
 		
-		styles_path = Path.Combine (path, "style");
-		
-		return Path.Combine (styles_path, format + ".xml");
+		return Path.Combine (path, "style");
+	}
+	
+	public string GetStyleFile (string format)
+	{
+		return Path.Combine (GetStylePath (), format + ".xml");
 	}
 	
 	public Rule [] GetRules ()

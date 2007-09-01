@@ -35,5 +35,14 @@ public class TestStyleReader {
 		Type etype = Type.GetType ("Scielo.PDF2Text.StyleReader");
 		Assert.IsInstanceOfType (etype, reader, "IS");
 	}
+	
+	[Test ()]
+	public void GetStyleList ()
+	{
+		string [] list = StyleReader.GetStyleList();
+		Assert.AreEqual (2, list.Length, "GSL01");
+		Assert.AreEqual ("arcame", list[0], "GDL02");
+		Assert.AreEqual ("atm", list[1], "GDL02");
+	}
 }
 }
