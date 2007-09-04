@@ -19,15 +19,15 @@ namespace Scielo.PDF2Scielo {
         
         protected virtual void Build() {
             Stetic.Gui.Initialize();
-            // Widget Scielo.PDF2Scielo.StyleSelect
-            this.Name = "Scielo.PDF2Scielo.StyleSelect";
+            // Widget Scielo.PDF2Scielo.StyleSelectDialog
+            this.Name = "Scielo.PDF2Scielo.StyleSelectDialog";
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.HasSeparator = false;
-            // Internal child Scielo.PDF2Scielo.StyleSelect.VBox
+            // Internal child Scielo.PDF2Scielo.StyleSelectDialog.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
             w1.BorderWidth = ((uint)(2));
-            // Internal child Scielo.PDF2Scielo.StyleSelect.ActionArea
+            // Internal child Scielo.PDF2Scielo.StyleSelectDialog.ActionArea
             Gtk.HButtonBox w2 = this.ActionArea;
             w2.Name = "dialog1_ActionArea";
             w2.Spacing = 6;

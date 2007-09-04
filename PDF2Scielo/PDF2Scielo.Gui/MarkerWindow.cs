@@ -70,19 +70,25 @@ public partial class MarkerWindow: Gtk.Window {
 
 	private void OnNormalizeActivated (object sender, System.EventArgs e)
 	{
-		try {
-			ndocument = rdocument.Normalize ();
-			text_view.Buffer.Text = ndocument.GetText ();
-			Normalize.Sensitive = false;
-		} catch (Exception exception){
-			MessageDialog md = new MessageDialog (this,
-				DialogFlags.DestroyWithParent, 
-				MessageType.Error, 
-				ButtonsType.Ok, 
-				exception.Message);
-			md.Run ();
-			md.Destroy();
+		StyleSelectDialog dialog = new StyleSelectDialog ();
+		
+		if (dialog.Run () == (int) ResponseType.Ok) {
+			try {
+				ndocument = rdocument.Normalize ();
+				text_view.Buffer.Text = ndocument.GetText ();
+				Normalize.Sensitive = false;
+			} catch (Exception exception){
+				MessageDialog md = new MessageDialog (this,
+					DialogFlags.DestroyWithParent, 
+					MessageType.Error, 
+					ButtonsType.Ok, 
+					exception.Message);
+				md.Run ();
+				md.Destroy();
+			}
 		}
+		
+		dialog.Destroy ();
 	}
 
 	private void OnPreviewActivated (object sender, System.EventArgs e)

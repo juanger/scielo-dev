@@ -12,16 +12,11 @@
 
 using System;
 
-namespace Scielo.PDF2Scielo
-{
-	
-	
-	public partial class StyleSelectDialog : Gtk.Dialog
+namespace Scielo.PDF2Scielo {
+public partial class StyleSelectDialog : Gtk.Dialog {
+	public StyleSelectDialog ()
 	{
-		
-		public StyleSelectDialog ()
-		{
-			this.Build();
-		}
+		this.Build();
 	}
+}
 }
