@@ -92,13 +92,13 @@ public class Driver {
 							Path.GetFileNameWithoutExtension (filepath), "htm");
 						reader.GetNonText ();
 						
-						Logger.Log (Level.DEBUG, "Finalizando", null);
+						Logger.Log (Level.DEBUG, "Finalizando", "");
 					} catch (FileNotFoundException) {
 						Logger.Log (Level.ERROR, "El archivo {0} no existe", filepath);
 						Environment.Exit (1);
 					}
 				} else {
-					Logger.Log (Level.ERROR, "Solo se acepta la ruta a un documento PDF", null);
+					Logger.Log (Level.ERROR, "Solo se acepta la ruta a un documento PDF", "");
 					Environment.Exit (1);
 				}
 			} else if (!options.GotNoArguments && options.numColumns) {
