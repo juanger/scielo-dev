@@ -120,6 +120,8 @@ public class Normalizer : INormalizable {
 			if (rule.Type == RuleType.STATIC) {
 				result = rule.Sustitution;
 				source = source.Replace (match.FullMatch, result);
+				
+				Logger.Log (Level.DEBUG, "Result: {0}", result);
 			} else {
 				result = match.ApplyModifiers (rule.Modifiers, rule.Type);
 				switch (rule.Sustitution) {

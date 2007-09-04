@@ -62,7 +62,7 @@
 
   <xs:simpleType name="nametype">
     <xs:restriction base="xs:string">
-      <xs:pattern value="([a-zA-Z])+[0-9]?"/>
+      <xs:pattern value="([-a-zA-Z])+[0-9]?"/>
     </xs:restriction>
   </xs:simpleType>
 

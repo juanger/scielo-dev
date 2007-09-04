@@ -1,3 +1,8 @@
+2007-09-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Normalizer.cs: Cambio menor.
+	* Data/style.xsd: Cambio para aceptar guiones en los nombres.
+
 2007-08-30  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/TestNormalizer.cs: Se añadio una prueba unitaria para ApplyRule,
