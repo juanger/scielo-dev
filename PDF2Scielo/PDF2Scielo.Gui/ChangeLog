@@ -1,3 +1,10 @@
+2007-09-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* StyleSelect.cs, StyleSelectDialog.cs,
+	  gtk-gui/PDF2Scielo.Gui.StyleSelect.cs,
+	  gtk-gui/Scielo.PDF2Scielo.StyleSelectDialog.cs, PDF2Scielo.Gui.mdp:
+	  Cambio para arreglar conflictos por nombres de clases.
+
 2007-08-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* OpenPDFDialog.cs, PreviewDialog.cs, PDF2Scielo.Gui.mdp: Se modificó

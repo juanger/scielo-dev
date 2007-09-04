@@ -11,7 +11,7 @@
 namespace Scielo.PDF2Scielo {
     
     
-    public partial class StyleSelect {
+    public partial class StyleSelectDialog {
         
         private Gtk.Button buttonCancel;
         
@@ -19,18 +19,18 @@ namespace Scielo.PDF2Scielo {
         
         protected virtual void Build() {
             Stetic.Gui.Initialize();
-            // Widget PDF2Scielo.Gui.StyleSelect
-            this.Name = "PDF2Scielo.Gui.StyleSelect";
+            // Widget Scielo.PDF2Scielo.StyleSelect
+            this.Name = "Scielo.PDF2Scielo.StyleSelect";
             this.WindowPosition = ((Gtk.WindowPosition)(4));
             this.HasSeparator = false;
-            // Internal child PDF2Scielo.Gui.StyleSelect.VBox
+            // Internal child Scielo.PDF2Scielo.StyleSelect.VBox
             Gtk.VBox w1 = this.VBox;
             w1.Name = "dialog1_VBox";
             w1.BorderWidth = ((uint)(2));
-            // Internal child PDF2Scielo.Gui.StyleSelect.ActionArea
+            // Internal child Scielo.PDF2Scielo.StyleSelect.ActionArea
             Gtk.HButtonBox w2 = this.ActionArea;
             w2.Name = "dialog1_ActionArea";
-            w2.Spacing = 10;
+            w2.Spacing = 6;
             w2.BorderWidth = ((uint)(5));
             w2.LayoutStyle = ((Gtk.ButtonBoxStyle)(4));
             // Container child dialog1_ActionArea.Gtk.ButtonBox+ButtonBoxChild

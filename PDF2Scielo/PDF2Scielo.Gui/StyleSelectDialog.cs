@@ -16,10 +16,10 @@ namespace Scielo.PDF2Scielo
 {
 	
 	
-	public partial class StyleSelect : Gtk.Dialog
+	public partial class StyleSelectDialog : Gtk.Dialog
 	{
 		
-		public StyleSelect()
+		public StyleSelectDialog ()
 		{
 			this.Build();
 		}
