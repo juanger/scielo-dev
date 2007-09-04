@@ -1,3 +1,7 @@
+2007-09-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	
+
 2007-08-31  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/Test/TestStyleReader.cs: Prueba para el método GetStyleList.
