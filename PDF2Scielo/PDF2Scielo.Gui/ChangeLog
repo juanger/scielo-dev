@@ -1,5 +1,13 @@
 2007-09-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* StyleSelectDialog.cs: Se agregó el contenido del dialog.
+	* gtk-gui/Scielo.PDF2Scielo.StyleSelectDialog.cs: Cambio de tamaño para
+	  el dialog
+	* gtk-gui/gui.stetic: Cambio de tamaño para el dialog.
+	* MarkerWindow.cs: Cambios para obtener el formato del ComboBox.
+
+2007-09-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* StyleSelectDialog.cs, PDF2Scielo.Gui.mdp, MarkerWindow.cs: Cambios
 	  menores.
 	* gtk-gui/Scielo.PDF2Scielo.StyleSelect.cs,

@@ -74,9 +74,14 @@ public partial class MarkerWindow: Gtk.Window {
 		
 		if (dialog.Run () == (int) ResponseType.Ok) {
 			try {
-				ndocument = rdocument.Normalize ();
-				text_view.Buffer.Text = ndocument.GetText ();
-				Normalize.Sensitive = false;
+				string format = dialog.Box.ActiveText;
+				Console.WriteLine ("DEBUG FOO: {0}", format);
+				
+				if (format != null) {
+					ndocument = rdocument.Normalize ();
+					text_view.Buffer.Text = ndocument.GetText ();
+					Normalize.Sensitive = false;
+				}
 			} catch (Exception exception){
 				MessageDialog md = new MessageDialog (this,
 					DialogFlags.DestroyWithParent, 

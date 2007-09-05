@@ -61,8 +61,8 @@ namespace Scielo.PDF2Scielo {
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
-            this.DefaultWidth = 400;
-            this.DefaultHeight = 300;
+            this.DefaultWidth = 214;
+            this.DefaultHeight = 131;
             this.Show();
         }
     }
