@@ -65,7 +65,7 @@ public class Test {
 		
 		testPath = PathOfTest ();
 		source = Path.Combine (testPath, "unit-test.sources");
-
+		
 		FileStream mainReader = new FileStream (source, FileMode.Open);
 		StreamReader smainReader = new StreamReader (mainReader);
 		

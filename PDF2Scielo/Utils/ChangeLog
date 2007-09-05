@@ -1,3 +1,7 @@
+2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	
+
 2007-08-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Utils.mdp, Logger.cs: Se creó la clase Logger para guardar los
