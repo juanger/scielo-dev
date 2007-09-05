@@ -1,3 +1,8 @@
+2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Driver.cs: Cambio en los parametros del constructor de PDFPoppler y
+	  del metodo Normalize en RawDocument.
+
 2007-09-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Driver.cs: Cambios menores.

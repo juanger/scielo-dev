@@ -78,12 +78,12 @@ public class Driver {
 				
 				if (uri != null) {
 					try {
-						reader = new PDFPoppler (uri, format);
+						reader = new PDFPoppler (uri);
 						
 						Logger.Log (Level.DEBUG, "Transformando PDF", "");
 						
 						rdoc = reader.CreateRawDocument ();
-						ndoc = rdoc.Normalize ();
+						ndoc = rdoc.Normalize (format);
 						ndoc.WriteDocument (Environment.CurrentDirectory, 
 							Path.GetFileNameWithoutExtension (filepath), "norm");
 						marker = new MarkupHTML (ndoc);
@@ -110,7 +110,7 @@ public class Driver {
 				if (uri != null) {
 					try {
 						Console.WriteLine ("En opcion de columnas");
-						reader = new PDFPoppler (uri, format);
+						reader = new PDFPoppler (uri);
 						
 						Console.WriteLine ("Transformando PDF ... ");
 						
