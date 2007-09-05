@@ -1,3 +1,8 @@
+2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* MarkerWindow.cs: Se agrego el dialogo de seleccion de estilo al
+	  directamente marcar el documento usando  la accion Markup.
+
 2007-09-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* StyleSelectDialog.cs: Se agregó el contenido del dialog.

@@ -45,7 +45,7 @@ public partial class MarkerWindow: Gtk.Window {
 		OpenPDFDialog dialog = new OpenPDFDialog ();
 		if (dialog.Run () == (int) ResponseType.Ok) {
 			Uri uri = new Uri (dialog.Document);
-			PDFPoppler reader = new PDFPoppler (uri, "atm");
+			PDFPoppler reader = new PDFPoppler (uri);
 			rdocument = reader.CreateRawDocument ();
 			text_view.Buffer.Text = rdocument.GetText ();
 			Markup.Sensitive = true;
@@ -57,8 +57,27 @@ public partial class MarkerWindow: Gtk.Window {
 	
 	private void OnMarkupActivated (object sender, System.EventArgs e)
 	{
-		if (ndocument == null)
-			ndocument = rdocument.Normalize ();
+		if (ndocument == null) {
+			StyleSelectDialog dialog = new StyleSelectDialog ();
+			
+			if (dialog.Run () == (int) ResponseType.Ok) {
+				try {
+					string format = dialog.Box.ActiveText;
+					if (format != null)
+						ndocument = rdocument.Normalize (format);
+				} catch (Exception exception){
+					MessageDialog md = new MessageDialog (this,
+						DialogFlags.DestroyWithParent, 
+						MessageType.Error, 
+						ButtonsType.Ok, 
+						exception.Message);
+					md.Run ();
+					md.Destroy();
+				}
+			}
+			
+			dialog.Destroy ();
+		}
 		
 		MarkupHTML marker = new MarkupHTML (ndocument);
 		html_document = marker.CreateHTMLDocument ();
@@ -75,10 +94,9 @@ public partial class MarkerWindow: Gtk.Window {
 		if (dialog.Run () == (int) ResponseType.Ok) {
 			try {
 				string format = dialog.Box.ActiveText;
-				Console.WriteLine ("DEBUG FOO: {0}", format);
 				
 				if (format != null) {
-					ndocument = rdocument.Normalize ();
+					ndocument = rdocument.Normalize (format);
 					text_view.Buffer.Text = ndocument.GetText ();
 					Normalize.Sensitive = false;
 				}
