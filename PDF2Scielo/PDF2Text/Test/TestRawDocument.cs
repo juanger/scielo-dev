@@ -25,6 +25,7 @@ public class TestRawDocument {
 	
 	private ArrayList test_docs;
 	private ArrayList raw_docs;
+	private string [] styles;
 	
 	[SetUp]
 	public void Initialize ()
@@ -34,9 +35,12 @@ public class TestRawDocument {
 		raw_docs = new ArrayList ();
 		
 		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.PDF);
+		styles = new string [temp_docs.Count];
+		int count = 0;
 		foreach (string[] array in temp_docs) {
+		styles [count] = array [0];
 			Uri uri = new Uri(array[1]);
-			test_docs.Add (new PDFPoppler (uri, array [0]));
+			test_docs.Add (new PDFPoppler (uri));
 		}
 		
 		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.RAW);
@@ -62,7 +66,7 @@ public class TestRawDocument {
 	public void ConstructorInterfase ()
 	{
 		int count = 0;
-		Type etype = Type.GetType ("Scielo.PDF2Text.RawDocument");	
+		Type etype = Type.GetType ("Scielo.PDF2Text.RawDocument");
 		
 		foreach (PDFPoppler doc in test_docs) {
 			RawDocument rdoc = new RawDocument (doc);
@@ -95,7 +99,7 @@ public class TestRawDocument {
 		
 		foreach (PDFPoppler doc in test_docs) {
 			RawDocument rdoc = new RawDocument (doc);
-			ndoc= rdoc.Normalize ();
+			ndoc= rdoc.Normalize (styles[count]);
 			Assert.IsInstanceOfType (etype, rdoc, "NM" + count);
 			Assert.IsInstanceOfType (etype1, ndoc, "NM" + count);
 			count += 1;

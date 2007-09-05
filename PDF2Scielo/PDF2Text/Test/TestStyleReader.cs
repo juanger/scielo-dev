@@ -40,9 +40,10 @@ public class TestStyleReader {
 	public void GetStyleList ()
 	{
 		string [] list = StyleReader.GetStyleList();
-		Assert.AreEqual (2, list.Length, "GSL01");
+		Assert.AreEqual (3, list.Length, "GSL01");
 		Assert.AreEqual ("arcame", list[0], "GDL02");
-		Assert.AreEqual ("atm", list[1], "GDL02");
+		Assert.AreEqual ("atm", list[1], "GDL03");
+		Assert.AreEqual ("eng-agr", list[2], "GDL04");
 	}
 }
 }

@@ -22,6 +22,7 @@ namespace Scielo.PDF2Text {
 
 [TestFixture()]
 public class TestNormalizer {
+	private string [] style;
 	private ArrayList raw_docs;
 	private XmlDocument document;
 	private XmlNamespaceManager manager;
@@ -40,10 +41,14 @@ public class TestNormalizer {
 		
 		ArrayList test_docs = new ArrayList ();
 		ArrayList temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.PDF);
+		style = new string [temp_docs.Count];
 		
+		int count = 0;
 		foreach (string[] array in temp_docs) {
+			style [count] = array [0];
 			Uri uri = new Uri(array[1]);
-			test_docs.Add (new PDFPoppler (uri, array [0]));
+			test_docs.Add (new PDFPoppler (uri));
+			count++;
 		}
 		
 		raw_docs = new ArrayList ();
@@ -63,7 +68,7 @@ public class TestNormalizer {
 		
 		int count = 0;
 		foreach (RawDocument raw in raw_docs) {
-			Normalizer norm = new Normalizer (raw);
+			Normalizer norm = new Normalizer (raw, style [count]);
 			Assert.IsInstanceOfType (etype, norm, "CRD" + count);
 			count++;
 		}
@@ -76,7 +81,7 @@ public class TestNormalizer {
 		
 		int count = 0;
 		foreach (RawDocument raw in raw_docs) {
-			Normalizer norm = new Normalizer (raw.GetText (), "atm");
+			Normalizer norm = new Normalizer (raw.GetText (), style [count]);
 			Assert.IsInstanceOfType (etype, norm, "CS" + count);
 			count++;
 		}

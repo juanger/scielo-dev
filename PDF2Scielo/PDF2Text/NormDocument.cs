@@ -24,7 +24,7 @@ public class NormDocument : Document {
 	protected string body;
 	protected string back;
 
-	public NormDocument (string front, string body, string back)
+	public NormDocument (string front, string body, string back, string format)
 	{
 		if (front == null | body == null | back == null)
 			throw new ArgumentNullException ();
@@ -32,6 +32,7 @@ public class NormDocument : Document {
 		this.front = front;
 		this.body = body;
 		this.back = back;
+		this.format = format;
 	}
 	
 	public NormDocument (INormalizable normalizer)
@@ -39,6 +40,7 @@ public class NormDocument : Document {
 		front = normalizer.Front;
 		body = normalizer.Body;
 		back = normalizer.Back;
+		format = normalizer.Format;
 	}
 	
 	public string Front {

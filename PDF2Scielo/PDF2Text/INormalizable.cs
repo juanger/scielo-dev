@@ -34,7 +34,9 @@ public interface INormalizable {
 	
 	string Back { get; }
 	
-	string Text { get; } 
+	string Text { get; }
+	
+	string Format { get; }
 }
 }
 }

@@ -22,13 +22,13 @@ public class RawDocument : Document {
 	public RawDocument (string text, string format) 
 	{
 		this.text = text;
-		this.format = format;
+		this.format = "";
 	}
 
 	public RawDocument (IExtractable extractor)
 	{
 		text = extractor.GetRawText ();
-		format = extractor.Format;
+		format = "";
 	}
 	
 	public override string GetText ()
@@ -48,9 +48,9 @@ public class RawDocument : Document {
 		text = pdfTC.TextInColumn; 
 	}
 	
-	public NormDocument Normalize ()
+	public NormDocument Normalize (string format)
 	{
-		Normalizer norm = new Normalizer (this);
+		Normalizer norm = new Normalizer (this, format);
 		return norm.CreateNormDocument ();
 	}
 }

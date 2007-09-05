@@ -37,7 +37,7 @@ public class TestPDFPoppler {
 		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.PDF);
 		foreach (string[] array in temp_docs) {
 			Uri uri = new Uri(array[1]);
-			test_docs.Add (new PDFPoppler (uri, array [0]));
+			test_docs.Add (new PDFPoppler (uri));
 		}
 		
 		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.RAW);
@@ -53,7 +53,7 @@ public class TestPDFPoppler {
 		Uri uri = new Uri ("/foo/v17n01a02.pdf");
 		
 		try {
-			PDFPoppler doc = new PDFPoppler (uri, "atm");
+			PDFPoppler doc = new PDFPoppler (uri);
 			Type etype = Type.GetType ("Scielo.PDF2Text.PDFPoppler");
 			Assert.IsNotInstanceOfType (etype, doc, "CI01");
 			Assert.IsNull (doc, "CI02");

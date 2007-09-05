@@ -1,3 +1,33 @@
+2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDFPoppler.cs: Se quito el parametro que indica el formato puesto que
+	  no se necesita.
+	* Test/TestPDFPoppler.cs: Se modificaron las llamadas a los
+	  constructores para reflejar los cambios en PDFPoppler.
+	* Test/TestNormalizer.cs: Se generalizaron las pruebas de los
+	  constructores.
+	* Test/TestStyleReader.cs: Se agregó el nuevo estilo a la prueba
+	  GetStyleList.
+	* Test/TestRawDocument.cs: Se modificaron las llamadas a los
+	  constructores y métodos para reflejar los cambios en RawDocument y
+	  PDFPoppler. 
+	* Test/TestNormDocument.cs: Se generalizaron las pruebas para
+	  constructores y las llamadas a ellos para reflejar los cambios en
+	  RawDocument y Normalizer.
+	* Normalizer.cs: Se modifico el constructor que recibia un RawDocument
+	  y se agrego un nuevo parametro que indica el formato del documento
+	  a normalizar.
+	* INormalizable.cs: Se agrego al contrato de INormalizable un accesor
+	  al parametro format.
+	* RawDocument.cs: En RawDocument el formato del documento no es
+	  conocido asi que se guarda una cadena vacia en ambos constructores.
+	  En el metodo Normalize ahora se toma un parametro que indica el
+	  formato del documento.
+	* IExtractable.cs: Se quita en el contrato el acceso al parametro
+	  Format puesto que no es necesario.
+	* NormDocument.cs: Al constructor que toma tres parametros se agrego
+	  uno mas que indica el formato del documento normalizado.
+
 2007-09-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Normalizer.cs: Cambio menor.

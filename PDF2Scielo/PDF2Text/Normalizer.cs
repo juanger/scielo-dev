@@ -27,6 +27,7 @@ public class Normalizer : INormalizable {
 	private string front;
 	private string body;
 	private string back;
+	private string format;
 	private Rule [] rules;
 		
 	public Normalizer (string source, string format)
@@ -49,10 +50,11 @@ public class Normalizer : INormalizable {
 		EncodeText (source);
 	}
 	
-	public Normalizer (RawDocument document)
+	public Normalizer (RawDocument document, string format)
 	{
 		// Construimos un StyleReader para obtener las regexp.
-		StyleReader style = new StyleReader (document.Format);
+		StyleReader style = new StyleReader (format);
+		this.format = format;
 		rules = style.GetRules ();
 		
 		// Si el estilo tiene mas de una columna se rompe y se convierte a una
@@ -194,7 +196,7 @@ public class Normalizer : INormalizable {
 	public NormDocument CreateNormDocument ()
 	{
 		MarkText ();
-		return new NormDocument (front, body, back);
+		return new NormDocument (front, body, back, format);
 	}
 	
 	public string Front {
@@ -221,6 +223,12 @@ public class Normalizer : INormalizable {
 				text = Front + Body + Back;
 			
 			return text;
+		}
+	}
+	
+	public string Format {
+		get {
+			return format;
 		}
 	}
 }

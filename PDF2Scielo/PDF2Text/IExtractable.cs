@@ -14,8 +14,7 @@
 using System;
 using System.Collections;
 
-namespace Scielo {
-namespace PDF2Text {
+namespace Scielo.PDF2Text {
 	
 public interface IExtractable {
 	
@@ -25,7 +24,5 @@ public interface IExtractable {
 	
 	Queue GetNonText ();
 	
-	string Format { get; }
-}	
 }
 }

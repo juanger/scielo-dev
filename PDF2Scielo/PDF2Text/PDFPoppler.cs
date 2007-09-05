@@ -25,9 +25,8 @@ public class PDFPoppler : IExtractable {
 	private string doc_path;
 	private string file_name;
 	private static string temp_dir;
-	private string format;
 	
-	public PDFPoppler (Uri uri, string format)
+	public PDFPoppler (Uri uri)
 	{
 		string docpath;
 		docpath = uri.LocalPath;
@@ -41,8 +40,6 @@ public class PDFPoppler : IExtractable {
 		
 		doc_path = docpath;
 		file_name = Path.GetFileNameWithoutExtension (docpath);
-		
-		this.format = format;
 	}
 	
 	public string GetRawText ()
@@ -64,12 +61,6 @@ public class PDFPoppler : IExtractable {
 	public RawDocument CreateRawDocument ()
 	{
 		return new RawDocument (this);
-	}
-	
-	public string Format {
-		get {
-			return format;
-		}
 	}
 	
 	private void CreateWorkDir ()

@@ -22,7 +22,7 @@ namespace PDF2Text {
 
 [TestFixture()]
 public class TestNormDocument {
-	
+	private string [] styles;
 	private ArrayList test_docs;
 	private ArrayList raw_docs;
 	private ArrayList norm_docs;
@@ -34,11 +34,16 @@ public class TestNormDocument {
 		test_docs = new ArrayList ();
 		raw_docs = new ArrayList ();
 		norm_docs = new ArrayList ();
-
+		
 		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.PDF);
+		styles = new string [temp_docs.Count];
+		
+		int count = 0;
 		foreach (string[] array in temp_docs) {
+			styles [count] = array [0];
 			Uri uri = new Uri(array[1]);
-			test_docs.Add (new PDFPoppler (uri, array [0]));
+			test_docs.Add (new PDFPoppler (uri));
+			count++;
 		}
 		
 		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.RAW);
@@ -56,7 +61,7 @@ public class TestNormDocument {
 	public void ConstructorInvalid ()
 	{
 		try {
-			NormDocument ndoc0 = new NormDocument (null, null, null);
+			NormDocument ndoc0 = new NormDocument (null, null, null, null);
 			Type etype = Type.GetType ("Scielo.PDF2Text.NormDocument");
 			Assert.IsInstanceOfType (etype, ndoc0, "CI01");
 		} catch (ArgumentNullException) {
@@ -68,7 +73,7 @@ public class TestNormDocument {
 	public void ConstructorValid ()
 	{
 		try {
-			NormDocument ndoc0 = new NormDocument ("", "", "");
+			NormDocument ndoc0 = new NormDocument ("", "", "", "");
 			Type etype = Type.GetType ("Scielo.PDF2Text.NormDocument");
 			Assert.IsInstanceOfType (etype, ndoc0, "CI01");
 		} catch (ArgumentNullException) {
@@ -85,7 +90,7 @@ public class TestNormDocument {
 		
 		foreach (PDFPoppler doc in test_docs) {
 			RawDocument rdoc = new RawDocument (doc);
-			ndoc = rdoc.Normalize ();
+			ndoc = rdoc.Normalize (styles [count]);
 			normtext = ndoc.GetText ();
 			Assert.AreEqual (norm_docs[count], normtext, "GT" + count);
 			count += 1;
