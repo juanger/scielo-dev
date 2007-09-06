@@ -12,10 +12,10 @@
 //
 
 using System;
-using NUnit.Framework;
 using System.IO;
 using System.Collections;
 using Scielo.Utils;
+using NUnit.Framework;
 
 namespace Scielo {
 namespace PDF2Text {
@@ -30,17 +30,18 @@ public class TestRawDocument {
 	[SetUp]
 	public void Initialize ()
 	{
-		ArrayList temp_docs;
 		test_docs = new ArrayList ();
 		raw_docs = new ArrayList ();
 		
-		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.PDF);
+		ArrayList temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.PDF);
 		styles = new string [temp_docs.Count];
+		
 		int count = 0;
 		foreach (string[] array in temp_docs) {
-		styles [count] = array [0];
+			styles [count] = array [0];
 			Uri uri = new Uri(array[1]);
 			test_docs.Add (new PDFPoppler (uri));
+			count++;
 		}
 		
 		temp_docs = Test.GetAllFilesByType ((int) Test.DocTypes.RAW);
@@ -71,7 +72,7 @@ public class TestRawDocument {
 		foreach (PDFPoppler doc in test_docs) {
 			RawDocument rdoc = new RawDocument (doc);
 			Assert.IsInstanceOfType (etype, rdoc, "CI" + count);
-			count += 1;
+			count++;
 		}
 	}
 	
@@ -102,7 +103,7 @@ public class TestRawDocument {
 			ndoc= rdoc.Normalize (styles[count]);
 			Assert.IsInstanceOfType (etype, rdoc, "NM" + count);
 			Assert.IsInstanceOfType (etype1, ndoc, "NM" + count);
-			count += 1;
+			count++;
 		}
 	}
 	
@@ -121,7 +122,7 @@ public class TestRawDocument {
 			result = Test.ReadFile (Path.Combine (temp_dir, "temp01.txt"));
 			
 			Assert.AreEqual (raw_docs[count], result, "WD" + count);
-			count += 1;
+			count++;
 		}
 	}
 }

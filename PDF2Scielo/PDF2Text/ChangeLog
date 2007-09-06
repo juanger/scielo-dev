@@ -1,5 +1,10 @@
 2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
+	* Test/TestRawDocument.cs: Se corrigio un error donde no se incrementa
+	  el contador en el inicializador.
+
+2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
 	* PDFPoppler.cs: Se quito el parametro que indica el formato puesto que
 	  no se necesita.
 	* Test/TestPDFPoppler.cs: Se modificaron las llamadas a los
