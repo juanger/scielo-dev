@@ -93,7 +93,7 @@ public class PDFPoppler : IExtractable {
 		Process proc = Process.Start ("pdftotext", " -layout " + doc_path + " " + filepath);
 		proc.WaitForExit ();
 		
-		Logger.Log (Level.DEBUG, "Rutha del archivo temporal: {0}", filepath);
+		Logger.Log (Level.DEBUG, "Ruta del archivo temporal: {0}", filepath);
 		
 		FileStream filestream = null;
 		using (filestream = File.Open (filepath, FileMode.Open)) {

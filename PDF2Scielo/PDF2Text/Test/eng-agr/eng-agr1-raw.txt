@@ -1,0 +1,484 @@
+    USO DA LÓGICA FUZZY NA CARACTERIZAÇÃO DO AMBIENTE PRODUTIVO
+                      PARA MATRIZES GESTANTES
+
+            HÉLITON PANDORFI1, IRAN J. O. SILVA2, CRISTIANE GUISELINI3,
+                             SONIA M. S. PIEDADE4
+
+RESUMO: O objetivo desta pesquisa consistiu na avaliação do ambiente de alojamento, estimando
+as condições favoráveis ao melhor desempenho de matrizes gestantes. O experimento foi realizado
+no período compreendido entre 4-1 e 11-3-2005, em propriedade de produção industrial de suínos,
+localizada no município de Elias Fausto - SP. A pesquisa foi desenvolvida no setor de gestação,
+com 24 matrizes primíparas, 12 fêmeas alojadas em baias individuais (T1) e 12 em baias coletivas
+(T2). O trabalho foi dividido em duas etapas, em função da forma de avaliação dos dados: análise
+bioclimática e da qualidade do ar, e estimativa dos padrões de conforto térmico ambiental. As
+variáveis bioclimáticas T (oC), UR (%), Tgn (oC) e fisiológicas, taxa respiratória (mov min-1) e
+temperatura retal (oC) apontam o sistema de confinamento em baias coletivas como o que
+possibilitou melhor condicionamento térmico natural às matrizes em gestação. O uso da teoria dos
+conjuntos fuzzy permitiu que se fizesse inferência entre os dados resultantes do trabalho
+experimental com os estabelecidos pela literatura, por intermédio de base de regras, para a
+determinação do conforto ambiental aplicado a matrizes na fase de gestação.
+
+PALAVRAS-CHAVE: conforto térmico, lógica fuzzy, suinocultura.
+
+
+           THE USE OF FUZZY LOGIC FOR THE PRODUCTIVE ENVIRONMENT
+                    CHARACTERIZATION FOR PREGNANT SOWS
+
+ABSTRACT: The objective of this research was to estimate the environment of housing systems
+for pregnant sows, as well as variables that have effect on production system. The trial was
+conducted out from January 4th to March 11th 2005 in a specialized farm in industrial production of
+pork, located in Elias Fausto City, São Paulo State. In gestation facility 24 gilts were allocated: 12
+in individual stalls (T1) and 12 in group housing (T2). Basically, this study was divided in two
+steps in function of the way chosen for data analysis: bioclimatic and air quality analysis; and
+prediction for environmental thermal comfort patterns. The environmental variables (T, oC; UR, %;
+Tgn, oC) and physiological (respiratory rate, mov min-1; rectal temperature, oC) indicated that the
+group housing led to be the better natural thermal environment for pregnant gilts. The fuzzy set
+theory permitted to compare experimental data with those reported in the literature through rules
+that establish environment thermal comfort for sows during gestation.
+
+KEYWORDS: thermal comfort, fuzzy logic, swine production.
+
+INTRODUÇÃO
+     O ambiente de criação intensivo possui influência direta na condição de conforto e bem-estar
+animal, promovendo a manutenção do balanço térmico no interior das instalações, na qualidade
+química do ar e na expressão de seus comportamentos naturais, afetando o desempenho produtivo e
+reprodutivo dos suínos.
+
+
+_______________________
+1
+  Engo Agrônomo, Prof. Doutor, Departamento de Tecnologia Rural, UFRPE, R. Dom Manoel de Medeiros, s/n, Recife - PE, Fone:
+  (0XX81)3320.6261, pandorfi@ufrpe.br
+2
+  Engo Agrícola, Prof. Doutor, Departamento de Engenharia Rural, NUPEA - ESALQ/USP, Piracicaba - SP.
+3
+  Engo Agrônomo, Doutor, Física do Ambiente Agrícola, ESALQ/USP, Piracicaba - SP.
+4
+  Engo Agrônomo, Prof. Doutor, Departamento de Ciências Exatas, NUPEA - ESALQ/USP, Piracicaba - SP.
+Recebido pelo Conselho Editorial em: 23-8-2005
+Aprovado pelo Conselho Editorial em: 4-12-2006
+                                                                     Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+Héliton Pandorfi, Iran J. O. Silva, Cristiane Guiselini et al.                                                            84
+
+      BALDWIN (1979) dividiu os componentes ambientais em físicos (temperatura, umidade,
+ventilação, tipologia das instalações) e sociais (hierarquia, tamanho e composição do grupo,
+presença ou ausência de animais estranhos) e introduziu o item manejo (dieta, formas de
+arraçoamento e desmame). O ambiente físico, por abranger os elementos meteorológicos que
+afetam os mecanismos de transferência de calor, a regulação e o balanço térmico entre o animal e o
+meio, exerce forte influência sobre o desempenho e a saúde dos animais (ASHRAE, 1983).
+      Frente às atuais demandas, não se pode mais considerar sistema de produção animal ou
+cadeia produtiva, sem considerar o conceito de bem-estar na produção. Diante disso, as utilizações
+de novas ferramentas da tecnologia da informação favorecem a acurácia das pesquisas e o
+desenvolvimento de sistemas especialistas para tomada de decisão.
+      A teoria de conjuntos fuzzy foi introduzida por Lotfi Asker Zadeh, em 1965, como uma teoria
+matemática aplicada a conceitos difusos. A partir daí, a pesquisa e a aplicação dessa teoria em
+sistemas de informação têm crescido. Uma área de aplicação da teoria fuzzy é o chamado raciocínio
+aproximado, semelhante à forma do pensamento humano. Nesses casos, variáveis lingüísticas são
+representadas por conjuntos fuzzy, interpretando uma variável lingüística como uma variável cujos
+valores são palavras ou sentenças em linguagem natural, além da existência de variação nas opções
+(ZADEH, 1965).
+       Nesse sentido, a introdução dos conhecimentos da teoria dos conjuntos fuzzy mostra-se
+inovadora. FIRK et al. (2003) relatam melhoria na previsão de inseminação em vacas leiteiras,
+utilizando a base de dados de identificação de estro, comparado com métodos convencionais.
+CVETICANIN (2003) apresenta metodologia de pesagem eletrônica para gado, em que um
+algoritmo foi desenvolvido utilizando a lógica fuzzy. Para o dimensionamento de dietas para gado
+em condições de semi-estabulação, CADENAS et al. (2003) estipularam um cenário, usando a
+programação linear fuzzy, associada a processo de tomada de decisão. Essa ferramenta também
+permitiu a análise da composição das variáveis climáticas para estimar conforto térmico para
+alojamento de aves poedeiras em produção (OLIVEIRA et al., 1997).
+      Baseando-se nisso, o objetivo desta pesquisa consistiu na avaliação do ambiente de
+alojamento, determinando as condições favoráveis ao melhor desempenho animal e na estimativa
+de padrões de conforto aplicados a matrizes gestantes.
+
+MATERIAL E MÉTODOS
+      O experimento foi realizado em uma granja comercial, cuja principal atividade é a produção
+industrial de suínos, localizada no município de Elias Fausto - SP, apresentando latitude de
+22o36’S, longitude de 47o36’W e altitude de 535 m. O clima da região é caracterizado como
+mesotérmico-Cwa (tropical de altitude), com temperatura do mês mais frio entre 3 e 18 oC, com
+inverno seco e temperatura do mês mais quente maior que 22 oC, segundo classificação de
+Köeppen (PEREIRA et al., 2002).
+      O desenvolvimento da pesquisa foi na fase de gestação, no período compreendido entre
+4-1-2005 e 11-3-2005, com duração média de 67 dias. O experimento foi dividido em duas etapas,
+em função da forma de avaliação dos dados: análise bioclimática e da qualidade do ar nos
+alojamentos, e estimativa dos padrões de conforto.
+      Foram avaliados dois sistemas de confinamento, considerados neste trabalho como
+tratamentos: confinamento em baias individuais de gestação (T1) e confinamento em baias
+coletivas (T2). Como variáveis-respostas a esses tratamentos, foram consideradas as relações
+microclimáticas e fisiológicas.
+     As variáveis meteorológicas foram registradas em intervalos de 15 min, na sala de gestação e
+no ambiente externo, por meio de sensores instalados à altura de 1,30 m do piso (instalação), e a
+1,50 m em abrigo meteorológico (exterior), conectados a uma plataforma automática de registro de
+
+
+                                                                 Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+Uso da lógica fuzzy na caracterização do ambiente produtivo para matrizes gestantes                                               85
+
+dados: temperatura de bulbo seco (Tbs, oC), umidade relativa do ar (UR, %) e temperatura de globo
+negro (Tgn, oC).
+       As concentrações dos gases (O2, CH4, NH3, CO e H2S) foram registradas por meio de
+sensores eletroquímicos, instalados no centro geométrico da instalação, à altura de 1,2 m do piso,
+utilizando o equipamento Commander®, com detectores calibrados de fábrica com resolução de
+1 ppm.
+      A temperatura retal e a taxa respiratória das matrizes foram registradas semanalmente, às 9 h,
+12 h e 17 h. As medidas de temperatura foram tomadas com auxílio de um termômetro digital, Digi
+Sense, modelo 8522-10, e a taxa respiratória, por observação visual direta e quantificação dos
+movimentos min-1 por meio de um cronômetro digital Cronobio SW2018. Os animais foram
+tomados para as avaliações de maneira aleatória, perfazendo amostragem de seis matrizes em cada
+um dos tratamentos.
+      A aplicação da lógica fuzzy na avaliação do conforto animal permitiu análise conjunta das
+variáveis quantitativas de entrada (T, oC; UR, %; NH3, ppm; taxa respiratória, mov min-1) e
+qualitativas de saída (conforto térmico). Para tanto, foi utilizado o Fuzzy Logic Toolbox do
+MATLAB® 6.5 (AMENDOLA et al., 2005).
+      Dessa forma, foram consideradas as classificações da condição do alojamento em: muito bom
+(A), bom (B), regular (C) e ruim (D). Em seguida, construiu-se a matriz-demanda
+(variáveis-respostas) em que a classificação feita anteriormente foi substituída por um critério de
+pesos, pertencendo ao intervalo de 0 a 1, em que o valor 1 corresponde a 100% de veracidade da
+afirmação. Dessa maneira, foi possível construir uma simulação com maior flexibilidade, visto que
+os pesos obtidos a partir da literatura podem inferir resultados mais próximos da realidade em
+relação à sensação de conforto, para as fêmeas em fase de gestação.
+      Como passo seguinte, foi definida a matriz-oferta, caracterizando as variáveis preditoras
+(variáveis meteorológicas, concentração de gases e fisiológicas) por termos lingüísticos
+apropriados (muito alto, alto, médio, baixo e muito baixo) que forneceram a indicação da existência
+ou da ausência de condição em um ambiente estipulado. A base do desenvolvimento da simulação
+foi a escolha de um cenário hipoteticamente ideal, com base nas atribuições de pesos, de acordo
+com dados da literatura, o que permitiu inferir condições de conforto, estresse e suas interfaces.
+     As variáveis de entrada para os dados meteorológicos constituíram os intervalos                                             de
+temperatura (oC) e umidade relativa do ar (%), de acordo com a estimativa das condições                                          de
+conforto para matrizes gestantes. Todas as classificações foram estipuladas de acordo com                                        as
+condições limites citadas nos trabalhos de ESMAY (1982); HAHN et al. (1987); PRUNIER et                                          al.
+(1997), como consta na Tabela 1.
+
+TABELA 1. Classificação do estado de conforto térmico como função das variáveis preditoras
+          temperatura (oC) e umidade relativa do ar (%).
+                                               Temperatura (oC)
+     UR
+     (%)               <12            12-21          21-24                                    24-28                   >29
+     <70         muito bom (0,7) muito bom (1,0)   bom (0,9)                               regular (0,7)           ruim (0,8)
+    70-80          bom (0,6)     muito bom (1,0)   bom (0,8)                               regular (0,6)           ruim (0,9)
+     >80           bom (0,6)       bom (0,8)      regular (0,8)                             ruim (0,6)             ruim (1,0)
+
+      Para as variáveis temperatura (oC) e amônia (ppm), a definição das variáveis lingüísticas
+caracterizada pelo conforto térmico para matrizes gestantes foi baseada nos resultados encontrados
+no estudo e de acordo com LARRY et al. (1994), AARNINK & ELZING (1998), SAMPAIO
+(2004), conforme apresentado na Tabela 2.
+
+
+
+
+                                                                         Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+Héliton Pandorfi, Iran J. O. Silva, Cristiane Guiselini et al.                                                            86
+
+TABELA 2. Classificação do estado de conforto térmico como função das variáveis preditoras
+          temperatura (oC) e concentração de amônia (NH3).
+                                                   Temperatura (oC)
+      NH3
+     (ppm)                <15            15-20           20-25                         25-30                   >30
+       <1           muito bom (1,0) muito bom (1,0)    bom (0,8)                    regular (0,7)           ruim (0,8)
+       1-5          muito bom (1,0) muito bom (0,9)    bom (0,7)                    regular (0,6)           ruim (0,8)
+      5-10            bom (0,7)       bom (0,8)       regular (0,6)                  ruim (0,7)             ruim (1,0)
+      >10            regular (0,5)   regular (0,5)    regular (0,5)                  ruim (0,8)             ruim (1,0)
+
+        As variáveis preditoras constituem intervalos de temperatura e da taxa respiratória, definindo
+a variável-resposta, pela condição de conforto das matrizes. As classificações resultaram da
+organização da base de dados geradas e apoiadas na literatura (OLIVEIRA et al., 1997; TAVARES
+et al., 1999; HANNAS et al., 1999), como mostrado na Tabela 3.
+
+TABELA 3. Classificação do estado de conforto térmico como função das variáveis preditoras
+          temperatura (oC) e taxa respiratória (mov min-1).
+                                                Temperatura (oC)
+ Taxa respiratória
+             -1
+   (mov min )            <15            15-20         20-25                             25-30                  >30
+       <30         muito bom (1,0) muito bom (1,0) bom (1,0)                         regular (0,8)          ruim (0,9)
+      30-50        muito bom (0,8) muito bom(0,8)   bom (0,8)                         ruim (0,8)            ruim (0,9)
+      50-70         regular (0,7)    bom (0,7)     regular (0,6)                      ruim (0,9)            ruim (1,0)
+       >70           ruim (0,7)     regular (0,6)   ruim (0,8)                        ruim (1,0)            ruim (1,0)
+
+      O método de inferência ou fuzzificação adotado foi o método de Mamdani, que combina os
+graus de pertinência de cada um dos valores de entrada, por meio do operador mínimo, e agrega as
+regras pelo operador máximo. Dado um conjunto de valores para a variável-entrada, o sistema
+obtém um conjunto nebuloso, como o valor da variável de controle. Esse conjunto nebuloso
+representa uma ordenação de ações de controle aceitáveis naquele momento. Finalmente, uma ação
+de controle global foi selecionada dentre aquelas aceitáveis, em um processo conhecido como
+defuzificação (SANDRI & CORREA, 1999).
+     As transformações dos resultados fuzzy em valor numérico foram obtidas pela defuzificação,
+pelo método do centro de área (COA), em que o centro de saída é o centro de gravidade da função
+de distribuição de possibilidade da ação de controle (MAMDANI, 1976; AMENDOLA et al.,
+2004).
+      As análises desenvolvidas neste trabalho poderiam ser implementadas por outros métodos
+que não a lógica fuzzy, principalmente se forem consideradas apenas as variáveis temperatura,
+umidade e os usuais índices de conforto térmico. No entanto, a sua implementação pela lógica fuzzy
+possibilitou expansão que, além de incluir a base de regras de interação entre essas variáveis,
+permitiu a inclusão de outras variáveis de análise, como concentração de gases e taxa respiratória,
+visando à determinação do estado de conforto das matrizes suínas.
+      O delineamento experimental utilizado para a análise geral foi em blocos casualizados
+(DBC), adotando-se como tratamentos o sistema de confinamento em baias de gestação individuais
+e coletivas, sendo o número de dias estudados no experimento considerados como blocos. As
+variáveis meteorológicas, concentração de gases e os parâmetros fisiológicos foram analisados,
+adotando o DBC para a análise geral, e o teste de Tukey (p<0,01) para a comparação entre as
+médias.
+
+RESULTADOS E DISCUSSÃO
+      A comparação entre os tratamentos e o ambiente externo, apresentados na Tabela 4, são os
+resultados médios diários das variáveis-respostas da subdivisão do microambiente estudado (sala
+
+                                                                 Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+Uso da lógica fuzzy na caracterização do ambiente produtivo para matrizes gestantes                                                87
+
+de gestação), e seus respectivos sistemas de contenção, baias individuais (T1) e baias coletivas
+(T2). Os tratamentos apresentaram diferenças significativas para temperatura de bulbo seco (Tbs),
+quando comparados entre si, verificando-se maior temperatura no T1, em virtude do maior número
+de animais alojados (animal m-2) nesse sistema de contenção, e pelo aporte de energia gerado pelos
+animais.
+      Com relação à umidade relativa do ar (UR) e à temperatura de globo negro (Tgn), ambas as
+variáveis não apresentaram diferenças estatísticas entre tratamentos, no entanto o ambiente externo
+apresentou a maior média para a UR, caracterizando a condição de entorno à instalação.
+
+TABELA 4. Valores médios diários das variáveis ambientais para o sistema de confinamento em
+          baias individuais (T1), coletivas (T2) e no ambiente externo.
+                                        Tbs (oC)                                                              Tgn (oC)
+                                                                          UR (%)
+T1                                      25,47 a                           70,48 b                             25,20 a
+T2                                      25,03 b                           70,14 b                             25,20 a
+Externo                                 24,48 c                           79,65 a                             24,97 a
+Valores médios com letras diferentes, na mesma coluna, diferem estatisticamente, pelo Teste de Tukey, p< 0,01.
+
+      As concentrações médias horárias de oxigênio (O2) e amônia (NH3) na sala de gestação são
+apresentadas na Tabela 5.
+
+TABELA 5. Concentração média horária dos gases O2 e NH3 no interior da sala de gestação.
+                                                             Horários (h:min)
+     Gases
+            7    8    9                       10         11     12       13                14         15         16          17
+  O2 (%)   20,9 20,9 20,9                    20,9       20,9   20,9     20,9              20,9       20,9       20,9        20,9
+ NH3 (ppm) 2,1 1,9 1,0                        0,7        1,5    1,4      2,5               3,9        5,1        6,6         7,2
+
+     Foram encontrados apenas traços de sulfeto de hidrogênio (H2S), monóxido de carbono (CO)
+e metano (CH4), correspondendo ao limite de resolução do equipamento.
+     Os valores de oxigênio (O2) mantiveram-se dentro das condições recomendadas, verificando-
+se valores estáveis, da ordem de 20,9%. A presença de oxigênio em nível adequado pode ser
+considerada indicativo de que não há risco no ambiente quanto à presença dos gases asfixiantes
+(CH4 e CO2), os quais deslocam o oxigênio, conforme descrito por SALIBA & CORRÊA (2000).
+       Pode-se verificar que os valores obtidos para concentração de amônia (NH3) no interior da
+instalação foram inferiores para as concentrações admitidas de 10 ppm (BENEDI, 1986), mesmo
+considerando o horário de pico às 17 h, apresentando valor médio da ordem de 7,2 ppm (LARRY
+et al., 1994). Atribui-se a baixa concentração de amônia na sala de gestação ao manejo adotado
+pela granja, que consistia na raspagem diária de dejetos nas baias individuais (período da manhã) e
+a lavagem das baias coletivas (período da tarde).
+      A taxa respiratória apresentou diferença estatística entre os tratamentos baias individuais e
+baias coletivas, apresentando valores da ordem de 43 mov min -1 e 36 mov min -1, respectivamente,
+mostrando-se acima da condição normal para animais dessa categoria. Fêmeas gestantes em
+condição de conforto térmico apresentam taxa respiratória em torno de 15 a 20 mov min -1. Os
+movimentos respiratórios podem aumentar de 22 a 100%, em função do ambiente térmico, de
+acordo com HANNAS et al. (1999). Quando a taxa respiratória está elevada, admite-se que a
+temperatura do ar está próxima à temperatura corporal, o calor é armazenado no organismo e o
+valor da temperatura corporal aumenta acima dos valores normais, e essa resposta é decorrente do
+estímulo direto ao centro de calor no hipotálamo, que envia impulso ao sistema cardiorrespiratório,
+na tentativa de eliminar calor por evaporação por meio da respiração, que, neste caso, apresenta
+aumento marcante (Tabela 6).
+
+
+                                                                         Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+Héliton Pandorfi, Iran J. O. Silva, Cristiane Guiselini et al.                                                                88
+
+TABELA 6. Médias das variáveis fisiológicas no período experimental.
+                                                 Taxa respiratória (mov min -1)             Temperatura retal (oC)
+Tratamentos
+Baias individuais                                             43 a                                38,91 b
+Baias coletivas                                               36 b                                38,72 a
+Valores médios com letras diferentes, na mesma coluna, diferem estatisticamente, pelo Teste de Tukey, p< 0,01.
+
+      Com relação à temperatura retal, notam-se diferenças significativas entre os tratamentos,
+38,91 oC (baias individuais) e 38,72 oC (baias coletivas), porém, para ambos os tratamentos, a
+variação da temperatura retal encontra-se próxima à condição normal, variando entre 38,6 e 39,3 oC
+(Tabela 6). Para matrizes em gestação, o valor considerado ótimo é de 38,6 oC. Mudanças na
+temperatura retal são observadas em animais submetidos ao estresse por calor, no entanto ocorrem
+quando o mecanismo de perda de calor evaporativo está sendo insuficiente (MUIRHEAD &
+ALEXANDER, 1997).
+      Na aplicação da lógica fuzzy para a variável temperatura (oC), considerou-se o domínio do
+intervalo [7, 40], representando as faixas <12; 12-21; 21-24; 24-29 e >29, pelos termos
+lingüísticos: muito baixo, baixo, médio, alto e muito alto, respectivamente (Tabela 1). A variável
+umidade relativa (%) denota domínio no intervalo [30, 100], representando as faixas <70; 70-80 e
+>80 pelos termos lingüísticos: baixa, média e alta. As funções de pertinência selecionadas foram
+trapezoidais, possibilitando o aumento da sensibilidade na construção da base de regras (SANDRI
+& CORREA, 1999).
+      Com base nos dados apresentados neste trabalho, em relação aos limites de conforto
+ambiental, criou-se um cenário com os termos muito bom (MB), bom (B), regular (RG) e ruim
+(RM), caracterizando uma base de regras com as definições de pertinência dos termos nebulosos,
+num domínio [0, 1]. A base de regras foi formada por estruturas do tipo: se <premissa> e
+<premissa> então <conclusão>. Por exemplo: se <umidade relativa é alta> e <temperatura é muito
+alta> então <conforto térmico é ruim>.
+      Essas regras, juntamente com os dados de entrada foram processados pelo procedimento de
+inferências, o qual infere a ação de controle de acordo com o conforto térmico dos animais,
+aplicando o operador de implicação e verificando o grau de compatibilidade global entre os fatos e
+as cláusulas nas premissas das regras, determinando o valor de conclusão, obtendo-se uma ação de
+controle geral.
+      Na Figura 1, observa-se a variação não-linear da condição de conforto térmico, como função
+da umidade relativa e da temperatura do ar, que foi gerada a partir da base de regras estabelecidas.
+Dessa forma, verifica-se que os valores de temperatura e umidade apresentam-se como resultado da
+inferência de um valor, no intervalo [0, 1], atribuindo-se o valor 0 para a condição de conforto e 1
+para o desconforto térmico das matrizes suínas. Foi possível inferir, para a temperatura de 23,5 oC e
+umidade relativa de 65%, após a defuzificação, o índice de conforto térmico médio de 0,319,
+mostrado no gráfico de superfície.
+      Considerando-se os dados médios registrados no interior da instalação, verifica-se que o valor
+encontrado para temperatura no T1 foi de 25,47 oC e umidade relativa do ar de 70,48% (Tabela 4),
+permanecendo dentro da faixa limite estabelecida no gráfico gerado, caracterizando-se como
+condição de conforto (B), não deslocando o índice de 0,319, a partir da base de regras
+estabelecidas, após sua verificação.
+      De maneira análoga, têm-se, para a segunda situação, as variáveis temperatura e concentração
+de amônia, admitindo-se os termos lingüísticos de acordo com as faixas evidenciadas na Tabela 2.
+Para a variável temperatura, considerou-se o domínio [10, 40], em que foram atribuídas as
+denominações: muito baixo, baixo, médio, alto e muito alto. Já para a variável amônia, determinou-
+se o domínio [0, 15], com os termos lingüísticos muito baixo, baixo, médio e alto.
+
+
+                                                                     Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+Uso da lógica fuzzy na caracterização do ambiente produtivo para matrizes gestantes                                               89
+
+
+
+
+FIGURA 1. Conforto ambiental como função da temperatura e umidade relativa do ar.
+
+      Nota-se, na Figura 2, que variação não-linear da variável-resposta conforto térmico, como
+função das variáveis preditoras concentração de amônia e temperatura do ar, gerada a partir da base
+de regras, que os valores de temperatura e da concentração de amônia apresentam-se como
+resultado da inferência de um valor, no intervalo [0, 1], representando o conforto dos animais. Com
+base no gráfico de superfície, foi possível obter inferência para temperatura de 25 oC e teor de
+amônia de 7,5 ppm, da condição limite de conforto das fêmeas gestantes, para o índice encontrado
+de 0,501.
+
+
+
+
+FIGURA 2. Conforto ambiental como função da temperatura e a concentração de amônia.
+
+
+                                                                         Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+Héliton Pandorfi, Iran J. O. Silva, Cristiane Guiselini et al.                                                                 90
+
+      Verifica-se, na Tabela 5, que as condições médias para a temperatura (oC) e o teor de amônia
+(ppm) registrados no interior da edificação apresentaram valores da ordem de 25,47 e 3,3,
+respectivamente, e, de acordo com a Figura 3, observa-se que, para essas condições, sua
+classificação, comparativamente com o sistema gerado, encontra-se na faixa MB, a partir do índice
+de conforto ambiental de 0,336.
+      Outra simulação realizada foi para as variáveis independentes, temperatura e taxa
+respiratória, sendo definidas as variáveis lingüísticas em: muito baixa, baixa, média, alta, muito alta
+e baixa, média, alta, muito alta, sob o domínio [10, 40] e [20, 80], respectivamente, de acordo com
+a Tabela 3.
+      A variável-resposta caracterizada pelo conforto ambiental das matrizes em muito bom, bom,
+regular e ruim, no intervalo do domínio [0, 1], apresentou valores dentro da superfície gerada de
+25 oC para temperatura e de 50 mov min-1 para taxa respiratória, apresentando condição média de
+conforto de 0,718, classificado como RG. As classificações foram formuladas com base nos dados
+registrados, podendo ser alteradas de acordo com o conhecimento de casos específicos localizados,
+visando à garantia da manutenção do controlador.
+      Sabendo-se que os valores médios para temperatura e taxa respiratória apresentaram valores
+de 25,47 oC e 43 mov min-1, para a condição mais crítica, com as matrizes alojadas em baias
+individuais, sua classificação apresenta índice de conforto de 0,691, ficando abaixo da condição
+imposta pelo sistema fuzzy, estando entre B e RG.
+
+
+
+
+FIGURA 3. Conforto ambiental como função da temperatura e da taxa respiratória.
+
+      A utilização da ferramenta permitiu estimar alguns parâmetros ideais de conforto às matrizes
+gestantes, conforme apresentado na Tabela 7.
+
+TABELA 7. Limite médio do conforto ambiental para matrizes gestantes determinado por meio da
+          teoria dos conjuntos fuzzy ( ) e os valores médios registrados no estudo ( ’).
+                                               Conforto          Valores         Variável-              Variável-Resposta
+Variáveis Preditoras
+                                               Ambiental         Médios         Resposta ( )                   ( ’)
+Temperatura (oC)                                24,25             25,47            0,319                      0,319
+Umidade relativa (%)                             65               70,48              -                          -
+Amônia (ppm)                                     10                3,3             0,501                      0,336
+Taxa respiratória (mov min-1)                    50                43              0,718                      0,691
+                                                                      Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+Uso da lógica fuzzy na caracterização do ambiente produtivo para matrizes gestantes                                               91
+
+      É interessante salientar que a aplicação da lógica fuzzy permitiu estimar os valores médios
+para os índices de conforto ambiental ( ) e, posteriormente, a caracterização das variáveis
+registradas no ambiente estudado ( ’), o que possibilitou a comparação entre os índices sugeridos e
+encontrados no experimento, permitindo inferência em valores intermediários no resultado do
+ambiente no interior da instalação.
+      O uso da teoria dos conjuntos fuzzy é interessante e útil para a continuidade de pesquisas
+desta natureza, pois permite estimativa entre os dados resultantes do trabalho experimental com os
+estabelecidos pela literatura, por intermédio de base de regras, para a determinação do conforto
+ambiental aplicado a matrizes na fase de gestação.
+
+CONCLUSÕES
+      O sistema de alojamento que se mostrou mais adequado às condições de conforto animal foi
+o confinamento em baias coletivas, atendendo à demanda por um ambiente que lhe garantiu maior
+conforto térmico ambiental, potencializando o efeito de sua expressão fisiológica. A utilização da
+teoria dos conjuntos fuzzy permitiu estabelecer condições de contorno para estimar o conforto das
+matrizes gestantes.
+
+REFERÊNCIAS
+AMENDOLA, M.; CASTANHO, M.J.; NÄÄS, I.A.; SOUZA, A.L. Análise matemática de
+condições de conforto térmico para avicultura usando a teoria dos conjuntos fuzzy. Biomatemática,
+Campinas, v.14, n.1, p.87-92, 2004.
+AMENDOLA, M.; SOUZA, A.L.; BARROS, L.C. Manual do uso da teoria dos conjuntos fuzzy no
+matlab 6.5. 2005. 46 p. Disponível em: <www.ime.unicamp.br/~laeciocb/MANUAL_2005.pdf/>.
+Acesso em: 27 maio 2005.
+AARNINK, A.J.A.; ELZING, A. Dynamic model for ammonia volatilization in housing with
+partially slatted floors, for fattening pigs. Livestock Production Science, v.53, n.1, p.153-69, 1998.
+ASHRAE. AMERICAN SOCIETY OF HEATING AND REFRIGERATION AND AIR
+CONDITIONED ENGINEERS. Environment: Handbook of Fundamentals. New York: ASAE,
+1983. p.139-98.
+BALDWIN, B.A. Operant studies on the behaviour of pigs and sheep in relation to the physical
+environment. Journal of Animal Science, New Delhi, v.49, n.4, p.1125-7, 1979.
+BENEDI, J.M.H. El ambiente de los alojamientos granaderos. Madrid: Ministério da Agricultura,
+Pesca y Alimentacion, Servicio de Extension Agrária, 1986. 28 p.
+CADENAS, J.M.; PELTA, D.A.; PELTA, H.R.; VERDEGAY, J.L. Application of Fuzzy
+optimization to diet problems in Argentinean farms. European Journal of Operational Research,
+Amsterdam, v.1, n.5, p.10-12, 2003.
+CVETICANIN, D. New approach to the dynamic weighing of livestock. Biosystems Engineering,
+United Kingdom, v.86, n.2, p.247-52, 2003.
+ESMAY, M.L. Principles of animal environment. West Port: ABI, 1982. 325 p.
+FIRK, R.; STAMER, E.; JUNGE, W.; KRIETER, J. Improving oestrus detection by combination
+of activities measurements with information about previous oestrus cases. Livestock Production
+Sciences, Clare, v.82, n.1, p. 97-103, 2003.
+HAHN, G.L.; NIENABER, J.A.; DESHAZER, J.A. Air temperature influences on swine
+performance and behavior. Applied Engineering in Agriculture, St. Joseph, v.3, n.2, p.295-302,
+1987.
+HANNAS, M.I.; OLIVEIRA, R.F.M.; DONZELE, J.L.; FERREIRA, A.S.; BARBOSA, R.B.;
+FERREIRA, R.A.; MORETI, A.M. Efeito da temperatura ambiente sobre os parâmetros
+                                                                         Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+Héliton Pandorfi, Iran J. O. Silva, Cristiane Guiselini et al.                                                            92
+
+fisiológicos e hormonais de leitões dos 15 aos 30 kg. In: REUNIÃO ANUAL DA SOCIEDADE
+BRASILEIRA DE ZOOTECNIA, 36., 1999, Porto Alegre. Anais… Porto Alegre: SBZ, 1999. 1
+CD-ROM.
+LARRY, D.J.; STEVE, P.; WILLIAM, G.B. Troubleshooting swine ventilation systems: pork
+industry handbook. Purdue: University Cooperative Extension Service, 1994. 6 p.
+MAMDANI, E.H. Advances in the linguistic synthesis of fuzzy controllers. International Journal
+of Man-Machine Studies, Toronto, v.8, p.669-78, 1976.
+MUIRHEAD, M.; ALEXANDER, T. Managing pig health and the treatment of disease. Sheffield:
+Mentreprises, 1997. 608 p.
+OLIVEIRA, R.F.M.; DONZELE, J.L., FREITAS, R.T.F.; FONSECA, F.A. Efeito da temperatura
+ambiente sobre o desempenho e sobre parâmetros fisiológicos e hormonais de leitões consumindo
+dietas com diferentes níveis de energia digestível. Revista Brasileira de Zootecnia, Viçosa, v.26,
+n.3, p.1173-82, 1997.
+PEREIRA, A.R.; ANGELOCCI, L.R.; SENTELHAS, P.C. Agrometeorologia: fundamentos e
+aplicações práticas. Guaíba: Agropecuária, 2002. 478 p.
+PRUNIER, A.; MESSIAS DE BRAGANÇA, M.; LE DIVIDICH, J. Influence of high temperature
+on performance of reproductive sows. Livestock Production Science, Clare, v.52, p.123-33, 1997.
+SALIBA, T.M.; CORRÊA, M.A.C. Manual prático de avaliação e controle de gases e vapores.
+São Paulo: LTR, 2000. 132 p.
+SAMPAIO, C.A.P. Caracterização dos sistemas térmicos e acústicos em sistemas de produção de
+suínos nas fases de creche e terminação. 2004. 121 f. Tese (Doutorado em Construções Rurais e
+Ambiência) - Faculdade de Engenharia Agrícola UNICAMP, Campinas, 2004.
+SANDRI, S.; CORREA, C. Lógica nebulosa. In: ESCOLA DE REDES NEURAIS: CONSELHO
+NACIONAL DE REDES NEURAIS, 5., 1999, São José dos Campos. Anais... São José dos
+Campos: ITA, 1999. p.73-90.
+TAVARES, M.; OLIVEIRA, R.F.M.; DONZELE, J.L.; FERREIRA, A.S. Influência da
+temperatura ambiente sobre o desempenho e os parâmetros fisiológicos de leitões dos 30 aos 60 kg.
+Revista Brasileira de Zootecnia, Viçosa, v.28, n.2, 791-8, 1999.
+ZADEH, L.A. Fuzzy sets. Information and Control, United Kingdom, v.18, p.338-53, 1965.
+
+
+
+
+                                                                 Eng. Agríc., Jaboticabal, v.27, n.1, p.83-92, jan./abr. 2007
+

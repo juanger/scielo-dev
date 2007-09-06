@@ -69,10 +69,10 @@ public class StyleReader {
 		
 		ArrayList list = new ArrayList ();
 		foreach (String file in Directory.GetFiles (path)) {
-			Console.WriteLine ("DEBUG: {0}", file);
 			if (!ValidStyle (file))
 				continue;
 			
+			Logger.Log (Level.DEBUG, "Style: {0}", file);
 			list.Add (Path.GetFileNameWithoutExtension (file));
 		}
 		
@@ -112,10 +112,6 @@ public class StyleReader {
 		
 		valReader.Schemas.Add (schema);
 		while (valReader.Read()){}
-		
-		Logger.Log (Level.DEBUG, "Validando estilo. La validacion fue {0}", 
-			(val_success == true ? "exitosa!" : "no exitosa."));
-		
 		valReader.Close();
 		
 		return val_success;

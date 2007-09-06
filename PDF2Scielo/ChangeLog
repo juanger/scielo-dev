@@ -1,3 +1,18 @@
+2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDF2Text/PDF2Text.mdp, PDF2Text/Test/eng-agr,
+	  PDF2Text/Test/eng-agr/eng-agr.sources,
+	  PDF2Text/Test/eng-agr/eng-agr1-raw.txt,
+	  PDF2Text/Test/eng-agr/eng-agr1.htm,
+	  PDF2Text/Test/eng-agr/eng-agr1-norm.txt,
+	  PDF2Text/Test/eng-agr/eng-agr1.pdf,
+	  PDF2Text/Test/unit-test.sources: Se agrego el directorio eng-agr
+	  que contendra los documentos de la revista Engenharia Agricola para
+	  su uso en las pruebas de unidad. Se agrego para prueba un documento
+	  del volumen 27 año 2007.
+	* PDF2Text/PDFPoppler.cs: Cambio menor.
+	* PDF2Text/StyleReader.cs: Cambios menores.
+
 2007-09-04  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	
