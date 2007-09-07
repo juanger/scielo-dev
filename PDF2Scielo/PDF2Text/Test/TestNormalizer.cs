@@ -88,7 +88,7 @@ public class TestNormalizer {
 	}
 	
 	[Test()]
-	[ExpectedException(typeof (FileNotFoundException))]
+	[ExpectedException(typeof (StyleException))]
 	public void ConstructorBadStyle ()
 	{
 		Type etype = Type.GetType ("Scielo.PDF2Text.Normalizer");

@@ -31,35 +31,43 @@ public class StyleReader {
 	
 	public StyleReader(string format)
 	{
-		// FIXME: Revisar posible bug en Mono cuando se tienen atributos
-		// en el elemento raiz del XML.
-		XmlTextReader reader = new XmlTextReader (GetStyleFile (format));
-		ValidateWithXSD (reader);
-		
-		if (val_success) {
-			document = new XmlDocument ();
-			document.Load (GetStyleFile (format));
-			manager = new XmlNamespaceManager (document.NameTable);
-			manager.AddNamespace ("def", "http://www.scielo.org.mx");
-		} else {
-			Logger.Log (Level.ERROR, "Estilo de documento {0} no es válido", format);
-			throw new Exception ("Estilo de documento " + format + " no es valido.");
+		try {
+			XmlTextReader reader = new XmlTextReader (GetStyleFile (format));
+			ValidateWithXSD (reader);
+			
+			if (val_success) {
+				document = new XmlDocument ();
+				document.Load (GetStyleFile (format));
+				manager = new XmlNamespaceManager (document.NameTable);
+				manager.AddNamespace ("def", "http://www.scielo.org.mx");
+			} else {
+				Logger.Log (Level.ERROR, "Estilo de documento {0} no es válido.", format);
+				throw new StyleException ("Estilo de documento " + format + " no es valido.");
+			}
+		} catch (IOException) {
+			Logger.Log (Level.ERROR, "Estilo de documento {0} no existe.", format);
+			throw new StyleException ("Estilo de documento " + format + " no existe.");
 		}
 	}
 	
 	public StyleReader (Uri uri)
 	{
-		XmlTextReader reader = new XmlTextReader (uri.LocalPath);
-		ValidateWithXSD (reader);
-		
-		if (val_success) {
-			document = new XmlDocument ();
-			document.Load (uri.LocalPath);
-			manager = new XmlNamespaceManager (document.NameTable);
-			manager.AddNamespace ("def", "http://www.scielo.org.mx");
-		} else {
-			Logger.Log (Level.ERROR, "Estilo de documento {0} no es válido", uri.LocalPath);
-			throw new Exception ("Estilo de documento " + uri.LocalPath + " no es valido.");
+		try {
+			XmlTextReader reader = new XmlTextReader (uri.LocalPath);
+			ValidateWithXSD (reader);
+			
+			if (val_success) {
+				document = new XmlDocument ();
+				document.Load (uri.LocalPath);
+				manager = new XmlNamespaceManager (document.NameTable);
+				manager.AddNamespace ("def", "http://www.scielo.org.mx");
+			} else {
+				Logger.Log (Level.ERROR, "Estilo de documento {0} no es válido", uri.LocalPath);
+				throw new StyleException ("Estilo de documento " + uri.LocalPath + " no es valido.");
+			}
+		} catch (IOException) {
+			Logger.Log (Level.ERROR, "Estilo de documento {0} no existe.", uri.LocalPath);
+			throw new StyleException ("Estilo de documento " + uri.LocalPath + " no existe.");
 		}
 	}
 	
@@ -119,6 +127,7 @@ public class StyleReader {
 	
 	private static string GetStylePath ()
 	{
+		// TODO: Gran hack para obtener la ruta del directorio "style".
 		Assembly assem = Assembly.GetExecutingAssembly ();
 		Regex regexp = new Regex (@"/(PDF2Text|PDF2Scielo.Gui|PDF2Scielo)/bin/[^/]*/PDF2Text.dll");
 		string path = regexp.Replace (assem.Location, String.Empty);

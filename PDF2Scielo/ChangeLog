@@ -1,3 +1,18 @@
+2007-09-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* style/atm.xml: Cambios menores en expresiones regulares.
+	* PDF2Text/Test/eng-agr/eng-agr1.htm: Cambios menores para estilo.
+	* PDF2Text/Test/TestNormalizer.cs, PDF2Text/Test/TestStyleReader.cs:
+	  Cambios menores de tipo de exception manejada.
+	* PDF2Text/Normalizer.cs: cambios menores (para uso de exceptiones).
+	* PDF2Text/StyleReader.cs: Se agregó el manejo de exceptiones para
+	  IOException.
+	* PDF2Scielo.Gui/MarkerWindow.cs: Se adecuó para usar las excepciones
+	  de Exceptions
+	* PDF2Text/Exceptions.cs: Exceptiones que agrupan a las de PDF2Scielo
+	* PDF2Text/Test/eng-agr/eng-agr1-norm.txt: Cambios menores de
+	  etiquetación.
+
 2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* PDF2Text/PDF2Text.mdp, PDF2Text/Test/eng-agr,

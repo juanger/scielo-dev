@@ -75,7 +75,7 @@
     </rule>
     <rule name="MarkAuthors" expectedMatches="unbounded">
       <regexp>[ ]*(?&lt;Result&gt;(([A-Z]{1,2}\. ([A-Z]{1,2}[.]? )*[-A-Z][-a-zA-Z&amp;;]+( [-a-zA-Z&amp;;]+)?)(, | and )?)+)[\n]+</regexp>
-      <sust>#{result}</sust>
+      <sust>#{Result}</sust>
       <modifiers>
         <modifier name="Concat">
           <param name="prefix" value="[author] "/>

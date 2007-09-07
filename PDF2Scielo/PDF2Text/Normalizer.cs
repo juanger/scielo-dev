@@ -102,12 +102,16 @@ public class Normalizer : INormalizable {
 				case "#{Front}":
 				case "#{Body}":
 				case "#{Back}":
-					Logger.Log (Level.ERROR, "La regla necesaria {0} no obtuvo resultados", rule.Name);
-					throw new Exception ("La regla necesaria " + rule.Name + 
-						" no obtuvo resultados. "+
-						"La normalización se ha cancelado");
+					Logger.Log (Level.ERROR,
+						"La regla necesaria {0} no obtuvo resultados",
+						rule.Name);
+					throw new NormalizerException (
+						"La normalización con el estilo \"" + format +
+						"\" se ha cancelado, verifica la elección del estilo.");
 				default:
-					Logger.Log (Level.WARNING, "No se encontraron matches con la regla {0}", rule.Name);
+					Logger.Log (Level.WARNING,
+						"No se encontraron matches con la regla {0}",
+						rule.Name);
 					break;
 				}
 				

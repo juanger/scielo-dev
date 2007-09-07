@@ -27,7 +27,7 @@ public class TestStyleReader {
 	}
 	
 	[Test ()]
-	[ExpectedException(typeof (Exception))]
+	[ExpectedException(typeof (StyleException))]
 	public void InvalidStyle ()
 	{
 		string source = Path.Combine (Test.PathOfTest (), "test-invalid.xml");

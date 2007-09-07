@@ -1,5 +1,5 @@
 <Project name="PDF2Scielo.Gui" fileversion="2.0" language="C#" clr-version="Net_1_1" ctype="DotNetProject">
-  <Configurations active="Debug">
+  <Configurations active="Release">
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
       <Output directory="./bin/Debug" assemblyKeyFile="./" assembly="PDF2Scielo.Gui.dll" />
       <Build debugmode="True" target="Library" />

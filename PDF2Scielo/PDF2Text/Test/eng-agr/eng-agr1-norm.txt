@@ -1,8 +1,7 @@
-    USO DA L&Oacute;GICA FUZZY NA CARACTERIZAÇÃO DO AMBIENTE PRODUTIVO
-                      PARA MATRIZES GESTANTES
-
-            H&Eacute;LITON PANDORFI1, IRAN J. O. SILVA2, CRISTIANE GUISELINI3,
-                             SONIA M. S. PIEDADE4
+[title] USO DA L&Oacute;GICA FUZZY NA CARACTERIZAÇÃO DO AMBIENTE PRODUTIVO
+                      PARA MATRIZES GESTANTES [/title]
+[author] H&Eacute;LITON PANDORFI1, IRAN J. O. SILVA2, CRISTIANE GUISELINI3,
+                             SONIA M. S. PIEDADE4 [/author]
 [res] Resumo [/res]
  O objetivo desta pesquisa consistiu na avaliação do ambiente de alojamento, estimando
 as condições favor&aacute;veis ao melhor desempenho de matrizes gestantes. O experimento foi realizado

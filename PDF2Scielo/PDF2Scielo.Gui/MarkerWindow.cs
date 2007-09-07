@@ -65,7 +65,22 @@ public partial class MarkerWindow: Gtk.Window {
 					string format = dialog.Box.ActiveText;
 					if (format != null)
 						ndocument = rdocument.Normalize (format);
-				} catch (Exception exception){
+					
+					MarkupHTML marker = new MarkupHTML (ndocument);
+					html_document = marker.CreateHTMLDocument ();
+					text_view.Buffer.Text = html_document.GetText ();
+					Markup.Sensitive = false;
+					Normalize.Sensitive = false;
+					Preview.Sensitive = true;
+				} catch (StyleException exception){
+					MessageDialog md = new MessageDialog (this,
+						DialogFlags.DestroyWithParent, 
+						MessageType.Error, 
+						ButtonsType.Ok, 
+						exception.Message);
+					md.Run ();
+					md.Destroy();
+				} catch (NormalizerException exception){
 					MessageDialog md = new MessageDialog (this,
 						DialogFlags.DestroyWithParent, 
 						MessageType.Error, 
@@ -78,13 +93,6 @@ public partial class MarkerWindow: Gtk.Window {
 			
 			dialog.Destroy ();
 		}
-		
-		MarkupHTML marker = new MarkupHTML (ndocument);
-		html_document = marker.CreateHTMLDocument ();
-		text_view.Buffer.Text = html_document.GetText ();
-		Markup.Sensitive = false;
-		Normalize.Sensitive = false;
-		Preview.Sensitive = true;
 	}
 
 	private void OnNormalizeActivated (object sender, System.EventArgs e)
@@ -100,7 +108,7 @@ public partial class MarkerWindow: Gtk.Window {
 					text_view.Buffer.Text = ndocument.GetText ();
 					Normalize.Sensitive = false;
 				}
-			} catch (Exception exception){
+			} catch (StyleException exception){
 				MessageDialog md = new MessageDialog (this,
 					DialogFlags.DestroyWithParent, 
 					MessageType.Error, 
