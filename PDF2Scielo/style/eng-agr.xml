@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<style name="eng-agr" ncolumns="1" xmlns="http://www.scielo.org.mx" >
+  <global>
+    <rule name="RemoveHeaders0" expectedMatches="unbounded">
+      <regexp>[\n]+[ \d\p{L}\p{S}\p{P}]+[\n]+[\u000c]+[ ]*[ \d\p{L}\p{S}\p{P}]+[ ]*[\d]+</regexp>
+      <sust>\n</sust>
+    </rule>
+    <rule name="RemoveHeaders1" expectedMatches="unbounded">
+      <regexp>[\n]+[ \d\p{L}\p{S}\p{P}]+[\n]+[\u000c]+</regexp>
+      <sust>\n</sust>
+    </rule>
+    <rule name="MarkResumen">
+      <regexp>[\n]+[ ]*RESUMO:</regexp>
+      <sust>\n[res] Resumo [/res]\n</sust>
+    </rule>
+    <rule name="MarkAbstract">
+      <regexp>[\n]+[ ]*ABSTRACT:</regexp>
+      <sust>\n[abs] Abstract [/abs]\n</sust>
+    </rule>
+    <rule name="MarkReferences">
+      <regexp>[\n]+REFERÊNCIAS[\n]+</regexp>
+      <sust>\n[ref] Referências [/ref]\n</sust>
+    </rule>
+    <rule name="MarkKeyword" expectedMatches="unbounded">
+      <regexp>[\n]+(PALAVRAS-CHAVE|KEYWORDS):[ ]+[ \w\p{P}\n]+?[\n]+</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Trim"/>
+        <modifier name="Concat">
+          <param name="prefix" value="\n[key] "/>
+          <param name="postfix" value=" [/key]\n\n"/>
+        </modifier>
+      </modifiers>
+    </rule>
+    <rule name="GetFront">
+      <regexp>^(.|\s)* \[/key\]\n</regexp>
+      <sust>#{Front}</sust>
+    </rule>
+    <rule name="GetBody">
+      <regexp>\[/key\](.|\s)*\[/key\](?&lt;Result&gt;(?:.|\s)*)\[ref\]</regexp>
+      <sust>#{Body}</sust>
+    </rule>
+    <rule name="GetBack">
+      <regexp>\[ref\](.|\s)*</regexp>
+      <sust>#{Back}</sust>
+    </rule>
+  </global>
+  <front>
+    <rule name="MarkTitle">
+      <regexp>^(.|\s)*?[\n]{2}</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Trim"/>
+        <modifier name="Concat">
+          <param name="prefix" value="[title] "/>
+          <param name="postfix" value=" [/title]\n"/>
+        </modifier>
+      </modifiers>
+    </rule>
+    <rule name="MarkAuthors" expectedMatches="unbounded">
+      <regexp>[ ]*(?&lt;Result&gt;([a-zA-Z&amp;;]+ ([A-Z]{1}\. )*[a-zA-Z&amp;;]+[0-9](, |,\n[ ]*)?)+)[\n]+</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Concat">
+          <param name="prefix" value="[author] "/>
+          <param name="postfix" value=" [/author]\n"/>
+        </modifier>
+      </modifiers>
+    </rule>
+  </front>
+  <body>
+  </body>
+  <back>
+  </back>
+</style>
