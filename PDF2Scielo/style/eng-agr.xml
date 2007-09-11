@@ -2,11 +2,11 @@
 <style name="eng-agr" ncolumns="1" xmlns="http://www.scielo.org.mx" >
   <global>
     <rule name="RemoveHeaders0" expectedMatches="unbounded">
-      <regexp>[\n]+[ \d\p{L}\p{S}\p{P}]+[\n]+[\u000c]+[ ]*[ \d\p{L}\p{S}\p{P}]+[ ]*[\d]+</regexp>
+      <regexp>[\n]+[ \d\p{L}\p{S}\p{P}]+[\n]+[\u000c]+[ ]*[ \d\p{L}\p{S}\p{P}]+[ ]*[\d]+[\n]*</regexp>
       <sust>\n</sust>
     </rule>
     <rule name="RemoveHeaders1" expectedMatches="unbounded">
-      <regexp>[\n]+[ \d\p{L}\p{S}\p{P}]+[\n]+[\u000c]+</regexp>
+      <regexp>[\n]+[ \d\p{L}\p{S}\p{P}]+[\n]+[\u000c]+[\n]*</regexp>
       <sust>\n</sust>
     </rule>
     <rule name="MarkResumen">
@@ -57,6 +57,17 @@
         </modifier>
       </modifiers>
     </rule>
+    <rule name="MarkEnglishTitle">
+      <regexp>\[/key\](?&lt;Result&gt;(.|\s)*)\[abs\]</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Trim"/>
+        <modifier name="Concat">
+          <param name="prefix" value="[/key]\n[title] "/>
+          <param name="postfix" value=" [/title]\n[abs]"/>
+        </modifier>
+      </modifiers>
+    </rule>
     <rule name="MarkAuthors" expectedMatches="unbounded">
       <regexp>[ ]*(?&lt;Result&gt;([a-zA-Z&amp;;]+ ([A-Z]{1}\. )*[a-zA-Z&amp;;]+[0-9](, |,\n[ ]*)?)+)[\n]+</regexp>
       <sust>#{Result}</sust>
@@ -69,6 +80,50 @@
     </rule>
   </front>
   <body>
+    <rule name="MarkSections" expectedMatches="unbounded">
+      <regexp>\n(\p{Lu})+(\p{Lu}|[ &amp;;]|(acute)){4,}\n</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Trim"/>
+        <modifier name="Concat">
+          <param name="prefix" value="\n[sec] "/>
+          <param name="postfix" value=" [/sec]\n"/>
+        </modifier>
+      </modifiers>
+    </rule>
+    <rule name="MarkSubSections" expectedMatches="unbounded">
+      <regexp>\n(\p{Lu}|[&amp;])(\p{L}|[ &amp;;-]|(acute)){4,}\n</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Trim"/>
+        <modifier name="Concat">
+          <param name="prefix" value="\n[subsec] "/>
+          <param name="postfix" value=" [/subsec]\n"/>
+        </modifier>
+      </modifiers>
+    </rule>
+  <rule name="MarkFootTable" expectedMatches="unbounded">
+      <regexp>[\n]+(?&lt;Result&gt;TABELA[ ]\d{1,2}[.][ ]+(?:\p{Lu}|[&amp;])(?:.+\n)*?(?:.+[.]\n))</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Trim"/>
+        <modifier name="Concat">
+          <param name="prefix" value="\n[fig] "/>
+          <param name="postfix" value="[/fig]\n"/>
+        </modifier>
+      </modifiers>
+    </rule>
+    <rule name="MarkParagraphs" expectedMatches="unbounded">
+      <regexp>\n[ ]{3,9}(?&lt;Result&gt;(?:[&amp;]|\p{Lu})(?:.+\n)*?(?:.+[.]))(?=\n[ ]{3,8}\p{Lu}|\n\n|\nTABELA|\n$|\n\[)</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Trim"/>
+        <modifier name="Concat">
+          <param name="prefix" value="\n[para] "/>
+          <param name="postfix" value=" [/para]\n"/>
+        </modifier>
+      </modifiers>
+    </rule>
   </body>
   <back>
   </back>
