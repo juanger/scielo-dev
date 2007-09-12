@@ -1,3 +1,7 @@
+2007-09-12  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* MarkerWindow.cs: Minor change
+
 2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* MarkerWindow.cs: Se agrego el dialogo de seleccion de estilo al

@@ -92,6 +92,13 @@ public partial class MarkerWindow: Gtk.Window {
 			}
 			
 			dialog.Destroy ();
+		} else {
+			MarkupHTML marker = new MarkupHTML (ndocument);
+			html_document = marker.CreateHTMLDocument ();
+			text_view.Buffer.Text = html_document.GetText ();
+			Markup.Sensitive = false;
+			Normalize.Sensitive = false;
+			Preview.Sensitive = true;
 		}
 	}
 
