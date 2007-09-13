@@ -102,7 +102,7 @@
         </modifier>
       </modifiers>
     </rule>
-  <rule name="MarkFootTable" expectedMatches="unbounded">
+  <rule name="MarkTableCaption" expectedMatches="unbounded">
       <regexp>[\n]+(?&lt;Result&gt;TABELA[ ]\d{1,2}[.][ ]+(?:\p{Lu}|[&amp;])(?:.+\n)*?(?:.+[.]\n))</regexp>
       <sust>#{Result}</sust>
       <modifiers>
@@ -114,7 +114,7 @@
       </modifiers>
     </rule>
     <rule name="MarkParagraphs" expectedMatches="unbounded">
-      <regexp>\n[ ]{3,9}(?&lt;Result&gt;(?:[&amp;]|\p{Lu})(?:.+\n)*?(?:.+[.]))(?=\n[ ]{3,8}\p{Lu}|\n\n|\nTABELA|\n$|\n\[)</regexp>
+      <regexp>\n(?&lt;Result&gt;(?:\[sec\] |\[subsec\] |[ ]{3,9})(?:[&amp;]|\p{Lu})(?:.+\n)*?(?:.+[.]))(?=\n[ ]{3,8}\p{Lu}|\n\n|\nTABELA|\n$|\n\[)</regexp>
       <sust>#{Result}</sust>
       <modifiers>
         <modifier name="Trim"/>
