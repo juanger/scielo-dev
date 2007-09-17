@@ -92,7 +92,7 @@
       </modifiers>
     </rule>
     <rule name="MarkSubSections" expectedMatches="unbounded">
-      <regexp>\n(\p{Lu}|[&amp;])(\p{L}|[ &amp;;-]|(acute)){4,}\n</regexp>
+      <regexp>\n(?:\p{Lu}|[&amp;])(?:\p{L}|[ &amp;;-]|(acute)){4,}\n(?=[ ]{3,8}(?:\p{L})|[&amp;])</regexp>
       <sust>#{Result}</sust>
       <modifiers>
         <modifier name="Trim"/>
@@ -102,14 +102,25 @@
         </modifier>
       </modifiers>
     </rule>
-  <rule name="MarkTableCaption" expectedMatches="unbounded">
+    <rule name="MarkTableCaption" expectedMatches="unbounded">
       <regexp>[\n]+(?&lt;Result&gt;TABELA[ ]\d{1,2}[.][ ]+(?:\p{Lu}|[&amp;])(?:.+\n)*?(?:.+[.]\n))</regexp>
       <sust>#{Result}</sust>
       <modifiers>
         <modifier name="Trim"/>
         <modifier name="Concat">
           <param name="prefix" value="\n[fig] "/>
-          <param name="postfix" value="[/fig]\n"/>
+          <param name="postfix" value=" [/fig]\n"/>
+        </modifier>
+      </modifiers>
+    </rule>
+    <rule name="MarkFootFigure" expectedMatches="unbounded">
+      <regexp>[\n]+(?&lt;Result&gt;FIGURA[ ]\d{1,2}[.][ ]+(?:\p{Lu}|[&amp;])(?:.+\n)*?(?:.+[.]\n))</regexp>
+      <sust>#{Result}</sust>
+      <modifiers>
+        <modifier name="Trim"/>
+        <modifier name="Concat">
+          <param name="prefix" value="\n[fig] "/>
+          <param name="postfix" value=" [/fig]\n"/>
         </modifier>
       </modifiers>
     </rule>

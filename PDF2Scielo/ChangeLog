@@ -1,3 +1,8 @@
+2007-09-17  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* style/eng-agr.xml, PDF2Text/Test/eng-agr/eng-agr1-norm.txt: Cambios
+	  menores.
+
 2007-09-07  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* style/atm.xml: Cambios menores en expresiones regulares.
