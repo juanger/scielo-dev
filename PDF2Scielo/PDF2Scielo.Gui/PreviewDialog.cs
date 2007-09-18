@@ -12,6 +12,7 @@ using System;
 using System.IO;
 using Gecko;
 using Scielo.Utils;
+using System.Security.Principal;
 
 namespace Scielo.PDF2Scielo {
 public partial class PreviewDialog : Gtk.Dialog {
@@ -20,9 +21,10 @@ public partial class PreviewDialog : Gtk.Dialog {
 	
 	public PreviewDialog (string data)
 	{
+		WindowsIdentity id = WindowsIdentity.GetCurrent();
 		this.Build();
 		tmp_path = System.IO.Path.GetTempPath ();
-		tmp_path = System.IO.Path.Combine (tmp_path, "editor");
+		tmp_path = System.IO.Path.Combine (tmp_path, "pdf2scielo.gui-" + id.Name );
 		preview = new WebControl (tmp_path, "EditorGecko");
 		preview.NetStop += OnComplete;
 		Render (data);
