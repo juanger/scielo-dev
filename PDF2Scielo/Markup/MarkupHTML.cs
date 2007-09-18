@@ -205,23 +205,27 @@ public class MarkupHTML {
 		int index = front.IndexOf (tag,0);
 		if (index == -1 )
 			return;
-
-		string keywords = front.Substring (index);
+		string end_tag = "[/key]";
+		int end_index = front.IndexOf (end_tag, index);
+				
+		string keywords = front.Substring (index, end_index - index);
 		front = front.Remove (index, keywords.Length );
-	
+
 		int index2 = keywords.IndexOf (":", 0);
 		if (index2 == -1 )
 			return;
 
 		string cad = keywords.Substring (0,index2+1) +"</b>"+ keywords.Substring (index2+1);
-		front += cad;
+		//front += cad;
+		front = front.Insert (index, cad);
 		
-		string startTag = @"\[key\]";
-		string endTag = @"\[/key\]";
+		Regex startTag = new Regex (@"\[key\]");
+		Regex endTag = new Regex (@"\[/key\]");
 		string startSustitute = "</font></p>\n<br><p align=\"justify\"><font face=\"verdana\" size=\"2\"><b>";
 		string endSustitute = "</font></p>\n<br>";
-		front = Regex.Replace (front, startTag, startSustitute);
-		front = Regex.Replace (front, endTag, endSustitute);		
+		front = startTag.Replace (front, startSustitute, 1);
+		front = endTag.Replace (front, endSustitute, 1);
+		ReplaceKeyTag ();
 	}
 	
 	private void ReplaceSecTag ()
