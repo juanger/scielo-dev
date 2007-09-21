@@ -12,6 +12,7 @@
 
 using System;
 using System.IO;
+using System.Collections;
 
 namespace Scielo.Utils {
 
@@ -19,33 +20,19 @@ public enum Level { DEBUG, INFO, WARNING, ERROR };
 
 public interface ILogger
 {
+	void ClearList ();
 	void Log (Level lvl, string msg, params object[] args);
-}
-
-class NullLogger : ILogger
-{
-	public void Log (Level lvl, string msg, params object[] args)
-	{
-	}
-}
-
-class ConsoleLogger : ILogger
-{
-	public void Log (Level lvl, string msg, params object[] args)
-	{
-		msg = string.Format ("[{0}]: {1}", Enum.GetName (typeof (Level), lvl), msg);
-		Console.WriteLine (msg, args);
-	}
 }
 
 class FileLogger : ILogger
 {
 	StreamWriter log;
-	ConsoleLogger console;
+	ArrayList log_list;
 	
 	public FileLogger ()
 	{
 		try {
+			log_list = new ArrayList (5);
 			log = File.CreateText (Path.Combine (
 				Environment.GetEnvironmentVariable ("HOME"), 
 				".pdf2scielo.log"));
@@ -53,8 +40,6 @@ class FileLogger : ILogger
 		} catch (IOException) {
 			// FIXME: Use temp file
 		}
-		
-		console = new ConsoleLogger ();
 	}
 	
 	~FileLogger ()
@@ -65,19 +50,63 @@ class FileLogger : ILogger
 	
 	public void Log (Level lvl, string msg, params object[] args)
 	{
-		console.Log (lvl, msg, args);
-		
 		if (log != null) {
-			msg = string.Format ("{0} [{1}]: {2}",
+			// FILE
+			string file_msg = string.Format ("{0} [{1}]: {2}",
 						DateTime.Now.ToString(),
 						Enum.GetName (typeof (Level), lvl),
 						msg);
-			log.WriteLine (msg, args);
+			log.WriteLine (file_msg, args);
 			log.Flush();
+			
+			// CONSOLE
+			string console_msg = string.Format ("[{0}]: {1}",
+						Enum.GetName (typeof (Level), lvl),
+						msg);
+			Console.WriteLine (console_msg, args);
+			// LIST
+			string list_msg = string.Format (msg, args);
+			LogEntry entry = new LogEntry (lvl, list_msg);
+			log_list.Add (entry);			
+		}
+	}
+	
+	public void ClearList ()
+	{
+		log_list.Clear ();
+	}
+	
+	public ArrayList List {
+		get {
+			return log_list;
 		}
 	}
 }
 
+
+public class LogEntry {
+	Level lvl;
+	string msg;
+	
+	public LogEntry (Level lvl, string msg) 
+	{
+		this.lvl = lvl;
+		this.msg = msg;
+	}
+	
+	public Level Level {
+		get {
+			return lvl;
+		}
+	}
+	
+	public string Message {
+		get {
+			return msg;
+		}
+	}
+
+}
 // This class provides a generic logging facility. By default all
 // information is written to standard out and a log file, but other 
 // loggers are pluggable.
@@ -85,7 +114,7 @@ public static class Logger
 {
 	private static Level log_level = Level.INFO;
 	
-	static ILogger log_dev = new FileLogger ();
+	static FileLogger log_dev = new FileLogger ();
 	
 	static bool muted = false;
 	
@@ -93,12 +122,6 @@ public static class Logger
 	{
 		get { return log_level; }
 		set { log_level = value; }
-	}
-	
-	public static ILogger LogDevice
-	{
-		get { return log_dev; }
-		set { log_dev = value; }
 	}
 	
 	public static void Debug (string msg, params object[] args)
@@ -140,6 +163,17 @@ public static class Logger
 	public static void Unmute ()
 	{
 		muted = false;
+	}
+	
+	public static void ClearList ()
+	{
+		log_dev.ClearList ();
+	}
+	
+	public static ArrayList List {
+		get {
+			return log_dev.List;
+		}
 	}
 }
 }

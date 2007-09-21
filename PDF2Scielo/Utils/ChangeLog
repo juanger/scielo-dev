@@ -1,3 +1,8 @@
+2007-09-21  Juan Germán Castañeda Echevarría <juanger@gmail.com> 
+
+	* Logger.cs: Se modificó para que se use también una lista dinámica
+	  para guardar los valores del log. 
+
 2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	
