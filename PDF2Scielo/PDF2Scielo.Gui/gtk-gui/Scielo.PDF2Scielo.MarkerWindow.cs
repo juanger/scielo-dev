@@ -35,15 +35,37 @@ namespace Scielo.PDF2Scielo {
         
         private Gtk.Action Preview;
         
+        private Gtk.ToggleAction dialogError;
+        
+        private Gtk.ToggleAction dialogWarning;
+        
+        private Gtk.ToggleAction dialogInfo;
+        
         private Gtk.VBox vbox1;
         
         private Gtk.MenuBar menubar1;
         
         private Gtk.Toolbar toolbar1;
         
+        private Gtk.VPaned vpaned1;
+        
         private Gtk.ScrolledWindow scrolledwindow1;
         
-        private Gtk.TextView text_view;
+        private Gtk.TextView textview;
+        
+        private Gtk.Frame frame1;
+        
+        private Gtk.Alignment GtkAlignment;
+        
+        private Gtk.VBox vbox2;
+        
+        private Gtk.Toolbar toolbar2;
+        
+        private Gtk.ScrolledWindow scrolledwindow2;
+        
+        private Gtk.TreeView treeview1;
+        
+        private Gtk.Label GtkLabel3;
         
         private Gtk.Statusbar statusbar1;
         
@@ -88,6 +110,12 @@ namespace Scielo.PDF2Scielo {
             this.Preview.Sensitive = false;
             this.Preview.ShortLabel = Mono.Unix.Catalog.GetString("_Preview");
             w2.Add(this.Preview, null);
+            this.dialogError = new Gtk.ToggleAction("dialogError", null, null, "gtk-dialog-error");
+            w2.Add(this.dialogError, null);
+            this.dialogWarning = new Gtk.ToggleAction("dialogWarning", null, null, "gtk-dialog-warning");
+            w2.Add(this.dialogWarning, null);
+            this.dialogInfo = new Gtk.ToggleAction("dialogInfo", null, null, "gtk-dialog-info");
+            w2.Add(this.dialogInfo, null);
             w1.InsertActionGroup(w2, 0);
             this.AddAccelGroup(w1.AccelGroup);
             this.Name = "Scielo.PDF2Scielo.MarkerWindow";
@@ -117,6 +145,11 @@ namespace Scielo.PDF2Scielo {
             w4.Expand = false;
             w4.Fill = false;
             // Container child vbox1.Gtk.Box+BoxChild
+            this.vpaned1 = new Gtk.VPaned();
+            this.vpaned1.CanFocus = true;
+            this.vpaned1.Name = "vpaned1";
+            this.vpaned1.Position = 160;
+            // Container child vpaned1.Gtk.Paned+PanedChild
             this.scrolledwindow1 = new Gtk.ScrolledWindow();
             this.scrolledwindow1.CanFocus = true;
             this.scrolledwindow1.Name = "scrolledwindow1";
@@ -124,29 +157,83 @@ namespace Scielo.PDF2Scielo {
             this.scrolledwindow1.HscrollbarPolicy = ((Gtk.PolicyType)(1));
             this.scrolledwindow1.ShadowType = ((Gtk.ShadowType)(1));
             // Container child scrolledwindow1.Gtk.Container+ContainerChild
-            this.text_view = new Gtk.TextView();
-            this.text_view.CanFocus = true;
-            this.text_view.Name = "text_view";
-            this.text_view.Editable = false;
-            this.scrolledwindow1.Add(this.text_view);
-            this.vbox1.Add(this.scrolledwindow1);
-            Gtk.Box.BoxChild w6 = ((Gtk.Box.BoxChild)(this.vbox1[this.scrolledwindow1]));
-            w6.Position = 2;
+            this.textview = new Gtk.TextView();
+            this.textview.CanFocus = true;
+            this.textview.Name = "textview";
+            this.scrolledwindow1.Add(this.textview);
+            this.vpaned1.Add(this.scrolledwindow1);
+            Gtk.Paned.PanedChild w6 = ((Gtk.Paned.PanedChild)(this.vpaned1[this.scrolledwindow1]));
+            w6.Resize = false;
+            w6.Shrink = false;
+            // Container child vpaned1.Gtk.Paned+PanedChild
+            this.frame1 = new Gtk.Frame();
+            this.frame1.Name = "frame1";
+            this.frame1.ShadowType = ((Gtk.ShadowType)(0));
+            this.frame1.LabelXalign = 0F;
+            // Container child frame1.Gtk.Container+ContainerChild
+            this.GtkAlignment = new Gtk.Alignment(0F, 0F, 1F, 1F);
+            this.GtkAlignment.Name = "GtkAlignment";
+            this.GtkAlignment.LeftPadding = ((uint)(12));
+            // Container child GtkAlignment.Gtk.Container+ContainerChild
+            this.vbox2 = new Gtk.VBox();
+            this.vbox2.Name = "vbox2";
+            this.vbox2.Spacing = 6;
+            // Container child vbox2.Gtk.Box+BoxChild
+            w1.AddUiFromString("<ui><toolbar name='toolbar2'><toolitem action='dialogError'/><separator/><toolitem action='dialogWarning'/><separator/><toolitem action='dialogInfo'/></toolbar></ui>");
+            this.toolbar2 = ((Gtk.Toolbar)(w1.GetWidget("/toolbar2")));
+            this.toolbar2.Name = "toolbar2";
+            this.toolbar2.ShowArrow = false;
+            this.toolbar2.ToolbarStyle = ((Gtk.ToolbarStyle)(3));
+            this.toolbar2.IconSize = ((Gtk.IconSize)(1));
+            this.vbox2.Add(this.toolbar2);
+            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox2[this.toolbar2]));
+            w7.Position = 0;
+            w7.Expand = false;
+            w7.Fill = false;
+            // Container child vbox2.Gtk.Box+BoxChild
+            this.scrolledwindow2 = new Gtk.ScrolledWindow();
+            this.scrolledwindow2.CanFocus = true;
+            this.scrolledwindow2.Name = "scrolledwindow2";
+            this.scrolledwindow2.VscrollbarPolicy = ((Gtk.PolicyType)(1));
+            this.scrolledwindow2.HscrollbarPolicy = ((Gtk.PolicyType)(1));
+            this.scrolledwindow2.ShadowType = ((Gtk.ShadowType)(1));
+            // Container child scrolledwindow2.Gtk.Container+ContainerChild
+            this.treeview1 = new Gtk.TreeView();
+            this.treeview1.CanFocus = true;
+            this.treeview1.Name = "treeview1";
+            this.treeview1.HeadersClickable = true;
+            this.scrolledwindow2.Add(this.treeview1);
+            this.vbox2.Add(this.scrolledwindow2);
+            Gtk.Box.BoxChild w9 = ((Gtk.Box.BoxChild)(this.vbox2[this.scrolledwindow2]));
+            w9.Position = 1;
+            this.GtkAlignment.Add(this.vbox2);
+            this.frame1.Add(this.GtkAlignment);
+            this.GtkLabel3 = new Gtk.Label();
+            this.GtkLabel3.Name = "GtkLabel3";
+            this.GtkLabel3.LabelProp = Mono.Unix.Catalog.GetString("<b>Messages</b>");
+            this.GtkLabel3.UseMarkup = true;
+            this.frame1.LabelWidget = this.GtkLabel3;
+            this.vpaned1.Add(this.frame1);
+            Gtk.Paned.PanedChild w12 = ((Gtk.Paned.PanedChild)(this.vpaned1[this.frame1]));
+            w12.Resize = false;
+            this.vbox1.Add(this.vpaned1);
+            Gtk.Box.BoxChild w13 = ((Gtk.Box.BoxChild)(this.vbox1[this.vpaned1]));
+            w13.Position = 2;
             // Container child vbox1.Gtk.Box+BoxChild
             this.statusbar1 = new Gtk.Statusbar();
             this.statusbar1.Name = "statusbar1";
             this.statusbar1.Spacing = 6;
             this.vbox1.Add(this.statusbar1);
-            Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
-            w7.Position = 3;
-            w7.Expand = false;
-            w7.Fill = false;
+            Gtk.Box.BoxChild w14 = ((Gtk.Box.BoxChild)(this.vbox1[this.statusbar1]));
+            w14.Position = 3;
+            w14.Expand = false;
+            w14.Fill = false;
             this.Add(this.vbox1);
             if ((this.Child != null)) {
                 this.Child.ShowAll();
             }
             this.DefaultWidth = 614;
-            this.DefaultHeight = 396;
+            this.DefaultHeight = 414;
             this.Show();
             this.DeleteEvent += new Gtk.DeleteEventHandler(this.OnDeleteEvent);
             this.Open.Activated += new System.EventHandler(this.OnOpenActivated);
@@ -155,6 +242,9 @@ namespace Scielo.PDF2Scielo {
             this.Markup.Activated += new System.EventHandler(this.OnMarkupActivated);
             this.Normalize.Activated += new System.EventHandler(this.OnNormalizeActivated);
             this.Preview.Activated += new System.EventHandler(this.OnPreviewActivated);
+            this.dialogError.Toggled += new System.EventHandler(this.OnMessageFilterToggled);
+            this.dialogWarning.Toggled += new System.EventHandler(this.OnMessageFilterToggled);
+            this.dialogInfo.Toggled += new System.EventHandler(this.OnMessageFilterToggled);
         }
     }
 }

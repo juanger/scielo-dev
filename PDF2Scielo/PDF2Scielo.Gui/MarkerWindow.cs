@@ -12,6 +12,7 @@ using System;
 using System.IO;
 using Scielo.PDF2Text;
 using Scielo.Markup;
+using Scielo.Utils;
 using Gecko;
 
 namespace Scielo.PDF2Scielo {
@@ -20,6 +21,8 @@ public partial class MarkerWindow: Gtk.Window {
 	private NormDocument ndocument;
 	private HTMLDocument html_document;
 	private PreviewDialog preview = null;
+	private Gtk.ListStore store;
+	private Gtk.TreeModelFilter filter;
 	
 	public MarkerWindow (): base (Gtk.WindowType.Toplevel)
 	{
@@ -27,6 +30,7 @@ public partial class MarkerWindow: Gtk.Window {
 		rdocument = null;
 		ndocument = null;
 		html_document = null;
+		AddColumns ();
 	}
 	
 	private void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -47,7 +51,7 @@ public partial class MarkerWindow: Gtk.Window {
 			Uri uri = new Uri (dialog.Document);
 			PDFPoppler reader = new PDFPoppler (uri);
 			rdocument = reader.CreateRawDocument ();
-			text_view.Buffer.Text = rdocument.GetText ();
+			textview.Buffer.Text = rdocument.GetText ();
 			Markup.Sensitive = true;
 			Normalize.Sensitive = true;
 		}
@@ -68,7 +72,7 @@ public partial class MarkerWindow: Gtk.Window {
 					
 					MarkupHTML marker = new MarkupHTML (ndocument);
 					html_document = marker.CreateHTMLDocument ();
-					text_view.Buffer.Text = html_document.GetText ();
+					textview.Buffer.Text = html_document.GetText ();
 					Markup.Sensitive = false;
 					Normalize.Sensitive = false;
 					Preview.Sensitive = true;
@@ -95,7 +99,7 @@ public partial class MarkerWindow: Gtk.Window {
 		} else {
 			MarkupHTML marker = new MarkupHTML (ndocument);
 			html_document = marker.CreateHTMLDocument ();
-			text_view.Buffer.Text = html_document.GetText ();
+			textview.Buffer.Text = html_document.GetText ();
 			Markup.Sensitive = false;
 			Normalize.Sensitive = false;
 			Preview.Sensitive = true;
@@ -105,14 +109,14 @@ public partial class MarkerWindow: Gtk.Window {
 	private void OnNormalizeActivated (object sender, System.EventArgs e)
 	{
 		StyleSelectDialog dialog = new StyleSelectDialog ();
-		
+		store.Clear ();
 		if (dialog.Run () == (int) ResponseType.Ok) {
 			try {
 				string format = dialog.Box.ActiveText;
 				
 				if (format != null) {
 					ndocument = rdocument.Normalize (format);
-					text_view.Buffer.Text = ndocument.GetText ();
+					textview.Buffer.Text = ndocument.GetText ();
 					Normalize.Sensitive = false;
 				}
 			} catch (StyleException exception){
@@ -125,7 +129,7 @@ public partial class MarkerWindow: Gtk.Window {
 				md.Destroy();
 			}
 		}
-		
+		DisplayMessages ();
 		dialog.Destroy ();
 	}
 
@@ -144,6 +148,110 @@ public partial class MarkerWindow: Gtk.Window {
 	{
 		AboutDialog dialog = new AboutDialog ();
 		dialog.Run ();
+	}
+	
+	private void AddColumns ()
+	{
+		Gtk.TreeViewColumn iconColumn = new Gtk.TreeViewColumn ();
+		iconColumn.Title = "Type";
+		Gtk.CellRendererPixbuf iconRender = new Gtk.CellRendererPixbuf ();
+		iconColumn.PackStart (iconRender, true);
+		
+		Gtk.TreeViewColumn msgColumn = new Gtk.TreeViewColumn ();
+		msgColumn.Title = "Message";
+		Gtk.CellRendererText msgRender = new Gtk.CellRendererText ();
+		msgColumn.PackStart (msgRender, true);
+		
+		Gtk.TreeViewColumn typeColumn = new Gtk.TreeViewColumn ();
+		typeColumn.Visible = false;
+		Gtk.CellRendererText typeRender = new Gtk.CellRendererText ();
+		typeColumn.PackStart (typeRender, true);
+		
+		treeview1.AppendColumn (typeColumn);
+		treeview1.AppendColumn (iconColumn);
+		treeview1.AppendColumn (msgColumn);
+		
+		typeColumn.AddAttribute (typeRender, "text", 0);
+		iconColumn.AddAttribute (iconRender, "pixbuf", 1);
+		msgColumn.AddAttribute (msgRender, "text", 2);
+		
+		store = new Gtk.ListStore (typeof (string), typeof (Gdk.Pixbuf), typeof (string));
+		dialogInfo.Active = true;
+		dialogWarning.Active = true;
+		dialogError.Active = true;
+//		treeview1.Model = store;
+		
+	}
+	
+	private void DisplayMessages ()
+	{
+		foreach (LogEntry entry in Logger.List){
+			Gdk.Pixbuf icon;
+			string message = entry.Message;
+			
+			switch (entry.Level) {
+			case Level.ERROR:
+				icon = scrolledwindow2.RenderIcon (Gtk.Stock.DialogError,
+					Gtk.IconSize.Menu,
+					"");
+				break;
+			case Level.DEBUG:
+				icon = scrolledwindow2.RenderIcon (Gtk.Stock.Execute,
+					Gtk.IconSize.Menu,
+					"");
+				break;
+			case Level.WARNING:
+				icon = scrolledwindow2.RenderIcon (Gtk.Stock.DialogWarning,
+					Gtk.IconSize.Menu,
+					"");
+				break;
+			case Level.INFO:
+				icon = scrolledwindow2.RenderIcon (Gtk.Stock.DialogInfo,
+					Gtk.IconSize.Menu,
+					"");
+				break;
+			default:
+				icon = scrolledwindow2.RenderIcon (Gtk.Stock.Cancel,
+					Gtk.IconSize.Menu,
+					"");
+				break;
+			}
+			
+			store.AppendValues (entry.Level.ToString (), icon, message);
+		}
+		
+		filter = new Gtk.TreeModelFilter (store, null);
+		treeview1.Model = filter;
+		filter.VisibleFunc = new Gtk.TreeModelFilterVisibleFunc (FilterTree);
+
+	}
+	
+	private bool FilterTree (Gtk.TreeModel model, Gtk.TreeIter iter)
+	{
+		try {
+			string level = model.GetValue (iter, 0).ToString ();
+			if (dialogInfo.Active && level.Equals ("INFO"))
+				return true;
+			if (dialogWarning.Active && level.Equals ("WARNING"))
+				return true;
+			if (dialogError.Active && level.Equals ("ERROR"))
+				return true;
+			else
+				return false;
+		} catch {
+			return false;
+		}
+//TODO: Debug toggle button
+//		if (dialogDebug.Active && level.Equals ("DEBUG"))
+//			return true;
+//		else
+//			return false;
+	}
+	
+	protected virtual void OnMessageFilterToggled (object sender, System.EventArgs e)
+	{
+		if (filter != null)
+			filter.Refilter ();
 	}
 }
 }
