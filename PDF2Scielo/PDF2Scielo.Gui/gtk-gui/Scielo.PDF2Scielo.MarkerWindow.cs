@@ -148,7 +148,7 @@ namespace Scielo.PDF2Scielo {
             this.vpaned1 = new Gtk.VPaned();
             this.vpaned1.CanFocus = true;
             this.vpaned1.Name = "vpaned1";
-            this.vpaned1.Position = 160;
+            this.vpaned1.Position = 220;
             // Container child vpaned1.Gtk.Paned+PanedChild
             this.scrolledwindow1 = new Gtk.ScrolledWindow();
             this.scrolledwindow1.CanFocus = true;

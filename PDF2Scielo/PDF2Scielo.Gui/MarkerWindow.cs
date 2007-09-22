@@ -54,6 +54,8 @@ public partial class MarkerWindow: Gtk.Window {
 			textview.Buffer.Text = rdocument.GetText ();
 			Markup.Sensitive = true;
 			Normalize.Sensitive = true;
+			store.Clear ();
+//			Logger.ClearList ();
 		}
 		
 		dialog.Destroy ();
@@ -109,7 +111,6 @@ public partial class MarkerWindow: Gtk.Window {
 	private void OnNormalizeActivated (object sender, System.EventArgs e)
 	{
 		StyleSelectDialog dialog = new StyleSelectDialog ();
-		store.Clear ();
 		if (dialog.Run () == (int) ResponseType.Ok) {
 			try {
 				string format = dialog.Box.ActiveText;
@@ -127,9 +128,21 @@ public partial class MarkerWindow: Gtk.Window {
 					exception.Message);
 				md.Run ();
 				md.Destroy();
+			}catch (NormalizerException exception){
+				MessageDialog md = new MessageDialog (this,
+					DialogFlags.DestroyWithParent, 
+					MessageType.Error, 
+					ButtonsType.Ok, 
+					exception.Message);
+				md.Run ();
+				md.Destroy();
+			} finally {
+				store.Clear ();
+				DisplayMessages ();
+				Logger.ClearList ();
 			}
 		}
-		DisplayMessages ();
+		
 		dialog.Destroy ();
 	}
 
@@ -176,10 +189,12 @@ public partial class MarkerWindow: Gtk.Window {
 		msgColumn.AddAttribute (msgRender, "text", 2);
 		
 		store = new Gtk.ListStore (typeof (string), typeof (Gdk.Pixbuf), typeof (string));
+		filter = new Gtk.TreeModelFilter (store, null);
+		treeview1.Model = filter;
+		filter.VisibleFunc = new Gtk.TreeModelFilterVisibleFunc (FilterTree);
 		dialogInfo.Active = true;
 		dialogWarning.Active = true;
 		dialogError.Active = true;
-//		treeview1.Model = store;
 		
 	}
 	
@@ -192,11 +207,6 @@ public partial class MarkerWindow: Gtk.Window {
 			switch (entry.Level) {
 			case Level.ERROR:
 				icon = scrolledwindow2.RenderIcon (Gtk.Stock.DialogError,
-					Gtk.IconSize.Menu,
-					"");
-				break;
-			case Level.DEBUG:
-				icon = scrolledwindow2.RenderIcon (Gtk.Stock.Execute,
 					Gtk.IconSize.Menu,
 					"");
 				break;
@@ -220,9 +230,9 @@ public partial class MarkerWindow: Gtk.Window {
 			store.AppendValues (entry.Level.ToString (), icon, message);
 		}
 		
-		filter = new Gtk.TreeModelFilter (store, null);
-		treeview1.Model = filter;
-		filter.VisibleFunc = new Gtk.TreeModelFilterVisibleFunc (FilterTree);
+		dialogInfo.Active = false;
+		dialogWarning.Active = true;
+		dialogError.Active = true;
 
 	}
 	
@@ -241,11 +251,6 @@ public partial class MarkerWindow: Gtk.Window {
 		} catch {
 			return false;
 		}
-//TODO: Debug toggle button
-//		if (dialogDebug.Active && level.Equals ("DEBUG"))
-//			return true;
-//		else
-//			return false;
 	}
 	
 	protected virtual void OnMessageFilterToggled (object sender, System.EventArgs e)

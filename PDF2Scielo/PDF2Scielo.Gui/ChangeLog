@@ -1,6 +1,12 @@
 2007-09-21  Juan Germán Castañeda Echevarría <juanger@gmail.com> 
 
 	* gtk-gui/Scielo.PDF2Scielo.MarkerWindow.cs, gtk-gui/gui.stetic,
+	  MarkerWindow.cs: Se arregló el visor de mensajes para que solo
+	  muestre los mensajes de la última normalización.
+
+2007-09-21  Juan Germán Castañeda Echevarría <juanger@gmail.com> 
+
+	* gtk-gui/Scielo.PDF2Scielo.MarkerWindow.cs, gtk-gui/gui.stetic,
 	  MarkerWindow.cs: Se añadió un TreeView para mostrar mensajes de la
 	  normalización del texto.
 
