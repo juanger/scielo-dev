@@ -1,3 +1,7 @@
+2007-09-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* Driver.cs: Se cambiaron las llamadas al Logger.
+
 2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Driver.cs: Cambio en los parametros del constructor de PDFPoppler y

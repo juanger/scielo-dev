@@ -33,7 +33,7 @@ public class Driver {
 		pdf = (filename != String.Empty) && 
 			(filext != String.Empty) && (ext.IndexOf (filext) != -1);
 		
-		Logger.Log (Level.DEBUG, "La extensión del archivo: {0}",  filext);
+		Logger.Debug ("La extensión del archivo: {0}",  filext);
 		
 		if (pdf) {
 			if (Path.IsPathRooted (filepath))
@@ -80,7 +80,7 @@ public class Driver {
 					try {
 						reader = new PDFPoppler (uri);
 						
-						Logger.Log (Level.DEBUG, "Transformando PDF", "");
+						Logger.Debug ("Transformando PDF", "");
 						
 						rdoc = reader.CreateRawDocument ();
 						ndoc = rdoc.Normalize (format);
@@ -92,13 +92,13 @@ public class Driver {
 							Path.GetFileNameWithoutExtension (filepath), "htm");
 						reader.GetNonText ();
 						
-						Logger.Log (Level.DEBUG, "Finalizando", "");
+						Logger.Debug ("Finalizando", "");
 					} catch (FileNotFoundException) {
-						Logger.Log (Level.ERROR, "El archivo {0} no existe", filepath);
+						Logger.Error ("El archivo {0} no existe", filepath);
 						Environment.Exit (1);
 					}
 				} else {
-					Logger.Log (Level.ERROR, "Solo se acepta la ruta a un documento PDF", "");
+					Logger.Error ("Solo se acepta la ruta a un documento PDF", "");
 					Environment.Exit (1);
 				}
 			} else if (!options.GotNoArguments && options.numColumns) {
