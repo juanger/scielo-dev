@@ -41,7 +41,7 @@ public partial class OpenPDFDialog : Gtk.Dialog {
 		filename = open_dialog.Filename;
 		
 		#if DEBUG
-			Logger.Log (Level.DEBUG, "Filename: {0}", filename);
+			Logger.Debug ("Filename: {0}", filename);
 		#endif
 		
 		if (Directory.Exists (filename))
@@ -56,7 +56,7 @@ public partial class OpenPDFDialog : Gtk.Dialog {
 		Respond (ResponseType.Ok);
 		
 		#if DEBUG
-			Logger.Log (Level.DEBUG, "Filename: {0}", filename);
+			Logger.Debug ("Filename: {0}", filename);
 		#endif
 	}
 	

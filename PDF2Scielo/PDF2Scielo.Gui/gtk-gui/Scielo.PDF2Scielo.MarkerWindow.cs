@@ -35,12 +35,6 @@ namespace Scielo.PDF2Scielo {
         
         private Gtk.Action Preview;
         
-        private Gtk.ToggleAction dialogError;
-        
-        private Gtk.ToggleAction dialogWarning;
-        
-        private Gtk.ToggleAction dialogInfo;
-        
         private Gtk.VBox vbox1;
         
         private Gtk.MenuBar menubar1;
@@ -110,12 +104,6 @@ namespace Scielo.PDF2Scielo {
             this.Preview.Sensitive = false;
             this.Preview.ShortLabel = Mono.Unix.Catalog.GetString("_Preview");
             w2.Add(this.Preview, null);
-            this.dialogError = new Gtk.ToggleAction("dialogError", null, null, "gtk-dialog-error");
-            w2.Add(this.dialogError, null);
-            this.dialogWarning = new Gtk.ToggleAction("dialogWarning", null, null, "gtk-dialog-warning");
-            w2.Add(this.dialogWarning, null);
-            this.dialogInfo = new Gtk.ToggleAction("dialogInfo", null, null, "gtk-dialog-info");
-            w2.Add(this.dialogInfo, null);
             w1.InsertActionGroup(w2, 0);
             this.AddAccelGroup(w1.AccelGroup);
             this.Name = "Scielo.PDF2Scielo.MarkerWindow";
@@ -148,7 +136,7 @@ namespace Scielo.PDF2Scielo {
             this.vpaned1 = new Gtk.VPaned();
             this.vpaned1.CanFocus = true;
             this.vpaned1.Name = "vpaned1";
-            this.vpaned1.Position = 220;
+            this.vpaned1.Position = 272;
             // Container child vpaned1.Gtk.Paned+PanedChild
             this.scrolledwindow1 = new Gtk.ScrolledWindow();
             this.scrolledwindow1.CanFocus = true;
@@ -179,12 +167,12 @@ namespace Scielo.PDF2Scielo {
             this.vbox2.Name = "vbox2";
             this.vbox2.Spacing = 6;
             // Container child vbox2.Gtk.Box+BoxChild
-            w1.AddUiFromString("<ui><toolbar name='toolbar2'><toolitem action='dialogError'/><separator/><toolitem action='dialogWarning'/><separator/><toolitem action='dialogInfo'/></toolbar></ui>");
+            w1.AddUiFromString("<ui><toolbar name='toolbar2'/></ui>");
             this.toolbar2 = ((Gtk.Toolbar)(w1.GetWidget("/toolbar2")));
             this.toolbar2.Name = "toolbar2";
             this.toolbar2.ShowArrow = false;
             this.toolbar2.ToolbarStyle = ((Gtk.ToolbarStyle)(3));
-            this.toolbar2.IconSize = ((Gtk.IconSize)(1));
+            this.toolbar2.IconSize = ((Gtk.IconSize)(4));
             this.vbox2.Add(this.toolbar2);
             Gtk.Box.BoxChild w7 = ((Gtk.Box.BoxChild)(this.vbox2[this.toolbar2]));
             w7.Position = 0;
@@ -242,9 +230,6 @@ namespace Scielo.PDF2Scielo {
             this.Markup.Activated += new System.EventHandler(this.OnMarkupActivated);
             this.Normalize.Activated += new System.EventHandler(this.OnNormalizeActivated);
             this.Preview.Activated += new System.EventHandler(this.OnPreviewActivated);
-            this.dialogError.Toggled += new System.EventHandler(this.OnMessageFilterToggled);
-            this.dialogWarning.Toggled += new System.EventHandler(this.OnMessageFilterToggled);
-            this.dialogInfo.Toggled += new System.EventHandler(this.OnMessageFilterToggled);
         }
     }
 }

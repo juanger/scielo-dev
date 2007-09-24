@@ -80,30 +80,6 @@
         <property name="StockId">gtk-print-preview</property>
         <signal name="Activated" handler="OnPreviewActivated" />
       </action>
-      <action id="dialogError">
-        <property name="Type">Toggle</property>
-        <property name="Label" translatable="yes" />
-        <property name="StockId">gtk-dialog-error</property>
-        <property name="DrawAsRadio">False</property>
-        <property name="Active">False</property>
-        <signal name="Toggled" handler="OnMessageFilterToggled" />
-      </action>
-      <action id="dialogWarning">
-        <property name="Type">Toggle</property>
-        <property name="Label" translatable="yes" />
-        <property name="StockId">gtk-dialog-warning</property>
-        <property name="DrawAsRadio">False</property>
-        <property name="Active">False</property>
-        <signal name="Toggled" handler="OnMessageFilterToggled" />
-      </action>
-      <action id="dialogInfo">
-        <property name="Type">Toggle</property>
-        <property name="Label" translatable="yes" />
-        <property name="StockId">gtk-dialog-info</property>
-        <property name="DrawAsRadio">False</property>
-        <property name="Active">False</property>
-        <signal name="Toggled" handler="OnMessageFilterToggled" />
-      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">Marcador Automatico PDF2Scielo</property>
@@ -166,7 +142,7 @@
           <widget class="Gtk.VPaned" id="vpaned1">
             <property name="MemberName" />
             <property name="CanFocus">True</property>
-            <property name="Position">220</property>
+            <property name="Position">272</property>
             <child>
               <widget class="Gtk.ScrolledWindow" id="scrolledwindow1">
                 <property name="MemberName" />
@@ -208,14 +184,8 @@
                             <property name="Tooltip" translatable="yes" />
                             <property name="ShowArrow">False</property>
                             <property name="ButtonStyle">BothHoriz</property>
-                            <property name="IconSize">Menu</property>
-                            <node name="toolbar2" type="Menubar">
-                              <node type="Toolitem" action="dialogError" />
-                              <node type="Separator" />
-                              <node type="Toolitem" action="dialogWarning" />
-                              <node type="Separator" />
-                              <node type="Toolitem" action="dialogInfo" />
-                            </node>
+                            <property name="IconSize">Button</property>
+                            <node name="toolbar2" type="Menubar" />
                           </widget>
                           <packing>
                             <property name="Position">0</property>

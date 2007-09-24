@@ -45,7 +45,7 @@ public partial class PreviewDialog : Gtk.Dialog {
 		
 			preview.LoadUrl (file_path);
 		}catch(IOException except){
-			Logger.Log (Level.ERROR, "{0}", except.Message);
+			Logger.Error ("{0}", except.Message);
 		}
 	}
 	
@@ -54,7 +54,7 @@ public partial class PreviewDialog : Gtk.Dialog {
 		try {
 			File.Delete ("cachedDoc.html");
 		} catch(IOException except){
-			Logger.Log (Level.ERROR, "{0}", except.Message);
+			Logger.Error ("{0}", except.Message);
 		}
 	}
 }

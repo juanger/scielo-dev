@@ -13,6 +13,7 @@ using System.IO;
 using Scielo.PDF2Text;
 using Scielo.Markup;
 using Scielo.Utils;
+using Mono.Unix;
 using Gecko;
 
 namespace Scielo.PDF2Scielo {
@@ -23,6 +24,9 @@ public partial class MarkerWindow: Gtk.Window {
 	private PreviewDialog preview = null;
 	private Gtk.ListStore store;
 	private Gtk.TreeModelFilter filter;
+	private ToggleToolButton errorButton;
+	private ToggleToolButton infoButton;
+	private ToggleToolButton warnButton;
 	
 	public MarkerWindow (): base (Gtk.WindowType.Toplevel)
 	{
@@ -31,6 +35,7 @@ public partial class MarkerWindow: Gtk.Window {
 		ndocument = null;
 		html_document = null;
 		AddColumns ();
+		AddButtons ();
 	}
 	
 	private void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -192,14 +197,77 @@ public partial class MarkerWindow: Gtk.Window {
 		filter = new Gtk.TreeModelFilter (store, null);
 		treeview1.Model = filter;
 		filter.VisibleFunc = new Gtk.TreeModelFilterVisibleFunc (FilterTree);
-		dialogInfo.Active = true;
-		dialogWarning.Active = true;
-		dialogError.Active = true;
+		store.SetSortFunc (0, SortLog);
+		store.SetSortColumnId (0, SortType.Descending);
+		toolbar2.ToolbarStyle = ToolbarStyle.BothHoriz;
+	}
+	
+	private void AddButtons () 
+	{
+		errorButton = new ToggleToolButton ();
+		UpdateErrorCount ();
+		errorButton.Active = true;
+		errorButton.IconWidget = new Gtk.Image (Gtk.Stock.DialogError, Gtk.IconSize.Button);
+		errorButton.IsImportant = true;
+		errorButton.Toggled += new EventHandler (OnFilterToggled);
 		
+		warnButton = new ToggleToolButton ();
+		UpdateWarnCount ();
+		warnButton.Active = true;
+		warnButton.IconWidget = new Gtk.Image (Gtk.Stock.DialogWarning, Gtk.IconSize.Button);
+		warnButton.IsImportant = true;
+		warnButton.Toggled += new EventHandler (OnFilterToggled);
+		
+		infoButton = new ToggleToolButton ();
+		UpdateInfoCount ();
+		infoButton.Active = true;
+		infoButton.IconWidget = new Gtk.Image (Gtk.Stock.DialogInfo, Gtk.IconSize.Button);
+		infoButton.IsImportant = true;
+		infoButton.Toggled += new EventHandler (OnFilterToggled);
+		
+		toolbar2.Insert (errorButton, -1);
+		toolbar2.Insert (new SeparatorToolItem (), -1);
+		toolbar2.Insert (warnButton, -1);
+		toolbar2.Insert (new SeparatorToolItem (), -1);
+		toolbar2.Insert (infoButton, -1);
+		toolbar2.ShowAll();
+	}
+	
+	private void UpdateInfoCount ()
+	{
+		infoButton.Label = String.Format(
+			Catalog.GetPluralString(" {0} Message",
+						" {0} Messages",
+						Logger.NumMessages),
+					Logger.NumMessages);
+		return;
+	}
+	
+	private void UpdateWarnCount ()
+	{
+		warnButton.Label = String.Format(
+			Catalog.GetPluralString(" {0} Warning",
+						" {0} Warnings",
+						Logger.NumWarns),
+					Logger.NumWarns);
+		return;
+	}
+	
+	private void UpdateErrorCount ()
+	{
+		errorButton.Label = String.Format(
+			Catalog.GetPluralString(" {0} Error",
+						" {0} Errors",
+						Logger.NumErrors),
+					Logger.NumErrors);
+		return;
 	}
 	
 	private void DisplayMessages ()
 	{
+		UpdateInfoCount ();
+		UpdateErrorCount ();
+		UpdateWarnCount ();
 		foreach (LogEntry entry in Logger.List){
 			Gdk.Pixbuf icon;
 			string message = entry.Message;
@@ -230,21 +298,35 @@ public partial class MarkerWindow: Gtk.Window {
 			store.AppendValues (entry.Level.ToString (), icon, message);
 		}
 		
-		dialogInfo.Active = false;
-		dialogWarning.Active = true;
-		dialogError.Active = true;
+		infoButton.Active = false;
+		warnButton.Active = true;
+		errorButton.Active = true;
 
+	}
+	
+	private int SortLog (TreeModel model, TreeIter tia, TreeIter tib) 
+	{
+		string a = (string) model.GetValue (tia, 0);
+		string b = (string) model.GetValue (tib, 0);
+		
+		if (a.Equals ("ERROR") || b.Equals ("INFO")) {
+			return 1;
+		}else if (a.Equals ("INFO") || b.Equals ("ERROR")){
+				return -1;
+		}
+		
+		return 0;
 	}
 	
 	private bool FilterTree (Gtk.TreeModel model, Gtk.TreeIter iter)
 	{
 		try {
 			string level = model.GetValue (iter, 0).ToString ();
-			if (dialogInfo.Active && level.Equals ("INFO"))
+			if (infoButton.Active && level.Equals ("INFO"))
 				return true;
-			if (dialogWarning.Active && level.Equals ("WARNING"))
+			if (warnButton.Active && level.Equals ("WARNING"))
 				return true;
-			if (dialogError.Active && level.Equals ("ERROR"))
+			if (errorButton.Active && level.Equals ("ERROR"))
 				return true;
 			else
 				return false;
@@ -253,7 +335,7 @@ public partial class MarkerWindow: Gtk.Window {
 		}
 	}
 	
-	protected virtual void OnMessageFilterToggled (object sender, System.EventArgs e)
+	protected virtual void OnFilterToggled (object sender, System.EventArgs e)
 	{
 		if (filter != null)
 			filter.Refilter ();
