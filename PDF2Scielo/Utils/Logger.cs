@@ -28,6 +28,7 @@ class FileLogger : ILogger
 {
 	StreamWriter log;
 	ArrayList log_list;
+	public int debug = 0, warning = 0, info = 0, error = 0;
 	
 	public FileLogger ()
 	{
@@ -73,6 +74,10 @@ class FileLogger : ILogger
 	
 	public void ClearList ()
 	{
+		error = 0;
+		warning = 0;
+		info = 0;
+		debug = 0;
 		log_list.Clear ();
 	}
 	
@@ -126,25 +131,29 @@ public static class Logger
 	
 	public static void Debug (string msg, params object[] args)
 	{
+		log_dev.debug++;
 		Log (Level.DEBUG, msg, args);
 	}
 	
 	public static void Warning (string msg, params object[] args)
 	{
+		log_dev.warning++;
 		Log (Level.WARNING, msg, args);
 	}
 	
 	public static void Error (string msg, params object[] args)
 	{
+		log_dev.error++;
 		Log (Level.ERROR, msg, args);
 	}
 	
-	public static void INFO (string msg, params object[] args)
+	public static void Info (string msg, params object[] args)
 	{
+		log_dev.info++;
 		Log (Level.INFO, msg, args);
 	}
 	
-	public static void Log (Level lvl, string msg, params object[] args)
+	private static void Log (Level lvl, string msg, params object[] args)
 	{
 		if (!muted && lvl >= log_level)
 			log_dev.Log (lvl, msg, args);
@@ -173,6 +182,24 @@ public static class Logger
 	public static ArrayList List {
 		get {
 			return log_dev.List;
+		}
+	}
+	
+	public static int NumMessages {
+		get{
+			return log_dev.info;
+		}
+	}
+	
+	public static int NumWarns {
+		get{
+			return log_dev.warning;
+		}
+	}
+	
+	public static int NumErrors {
+		get{
+			return log_dev.error;
 		}
 	}
 }
