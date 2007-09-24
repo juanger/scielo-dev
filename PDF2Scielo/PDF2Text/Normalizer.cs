@@ -92,7 +92,7 @@ public class Normalizer : INormalizable {
 			break;
 		}
 		
-		Logger.Log (Level.INFO, "Aplicando regla: {0} en bloque {1}", rule.Name, rule.Block);
+		Logger.Info ("Aplicando regla: {0} en bloque {1}", rule.Name, rule.Block);
 		
 		matches = new StringMatchCollection (rule.Regexp, source);
 		
@@ -102,32 +102,30 @@ public class Normalizer : INormalizable {
 				case "#{Front}":
 				case "#{Body}":
 				case "#{Back}":
-					Logger.Log (Level.ERROR,
-						"La regla necesaria {0} no obtuvo resultados",
+					Logger.Error ("La regla necesaria {0} no obtuvo resultados",
 						rule.Name);
 					throw new NormalizerException (
 						"La normalización con el estilo \"" + format +
 						"\" se ha cancelado, verifica la elección del estilo.");
 				default:
-					Logger.Log (Level.WARNING,
-						"No se encontraron matches con la regla {0}",
+					Logger.Warning ("No se encontraron matches con la regla {0}",
 						rule.Name);
 					break;
 				}
 				
 				return;
 			} else if (matches.Count > 1) {
-				Logger.Log (Level.WARNING, "Se encontró mas de un match en la regla {0}, se tomó el primero", rule.Name);
+				Logger.Warning ("Se encontró mas de un match en la regla {0}, se tomó el primero", rule.Name);
 			}
 			
 			StringMatch match = matches [0];
-			Logger.Log (Level.DEBUG, "Match: {0}", match.FullMatch);
+			Logger.Debug ("Match: {0}", match.FullMatch);
 			
 			if (rule.Type == RuleType.STATIC) {
 				result = rule.Sustitution;
 				source = source.Replace (match.FullMatch, result);
 				
-				Logger.Log (Level.DEBUG, "Result: {0}", result);
+				Logger.Debug ("Result: {0}", result);
 			} else {
 				result = match.ApplyModifiers (rule.Modifiers, rule.Type);
 				switch (rule.Sustitution) {
@@ -145,12 +143,12 @@ public class Normalizer : INormalizable {
 					break;
 				}
 				
-				Logger.Log (Level.DEBUG, "Result: {0}", result);
+				Logger.Debug ("Result: {0}", result);
 			}
 		} else {
-			Logger.Log (Level.INFO, "Total Matches: {0}", matches.Count );
+			Logger.Info ("Total Matches: {0}", matches.Count );
 			foreach (StringMatch m in matches) {
-				Logger.Log (Level.DEBUG, "Match: {0}", m.FullMatch);
+				Logger.Debug ("Match: {0}", m.FullMatch);
 				
 				if (rule.Type == RuleType.STATIC)
 					result = rule.Sustitution;
@@ -158,7 +156,7 @@ public class Normalizer : INormalizable {
 					result = m.ApplyModifiers (rule.Modifiers, rule.Type);
 				
 				source = source.Replace (m.FullMatch, result);
-				Logger.Log (Level.DEBUG, "Result: {0}", result);
+				Logger.Debug ("Result: {0}", result);
 			}
 		}
 		

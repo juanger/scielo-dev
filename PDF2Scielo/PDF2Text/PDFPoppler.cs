@@ -36,7 +36,7 @@ public class PDFPoppler : IExtractable {
 		
 		CreateWorkDir();
 		
-		Logger.Log (Level.DEBUG, "Ruta del archivo: {0}", uri.LocalPath);
+		Logger.Debug ("Ruta del archivo: {0}", uri.LocalPath);
 		
 		doc_path = docpath;
 		file_name = Path.GetFileNameWithoutExtension (docpath);
@@ -83,7 +83,7 @@ public class PDFPoppler : IExtractable {
 		dir = Path.Combine (temp_dir, file_name);
 		filepath = Path.Combine (dir, file_name + ".txt");
 		
-		Logger.Log (Level.DEBUG, "Ruta del directorio temporal: {0}", dir);
+		Logger.Debug ("Ruta del directorio temporal: {0}", dir);
 		
 		if (Directory.Exists (dir)) {
 			Directory.Delete (dir, true);
@@ -93,7 +93,7 @@ public class PDFPoppler : IExtractable {
 		Process proc = Process.Start ("pdftotext", " -layout " + doc_path + " " + filepath);
 		proc.WaitForExit ();
 		
-		Logger.Log (Level.DEBUG, "Ruta del archivo temporal: {0}", filepath);
+		Logger.Debug ("Ruta del archivo temporal: {0}", filepath);
 		
 		FileStream filestream = null;
 		using (filestream = File.Open (filepath, FileMode.Open)) {
@@ -125,7 +125,7 @@ public class PDFPoppler : IExtractable {
 		
 		Environment.CurrentDirectory = oworkdir;
 		
-		Logger.Log (Level.DEBUG, "Ruta del directorio de trabajo: {0}", Environment.CurrentDirectory);
+		Logger.Debug ("Ruta del directorio de trabajo: {0}", Environment.CurrentDirectory);
 	}
 }
 }

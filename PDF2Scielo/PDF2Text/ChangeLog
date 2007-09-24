@@ -1,3 +1,8 @@
+2007-09-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
+
+	* PDFPoppler.cs, Normalizer.cs, StyleReader.cs: Se cambiaron las
+	  llamadas al Logger por las correspondientes sin tipo.
+
 2007-09-05  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* Test/TestRawDocument.cs: Se corrigio un error donde no se incrementa

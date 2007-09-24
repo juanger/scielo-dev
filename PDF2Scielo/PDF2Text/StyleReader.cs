@@ -41,11 +41,11 @@ public class StyleReader {
 				manager = new XmlNamespaceManager (document.NameTable);
 				manager.AddNamespace ("def", "http://www.scielo.org.mx");
 			} else {
-				Logger.Log (Level.ERROR, "Estilo de documento {0} no es válido.", format);
+				Logger.Error ("Estilo de documento {0} no es válido.", format);
 				throw new StyleException ("Estilo de documento " + format + " no es valido.");
 			}
 		} catch (IOException) {
-			Logger.Log (Level.ERROR, "Estilo de documento {0} no existe.", format);
+			Logger.Error ("Estilo de documento {0} no existe.", format);
 			throw new StyleException ("Estilo de documento " + format + " no existe.");
 		}
 	}
@@ -62,11 +62,11 @@ public class StyleReader {
 				manager = new XmlNamespaceManager (document.NameTable);
 				manager.AddNamespace ("def", "http://www.scielo.org.mx");
 			} else {
-				Logger.Log (Level.ERROR, "Estilo de documento {0} no es válido", uri.LocalPath);
+				Logger.Error ("Estilo de documento {0} no es válido", uri.LocalPath);
 				throw new StyleException ("Estilo de documento " + uri.LocalPath + " no es valido.");
 			}
 		} catch (IOException) {
-			Logger.Log (Level.ERROR, "Estilo de documento {0} no existe.", uri.LocalPath);
+			Logger.Error ("Estilo de documento {0} no existe.", uri.LocalPath);
 			throw new StyleException ("Estilo de documento " + uri.LocalPath + " no existe.");
 		}
 	}
@@ -80,7 +80,7 @@ public class StyleReader {
 			if (!ValidStyle (file))
 				continue;
 			
-			Logger.Log (Level.DEBUG, "Style: {0}", file);
+			Logger.Debug ("Style: {0}", file);
 			list.Add (Path.GetFileNameWithoutExtension (file));
 		}
 		
@@ -143,7 +143,7 @@ public class StyleReader {
 	public Rule [] GetRules ()
 	{
 		XmlNodeList fullList = document.SelectNodes ("//def:rule", manager);
-		Logger.Log (Level.INFO, "Número total de reglas: {0}", fullList.Count);
+		Logger.Info ("Número total de reglas: {0}", fullList.Count);
 		Rule [] result = new Rule [fullList.Count];
 		
 		int counter = 0;
@@ -177,7 +177,7 @@ public class StyleReader {
 	public int GetNumColumns ()
 	{
 		XmlNode node = document.SelectSingleNode ("/def:style/@ncolumns", manager);
-		Logger.Log (Level.INFO, "Número total de columnas: {0}", node.Value);
+		Logger.Info ("Número total de columnas: {0}", node.Value);
 		
 		return Int32.Parse (node.Value);
 	}
