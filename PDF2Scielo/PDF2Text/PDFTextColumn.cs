@@ -14,9 +14,8 @@ using System;
 using System.Collections;
 using System.Text.RegularExpressions;
 namespace Scielo {
-namespace PDF2Text
-{	
-	
+namespace PDF2Text{
+
 public class PDFTextColumn
 {
 	private int threshold = -1;
@@ -148,12 +147,12 @@ public class PDFTextColumn
 	{
 		float upper_value = (float)UpperValue ();
 		for (int k=0; k<pos_frecuency.Count; k++){
- 			if ( upper_value > threshold){
- 				break;
- 			}
- 			upper_value = (float)UpperValue ();
- 		}
- 		return (upper_value);
+			if ( upper_value > threshold){
+				break;
+			}
+			upper_value = (float)UpperValue ();
+		}
+		return (upper_value);
 	}
 	
 	/* Finds the position with great number of frecuency repetition  
@@ -181,24 +180,33 @@ public class PDFTextColumn
 		return leng;
 	}
 
-	private void DivideLine (string line, int position, float average){
-		if (referencesFlag){
-   			if (position==0 || position<threshold){ 
- 				column1 += line;
- 				column2 +="\n";
-			}else{ 
-				column1 +=  line.Substring (0,position)+"\n"; 
-				column2 += line.Substring (position);
+	private void DivideLine (string line, int position, float average)
+	{
+	 //## 2 linea
+		Console.WriteLine("#######################################");
+		Console.WriteLine("LA LINEA::"+line+"::pos::"+position+"::average::"+average);
+			if (referencesFlag){
+				if (position==0 || position<threshold){
+					column1 += line;
+					column2 +="\n";
+				}else{
+					column1 +=  line.Substring (0,position)+"\n";
+					column2 += line.Substring (position);
+				}
+			}else{
+				if (position==0 || position<average){
+					column1 += line;
+					column2 +="\n";
+					//## 1 linea
+					Console.WriteLine("column1::"+line);
+				}else{
+					column1 += line.Substring (0,position)+"\n"; 
+					column2 += line.Substring (position);
+					//## 2 linea
+					Console.WriteLine("column1::"+line.Substring(0, position));
+					Console.WriteLine("column2::"+line.Substring(position));
+				}
 			}
- 	    	}else{
- 			if (position==0 || position<average){ 
- 				column1 += line;
- 				column2 +="\n";
-			}else{ 
- 				column1 +=  line.Substring (0,position)+"\n"; 
- 				column2 += line.Substring (position);
- 			}
- 		}
 	}
 	
 	private int PositionToDivideLine (Hashtable ht, float average){
