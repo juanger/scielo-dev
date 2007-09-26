@@ -1,3 +1,10 @@
+2007-09-26  Hector E. Gomez Morales <hectoregm@gmail.com> 
+
+	* PDF2Text/PDF2Text.mdp, PDF2Scielo.mds: Cambios en los archivos
+	  necesarios para construir la aplicación
+	* Packages.mdse: Nodo que maneja la construccion del paquete
+	  pdf2scielo.
+
 2007-09-24  Virginia Teodosio Procopio <lunysska@gmail.com> 
 
 	Cambios menores para la inclusion de un "trato especial" en la primera página de textos de dos columnas.

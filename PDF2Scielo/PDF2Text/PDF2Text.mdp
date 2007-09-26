@@ -1,5 +1,5 @@
 <Project name="PDF2Text" fileversion="2.0" language="C#" clr-version="Net_1_1" ctype="DotNetProject">
-  <Configurations active="Release">
+  <Configurations active="Debug">
     <Configuration name="Debug" ctype="DotNetProjectConfiguration">
       <Output directory="./bin/Debug" assembly="PDF2Text" />
       <Build debugmode="True" target="Library" />
@@ -34,7 +34,7 @@
     <File name="./Data/style.xsd" subtype="Code" buildaction="EmbedAsResource" />
     <File name="./Test/test-valid.xml" subtype="Code" buildaction="Nothing" />
     <File name="./Test/unit-test.sources" subtype="Code" buildaction="Nothing" />
-    <File name="./Test/atm" subtype="Directory" buildaction="Compile" />
+    <File name="./Test/atm" subtype="Directory" buildaction="Nothing" />
     <File name="./Test/atm/v17n01a02.htm" subtype="Code" buildaction="Nothing" />
     <File name="./Test/atm/v17n01a02.pdf" subtype="Code" buildaction="Nothing" />
     <File name="./Test/atm/v17n01a02-norm.txt" subtype="Code" buildaction="Nothing" />
@@ -53,9 +53,9 @@
     <File name="./StringMatch.cs" subtype="Code" buildaction="Compile" />
     <File name="./StringMatchCollection.cs" subtype="Code" buildaction="Compile" />
     <File name="./Test/TestStringMatch.cs" subtype="Code" buildaction="Compile" />
-    <File name="./Test/TestFront.txt" subtype="Code" buildaction="Compile" />
-    <File name="./Test/TestBody.txt" subtype="Code" buildaction="Compile" />
-    <File name="./Test/TestBack.txt" subtype="Code" buildaction="Compile" />
+    <File name="./Test/TestFront.txt" subtype="Code" buildaction="Nothing" />
+    <File name="./Test/TestBody.txt" subtype="Code" buildaction="Nothing" />
+    <File name="./Test/TestBack.txt" subtype="Code" buildaction="Nothing" />
     <File name="./Test/TestStringMatchCollection.cs" subtype="Code" buildaction="Compile" />
     <File name="./Rule.cs" subtype="Code" buildaction="Compile" />
     <File name="./Test/TestRule.cs" subtype="Code" buildaction="Compile" />
@@ -68,7 +68,7 @@
     <File name="./Test/normalizer-rules.xml" subtype="Code" buildaction="Nothing" />
     <File name="./Test/normalizer.txt" subtype="Code" buildaction="Nothing" />
     <File name="./Test/normalizer-step1.txt" subtype="Code" buildaction="Nothing" />
-    <File name="./Test/eng-agr" subtype="Directory" buildaction="Compile" />
+    <File name="./Test/eng-agr" subtype="Directory" buildaction="Nothing" />
     <File name="./Test/eng-agr/eng-agr.sources" subtype="Code" buildaction="Nothing" />
     <File name="./Test/eng-agr/eng-agr1.pdf" subtype="Code" buildaction="Nothing" />
     <File name="./Test/eng-agr/eng-agr1-raw.txt" subtype="Code" buildaction="Nothing" />

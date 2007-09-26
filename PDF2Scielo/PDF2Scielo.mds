@@ -7,6 +7,7 @@
       <Entry build="True" name="Markup" configuration="Debug" />
       <Entry build="True" name="PDFImage" configuration="Debug" />
       <Entry build="True" name="Utils" configuration="Debug" />
+      <Entry build="True" name="Packages" configuration="" />
     </Configuration>
     <Configuration name="Release" ctype="CombineConfiguration">
       <Entry build="True" name="PDF2Scielo" configuration="Release" />
@@ -15,6 +16,7 @@
       <Entry build="True" name="Markup" configuration="Release" />
       <Entry build="True" name="PDFImage" configuration="Release" />
       <Entry build="True" name="Utils" configuration="Release" />
+      <Entry build="True" name="Packages" configuration="" />
     </Configuration>
   </Configurations>
   <StartMode startupentry="PDF2Scielo" single="True">
@@ -24,6 +26,7 @@
     <Execute type="None" entry="Markup" />
     <Execute type="None" entry="PDFImage" />
     <Execute type="None" entry="Utils" />
+    <Execute type="None" entry="Packages" />
   </StartMode>
   <Entries>
     <Entry filename="./PDF2Scielo/PDF2Scielo.mdp" />
@@ -32,5 +35,6 @@
     <Entry filename="./Markup/Markup.mdp" />
     <Entry filename="./PDFImage/PDFImage.mdp" />
     <Entry filename="./Utils/Utils.mdp" />
+    <Entry filename="./Packages.mdse" />
   </Entries>
 </Combine>
