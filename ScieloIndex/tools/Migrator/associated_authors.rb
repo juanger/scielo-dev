@@ -1,9 +1,9 @@
 class AssociatedAuthors
 
-  def initialize(front, article_id)
+  def initialize(front, article_id, logger)
     @front = front
     @article_id = article_id
-
+    @logger = logger
     match = /\[authgrp\](.*)\[\/authgrp\]/m.match(@front)
 
     if match
@@ -11,7 +11,7 @@ class AssociatedAuthors
     else
       raise ArgumentError, "El documento no tiene autores asociados."
     end
-    puts "DEBUG: #{@authgrp}"
+    @logger.debug("#{@authgrp}")
   end
 
   def insert_authors
@@ -19,7 +19,7 @@ class AssociatedAuthors
 
     count = 1
     for author in @authors
-      puts "DEBUG: #{author}"
+      @logger.debug( "#{author}")
       author_hash = {
         :firstname => '',
         :middlename => '',
@@ -61,7 +61,7 @@ class AssociatedAuthors
 
       search = Author.find(:first, :conditions => author_hash)
       if !(search.nil?)
-        puts "MSG: El autor ya ha sido creado"
+        @logger.warning("El autor ya ha sido creado")
 
         create_association(search.id, count)
         count += 1
@@ -75,22 +75,20 @@ class AssociatedAuthors
         new_author.middlename = author_hash[:middlename]
         new_author.lastname = author_hash[:lastname]
 
-        puts "Autor Nombre de Pila: #{new_author.firstname}"
-        puts "Autor Nombres: #{new_author.middlename}"
-        puts "Autor Apellidos: #{new_author.lastname}"
-        puts ""
+        @logger.info( "Autor Nombre de Pila: #{new_author.firstname}")
+        @logger.info( "Autor Nombres: #{new_author.middlename}")
+        @logger.info( "Autor Apellidos: #{new_author.lastname}")
 
 
 
         if new_author.save
-          puts "Creando autor #{new_author.id}"
-          puts ""
+          @logger.info( "Creando autor #{new_author.id}")
 
-         create_association(new_author.id, count)
+          create_association(new_author.id, count)
           count += 1
         else
-          puts "Error: #{new_author.errors[:firstname].to_s}"
-          puts "Error: #{new_author.errors[:lastname].to_s}"
+          @logger.error( "Error: #{new_author.errors[:firstname].to_s}")
+          @logger.error( "Error: #{new_author.errors[:lastname].to_s}")
         end
       end
     end
@@ -102,18 +100,18 @@ class AssociatedAuthors
     article_author.author_id = author_id
     article_author.author_order = order
 
-    puts "Creando asociacion articulo-autor"
-    puts "ID Articulo: #{article_author.article_id}"
-    puts "ID Autor: #{article_author.author_id}"
-    puts "Orden: #{article_author.author_order}"
+    @logger.info( "Creando asociacion articulo-autor")
+    @logger.info( "ID Articulo: #{article_author.article_id}")
+    @logger.info( "ID Autor: #{article_author.author_id}")
+    @logger.info( "Orden: #{article_author.author_order}")
 
     if article_author.save
-      puts "Creando articulo-autor #{article_author.id}"
+      @logger.info( "Creando articulo-autor #{article_author.id}")
 
     else
-      puts "Error: #{article_author.errors[:article_id].to_s}"
-      puts "Error: #{article_author.errors[:author_id].to_s}"
-      puts "Error: #{article_author.errors[:author_order].to_s}"
+      @logger.error( "Error: #{article_author.errors[:article_id].to_s}")
+      @logger.error( "Error: #{article_author.errors[:author_id].to_s}")
+      @logger.error( "Error: #{article_author.errors[:author_order].to_s}")
     end
   end
 end

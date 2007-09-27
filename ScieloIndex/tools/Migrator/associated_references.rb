@@ -1,10 +1,11 @@
 class AssociatedReferences
 
-  def initialize(back, cited_by_article_id, country_id, publisher_id)
+  def initialize(back, cited_by_article_id, country_id, publisher_id, logger)
     @back = back
     @cited_by_article_id = cited_by_article_id
     @country_id = country_id
     @publisher_id = publisher_id
+    @logger = logger
 
     match_other = /\[other.*?\](.*)\[\/other\]/m.match(@back)
     match_vancouv = /\[vancouv.*?\](.*)\[\/vancouv\]/m.match(@back)
@@ -28,7 +29,7 @@ class AssociatedReferences
   private
 
   def insert_other_references()
-    puts "Ingresando referencias de tipo other."
+    @logger.info( "Ingresando referencias de tipo other.")
     references = @other.scan(/\[ocitat\](.*?)\[\/ocitat\]/).flatten
 
     count = 1
@@ -40,7 +41,7 @@ class AssociatedReferences
       match = /\[oiserial\](.*)\[\/oiserial\]/.match(reference)
       if match
         oiserial = match[1].to_s
-        puts "DEBUG REF OISERIAL: \n#{oiserial}"
+        @logger.debug("REF OISERIAL: \n#{oiserial}")
       end
 
       if oiserial
@@ -50,7 +51,7 @@ class AssociatedReferences
   end
 
   def insert_vancouv_references()
-    puts "Ingresando referencias de tipo vancouver"
+    @logger.info( "Ingresando referencias de tipo vancouver")
   end
 
   def create_other_journal(serial)
@@ -81,12 +82,12 @@ class AssociatedReferences
       journal = nil
     end
 
-    puts "REF Journal Title: #{journal_hash[:title]}"
-    puts "REF Journal Abbrev: #{journal_hash[:abbrev]}"
+    @logger.debug("REF Journal Title: #{journal_hash[:title]}")
+    @logger.debug("REF Journal Abbrev: #{journal_hash[:abbrev]}")
     if !(journal.nil?)
-      puts "Se encontro el journal en la DB: #{journal.id}"
+      @logger.info( "Se encontro el journal en la DB: #{journal.id}")
     else
-      puts "No se encontro el journal en la DB"
+      @logger.info( "No se encontro el journal en la DB")
 
       if !journal_hash[:title].nil?
         journal_title = journal_hash[:title]
@@ -110,22 +111,21 @@ class AssociatedReferences
       journal.incomplete = true
       journal.issn = nil
 
-      puts "Creando Journal de referencia"
-      puts "Titulo de la Revista: #{journal.title}"
-      puts "ID del pais: #{journal.country_id}"
-      puts "ID del publicador: #{journal.publisher_id}"
-      puts "Abreviacion: #{journal.abbrev}"
-      puts ""
+      @logger.info( "Creando Journal de referencia")
+      @logger.info( "Titulo de la Revista: #{journal.title}")
+      @logger.info( "ID del pais: #{journal.country_id}")
+      @logger.info( "ID del publicador: #{journal.publisher_id}")
+      @logger.info( "Abreviacion: #{journal.abbrev}")
 
       if journal.save
         @current_journal_id = journal.id
-        puts "Creando journal #{@current_journal_id}"
+        @logger.info( "Creando journal #{@current_journal_id}")
       else
-        puts "Error: #{journal.errors[:title].to_s}"
-        puts "Error: #{journal.errors[:country_id].to_s}"
-        puts "Error: #{journal.errors[:publisher_id].to_s}"
-        puts "Error: #{journal.errors[:abbrev].to_s}"
-        puts "Error: #{journal.errors[:issn].to_s}"
+        @logger.error( "Error: #{journal.errors[:title].to_s}")
+        @logger.error( "Error: #{journal.errors[:country_id].to_s}")
+        @logger.error( "Error: #{journal.errors[:publisher_id].to_s}")
+        @logger.error( "Error: #{journal.errors[:abbrev].to_s}")
+        @logger.error( "Error: #{journal.errors[:issn].to_s}")
       end
     end
   end

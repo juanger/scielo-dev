@@ -8,6 +8,7 @@ require 'associated_authors'
 require 'associated_references'
 require 'jcode'
 require 'iconv'
+require 'mylogger'
 
 
 class Migrator
@@ -16,25 +17,35 @@ class Migrator
     if File.file? config
       open(config, "r") { |file|
         file.each { |line|
-          next if line =~ /^#.*$/
+          next if line =~ /^(#.*)?$/
           obtain_value line}
       }
+     @logger = MyLogger.new(@level)
+
     else
-      puts "Por favor crear un archivo config."
+      @logger = MyLogger.new("none")
+      @logger.error("Por favor crear un archivo de configuracion con nombre config.")
+      @logger.close
+      Process.exit!(1)
     end
   end
 
   def process_scielo
+    @logger.info("Default country ID: #{@default_country_id}")
+
     if File.directory? @serial_root
       Dir.foreach(@serial_root) { |dir|
-                next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
+        next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
 
-                full_dir = File.join(@serial_root, dir)
-                if File.directory? full_dir
-                  @current_journal = dir
-                  process_journal(full_dir)
-                end
+        full_dir = File.join(@serial_root, dir)
+        @current_journal = dir
+        process_journal(full_dir)
       }
+      @logger.close
+    else
+      @logger.error("No existe el directorio raiz #{@serial_root}")
+      @logger.close
+      Process.exit!(1)
     end
   end
 
@@ -43,12 +54,14 @@ class Migrator
   def obtain_value(line)
     array = line.split(':')
     case array[0]
+      when 'LOGGER'
+                @level = array[1].strip
       when 'SERIAL_ROOT'
                 @serial_root = array[1].strip
       when 'COUNTRY'
                 @default_country_id = get_country_id(array[1].strip)
       else
-                puts 'Archivo de configuración ilegal'
+                @logger.warning("Archivo de configuración ilegal.")
     end
   end
 
@@ -56,8 +69,6 @@ class Migrator
     country = Country.find_by_name(name)
 
     #TODO: Lanzar un error si no se encuentra en la DB el pais requerido.
-    puts "Country ID por default: #{country.id}"
-
     country.id
   end
 
@@ -69,7 +80,7 @@ class Migrator
       publisher.save
     end
 
-    puts "Publisher id: #{publisher.id}"
+    @logger.info("Default publisher ID: #{publisher.id}")
 
     publisher.id
   end
@@ -83,23 +94,25 @@ class Migrator
 
     if File.directory? journal_dir
       Dir.foreach(journal_dir) { |issue_dir|
-                next if issue_dir =~ /^(\.|_notes|paginasinformativas)\.?$/
+        next if issue_dir =~ /^(\.|_notes|paginasinformativas)\.?$/
 
-                full_dir = File.join(journal_dir, issue_dir)
-                if File.directory? full_dir
-                  @current_issue_full_dir = full_dir
-                  @current_issue = issue_dir
-                  process_issue(full_dir)
-                end
+        full_dir = File.join(journal_dir, issue_dir)
+        @current_issue_full_dir = full_dir
+        @current_issue = issue_dir
+        process_issue(full_dir)
       }
+    else
+      @logger.error( "La ruta #{@journal_dir} no es un directorio")
     end
   end
 
   def process_issue(issue_dir)
-    puts "Migrando numero: " + @current_issue
-    @current_journal_issue_id = nil
-    #TODO: Encontrar una forma de llegar al título completo de la revista
-    process_articles(issue_dir)
+    @logger.info("Migrando numero: " + @current_issue)
+    if File.directory? issue_dir
+      @current_journal_issue_id = nil
+      #TODO: Encontrar una forma de llegar al título completo de la revista
+      process_articles(issue_dir)
+    end
   end
 
   def process_articles(issue_dir)
@@ -113,24 +126,22 @@ class Migrator
         if File.file? full_dir
           @current_article = article.sub(/\.(txt)/, "")
 
-          puts "Procesando articulo: " + @current_article
+          @logger.info("Procesando articulo: " + @current_article)
           process_article(full_dir)
         end
       }
     else
-      puts "El numero no contiene archivos marcados."
+      @logger.error("El numero no contiene archivos marcados.")
     end
   end
 
   def process_article(marked_file)
     begin
       article = SgmlArticle.new(marked_file)
-      puts ""
-      puts "Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}"
-      puts "Volumen: #{article.volume}, Numero: #{article.number}"
-      puts "Año: #{article.year}, Revista ISSN: #{article.journal_issn}"
-      puts "Primera pagina: #{article.fpage}, Ultima pagina: #{article.lpage}"
-      puts ""
+      @logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
+      @logger.info("Volumen: #{article.volume}, Numero: #{article.number}")
+      @logger.info("Año: #{article.year}, Revista ISSN: #{article.journal_issn}")
+      @logger.info("Primera pagina: #{article.fpage}, Ultima pagina: #{article.lpage}")
 
       if !@current_journal_id
         create_journal(article)
@@ -144,7 +155,7 @@ class Migrator
         create_article(article)
       end
     rescue ArgumentError
-      puts "Archivo #{marked_file} no es un article."
+      @logger.error("Archivo #{marked_file} no es un article.")
     end
   end
 
@@ -157,22 +168,21 @@ class Migrator
     journal.issn = article.journal_issn
     journal.incomplete = true
 
-    puts "Titulo de la Revista: #{journal.title}"
-    puts "ID del pais: #{journal.country_id}"
-    puts "ID del publicador: #{journal.publisher_id}"
-    puts "Abreviacion: #{journal.abbrev}"
-    puts "ISSN: #{journal.issn}"
-    puts ""
+    @logger.info("Titulo de la Revista: #{journal.title}")
+    @logger.info("ID del pais: #{journal.country_id}")
+    @logger.info("ID del publicador: #{journal.publisher_id}")
+    @logger.info("Abreviacion: #{journal.abbrev}")
+    @logger.info("ISSN: #{journal.issn}")
 
     if journal.save
       @current_journal_id = journal.id
-      puts "Creando journal #{@current_journal_id}"
+      @logger.info("Creando journal #{@current_journal_id}")
     else
-      puts "Error: #{journal.errors[:title].to_s}"
-      puts "Error: #{journal.errors[:country_id].to_s}"
-      puts "Error: #{journal.errors[:publisher_id].to_s}"
-      puts "Error: #{journal.errors[:abbrev].to_s}"
-      puts "Error: #{journal.errors[:issn].to_s}"
+      @logger.error("#{journal.errors[:title].to_s}")
+      @logger.error("#{journal.errors[:country_id].to_s}")
+      @logger.error("#{journal.errors[:publisher_id].to_s}")
+      @logger.error("#{journal.errors[:abbrev].to_s}")
+      @logger.error("#{journal.errors[:issn].to_s}")
     end
   end
 
@@ -185,24 +195,22 @@ class Migrator
     journal_issue.number_supplement = article.number_supplement
     journal_issue.year = article.year
 
-    puts ""
-    puts "ID Revista: #{journal_issue.journal_id}"
-    puts "Numero: #{journal_issue.number}"
-    puts "Volumen: #{journal_issue.volume}"
-    puts "Volumen Suplemento: #{journal_issue.volume_supplement}"
-    puts "Numero Suplemento: #{journal_issue.number_supplement}"
-    puts "Año: #{journal_issue.year}"
-    puts ""
+    @logger.info( "ID Revista: #{journal_issue.journal_id}")
+    @logger.info( "Numero: #{journal_issue.number}")
+    @logger.info( "Volumen: #{journal_issue.volume}")
+    @logger.info( "Volumen Suplemento: #{journal_issue.volume_supplement}")
+    @logger.info( "Numero Suplemento: #{journal_issue.number_supplement}")
+    @logger.info( "Año: #{journal_issue.year}")
 
     if journal_issue.save
       @current_journal_issue_id = journal_issue.id
-      puts "Creando journal issue #{@current_journal_issue_id}"
+      @logger.info( "Creando journal issue #{@current_journal_issue_id}")
     else
-      puts "Error: #{journal_issue.errors[:journal_id].to_s}"
-      puts "Error: #{journal_issue.errors[:number].to_s}"
-      puts "Error: #{journal_issue.errors[:volume].to_s}"
-      puts "Error: #{journal_issue.errors[:supplement].to_s}"
-      puts "Error: #{journal_issue.errors[:year].to_s}"
+      @logger.error( "#{journal_issue.errors[:journal_id].to_s}")
+      @logger.error( "#{journal_issue.errors[:number].to_s}")
+      @logger.error( "#{journal_issue.errors[:volume].to_s}")
+      @logger.error( "#{journal_issue.errors[:supplement].to_s}")
+      @logger.error( "#{journal_issue.errors[:year].to_s}")
     end
   end
 
@@ -213,27 +221,27 @@ class Migrator
     new_article.fpage = article.fpage
     new_article.lpage = article.lpage
 
-    puts "Tituto Articulo: #{new_article.title}"
-    puts "Titulo Revista: #{new_article.journal_issue.journal.title}"
-    puts "Pagina inicial: #{new_article.fpage}, Pagina final: #{new_article.lpage}"
+    @logger.info( "Tituto Articulo: #{new_article.title}")
+    @logger.info( "Titulo Revista: #{new_article.journal_issue.journal.title}")
+    @logger.info( "Pagina inicial: #{new_article.fpage}, Pagina final: #{new_article.lpage}")
 
     if new_article.save
-      puts "Creando articulo: #{new_article.id}"
-      authors = AssociatedAuthors.new(article.front, new_article.id)
+      @logger.info( "Creando articulo: #{new_article.id}")
+      authors = AssociatedAuthors.new(article.front, new_article.id, @logger)
 
       #TODO: Si no hay autores no se crea las referencias asociadas al articulo.
-      references = AssociatedReferences.new(article.back, new_article.id, @default_country_id, @current_publisher_id)
+      references = AssociatedReferences.new(article.back, new_article.id, @default_country_id, @current_publisher_id, @logger)
       begin
         authors.insert_authors()
         references.insert_references()
       rescue ArgumentError
-        puts 'El articulo no tiene autores.'
+        @logger.error( 'El articulo no tiene autores.')
       end
     else
-      puts "Error: #{new_article.errors[:journal_issue_id]}"
-      puts "Error: #{new_article.errors[:title].to_s}"
-      puts "Error: #{new_article.errors[:fpage].to_s}"
-      puts "Error: #{new_article.errors[:lpage].to_s}"
+      @logger.error( "#{new_article.errors[:journal_issue_id]}")
+      @logger.error( "#{new_article.errors[:title].to_s}")
+      @logger.error( "#{new_article.errors[:fpage].to_s}")
+      @logger.error( "#{new_article.errors[:lpage].to_s}")
     end
   end
 end
