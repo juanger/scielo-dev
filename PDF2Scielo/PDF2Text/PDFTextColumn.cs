@@ -208,7 +208,26 @@ public class PDFTextColumn
 				}
 			}
 	}
-	
+
+	private void DivideLineInFirstPage (string line, int position, float average)
+	{
+	 //## 2 linea
+		Console.WriteLine("#######################################");
+		Console.WriteLine("LA LINEA::"+line+"::pos::"+position+"::average::"+average);
+		if (position==0 || position<average){
+			column1 += line;
+			column2 +="\n";
+			//## 1 linea
+			Console.WriteLine("column1::"+line);
+		}else{
+			column1 += line.Substring (0,position)+"\n"; 
+			column2 += line.Substring (position);
+			//## 2 linea
+			Console.WriteLine("column1::"+line.Substring(0, position));
+			Console.WriteLine("column2::"+line.Substring(position));
+		}
+	}
+			
 	private int PositionToDivideLine (Hashtable ht, float average){
 		float distance_now = 0; 
  		float distance = 0; 
@@ -217,38 +236,43 @@ public class PDFTextColumn
 		
 		foreach (DictionaryEntry de in ht){
 			if(count == 1){
- 				distance = distance_now = Math.Abs ((int)de.Key - average);
- 				position = (int)de.Key;
- 				count = 2;
- 			}else{
+				distance = distance_now = Math.Abs ((int)de.Key - average);
+				position = (int)de.Key;
+				count = 2;
+			}else{
 				distance_now = Math.Abs ((int)de.Key - average);
- 				if (distance >= distance_now){ 
- 					distance = distance_now; 
- 					position = (int)de.Key;
- 				} 
- 	       		}	
- 	 	}
- 	 	return position;
+				if (distance >= distance_now){ 
+					distance = distance_now; 
+					position = (int)de.Key;
+				} 
+			}	
+		}
+		return position;
 	}
-	
+
 	public void GetTextInCol (int indexPage, ArrayList values, float average)
 	{			
- 		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
- 		int number_raw = 0;
- 		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");		
- 		
- 		foreach (Hashtable ht in values){ 
- 			
- 			string line = rawCollection [number_raw]+"\n"; 			
- 			if (regex.IsMatch (line) == true)
- 				referencesFlag = true;
- 			
+		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
+		int number_raw = 0;
+		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");		
+		
+		foreach (Hashtable ht in values){
+
+			string line = rawCollection [number_raw] + "\n";
+			if (regex.IsMatch (line) == true)
+				referencesFlag = true;
+			
 			int pos = PositionToDivideLine (ht, average);
- 	    		DivideLine (line, pos, average);
- 			number_raw ++; 
- 		}
+			
+			if(indexPage == 0)
+				DivideLineInFirstPage (line, pos, average);
+			else
+				DivideLine (line, pos, average);
+				
+			number_raw ++; 
+		}
 	}
-	
+
 	public void GetTextInColumns (){
 		
 		for (int i=0; i<pages.Length;i++){
