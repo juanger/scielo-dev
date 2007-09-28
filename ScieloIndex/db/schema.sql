@@ -23,6 +23,13 @@ CREATE TABLE languages (
         PRIMARY KEY(id),
         UNIQUE(code)
 );
+COMMENT ON TABLE languages IS
+        'Listado de lenguajes';
+COMMENT ON COLUMN languages.name IS
+        'Nombre del lenguaje';
+COMMENT ON COLUMN languages.code IS
+        'Abreviación (2-3 letras) del lenguaje';
+
 
 CREATE TABLE institutions (
         id SERIAL,

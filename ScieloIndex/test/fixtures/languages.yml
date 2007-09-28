@@ -1,5 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+klingon:
   id: 1
-two:
+  name: Klingon
+  code: klg
+quenya:
   id: 2
+  name: Quenya
+  code: qy
+sindarin:
+  id: 3
+  name: Sindarin
+  code: sd
