@@ -16,6 +16,14 @@ COMMENT ON COLUMN countries.name IS
 COMMENT ON COLUMN countries.code IS
         'Abreviación (3 letras) del país';
 
+CREATE TABLE languages (
+        id SERIAL,
+        name text NOT NULL,
+        code char(3) NOT NULL,
+        PRIMARY KEY(id),
+        UNIQUE(code)
+);
+
 CREATE TABLE institutions (
         id SERIAL,
         name text NOT NULL,
