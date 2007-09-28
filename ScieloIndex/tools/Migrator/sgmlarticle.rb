@@ -15,10 +15,14 @@ class SgmlArticle
     end
 
     @front = /\[front\].*\[\/front\]/m.match(@document).to_s
+    @temp = /\[titlegrp\].*\[\/titlegrp\]/m.match(@document).to_s
+    puts "Bloque titlegrp: #{@temp}"
+
     @body = /\[body\].*\[\/body\]/m.match(@document).to_s
     @back = /\[back\].*\[\/back\]/m.match(@document).to_s
 
     @title = get_title()
+    puts "Titulo capturado: #{@title}"
 
     @language = get_language()
     @journal_title = get_journal_title()

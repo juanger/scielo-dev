@@ -110,7 +110,7 @@ class Migrator
     @logger.info("Migrando numero: " + @current_issue)
     if File.directory? issue_dir
       @current_journal_issue_id = nil
-      #TODO: Encontrar una forma de llegar al título completo de la revista
+      #TODO: Encontrar una forma de obtener el título completo de la revista
       process_articles(issue_dir)
     end
   end
