@@ -26,6 +26,12 @@ public class PDFTextColumn
 	private string column2 = "";
 	private Hashtable pos_frecuency = new Hashtable ();
 	private string textInColumn = "";
+	//First Page
+	private int count = 0;
+	private string column1Tmp = "";
+	private string column2Tmp = "";
+	private string firstPage = "";
+	private string oneColumnTmp = "";
 	
 	public PDFTextColumn (string data)
 	{
@@ -211,23 +217,34 @@ public class PDFTextColumn
 
 	private void DivideLineInFirstPage (string line, int position, float average)
 	{
-	 //## 2 linea
-		Console.WriteLine("#######################################");
-		Console.WriteLine("LA LINEA::"+line+"::pos::"+position+"::average::"+average);
+		Console.WriteLine("---------------------------------------------:::" + line);
 		if (position==0 || position<average){
-			column1 += line;
-			column2 +="\n";
-			//## 1 linea
-			Console.WriteLine("column1::"+line);
+			oneColumnTmp += line;
+			count++;
+			if(count > 1){
+				firstPage += column1Tmp + column2Tmp;
+				column1Tmp = column2Tmp = "";
+				count = 0;
+			}
+			Console.WriteLine("hereeeeeeeeeeeeeeeeeee1111");
+			Console.WriteLine(firstPage);
 		}else{
-			column1 += line.Substring (0,position)+"\n"; 
-			column2 += line.Substring (position);
-			//## 2 linea
-			Console.WriteLine("column1::"+line.Substring(0, position));
-			Console.WriteLine("column2::"+line.Substring(position));
+			Console.WriteLine("count en 2:::"+count+"::::"+oneColumnTmp);
+			if(count == 1){
+				column1Tmp += oneColumnTmp;
+				oneColumnTmp = "";
+				count = 0;
+			}
+			Console.WriteLine("en column::::" + column1Tmp);
+			firstPage += oneColumnTmp;
+			oneColumnTmp = "";
+			column1Tmp += line.Substring (0,position)+"\n"; 
+			column2Tmp += line.Substring (position);
+			Console.WriteLine("hereeeeeeeeeeeeeeeeeee2");
+			Console.WriteLine(firstPage);
 		}
 	}
-			
+
 	private int PositionToDivideLine (Hashtable ht, float average){
 		float distance_now = 0; 
  		float distance = 0; 
@@ -273,15 +290,22 @@ public class PDFTextColumn
 		}
 	}
 
-	public void GetTextInColumns (){
-		
+	public void GetTextInColumns ()
+	{
 		for (int i=0; i<pages.Length;i++){
 			ArrayList elementsPage = GetInfoSpacesPage (i);
 			float positionDivision= GetRepeatPosition (elementsPage, i);
 			GetTextInCol (i, elementsPage, positionDivision);
-			string pageText = column1 + column2 + "";
-			textInColumn += pageText;
-			column1 = column2 = "";
+			if (i==0){
+				textInColumn += firstPage + oneColumnTmp + column1Tmp + column2Tmp +"";
+				Console.WriteLine("fuera 1::::::::::::"+ oneColumnTmp);
+				Console.WriteLine("fuera 2::::::::::::"+ column1Tmp);
+				Console.WriteLine("hererrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+			}else{
+				string pageText = column1 + column2 + "";
+				textInColumn += pageText;
+				column1 = column2 = "";
+			}
 		}
 	}
 }

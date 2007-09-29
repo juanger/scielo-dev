@@ -89,8 +89,8 @@ public class TestPDFTextColumn
 	[Test()]
         public void GetTextFirstPage()
 			{
-				 string text = "";
-				text += "                  Aneurisma gigante del ap��ndice auricular izquierdo\n";
+				 string text = "";
+text += "                  Aneurisma gigante del ap��ndice auricular izquierdo\n";
 text += "                    Francisco L Moreno-Mart��nez,\" Osvaldo Gonz��lez Alfonso,**��lvaro L Lagomasino Hidalgo,***\n";
 text += "                    Alejandro Gonz��lez D��az,**** Carlos Oliva C��spedes,**** Omaida J L��pez Bernal*****\n";
 text += "\n";
@@ -153,7 +153,6 @@ text += "\n";
 text += "\n";
 text += "Vol. 76 Numero 1IEnero-Marzo2006:90-94\n";
 text += "\n";
-
                 PDFTextColumn pdftc = new PDFTextColumn(text);
                 pdftc.GetTextInColumns ();
                 Console.WriteLine(pdftc.TextInColumn);  
