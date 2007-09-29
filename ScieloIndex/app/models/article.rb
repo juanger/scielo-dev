@@ -12,6 +12,7 @@ class Article < ActiveRecord::Base
   validates_uniqueness_of :journal_issue_id, :scope => :title
 
   belongs_to :journal_issue
+  belongs_to :language
 
   has_many :article_authors
   has_many :authors, :through => :article_authors,  :order => "article_authors.author_order ASC"
@@ -27,6 +28,9 @@ class Article < ActiveRecord::Base
 
   has_many :article_references, :foreign_key => :cited_by_article_id, :class_name => 'Cite'
   has_many :references, :through => :article_references, :source => :article
+
+  has_many :alternate_titles
+  has_many :titles, :through => :alternate_titles
 
   has_one :associated_file
 

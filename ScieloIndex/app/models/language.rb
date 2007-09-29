@@ -7,4 +7,7 @@ class Language < ActiveRecord::Base
   validates_format_of :name, :with => /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,30}$/
   validates_format_of :code, :with => /^[a-z]{2,3}[ ]?$/
   validates_uniqueness_of :code
+
+  has_many :articles
+  has_many :alternate_titles
 end
