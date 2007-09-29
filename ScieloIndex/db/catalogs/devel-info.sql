@@ -25,19 +25,21 @@ INSERT INTO journal_issues (journal_id, number, volume, year) VALUES (1, 10, 8, 
 INSERT INTO journal_issues (journal_id, number, volume, year) VALUES (1, 11, 7, 2007);
 INSERT INTO journal_issues (journal_id, number, volume, year) VALUES (2, 12, 1, 2007);
 
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Calentamiento Global', 2, '100', '120', '100-120', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', 1, '1', '12', '1-12', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Lightning induced heating of the ionosphere', 1, '31', '38', '31-38', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('La Fisica ante el Calentamiento Global', 3, '76', '91', '76-91', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('The genum Pachyphytum', 1, '45', '50', '45-50', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Arqueoastronomía en Yucatán', 3, '21', '60', '21-60', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Mayan astronomy', 2, '2', '21', '2-21', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('La física en los huracanes', 3, '12', '54', '12-54', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Impact of Solar Storms in the magnetic field', 3, '34', '46', '34-46', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Carbon dioxide as a cause of ligthing storms', 2, '12', '34', '12-34', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Chalk dust and lung cancer', 3, '25', '26', '25-26', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Laptops and fertility in men', 1, '67', '82', '67-82', NULL, NULL, NULL);
-INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other) VALUES ('Junk 101', 2, '34', '41', '34-41', NULL, NULL, NULL);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Calentamiento Global', 2, '100', '120', '100-120', NULL, NULL, NULL, 41);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Classification of thunderstorm and non-thunderstorm days in Calcutta (India) on the basis of linear discriminant analysis', 1, '1', '12', '1-12', NULL, NULL, NULL, 41);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Lightning induced heating of the ionosphere', 1, '31', '38', '31-38', NULL, NULL, NULL, 39);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('La Fisica ante el Calentamiento Global', 3, '76', '91', '76-91', NULL, NULL, NULL, 41);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('The genum Pachyphytum', 1, '45', '50', '45-50', NULL, NULL, NULL, 39);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Arqueoastronomía en Yucatán', 3, '21', '60', '21-60', NULL, NULL, NULL, 41);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Mayan astronomy', 2, '2', '21', '2-21', NULL, NULL, NULL, 39);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('La física en los huracanes', 3, '12', '54', '12-54', NULL, NULL, NULL, 41);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Impact of Solar Storms in the magnetic field', 3, '34', '46', '34-46', NULL, NULL, NULL, 39);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Carbon dioxide as a cause of ligthing storms', 2, '12', '34', '12-34', NULL, NULL, NULL, 39);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Chalk dust and lung cancer', 3, '25', '26', '25-26', NULL, NULL, NULL, 39);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Laptops and fertility in men', 1, '67', '82', '67-82', NULL, NULL, NULL, 39);
+INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Junk 101', 2, '34', '41', '34-41', NULL, NULL, NULL, 39);
+
+INSERT INTO alternate_titles (title, language_id, article_id) VALUES ("Global Warming", 1 ,39);
 
 INSERT INTO associated_files (article_id, filename, pdf_path, html_path) VALUES (1, 'v17n01a01','public/associated_files/1/v17n01a01.pdf', 'public/associated_files/1/v17n01a01.htm');
 INSERT INTO associated_files (article_id, filename, pdf_path, html_path) VALUES (2, 'v17n01a03','public/associated_files/2/v17n01a03.pdf', 'public/associated_files/2/v17n01a03.htm');

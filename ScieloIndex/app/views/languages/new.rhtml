@@ -1,0 +1,12 @@
+<h1>New language</h1>
+
+<% form_tag :action => 'create' do %>
+  <div id="containerForm">
+  <%= render :partial => 'form' %>
+  </div>
+  <%= submit_tag "Create" %>
+<% end %>
+
+<div id="buttonsNavigator">
+<%= link_to 'Back', :action => 'list' %>
+</div>

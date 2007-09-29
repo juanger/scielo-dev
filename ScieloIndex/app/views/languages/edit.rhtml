@@ -1,0 +1,13 @@
+<h1>Editing language</h1>
+
+<% form_tag :action => 'update', :id => @language do %>
+  <div id="containerForm">
+  <%= render :partial => 'form' %>
+  </div>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<div id="buttonsNavigator">
+<%= link_to 'Show', :action => 'show', :id => @language %> |
+<%= link_to 'Back', :action => 'list' %>
+</div>

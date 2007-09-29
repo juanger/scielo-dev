@@ -175,6 +175,10 @@ CREATE TABLE articles (
         id SERIAL,
         title text NOT NULL,
         subtitle text NULL,
+        language_id int4 NOT NULL
+                REFERENCES languages(id)
+                ON UPDATE CASCADE
+                DEFERRABLE,
         journal_issue_id int4 NOT NULL
                 REFERENCES journal_issues(id)
                 ON UPDATE CASCADE
@@ -190,6 +194,21 @@ CREATE TABLE articles (
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
         UNIQUE(title, journal_issue_id)
+);
+
+CREATE TABLE alternate_titles (
+       id SERIAL,
+       title text NOT NULL,
+       language_id int4 NOT NULL
+                REFERENCES languages(id)
+                ON UPDATE CASCADE
+                DEFERRABLE,
+        article_id int4 NOT NULL
+                REFERENCES articles(id)
+                ON UPDATE CASCADE
+                DEFERRABLE,
+        PRIMARY KEY (id),
+        UNIQUE(title, language_id, article_id)
 );
 
 CREATE TABLE associated_files (
