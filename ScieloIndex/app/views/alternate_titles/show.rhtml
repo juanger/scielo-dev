@@ -1,0 +1,8 @@
+<% for column in AlternateTitle.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @alternate_title.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @alternate_title %> |
+<%= link_to 'Back', :action => 'list' %>
