@@ -175,7 +175,7 @@ CREATE TABLE articles (
         id SERIAL,
         title text NOT NULL,
         subtitle text NULL,
-        language_id int4 NOT NULL
+        language_id int4 NULL
                 REFERENCES languages(id)
                 ON UPDATE CASCADE
                 DEFERRABLE,

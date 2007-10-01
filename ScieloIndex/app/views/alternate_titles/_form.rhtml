@@ -1,7 +1,13 @@
-<%= error_messages_for 'alternate_title' %>
+<%= error_messages_for 'record' %>
 
 <!--[form:alternate_title]-->
+<p><label for="alternate_title_article_id">Article</label><br/>
+<%= select_by_attribute('record', Article, 'title')  %></p>
+
 <p><label for="alternate_title_title">Title</label><br/>
-<%= text_area 'alternate_title', 'title'  %></p>
+<%= text_area 'record', 'title'  %></p>
+
+<p><label for="alternate_title_language_id">Language</label><br/>
+<%= simple_select('record', Language)  %></p>
 <!--[eoform:alternate_title]-->
 

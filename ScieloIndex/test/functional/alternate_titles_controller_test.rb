@@ -5,14 +5,14 @@ require 'alternate_titles_controller'
 class AlternateTitlesController; def rescue_action(e) raise e end; end
 
 class AlternateTitlesControllerTest < Test::Unit::TestCase
-  fixtures :alternate_titles
+  fixtures :languages, :journals, :journal_issues, :articles, :alternate_titles
 
   def setup
     @controller = AlternateTitlesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
-    @first_id = alternate_titles(:first).id
+    @first_id = alternate_titles(:alternate1).id
   end
 
   def test_index
@@ -27,7 +27,7 @@ class AlternateTitlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'list'
 
-    assert_not_nil assigns(:alternate_titles)
+    assert_not_nil assigns(:collection)
   end
 
   def test_show
@@ -36,8 +36,8 @@ class AlternateTitlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert_not_nil assigns(:alternate_title)
-    assert assigns(:alternate_title).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_new
@@ -46,13 +46,13 @@ class AlternateTitlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'new'
 
-    assert_not_nil assigns(:alternate_title)
+    assert_not_nil assigns(:record)
   end
 
   def test_create
     num_alternate_titles = AlternateTitle.count
 
-    post :create, :alternate_title => {}
+    post :create, :record => {:id => 4, :title => 'Effet indirect à l\'exposition prolongée à un affichage à cristaux liquides de moniteur', :language_id => 49, :article_id => 3}
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -66,8 +66,8 @@ class AlternateTitlesControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'edit'
 
-    assert_not_nil assigns(:alternate_title)
-    assert assigns(:alternate_title).valid?
+    assert_not_nil assigns(:record)
+    assert assigns(:record).valid?
   end
 
   def test_update

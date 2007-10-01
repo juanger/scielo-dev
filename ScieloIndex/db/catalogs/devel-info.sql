@@ -39,7 +39,7 @@ INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pa
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Laptops and fertility in men', 1, '67', '82', '67-82', NULL, NULL, NULL, 39);
 INSERT INTO articles (title, journal_issue_id, fpage, lpage, page_range, url, pacsnum, other, language_id) VALUES ('Junk 101', 2, '34', '41', '34-41', NULL, NULL, NULL, 39);
 
-INSERT INTO alternate_titles (title, language_id, article_id) VALUES ("Global Warming", 1 ,39);
+INSERT INTO alternate_titles (title, language_id, article_id) VALUES ('Global Warming', 39, 1);
 
 INSERT INTO associated_files (article_id, filename, pdf_path, html_path) VALUES (1, 'v17n01a01','public/associated_files/1/v17n01a01.pdf', 'public/associated_files/1/v17n01a01.htm');
 INSERT INTO associated_files (article_id, filename, pdf_path, html_path) VALUES (2, 'v17n01a03','public/associated_files/2/v17n01a03.pdf', 'public/associated_files/2/v17n01a03.htm');

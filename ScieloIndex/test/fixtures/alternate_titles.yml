@@ -1,5 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+alternate1:
   id: 1
-two:
+  title: Clasificación de los días de la tempestad de truenos y de la no-tempestad de truenos en Calcutta (la India) en base del análisis discriminante linear
+  language_id: 41
+  article_id: 1
+alternate2:
   id: 2
+  title: Calefacción inducida relámpago del ionosfera
+  language_id: 41
+  article_id: 2
+alternate3:
+  id: 3
+  title: Indirect effect to the exhibition prolonged to a monitor LCD
+  language_id: 39
+  article_id: 3
