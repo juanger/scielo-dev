@@ -8,11 +8,12 @@ class LanguageTest < Test::Unit::TestCase
     @mylanguage = {:name => "defeño", :code => 'df'}
   end
 
-    # RIGHT
+  # RIGHT
   def test_creating_languages_from_fixtures
     @languages.each { |language|
       @language = languages(language)
       @language_db = Language.find_by_code(@language.code)
+      assert_equal @language.id, @language_db.id
       assert_equal @language.name, @language_db.name
       assert_equal @language.code, @language_db.code
     }

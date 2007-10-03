@@ -1,8 +1,15 @@
+<div id="formatTitle">
 <% for column in AlternateTitle.content_columns %>
+</div>
+<div id="formatShow">
+<div id="contentShow">
 <p>
   <b><%= column.human_name %>:</b> <%=h @record.send(column.name) %>
 </p>
 <% end %>
-
+</div>
+</div>
+<div id="buttonsNavigator">
 <%= link_to 'Edit', :action => 'edit', :id => @record %> |
 <%= link_to 'Back', :action => 'list' %>
+</div>
