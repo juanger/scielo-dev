@@ -188,7 +188,7 @@ public class PDFTextColumn
 
 	private void DivideLine (string line, int position, float average)
 	{
-	 //## 2 linea
+	//## 2 linea
 		Console.WriteLine("#######################################");
 		Console.WriteLine("LA LINEA::"+line+"::pos::"+position+"::average::"+average);
 			if (referencesFlag){

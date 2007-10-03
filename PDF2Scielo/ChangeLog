@@ -1,3 +1,8 @@
+2007-10-02  Virginia Teodosio Procopio <lunysska@gmail.com> 
+
+	* PDF2Text/PDFTextColumn.cs: Cambios mínimos para pruebas de desarrollo
+	  de "tratado especial" de primera página.
+
 2007-09-28  Virginia Teodosio Procopio <lunysska@gmail.com> 
 
 	Cambios en el algoritmo de "tratado especial" de la primer página para la revista de Cardiología.
