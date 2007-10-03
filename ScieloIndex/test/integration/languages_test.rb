@@ -5,6 +5,7 @@ class LanguagesTest < ActionController::IntegrationTest
 
   def setup
     @languages = [:klingon, :quenya, :sindarin]
+    @mylanguage = {:name => 'Kriptonese', :code => 'kp'}
   end
 
    def test_getting_index
@@ -21,7 +22,7 @@ class LanguagesTest < ActionController::IntegrationTest
 
 
    def  test_creating_new_language
-     post "languages/create", :record =>  {:name => 'Kriptonese', :code => 'kp'}
+     post "languages/create", :record =>  @mylanguage
      assert_equal 302, status
      follow_redirect!
      assert_equal '/languages/list', path

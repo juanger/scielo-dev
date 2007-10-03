@@ -83,4 +83,32 @@ class AlternateTitleTest < Test::Unit::TestCase
     @article.title = "A"*100000
     assert !@article.valid?
   end
+
+  def test_bad_values_for_language_id
+    @alternate_title = AlternateTitle.new(@myalternate_title)
+
+    # Checking for LANGUAGE_ID constraints
+    @alternate_title.language_id = nil
+    assert !@alternate_title.valid?
+
+    @alternate_title.language_id = -2
+    assert !@alternate_title.valid?
+
+    @alternate_title.language_id = 5.6
+    assert !@alternate_title.valid?
+  end
+
+  def test_bad_values_for_article_id
+    @alternate_title = AlternateTitle.new(@myalternate_title)
+
+    # Checking for ARTICLE_ID constraints
+    @alternate_title.article_id = nil
+    assert !@alternate_title.valid?
+
+    @alternate_title.article_id = -2
+    assert !@alternate_title.valid?
+
+    @alternate_title.article_id = 5.6
+    assert !@alternate_title.valid?
+  end
 end
