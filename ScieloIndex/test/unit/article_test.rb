@@ -5,7 +5,9 @@ class ArticleTest < Test::Unit::TestCase
 
   def setup
     @articles = [:article1, :article2, :article3, :article4, :article5, :article6]
-    @myarticle = {:title => 'Analisis de la Temporada de lluvias 2005 en la Cd de Mexico.', :journal_issue_id => 1, :fpage => '3', :lpage => '10', :page_range => '3-10' , :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'}
+    @myarticle = {:title => 'Analisis de la Temporada de lluvias 2005 en la Cd de Mexico.', :language_id => '41',
+      :journal_issue_id => 1, :fpage => '3', :lpage => '10', :page_range => '3-10',
+      :url => 'http://scielo.unam.mx/scielo.php?script=sci_arttext&pid=S0187-62362004000100001&lng=es&nrm=iso&tlng=en', :pacsnum => '12 sss', :other => 'Atmósfera'}
   end
 
   # RIGHT CRUD (Create, Update and Delete)
