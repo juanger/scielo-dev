@@ -1,3 +1,8 @@
+2007-10-08  Virginia Teodosio Procopio <lunysska@gmail.com> 
+
+	* PDF2Text/PDFTextColumn.cs: Cambios del algoritmo de tratado de primer
+	  página para artículos de cardiología.
+
 2007-10-03  Virginia Teodosio Procopio <lunysska@gmail.com> 
 
 	Cambios minimos para pruebas de tratado especial de una columna.

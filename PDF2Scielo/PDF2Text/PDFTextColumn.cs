@@ -22,6 +22,7 @@ public class PDFTextColumn
 	private string [] pages;
 	private string text;
 	private bool referencesFlag = false;
+	private bool keywordsFlag = false;
 	private string column1 = "";
 	private string column2 = "";
 	private Hashtable pos_frecuency = new Hashtable ();
@@ -221,15 +222,19 @@ public class PDFTextColumn
 		if (position==0 || position<average){
 			oneColumnTmp += line;
 			count++;
-			if(count > 1){
-				firstPage += column1Tmp + column2Tmp;
-				column1Tmp = column2Tmp = "";
-				count = 0;
+			if(keywordsFlag){
+				;
+			}else{
+				if(count > 1 ){
+					firstPage += column1Tmp + column2Tmp;
+					column1Tmp = column2Tmp = "";
+					count = 0;
+				}
 			}
 			Console.WriteLine("hereeeeeeeeeeeeeeeeeee1111");
 			Console.WriteLine(firstPage);
 		}else{
-			Console.WriteLine("count en 2:::"+count+"::::"+oneColumnTmp);
+			Console.WriteLine("count en 2:::"+count+"::::"+oneColumnTmp+":::::::::::::::::::::::::::::::::endOneColumnTmp\n");
 			if(count == 1){
 				column1Tmp += oneColumnTmp;
 				oneColumnTmp = "";
@@ -271,11 +276,16 @@ public class PDFTextColumn
 	{			
 		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
 		int number_raw = 0;
-		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");		
+		Regex regexKey = new Regex (@"^([ ]*(Palabras clave|Key words))");
+		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");
 		
 		foreach (Hashtable ht in values){
 
 			string line = rawCollection [number_raw] + "\n";
+			
+			if (regexKey.IsMatch (line) == true)
+				keywordsFlag = true;
+					
 			if (regex.IsMatch (line) == true)
 				referencesFlag = true;
 			
