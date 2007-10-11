@@ -1,3 +1,7 @@
+2007-10-10  Virginia Teodosio Procopio <lunysska@gmail.com> 
+
+	Cambios minimos en tratado de dos columnas.
+
 2007-10-08  Virginia Teodosio Procopio <lunysska@gmail.com> 
 
 	* PDF2Text/PDFTextColumn.cs: Cambios del algoritmo de tratado de primer

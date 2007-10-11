@@ -31,6 +31,8 @@ public class PDFTextColumn
 	private int count = 0;
 	private string column1Tmp = "";
 	private string column2Tmp = "";
+	private string column3Tmp = "";
+	private string column4Tmp = "";
 	private string firstPage = "";
 	private string oneColumnTmp = "";
 	
@@ -223,30 +225,29 @@ public class PDFTextColumn
 			oneColumnTmp += line;
 			count++;
 			if(keywordsFlag){
-				;
+				Console.WriteLine("EN KEYWORDS FLAG");
 			}else{
 				if(count > 1 ){
+					Console.Write("A PEGAR EN CASO 1:");
+					Console.WriteLine("columna1:"+column1Tmp);
+					Console.WriteLine("columna2:"+column2Tmp);
 					firstPage += column1Tmp + column2Tmp;
 					column1Tmp = column2Tmp = "";
 					count = 0;
 				}
 			}
-			Console.WriteLine("hereeeeeeeeeeeeeeeeeee1111");
-			Console.WriteLine(firstPage);
+			
 		}else{
-			Console.WriteLine("count en 2:::"+count+"::::"+oneColumnTmp+":::::::::::::::::::::::::::::::::endOneColumnTmp\n");
 			if(count == 1){
+				Console.Write("EN CASO 2. en count = 1, a pegar en column1Tmp::"+ column1Tmp);
 				column1Tmp += oneColumnTmp;
 				oneColumnTmp = "";
 				count = 0;
 			}
-			Console.WriteLine("en column::::" + column1Tmp);
 			firstPage += oneColumnTmp;
 			oneColumnTmp = "";
 			column1Tmp += line.Substring (0,position)+"\n"; 
 			column2Tmp += line.Substring (position);
-			Console.WriteLine("hereeeeeeeeeeeeeeeeeee2");
-			Console.WriteLine(firstPage);
 		}
 	}
 
