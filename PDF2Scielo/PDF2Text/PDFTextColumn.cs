@@ -22,7 +22,6 @@ public class PDFTextColumn
 	private string [] pages;
 	private string text;
 	private bool referencesFlag = false;
-	private bool keywordsFlag = false;
 	private string column1 = "";
 	private string column2 = "";
 	private Hashtable pos_frecuency = new Hashtable ();
@@ -31,8 +30,6 @@ public class PDFTextColumn
 	private int count = 0;
 	private string column1Tmp = "";
 	private string column2Tmp = "";
-	private string column3Tmp = "";
-	private string column4Tmp = "";
 	private string firstPage = "";
 	private string oneColumnTmp = "";
 	
@@ -191,55 +188,37 @@ public class PDFTextColumn
 
 	private void DivideLine (string line, int position, float average)
 	{
-	//## 2 linea
-		Console.WriteLine("#######################################");
-		Console.WriteLine("LA LINEA::"+line+"::pos::"+position+"::average::"+average);
-			if (referencesFlag){
-				if (position==0 || position<threshold){
-					column1 += line;
-					column2 +="\n";
-				}else{
-					column1 +=  line.Substring (0,position)+"\n";
-					column2 += line.Substring (position);
-				}
+		if (referencesFlag){
+			if (position==0 || position<threshold){
+				column1 += line;
+				column2 +="\n";
 			}else{
-				if (position==0 || position<average){
-					column1 += line;
-					column2 +="\n";
-					//## 1 linea
-					Console.WriteLine("column1::"+line);
-				}else{
-					column1 += line.Substring (0,position)+"\n"; 
-					column2 += line.Substring (position);
-					//## 2 linea
-					Console.WriteLine("column1::"+line.Substring(0, position));
-					Console.WriteLine("column2::"+line.Substring(position));
-				}
+				column1 +=  line.Substring (0,position)+"\n";
+				column2 += line.Substring (position);
 			}
+		}else{
+			if (position==0 || position<average){
+				column1 += line;
+				column2 +="\n";
+			}else{
+				column1 += line.Substring (0,position)+"\n"; 
+				column2 += line.Substring (position);
+			}
+		}
 	}
 
 	private void DivideLineInFirstPage (string line, int position, float average)
 	{
-		Console.WriteLine("---------------------------------------------:::" + line);
 		if (position==0 || position<average){
 			oneColumnTmp += line;
 			count++;
-			if(keywordsFlag){
-				Console.WriteLine("EN KEYWORDS FLAG");
-			}else{
-				if(count > 1 ){
-					Console.Write("A PEGAR EN CASO 1:");
-					Console.WriteLine("columna1:"+column1Tmp);
-					Console.WriteLine("columna2:"+column2Tmp);
-					firstPage += column1Tmp + column2Tmp;
-					column1Tmp = column2Tmp = "";
-					count = 0;
-				}
+			if(count > 1 ){
+				firstPage += column1Tmp + column2Tmp;
+				column1Tmp = column2Tmp = "";
+				count = 0;
 			}
-			
 		}else{
 			if(count == 1){
-				Console.Write("EN CASO 2. en count = 1, a pegar en column1Tmp::"+ column1Tmp);
 				column1Tmp += oneColumnTmp;
 				oneColumnTmp = "";
 				count = 0;
@@ -277,16 +256,11 @@ public class PDFTextColumn
 	{			
 		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
 		int number_raw = 0;
-		Regex regexKey = new Regex (@"^([ ]*(Palabras clave|Key words))");
 		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");
 		
 		foreach (Hashtable ht in values){
-
 			string line = rawCollection [number_raw] + "\n";
 			
-			if (regexKey.IsMatch (line) == true)
-				keywordsFlag = true;
-					
 			if (regex.IsMatch (line) == true)
 				referencesFlag = true;
 			
@@ -309,9 +283,6 @@ public class PDFTextColumn
 			GetTextInCol (i, elementsPage, positionDivision);
 			if (i==0){
 				textInColumn += firstPage + oneColumnTmp + column1Tmp + column2Tmp +"";
-				Console.WriteLine("fuera 1::::::::::::"+ oneColumnTmp);
-				Console.WriteLine("fuera 2::::::::::::"+ column1Tmp);
-				Console.WriteLine("hererrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
 			}else{
 				string pageText = column1 + column2 + "";
 				textInColumn += pageText;
