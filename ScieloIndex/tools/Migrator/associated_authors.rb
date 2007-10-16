@@ -1,9 +1,10 @@
 class AssociatedAuthors
 
-  def initialize(front, article_id, logger)
-    @front = front
-    @article_id = article_id
-    @logger = logger
+  def initialize(hash)
+    @front = hash[:front]
+    @article_id = hash[:id]
+    @article_file_name = hash[:file]
+    @logger = hash[:logger]
     match = /\[authgrp\](.*)\[\/authgrp\]/m.match(@front)
 
     if match
@@ -87,8 +88,9 @@ class AssociatedAuthors
           create_association(new_author.id, count)
           count += 1
         else
-          @logger.error( "Error: #{new_author.errors[:firstname].to_s}")
-          @logger.error( "Error: #{new_author.errors[:lastname].to_s}")
+          @logger.errors.each { |key, value|
+            @logger.error("Articulo Foo de la Revista Bar", "#{key}: #{value}")
+          }
         end
       end
     end
@@ -109,9 +111,10 @@ class AssociatedAuthors
       @logger.info( "Creando articulo-autor #{article_author.id}")
 
     else
-      @logger.error( "Error: #{article_author.errors[:article_id].to_s}")
-      @logger.error( "Error: #{article_author.errors[:author_id].to_s}")
-      @logger.error( "Error: #{article_author.errors[:author_order].to_s}")
+      @logger.error_message("Error al crear asociación articulo-autor")
+      article_author.errors.each { |key, value|
+        @logger.error("", "Error: #{value}")
+      }
     end
   end
 end

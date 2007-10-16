@@ -2,7 +2,9 @@ class SgmlArticle
   attr_reader :front, :body, :back, :title, :language, :journal_title, :volume, :number, :volume_supplement
   attr_reader :number_supplement, :year, :fpage, :lpage, :journal_issn
 
-  def initialize(doc_path)
+  def initialize(doc_path, logger)
+    @logger = logger
+
     if File.file? doc_path
       buffer = open(doc_path, "r") { |doc| doc.read }
       @document = Iconv.iconv("UTF-8", "ISO-8859-15", buffer).to_s
@@ -15,16 +17,15 @@ class SgmlArticle
     end
 
     @front = /\[front\].*\[\/front\]/m.match(@document).to_s
-    @temp = /\[titlegrp\].*\[\/titlegrp\]/m.match(@document).to_s
-    puts "Bloque titlegrp: #{@temp}"
-
     @body = /\[body\].*\[\/body\]/m.match(@document).to_s
     @back = /\[back\].*\[\/back\]/m.match(@document).to_s
 
-    @title = get_title()
-    puts "Titulo capturado: #{@title}"
-
     @language = get_language()
+    @titles = get_titles()
+    #print_titles()
+
+    @title = get_title()
+
     @journal_title = get_journal_title()
     @volume = get_volume()
     @number = get_number()
@@ -51,22 +52,64 @@ class SgmlArticle
 
   private
 
-  def get_title
-    match = /(\[title.*\])(.*)(\[\/title\])/m.match(@front)
+  def print_titles
+    @titles.each { |language, title|
+      puts 'Language '+ language + ' Title ' + title
+    }
+  end
+
+  def get_titles
+    match = /\[titlegrp\](.*)\[\/titlegrp\]/m.match(@front)
+
     if match
-      titulo =  match[2].to_s
-      if titulo.chars.upcase.to_s == titulo
-        titulo.chars.capitalize.to_s
-      else
-        titulo
-      end
+      titlegrp = match[1].to_s
+      #puts "Titlegrp Block: #{titlegrp}"
+      titles = []
+      titlegrp.scan(/\[title language=([a-z]{2,3})\](.*?)\[\/title\]/m) { |match|
+        language = $1
+        temp_title = $2
+
+        if temp_title.chars.upcase.to_s == temp_title
+          title = temp_title.chars.capitalize.to_s
+        else
+          title = temp_title
+        end
+
+        #puts "Match: Language: #{language}, Title: #{title}"
+        titles << [language, title]
+      }
+
+      #puts "Numero de titulos: #{titles.length}"
+      titles
     else
-      ""
+      []
     end
   end
 
+  def get_title
+    article_title = ""
+    titles = []
+    @titles.each { |language, title|
+      #puts "A#{@language}A"
+      #puts "A#{language}A"
+      if @language == language
+        article_title = title
+      else
+        titles << [language, title]
+      end
+    }
+
+    if article_title == "" and titles.length >= 1
+      @logger.warning("Discrepancia entre el lenguage del articulo y el lenguage del titulo")
+    end
+
+    @titles = titles
+    #puts "Titulo al finalizar get_title: #{article_title}"
+    article_title
+  end
+
   def get_language
-    match = /(language=)(.{2})/.match(@article_tag)
+    match = /(language=)([a-z]{2,3})/.match(@article_tag)
     if match
       match[2].to_s
     else

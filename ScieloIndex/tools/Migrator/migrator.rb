@@ -24,7 +24,7 @@ class Migrator
 
     else
       @logger = MyLogger.new("none")
-      @logger.error("Por favor crear un archivo de configuracion con nombre config.")
+      @logger.error("Configuración", "Por favor crear un archivo de configuracion con nombre config.")
       @logger.close
       Process.exit!(1)
     end
@@ -43,7 +43,7 @@ class Migrator
       }
       @logger.close
     else
-      @logger.error("No existe el directorio raiz #{@serial_root}")
+      @logger.error("Directorio Raiz", "No existe el directorio raiz #{@serial_root}")
       @logger.close
       Process.exit!(1)
     end
@@ -93,6 +93,7 @@ class Migrator
     @current_journal_id = nil
 
     if File.directory? journal_dir
+
       Dir.foreach(journal_dir) { |issue_dir|
         next if issue_dir =~ /^(\.|_notes|paginasinformativas)\.?$/
 
@@ -102,7 +103,7 @@ class Migrator
         process_issue(full_dir)
       }
     else
-      @logger.error( "La ruta #{@journal_dir} no es un directorio")
+      @logger.info( "La ruta #{journal_dir} no es un directorio")
     end
   end
 
@@ -131,13 +132,13 @@ class Migrator
         end
       }
     else
-      @logger.error("El numero no contiene archivos marcados.")
+      @logger.error("El número #{issue_dir} de la revista #{@current_journal}","El numero no contiene archivos marcados.")
     end
   end
 
   def process_article(marked_file)
     begin
-      article = SgmlArticle.new(marked_file)
+      article = SgmlArticle.new(marked_file, @logger)
       @logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
       @logger.info("Volumen: #{article.volume}, Numero: #{article.number}")
       @logger.info("Año: #{article.year}, Revista ISSN: #{article.journal_issn}")
@@ -155,7 +156,7 @@ class Migrator
         create_article(article)
       end
     rescue ArgumentError
-      @logger.error("Archivo #{marked_file} no es un article.")
+      @logger.warning("Archivo #{marked_file} no es un article.")
     end
   end
 
@@ -178,11 +179,10 @@ class Migrator
       @current_journal_id = journal.id
       @logger.info("Creando journal #{@current_journal_id}")
     else
-      @logger.error("#{journal.errors[:title].to_s}")
-      @logger.error("#{journal.errors[:country_id].to_s}")
-      @logger.error("#{journal.errors[:publisher_id].to_s}")
-      @logger.error("#{journal.errors[:abbrev].to_s}")
-      @logger.error("#{journal.errors[:issn].to_s}")
+      @logger.error_message("Error al crear la revista")
+      journal.errors.each { |key, value|
+        @logger.error("Articulo #{@current_article} de la revista #{journal_dir}", "#{key}: #{value}")
+      }
     end
   end
 
@@ -195,22 +195,21 @@ class Migrator
     journal_issue.number_supplement = article.number_supplement
     journal_issue.year = article.year
 
-    @logger.info( "ID Revista: #{journal_issue.journal_id}")
-    @logger.info( "Numero: #{journal_issue.number}")
-    @logger.info( "Volumen: #{journal_issue.volume}")
-    @logger.info( "Volumen Suplemento: #{journal_issue.volume_supplement}")
-    @logger.info( "Numero Suplemento: #{journal_issue.number_supplement}")
-    @logger.info( "Año: #{journal_issue.year}")
+    @logger.info("Revista: #{journal_issue.journal_id}")
+    @logger.info("Numero: #{journal_issue.number}")
+    @logger.info("Volumen: #{journal_issue.volume}")
+    @logger.info("Volumen Suplemento: #{journal_issue.volume_supplement}")
+    @logger.info("Numero Suplemento: #{journal_issue.number_supplement}")
+    @logger.info("Año: #{journal_issue.year}")
 
     if journal_issue.save
       @current_journal_issue_id = journal_issue.id
       @logger.info( "Creando journal issue #{@current_journal_issue_id}")
     else
-      @logger.error( "#{journal_issue.errors[:journal_id].to_s}")
-      @logger.error( "#{journal_issue.errors[:number].to_s}")
-      @logger.error( "#{journal_issue.errors[:volume].to_s}")
-      @logger.error( "#{journal_issue.errors[:supplement].to_s}")
-      @logger.error( "#{journal_issue.errors[:year].to_s}")
+      @logger.error_message("Error al crear el número de la revista")
+      journal_issue.errors.each { |key, value|
+        @logger.error("Artículo #{@current_article} de la revista #{journal_dir}", "#{key}: #{value}")
+      }
     end
   end
 
@@ -221,13 +220,25 @@ class Migrator
     new_article.fpage = article.fpage
     new_article.lpage = article.lpage
 
-    @logger.info( "Tituto Articulo: #{new_article.title}")
-    @logger.info( "Titulo Revista: #{new_article.journal_issue.journal.title}")
-    @logger.info( "Pagina inicial: #{new_article.fpage}, Pagina final: #{new_article.lpage}")
+    language = Language.find_by_code(article.language)
+    if language
+      new_article.language_id = language.id
+    else
+      @logger.error("No se encontró el lenguaje #{article.language} asociado al artículo")
+    end
+
+    @logger.info("Lenguaje: #{new_article.language.name}")
+    @logger.info("Tituto Articulo: #{new_article.title}")
+    @logger.info("Titulo Revista: #{new_article.journal_issue.journal.title}")
+    @logger.info("Pagina inicial: #{new_article.fpage}, Pagina final: #{new_article.lpage}")
 
     if new_article.save
       @logger.info( "Creando articulo: #{new_article.id}")
-      authors = AssociatedAuthors.new(article.front, new_article.id, @logger)
+      authors = AssociatedAuthors.new({
+                                        :front => article.front,
+                                        :id => new_article.id,
+                                        :file => @current_article,
+                                        :logger => @logger})
 
       #TODO: Si no hay autores no se crea las referencias asociadas al articulo.
       references = AssociatedReferences.new(article.back, new_article.id, @default_country_id, @current_publisher_id, @logger)
@@ -238,10 +249,10 @@ class Migrator
         @logger.error( 'El articulo no tiene autores.')
       end
     else
-      @logger.error( "#{new_article.errors[:journal_issue_id]}")
-      @logger.error( "#{new_article.errors[:title].to_s}")
-      @logger.error( "#{new_article.errors[:fpage].to_s}")
-      @logger.error( "#{new_article.errors[:lpage].to_s}")
+      @logger.error_message("Error al crear el artículo")
+      new_article.errors.each{ |key, value|
+        @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
+      }
     end
   end
 end

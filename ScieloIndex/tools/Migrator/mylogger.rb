@@ -13,6 +13,7 @@ class MyLogger
     if @level < 3
       @log = File.new(".migrator-log", "w")
     end
+    @errors = File.new(".migrator-errors", "w")
   end
 
   def log(type, message)
@@ -39,18 +40,26 @@ class MyLogger
     end
   end
 
-  def error(message)
+  def error(source, message)
     if @level < 3
       log("Error", message)
-      puts "[Error]: #{message}"
-    else @level == 3
-      puts "[Error]: #{message}"
     end
+
+    @errors.puts "[Source]: #{source}"
+    @errors.puts "[Error]: #{message}"
+
+    puts "[Source]: #{source}"
+    puts "[Error]: #{message}"
+  end
+
+  def error_message(message)
+    @errors.puts "#{message}"
   end
 
   def close
     if @log
       @log.close
     end
+    @errors.close
   end
 end
