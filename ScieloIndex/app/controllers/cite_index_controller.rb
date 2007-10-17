@@ -41,7 +41,7 @@ class CiteIndexController < ApplicationController
 
   def list_author_matches
     @author =  session[:search_data]
-     @pages, @collection = paginate Inflector.pluralize(Author).to_sym,
+     @pages, @collection = paginate Inflector.pluralize(Author.to_s).to_sym,
     :conditions => ["authors.middlename ILIKE :middlename AND authors.lastname ILIKE :lastname AND authors.firstname ILIKE :firstname",
                     {:middlename => '%' + @author[:middlename].to_s + '%', :lastname => '%' + @author[:lastname].to_s + '%', :firstname => '%' + @author[:firstname].to_s + '%' }],
     :per_page => 10
@@ -55,7 +55,7 @@ class CiteIndexController < ApplicationController
   def search_by_author
     @author = session[:search_data][:object]
     @cites = session[:search_data][:cites]
-    @pages, @collection = paginate Inflector.pluralize(Article).to_sym,
+    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
     :select => 'articles.*',
     :joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
     " authors.id = article_authors.author_id",
@@ -66,7 +66,7 @@ class CiteIndexController < ApplicationController
 
   def search_by_article
     @article = session[:search_data]
-    @pages, @collection = paginate Inflector.pluralize(Article).to_sym,
+    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
     :conditions => ["articles.title ILIKE :title", { :title => '%' + @article[:title] + '%' }],
     :per_page => 10
 
@@ -78,7 +78,7 @@ class CiteIndexController < ApplicationController
 
   def search_by_keyword
     @keyword = session[:search_data]
-    @pages, @collection = paginate Inflector.pluralize(Article).to_sym,
+    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
     :select => 'articles.*',
     :joins => "JOIN article_keywords ON articles.id = article_keywords.article_id JOIN keywords ON" +
     " keywords.id = article_keywords.keyword_id",
@@ -92,7 +92,7 @@ class CiteIndexController < ApplicationController
   end
 
   def search_cites
-    @pages, @collection = paginate Inflector.pluralize(Article).to_sym,
+    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
     :select => 'articles.*',
     :joins => "JOIN cites ON articles.id = cites.cited_by_article_id",
     :conditions => "article_id = #{params[:id]}",

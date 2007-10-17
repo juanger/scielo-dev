@@ -10,7 +10,7 @@ class ScieloIndexController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @pages, @collection = paginate Inflector.pluralize(@model).to_sym, :per_page => 10
+    @pages, @collection = paginate Inflector.pluralize(@model.to_s).to_sym, :per_page => 10
   end
 
   def show
