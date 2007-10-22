@@ -241,7 +241,12 @@ class Migrator
                                         :logger => @logger})
 
       #TODO: Si no hay autores no se crea las referencias asociadas al articulo.
-      references = AssociatedReferences.new(article.back, new_article.id, @default_country_id, @current_publisher_id, @logger)
+      references = AssociatedReferences.new({
+                                              :back => article.back,
+                                              :cited_by_article_id => new_article.id,
+                                              :country_id => @default_country_id,
+                                              :publisher_id => @current_publisher_id,
+                                              :logger => @logger})
       begin
         authors.insert_authors()
         references.insert_references()

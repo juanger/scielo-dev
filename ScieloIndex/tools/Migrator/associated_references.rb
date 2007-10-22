@@ -1,11 +1,11 @@
 class AssociatedReferences
 
-  def initialize(back, cited_by_article_id, country_id, publisher_id, logger)
-    @back = back
-    @cited_by_article_id = cited_by_article_id
-    @country_id = country_id
-    @publisher_id = publisher_id
-    @logger = logger
+  def initialize(hash)
+    @back = hash[:back]
+    @cited_by_article_id = hash[:cited_by_article_id]
+    @country_id = hash[:country_id]
+    @publisher_id = hash[:publisher_id]
+    @logger = hash[:logger]
 
     match_other = /\[other.*?\](.*)\[\/other\]/m.match(@back)
     match_vancouv = /\[vancouv.*?\](.*)\[\/vancouv\]/m.match(@back)
