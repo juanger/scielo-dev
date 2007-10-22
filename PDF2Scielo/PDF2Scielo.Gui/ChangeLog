@@ -1,3 +1,7 @@
+2007-10-22   <> 
+
+	* MarkerWindow.cs: Se agregó la extracción de imágenes.
+
 2007-09-24  Hector E. Gomez Morales. <hectoregm@gmail.com> 
 
 	* OpenPDFDialog.cs, PreviewDialog.cs,

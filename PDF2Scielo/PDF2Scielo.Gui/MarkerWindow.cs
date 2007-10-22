@@ -55,6 +55,11 @@ public partial class MarkerWindow: Gtk.Window {
 		if (dialog.Run () == (int) ResponseType.Ok) {
 			Uri uri = new Uri (dialog.Document);
 			PDFPoppler reader = new PDFPoppler (uri);
+			
+			//Extracting images from document
+			reader.GetNonText ();
+			
+			//Extracting text from document
 			rdocument = reader.CreateRawDocument ();
 			textview.Buffer.Text = rdocument.GetText ();
 			Markup.Sensitive = true;
@@ -83,6 +88,7 @@ public partial class MarkerWindow: Gtk.Window {
 					Markup.Sensitive = false;
 					Normalize.Sensitive = false;
 					Preview.Sensitive = true;
+					
 				} catch (StyleException exception){
 					MessageDialog md = new MessageDialog (this,
 						DialogFlags.DestroyWithParent, 
