@@ -4,3 +4,6 @@ SERIAL_ROOT: /home/hector/serial
 
 # COUNTRY es el nombre del Pais que por default se asocia a una revista
 COUNTRY: México
+
+# LOGGER es el nivel de monitoreo (debug, warning, info, none)
+LOGGER: none
