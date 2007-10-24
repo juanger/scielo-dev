@@ -90,7 +90,7 @@ public class PDFTextColumn
 						ht.Add (position_value, space);
 					}
 				}	
-				count++;	
+				count++;
 			}
 			totalValues.Add(ht);
 		}
@@ -108,7 +108,7 @@ public class PDFTextColumn
 				foreach (DictionaryEntry de in ht){
 					sum = sum + (int)de.Key;
 					count ++;
-				}			
+				}
 			}
 			i++;
 		}
@@ -147,7 +147,7 @@ public class PDFTextColumn
 		threshold = (maxL/2)-6;
 	}
 	
-	/* the greater value than threshold in the frecuency of repetition	
+	/* the greater value than threshold in the frecuency of repetition
 	*/
 	private float UpperValueOnThreshold ()
 	{
@@ -230,7 +230,8 @@ public class PDFTextColumn
 		}
 	}
 
-	private int PositionToDivideLine (Hashtable ht, float average){
+	private int PositionToDivideLine (Hashtable ht, float average)
+	{
 		float distance_now = 0; 
  		float distance = 0; 
  		int position = 0;

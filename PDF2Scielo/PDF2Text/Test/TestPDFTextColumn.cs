@@ -22,7 +22,7 @@ public class TestPDFTextColumn
 	[Test()]
 	public void Constructor ()
 	{
-		PDFTextColumn pdftc = new PDFTextColumn ("");		
+		PDFTextColumn pdftc = new PDFTextColumn ("");
 		Type etype = Type.GetType ("Scielo.PDF2Text.PDFTextColumn");
 		Assert.IsInstanceOfType (etype, pdftc, "CI01");
 		Assert.IsNotNull (pdftc, "CI02");

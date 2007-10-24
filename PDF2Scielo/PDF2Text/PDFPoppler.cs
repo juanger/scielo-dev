@@ -85,8 +85,8 @@ public class PDFPoppler : IExtractable {
 		
 		Logger.Debug ("Ruta del directorio temporal: {0}", dir);
 		
-		if (Directory.Exists (dir)) {
-			Directory.Delete (dir, true);
+		if (File.Exists (filepath)) {
+			File.Delete (filepath);
 		}
 		
 		Directory.CreateDirectory (dir);
@@ -118,14 +118,14 @@ public class PDFPoppler : IExtractable {
 		
 		oworkdir = Environment.CurrentDirectory;
 		Directory.CreateDirectory (imgdir);
+		
 		Environment.CurrentDirectory = imgdir;
-
+		Logger.Debug ("Ruta del directorio de trabajo (imagenes): {0}", Environment.CurrentDirectory);
+		
 		Process proc = Process.Start ("pdfimages", " -j " + doc_path + " Images");
 		proc.WaitForExit ();
 		
 		Environment.CurrentDirectory = oworkdir;
-		
-		Logger.Debug ("Ruta del directorio de trabajo: {0}", Environment.CurrentDirectory);
 	}
 }
 }

@@ -1,3 +1,8 @@
+2007-10-24   <> 
+
+	* PDF2Text/PDFPoppler.cs: Modificaciones para la extracción de
+	  elementos diferentes a texto.
+
 2007-10-15  Virginia Teodosio Procopio <lunysska@gmail.com> 
 
 	Versión final de doble extracción de texto de dos columnas a una.
