@@ -15,6 +15,8 @@ class AssociatedReferences
     elsif match_vancouv
       @vancouv = match_vancouv[1].to_s
       #puts "DEBUG REF #{@cited_by_article_id}: #{@vancouv}"
+    else
+      # Caso cuando no es ni other ni vancouv la cita.
     end
   end
 

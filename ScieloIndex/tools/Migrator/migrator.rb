@@ -86,13 +86,12 @@ class Migrator
   end
 
   def process_journal(journal_dir)
-    puts "Migrando la revista: " + @current_journal
-
     # TODO: Obtener el publisher de la revista
     @current_publisher_id = default_publisher()
     @current_journal_id = nil
 
     if File.directory? journal_dir
+      puts "Migrando la revista: " + @current_journal
 
       Dir.foreach(journal_dir) { |issue_dir|
         next if issue_dir =~ /^(\.|_notes|paginasinformativas)\.?$/
@@ -132,7 +131,7 @@ class Migrator
         end
       }
     else
-      @logger.error("El número #{issue_dir} de la revista #{@current_journal}","El numero no contiene archivos marcados.")
+      @logger.error("El número #{File.basename(issue_dir)} de la revista #{@current_journal}","El numero no contiene archivos marcados.")
     end
   end
 
@@ -238,6 +237,7 @@ class Migrator
                                         :front => article.front,
                                         :id => new_article.id,
                                         :file => @current_article,
+                                        :journal_name => @current_journal,
                                         :logger => @logger})
 
       #TODO: Si no hay autores no se crea las referencias asociadas al articulo.

@@ -5,6 +5,7 @@ class AssociatedAuthors
     @article_id = hash[:id]
     @article_file_name = hash[:file]
     @logger = hash[:logger]
+    @journal_name = hash[:journal_name]
     match = /\[authgrp\](.*)\[\/authgrp\]/m.match(@front)
 
     if match
@@ -88,8 +89,9 @@ class AssociatedAuthors
           create_association(new_author.id, count)
           count += 1
         else
-          @logger.errors.each { |key, value|
-            @logger.error("Articulo Foo de la Revista Bar", "#{key}: #{value}")
+          @logger.error_message("Error al crear un autor")
+          new_author.errors.each{ |key, value|
+            @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}")
           }
         end
       end
@@ -111,10 +113,8 @@ class AssociatedAuthors
       @logger.info( "Creando articulo-autor #{article_author.id}")
 
     else
-      @logger.error_message("Error al crear asociación articulo-autor")
-      article_author.errors.each { |key, value|
-        @logger.error("", "Error: #{value}")
-      }
+      @logger.error_message("Error al crear la relacion articulo-autor")
+      @logger.error("Articulo #{@article_file_name}", "Se trato de insertar un mismo autor dos veces.")
     end
   end
 end
