@@ -46,13 +46,14 @@ class MyLogger
     end
 
     @errors.puts "[Source]: #{source}"
-    @errors.puts "[Error]: #{message}"
+    @errors.puts "[Message]: #{message}"
 
     puts "[Source]: #{source}"
-    puts "[Error]: #{message}"
+    puts "[Message]: #{message}"
   end
 
   def error_message(message)
+    puts "[Error]: #{message}"
     @errors.puts "#{message}"
   end
 

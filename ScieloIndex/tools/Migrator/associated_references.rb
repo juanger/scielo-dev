@@ -11,7 +11,7 @@ class AssociatedReferences
     match_vancouv = /\[vancouv.*?\](.*)\[\/vancouv\]/m.match(@back)
     if match_other
       @other = match_other[1].to_s
-      #puts "DEBUG REF #{@cited_by_article_id}: #{@other}"
+      #puts "\nDEBUG REF #{@cited_by_article_id}: #{@other}\n"
     elsif match_vancouv
       @vancouv = match_vancouv[1].to_s
       #puts "DEBUG REF #{@cited_by_article_id}: #{@vancouv}"
@@ -49,6 +49,7 @@ class AssociatedReferences
       if oiserial
         create_other_journal(oiserial)
       end
+
     end
   end
 
@@ -79,7 +80,10 @@ class AssociatedReferences
     end
 
     if !journal_hash.empty?
-      journal = Journal.find(:first, :conditions => journal_hash)
+      journal = Journal.find_by_title(:first, journal_hash[:title])
+      if journal.nil?
+        journal = Journal.find_by_abbrev(:first, journal_hash[:abbrev])
+      end
     else
       journal = nil
     end
@@ -102,6 +106,7 @@ class AssociatedReferences
           journal_title = journal_hash[:abbrev]
           journal_abbrev = journal_hash[:abbrev]
       else
+        #TODO: Crear un journal fantasma para agregar el articulo a el.
         raise ArgumentError
       end
 
@@ -123,11 +128,10 @@ class AssociatedReferences
         @current_journal_id = journal.id
         @logger.info( "Creando journal #{@current_journal_id}")
       else
-        @logger.error( "Error: #{journal.errors[:title].to_s}")
-        @logger.error( "Error: #{journal.errors[:country_id].to_s}")
-        @logger.error( "Error: #{journal.errors[:publisher_id].to_s}")
-        @logger.error( "Error: #{journal.errors[:abbrev].to_s}")
-        @logger.error( "Error: #{journal.errors[:issn].to_s}")
+        @logger.error_message("Error al crear el journal de la referencia")
+        new_author.errors.each{ |key, value|
+          @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}")
+        }
       end
     end
   end

@@ -178,9 +178,9 @@ class Migrator
       @current_journal_id = journal.id
       @logger.info("Creando journal #{@current_journal_id}")
     else
-      @logger.error_message("Error al crear la revista")
+      @logger.error_message("Error al crear la revista (SciELO)")
       journal.errors.each { |key, value|
-        @logger.error("Articulo #{@current_article} de la revista #{journal_dir}", "#{key}: #{value}")
+        @logger.error("Articulo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
       }
     end
   end
@@ -205,9 +205,9 @@ class Migrator
       @current_journal_issue_id = journal_issue.id
       @logger.info( "Creando journal issue #{@current_journal_issue_id}")
     else
-      @logger.error_message("Error al crear el número de la revista")
+      @logger.error_message("Error al crear el número de la revista (SciELO)")
       journal_issue.errors.each { |key, value|
-        @logger.error("Artículo #{@current_article} de la revista #{journal_dir}", "#{key}: #{value}")
+        @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
       }
     end
   end
@@ -254,7 +254,7 @@ class Migrator
         @logger.error( 'El articulo no tiene autores.')
       end
     else
-      @logger.error_message("Error al crear el artículo")
+      @logger.error_message("Error al crear el artículo (SciELO)")
       new_article.errors.each{ |key, value|
         @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
       }
