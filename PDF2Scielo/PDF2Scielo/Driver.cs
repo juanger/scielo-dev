@@ -118,9 +118,10 @@ public class Driver {
 						
 						Console.WriteLine ("Buscando las {0} columnas.", num);
 						rdoc.BreakColumns();
+						Console.WriteLine ("Rompio las {0} columnas here......", rdoc.GetText());
 						rdoc.WriteDocument (Environment.CurrentDirectory, 
 						Path.GetFileNameWithoutExtension (filepath), "column");
-						Console.WriteLine ("Finalizando\n");										
+						Console.WriteLine ("Finalizando\n");
 					} catch (FileNotFoundException) {
 						Console.WriteLine ("Error: El archivo {0} no existe.", filepath);
 						Environment.Exit (1);

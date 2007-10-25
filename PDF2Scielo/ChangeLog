@@ -1,5 +1,10 @@
 2007-10-24   <> 
 
+	* PDF2Scielo/Driver.cs: Cambios minimos para la extraccion de texto a
+	  dos columnas.
+
+2007-10-24   <> 
+
 	* PDF2Text/PDFPoppler.cs: Modificaciones para la extracción de
 	  elementos diferentes a texto.
 

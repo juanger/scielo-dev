@@ -43,9 +43,9 @@ public class RawDocument : Document {
 	
 	public void BreakColumns ()
 	{
-		PDFTextColumn pdfTC = new PDFTextColumn (text);
-		pdfTC.GetTextInColumns();
-		text = pdfTC.TextInColumn; 
+		PDFTextColumn pdftc = new PDFTextColumn (text);
+		pdftc.GetTextInColumns();
+		text = pdftc.TextInColumn;
 	}
 	
 	public NormDocument Normalize (string format)

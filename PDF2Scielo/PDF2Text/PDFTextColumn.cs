@@ -122,7 +122,6 @@ public class PDFTextColumn
 	*/
 	public float GetRepeatPosition (ArrayList values, int index)
 	{
-		//Hashtable pos_frecuency = new Hashtable ();
 		int i = 0;
 		foreach (Hashtable ht in values){
 			if (ht.Count == 1){
@@ -247,14 +246,14 @@ public class PDFTextColumn
 				if (distance >= distance_now){ 
 					distance = distance_now; 
 					position = (int)de.Key;
-				} 
+				}
 			}	
 		}
 		return position;
 	}
 
 	public void GetTextInCol (int indexPage, ArrayList values, float average)
-	{			
+	{
 		string [] rawCollection = (pages[indexPage]).Split (new Char [] {'\n'} ); 
 		int number_raw = 0;
 		Regex regex = new Regex (@"[ ]+(Referencias|References)\n");
@@ -271,8 +270,7 @@ public class PDFTextColumn
 				DivideLineInFirstPage (line, pos, average);
 			else
 				DivideLine (line, pos, average);
-				
-			number_raw ++; 
+			number_raw ++;
 		}
 	}
 
