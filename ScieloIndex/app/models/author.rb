@@ -3,7 +3,7 @@ class Author < ActiveRecord::Base
   validates_length_of :firstname, :lastname, :in => 1..30
   validates_length_of :middlename, :maximum  => 100, :allow_nil => true
   validates_length_of :suffix, :prefix, :degree, :maximum => 10, :allow_nil => true
-  validates_inclusion_of :id, :in => 1..9999, :allow_nil => true
+  validates_inclusion_of :id, :in => 1..99999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
   validates_format_of :firstname, :lastname, :middlename, :prefix, :degree, :with => /^[^\t\r\n\f\d]*$/
   validates_format_of :suffix, :with => /^[-a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.]*$/
