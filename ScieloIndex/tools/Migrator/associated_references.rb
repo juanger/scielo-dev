@@ -48,6 +48,7 @@ class AssociatedReferences
 
       if oiserial
         create_other_journal(oiserial)
+        create_other_journal_issue(oiserial)
       end
 
     end
@@ -126,10 +127,96 @@ class AssociatedReferences
 
       if journal.save
         @current_journal_id = journal.id
+        @current_journal = journal.title
         @logger.info( "Creando journal #{@current_journal_id}")
       else
         @logger.error_message("Error al crear el journal de la referencia")
         new_author.errors.each{ |key, value|
+          @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}")
+        }
+      end
+    end
+  end
+
+  def create_other_journal_issue(serial)
+    journal_issue_hash = {
+      :journal_id => @current_journal_id,
+      :volume => '',
+      :number => '',
+      :year => ''
+    }
+
+    match = /\[date .*?\](.*?)\[\/date\]/.match(serial)
+    if match
+      year = match[1].to_s
+      journal_issue_hash[:year] = year.strip
+    else
+      journal_issue_hash.delete(:year)
+    end
+
+    match = /\[volid\](.*?)\[\/volid\]/.match(serial)
+    if match
+      volume = match[1].to_s
+      journal_issue_hash[:volume] = volume.strip
+    else
+      journal_issue_hash.delete(:volume)
+    end
+
+    match = /\[issueno\](.*?)\[\/issueno\]/.match(serial)
+    if match
+      number = match[1].to_s
+      journal_issue_hash[:number] = number.strip
+    else
+      journal_issue_hash.delete(:number)
+    end
+
+    if !journal_issue_hash.empty?
+      journal_issue = JournalIssue.find(:first, :conditions => journal_issue_hash)
+    else
+      journal_issue = nil
+    end
+
+    if !(journal_issue.nil?)
+      @logger.info( "Se encontro el journal_issue en la DB: #{journal_issue.id}")
+    else
+      @logger.info( "No se encontro el journal en la DB")
+
+      if !journal_issue_hash[:year].nil?
+        journal_issue_year = journal_issue_hash[:year]
+        if !journal_issue_hash[:volume].nil?
+          journal_issue_volume = journal_issue_hash[:volume]
+        else
+          journal_issue_volume = nil
+        end
+
+        if !journal_issue_hash[:number].nil?
+          journal_issue_number = journal_issue_hash[:number]
+        else
+          journal_issue_number = nil
+        end
+      else
+        #TODO: Crear un journal fantasma para agregar el articulo a el.
+        raise ArgumentError
+      end
+
+      journal_issue = JournalIssue.new
+      journal_issue.journal_id = @current_journal_id
+      journal_issue.year = journal_issue_year
+      journal_issue.volume = journal_issue_volume
+      journal_issue.number = journal_issue_number
+
+      @logger.info( "Creando Numero de Revista (Referencia)")
+      @logger.info( "Titulo Revista: #{@current_journal}")
+      @logger.info( "Volumen: #{journal_issue.volume}")
+      @logger.info( "Numero: #{journal_issue.number}")
+      @logger.info( "Año: #{journal_issue.year}")
+
+      if journal_issue.save
+        @current_journal_issue_id = journal_issue.id
+        @logger.info( "Creando journal #{@current_journal_issue_id}")
+      else
+        @logger.error_message("Error al crear el journal issue de la referencia")
+        journal_issue.errors.each{ |key, value|
           @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}")
         }
       end

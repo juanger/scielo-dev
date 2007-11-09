@@ -256,7 +256,11 @@ class Migrator
     else
       @logger.error_message("Error al crear el artículo (SciELO)")
       new_article.errors.each{ |key, value|
-        @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
+        if key == "title"
+          @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "El lenguaje del articulo difiere al lenguaje del titulo.")
+        else
+          @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
+        end
       }
     end
   end
