@@ -146,10 +146,10 @@ class AssociatedReferences
       :year => ''
     }
 
-    match = /\[date .*?\](.*?)\[\/date\]/.match(serial)
+    match = /\[date dateiso="(.*?)"\].*?\[\/date\]/.match(serial)
     if match
       year = match[1].to_s
-      journal_issue_hash[:year] = year.strip
+      journal_issue_hash[:year] = year.strip[0,4]
     else
       journal_issue_hash.delete(:year)
     end
@@ -179,7 +179,7 @@ class AssociatedReferences
     if !(journal_issue.nil?)
       @logger.info( "Se encontro el journal_issue en la DB: #{journal_issue.id}")
     else
-      @logger.info( "No se encontro el journal en la DB")
+      @logger.info( "No se encontro el journal_issue en la DB")
 
       if !journal_issue_hash[:year].nil?
         journal_issue_year = journal_issue_hash[:year]
@@ -213,7 +213,7 @@ class AssociatedReferences
 
       if journal_issue.save
         @current_journal_issue_id = journal_issue.id
-        @logger.info( "Creando journal #{@current_journal_issue_id}")
+        @logger.info( "Creando journal_issue #{@current_journal_issue_id}")
       else
         @logger.error_message("Error al crear el journal issue de la referencia")
         journal_issue.errors.each{ |key, value|
