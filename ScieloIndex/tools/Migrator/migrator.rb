@@ -31,7 +31,7 @@ class Migrator
   end
 
   def process_scielo
-    @logger.info("Default country ID: #{@default_country_id}")
+    @logger.info("Pais Por Defecto: #{@default_country}")
 
     if File.directory? @serial_root
       Dir.foreach(@serial_root) { |dir|
@@ -59,7 +59,8 @@ class Migrator
       when 'SERIAL_ROOT'
                 @serial_root = array[1].strip
       when 'COUNTRY'
-                @default_country_id = get_country_id(array[1].strip)
+                @default_country = array[1].strip
+                @default_country_id = get_country_id(@default_country)
       else
                 @logger.warning("Archivo de configuración ilegal.")
     end
@@ -80,7 +81,7 @@ class Migrator
       publisher.save
     end
 
-    @logger.info("Default publisher ID: #{publisher.id}")
+    @logger.info("Editorial Por Defecto: Unassigned")
 
     publisher.id
   end
@@ -92,6 +93,7 @@ class Migrator
 
     if File.directory? journal_dir
       puts "Migrando la revista: " + @current_journal
+      @logger.info("Migrando la revista: #{@current_journal}")
 
       Dir.foreach(journal_dir) { |issue_dir|
         next if issue_dir =~ /^(\.|_notes|paginasinformativas)\.?$/
@@ -138,10 +140,10 @@ class Migrator
   def process_article(marked_file)
     begin
       article = SgmlArticle.new(marked_file, @logger)
-      @logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
-      @logger.info("Volumen: #{article.volume}, Numero: #{article.number}")
-      @logger.info("Año: #{article.year}, Revista ISSN: #{article.journal_issn}")
-      @logger.info("Primera pagina: #{article.fpage}, Ultima pagina: #{article.lpage}")
+      #@logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
+      #@logger.info("Volumen: #{article.volume}, Numero: #{article.number}")
+      #@logger.info("Año: #{article.year}, Revista ISSN: #{article.journal_issn}")
+      #@logger.info("Primera pagina: #{article.fpage}, Ultima pagina: #{article.lpage}")
 
       if !@current_journal_id
         create_journal(article)
@@ -169,18 +171,18 @@ class Migrator
     journal.incomplete = true
 
     @logger.info("Titulo de la Revista: #{journal.title}")
-    @logger.info("ID del pais: #{journal.country_id}")
-    @logger.info("ID del publicador: #{journal.publisher_id}")
+    @logger.info("ID del pais: #{journal.country.name}")
+    @logger.info("ID del publicador: #{journal.publisher.name}")
     @logger.info("Abreviacion: #{journal.abbrev}")
     @logger.info("ISSN: #{journal.issn}")
 
     if journal.save
       @current_journal_id = journal.id
-      @logger.info("Creando journal #{@current_journal_id}")
+      @logger.info("Creando Revista ID: #{@current_journal_id}")
     else
       @logger.error_message("Error al crear la revista (SciELO)")
       journal.errors.each { |key, value|
-        @logger.error("Articulo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
+        @logger.error("Revista #{@current_journal}", "#{key}: #{value}")
       }
     end
   end
@@ -194,7 +196,6 @@ class Migrator
     journal_issue.number_supplement = article.number_supplement
     journal_issue.year = article.year
 
-    @logger.info("Revista: #{journal_issue.journal_id}")
     @logger.info("Numero: #{journal_issue.number}")
     @logger.info("Volumen: #{journal_issue.volume}")
     @logger.info("Volumen Suplemento: #{journal_issue.volume_supplement}")
@@ -203,7 +204,7 @@ class Migrator
 
     if journal_issue.save
       @current_journal_issue_id = journal_issue.id
-      @logger.info( "Creando journal issue #{@current_journal_issue_id}")
+      @logger.info( "Creando Numero de Revista ID: #{@current_journal_issue_id}")
     else
       @logger.error_message("Error al crear el número de la revista (SciELO)")
       journal_issue.errors.each { |key, value|
