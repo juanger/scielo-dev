@@ -233,7 +233,7 @@ class Migrator
     @logger.info("Pagina inicial: #{new_article.fpage}, Pagina final: #{new_article.lpage}")
 
     if new_article.save
-      @logger.info( "Creando articulo: #{new_article.id}")
+      @logger.info( "Creando Articulo ID: #{new_article.id}")
       authors = AssociatedAuthors.new({
                                         :front => article.front,
                                         :id => new_article.id,
