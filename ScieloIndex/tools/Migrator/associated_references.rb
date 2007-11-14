@@ -81,9 +81,9 @@ class AssociatedReferences
     end
 
     if !journal_hash.empty?
-      journal = Journal.find_by_title(:first, journal_hash[:title])
+      journal = Journal.find_by_title(journal_hash[:title], :first)
       if journal.nil?
-        journal = Journal.find_by_abbrev(:first, journal_hash[:abbrev])
+        journal = Journal.find_by_abbrev(journal_hash[:abbrev], :first)
       end
     else
       journal = nil
@@ -93,6 +93,8 @@ class AssociatedReferences
     @logger.debug("REF Journal Abbrev: #{journal_hash[:abbrev]}")
     if !(journal.nil?)
       @logger.info( "Se encontro el journal en la DB: #{journal.id}")
+      @current_journal_id = journal.id
+      @current_journal = journal.title
     else
       @logger.info( "No se encontro el journal en la DB")
 
