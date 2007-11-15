@@ -6,6 +6,9 @@ class AssociatedReferences
     @country_id = hash[:country_id]
     @publisher_id = hash[:publisher_id]
     @logger = hash[:logger]
+    @article_file_name = hash[:article_file_name]
+    @journal_name = hash[:journal_name]
+    @stats = hash[:stats]
 
     match_other = /\[other.*?\](.*)\[\/other\]/m.match(@back)
     match_vancouv = /\[vancouv.*?\](.*)\[\/vancouv\]/m.match(@back)
@@ -37,7 +40,7 @@ class AssociatedReferences
     count = 1
     for reference in references
       oiserial = nil
-      ocontrib = ""
+      ocontrib = nil
       omonog = ""
 
       match = /\[oiserial\](.*)\[\/oiserial\]/.match(reference)
@@ -49,6 +52,16 @@ class AssociatedReferences
       if oiserial
         create_other_journal(oiserial)
         create_other_journal_issue(oiserial)
+      end
+
+      # BUG algunos archivos con dos ocontrib
+      match = /\[ocontrib\](.*?)\[\/ocontrib\]/.match(reference)
+      if match && oiserial
+        ocontrib = match[1].to_s
+        @logger.debug("REF OCONTRIB: \n#{ocontrib}")
+        if ocontrib
+          create_other_article(ocontrib)
+        end
       end
 
     end
@@ -131,6 +144,7 @@ class AssociatedReferences
         @current_journal_id = journal.id
         @current_journal = journal.title
         @logger.info( "Creando journal #{@current_journal_id}")
+        @stats.add :journal_ref
       else
         @logger.error_message("Error al crear el journal de la referencia")
         new_author.errors.each{ |key, value|
@@ -175,11 +189,13 @@ class AssociatedReferences
     if !journal_issue_hash.empty?
       journal_issue = JournalIssue.find(:first, :conditions => journal_issue_hash)
     else
+      #BUG: entra aqui?? journal_issue_hash nunca es empty por el journal_id
       journal_issue = nil
     end
 
     if !(journal_issue.nil?)
       @logger.info( "Se encontro el journal_issue en la DB: #{journal_issue.id}")
+      @current_journal_issue_id = journal_issue.id
     else
       @logger.info( "No se encontro el journal_issue en la DB")
 
@@ -216,6 +232,7 @@ class AssociatedReferences
       if journal_issue.save
         @current_journal_issue_id = journal_issue.id
         @logger.info( "Creando journal_issue #{@current_journal_issue_id}")
+        @stats.add :issue_ref
       else
         @logger.error_message("Error al crear el journal issue de la referencia")
         journal_issue.errors.each{ |key, value|
@@ -224,5 +241,52 @@ class AssociatedReferences
       end
     end
   end
-end
 
+  def create_other_article(contrib)
+    article_hash = {
+      :title => '',
+      :language_id => '',
+      :journal_issue_id => @current_journal_issue_id
+    }
+
+    match = /\[title language=(.+)\](.+)\[\/title\]/.match(contrib)
+    if match
+      article_hash[:title] = match[2].to_s
+      language = Language.find_by_code(match[1].to_s)
+      puts match[1].to_s if !language
+
+      article_hash[:language_id] = language.id
+
+      article = Article.find(:first, :conditions => article_hash)
+
+      if article
+        @logger.info( "Se encontro el article en la DB: #{article.id}")
+      else
+        @logger.info( "No se encontro el article en la DB")
+
+        article = Article.new article_hash
+        @logger.info( "Creando Articulo (Referencia)")
+        @logger.info( "Titulo: #{article.title}")
+        @logger.info( "Lenguaje: #{article.language.name}")
+        @logger.info( "Journal: #{@current_journal}")
+
+        if article.save
+          @current_article_id = article.id
+          @logger.info( "Creando articulo #{@current_article_id}")
+          @stats.add :article_ref
+        else
+          @logger.error_message("Error al crear el articulo de la referencia")
+          article.errors.each{ |key, value|
+            @logger.error("Artículo Original #{@article_file_name} de la revista #{@journal_name}\n Articulo ref #{article_hash[:title]}", "#{key}: #{value}")
+          }
+        end
+      end
+
+    else
+      @logger.error("El articulo de la referencia no tiene titulo")
+      article_hash.clear
+      article = nil
+    end
+  end
+
+end

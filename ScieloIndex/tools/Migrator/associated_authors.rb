@@ -6,6 +6,7 @@ class AssociatedAuthors
     @article_file_name = hash[:file]
     @logger = hash[:logger]
     @journal_name = hash[:journal_name]
+    @stats = hash[:stats]
     match = /\[authgrp\](.*)\[\/authgrp\]/m.match(@front)
 
     if match
@@ -85,6 +86,7 @@ class AssociatedAuthors
 
         if new_author.save
           @logger.info( "Creando autor #{new_author.id}")
+          @stats.add :author
 
           create_association(new_author.id, count)
           count += 1

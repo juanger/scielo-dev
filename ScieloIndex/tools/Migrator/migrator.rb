@@ -6,6 +6,7 @@ require File.dirname(__FILE__) + '/../../config/environment'
 require 'sgmlarticle'
 require 'associated_authors'
 require 'associated_references'
+require 'statistic'
 require 'jcode'
 require 'iconv'
 require 'mylogger'
@@ -21,7 +22,7 @@ class Migrator
           obtain_value line}
       }
      @logger = MyLogger.new(@level)
-
+     @stats = Statistic.new
     else
       @logger = MyLogger.new("none")
       @logger.error("Configuración", "Por favor crear un archivo de configuracion con nombre config.")
@@ -42,6 +43,7 @@ class Migrator
         process_journal(full_dir)
       }
       @logger.close
+      @stats.close
     else
       @logger.error("Directorio Raiz", "No existe el directorio raiz #{@serial_root}")
       @logger.close
@@ -179,6 +181,7 @@ class Migrator
     if journal.save
       @current_journal_id = journal.id
       @logger.info("Creando Revista ID: #{@current_journal_id}")
+      @stats.add :journal
     else
       @logger.error_message("Error al crear la revista (SciELO)")
       journal.errors.each { |key, value|
@@ -205,6 +208,7 @@ class Migrator
     if journal_issue.save
       @current_journal_issue_id = journal_issue.id
       @logger.info( "Creando Numero de Revista ID: #{@current_journal_issue_id}")
+      @stats.add :issue
     else
       @logger.error_message("Error al crear el número de la revista (SciELO)")
       journal_issue.errors.each { |key, value|
@@ -234,12 +238,15 @@ class Migrator
 
     if new_article.save
       @logger.info( "Creando Articulo ID: #{new_article.id}")
+      @stats.add :article
       authors = AssociatedAuthors.new({
                                         :front => article.front,
                                         :id => new_article.id,
                                         :file => @current_article,
                                         :journal_name => @current_journal,
-                                        :logger => @logger})
+                                        :logger => @logger,
+                                        :stats => @stats
+                                      })
 
       #TODO: Si no hay autores no se crea las referencias asociadas al articulo.
       references = AssociatedReferences.new({
@@ -247,7 +254,11 @@ class Migrator
                                               :cited_by_article_id => new_article.id,
                                               :country_id => @default_country_id,
                                               :publisher_id => @current_publisher_id,
-                                              :logger => @logger})
+                                              :logger => @logger,
+                                              :article_file_name => @current_article,
+                                              :journal_name => @current_journal,
+                                              :stats => @stats
+                                            })
       begin
         authors.insert_authors()
         references.insert_references()
