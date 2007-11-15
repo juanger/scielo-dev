@@ -83,11 +83,9 @@ public class MarkupHTML {
 	
 	private string HeadDocument ()
 	{
-		string head = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"> \n";
-                       head += "<html>\n";
+		string head = "<html>\n";
 		       head += "<head>\n";
-		       head += "<title>Art&iacute;culo N</title>\n";
-                       head += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n";
+		       head += "<title> </title>\n";
                        head += "</head>\n";
                        head += "<body>";
                 return head;

@@ -49,5 +49,14 @@ public class TestStringEncoding{
 		StringEncoding converter = new StringEncoding ("");
 		Assert.IsNotNull (converter, "CO2 C3");
 	}
+	
+	[Test]
+	public void Prueba ()
+	{
+		string data = "a°a";
+		StringEncoding converter = new StringEncoding (data);
+		converter.ReplaceCodesTable (StringEncoding.CharactersDefault);
+		Console.WriteLine ("::"+converter.GetStringUnicode ()+"::");
+	}
 }
 }

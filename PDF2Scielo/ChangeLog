@@ -1,3 +1,9 @@
+2007-11-14   <> 
+
+	* Markup/MarkupHTML.cs: Cambios en el encabezado del documento final de
+	  HTML.
+	* Utils/StringEncoding.cs: Cambios mínimos en pruebas de unidad.
+
 2007-10-24   <> 
 
 	* PDF2Scielo/Driver.cs: Cambios minimos para la extraccion de texto a
