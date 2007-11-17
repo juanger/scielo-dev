@@ -262,6 +262,7 @@ class AssociatedReferences
 
       if article
         @logger.info( "Se encontro el article en la DB: #{article.id}")
+        @current_article_id = article.id
       else
         @logger.info( "No se encontro el article en la DB")
 
@@ -291,10 +292,12 @@ class AssociatedReferences
   end
 
   def create_other_author(contrib)
-    article_hash = {
+    author_hash = {
       :firstname => '',
       :lastname => '',
     }
+
+    count = 1
 
     contrib.scan(/\[oauthor role=.+?\](?:\[surname\](.+?)\[\/surname\]|\[fname\](.+?)\[\/fname\]|\[ign\](?:.*?)\[\/ign\])+?\[\/oauthor\]/) { |last, first|
       #puts "Lastname: #{last.capitalize} Firstname: #{first}"
@@ -310,6 +313,54 @@ class AssociatedReferences
 #         puts "OAUTHOR: #{$~}"
 #         @stats.add :auth_wof
 #       end
+      if last && first
+        author_hash[:firstname] = first
+        author_hash[:lastname] = last
+        author = Author.find :first, :conditions => author_hash
+        if author
+          @logger.info "Se encontro el autor en la DB (referencia)"
+          create_association(author.id, count)
+          count += 1
+        else
+          @logger.info "No se encontro el autor en la DB (referencia)"
+          author = Author.new author_hash
+          @logger.info( "Autor Nombre de Pila: #{author.firstname}")
+          @logger.info( "Autor Apellidos: #{author.lastname}")
+          if  author.save
+            @logger.info "Creando autor #{author.id} (Referencia)"
+            @stats.add :author_ref
+            create_association(author.id,  count)
+            count += 1
+          else
+            @logger.error_message("Error al crear el autor de la referencia")
+            author.errors.each{ |key, value|
+              @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value} (#{author[key]})")
+            }
+          end
+        end
+      end
     }
+  end
+
+  def create_association (author_id, order)
+    article_author = ArticleAuthor.new
+    article_author.article_id = @current_article_id
+    article_author.author_id = author_id
+    article_author.author_order = order
+
+    @logger.info( "Creando asociacion articulo-autor (Referencia)")
+    @logger.info( "ID Articulo: #{article_author.article_id}")
+    @logger.info( "ID Autor: #{article_author.author_id}")
+    @logger.info( "Orden: #{article_author.author_order}")
+
+    if article_author.save
+      @logger.info( "Creando articulo-autor #{article_author.id} (Referencia)")
+    else
+      @logger.error_message("Error al crear la relacion articulo-autor (Referencia)")
+      @logger.error("Articulo #{@article_file_name}", "Se trato de insertar un mismo autor dos veces.")
+      article_author.errors.each do |key, value|
+        @logger.error "Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}"
+      end
+    end
   end
 end

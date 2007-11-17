@@ -10,8 +10,7 @@ class Statistic
       :journal_ref => 0,
       :issue_ref => 0,
       :article_ref => 0,
-      :auth_wol => 0,
-      :auth_wof => 0
+      :author_ref => 0
     }
   end
 
@@ -28,8 +27,7 @@ class Statistic
             ["Revistas de Referencia", :journal_ref],
             ["Issues de Referencia", :issue_ref],
             ["Articulos de Referencia", :article_ref],
-            ["Autores de Referencia sin Apellidos:", :auth_wol],
-            ["Autores de Referencia sin Nombre:", :auth_wof],
+            ["Autores de Referencia", :author_ref]
            ]
 
     msgs.each do |msg|
