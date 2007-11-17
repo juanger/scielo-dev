@@ -61,6 +61,7 @@ class AssociatedReferences
         @logger.debug("REF OCONTRIB: \n#{ocontrib}")
         if ocontrib
           create_other_article(ocontrib)
+          create_other_author(ocontrib)
         end
       end
 
@@ -289,4 +290,26 @@ class AssociatedReferences
     end
   end
 
+  def create_other_author(contrib)
+    article_hash = {
+      :firstname => '',
+      :lastname => '',
+    }
+
+    contrib.scan(/\[oauthor role=.+?\](?:\[surname\](.+?)\[\/surname\]|\[fname\](.+?)\[\/fname\]|\[ign\](?:.*?)\[\/ign\])+?\[\/oauthor\]/) { |last, first|
+      #puts "Lastname: #{last.capitalize} Firstname: #{first}"
+#       if !last
+#         puts "Autor sin surname"
+#         puts "OAUTHOR: #{$~}"
+#         puts "OCONTRIB: #{contrib}"
+#         @stats.add :auth_wol
+#       end
+
+#       if !first
+#         puts "Autor sin firstname"
+#         puts "OAUTHOR: #{$~}"
+#         @stats.add :auth_wof
+#       end
+    }
+  end
 end
