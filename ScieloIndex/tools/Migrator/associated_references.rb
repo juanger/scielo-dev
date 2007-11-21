@@ -37,12 +37,11 @@ class AssociatedReferences
     @logger.info( "Ingresando referencias de tipo other.")
     references = @other.scan(/\[ocitat\](.*?)\[\/ocitat\]/).flatten
 
-    count = 1
+    @cite_count = 0
     for reference in references
       oiserial = nil
       ocontrib = nil
       omonog = ""
-
       match = /\[oiserial\](.*)\[\/oiserial\]/.match(reference)
       if match
         oiserial = match[1].to_s
@@ -60,8 +59,8 @@ class AssociatedReferences
         ocontrib = match[1].to_s
         @logger.debug("REF OCONTRIB: \n#{ocontrib}")
         if ocontrib
+          @cite_count += 1
           create_other_article(ocontrib)
-          create_other_author(ocontrib)
         end
       end
 
@@ -261,8 +260,9 @@ class AssociatedReferences
       article = Article.find(:first, :conditions => article_hash)
 
       if article
-        @logger.info( "Se encontro el article en la DB: #{article.id}")
+        @logger.info( "Se encontro el article en la DB: #{article.id}" )
         @current_article_id = article.id
+        create_cite
       else
         @logger.info( "No se encontro el article en la DB")
 
@@ -276,6 +276,8 @@ class AssociatedReferences
           @current_article_id = article.id
           @logger.info( "Creando articulo #{@current_article_id}")
           @stats.add :article_ref
+          create_other_author(contrib)
+          create_cite
         else
           @logger.error_message("Error al crear el articulo de la referencia")
           article.errors.each{ |key, value|
@@ -354,13 +356,32 @@ class AssociatedReferences
     @logger.info( "Orden: #{article_author.author_order}")
 
     if article_author.save
-      @logger.info( "Creando articulo-autor #{article_author.id} (Referencia)")
+      @logger.info( "Creando articulo-autor #{article_author.id} (Referencia)" )
     else
       @logger.error_message("Error al crear la relacion articulo-autor (Referencia)")
-      @logger.error("Articulo #{@article_file_name}", "Se trato de insertar un mismo autor dos veces.")
+      # @logger.error("Articulo #{@article_file_name}", "Se trato de insertar un mismo autor dos veces.")
       article_author.errors.each do |key, value|
         @logger.error "Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}"
       end
+    end
+  end
+
+  def create_cite
+    cite_hash = {
+      :article_id => @current_article_id,
+      :cited_by_article_id => @cited_by_article_id,
+      :cite_order => @cite_count
+    }
+
+    cite = Cite.new cite_hash
+    if cite.save
+      @logger.info "Creando cita #{cite.id}"
+      @stats.add :cite
+    else
+      @logger.error_message("Error al crear la cita")
+      cite.errors.each{ |key, value|
+        @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value} (#{cite[key]})")
+      }
     end
   end
 end

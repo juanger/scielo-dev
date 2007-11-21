@@ -10,7 +10,8 @@ class Statistic
       :journal_ref => 0,
       :issue_ref => 0,
       :article_ref => 0,
-      :author_ref => 0
+      :author_ref => 0,
+      :cite => 0
     }
   end
 
@@ -27,7 +28,8 @@ class Statistic
             ["Revistas de Referencia", :journal_ref],
             ["Issues de Referencia", :issue_ref],
             ["Articulos de Referencia", :article_ref],
-            ["Autores de Referencia", :author_ref]
+            ["Autores de Referencia", :author_ref],
+            ["Citas", :cite]
            ]
 
     msgs.each do |msg|

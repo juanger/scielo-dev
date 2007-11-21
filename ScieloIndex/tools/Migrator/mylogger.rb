@@ -42,6 +42,7 @@ class MyLogger
 
   def error(source, message)
     if @level < 3
+      log("Source", source)
       log("Error", message)
     end
 
@@ -53,8 +54,12 @@ class MyLogger
   end
 
   def error_message(message)
+    if @level < 3
+      log("Error", message)
+    end
+
     puts "[Error]: #{message}"
-    @errors.puts "#{message}"
+    @errors.puts "[Error]: #{message}"
   end
 
   def close
