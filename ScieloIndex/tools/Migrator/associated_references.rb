@@ -105,7 +105,7 @@ class AssociatedReferences
     @logger.debug("REF Journal Title: #{journal_hash[:title]}")
     @logger.debug("REF Journal Abbrev: #{journal_hash[:abbrev]}")
     if !(journal.nil?)
-      @logger.info( "Se encontro el journal en la DB: #{journal.id}")
+      @logger.info( "Se encontro el journal en la DB (Referencia): #{journal.id}")
       @current_journal_id = journal.id
       @current_journal = journal.title
     else
@@ -194,7 +194,7 @@ class AssociatedReferences
     end
 
     if !(journal_issue.nil?)
-      @logger.info( "Se encontro el journal_issue en la DB: #{journal_issue.id}")
+      @logger.info( "Se encontro el journal_issue en la DB (Referencia): #{journal_issue.id}")
       @current_journal_issue_id = journal_issue.id
     else
       @logger.info( "No se encontro el journal_issue en la DB")
@@ -260,7 +260,7 @@ class AssociatedReferences
       article = Article.find(:first, :conditions => article_hash)
 
       if article
-        @logger.info( "Se encontro el article en la DB: #{article.id}" )
+        @logger.info( "Se encontro el article en la DB (Referencia): #{article.id}" )
         @current_article_id = article.id
         create_cite
       else
@@ -320,7 +320,7 @@ class AssociatedReferences
         author_hash[:lastname] = last
         author = Author.find :first, :conditions => author_hash
         if author
-          @logger.info "Se encontro el autor en la DB (referencia)"
+          @logger.info "Se encontro el autor en la DB (Referencia): #{author.id}"
           create_association(author.id, count)
           count += 1
         else
@@ -345,23 +345,36 @@ class AssociatedReferences
   end
 
   def create_association (author_id, order)
-    article_author = ArticleAuthor.new
-    article_author.article_id = @current_article_id
-    article_author.author_id = author_id
-    article_author.author_order = order
+    article_author_hash = {
+      :article_id => @current_article_id,
+      :author_id => author_id,
+      :author_order => order
+    }
 
-    @logger.info( "Creando asociacion articulo-autor (Referencia)")
-    @logger.info( "ID Articulo: #{article_author.article_id}")
-    @logger.info( "ID Autor: #{article_author.author_id}")
-    @logger.info( "Orden: #{article_author.author_order}")
-
-    if article_author.save
-      @logger.info( "Creando articulo-autor #{article_author.id} (Referencia)" )
+    article_author = ArticleAuthor.find :first, :conditions => article_author_hash
+    if article_author
+      @logger.info( "Se encontro la asociacion articulo-autor en la DB (Referencia): #{article_author.id}")
     else
-      @logger.error_message("Error al crear la relacion articulo-autor (Referencia)")
-      # @logger.error("Articulo #{@article_file_name}", "Se trato de insertar un mismo autor dos veces.")
-      article_author.errors.each do |key, value|
-        @logger.error "Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}"
+      @logger.info( "No se encontro el article en la DB")
+
+      article_author = ArticleAuthor.new
+      article_author.article_id = @current_article_id
+      article_author.author_id = author_id
+      article_author.author_order = order
+
+      @logger.info( "Creando asociacion articulo-autor (Referencia)")
+      @logger.info( "ID Articulo: #{article_author.article_id}")
+      @logger.info( "ID Autor: #{article_author.author_id}")
+      @logger.info( "Orden: #{article_author.author_order}")
+
+      if article_author.save
+        @logger.info( "Creando articulo-autor #{article_author.id} (Referencia)" )
+      else
+        @logger.error_message("Error al crear la relacion articulo-autor (Referencia)")
+        # @logger.error("Articulo #{@article_file_name}", "Se trato de insertar un mismo autor dos veces.")
+        article_author.errors.each do |key, value|
+          @logger.error "Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}"
+        end
       end
     end
   end
