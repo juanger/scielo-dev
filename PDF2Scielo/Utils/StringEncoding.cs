@@ -22,7 +22,7 @@ namespace Utils {
 public class StringEncoding {
 	
 	private Encoding encoder;
-	private ArrayList data_byte;
+	public ArrayList data_byte;
         private static ArrayList characters_default = StringEncoding.CodesList();  
  
 	public StringEncoding (string data)
@@ -55,13 +55,13 @@ public class StringEncoding {
            	char [] data = new char[ unicode.GetCharCount (unicodeBytes, 0, unicodeBytes.Length) ];     
            	unicode.GetChars( unicodeBytes, 0, unicodeBytes.Length, data, 0 );
            	String utfString = new String( data );
-           	return utfString;	
+           	return utfString;
      	} 
      	
      	public void ReplaceCodesTable (ArrayList table){
 	       	for (int i = 0; i < table.Count; i++){
 	       	        CodesTable codT = (CodesTable) table[i];
-			ReplaceBytes( codT.Code, codT.Sustitute );  				
+			ReplaceBytes( codT.Code, codT.Sustitute );
 	       	}
 	}
 	

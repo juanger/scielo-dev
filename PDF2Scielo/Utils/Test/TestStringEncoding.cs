@@ -55,6 +55,12 @@ public class TestStringEncoding{
 	{
 		string data = "a°a";
 		StringEncoding converter = new StringEncoding (data);
+		Console.WriteLine("El codigo::");
+		Console.WriteLine("tamaño!::"+converter.data_byte.Count);
+		for (int i=0; i < converter.data_byte.Count; i++){
+			Console.WriteLine("::"+converter.data_byte[i]);
+		}
+		Console.WriteLine("::aca termina");
 		converter.ReplaceCodesTable (StringEncoding.CharactersDefault);
 		Console.WriteLine ("::"+converter.GetStringUnicode ()+"::");
 	}
