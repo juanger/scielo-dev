@@ -193,7 +193,7 @@ CREATE TABLE articles (
         created_on timestamp DEFAULT CURRENT_TIMESTAMP,
         updated_on timestamp DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (id),
-        UNIQUE(title, journal_issue_id)
+        UNIQUE(title, subtitle, journal_issue_id)
 );
 
 CREATE TABLE alternate_titles (

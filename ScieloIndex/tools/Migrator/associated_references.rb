@@ -245,22 +245,29 @@ class AssociatedReferences
   def create_other_article(contrib)
     article_hash = {
       :title => '',
+      :subtitle => '',
       :language_id => '',
       :journal_issue_id => @current_journal_issue_id
     }
 
-    match = /\[title language=(.+)\](.+)\[\/title\]/.match(contrib)
+    match = /\[title language=(.+)\](.+)\[\/title\](?:\[subtitle\](.+)\[\/subtitle\])?/.match(contrib)
     if match
       article_hash[:title] = match[2].to_s
       language = Language.find_by_code(match[1].to_s)
-      puts match[1].to_s if !language
+      #puts match[1].to_s if !language
 
       article_hash[:language_id] = language.id
+
+      if match[3]
+        article_hash[:subtitle] = match[3].to_s
+      else
+        article_hash.delete :subtitle
+      end
 
       article = Article.find(:first, :conditions => article_hash)
 
       if article
-        @logger.info( "Se encontro el article en la DB (Referencia): #{article.id}" )
+        @logger.info( "Se encontro el articulo en la DB (Referencia): #{article.id}" )
         @current_article_id = article.id
         create_cite
       else

@@ -9,7 +9,7 @@ class Article < ActiveRecord::Base
   validates_numericality_of :journal_issue_id, :only_integer => true
   validates_inclusion_of :id, :in => 1..99999, :allow_nil => true
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
-  validates_uniqueness_of :journal_issue_id, :scope => :title
+  validates_uniqueness_of :journal_issue_id, :scope => [:title, :subtitle]
 
   belongs_to :journal_issue
   belongs_to :language

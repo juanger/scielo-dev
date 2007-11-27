@@ -17,8 +17,10 @@ class SgmlArticle
     end
 
     @front = /\[front\].*\[\/front\]/m.match(@document).to_s
+    @front.gsub!(/\[ign\].*?\[\/ign\]/m, '')
     @body = /\[body\].*\[\/body\]/m.match(@document).to_s
     @back = /\[back\].*\[\/back\]/m.match(@document).to_s
+    @back.gsub!(/\[ign\].*?\[\/ign\]/m, '')
 
     @language = get_language()
     @titles = get_titles()
