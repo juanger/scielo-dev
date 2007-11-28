@@ -308,7 +308,7 @@ class AssociatedReferences
 
     count = 1
 
-    contrib.scan(/\[oauthor role=.+?\](?:\[surname\](.+?)\[\/surname\]|\[fname\](.+?)\[\/fname\]|\[ign\](?:.*?)\[\/ign\])+?\[\/oauthor\]/) { |last, first|
+    contrib.scan(/\[oauthor role=.+?\](?:\[surname\](.+?)\[\/surname\]|\[fname\](.+?)\[\/fname\])+?\[\/oauthor\]/) { |last, first|
       #puts "Lastname: #{last.capitalize} Firstname: #{first}"
 #       if !last
 #         puts "Autor sin surname"
