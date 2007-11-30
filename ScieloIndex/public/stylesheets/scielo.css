@@ -1,0 +1,48 @@
+body {
+  font-size: 75%;
+  color: #686868;
+  font-weight: bold;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: #666666 0.2em 0.2em; }
+
+.bordered {
+  margin: 3px;
+  border: thin solid #e0e0e0;
+  min-height: 650px; }
+
+.left_bar {
+  background: url('../images/left_bar.png') repeat top left;
+  color: #e3e3e3; }
+
+.left_bar table {
+  color: #e3e3e3;
+  margin: 40% auto; }
+
+.left_bar th {
+  font-weight: bold;
+  text-align: right; }
+
+.left_bar th:after {
+  content: "\2022";
+  padding-left: 0.5em; }
+
+.left_bar td {
+  font-style: italic;
+  text-align: left;
+  padding: 0; }
+
+.head_bar {
+  float: right;
+  margin-right: 2%;
+}
+
+.logo {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-bottom: 0px;
+  width: 200px;
+}
+
+.footer table{
+  margin-left: auto;
+  margin-right: auto;}
