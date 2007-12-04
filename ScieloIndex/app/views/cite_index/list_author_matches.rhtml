@@ -1,14 +1,15 @@
-<h1>Listing authors</h1>
 
-<table>
-  <tr>
-    <th>Results</th>
-  </tr>
-<%= render :partial => 'author', :collection => @collection %>
-</table>
-<br />
-<%= render :partial =>'paginator', :object => @þages %>
-<hr/>
-<div id="buttonsNavigator">
-<%= link_to 'New Search', {:action => 'index'}, :class => 'cssbutton' %>
+<div class="column span-16 prepend-2 last results">
+  <h1>Resultados</h1>
+  <table>
+    <%= render :partial => 'author', :collection => @collection %>
+  </table>
+</div>
+<br/>
+<div class="pages">
+  <%= render :partial =>'paginator', :object => @þages %>
+  <hr/>
+  <div id="buttonsNavigator">
+    <%= link_to 'New Search', {:action => 'index'}, :class => 'cssbutton' %>
+  </div>
 </div>

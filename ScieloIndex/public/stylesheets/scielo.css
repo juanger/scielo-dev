@@ -1,9 +1,12 @@
 body {
-  font-size: 75%;
-  color: #686868;
+  font-size: 100%;
+  color: #404040;
   font-weight: bold;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: sans-serif;
   text-shadow: #666666 0.2em 0.2em; }
+
+a {
+  color: #800000;}
 
 .bordered {
   margin: 3px;
@@ -33,16 +36,25 @@ body {
 
 .head_bar {
   float: right;
-  margin-right: 2%;
-}
+  margin-right: 2%; }
 
 .logo {
   margin-top: 2%;
   margin-left: 5%;
   margin-bottom: 0px;
-  width: 200px;
-}
+  width: 200px; }
 
 .footer table{
   margin-left: auto;
-  margin-right: auto;}
+  margin-right: auto; }
+
+.results table{
+  font-size: 85%;
+  border-spacing: 20px 8px;
+  margin: 30px 0px;}
+
+.pages {
+  text-align: right;}
+
+.pages .links {
+  font-size: 75%;}
