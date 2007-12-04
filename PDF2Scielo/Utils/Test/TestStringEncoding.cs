@@ -63,6 +63,7 @@ public class TestStringEncoding{
 		Console.WriteLine("::aca termina");
 		converter.ReplaceCodesTable (StringEncoding.CharactersDefault);
 		Console.WriteLine ("::"+converter.GetStringUnicode ()+"::");
+		StringEncoding.CodesCharacters();
 	}
 }
 }

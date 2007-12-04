@@ -1,3 +1,8 @@
+2007-12-03   <> 
+
+	* Utils/StringEncoding.cs: Cambios minimos para la sustitucion de
+	  caracteres.
+
 2007-11-26   <> 
 
 	* Utils/StringEncoding.cs: Cambios minimos para la sustitucion de

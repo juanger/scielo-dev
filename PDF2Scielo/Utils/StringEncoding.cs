@@ -41,7 +41,7 @@ public class StringEncoding {
 	{
 	       	ArrayList bytes = new ArrayList (encoder.GetBytes(data));
 	        return bytes;
-    	}    	
+    	}
     	
      	public String GetStringUnicode ()
       	{
@@ -121,11 +121,45 @@ public class StringEncoding {
 	{
         	for (int i = 0; i < substitute.Length; i++){
         		data_byte.Insert (position, substitute[i]);
-        		position++;    
+        		position++;
         	}
      	}
     	
-    	private static ArrayList CodesList ()
+	public static ArrayList CodesCharacters ()
+	{
+		ArrayList table = new ArrayList();
+		table.Add("°");
+		table.Add("•");
+		table.Add("«");
+		table.Add("»");
+		table.Add("±");
+		table.Add("™");
+		table.Add("®");
+		table.Add("©");
+		table.Add("ª");
+		table.Add("ä");
+		table.Add("â");
+		table.Add("à");
+		table.Add("å");
+		table.Add("ô");
+		table.Add("ã");
+		table.Add("è");
+		table.Add("ê");
+		table.Add("ç");
+		table.Add("î");
+		table.Add("ì");
+		table.Add("a");
+		table.Add("ß");
+		table.Add("µ");
+		for (int i = 0; i < table.Count; i++){
+	       	        Console.WriteLine("element::"+table[i]);
+	       	}
+		
+		
+		return table;
+	}
+
+	private static ArrayList CodesList ()
 	{
 		ArrayList table = new ArrayList();
                 //(&aacute;)                           
