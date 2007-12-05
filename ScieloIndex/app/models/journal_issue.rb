@@ -26,6 +26,7 @@ class JournalIssue < ActiveRecord::Base
     elsif self.number != nil
       info << "(#{self.number})"
     end
+    print "Journal Issue as vancouver #{info}"
     info
   end
 end

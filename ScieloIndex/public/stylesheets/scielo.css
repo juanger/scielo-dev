@@ -8,10 +8,18 @@ body {
 a {
   color: #800000;}
 
+.container {
+  overflow: hidden;
+  min-height: 650px; }
+
 .bordered {
   margin: 3px;
-  border: thin solid #e0e0e0;
-  min-height: 650px; }
+  border: thin solid #e0e0e0;}
+
+.left_bar, .right_bar {
+  padding-bottom: 32767px !important;
+  margin-bottom: -32767px !important; 
+}
 
 .left_bar {
   background: url('../images/left_bar.png') repeat top left;
@@ -58,3 +66,6 @@ a {
 
 .pages .links {
   font-size: 75%;}
+
+.auto_complete {
+  font-size: 70%;}

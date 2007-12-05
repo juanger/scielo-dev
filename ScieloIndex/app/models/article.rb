@@ -56,6 +56,6 @@ class Article < ActiveRecord::Base
   end
 
   def journal_as_vancouver
-    self.journal_issue.journal.as_vancouver + ' ' + self.journal_issue.as_vancouver + ':' + self.fpage + '-' + self.lpage + '.'
+    self.journal_issue.journal.as_vancouver + ' ' + self.journal_issue.as_vancouver + ':' + self.fpage.to_s + '-' + self.lpage.to_s + '.'
   end
 end
