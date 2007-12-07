@@ -7,37 +7,32 @@ body
   color: #505050;
   background-color: #ffffff;}
 
-/*.b { border: solid 1px #FF0000 } */
+/*.b { border: solid 1px #FF0000 }*/
 
 /*---- LAYOUT ----*/
 
 #container
 {
+  background: url("../images/left_bar.png") repeat-y top left;
   width: 950px;
   margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #ffffff;
-  height: 630px;}
+  min-height: 630px;}
 
 #left-bar
 {
   float: left;
-  background-image: url("../images/left_bar.png");
-  height: inherit;
-  min-height: inherit;
   width: 190px;
-  padding-top: 1em;
-  border: solid 1px #e3e3e3;}
+  padding-top: 1em;}
 
 #right-bar
 {
-  font-size: 80%;
-  height: inherit;
-  min-height: inherit;
+  font-size: 90%;
   padding-top: 1em;
   margin: 0 0 0 200px;
-  border: solid 1px #e3e3e3;}
+  border: solid 1px #e3e3e3;
+  min-height: inherit;}
 
 #header
 {
@@ -45,14 +40,14 @@ body
 
 #content
 {
-  padding: 15px 0 0 40px;}
+  padding: 7px 15px 15px 40px;}
 
 
 #footer
 {
   clear: both;
   background-color: #FFF;
-  padding: 0px;
+  padding: 5px 0 0 0;
   text-align: center;}
 
 /* ---- Logos in header ----*/
@@ -65,7 +60,7 @@ body
 {
   display: block;
   margin-left: auto;
-  margin-right: 5px;}
+  margin-right: 10px;}
 
 /*---- Logos in footer ----*/
 
@@ -80,9 +75,10 @@ body
 
 #left-bar table#links
 {
-  margin: auto auto;
+  margin: 50% auto 0 auto;
   color: #ffffff;
-  text-align: right;}
+  text-align: right;
+  border-spacing: 0 40px;}
 
 #left-bar th:after
 {
@@ -90,31 +86,37 @@ body
 
 /*Autocomplete*/
 
-div.auto_complete
+.auto_complete
 {
-  font-size: 70%;
-  width: 350px;
-  background: #fff;}
+  font-size: 70%;}
 
-div.auto_complete ul
-{
-  border:1px solid #888;
-  margin:0;
-  padding:0;
-  width:100%;
-  list-style-type:none;}
+/* Results */
 
-div.auto_complete ul li
+table.results
 {
-  margin:0;
-  padding:3px;}
+  border-spacing: 60px 10px;
+  empty-cells: show;}
 
-div.auto_complete ul li.selected
+div.pages
 {
-  background-color: #ffb;}
+  text-align: right;
+  margin: 10px 0 0 0;}
 
-div.auto_complete ul strong.highlight
+/* Resultados */
+
+#content table.listing
 {
-  color: #800;
-  margin:0;
-  padding:0;}
+  margin: 0 10px 0 10px;
+  border-spacing: 0px 2px}
+
+#content table.listing td
+{
+  background-color: #eeeeee;
+  border: solid 1px #eeeeee;}
+
+#content table.listing td#links
+{
+  font-size: 80%;
+  background-color: #ffffff;
+  border: solid 0px;
+  text-align: right;}

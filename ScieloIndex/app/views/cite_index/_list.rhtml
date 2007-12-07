@@ -1,13 +1,12 @@
-<table>
-  <tr>
-    <th>Articles</th>
-  </tr>
-
-<%= render :partial => 'article', :collection => @collection %>
+<table class="listing">
+  <%= render :partial => 'article', :collection => @collection %>
 </table>
 <br />
-<%= render :partial =>'paginator', :object => @þages %>
-<hr/>
-<div id="buttonsNavigator">
-<%= link_to 'New Search', {:action => 'index'}, :class => 'cssbutton' %>
+<div class="pages">
+  <%= render :partial =>'paginator', :object => @þages %>
+  <hr/>
+  <div id="buttonsNavigator">
+    <%= link_to 'New Search', {:action => 'index'}, :class => 'cssbutton' %>
+  </div>
 </div>
+
