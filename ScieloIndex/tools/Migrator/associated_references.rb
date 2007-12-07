@@ -331,6 +331,9 @@ class AssociatedReferences
           create_association(author.id, count)
           count += 1
         else
+          if !author_hash[:middlename]
+              author_hash[:middlename] = ''
+          end
           @logger.info "No se encontro el autor en la DB (referencia)"
           author = Author.new author_hash
           @logger.info( "Autor Nombre de Pila: #{author.firstname}")

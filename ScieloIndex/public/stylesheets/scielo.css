@@ -73,6 +73,11 @@ body
 
 /*Links in left bar*/
 
+#left-bar a
+{
+  color: #ffffff;
+  text-decoration: none;}
+
 #left-bar table#links
 {
   margin: 50% auto 0 auto;
