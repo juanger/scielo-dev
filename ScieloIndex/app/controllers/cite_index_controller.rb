@@ -98,4 +98,8 @@ class CiteIndexController < ApplicationController
     :conditions => "article_id = #{params[:id]}",
     :per_page => 10
   end
+  
+  def top_ten
+    
+  end
 end

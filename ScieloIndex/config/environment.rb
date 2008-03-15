@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.2.5.7919' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.0.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -44,7 +44,7 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 
   # Session
-  config.action_controller.session = { :session_key => "_myapp_session", :secret => "Foo Bar" }
+  config.action_controller.session = { :session_key => "_myapp_session", :secret => "8534b73c040856bfc186640be279be05" }
 end
 
 # Add new inflection rules using the following format 
