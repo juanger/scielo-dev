@@ -1,0 +1,23 @@
+<% form_tag :action => 'find_advanced' do %>
+
+<% if @form_advanced_fields.member? 'article' %>
+	<p><label for="article_title">Article</label><br/>
+	<%= text_field_with_auto_complete :article, :title , {:size => 60} %></p>
+<% end %>
+<% if @form_advanced_fields.member? 'keyword' %>
+	<p><label for="keyword_name">Keyword</label><br/>
+	<%= text_field_with_auto_complete :keyword, :name %></p>
+<% end %>
+<% if @form_advanced_fields.member? 'author' %>
+	<p><label for="author_firstname">Firstname</label><br/>
+	<%= text_field_with_auto_complete :author, :firstname %></p>
+
+	<p><label for="author_middlename">Middlename</label><br/>
+	<%= text_field_with_auto_complete :author, :middlename %></p>
+
+	<p><label for="author_lastname">Lastname</label><br/>
+	<%= text_field_with_auto_complete :author, :lastname %></p>
+<% end %>
+
+<%= submit_tag "Search" %>
+<% end %>
