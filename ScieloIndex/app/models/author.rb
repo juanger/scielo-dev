@@ -38,7 +38,7 @@ class Author < ActiveRecord::Base
     citesperart = self.articles.collect { |article| article.cites_number }
     citesperart.inject() { |sum,element| sum + element}
   end
-  
+
   def Author.top_ten
     authors = Author.find(:all).collect { |author| 
       [author.as_human, author.total_cites]

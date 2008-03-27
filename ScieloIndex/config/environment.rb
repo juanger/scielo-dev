@@ -44,6 +44,7 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 
   # Session
+
   config.action_controller.session = { :session_key => "_myapp_session", :secret => "8534b73c040856bfc186640be279be05" }
 end
 

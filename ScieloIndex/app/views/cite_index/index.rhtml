@@ -11,6 +11,10 @@
 <% form_remote_tag :url => { :action => :show_form, :form => 'keyword'} do %>
   <%= submit_tag "Search by Keyword" %>
 <% end %>
+
+<% form_remote_tag :url => { :action => :show_form, :form => 'advanced'} do %>
+  <%= submit_tag "Advanced Search" %>
+<% end %>
 </table>
 <% hidden_div_if((@form.nil? or @form != 'author'), :id => "author") do %>
 <%= render(:partial => "author_form") %>
@@ -22,5 +26,9 @@
 
 <% hidden_div_if((@form.nil? or @form != 'keyword'), :id => "keyword") do %>
 <%= render(:partial => "keyword_form") %>
+<% end %>
+
+<% hidden_div_if((@form.nil? or @form != 'advanced'), :id => "advanced") do %>
+<%= render(:partial => "advanced_form") %>
 <% end %>
 </div>
