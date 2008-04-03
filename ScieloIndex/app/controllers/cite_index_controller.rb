@@ -73,7 +73,7 @@ class CiteIndexController < ApplicationController
       cond_hash[:middlename] = '%' + @author[:middlename].to_s + '%'
     end
     unless @author[:lastname].blank?
-      cond_string << (middle ? "": "AND ") + "authors.lastname ILIKE :lastname "
+      cond_string << ((middle && first) ? "": "AND ") + "authors.lastname ILIKE :lastname "
       cond_hash[:lastname] = '%' + @author[:lastname].to_s + '%'
     end
          
@@ -103,13 +103,9 @@ class CiteIndexController < ApplicationController
       cond_hash[:middlename] = '%' + @author[:middlename].to_s + '%'
     end
     unless @author[:lastname].blank?
-      cond_string << (middle ? "": "AND ") + "authors.lastname ILIKE :lastname "
+      cond_string << ((middle && first) ? "": "AND ") + "authors.lastname ILIKE :lastname "
       cond_hash[:lastname] = '%' + @author[:lastname].to_s + '%'
     end
-         
-    # @pages, @collection = paginate Inflector.pluralize(Author.to_s).to_sym,
-    # :conditions => [cond_string, cond_hash],
-    # :per_page => 10
     
     @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
     :select => 'articles.*',
