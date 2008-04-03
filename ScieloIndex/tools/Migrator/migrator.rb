@@ -6,6 +6,7 @@ require File.dirname(__FILE__) + '/../../config/environment'
 require 'sgmlarticle'
 require 'associated_authors'
 require 'associated_references'
+require 'most_cited'
 require 'statistic'
 require 'jcode'
 require 'iconv'
@@ -278,5 +279,13 @@ class Migrator
   end
 end
 
+## Migración de Datos Scielo
+
 migrator = Migrator.new()
 migrator.process_scielo()
+
+## Calculo del Top Ten estático
+
+most_cited = MostCitedList.new()
+most_cited.write_file()
+
