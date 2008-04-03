@@ -60,8 +60,25 @@ class CiteIndexController < ApplicationController
 
   def list_author_matches
     @author =  session[:search_data]
+    
+    cond_string = ""
+    cond_hash = {}
+    
+    unless first = @author[:firstname].blank?
+      cond_string << "authors.firstname ILIKE :firstname "
+      cond_hash[:firstname] = '%' + @author[:firstname].to_s + '%'
+    end
+    unless middle = @author[:middlename].blank?
+      cond_string << (first ? "": "AND ") + "authors.middlename ILIKE :middlename "
+      cond_hash[:middlename] = '%' + @author[:middlename].to_s + '%'
+    end
+    unless @author[:lastname].blank?
+      cond_string << (middle ? "": "AND ") + "authors.lastname ILIKE :lastname "
+      cond_hash[:lastname] = '%' + @author[:lastname].to_s + '%'
+    end
+         
     @pages, @collection = paginate Inflector.pluralize(Author.to_s).to_sym,
-    :conditions => ["authors.middlename ILIKE :middlename AND authors.lastname ILIKE :lastname AND authors.firstname ILIKE :firstname", {:middlename => '%' + @author[:middlename].to_s + '%', :lastname => '%' + @author[:lastname].to_s + '%', :firstname => '%' + @author[:firstname].to_s + '%' }],
+    :conditions => [cond_string, cond_hash],
     :per_page => 10
 
     if @collection.empty?
