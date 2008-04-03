@@ -281,8 +281,8 @@ end
 
 ## Migración de Datos Scielo
 
-migrator = Migrator.new()
-migrator.process_scielo()
+#migrator = Migrator.new()
+#migrator.process_scielo()
 
 ## Calculo del Top Ten estático
 

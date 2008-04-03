@@ -90,12 +90,32 @@ class CiteIndexController < ApplicationController
   def search_by_author
     @author = session[:search_data][:object]
     @cites = session[:search_data][:cites]
+    
+    cond_string = ""
+    cond_hash = {}
+    
+    unless first = @author[:firstname].blank?
+      cond_string << "authors.firstname ILIKE :firstname "
+      cond_hash[:firstname] = '%' + @author[:firstname].to_s + '%'
+    end
+    unless middle = @author[:middlename].blank?
+      cond_string << (first ? "": "AND ") + "authors.middlename ILIKE :middlename "
+      cond_hash[:middlename] = '%' + @author[:middlename].to_s + '%'
+    end
+    unless @author[:lastname].blank?
+      cond_string << (middle ? "": "AND ") + "authors.lastname ILIKE :lastname "
+      cond_hash[:lastname] = '%' + @author[:lastname].to_s + '%'
+    end
+         
+    # @pages, @collection = paginate Inflector.pluralize(Author.to_s).to_sym,
+    # :conditions => [cond_string, cond_hash],
+    # :per_page => 10
+    
     @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
     :select => 'articles.*',
     :joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
     " authors.id = article_authors.author_id",
-    :conditions => ["authors.middlename = :middlename AND authors.lastname = :lastname AND authors.firstname = :firstname",
-                    {:middlename => @author.middlename, :lastname => @author.lastname, :firstname => @author.firstname }],
+    :conditions => [cond_string, cond_hash],
     :per_page => 10
   end
 
