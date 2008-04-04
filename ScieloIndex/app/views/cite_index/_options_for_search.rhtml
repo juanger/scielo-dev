@@ -1,6 +1,4 @@
-<div id="mainCite_Index">
-  <h3>Search: </h3>
-   <div class='rounded_div'>
+<div class='rounded_div'>
 	<% form_remote_tag :url => {:action => 'configure_search_form'} do %>
 		<p> 
 			Author: <%= check_box_tag 'author' %>
@@ -12,7 +10,4 @@
 		
 		
 	<% end %> 
-</div><br/>
-		
-		<div id='construct_form'>	</div>
 </div>

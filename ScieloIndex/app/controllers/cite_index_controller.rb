@@ -7,6 +7,7 @@ class CiteIndexController < ApplicationController
 
   def index
     session[:search_data] = nil
+    session[:form_fields_in] = Array.new
     if session[:form]
       @form = session[:form]
     end
@@ -157,23 +158,22 @@ class CiteIndexController < ApplicationController
     @busqueda = Array.new
     if @article
     	@busqueda.concat Article.find(:all, 
-    			:conditions => ["articles.title ILIKE :title", { :title => '%' + @article[:title] + '%' }])
+    			:conditions => ["articles.title ILIKE :title", { :title => @article[:title]  }])
     end
     if @author
     	@busqueda.concat Article.find(:all, :select => 'articles.*',
     	:joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
     	" authors.id = article_authors.author_id",
     	:conditions => ["authors.middlename ILIKE :middlename AND authors.lastname ILIKE :lastname AND
-    	 authors.firstname ILIKE :firstname", {:middlename => '%' + @author[:middlename].to_s + '%', :lastname => '%' +
-    	  @author[:lastname].to_s + '%', :firstname => '%' + @author[:firstname].to_s + '%' }])
+    	 authors.firstname ILIKE :firstname", {:middlename => @author[:middlename].to_s , :lastname => 
+    	  @author[:lastname].to_s , :firstname => @author[:firstname].to_s}])
     end
     if @keyword
     	@busqueda.concat Article.find(:all, :select => 'articles.*',
     :joins => "JOIN article_keywords ON articles.id = article_keywords.article_id JOIN keywords ON" +
     " keywords.id = article_keywords.keyword_id",
-    :conditions => ["keywords.name ILIKE :name", {:name => '%' + @keyword[:name] + '%'}])
+    :conditions => ["keywords.name ILIKE :name", {:name => @keyword[:name] }])
     end
-   # debugger
     @pages, @collection = paginate_collection @busqueda
     
     if @collection.empty?
@@ -182,4 +182,19 @@ class CiteIndexController < ApplicationController
     end
   end
 
+
+  def configure_search_form
+    @form_fields = selected_fields params
+  end
+  
+  def selected_fields hash
+    selected = Array.new
+    hash.keys.each do |key|
+      if hash[key] == "1"
+        selected << key
+      end
+    end
+    selected
+  end
+  
 end

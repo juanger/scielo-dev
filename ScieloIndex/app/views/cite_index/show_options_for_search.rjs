@@ -1,0 +1,1 @@
+page.replace_html "options_for_search_div" , :partial => "options_for_search"

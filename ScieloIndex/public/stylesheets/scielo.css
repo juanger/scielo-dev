@@ -101,9 +101,7 @@ body
   color: #ffffff;
   text-align: left;
   border-spacing: 0 0px;
-	font-size: 70%;
-	margin-left: auto;
-	margin-right: auto;}
+	font-size: 70%;}
 
 /*Autocomplete*/
 
@@ -141,3 +139,25 @@ div.pages
   background-color: #ffffff;
   border: solid 0px;
   text-align: right;}
+  
+.link_div
+{
+margin-right: 3%;
+}
+
+.link_div a
+{
+padding-left: 10px;
+display: block;
+width: 100%;
+height: 100%;
+color: black;
+text-decoration:none; 
+font-weight: bold;
+font-size:13px;
+}
+
+.link_div a:hover
+{
+background-color: #F9F7ED;
+}

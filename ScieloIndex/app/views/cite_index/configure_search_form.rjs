@@ -1,0 +1,37 @@
+if session[:form_fields_in].member? 'basic' and @form_fields.blank?
+  page.visual_effect :fade, 'construct_form'
+  session[:form_fields_in] = Array.new
+else
+  unless session[:form_fields_in].member? 'basic'
+    session[:form_fields_in] << 'basic'
+    page.replace_html 'construct_form', :partial => 'basic_form' 
+    page.visual_effect :appear, 'construct_form'
+  end
+
+  if session[:form_fields_in].member? 'author' and not @form_fields.member? 'author'
+    page.visual_effect :fade, 'author_form_div'
+    session[:form_fields_in].delete 'author'
+  elsif not session[:form_fields_in].member? 'author' and @form_fields.member? 'author'
+    page.insert_html :top, 'container_form', :partial => 'form_container', :locals => {:selector => 'author'} 
+    page.visual_effect :blind_down, 'author_form_div'
+    session[:form_fields_in] << 'author'
+  end
+
+  if session[:form_fields_in].member? 'article' and not @form_fields.member? 'article'
+    page.visual_effect :fade, 'article_form_div'
+    session[:form_fields_in].delete 'article'
+  elsif not session[:form_fields_in].member? 'article' and @form_fields.member? 'article'
+    page.insert_html :top, 'container_form', :partial => 'form_container', :locals => {:selector => 'article'} 
+    page.visual_effect :blind_down, 'article_form_div'
+    session[:form_fields_in] << 'article'
+  end
+
+  if session[:form_fields_in].member? 'keyword' and not @form_fields.member? 'keyword'
+    page.visual_effect :fade, 'keyword_form_div'
+    session[:form_fields_in].delete 'keyword'
+  elsif not session[:form_fields_in].member? 'keyword' and @form_fields.member? 'keyword'
+    page.insert_html :top, 'container_form', :partial => 'form_container', :locals => {:selector => 'keyword'} 
+    page.visual_effect :blind_down, 'keyword_form_div'
+    session[:form_fields_in] << 'keyword'
+  end
+end
