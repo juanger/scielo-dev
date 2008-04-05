@@ -46,17 +46,24 @@ class CiteIndexController < ApplicationController
   
   def find_advanced
     content_for_session = Hash.new
-    unless params[:article].nil?
-    	content_for_session[:article] = params[:article]
-    end
-    unless params[:keyword].nil?
-      content_for_session[:keyword] = params[:keyword] 
-    end
-    unless params[:author].nil?
+    unless params[:author].blank?
     	content_for_session[:author] = params[:author]
+    	author_only = true
+    end
+    unless params[:article].blank?
+    	content_for_session[:article] = params[:article]
+    	author_only = false
+    end
+    unless params[:keyword].blank?
+      content_for_session[:keyword] = params[:keyword] 
+      author_only = false
     end
     session[:search_data] = content_for_session
-    redirect_to :action => 'search_by_advanced'
+    if author_only
+      redirect_to :action => 'list_author_matches'
+    else
+      redirect_to :action => 'search_by_advanced'
+    end
   end
 
   def list_author_matches
@@ -152,29 +159,59 @@ class CiteIndexController < ApplicationController
   end
   
   def search_by_advanced
-    @article = unless session[:search_data][:article].nil? then session[:search_data][:article] end
-    @author = unless session[:search_data][:author].nil? then session[:search_data][:author] end 
-    @keyword = unless session[:search_data][:keyword].nil? then session[:search_data][:keyword] end
+    @article = unless session[:search_data][:article].blank? then session[:search_data][:article] end
+    @author = unless session[:search_data][:author].blank? then session[:search_data][:author] end 
+    @keyword = unless session[:search_data][:keyword].blank? then session[:search_data][:keyword] end
     @busqueda = Array.new
-    if @article
-    	@busqueda.concat Article.find(:all, 
-    			:conditions => ["articles.title ILIKE :title", { :title => @article[:title]  }])
-    end
+    
+    cond_string = ""
+    cond_hash = {}
+    joins = ""
+    
     if @author
-    	@busqueda.concat Article.find(:all, :select => 'articles.*',
-    	:joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
-    	" authors.id = article_authors.author_id",
-    	:conditions => ["authors.middlename ILIKE :middlename AND authors.lastname ILIKE :lastname AND
-    	 authors.firstname ILIKE :firstname", {:middlename => @author[:middlename].to_s , :lastname => 
-    	  @author[:lastname].to_s , :firstname => @author[:firstname].to_s}])
+      unless first = @author[:firstname].blank?
+        cond_string << "authors.firstname ILIKE :firstname "
+        cond_hash[:firstname] = '%' + @author[:firstname].to_s + '%'
+      end
+      unless middle = @author[:middlename].blank?
+        cond_string << (first ? "": " AND ") + "authors.middlename ILIKE :middlename "
+        cond_hash[:middlename] = '%' + @author[:middlename].to_s + '%'
+      end
+      unless @author[:lastname].blank?
+        cond_string << ((middle && first) ? "": " AND ") + "authors.lastname ILIKE :lastname "
+        cond_hash[:lastname] = '%' + @author[:lastname].to_s + '%'
+      end
+
+      joins << " JOIN article_authors ON articles.id = article_authors.article_id " +
+                "JOIN authors ON authors.id = article_authors.author_id "
+
+      # @busqueda.concat Article.find(:all, :select => 'articles.*',
+      #       :joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
+      #       " authors.id = article_authors.author_id",
+      #       :conditions => [cond_string, cond_hash])
     end
+    
+    if @article
+      cond_string << (@author ? " AND " : "") + "articles.title ILIKE :title"
+      cond_hash[:title] = "%" + @article[:title] + "%"
+    end
+    
     if @keyword
-    	@busqueda.concat Article.find(:all, :select => 'articles.*',
-    :joins => "JOIN article_keywords ON articles.id = article_keywords.article_id JOIN keywords ON" +
-    " keywords.id = article_keywords.keyword_id",
-    :conditions => ["keywords.name ILIKE :name", {:name => @keyword[:name] }])
+      cond_string << (!(@author && @article) ? "" : " AND ") + "keywords.name ILIKE :name"
+      cond_hash[:name] = "%" + @keyword[:name] + "%"
+      
+      joins << "JOIN article_keywords ON articles.id = article_keywords.article_id " +
+                "JOIN keywords ON keywords.id = article_keywords.keyword_id"
+      # @busqueda.concat Article.find(:all, :select => 'articles.*',
+      #         :joins => "JOIN article_keywords ON articles.id = article_keywords.article_id JOIN keywords ON" +
+      #           " keywords.id = article_keywords.keyword_id",
+      #         :conditions => ["keywords.name ILIKE :name", {:name => @keyword[:name] }])
     end
-    @pages, @collection = paginate_collection @busqueda
+    
+    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
+      :joins => joins,
+      :conditions => [cond_string, cond_hash],
+      :per_page => 10
     
     if @collection.empty?
       flash[:notice] = "No matches found, please try another search"

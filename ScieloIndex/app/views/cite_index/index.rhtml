@@ -3,10 +3,10 @@
    <div class='rounded_div'>
 	<% form_remote_tag :url => {:action => 'configure_search_form'} do %>
 		<p> 
-			Author: <%= check_box_tag 'author' %>
-			Article: <%= check_box_tag 'article' %>
-			Keyword: <%= check_box_tag 'keyword' %>
-	  </p>
+			<%= check_box_tag 'author' %> <label for="author">Author</label>
+			<%= check_box_tag 'article' %> <label for="article">Article</label>
+			<%= check_box_tag 'keyword' %> <label for="keyword">Keyword</label>
+	    </p>
 	  
 			<%= submit_tag "Prepare Search Form" %>
 		

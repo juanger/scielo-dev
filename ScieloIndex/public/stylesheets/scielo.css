@@ -101,7 +101,10 @@ body
   color: #ffffff;
   text-align: left;
   border-spacing: 0 0px;
-	font-size: 70%;}
+
+  font-size: 70%;
+  margin-left: auto;
+  margin-right: auto;}
 
 /*Autocomplete*/
 
