@@ -67,7 +67,7 @@ class CiteIndexController < ApplicationController
   end
 
   def list_author_matches
-    @author =  session[:search_data]
+    @author =  session[:search_data][:author]
     
     cond_string = ""
     cond_hash = {}
@@ -184,11 +184,6 @@ class CiteIndexController < ApplicationController
 
       joins << " JOIN article_authors ON articles.id = article_authors.article_id " +
                 "JOIN authors ON authors.id = article_authors.author_id "
-
-      # @busqueda.concat Article.find(:all, :select => 'articles.*',
-      #       :joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
-      #       " authors.id = article_authors.author_id",
-      #       :conditions => [cond_string, cond_hash])
     end
     
     if @article
@@ -202,10 +197,6 @@ class CiteIndexController < ApplicationController
       
       joins << "JOIN article_keywords ON articles.id = article_keywords.article_id " +
                 "JOIN keywords ON keywords.id = article_keywords.keyword_id"
-      # @busqueda.concat Article.find(:all, :select => 'articles.*',
-      #         :joins => "JOIN article_keywords ON articles.id = article_keywords.article_id JOIN keywords ON" +
-      #           " keywords.id = article_keywords.keyword_id",
-      #         :conditions => ["keywords.name ILIKE :name", {:name => @keyword[:name] }])
     end
     
     @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
