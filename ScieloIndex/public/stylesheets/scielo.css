@@ -164,3 +164,19 @@ font-size:13px;
 {
 background-color: #F9F7ED;
 }
+
+.session_status
+{
+font-size: 11px;
+position: relative;
+float: right;
+padding-right:11px;
+}
+
+.example_message
+{
+font-size: 12px;
+background-color: #F7DCDC;
+border: 1px solid #D6BEC3;
+padding: 3px;
+}

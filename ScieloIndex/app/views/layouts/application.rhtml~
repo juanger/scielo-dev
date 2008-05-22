@@ -29,7 +29,7 @@
         <% if session[:logged_in_user].nil? %>
            You are not logged in, login <%= link_to "here", login_url %>
         <% else %>
-           Hello, <b><%= session[:logged_in_user].login %></b>. Logout <%= link_to "here", logout_url %>
+           Hello, <b><%= session[:logged_in_user].login %>. Logout <%= link_to "here", logout_url %></b>
         <% end %>
         </p>
      </div>

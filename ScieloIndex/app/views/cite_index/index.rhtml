@@ -1,17 +1,17 @@
 <div id="mainCite_Index">
   <h3>Search: </h3>
    <div class='rounded_div'>
-	<% form_remote_tag :url => {:action => 'configure_search_form'} do %>
-		<p> 
+	<% form_tag('javascript:void(0)', :id => 'search_construction') do %>
+    <p> 
 			<%= check_box_tag 'author' %> <label for="author">Author</label>
 			<%= check_box_tag 'article' %> <label for="article">Article</label>
 			<%= check_box_tag 'keyword' %> <label for="keyword">Keyword</label>
-	    </p>
-	  
-			<%= submit_tag "Prepare Search Form" %>
-		
-		
+	  </p>
+  <% end %>
+  <% if session[:logged_in_user].nil? %>
+		<p class="example_message">You will continue to seeing this message, unless you are logged in.</p>
 	<% end %> 
+	<%= observe_form :search_construction, :url => {:action => :configure_search_form } %>
 </div><br/>
 		
 		<div id='construct_form'>	</div>
