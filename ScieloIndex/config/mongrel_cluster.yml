@@ -1,7 +1,7 @@
 --- 
-log_file: log/mongrel.log
+log_file: ScieloIndex/log/mongrel.log
 port: "9000"
 environment: development
 address: 127.0.0.1
-pid_file: tmp/pids/mongrel.pid
+pid_file: ScieloIndex/tmp/pids/mongrel.pid
 servers: 3
