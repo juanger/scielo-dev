@@ -84,10 +84,10 @@ class CiteIndexController < ApplicationController
       cond_string << ((middle && first) ? "": "AND ") + "authors.lastname ILIKE :lastname "
       cond_hash[:lastname] = '%' + @author[:lastname].to_s + '%'
     end
-         
-    @pages, @collection = paginate Inflector.pluralize(Author.to_s).to_sym,
-    :conditions => [cond_string, cond_hash],
-    :per_page => 10
+
+    @collection = Author.paginate :conditions => [cond_string, cond_hash],
+                                  :per_page => 10,
+                                  :page => params[:page]
 
     if @collection.empty?
       flash[:notice] = "No matches found, please try another search"
@@ -115,19 +115,19 @@ class CiteIndexController < ApplicationController
       cond_hash[:lastname] = '%' + @author[:lastname].to_s + '%'
     end
     
-    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
-    :select => 'articles.*',
-    :joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
-    " authors.id = article_authors.author_id",
-    :conditions => [cond_string, cond_hash],
-    :per_page => 10
+    @collection = Article.paginate :select => 'articles.*',
+                                   :joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
+                                          " authors.id = article_authors.author_id",
+                                   :conditions => [cond_string, cond_hash],
+                                   :per_page => 10,
+                                   :page => params[:page]
   end
 
   def search_by_article
     @article = session[:search_data]
-    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
-    :conditions => ["articles.title ILIKE :title", { :title => '%' + @article[:title] + '%' }],
-    :per_page => 10
+    @collection = Article.paginate :conditions => ["articles.title ILIKE :title", { :title => '%' + @article[:title] + '%' }],
+                                   :per_page => 10,
+                                   :page => params[:page]
 
     if @collection.empty?
       flash[:notice] = "No matches found, please try another search"
@@ -137,12 +137,12 @@ class CiteIndexController < ApplicationController
 
   def search_by_keyword
     @keyword = session[:search_data]
-    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
-    :select => 'articles.*',
-    :joins => "JOIN article_keywords ON articles.id = article_keywords.article_id JOIN keywords ON" +
-    " keywords.id = article_keywords.keyword_id",
-    :conditions => ["keywords.name ILIKE :name", {:name => '%' + @keyword[:name] + '%'}],
-    :per_page => 10
+    @collection = Article.paginate :select => 'articles.*',
+                                   :joins => "JOIN article_keywords ON articles.id = article_keywords.article_id JOIN keywords ON" +
+                                          " keywords.id = article_keywords.keyword_id",
+                                   :conditions => ["keywords.name ILIKE :name", {:name => '%' + @keyword[:name] + '%'}],
+                                   :per_page => 10,
+                                   :page => params[:page]
 
     if @collection.empty?
       flash[:notice] = "No matches found, please try another search"
@@ -151,11 +151,11 @@ class CiteIndexController < ApplicationController
   end
 
   def search_cites
-    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
-    :select => 'articles.*',
-    :joins => "JOIN cites ON articles.id = cites.cited_by_article_id",
-    :conditions => "article_id = #{params[:id]}",
-    :per_page => 10
+    @collection = Article.paginate :select => 'articles.*',
+                                   :joins => "JOIN cites ON articles.id = cites.cited_by_article_id",
+                                   :conditions => "article_id = #{params[:id]}",
+                                   :per_page => 10,
+                                   :page => params[:page]
   end
   
   def search_by_advanced
@@ -199,10 +199,10 @@ class CiteIndexController < ApplicationController
                 "JOIN keywords ON keywords.id = article_keywords.keyword_id"
     end
     
-    @pages, @collection = paginate Inflector.pluralize(Article.to_s).to_sym,
-      :joins => joins,
-      :conditions => [cond_string, cond_hash],
-      :per_page => 10
+    @collection = Article.paginate :joins => joins,
+                                   :conditions => [cond_string, cond_hash],
+                                   :per_page => 10,
+                                   :page => params[:page]
     
     if @collection.empty?
       flash[:notice] = "No matches found, please try another search"

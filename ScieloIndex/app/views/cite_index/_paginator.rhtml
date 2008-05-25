@@ -1,3 +1,1 @@
-<%= link_to 'Previous page', { :page => @pages.current.previous } if @pages.current.previous %>
-<%= pagination_links(@pages, :window_size => 10, :always_show_anchors => false) %>
-<%= link_to 'Next page', { :page => @pages.current.next } if @pages.current.next %>
+<%= will_paginate @collection %>

@@ -1,45 +1,25 @@
 class MyLogger
 
   def initialize(level)
-
    @levels = {
-    "debug" => 0,
-    "warning" => 1,
-    "info" => 2,
-    "none" => 3
+    :debug => 0,
+    :warning => 1,
+    :info => 2,
+    :none => 3
    }
-
     @level = @levels[level]
     if @level < 3
-      @log = File.new(".migrator-log", "w")
+      @log = File.new("migrator-log", "w")
     end
-    @errors = File.new(".migrator-errors", "w")
+    @errors = File.new("migrator-errors", "w")
   end
 
-  def log(type, message)
+  def log(type, message, indent = "")
     if @log
-      @log.puts "[#{type}]: #{message}"
+      @log.puts "#{indent}[#{type}]: #{message}"
     end
   end
-
-  def debug(message)
-    if @level == 0
-      log("Debug", message)
-    end
-  end
-
-  def warning(message)
-    if @level <= 1
-      log("Warning", message)
-    end
-  end
-
-  def info(message)
-    if @level <= 2
-      log("Info", message)
-    end
-  end
-
+  
   def error(source, message)
     if @level < 3
       log("Source", source)
@@ -60,6 +40,18 @@ class MyLogger
 
     puts "[Error]: #{message}"
     @errors.puts "[Error]: #{message}"
+  end
+
+  ## Metaprogramed methods for levels
+  [:debug, :warning, :info].each do |level|
+    code = "def #{level}(message, indent = \"\")
+              if @level <= @levels[:#{level}]
+                log(:#{level},
+                    message,
+                    indent)
+              end
+            end"  
+    class_eval(code)
   end
 
   def close

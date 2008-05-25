@@ -25,7 +25,7 @@ class Migrator
      @logger = MyLogger.new(@level)
      @stats = Statistic.new
     else
-      @logger = MyLogger.new("none")
+      @logger = MyLogger.new(:none)
       @logger.error("Configuración", "Por favor crear un archivo de configuracion con nombre config.")
       @logger.close
       Process.exit!(1)
@@ -58,7 +58,7 @@ class Migrator
     array = line.split(':')
     case array[0]
       when 'LOGGER'
-                @level = array[1].strip
+                @level = array[1].strip.to_sym
       when 'SERIAL_ROOT'
                 @serial_root = array[1].strip
       when 'COUNTRY'
