@@ -1,7 +1,8 @@
 --- 
-log_file: ScieloIndex/log/mongrel.log
+cwd: /usr/local/www/index.scielo.unam.mx/current
+log_file: log/mongrel.log
 port: "9000"
 environment: development
 address: 127.0.0.1
-pid_file: ScieloIndex/tmp/pids/mongrel.pid
+pid_file: tmp/pids/mongrel.pid
 servers: 3
