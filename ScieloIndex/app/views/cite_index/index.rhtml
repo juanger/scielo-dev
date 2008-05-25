@@ -8,9 +8,6 @@
 			<%= check_box_tag 'keyword' %> <label for="keyword">Keyword</label>
 	  </p>
   <% end %>
-  <% if session[:logged_in_user].nil? %>
-		<p class="example_message">You will continue to seeing this message, unless you are logged in.</p>
-	<% end %> 
 	<%= observe_form :search_construction, :url => {:action => :configure_search_form } %>
 </div><br/>
 		
