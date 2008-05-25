@@ -284,8 +284,3 @@ end
 migrator = Migrator.new()
 migrator.process_scielo()
 
-## Calculo del Top Ten estático
-
-most_cited = MostCitedList.new()
-most_cited.write_file()
-
