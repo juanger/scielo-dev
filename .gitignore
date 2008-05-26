@@ -1,0 +1,12 @@
+log/*.log
+tmp/**/*
+.DS_Store
+doc/api
+doc/app
+.#*
+*#
+*~
+*.swp
+Capfile
+ScieloIndex/config/deploy.rb
+ScieloIndex/app/views/shared/_topTen.rhtml
