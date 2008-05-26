@@ -1,5 +1,7 @@
 class ScieloIndexController < ApplicationController
 
+  before_filter :login_required, :only => [ :edit, :update, :new, :create, :destroy ]
+
   def index
     list
     render :action => 'list'
@@ -10,7 +12,7 @@ class ScieloIndexController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @pages, @collection = paginate Inflector.pluralize(@model.to_s).to_sym, :per_page => 10
+    @collection = @model.paginate :per_page => 10, :page => params[:page]
   end
 
   def show
