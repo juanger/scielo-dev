@@ -36,7 +36,11 @@ class CiteIndexController < ApplicationController
 
   def find_auxiliar
     session[:search_data] = {:object => Author.find(params[:id]), :cites => params[:cites]}
-    redirect_to :action => 'search_by_author'
+    respond_to do |format|
+      format.html { redirect_to :action => 'search_by_author' }
+      format.pdf  { redirect_to :action => 'search_by_author', :format => 'pdf'}
+    end
+#    redirect_to :action => 'search_by_author'
   end
 
   def find_keyword
