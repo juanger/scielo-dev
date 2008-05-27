@@ -35,7 +35,7 @@ class ScieloIndexReport < FPDF
     SetX(-30)
     SetFont('Arial', 'B', 10)
     SetTextColor(0,0,200)
-    Cell(0,5,"#{@auth[0]}",0,0,"R",0,"http://localhost:3000/cite_index/find_auxiliar/#{@auth[1]}?cites=#{@auth[2]}") 
+    Cell(0,5,"#{@auth[0]}",0,0,"R",0,"http://dev.scielo.unam.mx:300/cite_index/find_auxiliar/#{@auth[1]}?cites=#{@auth[2]}") 
   end
   
   # ISO-8859-15 convertion to UTF-8
