@@ -1,7 +1,5 @@
 <%	
     pdf = ScieloIndexReport.new()
-    pdf.AddPage();
-    pdf.SetFont('Arial', '', 10)
     pdf.Title @author.as_human
     
     pdf.SetFont('Arial', '', 10)
