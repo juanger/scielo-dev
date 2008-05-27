@@ -1,14 +1,23 @@
 <%	
     pdf = ScieloIndexReport.new()
-    pdf.Title @author.as_human
+    #pdf.SetAuthorName(@author.as_human)
+    #pdf.SetAuthor([@author.as_human, @author.id, @author.total_cites])    
+    
+    pdf.SetAuthorInfo("#{@author.as_human}:#{@author.id}:#{@cites}")
+    pdf.Title
     
     pdf.SetFont('Arial', '', 10)
-    @collection.each { |article|
-      puts article
-      pdf.Cell(0,0,"Article: #{article.as_vancouver}",0,0,"L")
-      pdf.Ln(5)
-      pdf.Cell(0,0,"Citations: #{article.cites_number}",0,0,"L")
-      pdf.Ln(10)
+    puts @collection.total_pages
+    1.upto(@collection.total_pages){
+      @collection.each { |article|
+        puts article
+        pdf.SetFont('Arial', 'B', 10)
+        pdf.Cell(20,5,"Article: ")
+        pdf.SetFont('Arial', '', 10)      
+        pdf.MultiCell(0,5,"#{article.as_vancouver}",0,"J",0)
+        pdf.Cell(0,5,"Citations: #{article.cites_number}")
+        pdf.Ln(10)
+      }
+      @collection.next_page
     }
-
 %> <%= pdf.Output %>

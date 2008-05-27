@@ -51,4 +51,8 @@ class Author < ActiveRecord::Base
     
     authors
   end
+  
+  def info
+    {:name => as_human, :citations => total_cites, :id => id}
+  end
 end
