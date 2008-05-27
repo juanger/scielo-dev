@@ -1,0 +1,16 @@
+<%	
+    pdf = ScieloIndexReport.new()
+    pdf.AddPage();
+    pdf.SetFont('Arial', '', 10)
+    pdf.Title @author.as_human
+    
+    pdf.SetFont('Arial', '', 10)
+    @collection.each { |article|
+      puts article
+      pdf.Cell(0,0,"Article: #{article.as_vancouver}",0,0,"L")
+      pdf.Ln(5)
+      pdf.Cell(0,0,"Citations: #{article.cites_number}",0,0,"L")
+      pdf.Ln(10)
+    }
+
+%> <%= pdf.Output %>

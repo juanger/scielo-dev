@@ -121,6 +121,12 @@ class CiteIndexController < ApplicationController
                                    :conditions => [cond_string, cond_hash],
                                    :per_page => 10,
                                    :page => params[:page]
+                                   
+    respond_to do |format|
+      format.html { render :template => 'cite_index/search_by_author.rhtml' }
+      format.pdf  { send_data(render(:template => 'cite_index/search_by_author.rfpdf', :layout => false), :type => 'application/pdf', :filename => "#{@author.lastname}_#{@author.firstname}.pdf") }
+    end
+    
   end
 
   def search_by_article

@@ -1,4 +1,4 @@
-<h1>Listing articles</h1>
-<p>Total Cites: <%= @cites %></p>
+<h1> <%= @author.as_human %> articles <%= link_to 'PDF', {:format => 'pdf'}, :class => 'pdf' %></h1>
+<p>Citations total: <%= @cites %></p>
 
 <%= render :partial => 'list', :object => @pages %>
