@@ -43,10 +43,10 @@ class Author < ActiveRecord::Base
     authors = Author.find(:all).collect { |author| 
       [author.id, author.as_human, author.total_cites]
     }
-    all_authors = authors.sort { |one, other| other[1] <=> one[1] }.values_at(0..9)
+    all_authors = authors.sort { |one, other| other[2] <=> one[2] }.values_at(0..9)
     authors = Array.new
     all_authors.each { |author|
-      authors << author unless author[1] == 0
+      authors << author unless author[2] == 0
     }
     
     authors
