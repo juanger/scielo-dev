@@ -15,7 +15,7 @@ class MostCitedList
     open(partial, "w") { |file|
       file.puts "<h3>Autores más citados</h3>\n<table id='top_ten'>"
       @top_ten.each { |id, author, cites|
-      		file.puts link_to("<tr><td>#{author}</td><td>#{cites}</td>", "http://dev.scielo.unam.mx:300/cite_index/find_auxiliar/#{id}?cites=#{cites}")
+      		file.puts "<tr><td>#{link_to(author,"http://dev.scielo.unam.mx:300/cite_index/find_auxiliar/#{id}?cites=#{cites}")}</td><td>#{cites}</td>")
       }
       file.puts "</table>"
     }
