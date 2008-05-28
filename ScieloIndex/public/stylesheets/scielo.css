@@ -89,9 +89,13 @@ body
 {
   content: "\0020\2022"}
 
+#left-bar tr:hover
+{
+  background-color: #997070;}
+
 /*Top Ten*/
 
-#left-bar h3
+#left-bar h4
 {
 	color: #ffffff;
 	text-align: center;}
@@ -102,7 +106,7 @@ body
   text-align: left;
   border-spacing: 0 0px;
 
-  font-size: 70%;
+  font-size: 80%;
   margin-left: auto;
   margin-right: auto;}
 

@@ -13,12 +13,13 @@ class MostCitedList
   def write_file()
     partial = "../../app/views/shared/_topTen.rhtml"
     open(partial, "w") { |file|
-      file.puts "<h3>Autores más citados</h3>\n<table id='top_ten'>"
+      file.puts "<h4>Autores más citados</h4>\n<table id='top_ten'>"
       @top_ten.each { |id, author, cites|
       		file.puts "<tr><td>#{link_to(author,"http://dev.scielo.unam.mx:300/cite_index/find_auxiliar/#{id}?cites=#{cites}")}</td><td>#{cites}</td>"
       }
       file.puts "</table>"
     }
+    
   end
   
 end
