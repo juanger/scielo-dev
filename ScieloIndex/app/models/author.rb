@@ -41,7 +41,7 @@ class Author < ActiveRecord::Base
 
   def Author.top_ten
     authors = Author.find(:all).collect { |author| 
-      [author.as_human, author.total_cites]
+      [author.id, author.as_human, author.total_cites]
     }
     all_authors = authors.sort { |one, other| other[1] <=> one[1] }.values_at(0..9)
     authors = Array.new
