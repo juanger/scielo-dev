@@ -88,7 +88,7 @@ class CiteIndexController < ApplicationController
       cond_string << ((middle && first) ? "": "AND ") + "authors.lastname ILIKE :lastname "
       cond_hash[:lastname] = '%' + @author[:lastname].to_s + '%'
     end
-
+    
     @collection = Author.paginate :conditions => [cond_string, cond_hash],
                                   :per_page => 10,
                                   :page => params[:page]
@@ -102,30 +102,14 @@ class CiteIndexController < ApplicationController
   def search_by_author
     @author = session[:search_data][:object]
     @cites = session[:search_data][:cites]
-    
-    cond_string = ""
-    cond_hash = {}
-    
-    unless first = @author[:firstname].blank?
-      cond_string << "authors.firstname ILIKE :firstname "
-      cond_hash[:firstname] = '%' + @author[:firstname].to_s + '%'
-    end
-    unless middle = @author[:middlename].blank?
-      cond_string << (first ? "": "AND ") + "authors.middlename ILIKE :middlename "
-      cond_hash[:middlename] = '%' + @author[:middlename].to_s + '%'
-    end
-    unless @author[:lastname].blank?
-      cond_string << ((middle && first) ? "": "AND ") + "authors.lastname ILIKE :lastname "
-      cond_hash[:lastname] = '%' + @author[:lastname].to_s + '%'
-    end
-    
+                      
     @collection = Article.paginate :select => 'articles.*',
                                    :joins => "JOIN article_authors ON articles.id = article_authors.article_id JOIN authors ON" +
-                                          " authors.id = article_authors.author_id",
-                                   :conditions => [cond_string, cond_hash],
+                                             " authors.id = article_authors.author_id",
+                                   :conditions => ["authors.id = :id", {:id => @author.id}],
                                    :per_page => 10,
                                    :page => params[:page]
-                                   
+                 
     respond_to do |format|
       format.html { render :template => 'cite_index/search_by_author.rhtml' }
       format.pdf  { send_data(render(:template => 'cite_index/search_by_author.rfpdf', :layout => false), :type => 'application/pdf', :filename => "#{@author.lastname}_#{@author.firstname}.pdf") }
