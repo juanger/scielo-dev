@@ -32,27 +32,27 @@ class JournalTest < Test::Unit::TestCase
       @journal = journals(journal)
       @journal_db = Journal.find_by_title(@journal.title)
       @journal_db.title.reverse!
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.id = @journal_db.id
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.country_id = @journal_db.country_id + 1
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.publisher_id = @journal_db.publisher_id + 1
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.state.reverse!
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.city.reverse!
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.url.reverse!
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.other.reverse!
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.email.reverse!
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.abbrev.reverse!
-      assert @journal_db.update
+      assert @journal_db.save
       @journal_db.issn.reverse!
-      assert @journal_db.update
+      assert @journal_db.save
     }
   end
 

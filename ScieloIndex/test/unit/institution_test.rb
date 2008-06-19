@@ -34,31 +34,31 @@ class InstitutionTest < Test::Unit::TestCase
       @institution = institutions(institution)
       @institution_db = Institution.find_by_name(@institution.name)
       #@institution_db.id = @institution_db.id + 1 Es serial, se cambia?
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.name.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.url.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.abbrev.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.parent_id = @institution_db.parent_id
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.address.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.country_id = @institution_db.country_id
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.state.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.city.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.zipcode.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.phone.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.fax.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       @institution_db.other.reverse
-      assert @institution_db.update
+      assert @institution_db.save
       #puts @institution_db.code.reverse
     }
    end

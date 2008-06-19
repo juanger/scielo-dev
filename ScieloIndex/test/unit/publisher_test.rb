@@ -26,11 +26,11 @@ class PublisherTest < Test::Unit::TestCase
       @publisher = publishers(publisher)
       @publisher_db = Publisher.find_by_name(@publisher.name)
       @publisher_db.name.reverse!
-      assert @publisher_db.update
+      assert @publisher_db.save
       @publisher_db.id = @publisher_db.id
-      assert @publisher_db.update
+      assert @publisher_db.save
       @publisher_db.descr.reverse!
-      assert @publisher_db.update
+      assert @publisher_db.save
     }
   end
 

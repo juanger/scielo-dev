@@ -30,23 +30,23 @@ class CollectionTest < Test::Unit::TestCase
       @collection = collections(collection)
       @collection_db = Collection.find_by_title(@collection.title)
       @collection_db.title.reverse!
-      assert @collection_db.update
+      assert @collection_db.save
       @collection_db.id = @collection_db.id
-      assert @collection_db.update
+      assert @collection_db.save
       @collection_db.country_id = @collection_db.country_id
-      assert @collection_db.update
+      assert @collection_db.save
       @collection_db.publisher_id = @collection_db.publisher_id
-      assert @collection_db.update
+      assert @collection_db.save
       @collection_db.state.reverse!
-      assert @collection_db.update
+      assert @collection_db.save
       @collection_db.city.reverse!
-      assert @collection_db.update
+      assert @collection_db.save
       @collection_db.url.reverse!
-      assert @collection_db.update
+      assert @collection_db.save
       @collection_db.other.reverse!
-      assert @collection_db.update
+      assert @collection_db.save
       @collection_db.email.reverse!
-      assert @collection_db.update
+      assert @collection_db.save
     }
   end
 

@@ -32,21 +32,21 @@ class ArticleTest < Test::Unit::TestCase
       @article = articles(article)
       @article_db = Article.find_by_title(@article.title)
       @article_db.id = @article_db.id
-      assert @article_db.update
+      assert @article_db.save
       @article_db.title.reverse!
-      assert @article_db.update
+      assert @article_db.save
       @article_db.fpage.reverse!
-      assert @article_db.update
+      assert @article_db.save
       @article_db.lpage.reverse!
-      assert @article_db.update
+      assert @article_db.save
       @article_db.page_range.reverse!
-      assert @article_db.update
+      assert @article_db.save
       @article_db.url.reverse!
-      assert @article_db.update
+      assert @article_db.save
       @article_db.pacsnum.reverse!
-      assert @article_db.update
+      assert @article_db.save
       @article_db.other.reverse!
-      assert @article_db.update
+      assert @article_db.save
     }
    end
 

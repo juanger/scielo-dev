@@ -24,9 +24,9 @@ class LanguageTest < Test::Unit::TestCase
       @language = languages(language)
       @language_db = Language.find_by_code(@language.code)
       @language_db.name.reverse
-      assert @language_db.update
+      assert @language_db.save
       @language_db.code.reverse
-      assert @language_db.update
+      assert @language_db.save
     }
    end
 

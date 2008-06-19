@@ -24,9 +24,9 @@ class AuthorInstitutionTest < Test::Unit::TestCase
       @author_institution = author_institutions(author_institution)
       @author_institution_db = AuthorInstitution.find(@author_institution.id)
       @author_institution_db.id = @author_institution_db.id
-      assert @author_institution_db.update
+      assert @author_institution_db.save
       @author_institution_db.author_id = @author_institution_db.author_id
-      assert @author_institution_db.update
+      assert @author_institution_db.save
       @author_institution_db.institution_id = @author_institution_db.institution_id
     }
   end

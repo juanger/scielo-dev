@@ -25,13 +25,13 @@ class AssociatedFileTest < Test::Unit::TestCase
       @associated_file = associated_files(associated_file)
       @associated_file_db = AssociatedFile.find_by_article_id(@associated_file.article_id)
       @associated_file_db.id = @associated_file_db.id
-      assert @associated_file_db.update
+      assert @associated_file_db.save
       @associated_file_db.filename.reverse!
-      assert @associated_file_db.update
+      assert @associated_file_db.save
       @associated_file_db.pdf_path.reverse!
-      assert @associated_file_db.update
+      assert @associated_file_db.save
       @associated_file_db.html_path.reverse!
-      assert @associated_file_db.update
+      assert @associated_file_db.save
     }
    end
 

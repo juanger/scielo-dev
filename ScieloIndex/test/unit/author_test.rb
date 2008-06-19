@@ -28,11 +28,11 @@ class AuthorTest < Test::Unit::TestCase
       @author = authors(author)
       @author_db = Author.find_by_firstname(@author.firstname)
       @author_db.firstname.reverse!
-      assert @author_db.update
+      assert @author_db.save
       @author_db.id = @author_db.id
-      assert @author_db.update
+      assert @author_db.save
       @author_db.lastname.reverse!
-      assert @author_db.update
+      assert @author_db.save
     }
   end
 

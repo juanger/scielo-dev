@@ -25,7 +25,7 @@ class AlternateTitleTest < Test::Unit::TestCase
       @alternate_title = alternate_titles(alternate_title)
       @alternate_title_db = AlternateTitle.find_by_title(@alternate_title.title)
       @alternate_title_db.title.reverse
-      assert @alternate_title_db.update
+      assert @alternate_title_db.save
     }
    end
 

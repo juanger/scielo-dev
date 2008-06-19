@@ -24,11 +24,11 @@ class CountryTest < Test::Unit::TestCase
       @country = countries(country)
       @country_db = Country.find_by_name(@country.name)
       @country_db.name.reverse
-      assert @country_db.update
+      assert @country_db.save
       @country_db.id = @country_db.id
-      assert @country_db.update
+      assert @country_db.save
       @country_db.code.reverse
-      assert @country_db.update
+      assert @country_db.save
     }
    end
 

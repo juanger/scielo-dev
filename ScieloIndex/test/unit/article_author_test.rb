@@ -25,13 +25,13 @@ class ArticleAuthorTest < Test::Unit::TestCase
       @article_author = article_authors(article_author)
       @article_author_db = ArticleAuthor.find(@article_author.id)
       @article_author_db.id = @article_author_db.id
-      assert @article_author_db.update
+      assert @article_author_db.save
       @article_author_db.article_id = @article_author_db.article_id
-      assert @article_author_db.update
+      assert @article_author_db.save
       @article_author_db.author_id = @article_author_db.author_id
-      assert @article_author_db.update
+      assert @article_author_db.save
       @article_author_db.author_order = @article_author_db.author_order + 1
-      assert @article_author_db.update
+      assert @article_author_db.save
     }
   end
 

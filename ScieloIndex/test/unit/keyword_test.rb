@@ -23,9 +23,9 @@ class KeywordTest < Test::Unit::TestCase
       @keyword = keywords(keyword)
       @keyword_db = Keyword.find_by_name(@keyword.name)
       @keyword_db.id = @keyword_db.id
-      assert @keyword_db.update
+      assert @keyword_db.save
       @keyword_db.name.reverse
-      assert @keyword_db.update
+      assert @keyword_db.save
     }
   end
 

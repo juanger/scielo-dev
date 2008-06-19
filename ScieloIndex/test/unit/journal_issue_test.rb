@@ -26,15 +26,15 @@ class JournalIssueTest < Test::Unit::TestCase
       @journal_issue = journal_issues(journal_issue)
       @journal_issue_db = JournalIssue.find_by_journal_id_and_number_and_volume_and_year(@journal_issue.journal_id, @journal_issue.number, @journal_issue.volume, @journal_issue.year)
       @journal_issue_db.id = @journal_issue_db.id
-      assert @journal_issue_db.update
+      assert @journal_issue_db.save
       @journal_issue_db.journal_id = @journal_issue_db.journal_id
-      assert @journal_issue_db.update
+      assert @journal_issue_db.save
       @journal_issue_db.number.reverse!
-      assert @journal_issue_db.update
+      assert @journal_issue_db.save
       @journal_issue_db.volume.reverse!
-      assert @journal_issue_db.update
+      assert @journal_issue_db.save
       @journal_issue_db.year = @journal_issue_db.year
-      assert @journal_issue_db.update
+      assert @journal_issue_db.save
     }
   end
 

@@ -24,11 +24,11 @@ class ArticleKeywordTest < Test::Unit::TestCase
       @article_keyword = article_keywords(article_keyword)
       @article_keyword_db = ArticleKeyword.find(@article_keyword.id)
       @article_keyword_db.id = @article_keyword_db.id
-      assert @article_keyword_db.update
+      assert @article_keyword_db.save
       @article_keyword_db.article_id = @article_keyword_db.article_id
-      assert @article_keyword_db.update
+      assert @article_keyword_db.save
       @article_keyword_db.keyword_id = @article_keyword_db.keyword_id
-      assert @article_keyword_db.update
+      assert @article_keyword_db.save
     }
   end
 

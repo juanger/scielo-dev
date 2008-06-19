@@ -24,11 +24,11 @@ class SubjectTest < Test::Unit::TestCase
       @subject = subjects(subject)
       @subject_db = Subject.find_by_name(@subject.name)
       @subject_db.id = @subject_db.id
-      assert @subject_db.update
+      assert @subject_db.save
       @subject_db.parent_id = @subject_db.parent_id
-      assert @subject_db.update
+      assert @subject_db.save
       @subject_db.name.reverse
-      assert @subject_db.update
+      assert @subject_db.save
     }
   end
 

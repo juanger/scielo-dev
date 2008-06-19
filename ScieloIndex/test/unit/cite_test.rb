@@ -25,13 +25,13 @@ class CiteTest < Test::Unit::TestCase
       @cite = cites(cite)
       @cite_db = Cite.find(@cite.id)
       @cite_db.id = @cite_db.id
-      assert @cite_db.update
+      assert @cite_db.save
       @cite_db.article_id = @cite_db.article_id
-      assert @cite_db.update
+      assert @cite_db.save
       @cite_db.cited_by_article_id = @cite_db.cited_by_article_id
-      assert @cite_db.update
+      assert @cite_db.save
       @cite_db.cite_order = @cite_db.cite_order
-      assert @cite_db.update
+      assert @cite_db.save
     }
   end
 
