@@ -5,7 +5,7 @@
   </tr>
   <tr>
     <td id="links">
-      <%= link_to "Cites: #{article.cites_number}", {:action => 'search_cites', :id => article} %>
+      <%= link_to "Citaciones: #{article.cites_number}", {:action => 'search_cites', :id => article} %>
       <%= pdf_download_link(article) %>
       <%= html_view_link(article) %>
     </td>
