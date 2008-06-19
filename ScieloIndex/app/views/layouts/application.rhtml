@@ -26,11 +26,11 @@
      </div>
      <div id="status">
         <p class="session_status">
-        <% if session[:logged_in_user].nil? %>
+      <!--  <% if session[:logged_in_user].nil? %>
            <%= link_to "Login", login_url %>
         <% else %>
            Hello, <b><%= session[:logged_in_user].login %></b>. <%= link_to "Logout", logout_url %>
-        <% end %>
+        <% end %> -->
         </p>
      </div>
      <div id="content" class="b">
@@ -39,8 +39,9 @@
      </div>
    </div>
    <div id="footer" class="b">
-        <%= image_tag("logo_unam.png") %>
-        <%= image_tag("logo_dgb.png") %>
+        <%= link_to image_tag("logo_unam.png"), "http://www.unam.mx/" %>
+        <%= link_to image_tag("logo_dgb.png"), "http://www.dgbiblio.unam.mx/" %>
+        <%= link_to image_tag("top_rem.png", :size => "50x50"), "http://www.mtuic.unam.mx/" %>
    </div>
 </div>
 </body>

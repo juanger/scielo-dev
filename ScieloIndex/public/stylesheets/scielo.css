@@ -50,6 +50,9 @@ body
   padding: 5px 0 0 0;
   text-align: center;}
 
+#footer a{
+  color: #ffffff;}
+
 /* ---- Logos in header ----*/
 
 #header .logo
