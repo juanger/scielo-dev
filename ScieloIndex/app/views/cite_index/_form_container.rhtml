@@ -1,22 +1,22 @@
 <% if selector.eql? 'article' %>
   <div id='article_form_div'>
-    <p><label for="article_title">Article</label><br/>
+    <p><label for="article_title">Título de Artículo</label><br/>
 	  <%= text_field_with_auto_complete :article, :title , {:size => 60} %></p>
 	</div>
 <% elsif selector.eql? 'author' %>
   <div id='author_form_div'>
-    <p><label for="author_firstname">Firstname</label><br/>
+    <p><label for="author_firstname">Nombre de Pila</label><br/>
 	  <%= text_field_with_auto_complete :author, :firstname %></p>
 
-	  <p><label for="author_middlename">Middlename</label><br/>
+	  <p><label for="author_middlename">Segundo Nombre</label><br/>
 	  <%= text_field_with_auto_complete :author, :middlename %></p>
 
-	  <p><label for="author_lastname">Lastname</label><br/>
+	  <p><label for="author_lastname">Apellido</label><br/>
 	  <%= text_field_with_auto_complete :author, :lastname %></p>
 	</div>
 <% elsif selector.eql? 'keyword' %>
   <div id='keyword_form_div'>
-    <p><label for="keyword_name">Keyword</label><br/>
+    <p><label for="keyword_name">Palabra Clave</label><br/>
 	  <%= text_field_with_auto_complete :keyword, :name %></p>
 	</div>
 <% end %>
