@@ -1,11 +1,11 @@
 <div id="mainCite_Index">
-  <h3>Search: </h3>
+  <h3>Búsqueda: </h3>
    <div class='rounded_div'>
 	<% form_tag('javascript:void(0)', :id => 'search_construction') do %>
     <p> 
-			<%= check_box_tag 'author' %> <label for="author">Author</label>
-			<%= check_box_tag 'article' %> <label for="article">Article</label>
-			<%= check_box_tag 'keyword' %> <label for="keyword">Keyword</label>
+			<%= check_box_tag 'author' %> <label for="author">Autor</label>
+			<%= check_box_tag 'article' %> <label for="article">Articulo</label>
+			<%= check_box_tag 'keyword', 1, false, {:disabled => true} %> <label for="keyword">Palabra Clave</label>
 	  </p>
   <% end %>
 	<%= observe_form :search_construction, :url => {:action => :configure_search_form } %>
