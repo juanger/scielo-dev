@@ -261,7 +261,14 @@ class Migrator
                                               :stats => @stats
                                             })
       #TODO: create the associated files
-                                            
+      files = AssociatedFiles.new(
+                                  :path => @serial_root,
+                                  :journal => @current_journal,
+                                  :issue => @current_issue,
+                                  :article => @current_article,
+                                  :id => new_article.id
+                                  )
+      
       begin
         authors.insert_authors()
         references.insert_references()
