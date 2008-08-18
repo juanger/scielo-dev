@@ -111,9 +111,9 @@ class SgmlArticle
     article_title
   end
   
-  def get_subtitle
-    subtitle = 
-  end
+  # def get_subtitle
+  #   subtitle = 
+  # end
 
   def get_language
     match = /(language=)([a-z]{2,3})/.match(@article_tag)
