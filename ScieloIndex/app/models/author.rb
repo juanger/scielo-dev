@@ -20,6 +20,11 @@ class Author < ActiveRecord::Base
   has_many :author_institutions
   has_many :institutions, :through => :author_institutions
 
+
+  # def to_param
+  #   "#{id}-#{lastname}-#{firstname}"
+  # end
+
   def as_vancouver
     if self.middlename
       m_initials = self.middlename.split(' ').collect { |md| md.first.upcase }.to_s

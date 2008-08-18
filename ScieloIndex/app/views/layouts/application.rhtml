@@ -17,12 +17,12 @@
         <tr><th>Patrocinadores</th></tr>
         <tr><th>Contacto</th></tr>
       </table>	
-		<%=  render :partial => 'shared/topTen' %>
+      <%=  render :partial => 'shared/topTen' %>
    </div>
    <div id="right-bar" class="b">
      <div id="header" class="b">
       <%= image_tag("logo_small.png", :class => "logo") %>
-      <%= image_tag("head_bar.png", :class => "header-bar") %>
+      <%= render :partial => 'citation_index/basic_form' %>
      </div>
      <div id="status">
         <p class="session_status">

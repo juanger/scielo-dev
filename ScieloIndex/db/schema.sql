@@ -170,6 +170,8 @@ CREATE TABLE journal_issues (
         UNIQUE(journal_id, number, volume, year, volume_supplement),
         UNIQUE(journal_id, number, volume, year, number_supplement)
 );
+COMMENT ON TABLE journal_issues IS
+        'Números de las revistas';
 
 CREATE TABLE articles (
         id SERIAL,

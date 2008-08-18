@@ -27,6 +27,7 @@ class SgmlArticle
     #print_titles()
 
     @title = get_title()
+    @subtitle = get_subtitle()
 
     @journal_title = get_journal_title()
     @volume = get_volume()
@@ -109,6 +110,10 @@ class SgmlArticle
     #puts "Titulo al finalizar get_title: #{article_title}"
     article_title
   end
+  
+  # def get_subtitle
+  #   title = 
+  # end
 
   def get_language
     match = /(language=)([a-z]{2,3})/.match(@article_tag)

@@ -12,35 +12,32 @@
 <div id="container" class="b">
   <div id="left-bar" class="b">
       <table id="links">
-        <tr><th><%= link_to "Buscar",:action => "index", :controller => "cite_index" %></th></tr>
+        <tr><th><%= link_to "Búsqueda",:action => "index", :controller => "cite_index" %></th></tr>
         <tr><th>Acerca de...</th></tr>
         <tr><th>Patrocinadores</th></tr>
         <tr><th>Contacto</th></tr>
       </table>	
-		<%=  render :partial => 'shared/topTen' %>
+      <%=  render :partial => 'shared/topTen' %>
    </div>
    <div id="right-bar" class="b">
-     <div id="header" class="b">
-      <%= image_tag("logo_small.png", :class => "logo") %>
-      <%= image_tag("head_bar.png", :class => "header-bar") %>
-     </div>
      <div id="status">
         <p class="session_status">
-        <% if session[:logged_in_user].nil? %>
-           You are not logged in, login <%= link_to "here", login_url %>
+      <!--  <% if session[:logged_in_user].nil? %>
+           <%= link_to "Login", login_url %>
         <% else %>
-           Hello, <b><%= session[:logged_in_user].login %>. Logout <%= link_to "here", logout_url %></b>
-        <% end %>
+           Hello, <b><%= session[:logged_in_user].login %></b>. <%= link_to "Logout", logout_url %>
+        <% end %> -->
         </p>
      </div>
-     <div id="content" class="b">
+     <div id="index" class="b">
       <%= yield %>
       <%= flash[:notice] %>
      </div>
    </div>
    <div id="footer" class="b">
-        <%= image_tag("logo_unam.png") %>
-        <%= image_tag("logo_dgb.png") %>
+        <%= link_to image_tag("logo_unam.png"), "http://www.unam.mx/" %>
+        <%= link_to image_tag("logo_dgb.png"), "http://www.dgbiblio.unam.mx/" %>
+        <%= link_to image_tag("top_rem.png", :size => "50x50"), "http://www.mtuic.unam.mx/" %>
    </div>
 </div>
 </body>

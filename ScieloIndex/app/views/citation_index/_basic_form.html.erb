@@ -1,0 +1,5 @@
+<% form_tag({:action => 'find_basic'}, :method => :get) do %>
+  <%= text_field_tag :terms, params[:terms], {:size => 40} %>
+  <%= submit_tag "Buscar" %>
+  <%= link_to "Búsqueda Avanzada", :action => "find_advanced" %>
+<% end %> 

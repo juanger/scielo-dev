@@ -1,9 +1,11 @@
 <table class="listing">
   <%= render :partial => 'article', :collection => @collection %>
 </table>
+
 <br />
+
 <div class="pages">
-  <%= render :partial =>'paginator', :object => @þages %>
+  <%= render :partial =>'paginator', :object => @pages %>
   <hr/>
   <div id="buttonsNavigator">
     <%= link_to 'Nueva búsqueda', {:action => 'index'}, :class => 'cssbutton' %>

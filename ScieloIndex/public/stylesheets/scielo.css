@@ -36,7 +36,8 @@ body
 
 #header
 {
-  background-color: #FFF;}
+  background-color: #FFF;
+  height: 100px;}
 
 #content
 {
@@ -57,7 +58,8 @@ body
 
 #header .logo
 {
-  margin-left: 20px;}
+  margin-left: 20px;
+  float: left;}
 
 #header .header-bar
 {
@@ -65,14 +67,22 @@ body
   margin-left: auto;
   margin-right: 10px;}
 
+#header form
+{
+  float: right;
+  margin-top: 70px;
+  margin-right: 15px;
+}
+
+#header a 
+{
+    color: #800000;
+}
+
 /*---- Logos in footer ----*/
 
 
-/*Links in content*/
 
-#content a
-{
-  color: #800000;}
 
 /*Links in left bar*/
 
@@ -136,7 +146,8 @@ div.pages
 #content table.listing
 {
   margin: 0 10px 0 10px;
-  border-spacing: 0px 2px}
+  border-spacing: 0px 2px;
+  width: 670px;}
 
 #content table.listing td
 {
@@ -145,10 +156,26 @@ div.pages
 
 #content table.listing td#links
 {
-  font-size: 80%;
   background-color: #ffffff;
   border: solid 0px;
   text-align: right;}
+  
+#content table.listing td#title
+{
+  font-weight: bold;
+  font-size: 120%;}
+  
+  /*Links in content*/
+
+#content a
+{
+  color: #800000;}
+
+#content #search
+{
+  
+  padding: auto;
+}
   
 .link_div
 {
@@ -186,4 +213,23 @@ font-size: 12px;
 background-color: #F7DCDC;
 border: 1px solid #D6BEC3;
 padding: 3px;
+}
+
+#index
+{
+  margin-top: 10%;
+  text-align: center;
+}
+
+#index img
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+}
+
+#index a 
+{
+    color: #800000;
 }

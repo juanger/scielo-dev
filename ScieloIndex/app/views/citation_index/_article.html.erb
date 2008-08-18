@@ -1,0 +1,10 @@
+
+  <%= article.to_table_rows %>
+
+  <tr>
+    <td id="links">
+      <%= pdf_download_link(article) %>
+      <%= html_view_link(article) %>
+      <%= link_to "Citado por #{article.cites_number}", {:action => 'list_articles_cites', :id => article} %>
+    </td>
+  </tr>

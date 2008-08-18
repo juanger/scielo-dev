@@ -1,0 +1,23 @@
+<% form_tag :action => 'find_advanced' do %>
+
+  <div id='article_form_div'>
+    <p><label for="article_title">Título de Artículo</label><br/>
+    <%= text_field_with_auto_complete :article, :title , {:size => 60} %></p>
+  </div>
+  <div id='author_form_div'>
+    <p><label for="author_firstname">Nombre de Pila</label><br/>
+    <%= text_field_with_auto_complete :author, :firstname %></p>
+
+    <p><label for="author_middlename">Segundo Nombre</label><br/>
+    <%= text_field_with_auto_complete :author, :middlename %></p>
+
+    <p><label for="author_lastname">Apellido</label><br/>
+    <%= text_field_with_auto_complete :author, :lastname %></p>
+  </div>
+<!-- <div id='keyword_form_div'>
+  <p><label for="keyword_name">Palabra Clave</label><br/>
+  <%= text_field_with_auto_complete :keyword, :name %></p>
+</div>  -->
+
+  <%= submit_tag "Buscar" %>
+<% end %>

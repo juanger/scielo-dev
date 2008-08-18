@@ -286,7 +286,7 @@ class AssociatedReferences
           create_other_author(contrib)
           create_cite
         else
-          @logger.error_message("Error al crear el articulo de la referencia")
+          @logger.error_message("Error al crear el artículo de la referencia")
           article.errors.each{ |key, value|
             @logger.error("Artículo Original #{@article_file_name} de la revista #{@journal_name}\n Articulo ref #{article_hash[:title]}", "#{key}: #{value}")
           }

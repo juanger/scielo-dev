@@ -42,6 +42,11 @@ class Article < ActiveRecord::Base
     self.cites.size
   end
 
+  def to_table_rows
+    "<tr><td id=\"title\">#{title_as_vancouver}</td></tr>\n" + 
+    "<tr><td>#{author_names_as_vancouver}, #{journal_as_vancouver}</td></tr>\n" 
+  end
+
   def author_names_as_vancouver
     limit = 6
     if self.authors.size < limit

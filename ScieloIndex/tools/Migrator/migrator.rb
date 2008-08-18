@@ -220,6 +220,7 @@ class Migrator
   def create_article(article)
     new_article = Article.new
     new_article.title = article.title
+    new_article.subtitle = article.subtitle
     new_article.journal_issue_id = @current_journal_issue_id
     new_article.fpage = article.fpage
     new_article.lpage = article.lpage
@@ -259,6 +260,8 @@ class Migrator
                                               :journal_name => @current_journal,
                                               :stats => @stats
                                             })
+      #TODO: create the associated files
+                                            
       begin
         authors.insert_authors()
         references.insert_references()
