@@ -51,10 +51,10 @@ class AssociatedFilesController < ScieloIndexController
   def send_file
     @record = @model.find(params[:id])
 
-    if params[:format] == 'PDF'
+    if params[:format] == 'pdf'
       @pdf_file = File.open(@record.pdf_path)
       send_data @pdf_file.read, :filename => @record.filename + ".pdf", :type => 'application/pdf'
-    elsif params[:format] == 'HTML'
+    elsif params[:format] == 'html'
       @html_file = File.open(@record.html_path)
       send_data @html_file.read, :filename => @record.filename + ".htm", :type => 'text/html', :disposition => 'inline'
     end
