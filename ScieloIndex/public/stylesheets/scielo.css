@@ -50,10 +50,7 @@ body
   background-color: #FFF;
   padding: 5px 0 0 0;
   text-align: center;}
-
-#footer a{
-  color: #ffffff;}
-
+  
 /* ---- Logos in header ----*/
 
 #header .logo
@@ -74,15 +71,12 @@ body
   margin-right: 15px;
 }
 
-#header a 
+#container a 
 {
     color: #800000;
 }
 
 /*---- Logos in footer ----*/
-
-
-
 
 /*Links in left bar*/
 
@@ -165,11 +159,7 @@ div.pages
   font-weight: bold;
   font-size: 120%;}
   
-  /*Links in content*/
-
-#content a
-{
-  color: #800000;}
+/*content*/
 
 #content #search
 {
@@ -227,9 +217,4 @@ padding: 3px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
-}
-
-#index a 
-{
-    color: #800000;
 }

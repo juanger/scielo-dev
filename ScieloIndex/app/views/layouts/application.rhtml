@@ -17,21 +17,22 @@
         <tr><th>Patrocinadores</th></tr>
         <tr><th>Contacto</th></tr>
       </table>	
-     <!-- # <%=  render :partial => 'shared/topTen' %> -->
+      <!-- <%=  render :partial => 'shared/topTen' %> -->
    </div>
    <div id="right-bar" class="b">
-     <div id="header" class="b">
-      <%= image_tag("logo_small.png", :class => "logo") %>
-      <%= render :partial => 'citation_index/basic_form' %>
-     </div>
      <div id="status">
         <p class="session_status">
+          <%= render :partial => 'shared/langs' %>
       <!--  <% if session[:logged_in_user].nil? %>
            <%= link_to "Login", login_url %>
         <% else %>
            Hello, <b><%= session[:logged_in_user].login %></b>. <%= link_to "Logout", logout_url %>
         <% end %> -->
         </p>
+     </div>
+     <div id="header" class="b">
+      <%= image_tag("logo_small.png", :class => "logo") %>
+      <%= render :partial => 'citation_index/basic_form' %>
      </div>
      <div id="content" class="b">
       <%= yield %>
@@ -44,7 +45,5 @@
         <%= link_to image_tag("top_rem.png", :size => "50x50"), "http://www.mtuic.unam.mx/" %>
    </div>
 </div>
-</body>
-</html>
 </body>
 </html>

@@ -26,7 +26,7 @@ class CitationIndexController < ApplicationController
     joins << " JOIN article_authors ON articles.id = article_authors.article_id " +
               "JOIN authors ON authors.id = article_authors.author_id "
                
-              # TODO: Use outer join to get articles with no citations
+              # TODO: Use outer join to get articles with no citations in the following joins
               #+
               #"JOIN (select article_id ,count(article_id) as cites from cites " +
               #"group by article_id order by cites DESC) as tmp ON articles.id = tmp.article_id"
@@ -39,7 +39,7 @@ class CitationIndexController < ApplicationController
                                    :page => params[:page])
     
     if @collection.empty?
-      flash[:notice] = "No se encontraron resultados, vuelve a intentar."
+      flash[:notice] = _('Your search "%s" did not match any articles', params[:terms])
       redirect_to :action => 'index'
     end
   end
@@ -68,6 +68,11 @@ class CitationIndexController < ApplicationController
       format.html { render :template => 'citation_index/list_authors_articles.html.erb' }
       format.pdf  { send_data(render(:template => 'citation_index/list_authors_articles.rfpdf', :layout => false), :type => 'application/pdf', :filename => "#{@author.lastname}_#{@author.firstname}.pdf") }
     end
+  end
+  
+  def change_language
+    session[:lang] = params[:lang].to_sym unless params[:lang].blank?
+    redirect_to :back
   end
 
 # (fold)
