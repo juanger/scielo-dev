@@ -1,6 +1,0 @@
-[submodule "ScieloIndex/vendor/plugins/will_paginate"]
-	path = ScieloIndex/vendor/plugins/will_paginate
-	url = git://github.com/mislav/will_paginate.git
-[submodule "ScieloIndex/vendor/plugins/auto_complete"]
-	path = ScieloIndex/vendor/plugins/auto_complete
-	url = git://github.com/redinger/auto_complete.git
