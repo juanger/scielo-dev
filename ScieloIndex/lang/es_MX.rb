@@ -1,7 +1,15 @@
 Localization.define(:es_MX) do |l|
-  # index
+  # layout
   l.store 'Search', 'Buscar'
-  l.store 'Advanced Search', 'Búsqueda Avanzada'
+  l.store 'Index', 'Índice'
+  l.store 'Advanced search', 'Búsqueda avanzada'
+  l.store 'Most cited', 'Los más citados'
+  
+  l.store 'Development', 'Desarrollo'
+  l.store 'Sponsors', 'Patrocinadores'
+  l.store 'Contact', 'Contacto'
+  l.store 'Team', 'Equipo'
+  
   l.store 'Your search "%s" did not match any articles', 'La consulta "%s" no ha obtenido ningún artículo como resultado.'
   
   # Listings

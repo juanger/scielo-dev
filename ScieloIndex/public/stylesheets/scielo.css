@@ -1,220 +1,200 @@
-body
-{
+/* RESET */
+* {
+  margin:0;
+  padding:0;
+  font: 100%;
+}
+
+html, body{
+  height:100%;
+}
+
+body {
+  font: 100% Helvetica, Verdana sans-serif;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  font-size: 100%;
   color: #505050;
-  background-color: #ffffff;}
+}
 
-/*.b { border: solid 1px #FF0000 }*/
+html>body #container {
+    height: auto;
+}
 
-/*---- LAYOUT ----*/
+/*layout styles */
 
-#container
-{
-  background: url("../images/left_bar.png") repeat-y top left;
-  width: 950px;
-  margin-top: 30px;
+.layout #container {
+  position:  relative;
+  width: 100%;
+  background: #FFFFFF;
+  min-height: 100%;
+  height: 100%;
+  voice-family: "\"}\"";
+  voice-family: inherit;
+  height: auto;
+}
+
+.layout #mainContent {
+  padding: 0px 10%;
+/*  padding-top: 20px;*/
+  clear: left;
+  padding-bottom: 48px;
+  min-width: 600px
+}
+
+.layout #header {
+  width: 100%;
+}
+
+.layout #header #bar {
+  width: inherit;
+  height: 87px;
+  background: url(../images/header_bar.png) repeat-x bottom;
+}
+
+.layout #push {
+  height: 50px;
+  padding-bottom: 50px;
+} 
+
+.layout #footer {
+  width: 100%;
+  height: 124px;
+  position:absolute;
+  bottom: 0px;
+  background: url(../images/footer.png) repeat-x;
+  background-position: bottom;
+  vertical-align: middle;
+}
+
+/* end of layout styles */
+
+/* Index styles */
+
+.layout #mainContent.index img{
+  width: 400px;
   margin-left: auto;
-  margin-right: auto;
-  min-height: 630px;}
-
-#left-bar
-{
-  float: left;
-  width: 190px;
-  padding-top: 1em;}
-
-#right-bar
-{
-  font-size: 90%;
-  padding-top: 1em;
-  margin: 0 0 0 200px;
-  border: solid 1px #e3e3e3;
-  min-height: inherit;}
-
-#header
-{
-  background-color: #FFF;
-  height: 100px;}
-
-#content
-{
-  padding: 7px 15px 15px 40px;}
-
-
-#footer
-{
-  clear: both;
-  background-color: #FFF;
-  padding: 5px 0 0 0;
-  text-align: center;}
-  
-/* ---- Logos in header ----*/
-
-#header .logo
-{
-  margin-left: 20px;
-  float: left;}
-
-#header .header-bar
-{
-  display: block;
-  margin-left: auto;
-  margin-right: 10px;}
-
-#header form
-{
-  float: right;
-  margin-top: 70px;
-  margin-right: 15px;
+  margin-right:auto;
+  padding-top: 10%;
+  padding-bottom: 20px;
 }
 
-#container a 
-{
-    color: #800000;
-}
-
-/*---- Logos in footer ----*/
-
-/*Links in left bar*/
-
-#left-bar a
-{
-  color: #ffffff;
-  text-decoration: none;}
-
-#left-bar table#links
-{
-  margin: 30% auto 0 auto;
-  color: #ffffff;
-  text-align: right;
-  border-spacing: 0 40px;}
-
-#left-bar th:after
-{
-  content: "\0020\2022"}
-
-#left-bar tr:hover
-{
-  background-color: #997070;}
-
-/*Top Ten*/
-
-#left-bar h4
-{
-	color: #ffffff;
-	text-align: center;}
-
-#left-bar table#top_ten 
-{
-  color: #ffffff;
-  text-align: left;
-  border-spacing: 0 0px;
-
-  font-size: 80%;
-  margin-left: auto;
-  margin-right: auto;}
-
-/*Autocomplete*/
-
-.auto_complete
-{
-  font-size: 70%;}
-
-/* Results */
-
-table.results
-{
-  border-spacing: 60px 10px;
-  empty-cells: show;}
-
-div.pages
-{
-  text-align: right;
-  margin: 10px 0 0 0;}
-
-/* Resultados */
-
-#content table.listing
-{
-  margin: 0 10px 0 10px;
-  border-spacing: 0px 2px;
-  width: 670px;}
-
-#content table.listing td
-{
-  background-color: #eeeeee;
-  border: solid 1px #eeeeee;}
-
-#content table.listing td#links
-{
-  background-color: #ffffff;
-  border: solid 0px;
-  text-align: right;}
-  
-#content table.listing td#title
-{
-  font-weight: bold;
-  font-size: 120%;}
-  
-/*content*/
-
-#content #search
-{
-  
-  padding: auto;
-}
-  
-.link_div
-{
-margin-right: 3%;
-}
-
-.link_div a
-{
-padding-left: 10px;
-display: block;
-width: 100%;
-height: 100%;
-color: black;
-text-decoration:none; 
-font-weight: bold;
-font-size:13px;
-}
-
-.link_div a:hover
-{
-background-color: #F9F7ED;
-}
-
-.session_status
-{
-font-size: 11px;
-position: relative;
-float: right;
-padding-right:11px;
-}
-
-.example_message
-{
-font-size: 12px;
-background-color: #F7DCDC;
-border: 1px solid #D6BEC3;
-padding: 3px;
-}
-
-#index
-{
-  margin-top: 10%;
+.layout #mainContent.index {
+  display:block;
   text-align: center;
 }
 
-#index img
-{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
+.layout #mainContent.index .box *{
+  vertical-align:top;
+}
+
+.layout #mainContent.index input#searchField{
+  border:4px solid #B4B4B4;
+  font-size: 150%;
+  height: 1.05em;
+  padding-top: 0.2em;
+  width: 17em;
+}
+
+.layout #mainContent.index input#searchButton{
+  height: 2.8em;
+}
+/* end of index styles */
+
+/*Header styles*/
+.layout #header img.logo{
+  height: 100px;
+  float:left;
+  padding-top:20px;
+  padding-left:30px;
+}
+.layout #header #form {
+  padding-top: 100px;
+  padding-left: 400px;
+}
+.layout #header .box{
+  float: left;
+  margin-left: 70px;
+  margin-top: 75px;
+}
+.layout #header .box *{
+  vertical-align:top;
+}
+.layout #header input#searchField{
+  border:4px solid #B4B4B4;
+  font-size: 150%;
+  height: 1.05em;
+  padding-top: 0.2em;
+  width: 17em;
+}
+.layout #header input#searchButton{
+  height: 2.8em;
+}
+
+
+.layout #header #bar * {
+  padding-top: 55px;
+  color: #505050;
+  text-decoration: none;
+  height: 40px;
+}
+
+.layout #header #bar #langs {
+  float: right;
+  padding-right: 5%;
+}
+
+.layout #header #bar #menu {
+  float: left;
+  clear: left;
+  padding-left: 5%;
+}
+
+.layout #header #bar * a {
+  padding: 0px;
+  padding-right: 15px;
+}
+
+/* end of header styles*/
+
+/* Content Styles */
+
+.layout #mainContent .listing td#title{
+  font-style: italic;
+  font-size: 90%;
+
+}
+
+.layout #mainContent .listing td{
+  font-size: 80%;
+  border-collapse: separate;
+  border-spacing: 20px;
+}
+
+.layout #mainContent .listing td#links{
+  padding-bottom: 10px;
+}
+
+/* end of content styles*/
+
+/* Footer Styles*/
+
+.layout #footer #notes {
+  color: #fff;
+  text-align: center;
+/*  padding:2.9em 0 3.3em;*/
+  padding-top: 2.5em;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.layout #footer #notes * {
+  color: #fff;
+}
+.layout #footer #notes #links {
+  border-bottom: 3px solid #B88;
+  padding-bottom: 5px;
+}
+
+.layout #footer #notes #info {
+  padding-top: 5px;
 }
