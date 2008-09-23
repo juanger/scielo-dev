@@ -80,14 +80,15 @@ class CitationIndexController < ApplicationController
     #  JOIN (select article_id ,count(article_id) as cites from cites group by article_id) as tmp ON article_authors.article_id = tmp.article_id 
     #  GROUP BY authors.id ORDER BY sum DESC LIMIT 10;
      
-    @collection = Author.paginate :select => "authors.id, sum(tmp.cites)",
+    @collection = Author.paginate :select => "authors.id, authors.lastname, authors.degree, authors.firstname, authors.middlename, sum(tmp.cites)",
                                   :joins => "JOIN article_authors on authors.id = article_authors.author_id "+
                                             "JOIN (select article_id ,count(article_id) as cites from cites "+
                                             "group by article_id) as tmp ON article_authors.article_id = tmp.article_id ",
-                                  :per_page => 10,
+                                  :per_page => 30,
                                   :page => params[:page],
-                                  :group => 'authors.id',
-                                  :order => 'sum'
+                                  :group => 'authors.id, authors.lastname, authors.degree, authors.firstname, authors.middlename',
+                                  :order => 'sum DESC',
+                                  :total_entries => Author.count
                                             
   end
 

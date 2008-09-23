@@ -1,6 +1,6 @@
   <tr>
     <td ><%= author.as_human %></td>
     <td></td>
-    <td><%= link_to "citaciones: #{author.total_cites}", {:action => 'find_auxiliar', :id => author, :cites => author.total_cites} %></td>
-    <td><%= link_to 'descargar PDF', {:action => 'find_auxiliar', :id => author, :cites => author.total_cites, :format => 'pdf'}, :class => 'pdf' %></td>
+    <td><%= "citaciones: #{author.sum}" %></td>
+  
   </tr>
