@@ -82,12 +82,12 @@ class CitationIndexController < ApplicationController
      
     @collection = Author.paginate :select => "authors.id, authors.lastname, authors.degree, authors.firstname, authors.middlename, sum(tmp.cites)",
                                   :joins => "JOIN article_authors on authors.id = article_authors.author_id "+
-                                            "JOIN (select article_id ,count(article_id) as cites from cites "+
+                                            "LEFT OUTER JOIN (select article_id ,count(article_id) as cites from cites "+
                                             "group by article_id) as tmp ON article_authors.article_id = tmp.article_id ",
                                   :per_page => 30,
                                   :page => params[:page],
                                   :group => 'authors.id, authors.lastname, authors.degree, authors.firstname, authors.middlename',
-                                  :order => 'sum DESC',
+                                  :order => 'sum DESC NULLS LAST',
                                   :total_entries => Author.count
                                             
   end
