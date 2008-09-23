@@ -24,19 +24,19 @@ class CitationIndexController < ApplicationController
     cond_string << " OR " + "authors.lastname ~* :terms "
     cond_string << " OR " + "articles.title ~* :terms"    
     joins << " JOIN article_authors ON articles.id = article_authors.article_id " +
-              "JOIN authors ON authors.id = article_authors.author_id "
-               
-              # TODO: Use outer join to get articles with no citations in the following joins
-              #+
-              #"JOIN (select article_id ,count(article_id) as cites from cites " +
-              #"group by article_id order by cites DESC) as tmp ON articles.id = tmp.article_id"
+              "JOIN authors ON authors.id = article_authors.author_id " +
+              "LEFT OUTER JOIN (select article_id ,count(article_id) as citations from cites " +
+              "group by article_id) as tmp ON articles.id = tmp.article_id"
     
     @collection = Article.paginate(:joins => joins,
                                    :conditions => [cond_string, cond_hash],
-                                   :select => 'DISTINCT articles.*',
+                                   :select => 'distinct articles.id, articles.title, '+
+                                      'articles.subtitle, articles.journal_issue_id, tmp.citations, ' +
+                                      'articles.fpage, articles.lpage, articles.language_id',
                                    :count => { :select => 'DISTINCT articles.title' },
                                    :per_page => 10,
-                                   :page => params[:page])
+                                   :page => params[:page],
+                                   :order => 'tmp.citations DESC NULLS LAST')
     
     if @collection.empty?
       flash[:notice] = _('Your search "%s" did not match any articles', params[:terms])
@@ -73,6 +73,22 @@ class CitationIndexController < ApplicationController
   def change_language
     session[:lang] = params[:lang].to_sym unless params[:lang].blank?
     redirect_to :back
+  end
+
+  def most_cited
+    # select authors.id, sum(tmp.cites) from authors JOIN article_authors on authors.id = article_authors.author_id
+    #  JOIN (select article_id ,count(article_id) as cites from cites group by article_id) as tmp ON article_authors.article_id = tmp.article_id 
+    #  GROUP BY authors.id ORDER BY sum DESC LIMIT 10;
+     
+    @collection = Author.paginate :select => "authors.id, sum(tmp.cites)",
+                                  :joins => "JOIN article_authors on authors.id = article_authors.author_id "+
+                                            "JOIN (select article_id ,count(article_id) as cites from cites "+
+                                            "group by article_id) as tmp ON article_authors.article_id = tmp.article_id ",
+                                  :per_page => 10,
+                                  :page => params[:page],
+                                  :group => 'authors.id',
+                                  :order => 'sum'
+                                            
   end
 
 # (fold)

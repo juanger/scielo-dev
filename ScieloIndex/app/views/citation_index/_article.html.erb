@@ -5,6 +5,6 @@
     <td id="links">
       <%= pdf_download_link(article) %>
       <%= html_view_link(article) %>
-      <%= link_to _('Cited by %d', article.cites_number), {:action => 'list_articles_cites', :id => article} %>
+      <%= link_to _('Cited by %d', article.citations), {:action => 'list_articles_cites', :id => article} %>
     </td>
   </tr>
