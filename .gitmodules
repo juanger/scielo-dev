@@ -1,6 +1,6 @@
 [submodule "ScieloIndex/vendor/plugins/auto_complete"]
 	path = ScieloIndex/vendor/plugins/auto_complete
-	url = git://github.com/rails/auto_complete.git
+	url = git://github.com/JerryWho/auto_complete.git
 [submodule "ScieloIndex/vendor/plugins/rfpdf"]
 	path = ScieloIndex/vendor/plugins/rfpdf
 	url = git://github.com/edwinmoss/rfpdf.git
