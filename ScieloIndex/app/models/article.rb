@@ -38,10 +38,6 @@ class Article < ActiveRecord::Base
     [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join('. ')
   end
 
-  def cites_number
-    self.cites.size
-  end
-
   def to_table_rows
     "<tr><td id=\"title\">#{title_as_vancouver}</td></tr>\n" + 
     "<tr><td>#{author_names_as_vancouver}, #{journal_as_vancouver}</td></tr>\n" 
@@ -62,5 +58,13 @@ class Article < ActiveRecord::Base
 
   def journal_as_vancouver
     self.journal_issue.journal.as_vancouver + ' ' + self.journal_issue.as_vancouver + ':' + self.fpage.to_s + '-' + self.lpage.to_s + '.'
+  end
+  
+  def method_missing(methId)
+    if methId == :citations
+      self.cites.size
+    else
+      super
+    end
   end
 end

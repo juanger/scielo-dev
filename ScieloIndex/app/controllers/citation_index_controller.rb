@@ -49,12 +49,11 @@ class CitationIndexController < ApplicationController
   end
   
   def list_articles_cites
-    @collection = Article.paginate :select => 'articles.*, tmp.citations',
-                                   :joins => "LEFT OUTER JOIN (select cites.article_id ,count(cites.article_id) as citations from cites " +
-                                            "group by article_id) as tmp ON articles.id = tmp.article_id",
-                                   :conditions => "article_id = #{params[:id]}",
-                                   :per_page => 10,
-                                   :page => params[:page]
+    @collection = Article.paginate :select => 'articles.*',
+                                  :joins => "JOIN cites ON articles.id = cites.cited_by_article_id",
+                                  :conditions => "article_id = #{params[:id]}",
+                                  :per_page => 10,
+                                  :page => params[:page]
   end
 
   def list_authors_articles
