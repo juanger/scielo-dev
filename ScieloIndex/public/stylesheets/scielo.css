@@ -201,13 +201,43 @@ html>body #container {
   padding-top: 5px;
 }
 
+/* end of footer styles */
+
+/* Content styles */
+
+a , a:visited, a:hover, a:focus{
+  color: #9f0b0b;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .centered {
   text-align: center;
 }
 
+table.most_cited {
+  padding: 20px 10%;
+  width: 100%;
+}
+
+img.art_link, a.art_link {
+  height: 1.2em;
+  display: block;
+  float: left;
+  padding-right: 0.5em;
+}
+
+
+/* end of content styles*/
+
+/* Pagination styles */
+
 .pagination {
   text-align: center;
-  background: white; /* self-clearing method: */
+  background: white;
 }
 .pagination a, .pagination span {
   padding: .2em .5em;
@@ -218,9 +248,7 @@ html>body #container {
 }
 .pagination span.current {
   font-weight: bold;
-/*  background: #9f0b0b;*/
   color: #9f0b0b;
-/*  border: 1px solid #9f0b0b;*/
 }
 .pagination a {
   text-decoration: none;
@@ -267,3 +295,5 @@ html>body #container {
 *:first-child+html .pagination {
   overflow: hidden;
 }
+
+/* end of pagination styles */
