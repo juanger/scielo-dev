@@ -40,7 +40,7 @@ class Author < ActiveRecord::Base
   end
 
   def total_cites
-    citesperart = self.articles.collect { |article| article.cites_number }
+    citesperart = self.articles.collect { |article| article.citations }
     citesperart.inject() { |sum,element| sum + element}
   end
 

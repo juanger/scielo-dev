@@ -206,46 +206,64 @@ html>body #container {
 }
 
 .pagination {
-  background: white;
-  /* self-clearing method: */ }
-  .pagination a, .pagination span {
-    padding: .2em .5em;
-    display: block;
-    float: left;
-    margin-right: 1px; }
-  .pagination span.disabled {
-    color: #999;
-    border: 1px solid #DDD; }
-  .pagination span.current {
-    font-weight: bold;
-    background: #9f0b0b;
-    color: white;
-    border: 1px solid #9f0b0b; }
-  .pagination a {
-    text-decoration: none;
-    color: #9f0b0b;
-    border: 1px solid #9f0b0b; }
-    .pagination a:hover, .pagination a:focus {
-      color: #003;
-      border-color: #003; }
-  .pagination .page_info {
-    background: #9f0b0b;
-    color: white;
-    padding: .4em .6em;
-    width: 22em;
-    margin-bottom: .3em;
-    text-align: center; }
-    .pagination .page_info b {
-      color: #003;
-      background: #9f0b0b;
-      padding: .1em .25em; }
-  .pagination:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden; }
-  * html .pagination {
-    height: 1%; }
-  *:first-child+html .pagination {
-    overflow: hidden; }
+  text-align: center;
+  background: white; /* self-clearing method: */
+}
+.pagination a, .pagination span {
+  padding: .2em .5em;
+}
+.pagination span.disabled {
+  color: #999;
+  border: none;
+}
+.pagination span.current {
+  font-weight: bold;
+/*  background: #9f0b0b;*/
+  color: #9f0b0b;
+/*  border: 1px solid #9f0b0b;*/
+}
+.pagination a {
+  text-decoration: none;
+  color: #505050;
+  border: 1px solid #ddd;
+}
+.pagination a:hover, .pagination a:focus {
+  color: #fff;
+  border-color: #9f0b0b;
+  background: #9f0b0b;
+}
+.pagination .page_info {
+  background: #9f0b0b;
+  color: white;
+  padding: .4em .6em;
+  width: 22em;
+  margin-bottom: .3em;
+  text-align: center;
+}
+.pagination .page_info b {
+  color: #003;
+  background: #9f0b0b;
+  padding: .1em .25em;
+}
+.pagination .prev_page, .pagination .next_page {
+  border-width: 2px;
+}
+.pagination .prev_page {
+  margin-right: 1em;
+}
+.pagination .next_page {
+  margin-left: 1em;
+}
+.pagination:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+* html .pagination {
+  height: 1%;
+}
+*:first-child+html .pagination {
+  overflow: hidden;
+}
