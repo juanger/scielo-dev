@@ -12,7 +12,7 @@ html, body{
 }
 
 body {
-  font: 100% Helvetica, Verdana sans-serif;
+  font: 100% Helvetica-neue, Helvetica, Verdana sans-serif;
   margin: 0;
   padding: 0;
   color: #505050;
@@ -200,3 +200,52 @@ html>body #container {
 .layout #footer #notes #info {
   padding-top: 5px;
 }
+
+.centered {
+  text-align: center;
+}
+
+.pagination {
+  background: white;
+  /* self-clearing method: */ }
+  .pagination a, .pagination span {
+    padding: .2em .5em;
+    display: block;
+    float: left;
+    margin-right: 1px; }
+  .pagination span.disabled {
+    color: #999;
+    border: 1px solid #DDD; }
+  .pagination span.current {
+    font-weight: bold;
+    background: #9f0b0b;
+    color: white;
+    border: 1px solid #9f0b0b; }
+  .pagination a {
+    text-decoration: none;
+    color: #9f0b0b;
+    border: 1px solid #9f0b0b; }
+    .pagination a:hover, .pagination a:focus {
+      color: #003;
+      border-color: #003; }
+  .pagination .page_info {
+    background: #9f0b0b;
+    color: white;
+    padding: .4em .6em;
+    width: 22em;
+    margin-bottom: .3em;
+    text-align: center; }
+    .pagination .page_info b {
+      color: #003;
+      background: #9f0b0b;
+      padding: .1em .25em; }
+  .pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .pagination {
+    height: 1%; }
+  *:first-child+html .pagination {
+    overflow: hidden; }

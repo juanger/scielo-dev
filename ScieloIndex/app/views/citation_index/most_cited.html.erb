@@ -1,14 +1,12 @@
 <h1><%=_ 'Most cited authors' %></h1>
 
-
-  <table class="results">
+  <table class="most_cited">
+    <tr><th><%=_ "ranking" %></th><th><%=_ "name" %></th><th><%=_ "citations" %></th><th><%=_ "self-citations" %></th></tr>
+    <% @ranked = true %>
     <%= render :partial => 'author', :collection => @collection %>
   </table>
 <br/>
 <div class="pages">
   <%= render :partial =>'paginator', :object => @pages %>
   <hr/>
-  <div id="buttonsNavigator">
-    <%= link_to 'Nueva Búsqueda', {:action => 'index'}, :class => 'cssbutton' %>
-  </div>
 </div>

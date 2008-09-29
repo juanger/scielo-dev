@@ -4,6 +4,7 @@ Localization.define(:es_MX) do |l|
   l.store 'Index', 'Índice'
   l.store 'Advanced search', 'Búsqueda avanzada'
   l.store 'Most cited', 'Los más citados'
+  l.store 'Most cited authors', 'Los autores más citados'
   
   l.store 'Development', 'Desarrollo'
   l.store 'Sponsors', 'Patrocinadores'

@@ -1,6 +1,6 @@
   <tr>
-    <td ><%= author.as_human %></td>
+    <%= "<td class=\"centered\">#{(@collection.index(author) + 1) + (30 * (params[:page] ? params[:page].to_i-1 : 0)) }</td>" if @ranked %>
+    <td><%= author.as_human %></td>
+    <td class="centered"><%= "#{author.citations || 0}" %></td>
     <td></td>
-    <td><%= "citaciones: #{author.sum || 0}" %></td>
-  
   </tr>
