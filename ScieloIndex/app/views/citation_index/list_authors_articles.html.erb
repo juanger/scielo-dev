@@ -1,4 +1,4 @@
-<h1> Artículos de <%= @author.as_human %> <%= link_to ' descargar PDF', {:format => 'pdf'}, :class => 'pdf' %></h1>
+<h1> <%= _('Articles writen by %s', @author.as_human) %> <%= link_to image_tag("dl_pdf.png", :class => 'author_pdf'), {:format => 'pdf'}, :class => 'pdf' %></h1>
 <!-- <p>Total de citaciones: <%= @cites %></p> -->
 
 <%= render :partial => 'list', :object => @pages %>

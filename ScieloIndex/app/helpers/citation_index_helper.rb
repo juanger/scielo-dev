@@ -21,4 +21,5 @@ module CitationIndexHelper
     end
     content_tag("div", attributes, &block)
   end
+  
 end

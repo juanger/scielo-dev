@@ -1,5 +1,12 @@
 
-  <%= article.to_table_rows %>
+  <tr><td id="title"><%= article.title_as_vancouver %></td></tr>
+  <tr>
+    <td class="authors">
+      <%= article.authors.map do |author| 
+        link_to(author.as_vancouver, :controller => "citation_index",:action => "list_authors_articles", :id => author )
+       end.join(", ") %>,
+    <%= article.journal_as_vancouver %></td>
+  </tr> 
 
   <tr>
     <td id="links">

@@ -38,20 +38,6 @@ class Article < ActiveRecord::Base
     [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join('. ')
   end
 
-  def to_table_rows
-    "<tr><td id=\"title\">#{title_as_vancouver}</td></tr>\n" + 
-    "<tr><td>#{author_names_as_vancouver}, #{journal_as_vancouver}</td></tr>\n" 
-  end
-
-  def author_names_as_vancouver
-    limit = 6
-    if self.authors.size < limit
-      self.authors.collect { |author| author.as_vancouver }.join(', ')
-    else
-      (self.authors.values_at(0..(limit - 1)).collect { |author| author.as_vancouver }.join(', ') + ' et al.')
-    end
-  end
-
   def title_as_vancouver
     self.title.capitalize
   end

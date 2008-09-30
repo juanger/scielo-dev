@@ -3,8 +3,8 @@
   margin:0;
   padding:0;
   font: 100%;
-  border: 0;
-  outline: none;
+/*  border: 0;
+  outline: none;*/
 }
 
 html, body{
@@ -89,17 +89,6 @@ html>body #container {
   vertical-align:top;
 }
 
-.layout #mainContent.index input#searchField{
-  border:4px solid #B4B4B4;
-  font-size: 150%;
-  height: 1.05em;
-  padding-top: 0.2em;
-  width: 17em;
-}
-
-.layout #mainContent.index input#searchButton{
-  height: 2.8em;
-}
 /* end of index styles */
 
 /*Header styles*/
@@ -121,17 +110,6 @@ html>body #container {
 .layout #header .box *{
   vertical-align:top;
 }
-.layout #header input#searchField{
-  border:4px solid #B4B4B4;
-  font-size: 150%;
-  height: 1.05em;
-  padding-top: 0.2em;
-  width: 17em;
-}
-.layout #header input#searchButton{
-  height: 2.8em;
-}
-
 
 .layout #header #bar * {
   padding-top: 55px;
@@ -183,7 +161,6 @@ html>body #container {
 .layout #footer #notes {
   color: #fff;
   text-align: center;
-/*  padding:2.9em 0 3.3em;*/
   padding-top: 2.5em;
   max-width: 50%;
   margin: 0 auto;
@@ -230,14 +207,28 @@ img.art_link, a.art_link {
   padding-right: 0.5em;
 }
 
+img.author_pdf {
+  height: 1em;
+  padding-left: 0.5em;
+}
+
+td.authors a{
+  color: #70709f;
+}
+
 
 /* end of content styles*/
+
+.layout #mainContent.index input#searchField, .layout #header input#searchField {
+  width: 300px;
+}
+
 
 /* Pagination styles */
 
 .pagination {
   text-align: center;
-  background: white;
+/*  background: white;*/
 }
 .pagination a, .pagination span {
   padding: .2em .5em;
