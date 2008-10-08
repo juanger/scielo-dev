@@ -9,26 +9,25 @@
 
 <body class="layout">
   
-  <div id="container">
-    <div id="header">
-      <div id="bar">
-        <%= render :partial => "shared/menu" %>
-        <%= render :partial => "shared/langs" %>
-      </div>
-    </div><!-- end #header -->
-    
+  <!-- <div id="container"> -->
     <div id="mainContent" class="index">
+      <div id="header">
+        <div id="bar">
+          <%= render :partial => "shared/menu" %>
+          <%= render :partial => "shared/langs" %>
+        </div>
+      </div><!-- end #header -->
+      
        <%= yield %>
        <%= flash[:notice] %>
+       
+       <div id="push"></div><!-- end #push -->
     </div> <!-- end #mainContent -->
-    
-    <div id="push">
-    </div><!-- end #push -->
     
     <div id="footer">
       <%= render :partial => "shared/footnotes" %>
     </div><!-- end #footer -->
-  </div><!-- end #container -->
+  <!-- </div> end #container -->
 
 </body>
 </html>

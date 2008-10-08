@@ -8,34 +8,30 @@
 </head>
 
 <body class="layout">
-  <div id="container">
-
-    <div id="header">
-        <%= image_tag("logo.png", :class => "logo") %>
-        <%= render :partial => 'citation_index/basic_form' %>
-      <div id="form">
-      </div><br/>
-      <div id="bar">
-        <%= render :partial => "shared/menu" %>
-        <%= render :partial => "shared/langs" %>
-      </div>
-    </div>
-    <!-- end #header -->
+  <!-- <div id="container"> -->
 
     <div id="mainContent">
+      <div id="header">
+          <%= image_tag("logo.png", :class => "logo") %>
+          <%= render :partial => 'citation_index/basic_form' %>
+        <div id="form">
+        </div><br/>
+        <div id="bar">
+          <%= render :partial => "shared/menu" %>
+          <%= render :partial => "shared/langs" %>
+        </div>
+      </div><!-- end #header -->
+      
       <%= yield %>
       <%= flash[:notice] %>
-    </div><!-- end #mainContent -->
-
-    <div id="push">
       
-    </div><!-- end #push -->
+    <div id="push"></div><!-- end #push -->
+    </div><!-- end #mainContent -->
 
     <div id="footer">
       <%= render :partial => "shared/footnotes" %>
     </div><!-- end #footer -->
-  </div>
-<!-- end #container -->
+  <!-- </div> end #container -->
 
 </body>
 </html>
