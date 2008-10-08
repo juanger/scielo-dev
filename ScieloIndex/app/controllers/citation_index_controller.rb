@@ -89,7 +89,12 @@ class CitationIndexController < ApplicationController
                                   :group => 'authors.id, authors.lastname, authors.degree, authors.firstname, authors.middlename',
                                   :order => 'citations DESC NULLS LAST',
                                   :total_entries => Author.count
-                                            
+  end
+
+  def about
+    respond_to do |format|
+      format.html { render :template => "citation_index/about.html.erb"}
+    end
   end
 
 # (fold)

@@ -73,7 +73,7 @@ html>body #container {
 /* Index styles */
 
 .layout #mainContent.index img{
-  width: 400px;
+  width: 300px;
   margin-left: auto;
   margin-right:auto;
   padding-top: 10%;
@@ -160,10 +160,11 @@ html>body #container {
 
 .layout #footer #notes {
   color: #fff;
-  text-align: center;
-  padding-top: 2.5em;
-  max-width: 50%;
-  margin: 0 auto;
+  float: left;
+/*  text-align: center;*/
+  padding-top: 3em;
+  padding-left: 3em;
+/*  max-width: 50%;*/
 }
 
 .layout #footer #notes * {
@@ -176,6 +177,13 @@ html>body #container {
 
 .layout #footer #notes #info {
   padding-top: 5px;
+}
+
+.layout #footer img.logo {
+  display: block;
+  float: right;
+  padding-top: 27px;
+  padding-right: 3em;
 }
 
 /* end of footer styles */
@@ -191,8 +199,16 @@ a:hover {
   text-decoration: underline;
 }
 
+a img {
+  border: none;
+}
+
 .centered {
   text-align: center;
+}
+
+h1 {
+  font-size: 150%;
 }
 
 table.most_cited {

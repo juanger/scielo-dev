@@ -1,14 +1,17 @@
 <div id="notes">
   <div id="links">
+    <%= link_to _("About"), :controller => "citation_index", :action => "about" %>
+    |
     <%= link_to _("Sponsors"), :controller => "citation_index", :action => "index" %>
     |
     <%= link_to _("Contact"), :controller => "citation_index", :action => "index" %>
     |
     <%= link_to _("Team"), :controller => "citation_index", :action => "index" %>
     |
-    <%= link_to _("Development"), :controller => "citation_index", :action => "index" %>
+    <%= link_to _("Development"), "http://dev.scielo.unam.mx" %>
   </div>
   <div id="info">
       SciELO Index Beta. UNAM
   </div>
 </div>
+<%= link_to image_tag("logo_scielo.png", :class => "logo"), "http://www.scielo.org" %>
