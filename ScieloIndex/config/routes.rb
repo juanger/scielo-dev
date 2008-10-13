@@ -1,4 +1,6 @@
-ActionController::Routing::Routes.draw do |map|  
+ActionController::Routing::Routes.draw do |map|
+  map.resources :searches
+  
   map.root :controller => "citation_index", :action => "index"
 
   map.signup '/signup', :controller => 'users', :action => 'new'

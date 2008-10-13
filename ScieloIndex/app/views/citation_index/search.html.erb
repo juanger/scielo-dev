@@ -1,0 +1,48 @@
+<h1><%= _("Advanced search") %></h1>
+
+<% form_for(:search, :url => {:action => :find_advanced}) do |f| %>
+
+  <div class="advanced">
+    <fieldset>
+      <legend><span><%= _("Article") %></span></legend>
+      <p>
+        <%= f.label _('with title') %>
+        <%= text_field_with_auto_complete :article, :title, :skip_style => true %>
+      </p>
+      <p>
+        <%= f.label _('with exact phrase in title') %>
+        <%= f.text_field :title_phrase %>
+      </p>
+      <p>
+        <%= f.label _('with at least one of the words in title') %>
+        <%= f.text_field :title_any %>
+      </p>
+      <p>
+        <%= f.label _('published in the journal') %>
+        <%= select(:search, :journal_id, 
+                    Journal.find(:all).map {|j| ["-#{j.title}-", j.id] }.sort { |x,y| x[0] <=> y[0]},
+                    {:include_blank => _(" Any ") }) %>
+      </p>
+    </fieldset>
+    <fieldset>
+      <legend><span><%= _("Author") %></span></legend>
+      <p>
+        <%= f.label _('match any articles written by') %>
+        <%= f.text_field :author %>
+      </p>
+    </fieldset>
+  <!-- <p>
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </p>
+  <p>
+    <%= f.label :journal_id %><br />
+    <%= f.text_field :journal_id %>
+  </p> -->
+  <br>
+  <p>
+    <%= f.submit _("Search") %>
+  </p>
+  
+  </div>
+<% end %>

@@ -39,7 +39,7 @@ body {
 }
 
 .layout #push {
-  height: 124px;
+  height: 140px;
 /*  padding-bottom: 50px;*/} 
 
 .layout #footer {
@@ -125,6 +125,91 @@ body {
 
 /* Content Styles */
 
+.layout #mainContent.index input#searchField, .layout #header input#searchField {
+  width: 300px;
+}
+
+.layout #mainContent .advanced fieldset {  
+/*  margin: 1.5em 0 0 0;  
+  padding: 10px*/;
+  float: left;
+  clear: both;
+  width: 100%;
+  margin: 0 0 -1em 0;  
+  padding: 0 0 2em 0;  
+  border-style: none;  
+/*  border-top: 1px solid #BFBAB0;*/
+}
+.layout #mainContent .advanced legend {
+  margin-left: -1em;
+  color: #000000;
+  font-weight: bold;
+}
+
+.layout #mainContent .advanced legend span{
+  position: absolute;  
+  margin-top: 0em;  
+  font-size: 110%;
+}
+
+.layout #mainContent .advanced p {
+  padding-left: 5em;
+  padding-bottom: 5px;
+}
+
+.layout #mainContent .advanced label {
+  text-transform: lowercase;
+  float: left;  
+  width: 20em;  
+  margin-right: 1em;
+}
+
+.layout #mainContent .advanced input, 
+.layout #mainContent .advanced select {
+/*  margin-left: 100px;*/
+  width: 350px;
+}
+
+.layout #mainContent .advanced input#search_submit{
+  max-width: 100px;
+  margin-left: 21em;
+}
+
+.layout #mainContent .advanced input, 
+.layout #mainContent .advanced select {
+/*  margin-left: 100px;*/
+  width: 350px;
+}
+
+.layout #mainContent .advanced .auto_complete {
+  border: 1px solid #999;
+  background-color: #fff;
+  margin-left: 4em;
+  font-size: 80%;
+}
+
+.layout #mainContent .advanced ul{
+  list-style-type: none;
+  margin:0px;
+  padding:0px;
+}
+
+.layout #mainContent .advanced ul li {
+  list-style-type: none;
+  border-bottom: 1px solid #999;
+  display:block;
+  vertical-align: middle;
+  margin:0;
+  padding:0.2em;
+  height:1.2em;
+  overflow: hidden;
+}
+
+.layout #mainContent .advanced li.selected {
+  background-color: #9f0b0b;
+  color: #fff;
+}
+
 .layout #mainContent .listing td#title{
   font-style: italic;
   font-size: 90%;
@@ -139,6 +224,10 @@ body {
 
 .layout #mainContent .listing td#links{
   padding-bottom: 10px;
+}
+
+.layout #mainContent #yield {
+  padding: 0px 5%;
 }
 
 /* end of content styles*/
@@ -204,7 +293,8 @@ a img {
 }
 
 h1 {
-  font-size: 150%;
+  font-size: 140%;
+  padding-bottom: 2em;
 }
 
 table.most_cited {
@@ -230,11 +320,6 @@ td.authors a{
 
 
 /* end of content styles*/
-
-.layout #mainContent.index input#searchField, .layout #header input#searchField {
-  width: 300px;
-}
-
 
 /* Pagination styles */
 
