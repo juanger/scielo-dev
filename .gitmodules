@@ -1,6 +1,3 @@
-[submodule "ScieloIndex/vendor/plugins/auto_complete"]
-	path = ScieloIndex/vendor/plugins/auto_complete
-	url = git://github.com/JerryWho/auto_complete.git
 [submodule "ScieloIndex/vendor/plugins/localization"]
 	path = ScieloIndex/vendor/plugins/localization
 	url = git://github.com/rails/localization.git

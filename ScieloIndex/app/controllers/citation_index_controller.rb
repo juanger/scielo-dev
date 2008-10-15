@@ -3,7 +3,7 @@ class CitationIndexController < ApplicationController
   # auto_complete_for :author, :middlename
   # auto_complete_for :author, :lastname
   auto_complete_for :article, :title
-  auto_complete_for :keyword, :name
+  # auto_complete_for :keyword, :name
 
   def index
     render :layout => 'index'
@@ -60,12 +60,13 @@ class CitationIndexController < ApplicationController
   end
   
   def find_advanced
-    if params[:search].map {|k,v| v.blank?}.inject(true) {|f,n| f && n}
+    if params[:search].merge(params[:article]).map {|k,v| v.blank?}.inject(true) {|f,n| f && n}
       # flash[:notice] = _('Try to set at least one parameter')
       redirect_to :action => 'search'
     end
     
     session[:search] = params[:search] if params[:search]
+    session[:search].merge!(params[:article])
     @collection = Search.new(session[:search] || {}, params[:page]).articles
     
     if @collection.empty?

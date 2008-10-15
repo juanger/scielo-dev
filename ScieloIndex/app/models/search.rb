@@ -1,9 +1,8 @@
 class Search #< ActiveRecord::Base
-  attr_accessor :author, :title_phrase, :title_any, :since_year, :until_year, :journal_id, :page
+  attr_accessor :author, :title, :title_phrase, :title_any, :since_year, :until_year, :journal_id, :page
   
   def initialize(hash, page)
     hash.each do |key,val|
-      puts "#{key} = \"#{val}\""
       instance_variable_set("@#{key}", val.strip)
     end
     @page = page
@@ -14,7 +13,7 @@ class Search #< ActiveRecord::Base
   end
   
   def inspect
-    "{author:#{author}, title:\"#{title_phrase}\", journal_id:#{journal_id}}"
+    "{author:#{author}, title:\"#{title}\", title_phrase:\"#{title_phrase}\", journal_id:#{journal_id}}"
   end
   
   private
@@ -48,6 +47,10 @@ class Search #< ActiveRecord::Base
     end
   end
 
+  def title_conditions
+    ["articles.title = ?",  "#{title}"] unless title.blank?
+  end
+
   def title_phrase_conditions
     ["articles.title ~* ?",  "#{title_phrase}"] unless title_phrase.blank?
   end
@@ -59,7 +62,7 @@ class Search #< ActiveRecord::Base
   end
   
   def journal_conditions
-    ["journal_issues.journal_id = ?",  "#{journal_id}"]
+    ["journal_issues.journal_id = ?",  "#{journal_id}"] unless journal_id.blank?
   end
 
   # def year_conditions

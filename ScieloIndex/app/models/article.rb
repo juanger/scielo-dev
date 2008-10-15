@@ -37,6 +37,10 @@ class Article < ActiveRecord::Base
   def as_vancouver
     [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join('. ')
   end
+  
+  def author_names_as_vancouver
+    authors.map { |author| author.as_vancouver}.join(', ')
+  end
 
   def title_as_vancouver
     self.title.capitalize
