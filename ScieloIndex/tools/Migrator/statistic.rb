@@ -1,7 +1,7 @@
 class Statistic
 
-  def initialize
-    @stats = File.new(".migrator-stats", "w")
+  def initialize(stats_file="migrator-stats")
+    @stats = File.new(stats_file, "w")
     @counters = {
       :journal => 0,
       :issue => 0,

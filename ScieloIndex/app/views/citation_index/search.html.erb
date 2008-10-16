@@ -4,30 +4,33 @@
 
   <div class="advanced">
     <fieldset>
-      <legend><span><%= _("Article") %></span></legend>
+      <legend><span><%= _("Title") %></span></legend>
       <p>
-        <%= f.label _('with title') %>
+        <%= f.label :title, _('is exactly'), :class => 'lowercased' %>
         <%= text_field_with_auto_complete :article, :title %>
       </p>
       <p>
-        <%= f.label _('with exact phrase in title') %>
+        <%= f.label :title_phrase, _('with exact phrase'), :class => 'capitalized' %>
         <%= f.text_field :title_phrase %>
       </p>
       <p>
-        <%= f.label _('with at least one of the words in title') %>
+        <%= f.label :title_any, _('with at least one of the words'), :class => 'capitalized' %>
         <%= f.text_field :title_any %>
       </p>
+    </fieldset>
+    <fieldset>
+      <legend><span><%= _("Journal") %></span></legend>
       <p>
-        <%= f.label _('published in the journal') %>
+        <%= f.label :journal, _('Match articles published in') %>
         <%= select(:search, :journal_id, 
-                    Journal.find(:all).map {|j| ["-#{j.title}-", j.id] }.sort { |x,y| x[0] <=> y[0]},
-                    {:include_blank => _(" Any ") }) %>
+                  Journal.find(:all).map {|j| ["#{j.title}", j.id] }.sort { |x,y| x[0] <=> y[0]},
+                  {:include_blank => "-------- " + _("Any") + " --------" }) %>
       </p>
     </fieldset>
     <fieldset>
       <legend><span><%= _("Author") %></span></legend>
       <p>
-        <%= f.label _('match any articles written by') %>
+        <%= f.label :author, _('Match any articles written by') %>
         <%= f.text_field :author %>
       </p>
     </fieldset>

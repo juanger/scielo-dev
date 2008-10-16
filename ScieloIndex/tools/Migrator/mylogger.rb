@@ -1,6 +1,6 @@
 class MyLogger
 
-  def initialize(level)
+  def initialize(level, log_file="migrator-log", errors_file="migrator-errors")
    @levels = {
     :debug => 0,
     :warning => 1,
@@ -9,9 +9,9 @@ class MyLogger
    }
     @level = @levels[level]
     if @level < 3
-      @log = File.new("migrator-log", "w")
+      @log = File.new(log_file, "w")
     end
-    @errors = File.new("migrator-errors", "w")
+    @errors = File.new(errors_file, "w")
   end
 
   def log(type, message, indent = "")

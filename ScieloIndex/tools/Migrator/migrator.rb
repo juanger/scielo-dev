@@ -1,29 +1,29 @@
-#!/usr/bin/env ruby
-RAILS_ENV = 'development'
+# this script will be run by script/runner
 $KCODE='u'
-
-require File.dirname(__FILE__) + '/../../config/environment'
-require 'sgmlarticle'
-require 'associated_authors'
-require 'associated_references'
-require 'associated_files'
-require 'statistic'
 require 'jcode'
 require 'iconv'
-require 'mylogger'
+
+MIGRATOR_ROOT = RAILS_ROOT + '/tools/Migrator/'
+
+require File.expand_path(MIGRATOR_ROOT + 'sgmlarticle')
+require File.expand_path(MIGRATOR_ROOT + 'associated_authors')
+require File.expand_path(MIGRATOR_ROOT + 'associated_references')
+require File.expand_path(MIGRATOR_ROOT + 'associated_files')
+require File.expand_path(MIGRATOR_ROOT + 'statistic')
+require File.expand_path(MIGRATOR_ROOT + 'mylogger')
 
 
 class Migrator
   def initialize
-    config = "./config"
+    config = MIGRATOR_ROOT + "config"
     if File.file? config
       open(config, "r") { |file|
         file.each { |line|
           next if line =~ /^(#.*)?$/
           obtain_value line}
       }
-     @logger = MyLogger.new(@level)
-     @stats = Statistic.new
+     @logger = MyLogger.new(@level, MIGRATOR_ROOT + 'migrator-log', MIGRATOR_ROOT + 'migrator-errors')
+     @stats = Statistic.new(MIGRATOR_ROOT + 'migrator-stats')
     else
       @logger = MyLogger.new(:none)
       @logger.error("Configuración", "Por favor crear un archivo de configuracion con nombre config.")
@@ -36,15 +36,18 @@ class Migrator
     @logger.info("Pais Por Defecto: #{@default_country}")
 
     if File.directory? @serial_root
-      Dir.foreach(@serial_root) { |dir|
-        next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
+      begin
+        Dir.foreach(@serial_root) { |dir|
+          next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
 
-        full_dir = File.join(@serial_root, dir)
-        @current_journal = dir
-        process_journal(full_dir)
-      }
-      @logger.close
-      @stats.close
+          full_dir = File.join(@serial_root, dir)
+          @current_journal = dir
+          process_journal(full_dir)
+        }
+      ensure
+        @logger.close
+        @stats.close
+      end
     else
       @logger.error("Directorio Raiz", "No existe el directorio raiz #{@serial_root}")
       @logger.close
@@ -219,7 +222,7 @@ class Migrator
   end
 
   def create_article(article)
-    new_article = Article.new
+    new_article = Article.create
     new_article.title = article.title
     # new_article.subtitle = article.subtitle
     new_article.journal_issue_id = @current_journal_issue_id

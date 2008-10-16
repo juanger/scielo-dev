@@ -3,6 +3,7 @@ class CitationIndexController < ApplicationController
   # auto_complete_for :author, :middlename
   # auto_complete_for :author, :lastname
   auto_complete_for :article, :title
+  # auto_complete_for :journal, :title
   # auto_complete_for :keyword, :name
 
   def index

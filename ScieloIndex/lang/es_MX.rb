@@ -50,4 +50,19 @@ Localization.define(:es_MX) do |l|
           'SciELO Index es desarrollado y mantenido por la Dirección General de Bibliotecas de la Universidad Nacional' +
           ' Autónoma de México (UNAM), con apoyo del Macroproyecto Tecnologías para la Universidad de la Información y' +
           ' la Computación.'
+          
+  # Advanced Search
+  l.store 'Title', 'Título'
+  l.store 'is exactly', 'es exactamente'
+  l.store 'with at least one of the words', 'con al menos una de las palabras'
+  l.store 'with exact phrase', 'con la frase exacta'
+  
+  l.store 'Journal', 'Revista'
+  l.store 'Match articles published in', 'Mostrar artículos publicados en'
+  
+  l.store 'Author', 'Autor'
+  l.store 'Match any articles written by', 'Mostrar artículos escritos por'
+  
+  
+  
 end

@@ -31,8 +31,14 @@ class Author < ActiveRecord::Base
     else
       m_initials = ""
     end
+    
+    if self.firstname.size > 2
+      f_initials = self.firstname.first.upcase
+    else
+      f_initials = self.firstname.upcase
+    end
 
-    [ self.lastname, self.firstname.first.upcase + m_initials ].join(' ')
+    [ self.lastname, f_initials + m_initials ].join(' ')
   end
 
   def as_human

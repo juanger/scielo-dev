@@ -142,7 +142,6 @@ body {
 }
 .layout #mainContent .advanced legend {
   margin-left: -1em;
-  color: #000000;
   font-weight: bold;
 }
 
@@ -153,14 +152,13 @@ body {
 }
 
 .layout #mainContent .advanced p {
-  padding-left: 5em;
+  padding-left: 8em;
   padding-bottom: 5px;
 }
 
 .layout #mainContent .advanced label {
-  text-transform: lowercase;
   float: left;  
-  width: 20em;  
+  width: 18em;  
   margin-right: 1em;
 }
 
@@ -281,7 +279,11 @@ a img {
 
 .centered{
   text-align: center;
-  }
+}
+  
+.lowercased{
+  text-transform: lowercase;;
+}
   
 .maincentered {
   text-align: left;

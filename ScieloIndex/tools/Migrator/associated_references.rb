@@ -87,7 +87,7 @@ class AssociatedReferences
 
     match = /\[stitle\](.*)\[\/stitle\]/.match(serial)
     if match
-      abbrev = match[1].to_s
+      abbrev = match[1].strip.to_s
       journal_hash[:abbrev] = abbrev
     else
       journal_hash.delete(:abbrev)
@@ -325,7 +325,14 @@ class AssociatedReferences
       if last && first
         author_hash[:firstname] = first
         author_hash[:lastname] = last
-        author = Author.find :first, :conditions => author_hash
+        
+        author = Author.find :first, 
+                    :conditions => ["trim(both from LOWER(lastname)) LIKE ? AND" + # equal lastnames
+                      " (trim(both from LOWER(firstname)) LIKE ? OR " + # equal firstames
+                      # or equal initials
+                      " lower(substring(firstname from 1 for 1) || substring(middlename from 1 for 1)) LIKE ? )",
+                       last.chars.downcase.strip, first.chars.downcase, first.chars.to_s[0,2]]
+        
         if author
           @logger.info "Se encontro el autor en la DB (Referencia): #{author.id}"
           create_association(author.id, count)
