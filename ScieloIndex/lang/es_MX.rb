@@ -28,7 +28,7 @@ Localization.define(:es_MX) do |l|
   l.store 'ranking', 'posición'
   l.store 'name', 'nombre'
   l.store 'citations', 'citaciones'
-  l.store 'self-citations', 'auto-citaciones'
+  l.store 'probable <br/> self-citations', 'auto-citaciones <br/> probables'
   
   # About text
   l.store 'Scielo Index is a citation search engine for documents and articles ' + 
