@@ -42,7 +42,7 @@ class Author < ActiveRecord::Base
   end
 
   def as_human
-    [ self.degree.to_s, self.firstname, self.middlename.to_s, self.lastname ].join(' ')
+    [ self.degree.to_s, self.firstname, self.middlename.to_s, self.lastname.chars.split.map! {|part| part.capitalize}.join(' ') ].join(' ')
   end
 
   def total_cites
