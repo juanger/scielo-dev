@@ -252,7 +252,7 @@ class AssociatedReferences
 
     match = /\[title language=(.+)\](.+)\[\/title\](?:\[subtitle\](.+)\[\/subtitle\])?/.match(contrib)
     if match
-      article_hash[:title] = match[2].to_s
+      article_hash[:title] = match[2].to_s.strip
       language = Language.find_by_code(match[1].to_s)
       #puts match[1].to_s if !language
 
@@ -264,7 +264,15 @@ class AssociatedReferences
         article_hash.delete :subtitle
       end
 
+      # Determine if it already exists (find by title and subtitle)
       article = Article.find(:first, :conditions => article_hash)
+      # Determine if both where published in the same journal
+      
+      # Determine if both where published in the same volume
+
+      # Merge data with the journal and journal issue
+
+      
 
       if article
         @logger.info( "Se encontro el articulo en la DB (Referencia): #{article.id}" )

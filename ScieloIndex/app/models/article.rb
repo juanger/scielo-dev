@@ -38,6 +38,10 @@ class Article < ActiveRecord::Base
     [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join('. ')
   end
   
+  def as_vancouver_html
+    "<strong>#{title_as_vancouver}</strong><br/>#{author_names_as_vancouver}. #{journal_as_vancouver}"
+  end
+  
   def author_names_as_vancouver
     authors.map { |author| author.as_vancouver}.join(', ')
   end

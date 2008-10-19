@@ -37,8 +37,10 @@ class Author < ActiveRecord::Base
     else
       f_initials = self.firstname.upcase
     end
+    
+    lastname_cap = self.lastname.chars.split.map! {|part| part.capitalize}.join(' ')
 
-    [ self.lastname, f_initials + m_initials ].join(' ')
+    [ lastname_cap, f_initials + m_initials ].join(' ')
   end
 
   def as_human

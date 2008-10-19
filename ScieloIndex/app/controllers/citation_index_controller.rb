@@ -111,7 +111,7 @@ class CitationIndexController < ApplicationController
                                   :per_page => 30,
                                   :page => params[:page],
                                   :group => 'authors.id, authors.lastname, authors.degree, authors.firstname, authors.middlename',
-                                  :order => 'citations DESC NULLS LAST',
+                                  :order => 'citations DESC NULLS LAST, lower(lastname) ASC',
                                   :total_entries => Author.count
   end
 

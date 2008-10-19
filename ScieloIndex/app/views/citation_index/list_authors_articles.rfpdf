@@ -1,23 +1,22 @@
 <%	
     pdf = ScieloIndexReport.new()
-    #pdf.SetAuthorName(@author.as_human)
-    #pdf.SetAuthor([@author.as_human, @author.id, @author.total_cites])    
     
-    pdf.SetAuthorInfo("#{@author.as_human}:#{@author.id}:#{@cites}")
+    pdf.SetAuthorInfo({:name => @author.as_human, :id => @author.id})
+    pdf.SetTitle(_('Citation report') + ": #{@author.as_human}")
     pdf.Title
     
-    pdf.SetFont('Arial', '', 10)
-    puts @collection.total_pages
-    1.upto(@collection.total_pages){
-      @collection.each { |article|
-        puts article
-        pdf.SetFont('Arial', 'B', 10)
-        pdf.Cell(20,5,"Article: ")
-        pdf.SetFont('Arial', '', 10)      
-        pdf.MultiCell(0,5,"#{article.as_vancouver}",0,"J",0)
-        pdf.Cell(0,5,"Citations: #{article.cites_number}")
-        pdf.Ln(10)
-      }
-      @collection.next_page
-    }
+    pdf.SetFont("vera", "", 10);
+    @author.articles.each do |article|
+      pdf.SetFont('vera', '', 11)
+      pdf.writeHTML(article.as_vancouver_html)
+      pdf.SetFont('vera', '', 10)
+      pdf.Cell(0,5,_('Cited by %d', article.citations)+':')
+      pdf.Ln(10)
+      pdf.SetLeftMargin(25)
+      article.cites.each do |citation|
+        pdf.writeHTML(citation.as_vancouver_html)
+      end
+      pdf.SetLeftMargin(10)
+      pdf.Ln(10)
+    end
 %> <%= pdf.Output %>

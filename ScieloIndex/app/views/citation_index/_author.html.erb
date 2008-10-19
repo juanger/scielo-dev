@@ -1,6 +1,6 @@
   <tr>
     <%= "<td class=\"centered\">#{(@collection.index(author) + 1) + (30 * (params[:page] ? params[:page].to_i-1 : 0)) }</td>" if @ranked %>
-    <td><%= link_to author.as_human, :controller => "citation_index", :action => "list_authors_articles", :id => author %></td>
+    <td><%= link_to author.as_vancouver, :controller => "citation_index", :action => "list_authors_articles", :id => author %></td>
     <td class="centered"><%= "#{author.citations || 0}" %></td>
     <td class="centered"><%= author.articles.map {|art| sc = art.cites.map {|c| c if (c.authors.inject(false) {|cond, au| cond || au.lastname.downcase == author.lastname.downcase })} }.flatten.compact.size %></td>
   </tr>

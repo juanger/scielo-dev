@@ -223,7 +223,7 @@ class Migrator
 
   def create_article(article)
     new_article = Article.create
-    new_article.title = article.title
+    new_article.title = article.title.strip
     # new_article.subtitle = article.subtitle
     new_article.journal_issue_id = @current_journal_issue_id
     new_article.fpage = article.fpage
