@@ -317,19 +317,6 @@ class AssociatedReferences
     count = 1
 
     contrib.scan(/\[oauthor role=.+?\](?:\[surname\](.+?)\[\/surname\]|\[fname\](.+?)\[\/fname\])+?\[\/oauthor\]/) { |last, first|
-      #puts "Lastname: #{last.capitalize} Firstname: #{first}"
-#       if !last
-#         puts "Autor sin surname"
-#         puts "OAUTHOR: #{$~}"
-#         puts "OCONTRIB: #{contrib}"
-#         @stats.add :auth_wol
-#       end
-
-#       if !first
-#         puts "Autor sin firstname"
-#         puts "OAUTHOR: #{$~}"
-#         @stats.add :auth_wof
-#       end
       if last && first
         author_hash[:firstname] = first
         author_hash[:lastname] = last
