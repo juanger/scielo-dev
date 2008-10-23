@@ -10,11 +10,6 @@ class CreateUsers < ActiveRecord::Migration
       t.column :remember_token,            :string
       t.column :remember_token_expires_at, :datetime
     end
-    if RAILS_ENV == "development"
-       u=User.create :login => "usuario1", :password => "password4user1", 
-                     :password_confirmation => "password4user1", :email => "usuario1@at.com"
-       u.save!
-    end
   end
 
   def self.down
