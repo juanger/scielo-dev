@@ -13,20 +13,6 @@ class CountriesTest < ActionController::IntegrationTest
      assert_equal '/countries', path
    end
 
-   def test_new
-     get "/countries/new"
-     assert_equal 200, status
-     assert_equal '/countries/new', path
-   end
-
-   
-   def  test_creating_new_country
-     post "countries/create", :record =>  {:id => 156, :name => 'China', :code => 'CN'}
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/countries/list', path
-   end
-
    def test_showing
      @countries.each { | country |
        post "/countries/show", :id => countries(country).id

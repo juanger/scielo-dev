@@ -1,12 +1,14 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
 class ArticleAuthorsTest < ActionController::IntegrationTest
-  fixtures :article_authors
+  fixtures :article_authors, :users
 
   def setup
     @article_authors = [:hectorart1, :memoart3, :monoart2]
+    @request    = ActionController::TestRequest.new
+    login_as(:quentin)
   end
-
+  
    def test_getting_index
      get "/article_authors"
      assert_equal 200, status
@@ -14,26 +16,18 @@ class ArticleAuthorsTest < ActionController::IntegrationTest
    end
 
    def test_new
-     get "/article_authors/new"
-     assert_equal 200, status
-     assert_equal '/article_authors/new', path
-   end
+      get "/article_authors/new"
+      assert_equal 302, status
+      assert_equal '/article_authors/new', path
+    end
 
-
-   def  test_creating_new_collection
-     post "article_authors/create", :record =>  {:author_id => 2, :article_id => 1, :author_order => 2}
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/article_authors/list', path
-   end
-
-   def test_showing
-     @article_authors.each { | collection |
-       post "/article_authors/show", :id => article_authors(collection).id
-       assert 200, status
-       assert_equal '/article_authors/show', path
-     }
-   end
+    def test_showing
+      @article_authors.each { | collection |
+        post "/article_authors/show", :id => article_authors(collection).id
+        assert 200, status
+        assert_equal '/article_authors/show', path
+      }
+    end
 
    def test_editing
      @article_authors.each { | collection |

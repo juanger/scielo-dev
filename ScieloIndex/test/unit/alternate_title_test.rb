@@ -71,15 +71,15 @@ class AlternateTitleTest < Test::Unit::TestCase
   end
 
   def test_bad_values_for_title
-    @article = Article.new(@myarticle)
+    @article = Article.create(@myarticle)
 
     # Checking title constraints
     @article.title = nil
     assert !@article.valid?
-
+    
     @article.title = ""
     assert !@article.valid?
-
+    
     @article.title = "A"*100000
     assert !@article.valid?
   end

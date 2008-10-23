@@ -12,19 +12,6 @@ class AuthorTest < ActionController::IntegrationTest
      assert_equal '/authors', path
    end
 
-   def test_new
-     get "/authors/new"
-     assert_equal 200, status
-     assert_equal '/authors/new', path
-   end
-
-   def  test_creating_new_author
-     post "authors/create", :record =>  {:id => 4, :firstname => 'Martin', :lastname => 'Rey'}
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/authors/list', path
-   end
-
    def test_showing
      @authors.each { | author |
        post "/authors/show", :id => authors(author).id

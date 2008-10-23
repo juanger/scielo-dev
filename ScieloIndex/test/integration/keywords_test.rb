@@ -14,19 +14,6 @@ class KeywordsTest < ActionController::IntegrationTest
      assert_equal '/keywords', path
    end
 
-   def test_new
-     get "/keywords/new"
-     assert_equal 200, status
-     assert_equal '/keywords/new', path
-   end
-
-   def  test_creating_new_keywords
-     post "keywords/create", :record => @mykeyword
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/keywords/list', path
-   end
-
    def test_showing
      @keywords.each { | keyword |
        post "/keywords/show", :id => keywords(keyword).id

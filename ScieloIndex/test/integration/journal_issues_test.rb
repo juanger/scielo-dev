@@ -13,20 +13,6 @@ class JournalIssuesTest < ActionController::IntegrationTest
      assert_equal '/journal_issues', path
    end
 
-   def test_new
-     get "/journal_issues/new"
-     assert_equal 200, status
-     assert_equal '/journal_issues/new', path
-   end
-
-   
-   def  test_creating_new_journal_issue
-     post "journal_issues/create", :record =>  {:id => 1, :journal_id => 3, :number => '19', :volume => '1', :year => 2006}
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/journal_issues/list', path
-   end
-
    def test_showing
      @journal_issues.each { | journal_issue |
        post "/journal_issues/show", :id => journal_issues(journal_issue).id

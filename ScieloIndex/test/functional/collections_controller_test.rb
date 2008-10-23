@@ -5,7 +5,7 @@ require 'collections_controller'
 class CollectionsController; def rescue_action(e) raise e end; end
 
 class CollectionsControllerTest < Test::Unit::TestCase
-  fixtures :countries, :publishers, :collections
+  fixtures :countries, :publishers, :collections, :users
 
   def setup
     @controller = CollectionsController.new
@@ -13,6 +13,7 @@ class CollectionsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = collections(:atmosfera).id
+    login_as(:quentin)
   end
 
   def test_index

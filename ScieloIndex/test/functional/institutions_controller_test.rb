@@ -5,7 +5,7 @@ require 'institutions_controller'
 class InstitutionsController; def rescue_action(e) raise e end; end
 
 class InstitutionsControllerTest < Test::Unit::TestCase
-  fixtures :countries, :institutions
+  fixtures :countries, :institutions, :users
 
   def setup
     @controller = InstitutionsController.new
@@ -13,6 +13,7 @@ class InstitutionsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = institutions(:unam).id
+    login_as(:quentin)
   end
 
   def test_index

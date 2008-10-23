@@ -14,19 +14,6 @@ class SubjectsTest < ActionController::IntegrationTest
      assert_equal '/subjects', path
    end
 
-   def test_new
-     get "/subjects/new"
-     assert_equal 200, status
-     assert_equal '/subjects/new', path
-   end
-
-   def  test_creating_new_subjects
-     post "subjects/create", :record => @mysubject
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/subjects/list', path
-   end
-
    def test_showing
      @subjects.each { | subject |
        post "/subjects/show", :id => subjects(subject).id

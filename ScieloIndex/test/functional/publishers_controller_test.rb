@@ -5,7 +5,7 @@ require 'publishers_controller'
 class PublishersController; def rescue_action(e) raise e end; end
 
 class PublishersControllerTest < Test::Unit::TestCase
-  fixtures :publishers
+  fixtures :publishers, :users
 
   def setup
     @controller = PublishersController.new
@@ -13,6 +13,7 @@ class PublishersControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = publishers(:mit).id
+    login_as(:quentin)
   end
 
   def test_index

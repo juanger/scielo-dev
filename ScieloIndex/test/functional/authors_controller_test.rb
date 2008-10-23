@@ -5,7 +5,7 @@ require 'authors_controller'
 class AuthorsController; def rescue_action(e) raise e end; end
 
 class AuthorsControllerTest < Test::Unit::TestCase
-  fixtures :authors
+  fixtures :authors, :users
 
   def setup
     @controller = AuthorsController.new
@@ -13,6 +13,7 @@ class AuthorsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = authors(:hector).id
+    login_as(:quentin)
   end
 
   def test_index

@@ -13,20 +13,6 @@ class CollectionsTest < ActionController::IntegrationTest
      assert_equal '/collections', path
    end
 
-   def test_new
-     get "/collections/new"
-     assert_equal 200, status
-     assert_equal '/collections/new', path
-   end
-
-
-   def  test_creating_new_collection
-     post "collections/create", :record =>  {:id => 3, :title => 'Technology Review', :country_id => 840, :publisher_id => 13, :state => 'Texas', :city => 'Houston', :other => 'For ultra cool kids'}
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/collections/list', path
-   end
-
    def test_showing
      @collections.each { | collection |
        post "/collections/show", :id => collections(collection).id

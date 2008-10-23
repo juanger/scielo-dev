@@ -13,20 +13,6 @@ class AuthorInstitutionsTest < ActionController::IntegrationTest
      assert_equal '/author_institutions', path
    end
 
-   def test_new
-     get "/author_institutions/new"
-     assert_equal 200, status
-     assert_equal '/author_institutions/new', path
-   end
-
-
-   def  test_creating_new_author_institutions
-     post "author_institutions/create", :record =>  {:id => 4, :author_id => 2, :institution_id => 2}
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/author_institutions/list', path
-   end
-
    def test_showing
      @author_institutions.each { | author_institutions |
        post "/author_institutions/show", :id => author_institutions(author_institutions).id

@@ -5,14 +5,14 @@ require 'alternate_titles_controller'
 class AlternateTitlesController; def rescue_action(e) raise e end; end
 
 class AlternateTitlesControllerTest < Test::Unit::TestCase
-  fixtures :languages, :journals, :journal_issues, :articles, :alternate_titles
+  fixtures :languages, :journals, :journal_issues, :articles, :alternate_titles, :users 
 
   def setup
     @controller = AlternateTitlesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-
     @first_id = alternate_titles(:alternate1).id
+    login_as(:quentin)
   end
 
   def test_index
@@ -51,9 +51,11 @@ class AlternateTitlesControllerTest < Test::Unit::TestCase
 
   def test_create
     num_alternate_titles = AlternateTitle.count
-
-    post :create, :record => {:id => 4, :title => 'Effet indirect à l\'exposition prolongée à un affichage à cristaux liquides de moniteur', :language_id => 49, :article_id => 3}
-
+    post :create, :record => {:id => 4, 
+                              :title => 'Effet indirect à l\'exposition prolongée à un affichage à cristaux liquides de moniteur', 
+                              :language_id => 49, 
+                              :article_id => 3}
+    
     assert_response :redirect
     assert_redirected_to :action => 'list'
 
@@ -80,7 +82,6 @@ class AlternateTitlesControllerTest < Test::Unit::TestCase
     assert_nothing_raised {
       AlternateTitle.find(@first_id)
     }
-
     post :destroy, :id => @first_id
     assert_response :redirect
     assert_redirected_to :action => 'list'

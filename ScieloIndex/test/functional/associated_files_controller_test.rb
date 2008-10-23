@@ -5,7 +5,7 @@ require 'associated_files_controller'
 class AssociatedFilesController; def rescue_action(e) raise e end; end
 
 class AssociatedFilesControllerTest < Test::Unit::TestCase
-  fixtures :articles, :associated_files
+  fixtures :articles, :associated_files, :users
 
   def setup
     @controller = AssociatedFilesController.new
@@ -20,6 +20,8 @@ class AssociatedFilesControllerTest < Test::Unit::TestCase
     @html.write(File.open("#{RAILS_ROOT}/test/files/v17n01a01.htm", 'r').read())
     @html.open()
     @myassociated_file = {:article_id => 3, :filename => 'v17n01a01', :pdfdata => @pdf, :htmldata => @html}
+    login_as(:quentin)
+    
   end
 
   def test_index

@@ -5,7 +5,7 @@ require 'journals_controller'
 class JournalsController; def rescue_action(e) raise e end; end
 
 class JournalsControllerTest < Test::Unit::TestCase
-  fixtures :journals
+  fixtures :journals, :users
 
   def setup
     @controller = JournalsController.new
@@ -13,6 +13,7 @@ class JournalsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = journals(:atmosfera).id
+    login_as(:quentin)
   end
 
   def test_index

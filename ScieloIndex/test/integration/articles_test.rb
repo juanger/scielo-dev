@@ -14,19 +14,6 @@ class ArticlesTest < ActionController::IntegrationTest
      assert_equal '/articles', path
    end
 
-   def test_new
-     get "/articles/new"
-     assert_equal 200, status
-     assert_equal '/articles/new', path
-   end
-
-   def  test_creating_new_articles
-     post "articles/create", :record => @myarticle
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/articles/list', path
-   end
-
    def test_showing
      @articles.each { | article |
        post "/articles/show", :id => articles(article).id

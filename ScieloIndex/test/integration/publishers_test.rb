@@ -13,20 +13,6 @@ class PublishersTest < ActionController::IntegrationTest
      assert_equal '/publishers', path
    end
 
-   def test_new
-     get "/publishers/new"
-     assert_equal 200, status
-     assert_equal '/publishers/new', path
-   end
-
-   
-   def  test_creating_new_publisher
-     post "publishers/create", :record =>  {:id => 100, :name => 'Marvel Comics', :descr => 'Cool comics', :url => 'http://www.marvel.com'}
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/publishers/list', path
-   end
-
    def test_showing
      @publishers.each { | publisher |
        post "/publishers/show", :id => publishers(publisher).id

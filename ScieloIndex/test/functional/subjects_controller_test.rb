@@ -5,7 +5,7 @@ require 'subjects_controller'
 class SubjectsController; def rescue_action(e) raise e end; end
 
 class SubjectsControllerTest < Test::Unit::TestCase
-  fixtures :subjects
+  fixtures :subjects, :users
 
   def setup
     @controller = SubjectsController.new
@@ -14,6 +14,7 @@ class SubjectsControllerTest < Test::Unit::TestCase
 
     @first_id = subjects(:fisica).id
     @mysubject = {:parent_id => 1, :name => 'Mecanica Cuantica'}
+    login_as(:quentin)
   end
 
   def test_index

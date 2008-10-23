@@ -5,7 +5,7 @@ require 'author_institutions_controller'
 class AuthorInstitutionsController; def rescue_action(e) raise e end; end
 
 class AuthorInstitutionsControllerTest < Test::Unit::TestCase
-  fixtures :authors, :institutions, :author_institutions
+  fixtures :authors, :institutions, :author_institutions, :users
 
   def setup
     @controller = AuthorInstitutionsController.new
@@ -13,6 +13,7 @@ class AuthorInstitutionsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = author_institutions(:monoipn).id
+    login_as(:quentin)
   end
 
   def test_index

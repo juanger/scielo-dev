@@ -19,20 +19,7 @@ class AssociatedFilesTest < ActionController::IntegrationTest
      assert_equal 200, status
      assert_equal '/associated_files', path
    end
-
-   def test_new
-     get "/associated_files/new"
-     assert_equal 200, status
-     assert_equal '/associated_files/new', path
-   end
-
-#    def  test_creating_new_associated_files
-#      post "associated_files/create", :record => @myassociated_file
-#      assert_equal 302, status
-#      follow_redirect!
-#      assert_equal '/associated_files/list', path
-#    end
-
+   
    def test_showing
      @associated_files.each { | associated_file |
        post "/associated_files/show", :id => associated_files(associated_file).id

@@ -5,7 +5,7 @@ require 'article_authors_controller'
 class ArticleAuthorsController; def rescue_action(e) raise e end; end
 
 class ArticleAuthorsControllerTest < Test::Unit::TestCase
-  fixtures :journals, :journal_issues, :articles, :authors, :article_authors
+  fixtures :journals, :journal_issues, :articles, :authors, :article_authors, :users
 
   def setup
     @controller = ArticleAuthorsController.new
@@ -13,6 +13,7 @@ class ArticleAuthorsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = article_authors(:monoart2).id
+    login_as(:quentin)
   end
 
   def test_index

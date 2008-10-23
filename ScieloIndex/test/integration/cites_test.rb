@@ -13,20 +13,6 @@ class CitessTest < ActionController::IntegrationTest
      assert_equal '/cites', path
    end
 
-   def test_new
-     get "/cites/new"
-     assert_equal 200, status
-     assert_equal '/cites/new', path
-   end
-
-
-   def  test_creating_new_collection
-     post "cites/create", :record =>  {:article_id => 1, :cited_by_article_id => 5, :cite_order => 3}
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/cites/list', path
-   end
-
    def test_showing
      @cites.each { | collection |
        post "/cites/show", :id => cites(collection).id

@@ -14,19 +14,6 @@ class ArticleKeywordsTest < ActionController::IntegrationTest
      assert_equal '/article_keywords', path
    end
 
-   def test_new
-     get "/article_keywords/new"
-     assert_equal 200, status
-     assert_equal '/article_keywords/new', path
-   end
-
-   def  test_creating_new_article_keywords
-     post "article_keywords/create", :record => @myarticle_keyword
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/article_keywords/list', path
-   end
-
    def test_showing
      @article_keywords.each { | article_keyword |
        post "/article_keywords/show", :id => article_keywords(article_keyword).id

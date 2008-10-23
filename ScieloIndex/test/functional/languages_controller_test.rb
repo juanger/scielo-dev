@@ -5,7 +5,7 @@ require 'languages_controller'
 class LanguagesController; def rescue_action(e) raise e end; end
 
 class LanguagesControllerTest < Test::Unit::TestCase
-  fixtures :languages
+  fixtures :languages, :users
 
   def setup
     @controller = LanguagesController.new
@@ -13,6 +13,7 @@ class LanguagesControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = languages(:klingon).id
+    login_as(:quentin)
   end
 
   def test_index

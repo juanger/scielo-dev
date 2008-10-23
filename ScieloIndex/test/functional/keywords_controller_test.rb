@@ -5,7 +5,7 @@ require 'keywords_controller'
 class KeywordsController; def rescue_action(e) raise e end; end
 
 class KeywordsControllerTest < Test::Unit::TestCase
-  fixtures :keywords
+  fixtures :keywords, :users
 
   def setup
     @controller = KeywordsController.new
@@ -14,6 +14,7 @@ class KeywordsControllerTest < Test::Unit::TestCase
 
     @first_id = keywords(:quakes).id
     @mykeyword = { :name => 'tornados'}
+    login_as(:quentin)
   end
 
   def test_index

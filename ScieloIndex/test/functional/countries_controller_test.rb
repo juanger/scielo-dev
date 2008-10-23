@@ -5,7 +5,7 @@ require 'countries_controller'
 class CountriesController; def rescue_action(e) raise e end; end
 
 class CountriesControllerTest < Test::Unit::TestCase
-  fixtures :countries, :publishers, :collections, :institutions
+  fixtures :countries, :publishers, :collections, :institutions, :users
 
   def setup
     @controller = CountriesController.new
@@ -13,6 +13,7 @@ class CountriesControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = countries(:brasil).id
+    login_as(:quentin)
   end
 
   def test_index

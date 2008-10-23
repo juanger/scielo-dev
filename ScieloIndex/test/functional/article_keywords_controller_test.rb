@@ -5,7 +5,7 @@ require 'article_keywords_controller'
 class ArticleKeywordsController; def rescue_action(e) raise e end; end
 
 class ArticleKeywordsControllerTest < Test::Unit::TestCase
-  fixtures :article_keywords
+  fixtures :article_keywords, :users
 
   def setup
     @controller = ArticleKeywordsController.new
@@ -14,6 +14,8 @@ class ArticleKeywordsControllerTest < Test::Unit::TestCase
 
     @first_id = article_keywords(:art1quakes).id
     @myarticle_keyword = {:article_id => 1, :keyword_id => 2}
+    login_as(:quentin)
+    
   end
 
   def test_index

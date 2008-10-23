@@ -5,7 +5,7 @@ require 'cites_controller'
 class CitesController; def rescue_action(e) raise e end; end
 
 class CitesControllerTest < Test::Unit::TestCase
-  fixtures :journals, :journal_issues, :articles, :authors, :article_authors, :cites
+  fixtures :journals, :journal_issues, :articles, :authors, :article_authors, :cites, :users
 
   def setup
     @controller = CitesController.new
@@ -13,6 +13,7 @@ class CitesControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     @first_id = cites(:cite1).id
+    login_as(:quentin)
   end
 
   def test_index

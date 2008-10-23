@@ -14,20 +14,6 @@ class LanguagesTest < ActionController::IntegrationTest
      assert_equal '/languages', path
    end
 
-   def test_new
-     get "/languages/new"
-     assert_equal 200, status
-     assert_equal '/languages/new', path
-   end
-
-
-   def  test_creating_new_language
-     post "languages/create", :record =>  @mylanguage
-     assert_equal 302, status
-     follow_redirect!
-     assert_equal '/languages/list', path
-   end
-
    def test_showing
      @languages.each { | language |
        post "/languages/show", :id => languages(language).id
