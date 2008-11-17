@@ -58,7 +58,7 @@ class Migrator
   def initialize(args)
     config = File.join(MIGRATOR_ROOT,"config")
     # Default options
-    @options = OpenStruct.new(:level => 'info', :verbose => true)
+    @options = OpenStruct.new(:level => 'info', :verbose => true, :all => true)
     @default_country = 'México'
     @default_country_id = get_country_id(@default_country)
     # Get config file options
@@ -79,6 +79,8 @@ class Migrator
      opts.on('-s', '--serial SERIAL')   { |serial| @options.serial_root = serial}
      opts.on('-q', '--quiet')           { @options.verbose = false }
      opts.on('-l', '--level LEVEL')     { |level| @options.level = level }
+     opts.on('-a', '--all')             { @options.all = true }
+     opts.on('-o', '--only-new')        { @options.all = false }
      opts.on('-c', '--country COUNTRY') { |country| @default_country = country
                                   @default_country_id = get_country_id(@default_country)}
      opts.parse!(args)
@@ -143,6 +145,10 @@ class Migrator
       else
                 puts "Archivo de configuración ilegal (Opción #{array[0]} inválida)."
     end
+  end
+
+  def migrate
+    
   end
 
   def get_country_id(name)
