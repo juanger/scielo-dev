@@ -8,3 +8,18 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
+
+namespace :scielo do
+  desc "Reset the postgres database"
+  task :resetdb do
+    `dropdb -U scielo scielo_development`
+    `createdb -U scielo scielo_development`
+    `sh -c 'cd db && psql -U scielo scielo_development < index.sql'`
+  end
+  
+  desc "Runs the scielo migrator."
+  task :migrate => :resetdb do
+    `./tools/Migrator/migrator.rb`
+  end
+  
+end

@@ -1,46 +1,119 @@
-# this script will be run by script/runner
+#!/usr/bin/env ruby
+#
+# == Synopsis 
+#   Migrator to populate ScieloIndex database from markup files
+#
+# == Examples
+#   To migrate all the files from the serial tree.
+#     migrator.rb --all
+#
+#   Other examples:
+#     migrator.rb --quiet --all
+#
+# == Usage 
+#   migrator.rb [options]
+#
+#   For help use: migrator -h
+#
+# == Options
+#   -h, --help          Displays help message
+#   -v, --version       Display the version, then exit
+#   -q, --quiet         Don't display the output
+#   -l, --level LEVEL   Override logger level (LEVEL = debug|info|warning|none)
+#   -s, --serial SERIAL Path to the serial root directory
+#   -a, --all           Migrate all the files
+#   -o, --only-new      Migrate only the new files reported by git
+#
+# == Authors
+#   Juan Germán Castañeda Echevarría (juanger)
+#   Héctor Enrique Gómez Morales (hectoregm)
+#   Alejandro Eduardo Cruz Paz (vidriloco)
+
+RAILS_ENV = 'development'
+
+require File.join(File.dirname(__FILE__), '../../config/environment')
+
 $KCODE='u'
 require 'jcode'
 require 'iconv'
+require 'optparse'
+require 'ostruct'
+require 'rdoc/usage'
 
-MIGRATOR_ROOT = RAILS_ROOT + '/tools/Migrator/'
+MIGRATOR_ROOT = File.join(RAILS_ROOT,'tools','Migrator')
 
-require File.expand_path(MIGRATOR_ROOT + 'sgmlarticle')
-require File.expand_path(MIGRATOR_ROOT + 'associated_authors')
-require File.expand_path(MIGRATOR_ROOT + 'associated_references')
-require File.expand_path(MIGRATOR_ROOT + 'associated_files')
-require File.expand_path(MIGRATOR_ROOT + 'statistic')
-require File.expand_path(MIGRATOR_ROOT + 'mylogger')
+$: << File.expand_path(MIGRATOR_ROOT)
+
+require 'sgmlarticle'
+require 'associated_authors'
+require 'associated_references'
+require 'associated_files'
+require 'statistic'
+require 'mylogger'
 
 
 class Migrator
-  def initialize
-    config = MIGRATOR_ROOT + "config"
+  VERSION = '2.0'
+  
+  def initialize(args)
+    config = File.join(MIGRATOR_ROOT,"config")
+    # Default options
+    @options = OpenStruct.new(:level => 'info', :verbose => true)
+    @default_country = 'México'
+    @default_country_id = get_country_id(@default_country)
+    # Get config file options
     if File.file? config
       open(config, "r") { |file|
         file.each { |line|
           next if line =~ /^(#.*)?$/
           obtain_value line}
       }
-     @logger = MyLogger.new(@level, MIGRATOR_ROOT + 'migrator-log', MIGRATOR_ROOT + 'migrator-errors')
-     @stats = Statistic.new(MIGRATOR_ROOT + 'migrator-stats')
     else
-      @logger = MyLogger.new(:none)
-      @logger.error("Configuración", "Por favor crear un archivo de configuracion con nombre config.")
-      @logger.close
+      puts "[WARNING] No se encontró un archivo de configuración para el migrador"
+    end
+    
+    # Override options with command line args
+     opts = OptionParser.new
+     opts.on('-v', '--version')         { Migrator.output_version ; exit 0 }
+     opts.on('-h', '--help')            { Migrator.output_help }
+     opts.on('-s', '--serial SERIAL')   { |serial| @options.serial_root = serial}
+     opts.on('-q', '--quiet')           { @options.verbose = false }
+     opts.on('-l', '--level LEVEL')     { |level| @options.level = level }
+     opts.on('-c', '--country COUNTRY') { |country| @default_country = country
+                                  @default_country_id = get_country_id(@default_country)}
+     opts.parse!(args)
+
+    @logger = MyLogger.new(@options.level, File.join(MIGRATOR_ROOT, 'migrator-log'), File.join(MIGRATOR_ROOT, 'migrator-errors'), @options.verbose)
+    unless @options.serial_root
+      puts "You must specify where the serial root is in the config file or with the --serial option"
       Process.exit!(1)
+    end
+    @stats = Statistic.new(MIGRATOR_ROOT + 'migrator-stats')
+    if @options.verbose 
+      puts "Country: #{@default_country}"
+      puts "Logger level: #{@options.level}"
+      puts "Serial: #{@options.serial_root}"
     end
   end
 
-  def process_scielo
-    @logger.info("Pais Por Defecto: #{@default_country}")
+  def self.output_version
+    puts "#{File.basename(__FILE__)} version #{VERSION}"
+  end
+  
+  def self.output_help
+    output_version
+    RDoc::usage()
+  end
 
-    if File.directory? @serial_root
+  def run
+    @logger.info("Pais Por Defecto: #{@options.default_country}")
+
+    if File.directory? @options.serial_root
       begin
-        Dir.foreach(@serial_root) { |dir|
+        Dir.foreach(@options.serial_root) { |dir|
           next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
 
-          full_dir = File.join(@serial_root, dir)
+          full_dir = File.join(@options.serial_root, dir)
           @current_journal = dir
           process_journal(full_dir)
         }
@@ -49,7 +122,7 @@ class Migrator
         @stats.close
       end
     else
-      @logger.error("Directorio Raiz", "No existe el directorio raiz #{@serial_root}")
+      @logger.error("Directorio Raiz", "No existe el directorio raiz #{@options.serial_root}")
       @logger.close
       Process.exit!(1)
     end
@@ -61,14 +134,14 @@ class Migrator
     array = line.split(':')
     case array[0]
       when 'LOGGER'
-                @level = array[1].strip.to_sym
+                @options.level = array[1].strip.to_sym
       when 'SERIAL_ROOT'
-                @serial_root = array[1].strip
+                @options.serial_root = array[1].strip
       when 'COUNTRY'
                 @default_country = array[1].strip
                 @default_country_id = get_country_id(@default_country)
       else
-                @logger.warning("Archivo de configuración ilegal.")
+                puts "Archivo de configuración ilegal (Opción #{array[0]} inválida)."
     end
   end
 
@@ -100,6 +173,7 @@ class Migrator
     if File.directory? journal_dir
       puts "Migrando la revista: " + @current_journal
       @logger.info("Migrando la revista: #{@current_journal}")
+      @logger.pdf_report_journal(@current_journal)
 
       Dir.foreach(journal_dir) { |issue_dir|
         next if issue_dir =~ /^(\.|_notes|paginasinformativas)\.?$/
@@ -140,6 +214,7 @@ class Migrator
       }
     else
       @logger.error("El número #{File.basename(issue_dir)} de la revista #{@current_journal}","El numero no contiene archivos marcados.")
+      @logger.pdf_report_error(File.basename(issue_dir),"El número no contiene archivos marcados")
     end
   end
 
@@ -266,7 +341,7 @@ class Migrator
                                             })
       #TODO: create the associated files
       files = AssociatedFiles.new(
-                                  :path => @serial_root,
+                                  :path => @options.serial_root,
                                   :journal => @current_journal,
                                   :issue => @current_issue,
                                   :article => @current_article,
@@ -284,6 +359,7 @@ class Migrator
       new_article.errors.each{ |key, value|
         if key == "title"
           @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "El lenguaje del articulo difiere al lenguaje del titulo.")
+          @logger.error.pdf_report_error(@current_article,"El lenguaje del artículo difiere al lenguaje del título")
         else
           @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
         end
@@ -294,6 +370,5 @@ end
 
 ## Migración de Datos Scielo
 
-migrator = Migrator.new()
-migrator.process_scielo()
+Migrator.new(ARGV).run
 

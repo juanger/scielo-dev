@@ -37,7 +37,9 @@ class AssociatedReferences
     @logger.info( "Ingresando referencias de tipo other.")
     references = @other.scan(/\[ocitat\](.*?)\[\/ocitat\]/).flatten
 
-    @cite_count = 0
+    @cite_number = 0 # número total de citas
+    @cite_count = 0 # número de ocontrib
+    
     for reference in references
       oiserial = nil
       ocontrib = nil
@@ -55,6 +57,7 @@ class AssociatedReferences
 
       # BUG algunos archivos con dos ocontrib
       match = /\[ocontrib\](.*?)\[\/ocontrib\]/.match(reference)
+      @cite_number += 1
       if match && oiserial
         ocontrib = match[1].to_s
         @logger.debug("REF OCONTRIB: \n#{ocontrib}")
@@ -347,8 +350,9 @@ class AssociatedReferences
             count += 1
           else
             @logger.error_message("Error al crear el autor de la referencia")
-            author.errors.each{ |key, value|
-              @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value} (#{author[key]})")
+            author.errors.each{ |key, error|
+              @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{error} (#{author[key]})")
+              @logger.pdf_report_error(@article_file_name,"#{key} inválido: #{author[key]} (en referencia #{@cite_number})")
             }
           end
         end
@@ -383,7 +387,7 @@ class AssociatedReferences
         @logger.info( "Creando articulo-autor #{article_author.id} (Referencia)" )
       else
         @logger.error_message("Error al crear la relacion articulo-autor (Referencia)")
-        # @logger.error("Articulo #{@article_file_name}", "Se trato de insertar un mismo autor dos veces.")
+        @logger.pdf_report_error(@article_file_name, "Se trato de insertar al autor #{Author.find(author_id).as_human} dos veces en la referencia #{@cite_number}.")
         article_author.errors.each do |key, value|
           @logger.error "Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}"
         end
@@ -406,6 +410,7 @@ class AssociatedReferences
       @logger.error_message("Error al crear la cita")
       cite.errors.each{ |key, value|
         @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value} (#{cite[key]})")
+        @logger.pdf_report_error(@article_file_name,"artículo repetido: #{Article.find(@current_article_id).title} (en referencia #{@cite_number})")
       }
     end
   end

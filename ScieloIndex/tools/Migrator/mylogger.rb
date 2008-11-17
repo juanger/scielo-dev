@@ -1,6 +1,6 @@
 class MyLogger
 
-  def initialize(level, log_file="migrator-log", errors_file="migrator-errors")
+  def initialize(level, log_file="migrator-log", errors_file="migrator-errors",verbose=true)
    @levels = {
     :debug => 0,
     :warning => 1,
@@ -11,13 +11,15 @@ class MyLogger
     if @level < 3
       @log = File.new(log_file, "w")
     end
+    @verbose = verbose
     @errors = File.new(errors_file, "w")
+    @pdf = ScieloIndexReport.new()
+    @pdf.ErrorReportTitle
+    @pdf.SetFont("vera", "", 10);
   end
 
   def log(type, message, indent = "")
-    if @log
-      @log.puts "#{indent}[#{type}]: #{message}"
-    end
+    @log.puts "#{indent}[#{type}]: #{message}" if @log
   end
   
   def error(source, message)
@@ -29,8 +31,10 @@ class MyLogger
     @errors.puts "[Source]: #{source}"
     @errors.puts "[Message]: #{message}"
 
-    puts "[Source]: #{source}"
-    puts "[Message]: #{message}"
+    if @verbose
+      puts "[Source]: #{source}"
+      puts "[Message]: #{message}"
+    end
   end
 
   def error_message(message)
@@ -54,10 +58,18 @@ class MyLogger
     class_eval(code)
   end
 
+  def pdf_report_journal(name)
+    @pdf.writeHTML("<h1>#{name}</h1>")
+  end
+  
+  def pdf_report_error(source, error_msg)
+    @pdf.writeHTML("<p><strong>#{source}</strong>  #{error_msg}</p>")
+  end
+
+
   def close
-    if @log
-      @log.close
-    end
+    @log.close if @log
+    @pdf.Output("error_report.pdf", 'F')
     @errors.close
   end
 end
