@@ -1,7 +1,7 @@
 Localization.define(:es_MX) do |l|
   # layout
   l.store 'Search', 'Buscar'
-  l.store 'Index', 'Índice'
+  l.store 'Home', 'Inicio'
   l.store 'Advanced search', 'Búsqueda avanzada'
   l.store 'Most cited authors', 'Autores más citados'
   
