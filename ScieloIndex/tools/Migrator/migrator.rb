@@ -365,7 +365,7 @@ class Migrator
       new_article.errors.each{ |key, value|
         if key == "title"
           @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "El lenguaje del articulo difiere al lenguaje del titulo.")
-          @logger.error.pdf_report_error(@current_article,"El lenguaje del artículo difiere al lenguaje del título")
+          @logger.pdf_report_error(@current_article,"El lenguaje del artículo difiere al lenguaje del título")
         else
           @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
         end
