@@ -7,5 +7,5 @@ class Citation < ActiveRecord::Base
   validates_uniqueness_of :article_id, :scope => :cited_by_article_id
 
   belongs_to :article, :class_name => 'Article', :foreign_key => 'article_id'
-  belongs_to :cite, :class_name => 'Article', :foreign_key => 'cited_by_article_id'
+  belongs_to :citation, :class_name => 'Article', :foreign_key => 'cited_by_article_id'
 end

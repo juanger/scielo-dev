@@ -1,4 +1,4 @@
-<h1><%=_ '%d articles citing', Article.find(params[:id]).citations %> 
+<h1><%=_ '%d articles citing', Article.find(params[:id]).citations.size %> 
   <i>"<%= Article.find(params[:id]).title_as_vancouver %>"</i></h1>
 
 <%= render :partial => 'list', :object => @pages %>

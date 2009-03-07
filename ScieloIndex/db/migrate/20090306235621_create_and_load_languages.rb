@@ -4,7 +4,7 @@ class CreateAndLoadLanguages < ActiveRecord::Migration
   def self.up
     create_table :languages, :force => true do |t|
       t.text     :name,              :null => false
-      t.text     :code, :limit => 3, :null => false
+      t.string     :code, :limit => 3, :null => false
       t.timestamps
     end
     

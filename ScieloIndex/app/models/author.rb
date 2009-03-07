@@ -38,13 +38,13 @@ class Author < ActiveRecord::Base
       f_initials = self.firstname.upcase
     end
     
-    lastname_cap = self.lastname.chars.split.map! {|part| part.capitalize}.join(' ')
+    lastname_cap = self.lastname.split.map! {|part| part.capitalize}.join(' ')
 
     [ lastname_cap, f_initials + m_initials ].join(' ')
   end
 
   def as_human
-    [ self.degree.to_s, self.firstname, self.middlename.to_s, self.lastname.chars.split.map! {|part| part.capitalize}.join(' ') ].join(' ')
+    [ self.degree.to_s, self.firstname, self.middlename.to_s, self.lastname.split.map! {|part| part.capitalize}.join(' ') ].join(' ')
   end
 
   def total_citations

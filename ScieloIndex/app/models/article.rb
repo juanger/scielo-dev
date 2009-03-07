@@ -23,10 +23,10 @@ class Article < ActiveRecord::Base
   has_many :article_subjects
   has_many :subjects, :through => :article_subjects
 
-  has_many :article_citations, :foreign_key => :article_id, :class_name => 'Cite'
+  has_many :article_citations, :foreign_key => :article_id, :class_name => 'Citation'
   has_many :citations, :through => :article_citations
 
-  has_many :article_references, :foreign_key => :cited_by_article_id, :class_name => 'Cite'
+  has_many :article_references, :foreign_key => :cited_by_article_id, :class_name => 'Citation'
   has_many :references, :through => :article_references, :source => :article
 
   has_many :alternate_titles
@@ -54,12 +54,12 @@ class Article < ActiveRecord::Base
     self.journal_issue.journal.as_vancouver + ' ' + self.journal_issue.as_vancouver + ':' + self.fpage.to_s + '-' + self.lpage.to_s + '.'
   end
   
-  def method_missing(methId)
-    if methId == :citations
-      self.citations.size
-    else
-      super
-    end
-  end
+  # def method_missing(methId)
+  #   if methId == :citations
+  #     self.citations.size
+  #   else
+  #     super
+  #   end
+  # end
   
 end

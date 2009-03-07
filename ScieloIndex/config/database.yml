@@ -12,8 +12,11 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
-  adapter: sqlite3
-  database: db/scielo_development.sqlite3
+  adapter: postgresql
+  # database: db/scielo_development.sqlite3
+  database: scielo_development
+  username: scielo
+  password:
 
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
