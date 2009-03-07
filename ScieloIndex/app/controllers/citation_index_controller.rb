@@ -38,7 +38,7 @@ class CitationIndexController < ApplicationController
     joins << " JOIN article_authors ON articles.id = article_authors.article_id " +
               "JOIN authors ON authors.id = article_authors.author_id " +
               "LEFT OUTER JOIN associated_files as files on articles.id = files.article_id " +
-              "LEFT OUTER JOIN (select article_id ,count(article_id) as citations from cites " +
+              "LEFT OUTER JOIN (select article_id ,count(article_id) as citations from citations " +
               "group by article_id) as tmp ON articles.id = tmp.article_id"
     
     @collection = Article.paginate(:joins => joins,
@@ -62,7 +62,6 @@ class CitationIndexController < ApplicationController
   
   def find_advanced
     if params[:search] && params[:search].merge(params[:article]).map {|k,v| v.blank?}.inject(true) {|f,n| f && n}
-      # flash[:notice] = _('Try to set at least one parameter')
       redirect_to :action => 'search'
     end
     
@@ -76,9 +75,9 @@ class CitationIndexController < ApplicationController
     end
   end
   
-  def list_articles_cites
+  def list_articles_citations
     @collection = Article.paginate :select => 'articles.*',
-                                  :joins => "JOIN cites ON articles.id = cites.cited_by_article_id",
+                                  :joins => "JOIN citations ON articles.id = citations.cited_by_article_id",
                                   :conditions => "article_id = #{params[:id]}",
                                   :per_page => 10,
                                   :page => params[:page]
@@ -104,9 +103,9 @@ class CitationIndexController < ApplicationController
   end
 
   def most_cited
-    @collection = Author.paginate :select => "authors.id, authors.lastname, authors.degree, authors.firstname, authors.middlename, sum(tmp.cites) as citations",
+    @collection = Author.paginate :select => "authors.id, authors.lastname, authors.degree, authors.firstname, authors.middlename, sum(tmp.citations) as citations",
                                   :joins => "JOIN article_authors on authors.id = article_authors.author_id "+
-                                            "LEFT OUTER JOIN (select article_id ,count(article_id) as cites from cites "+
+                                            "LEFT OUTER JOIN (select article_id ,count(article_id) as citations from citations "+
                                             "group by article_id) as tmp ON article_authors.article_id = tmp.article_id ",
                                   :per_page => 30,
                                   :page => params[:page],

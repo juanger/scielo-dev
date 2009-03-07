@@ -10,7 +10,7 @@
 
   <tr>
     <td id="links">
-      <%= link_to _('Cited by %d', article.citations), {:action => 'list_articles_cites', :id => article}, {:class => "art_link"} %>
+      <%= link_to _('Cited by %d', article.citations), {:action => 'list_articles_citations', :id => article}, {:class => "art_link"} %>
       <%= pdf_download_link(article) %>
       <%= html_view_link(article) %>
     </td>

@@ -24,7 +24,7 @@ class Article < ActiveRecord::Base
   has_many :subjects, :through => :article_subjects
 
   has_many :article_citations, :foreign_key => :article_id, :class_name => 'Cite'
-  has_many :cites, :through => :article_citations
+  has_many :citations, :through => :article_citations
 
   has_many :article_references, :foreign_key => :cited_by_article_id, :class_name => 'Cite'
   has_many :references, :through => :article_references, :source => :article
@@ -56,9 +56,10 @@ class Article < ActiveRecord::Base
   
   def method_missing(methId)
     if methId == :citations
-      self.cites.size
+      self.citations.size
     else
       super
     end
   end
+  
 end

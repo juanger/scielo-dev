@@ -47,14 +47,14 @@ class Author < ActiveRecord::Base
     [ self.degree.to_s, self.firstname, self.middlename.to_s, self.lastname.chars.split.map! {|part| part.capitalize}.join(' ') ].join(' ')
   end
 
-  def total_cites
-    citesperart = self.articles.collect { |article| article.citations }
-    citesperart.inject() { |sum,element| sum + element}
+  def total_citations
+    citations_per_art = self.articles.collect { |article| article.citations }
+    citations_per_art.inject() { |sum,element| sum + element}
   end
 
   def Author.top_ten
     authors = Author.find(:all).collect { |author| 
-      [author.id, author.as_human, author.total_cites]
+      [author.id, author.as_human, author.total_citations]
     }
     all_authors = authors.sort { |one, other| other[2] <=> one[2] }.values_at(0..9)
     authors = Array.new
@@ -66,6 +66,6 @@ class Author < ActiveRecord::Base
   end
   
   def info
-    {:name => as_human, :citations => total_cites, :id => id}
+    {:name => as_human, :citations => total_citations, :id => id}
   end
 end

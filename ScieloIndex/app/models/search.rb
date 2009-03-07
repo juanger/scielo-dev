@@ -1,4 +1,4 @@
-class Search #< ActiveRecord::Base
+class Search
   attr_accessor :author, :title, :title_phrase, :title_any, :since_year, :until_year, :journal_id, :page
   
   def initialize(hash, page)
@@ -85,7 +85,7 @@ class Search #< ActiveRecord::Base
     "JOIN authors ON authors.id = article_authors.author_id " +
     "JOIN journal_issues ON articles.journal_issue_id = journal_issues.id " +
     "LEFT OUTER JOIN associated_files as files on articles.id = files.article_id " +
-    "LEFT OUTER JOIN (select article_id ,count(article_id) as citations from cites " +
+    "LEFT OUTER JOIN (select article_id ,count(article_id) as citations from citations " +
     "group by article_id) as tmp ON articles.id = tmp.article_id"
   end
   
