@@ -4,7 +4,7 @@ class CreateAndLoadPublishers < ActiveRecord::Migration
   def self.up
     create_table :publishers, :force => true do |t|
       t.text     :name,       :null => false
-      t.text     :descr
+      t.text     :description
       t.text     :url
       t.timestamps
     end
