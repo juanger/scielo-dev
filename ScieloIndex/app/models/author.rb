@@ -27,24 +27,25 @@ class Author < ActiveRecord::Base
 
   def as_vancouver
     if self.middlename
-      m_initials = self.middlename.split(' ').collect { |md| md.first.upcase }.to_s
+      m_initials = self.middlename.mb_chars.split(' ').collect { |md| md.first.upcase }.to_s
     else
       m_initials = ""
     end
     
     if self.firstname.size > 2
-      f_initials = self.firstname.first.upcase
+      f_initials = self.firstname.mb_chars.first.upcase
     else
-      f_initials = self.firstname.upcase
+      f_initials = self.firstname.mb_chars.upcase
     end
     
-    lastname_cap = self.lastname.split.map! {|part| part.capitalize}.join(' ')
+    lastname_cap = self.lastname.mb_chars.split.map! {|part| part.capitalize}.join(' ')
 
     [ lastname_cap, f_initials + m_initials ].join(' ')
   end
 
   def as_human
-    [ self.degree.to_s, self.firstname, self.middlename.to_s, self.lastname.split.map! {|part| part.capitalize}.join(' ') ].join(' ')
+    lastname_as_human = self.lastname.mb_chars.split.map! {|part| part.capitalize}.join(' ')
+    [ self.degree.to_s, self.firstname, self.middlename.to_s, lastname_as_human ].join(' ')
   end
 
   def total_citations

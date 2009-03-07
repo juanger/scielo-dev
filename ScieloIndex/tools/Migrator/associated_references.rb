@@ -329,7 +329,7 @@ class AssociatedReferences
                       " (trim(both from LOWER(firstname)) LIKE ? OR " + # equal firstames
                       # or equal initials
                       " lower(substring(firstname from 1 for 1) || substring(middlename from 1 for 1)) LIKE ? )",
-                       last.chars.downcase.strip, first.chars.downcase, first.chars[0,2]]
+                       last.mb_chars.downcase.strip, first.downcase, first[0,2]]
         
         if author
           @logger.info "Se encontro el autor en la DB (Referencia): #{author.id}"

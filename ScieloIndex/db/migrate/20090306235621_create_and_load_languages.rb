@@ -11,7 +11,7 @@ class CreateAndLoadLanguages < ActiveRecord::Migration
     add_index :languages, [:code], :name => "languages_code_key", :unique => true
     
     directory = File.join(File.dirname(__FILE__),"catalogs")
-    Fixtures.create_fixtures(directory, "countries")
+    Fixtures.create_fixtures(directory, "languages")
   end
 
   def self.down
