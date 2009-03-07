@@ -62,6 +62,7 @@ Localization.define(:es_MX) do |l|
   
   l.store 'Author', 'Autor'
   l.store 'Match any articles written by', 'Mostrar artículos escritos por'
+  l.store 'Any', 'Cualquiera'
   
   # PDF Reports
   

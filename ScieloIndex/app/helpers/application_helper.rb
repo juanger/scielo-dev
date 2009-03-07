@@ -10,7 +10,4 @@ module ApplicationHelper
     langs.join(" | ")
   end
   
-  def menu
-    
-  end
 end
