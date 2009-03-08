@@ -1,5 +1,7 @@
 class AssociatedReferences
 
+  include QueryHelper
+
   def initialize(hash)
     @back = hash[:back]
     @cited_by_article_id = hash[:cited_by_article_id]
@@ -325,11 +327,15 @@ class AssociatedReferences
         author_hash[:lastname] = last
         
         author = Author.find :first, 
-                    :conditions => ["trim(both from LOWER(lastname)) LIKE ? AND" + # equal lastnames
-                      " (trim(both from LOWER(firstname)) LIKE ? OR " + # equal firstames
-                      # or equal initials
-                      " lower(substring(firstname from 1 for 1) || substring(middlename from 1 for 1)) LIKE ? )",
-                       last.mb_chars.downcase.strip, first.downcase, first[0,2]]
+                    :conditions => [
+                      # equal lastnames
+                      postgres?("trim(both from LOWER(lastname))","trim(LOWER(lastname))") + "LIKE ? AND " +
+                      # equal names of equal initials
+                      postgres?("(trim(both from LOWER(firstname))","(trim(LOWER(firstname))") + " LIKE ? OR " +
+                      postgres?(" lower(substring(firstname from 1 for 1) || substring(middlename from 1 for 1)",
+                                " lower(substr(firstname,1,1) || substr(middlename,1,1)") +
+                                ") LIKE ? )",
+                       last.mb_chars.downcase.strip, first.mb_chars.downcase, first.mb_chars[0,2]]
         
         if author
           @logger.info "Se encontro el autor en la DB (Referencia): #{author.id}"
@@ -402,7 +408,7 @@ class AssociatedReferences
       :cite_order => @cite_count
     }
 
-    cite = Cite.new cite_hash
+    cite = Citation.new cite_hash
     if cite.save
       @logger.info "Creando cita #{cite.id}"
       @stats.add :cite

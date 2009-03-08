@@ -309,7 +309,6 @@ class Migrator
     new_article.journal_issue_id = @current_journal_issue_id
     new_article.fpage = article.fpage
     new_article.lpage = article.lpage
-    puts "-#{article.language}-"
     language = Language.find_by_code(article.language)
     if language
       new_article.language_id = language.id

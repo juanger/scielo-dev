@@ -25,12 +25,4 @@ class ApplicationController < ActionController::Base
     slice = collection[first...last]
     return [pages, slice]
   end
-  
-  def postgres?(sql_expression,default="")
-    if ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
-      sql_expression
-    else
-      default
-    end
-  end
 end

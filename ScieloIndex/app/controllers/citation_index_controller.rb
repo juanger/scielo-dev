@@ -1,4 +1,6 @@
 class CitationIndexController < ApplicationController
+  include QueryHelper
+
   # auto_complete_for :author, :firstname
   # auto_complete_for :author, :middlename
   # auto_complete_for :author, :lastname

@@ -48,9 +48,10 @@ class Author < ActiveRecord::Base
     [ self.degree.to_s, self.firstname, self.middlename.to_s, lastname_as_human ].join(' ')
   end
 
-  def total_citations
-    citations_per_art = self.articles.collect { |article| article.citations }
-    citations_per_art.inject() { |sum,element| sum + element}
+  def self_citations
+    Citation.count(:joins => "JOIN article_authors ON cited_by_article_id = article_authors.article_id " +
+                              "JOIN article_authors as cited_author ON cited_author.article_id = citations.article_id",
+                    :conditions => ["article_authors.author_id = cited_author.author_id AND article_authors.author_id = ?", self.id])
   end
 
   def Author.top_ten

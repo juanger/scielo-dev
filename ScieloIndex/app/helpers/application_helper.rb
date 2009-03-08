@@ -9,5 +9,4 @@ module ApplicationHelper
     end
     langs.join(" | ")
   end
-  
 end
