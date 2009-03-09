@@ -8,4 +8,6 @@ class Citation < ActiveRecord::Base
 
   belongs_to :article, :class_name => 'Article', :foreign_key => 'article_id'
   belongs_to :citation, :class_name => 'Article', :foreign_key => 'cited_by_article_id'
+  has_many :authors, :class_name => 'Author', :through => 'article_authors'
+  
 end

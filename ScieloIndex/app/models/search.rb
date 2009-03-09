@@ -1,4 +1,5 @@
 class Search
+  include QueryHelper
   attr_accessor :author, :title, :title_phrase, :title_any, :since_year, :until_year, :journal_id, :page
   
   def initialize(search_terms, page, mode = :basic)
@@ -51,7 +52,7 @@ class Search
 
   def author_conditions
     if (terms = author.split).size <= 1
-      return ["authors.lastname LIKE ?", "#{author}"] unless author.blank?
+      return ["authors.lastname #{postgres? "ILIKE", "LIKE"} ?", "%#{author}%"] unless author.blank?
     else
       return ["authors.firstname LIKE ? AND authors.lastname LIKE ?", terms[0], terms[1]]
     end
@@ -110,14 +111,6 @@ class Search
   
   def per_page
     10
-  end
-  
-  def postgres?(sql_expression,default="")
-    if ActiveRecord::Base.connection.adapter_name == 'PostgreSQL'
-      sql_expression
-    else
-      default
-    end
   end
   
   def mode(basic, advanced)

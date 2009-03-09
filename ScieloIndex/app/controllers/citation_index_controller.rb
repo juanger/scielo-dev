@@ -44,7 +44,7 @@ class CitationIndexController < ApplicationController
     
     session[:search] = params[:search] if params[:search]
     session[:search].merge!(params[:article]) if params[:article]
-    @collection = Search.new(session[:search] || {}, params[:page]).articles
+    @collection = Search.new(session[:search] || {}, params[:page], :advanced).articles
     
     if @collection.empty?
       flash[:notice] = _('Your search did not match any articles')
@@ -69,8 +69,8 @@ class CitationIndexController < ApplicationController
                                    :per_page => 10,
                                    :page => params[:page]
     respond_to do |format|
-      format.html { render :template => 'citation_index/list_authors_articles.html.erb' }
-      format.pdf  { send_data(render(:template => 'citation_index/list_authors_articles.rfpdf', :layout => false), :type => 'application/pdf', :filename => "#{@author.lastname}_#{@author.firstname}.pdf") }
+      format.html { render :action => 'list_authors_articles' }
+      format.pdf  { render :action => 'list_authors_articles.rpdf'}
     end
   end
   

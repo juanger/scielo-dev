@@ -1,4 +1,6 @@
 class Author < ActiveRecord::Base
+  include QueryHelper
+  
   validates_presence_of :firstname, :lastname
   validates_length_of :firstname, :lastname, :in => 1..30
   validates_length_of :middlename, :maximum  => 100, :allow_nil => true
@@ -19,7 +21,6 @@ class Author < ActiveRecord::Base
 
   has_many :author_institutions
   has_many :institutions, :through => :author_institutions
-
 
   # def to_param
   #   "#{id}-#{lastname}-#{firstname}"
@@ -49,11 +50,16 @@ class Author < ActiveRecord::Base
   end
 
   def self_citations
-    Citation.count(:joins => "JOIN article_authors ON cited_by_article_id = article_authors.article_id " +
-                              "JOIN article_authors as cited_author ON cited_author.article_id = citations.article_id",
-                    :conditions => ["article_authors.author_id = cited_author.author_id AND article_authors.author_id = ?", self.id])
+    Citation.count(:joins => "JOIN article_authors ON citations.article_id = article_authors.article_id " +
+                             "JOIN authors ON authors.id = article_authors.author_id " +
+                             "JOIN article_authors as by_article_authors ON " +
+                                "citations.cited_by_article_id = by_article_authors.article_id " +
+                             "JOIN authors as by_authors ON by_authors.id = by_article_authors.author_id",
+                    :conditions => ["authors.lastname #{postgres? "ILIKE","LIKE"} by_authors.lastname AND " + 
+                                    "authors.id = ?",
+                                    self.id])
   end
-
+  
   def Author.top_ten
     authors = Author.find(:all).collect { |author| 
       [author.id, author.as_human, author.total_citations]

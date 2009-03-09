@@ -37,11 +37,7 @@ class Article < ActiveRecord::Base
   def as_vancouver
     [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join('. ')
   end
-  
-  def as_vancouver_html
-    "<strong>#{title_as_vancouver}</strong><br/>#{author_names_as_vancouver}. #{journal_as_vancouver}"
-  end
-  
+    
   def author_names_as_vancouver
     authors.map { |author| author.as_vancouver}.join(', ')
   end
@@ -52,6 +48,10 @@ class Article < ActiveRecord::Base
 
   def journal_as_vancouver
     self.journal_issue.journal.as_vancouver + ' ' + self.journal_issue.as_vancouver + ':' + self.fpage.to_s + '-' + self.lpage.to_s + '.'
+  end
+  
+  def year
+    self.journal_issue.year
   end
   
   # def method_missing(methId)
