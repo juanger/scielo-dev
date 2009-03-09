@@ -1,3 +1,5 @@
+require 'pdf_writer_extensions'
+
 class CitationIndexController < ApplicationController
   include QueryHelper
 
