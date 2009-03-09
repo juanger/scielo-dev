@@ -49,7 +49,7 @@ class CitationIndexController < ApplicationController
     @collection = Search.new(session[:search] || {}, params[:page], :advanced).articles
     
     if @collection.empty?
-      flash[:notice] = _('Your search did not match any articles')
+      flash[:notice] = _('Your search "%s" did not match any articles')
       redirect_to :action => 'search'
     end
   end
