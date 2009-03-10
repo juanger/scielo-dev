@@ -23,10 +23,10 @@ class Article < ActiveRecord::Base
   has_many :article_subjects
   has_many :subjects, :through => :article_subjects
 
-  has_many :article_citations, :foreign_key => :article_id, :class_name => 'Cite'
-  has_many :cites, :through => :article_citations
+  has_many :article_citations, :foreign_key => :article_id, :class_name => 'Citation'
+  has_many :citations, :through => :article_citations
 
-  has_many :article_references, :foreign_key => :cited_by_article_id, :class_name => 'Cite'
+  has_many :article_references, :foreign_key => :cited_by_article_id, :class_name => 'Citation'
   has_many :references, :through => :article_references, :source => :article
 
   has_many :alternate_titles
@@ -37,11 +37,7 @@ class Article < ActiveRecord::Base
   def as_vancouver
     [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join('. ')
   end
-  
-  def as_vancouver_html
-    "<strong>#{title_as_vancouver}</strong><br/>#{author_names_as_vancouver}. #{journal_as_vancouver}"
-  end
-  
+    
   def author_names_as_vancouver
     authors.map { |author| author.as_vancouver}.join(', ')
   end
@@ -54,11 +50,16 @@ class Article < ActiveRecord::Base
     self.journal_issue.journal.as_vancouver + ' ' + self.journal_issue.as_vancouver + ':' + self.fpage.to_s + '-' + self.lpage.to_s + '.'
   end
   
-  def method_missing(methId)
-    if methId == :citations
-      self.cites.size
-    else
-      super
-    end
+  def year
+    self.journal_issue.year
   end
+  
+  # def method_missing(methId)
+  #   if methId == :citations
+  #     self.citations.size
+  #   else
+  #     super
+  #   end
+  # end
+  
 end

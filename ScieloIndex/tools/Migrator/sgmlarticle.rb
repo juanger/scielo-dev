@@ -72,8 +72,8 @@ class SgmlArticle
         language = $1
         temp_title = $2
 
-        if temp_title.chars.upcase.to_s == temp_title
-          title = temp_title.chars.capitalize.to_s
+        if temp_title.mb_chars.upcase.to_s == temp_title
+          title = temp_title.mb_chars.capitalize.to_s
         else
           title = temp_title
         end

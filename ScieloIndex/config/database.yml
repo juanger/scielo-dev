@@ -1,17 +1,7 @@
-# MySQL (default setup).  Versions 4.1 and 5.0 are recommended.
-#
-# Install the MySQL driver:
-#   gem install mysql
-# On MacOS X:
-#   gem install mysql -- --include=/usr/local/lib
-# On Windows:
-#   gem install mysql
-#       Choose the win32 build.
-#       Install MySQL and put its /bin directory on your path.
-#
-# And be sure to use new-style password hashing:
-#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+
 development:
+  # adapter: sqlite3
+  # database: db/scielo_development.sqlite3
   adapter: postgresql
   database: scielo_development
   username: scielo
@@ -21,13 +11,11 @@ development:
 # re-generated from your development database when you run 'rake'.
 # Do not set this db to the same as development or production.
 test:
-  adapter: postgresql
-  database: scielo_test
-  username: scielo
-  password:
+  adapter: sqlite3
+  database: db/scielo_test.sqlite3
 
 production:
   adapter: postgresql
-  database: scielo_production
+  database: scielo_index
   username: scielo
   password: 

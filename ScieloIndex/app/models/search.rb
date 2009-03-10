@@ -1,11 +1,20 @@
-class Search #< ActiveRecord::Base
+class Search
+  include QueryHelper
   attr_accessor :author, :title, :title_phrase, :title_any, :since_year, :until_year, :journal_id, :page
   
-  def initialize(hash, page)
-    hash.each do |key,val|
-      instance_variable_set("@#{key}", val.strip)
+  def initialize(search_terms, page, mode = :basic)
+    
+    case search_terms
+    when String
+      @author =  @title_any = search_terms
+      @title = @title_phrase = ""
+    when Hash
+      search_terms.each do |key,val|
+        instance_variable_set("@#{key}", val.strip)
+      end
     end
     @page = page
+    @mode = mode
   end
   
   def articles
@@ -24,16 +33,18 @@ class Search #< ActiveRecord::Base
   end
 
   def conditions
-    [conditions_clauses.join(' AND '), *conditions_options]
+    [conditions_clauses.join(" #{mode("OR","AND")} "), conditions_values].flatten
   end
   
   def conditions_clauses
     conditions_parts.map { |condition| condition.first }
   end
 
-  def conditions_options
-    conditions_parts.map { |condition| condition[1..-1] }.flatten
+  def conditions_values
+    conditions_parts.map { |condition| condition.second }
   end
+
+  # Each condition part is an array with two values: the clause and the value
 
   def conditions_parts
     private_methods(false).grep(/_conditions$/).map { |m| send(m) }.compact
@@ -41,9 +52,9 @@ class Search #< ActiveRecord::Base
 
   def author_conditions
     if (terms = author.split).size <= 1
-      return ["authors.lastname ~* ?", "#{author}"] unless author.blank?
+      return ["authors.lastname #{postgres? "ILIKE", "LIKE"} ?", "%#{author}%"] unless author.blank?
     else
-      return ["authors.firstname ~* ? AND authors.lastname ~* ?", terms[0], terms[1]]
+      return ["authors.firstname LIKE ? AND authors.lastname LIKE ?", terms[0], terms[1]]
     end
   end
 
@@ -52,13 +63,13 @@ class Search #< ActiveRecord::Base
   end
 
   def title_phrase_conditions
-    ["articles.title ~* ?",  "#{title_phrase}"] unless title_phrase.blank?
+    ["articles.title LIKE ?",  "%#{title_phrase}%"] unless title_phrase.blank?
   end
 
   def title_any_conditions
-    terms = title_any.split
-    conds = terms.map {|t| "articles.title ~* ?" }.join(" OR ")
-    ["(#{conds})",  *terms] unless title_any.blank?
+    terms = title_any.split.map {|t| "%#{t}%"}
+    conds = (["articles.title LIKE ?"]*terms.size).join(" OR ")
+    ["(#{conds})", terms] unless title_any.blank?
   end
   
   def journal_conditions
@@ -85,7 +96,7 @@ class Search #< ActiveRecord::Base
     "JOIN authors ON authors.id = article_authors.author_id " +
     "JOIN journal_issues ON articles.journal_issue_id = journal_issues.id " +
     "LEFT OUTER JOIN associated_files as files on articles.id = files.article_id " +
-    "LEFT OUTER JOIN (select article_id ,count(article_id) as citations from cites " +
+    "LEFT OUTER JOIN (select article_id ,count(article_id) as citations from citations " +
     "group by article_id) as tmp ON articles.id = tmp.article_id"
   end
   
@@ -94,11 +105,20 @@ class Search #< ActiveRecord::Base
   end
   
   def order
-    'files.filename ASC NULLS LAST ,tmp.citations DESC NULLS LAST'
+    "files.filename ASC #{postgres? "NULLS LAST"}," +
+    "tmp.citations DESC #{postgres? "NULLS LAST"}"
   end
   
   def per_page
     10
   end
-    
+  
+  def mode(basic, advanced)
+    if @mode == :basic
+      basic
+    else
+      advanced
+    end
+  end
+  
 end

@@ -1,4 +1,6 @@
 class Author < ActiveRecord::Base
+  include QueryHelper
+  
   validates_presence_of :firstname, :lastname
   validates_length_of :firstname, :lastname, :in => 1..30
   validates_length_of :middlename, :maximum  => 100, :allow_nil => true
@@ -20,41 +22,47 @@ class Author < ActiveRecord::Base
   has_many :author_institutions
   has_many :institutions, :through => :author_institutions
 
-
   # def to_param
   #   "#{id}-#{lastname}-#{firstname}"
   # end
 
   def as_vancouver
     if self.middlename
-      m_initials = self.middlename.split(' ').collect { |md| md.first.upcase }.to_s
+      m_initials = self.middlename.mb_chars.split(' ').collect { |md| md.first.upcase }.to_s
     else
       m_initials = ""
     end
     
     if self.firstname.size > 2
-      f_initials = self.firstname.first.upcase
+      f_initials = self.firstname.mb_chars.first.upcase
     else
-      f_initials = self.firstname.upcase
+      f_initials = self.firstname.mb_chars.upcase
     end
     
-    lastname_cap = self.lastname.chars.split.map! {|part| part.capitalize}.join(' ')
+    lastname_cap = self.lastname.mb_chars.split.map! {|part| part.capitalize}.join(' ')
 
     [ lastname_cap, f_initials + m_initials ].join(' ')
   end
 
   def as_human
-    [ self.degree.to_s, self.firstname, self.middlename.to_s, self.lastname.chars.split.map! {|part| part.capitalize}.join(' ') ].join(' ')
+    lastname_as_human = self.lastname.mb_chars.split.map! {|part| part.capitalize}.join(' ')
+    [ self.degree.to_s, self.firstname, self.middlename.to_s, lastname_as_human ].join(' ')
   end
 
-  def total_cites
-    citesperart = self.articles.collect { |article| article.citations }
-    citesperart.inject() { |sum,element| sum + element}
+  def self_citations
+    Citation.count(:joins => "JOIN article_authors ON citations.article_id = article_authors.article_id " +
+                             "JOIN authors ON authors.id = article_authors.author_id " +
+                             "JOIN article_authors as by_article_authors ON " +
+                                "citations.cited_by_article_id = by_article_authors.article_id " +
+                             "JOIN authors as by_authors ON by_authors.id = by_article_authors.author_id",
+                    :conditions => ["authors.lastname #{postgres? "ILIKE","LIKE"} by_authors.lastname AND " + 
+                                    "authors.id = ?",
+                                    self.id])
   end
-
+  
   def Author.top_ten
     authors = Author.find(:all).collect { |author| 
-      [author.id, author.as_human, author.total_cites]
+      [author.id, author.as_human, author.total_citations]
     }
     all_authors = authors.sort { |one, other| other[2] <=> one[2] }.values_at(0..9)
     authors = Array.new
@@ -66,6 +74,6 @@ class Author < ActiveRecord::Base
   end
   
   def info
-    {:name => as_human, :citations => total_cites, :id => id}
+    {:name => as_human, :citations => total_citations, :id => id}
   end
 end

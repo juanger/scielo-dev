@@ -1,7 +1,12 @@
 <h1><%=_ 'Most cited authors' %></h1>
 
   <table class="most_cited">
-    <tr><th><%=_ "ranking" %></th><th><%=_ "name" %></th><th><%=_ "citations" %></th><th><%=_ "probable <br/> self-citations" %></th></tr>
+    <tr>
+		<th><%=_ "ranking" %></th>
+		<th><%=_ "name" %></th>
+		<th><%=_ "citations" %></th>
+		<th><%=_ "probable <br/> self-citations" %></th>
+	</tr>
     <% @ranked = true %>
     <%= render :partial => 'author', :collection => @collection %>
   </table>

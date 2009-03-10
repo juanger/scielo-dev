@@ -9,9 +9,8 @@ class Collection < ActiveRecord::Base
   validates_format_of :url, :email, :with => /^[-a-zA-Z0-9\/.:@]*$/
   validates_format_of :other, :with => /^[-a-zA-Z0-9áéíóúÁÉÍÓÚñÑ:;'",.&?!() ]*$/
   validates_inclusion_of :country_id, :in => 1..999
-  validates_inclusion_of :publisher_id, :in => 1..9999
   validates_inclusion_of :id, :in => 1..9999, :allow_nil => true
-  validates_numericality_of :country_id, :publisher_id, :only_integer => true
+  validates_numericality_of :country_id, :publisher_id, :only_integer => true, :greater_than_or_equal_to => 1
   validates_numericality_of :id, :allow_nil => true, :only_integer => true
 
   belongs_to :country

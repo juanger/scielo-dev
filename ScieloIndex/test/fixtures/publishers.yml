@@ -2,25 +2,25 @@
 mit:
   id: 1
   name: MIT Press
-  descr: Cool books for cool guys
+  description: Cool books for cool guys
   url: http://www.mit.edu
 white:
   id: 2
   name: White Wolf
-  descr: Storytelling for mature minds
+  description: Storytelling for mature minds
   url: http://www.white-wolf.com
 black:
   id: 3
   name: Black Dog Factory
-  descr: Big bad stories for big boys
+  description: Big bad stories for big boys
   url: http://www.black-dog.com
 fisica:
   id: 4
   name: Fisica Editores
-  descr: Revistas para fisicos
+  description: Revistas para fisicos
   url: http://www.fisicaeditores.com
 med:
   id: 5
   name: Ediciones Medicas
-  descr: Enfermedades y tratamientos novedosos
+  description: Enfermedades y tratamientos novedosos
   url: http://www.medicas.com

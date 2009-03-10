@@ -1,0 +1,27 @@
+# image
+pdf.image File.join(RAILS_ROOT, 'public', 'images', 'logo_noalpha.png'),
+    :pad => 0, :width => 120
+# title
+pdf.text(_('Articles writen by %s', @author.as_human), :justification => :center, :font_size => 16)
+
+pdf.font_size = 12
+pdf.move_pointer(10)
+
+i = j = 1
+
+total_cites = Citation.count(:include => {:article => :authors}, :conditions => ["article_authors.author_id = ?" , @author.id])
+pdf.text(_('Cited by %d', total_cites), :justification => :center)
+
+@author.articles.sort {|x,y| x.year <=> y.year }.each do |article|
+  pdf.text("\n#{i}.- #{article.title_as_vancouver}\n", :left => 40, :right => 40, :font_size => 12)
+  pdf.text("#{article.author_names_as_vancouver}. #{article.journal_as_vancouver}", :left => 40, :right => 40, :font_size => 10)
+  pdf.text(_("citations").capitalize + ":\n", :left => 50, :font_size => 12)
+    article.citations.each do |cited_by|
+      pdf.text("· #{cited_by.title_as_vancouver}\n", :left => 60, :right => 40, :justification => :full, :font_size => 12)
+      pdf.text("#{article.author_names_as_vancouver}. #{article.journal_as_vancouver}", :left => 60, :right => 40, :font_size => 10)
+      j += 1
+    end
+  i += 1
+end
+
+pdf.render

@@ -42,7 +42,7 @@ class AssociatedAuthors
         sname = match[1].to_s
         sname = sname.sub(/\n/, '')
         array = sname.split(' ')
-        sname = array.collect { |name| name.chars.capitalize.to_s }.join(' ')
+        sname = array.collect { |name| name.mb_chars.capitalize.to_s }.join(' ')
         author_hash[:lastname] = sname
       else
         author_hash.delete(:lastname)
