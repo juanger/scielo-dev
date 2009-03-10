@@ -385,4 +385,26 @@ td.authors a{
   overflow: hidden;
 }
 
+.results {
+  font-size: 12px;
+  display: table-cell;
+  padding: 10px;
+}
+
+.key {
+ padding-right: 5px;	
+}
+
+.value {
+  font-weight: bold;
+  padding: 4px;
+  border:solid 1pt #FFD2D2;	
+  text-align:center;
+}
+
+.link-container {
+  padding: 10px;
+  font-size: 12px;
+}
+
 /* end of pagination styles */

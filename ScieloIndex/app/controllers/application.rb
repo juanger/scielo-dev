@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     Localization.lang = session[:lang] unless session[:lang].blank? 
     true 
   end
-
   
   def paginate_collection(collection, options = {})
     default_options = {:per_page => 10, :page => 1}

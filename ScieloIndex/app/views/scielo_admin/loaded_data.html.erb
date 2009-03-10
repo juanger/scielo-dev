@@ -1,0 +1,45 @@
+<h4 class="centered"><%= _("Loaded Data Explorer") %></h4>
+<br/>
+<div>
+    <div class="results">
+        <h4>.: <%= _("General Results") %></h4><br/>
+        <table>
+            <% @results.each_pair do |key, value| %>
+                <tr>
+                    <td class="key"><%= _("#{key}".capitalize) %></td>
+                    <td class="value"><%= _("#{value}") %></td>     
+                </tr>
+            <% end %>
+        </table>
+        <br/>
+        <%= link_to _("View Related Graph"), :controller => :scielo_admin, :action => :generate_chart, :chart => "general" %>
+    </div>
+
+    <div class="results">
+        <h4>.: <%= _("Article-Subject Results") %></h4><br/>
+        <table>
+            <% @articles_subjects.each_pair do |key, value| %>
+                <tr>
+                    <td class="key"><%= _("#{key}".capitalize) %></td>
+                    <td class="value"><%= _("#{value}") %></td>     
+                </tr>
+            <% end %>
+        </table>
+        <br/>
+        <%= link_to _("View Related Graph"), :controller => :scielo_admin, :action => :generate_chart, :chart => "articles_and_subjects" %>
+    </div>
+
+    <div class="results">
+        <h4>.: <%= _("Author-Institution Results") %></h4><br/>
+        <table>
+            <% @authors_institutions.each_pair do |key, value| %>
+                <tr>
+                    <td class="key"><%= _("#{key}".capitalize) %></td>
+                    <td class="value"><%= _("#{value}") %></td>     
+                </tr>
+            <% end %>
+        </table>
+        <br/>
+        <%= link_to _("View Related Graph"), :controller => :scielo_admin, :action => :generate_chart, :chart => "authors_and_institutions" %>
+    </div>
+</div>

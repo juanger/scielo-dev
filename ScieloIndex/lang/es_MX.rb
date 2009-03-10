@@ -74,9 +74,22 @@ Localization.define(:es_MX) do |l|
   
   # Administration
   
-  l.store 'Welcome to the management and monitoring application for Scielo Index', 'Bienvenido al portal de monitoreo y administración de ScieloIndex'
-  l.store 'Loaded Data', 'Información sobre los Datos Cargados'
+  l.store 'Welcome to the management and monitoring application for ScieloIndex', 'Bienvenido al portal de monitoreo y administración de ScieloIndex'
+  l.store 'Loaded Data Explorer', 'Explorador de Datos Almacenados'
   l.store 'ScieloIndex Management', 'Administración de ScieloIndex'
   l.store 'Please, select any of the options listed in the menu', 'Por favor, selecciona alguna de las opciones listadas en el menú'
-  
+  l.store 'View Related Graph', 'Ver Gráfica Relacionada'
+  l.store 'Author-Institution Results', 'Resultados Autor-Institución'
+  l.store 'Article-Subject Results', 'Resultados Artículo-Disciplina'
+  l.store 'General Results', 'Resultados Generales'
+  l.store 'Articles and subjects', 'Artículos y disciplinas'
+  l.store 'Authors and institutions', 'Autores e Instituciones'  
+  l.store 'Subjects', 'Disciplinas'
+  l.store 'Articles', 'Artículos'
+  l.store 'Collections' , 'Colecciones'
+  l.store 'Keywords' , 'Palabras Clave'
+  l.store 'Institutions' , 'Instituciones'
+  l.store 'Citations' , 'Citaciones'
+  l.store 'Authors' , 'Autores'
+  l.store 'Back', 'Atrás'
 end

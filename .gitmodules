@@ -10,3 +10,6 @@
 [submodule "ScieloIndex/vendor/plugins/rpdf"]
 	path = ScieloIndex/vendor/plugins/rpdf
 	url = git://github.com/alexjr85/rpdf.git
+[submodule "ScieloIndex/vendor/plugins/ezgraphix"]
+	path = ScieloIndex/vendor/plugins/ezgraphix
+	url = git://github.com/jpemberthy/ezgraphix.git

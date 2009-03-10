@@ -141,30 +141,30 @@ INSERT INTO article_authors (article_id, author_id, author_order) VALUES (12, 10
 INSERT INTO article_authors (article_id, author_id, author_order) VALUES (13, 11, 2);
 
 
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 2, 1);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 3, 2);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 4, 3);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 5, 4);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 6, 5);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 7, 6);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 8, 7);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 9, 8);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 10, 9);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 11, 10);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 12, 11);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (1, 13, 12);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 2, 1);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 3, 2);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 4, 3);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 5, 4);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 6, 5);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 7, 6);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 8, 7);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 9, 8);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 10, 9);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 11, 10);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 12, 11);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (1, 13, 12);
 
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 3, 1);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 4, 2);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 5, 3);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 6, 4);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 7, 5);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 8, 6);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 9, 7);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 10, 8);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 11, 9);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 12, 10);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (2, 13, 11);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 3, 1);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 4, 2);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 5, 3);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 6, 4);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 7, 5);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 8, 6);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 9, 7);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 10, 8);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 11, 9);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 12, 10);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (2, 13, 11);
 
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (3, 4, 1);
-INSERT INTO cites (article_id, cited_by_article_id, cite_order) VALUES (3, 5, 2);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (3, 4, 1);
+INSERT INTO citations (article_id, cited_by_article_id, cite_order) VALUES (3, 5, 2);
