@@ -1,7 +1,13 @@
 <h4 class="centered"><%= _("ScieloIndex Management") %></h4>
 
-<p><%= @completition_msg %></p>
-
+<br/>
 <div class="link-container">
-   1. <%= link_to _("Re-Migrate ScieloIndex data"), :controller => "scielo_admin", :action => "db_reinitialize" %><br/>
+    <%= link_to_remote _("Migrate ScieloIndex data"), :url=> {:controller => "scielo_admin", :action => "db_reinitialize"}, :before => "Element.show('loading')", :success => "Element.hide('loading')" %><br/>
 </div>
+
+<div id="loading" style="display:none" class="migration">
+    <%= image_tag ('spinner.gif') %>
+    <p class="padded"><%= _("Migration in process...") %></p>
+</div>
+
+<div id="statistics" class="migration"></div>

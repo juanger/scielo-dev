@@ -21,19 +21,19 @@ class Statistic
 
   def close
     msgs = [
-            ["Revistas", :journal],
+            ["Journals", :journal],
             ["Issues", :issue],
-            ["Articulos", :article],
-            ["Autores", :author],
-            ["Revistas de Referencia", :journal_ref],
-            ["Issues de Referencia", :issue_ref],
-            ["Articulos de Referencia", :article_ref],
-            ["Autores de Referencia", :author_ref],
-            ["Citas", :cite]
+            ["Articles", :article],
+            ["Authors", :author],
+            ["Journal References", :journal_ref],
+            ["Issue References", :issue_ref],
+            ["Article References", :article_ref],
+            ["Author References", :author_ref],
+            ["Citations", :cite]
            ]
 
     msgs.each do |msg|
-      @stats.puts "Número de #{msg[0]}: #{@counters[msg[1]]}"
+      @stats.puts "Number of #{msg[0]}: #{@counters[msg[1]]}"
 
     end
     @stats.close

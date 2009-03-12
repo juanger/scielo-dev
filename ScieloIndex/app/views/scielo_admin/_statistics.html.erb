@@ -1,0 +1,10 @@
+<div class="statistic-entry">
+    <h5><%= _("Results") %></h5>
+    <% unless statistics.nil? %>
+        <% statistics.each do |s| %>
+             <% s.split(":").each_slice(2) do |text, number| %>
+                <p><%= _("#{text}") %><%=  ": #{number}" %></p>
+             <% end %>
+        <% end %>
+    <% end %>
+</div>

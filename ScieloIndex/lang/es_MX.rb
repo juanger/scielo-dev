@@ -89,7 +89,23 @@ Localization.define(:es_MX) do |l|
   l.store 'Collections' , 'Colecciones'
   l.store 'Keywords' , 'Palabras Clave'
   l.store 'Institutions' , 'Instituciones'
+  l.store 'Journals' , 'Journal'
   l.store 'Citations' , 'Citaciones'
   l.store 'Authors' , 'Autores'
   l.store 'Back', 'Atrás'
+  l.store 'Migrate ScieloIndex data', 'Migrar datos de ScieloIndex'
+  l.store 'Number of Journals', 'Número de Revistas'
+  l.store 'Number of Issues', 'Número de Issues'
+  l.store 'Number of Articles', 'Número de Artículos'
+  l.store 'Number of Authors', 'Número de Autores'
+  l.store 'Number of Journal References', 'Número de Referencias a Revistas'
+  l.store 'Number of Issue References', 'Número de Referencias a Issues'
+  l.store 'Number of Article References', 'Número de Referencias a Artículos'
+  l.store 'Number of Author References', 'Número de Referencias a Autores'
+  l.store 'Number of Citations', 'Número de Citaciones'
+  l.store 'Migration in process...', 'Migración en proceso...'
+  
+  
+  
+  
 end

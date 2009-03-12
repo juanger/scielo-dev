@@ -407,4 +407,19 @@ td.authors a{
   font-size: 12px;
 }
 
+.migration {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;	
+}
+
+.padded {
+  padding:10px;	
+}
+
+.statistic-entry {
+  font-size: 13px;
+  padding: 2px;
+}
+
 /* end of pagination styles */
