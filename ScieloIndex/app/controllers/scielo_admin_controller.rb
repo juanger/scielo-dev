@@ -5,6 +5,8 @@ class ScieloAdminController < ApplicationController
   include ScieloAdmin
   layout "admin_layout"
   
+  before_filter :authorized?
+  
   def index
   end
   
@@ -49,6 +51,15 @@ class ScieloAdminController < ApplicationController
       ActiveRecord::Base.establish_connection
       @completition_msg= "Database succesfully re-initialized"
       redirect_to :action => "scielo_management", :object => @completition_msg
+  end
+  
+  private
+  
+  def authorized?
+    unless request.host == "localhost" # || request.remote_ip == Oralia's IP || user has logged in
+      flash[:notice] = "You are not allowed to visit the requested page!! <br/> #{request.request_uri}" 
+      redirect_to :controller => :citation_index, :action => :index
+    end
   end
   
 end
