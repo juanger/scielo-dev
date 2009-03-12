@@ -13,13 +13,12 @@ class MyLogger
     end
     @verbose = verbose
     @errors = File.new(errors_file, "w")
-    @pdf = ScieloIndexReport.new()
-    @pdf.ErrorReportTitle
-    @pdf.SetFont("vera", "", 10);
+    @pdf = PDF::Writer.new()
   end
 
   def log(type, message, indent = "")
     @log.puts "#{indent}[#{type}]: #{message}" if @log
+    puts "[#{type}]: #{message}" if @verbose
   end
   
   def error(source, message)
@@ -30,11 +29,6 @@ class MyLogger
 
     @errors.puts "[Source]: #{source}"
     @errors.puts "[Message]: #{message}"
-
-    if @verbose
-      puts "[Source]: #{source}"
-      puts "[Message]: #{message}"
-    end
   end
 
   def error_message(message)
@@ -59,17 +53,18 @@ class MyLogger
   end
 
   def pdf_report_journal(name)
-    @pdf.writeHTML("<h1>#{name}</h1>")
+    @pdf.text(name)
   end
   
   def pdf_report_error(source, error_msg)
-    @pdf.writeHTML("<p><strong>#{source}</strong>  #{error_msg}</p>")
+    @pdf.text(source+ "\n")
+    @pdf.text(error_msg)
   end
 
 
   def close
     @log.close if @log
-    @pdf.Output("error_report.pdf", 'F')
+    @pdf.save_as("error_report.pdf")
     @errors.close
   end
 end

@@ -90,7 +90,7 @@ class Migrator
       puts "You must specify where the serial root is in the config file or with the --serial option"
       Process.exit!(1)
     end
-    @stats = Statistic.new(MIGRATOR_ROOT + 'migrator-stats')
+    @stats = Statistic.new(File.join(MIGRATOR_ROOT,'migrator-stats'))
     if @options.verbose 
       puts "Country: #{@default_country}"
       puts "Logger level: #{@options.level}"

@@ -44,6 +44,11 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 
   # Session
+  
+  # Gems
+  
+  config.gems "hpricot"
+  config.gems "pdf-writer", :lib => "pdf/writer"
 
   config.action_controller.session = { :session_key => "_myapp_session", :secret => "8534b73c040856bfc186640be279be05" }
 end
@@ -60,6 +65,5 @@ end
 # Add new mime types for use in respond_to blocks:
 # Mime::Type.register "text/richtext", :rtf
 Mime::Type.register "application/pdf", :pdf
-require 'ezgraphix_redef'
 
 # Include your application configuration below
