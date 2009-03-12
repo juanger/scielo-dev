@@ -1,4 +1,6 @@
 require 'scieloadmin'
+load "#{RAILS_ROOT}/Rakefile"
+
 class ScieloAdminController < ApplicationController
   include ScieloAdmin
   layout "admin_layout"
@@ -34,9 +36,19 @@ class ScieloAdminController < ApplicationController
     end 
   end  
   
-  def db_action_to_exec
-      @completition_msg=execute_rake_tasks(params[:option])
-      render :action => scielo_management, :object => @completition_msg
+  def db_reinitialize    
+      # disconnect from database temporarily while processing changes
+      ActiveRecord::Base.remove_connection
+      Rake::Task["scielo:migrator:run"].invoke
+      Rake::Task["scielo:migrator:run"].reenable
+      
+      Rake::Task["db:drop"].reenable
+      Rake::Task["db:create"].reenable
+      Rake::Task["db:migrate"].reenable
+      
+      ActiveRecord::Base.establish_connection
+      @completition_msg= "Database succesfully re-initialized"
+      redirect_to :action => "scielo_management", :object => @completition_msg
   end
   
 end

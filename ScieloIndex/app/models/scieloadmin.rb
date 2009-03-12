@@ -27,23 +27,4 @@ module ScieloAdmin
     institution_histogram
   end
   
-  def execute_rake_tasks(option)
-    case(option)
-      when "1"
-        option="db:drop"
-        done_msg="Database drop done succesfully"
-      when "2"
-        option="db:migrate"
-        done_msg="Database migration done successfully"
-      when "3"
-        option="db:create:all"
-        done_msg="Database creation and migration steps done succesfully"
-      when "4"
-        option="db:scielo:migrator:run"
-        require 'rakefile'
-        done_msg="Database reinitialization done succesfully"
-    end
-      exec("rake #{option}")
-      done_msg
-  end
 end
