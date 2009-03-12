@@ -47,8 +47,8 @@ Rails::Initializer.run do |config|
   
   # Gems
   
-  config.gems "hpricot"
-  config.gems "pdf-writer", :lib => "pdf/writer"
+  config.gem "hpricot"
+  config.gem "pdf-writer", :lib => "pdf/writer"
 
   config.action_controller.session = { :session_key => "_myapp_session", :secret => "8534b73c040856bfc186640be279be05" }
 end

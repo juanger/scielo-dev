@@ -112,13 +112,25 @@ class Migrator
 
     if File.directory? @options.serial_root
       begin
-        Dir.foreach(@options.serial_root) { |dir|
-          next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
-
-          full_dir = File.join(@options.serial_root, dir)
-          @current_journal = dir
-          process_journal(full_dir)
-        }
+        
+        if @options.all
+          # Migrate all the files
+          Dir.foreach(@options.serial_root) do |dir|
+            next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
+          
+            full_dir = File.join(@options.serial_root, dir)
+            @current_journal = dir
+            process_journal(full_dir)
+          end
+        else
+          # Migrate only the modified files
+          # TODO: 
+          # * check if serial is a git repo
+          # * get the list of new and modified files
+          # * delete the entries of modified files in DB
+          # * create journal and issue if necessary
+          # * migrate each file
+        end
       ensure
         @logger.close
         @stats.close
@@ -126,6 +138,7 @@ class Migrator
     else
       @logger.error("Directorio Raiz", "No existe el directorio raiz #{@options.serial_root}")
       @logger.close
+      @stats.close
       Process.exit!(1)
     end
   end
