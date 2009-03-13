@@ -329,9 +329,9 @@ class AssociatedReferences
         author = Author.find :first, 
                     :conditions => [
                       # equal lastnames
-                      postgres?("trim(both from LOWER(lastname))","trim(LOWER(lastname))") + "LIKE ? AND " +
+                      postgres?("trim(both from LOWER(lastname)) ILIKE ?","trim(LOWER(lastname)) LIKE ?") + " AND " +
                       # equal names of equal initials
-                      postgres?("(trim(both from LOWER(firstname))","(trim(LOWER(firstname))") + " LIKE ? OR " +
+                      postgres?("(trim(both from LOWER(firstname)) ILIKE ?","(trim(LOWER(firstname)) LIKE ?") + " OR " +
                       postgres?(" lower(substring(firstname from 1 for 1) || substring(middlename from 1 for 1)",
                                 " lower(substr(firstname,1,1) || substr(middlename,1,1)") +
                                 ") LIKE ? )",

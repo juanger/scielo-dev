@@ -1,3 +1,5 @@
+require "#{RAILS_ROOT}/lib/pdf_writer_extensions"
+
 class MyLogger
 
   def initialize(level, log_file="migrator-log", errors_file="migrator-errors",verbose=true)
