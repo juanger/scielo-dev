@@ -9,4 +9,3 @@ doc/app
 *.swp
 Capfile
 ScieloIndex/config/deploy.rb
-ScieloIndex/app/views/shared/_topTen.rhtml

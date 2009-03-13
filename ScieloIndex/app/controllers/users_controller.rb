@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
-
+  before_filter :login_required
+  
   # render new.rhtml
   def new
   end
@@ -22,6 +23,10 @@ class UsersController < ApplicationController
     else
       render :action => 'new'
     end
+  end
+
+  def authorized?
+    logged_in? || request.host == "localhost" # || request.remote_ip == Oralia's IP
   end
 
 end
