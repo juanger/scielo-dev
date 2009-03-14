@@ -238,12 +238,8 @@ class Migrator
   end
 
   def process_article(marked_file)
+    begin
       article = SgmlArticle.new(marked_file, @logger)
-      #@logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
-      #@logger.info("Volumen: #{article.volume}, Numero: #{article.number}")
-      #@logger.info("Año: #{article.year}, Revista ISSN: #{article.journal_issn}")
-      #@logger.info("Primera pagina: #{article.fpage}, Ultima pagina: #{article.lpage}")
-
       if !@current_journal_id
         create_journal(article)
       end
@@ -255,6 +251,14 @@ class Migrator
       if @current_journal_issue_id && @current_journal_id
         create_article(article)
       end
+    rescue Exception => e
+      @logger.pdf_report_error @current_article, e.message
+    end
+
+    #@logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
+    #@logger.info("Volumen: #{article.volume}, Numero: #{article.number}")
+    #@logger.info("Año: #{article.year}, Revista ISSN: #{article.journal_issn}")
+    #@logger.info("Primera pagina: #{article.fpage}, Ultima pagina: #{article.lpage}")
   end
 
   def create_journal(article)
