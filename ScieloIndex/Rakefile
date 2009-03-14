@@ -15,7 +15,7 @@ namespace :scielo do
     
     desc "Runs the scielo migrator."
     task :run => ["db:drop", "db:create", "db:migrate"] do
-      sh "./tools/Migrator/migrator.rb --quiet" 
+      sh "./tools/Migrator/migrator.rb"
     end
     
   end

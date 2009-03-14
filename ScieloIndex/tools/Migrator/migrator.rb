@@ -238,7 +238,6 @@ class Migrator
   end
 
   def process_article(marked_file)
-    begin
       article = SgmlArticle.new(marked_file, @logger)
       #@logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
       #@logger.info("Volumen: #{article.volume}, Numero: #{article.number}")
@@ -256,9 +255,6 @@ class Migrator
       if @current_journal_issue_id && @current_journal_id
         create_article(article)
       end
-    rescue ArgumentError
-      @logger.warning("Archivo #{marked_file} no es un article.")
-    end
   end
 
   def create_journal(article)
@@ -368,9 +364,14 @@ class Migrator
       
       begin
         authors.insert_authors()
-        references.insert_references()
       rescue ArgumentError
         @logger.error( 'El articulo no tiene autores.')
+      end
+
+      begin
+        references.insert_references()
+      rescue Exception => e
+        @logger.pdf_report_error @current_article, e.message
       end
     else
       @logger.error_message("Error al crear el artículo (SciELO)")

@@ -2,6 +2,8 @@ require "#{RAILS_ROOT}/lib/pdf_writer_extensions"
 
 class MyLogger
 
+  INDENT = "\t"
+
   def initialize(level, log_file="migrator-log", errors_file="migrator-errors",verbose=true)
    @levels = {
     :debug => 0,
@@ -29,8 +31,8 @@ class MyLogger
       log("Error", message)
     end
 
-    @errors.puts "[Source]: #{source}"
-    @errors.puts "[Message]: #{message}"
+    @errors.puts "\t[Source]: #{source}"
+    @errors.puts "\t[Message]: #{message}"
   end
 
   def error_message(message)
@@ -55,12 +57,12 @@ class MyLogger
   end
 
   def pdf_report_journal(name)
-    @pdf.text(name)
+    @pdf.text(name, :font_size => 16)
   end
   
   def pdf_report_error(source, error_msg)
-    @pdf.text(source+ "\n")
-    @pdf.text(error_msg)
+    @pdf.text(source+ "\n", :left => 20, :font_size => 12)
+    @pdf.text(error_msg, :left => 50, :font_size => 12)
   end
 
 

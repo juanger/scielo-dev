@@ -218,8 +218,9 @@ class AssociatedReferences
           journal_issue_number = nil
         end
       else
-        #TODO: Crear un journal fantasma para agregar el articulo a el.
-        raise ArgumentError
+        @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}, ocitat número #{@cite_number +1}",
+                    "oiserial no contiene el año de publicación. Saltando cita...")
+        raise Exception.new("oiserial no contiene el año de publicación. Saltando ocitat #{@cite_number + 1}...")
       end
 
       journal_issue = JournalIssue.new
