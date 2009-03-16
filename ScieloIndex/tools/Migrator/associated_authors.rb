@@ -33,6 +33,21 @@ class AssociatedAuthors
       if match
         fname = match[1].to_s
         fname = fname.sub(/\n/, '')
+
+        names = fname.split(' ');
+
+        if names.size() > 1
+          fname = names[0]
+          names.delete_at(0)
+          mname = names.join(' ')
+          author_hash[:firstname] = fname
+          author_hash[:middlename] = mname
+        else
+          fname = names[0].to_s
+          author_hash[:firstname] = fname
+          author_hash.delete(:middlename)
+        end
+
       else
         author_hash.delete(:firstname)
       end
@@ -46,20 +61,6 @@ class AssociatedAuthors
         author_hash[:lastname] = sname
       else
         author_hash.delete(:lastname)
-      end
-
-      names = fname.split(' ');
-
-      if names.size() > 1
-        fname = names[0]
-        names.delete_at(0)
-        mname = names.join(' ')
-        author_hash[:firstname] = fname
-        author_hash[:middlename] = mname
-      else
-        fname = names[0].to_s
-        author_hash[:firstname] = fname
-        author_hash.delete(:middlename)
       end
 
       search = Author.find(:first, :conditions => author_hash)

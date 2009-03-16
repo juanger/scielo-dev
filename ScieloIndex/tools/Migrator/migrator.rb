@@ -245,11 +245,6 @@ class Migrator
   def process_article(marked_file)
     begin
       article = SgmlArticle.new(marked_file, @logger)
-      #@logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
-      #@logger.info("Volumen: #{article.volume}, Numero: #{article.number}")
-      #@logger.info("Año: #{article.year}, Revista ISSN: #{article.journal_issn}")
-      #@logger.info("Primera pagina: #{article.fpage}, Ultima pagina: #{article.lpage}")
-
       if !@current_journal_id
         create_journal(article)
       end
@@ -261,9 +256,14 @@ class Migrator
       if @current_journal_issue_id && @current_journal_id
         create_article(article)
       end
-    rescue ArgumentError
-      @logger.warning("Archivo #{marked_file} no es un article.")
+    rescue Exception => e
+      @logger.pdf_report_error @current_article, e.message
     end
+
+    #@logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
+    #@logger.info("Volumen: #{article.volume}, Numero: #{article.number}")
+    #@logger.info("Año: #{article.year}, Revista ISSN: #{article.journal_issn}")
+    #@logger.info("Primera pagina: #{article.fpage}, Ultima pagina: #{article.lpage}")
   end
 
   def create_journal(article)
@@ -373,9 +373,14 @@ class Migrator
       
       begin
         authors.insert_authors()
-        references.insert_references()
       rescue ArgumentError
         @logger.error( 'El articulo no tiene autores.')
+      end
+
+      begin
+        references.insert_references()
+      rescue Exception => e
+        @logger.pdf_report_error @current_article, e.message
       end
     else
       @logger.error_message("Error al crear el artículo (SciELO)")
