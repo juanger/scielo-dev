@@ -8,15 +8,3 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
-
-namespace :scielo do
-  
-  namespace :migrator do
-    
-    desc "Runs the scielo migrator."
-    task :run => ["db:drop", "db:create", "db:migrate"] do
-      sh "./tools/Migrator/migrator.rb --quiet" 
-    end
-    
-  end
-end

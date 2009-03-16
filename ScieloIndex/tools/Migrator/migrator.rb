@@ -85,12 +85,17 @@ class Migrator
                                   @default_country_id = get_country_id(@default_country)}
      opts.parse!(args)
 
-    @logger = MyLogger.new(@options.level, File.join(MIGRATOR_ROOT, 'migrator-log'), File.join(MIGRATOR_ROOT, 'migrator-errors'), @options.verbose)
+    @logger = MyLogger.new(@options.level, 
+                    File.join(MIGRATOR_ROOT, 'migrator-log'), 
+                    File.join(MIGRATOR_ROOT, 'migrator-errors'), 
+                    @options.verbose)
+                    
     unless @options.serial_root
       puts "You must specify where the serial root is in the config file or with the --serial option"
       Process.exit!(1)
     end
     @stats = Statistic.new(File.join(MIGRATOR_ROOT,'migrator-stats'))
+
     if @options.verbose 
       puts "Country: #{@default_country}"
       puts "Logger level: #{@options.level}"

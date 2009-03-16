@@ -1,3 +1,5 @@
 .DS_Store
 *.pdf
 *.copy
+tools/Migrator/migrator-*
+tools/Migrator/config
