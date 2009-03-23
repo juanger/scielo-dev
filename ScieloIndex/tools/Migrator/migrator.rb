@@ -121,7 +121,7 @@ class Migrator
         if @options.all
           # Migrate all the files
           Dir.foreach(@options.serial_root) do |dir|
-            next if dir =~ /^(\.|code|issue|issn|section|title|titleanterior)\.?$/
+            next if dir =~ /^(\.|\..*|code|issue|issn|section|title|titleanterior)\.?$/
           
             full_dir = File.join(@options.serial_root, dir)
             @current_journal = dir
@@ -129,12 +129,15 @@ class Migrator
           end
         else
           # Migrate only the modified files
-          # TODO: 
-          # * check if serial is a git repo
-          # * get the list of new and modified files
-          # * delete the entries of modified files in DB
-          # * create journal and issue if necessary
-          # * migrate each file
+          # Check if serial is a git repo
+          if File.exists? File.join(@options.serial_root, '.git')
+            process_with_git()
+          else
+            @logger.error("Serial", "No es un repositorio Git")
+            @logger.close
+            @stats.close
+            Process.exit!(1)
+          end
         end
       ensure
         @logger.close
@@ -163,10 +166,6 @@ class Migrator
       else
                 puts "Archivo de configuración ilegal (Opción #{array[0]} inválida)."
     end
-  end
-
-  def migrate
-    
   end
 
   def get_country_id(name)
@@ -237,7 +236,8 @@ class Migrator
         end
       }
     else
-      @logger.error("El número #{File.basename(issue_dir)} de la revista #{@current_journal}","El numero no contiene archivos marcados.")
+      @logger.error("El número #{File.basename(issue_dir)} de la revista #{@current_journal}",
+                    "El numero no contiene archivos marcados.")
       @logger.pdf_report_error(File.basename(issue_dir),"El número no contiene archivos marcados")
     end
   end
@@ -386,7 +386,8 @@ class Migrator
       @logger.error_message("Error al crear el artículo (SciELO)")
       new_article.errors.each{ |key, value|
         if key == "title"
-          @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "El lenguaje del articulo difiere al lenguaje del titulo.")
+          @logger.error("Artículo #{@current_article} de la revista #{@current_journal}",
+                        "El lenguaje del articulo difiere al lenguaje del titulo.")
           @logger.pdf_report_error(@current_article,"El lenguaje del artículo difiere al lenguaje del título")
         else
           @logger.error("Artículo #{@current_article} de la revista #{@current_journal}", "#{key}: #{value}")
@@ -394,6 +395,65 @@ class Migrator
       }
     end
   end
+  
+  def process_with_git(options = [])
+    # Find modified articles
+    # TODO: 
+    # * Specify the --since option for git
+    articles = `cd #{@options.serial_root} && git --no-pager log --name-status -n 1 --pretty=format: -- */*/markup/*.txt`.strip.split(/\n+/)
+    @current_publisher_id = default_publisher()
+
+    articles.each do |output_line|
+      begin
+        status, file = output_line.split("\t")
+        puts "#{@options.serial_root} - #{status} - #{file}"
+        sgml_article = SgmlArticle.new(File.join(@options.serial_root, file), @logger)
+
+        journal = Journal.find_by_title(sgml_article.journal_title)
+
+        data = file.split "/"
+        data.delete_at 2
+        
+        @current_journal,@current_issue,@current_article = data
+
+        #### Create Journal if needed
+        if !journal
+          create_journal(sgml_article)
+        else
+          @current_journal_id = journal.id
+        end
+
+        issue = JournalIssue.find_by_volume_and_number_and_volume_supplement(sgml_article.volume,
+                                                                             sgml_article.number,
+                                                                             sgml_article.volume_supplement)
+
+        #### Create Issue if needed
+        if !issue && @current_journal_id
+          create_journal_issue(sgml_article)
+        else
+          @current_journal_issue_id = issue.id
+        end
+        
+        if @current_journal_issue_id && @current_journal_id
+          # We have boch the journal and the issue
+          case status
+          when 'A' # Added
+            create_article(sgml_article)
+          when 'M' # Modified
+            article = Article.find_by_title(sgml_article.title)
+            article.destroy if article
+            create_article(sgml_article)
+          end
+          
+        end
+
+      rescue Exception => e
+        @logger.pdf_report_error @current_article, e.message
+      end
+
+    end
+  end
+
 end
 
 ## Migración de Datos Scielo
