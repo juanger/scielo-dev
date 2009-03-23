@@ -2,10 +2,14 @@ load "#{RAILS_ROOT}/Rakefile"
 module ScieloAdmin
 # This class contains methods and variables used by the ScieloAdminController  
   
-  def re_migrate
+  def re_migrate(option)
     # disconnect from database temporarily while processing changes
     #ActiveRecord::Base.remove_connection
-    Rake::Task["scielo:migrator:run"].invoke
+    if option.eql? "erase_migrate"
+      Rake::Task["scielo:migrator:run"].invoke
+    else
+      Rake::Task["scielo:migrator:run"].invoke("--only-new")
+    end
     #ActiveRecord::Base.establish_connection
     
     Rake::Task["scielo:migrator:run"].reenable

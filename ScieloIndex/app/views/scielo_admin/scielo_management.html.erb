@@ -2,7 +2,18 @@
 
 <br/>
 <div class="link-container">
-    <%= button_to_remote _("Migrate"), :url=> {:controller => "scielo_admin", :action => "db_reinitialize"}, :before => "Element.show('loading')", :success => "Element.hide('loading')" %><br/>
+    <p class="padded-vr"><%= _("This will erase the current stored data and execute the migrator")%></p>
+    <%= button_to_remote _("Erase & Migrate"), :url=> {:controller => "scielo_admin", :action => "db_reinitialize", :option => "erase_migrate"}, :before => "Element.show('loading')", :success => "Element.hide('loading')" %>
+    <p class="padded-vr"><%= _("This will execute the migrator adding only new data")%></p>
+    <%= button_to_remote _("Migrate"), :url=> {:controller => "scielo_admin", :action => "db_reinitialize", :option => "migrate"}, :before => "Element.show('loading')", :success => "Element.hide('loading')" %>
+    
+    <% if File.exists? "#{RAILS_ROOT}/tools/Migrator/migrator-stats" %>
+    <br><br>
+    <p class="padded-vr">
+        <%= link_to _("Download Migration Report"), :controller => "scielo_admin", :action => "download_report_file" %>
+    </p>
+    <% end %>
+    <br/>
 </div>
 
 <div id="loading" style="display:none" class="migration">

@@ -101,11 +101,11 @@ class CitationIndexController < ApplicationController
   end
   
   def loaded_data
-    @results = eval(results_to_eval)
+    @results = eval(results_to_eval).delete_if {|key, val| val == 0}
     Rails.cache.write("results", @results)
-    @articles_subjects = article_subject_results
+    @articles_subjects = article_subject_results.delete_if {|key, val| val == 0}
     Rails.cache.write("article_sub_results", @articles_subjects)
-    @authors_institutions = author_institutions_results
+    @authors_institutions = author_institutions_results.delete_if {|key, val| val == 0}
     Rails.cache.write("author_ins_results", @authors_institutions)
   end
   
@@ -115,7 +115,7 @@ class CitationIndexController < ApplicationController
       when "general"
         @chart_heading = params[:chart].capitalize!
         @graph = Ezgraphix::Graphic.new(:w => width, :h => 300, :c_type => "col3d", :div_name => "chart")
-        @graph.data = Rails.cache.fetch("results") { eval results_to_eval }
+        @graph.data = Rails.cache.fetch("results") { eval(results_to_eval) }
         RAILS_DEFAULT_LOGGER.info @graph.to_xml
         
       when "articles_and_subjects"

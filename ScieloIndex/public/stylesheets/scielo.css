@@ -417,6 +417,10 @@ td.authors a{
   padding:10px;	
 }
 
+.padded-vr {
+ padding-bottom: 10px;	
+ padding-top: 10px;
+}
 .statistic-entry {
   font-size: 13px;
   padding: 2px;

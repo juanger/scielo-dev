@@ -10,12 +10,17 @@ class ScieloAdminController < ApplicationController
   end
   
   def db_reinitialize
-      re_migrate
+      option = params[:option]
+      re_migrate(option)
       sts=get_statistics
       render :update do |page|
         page.replace_html "statistics", :partial => "statistics", :locals => {:statistics => sts}
         page.visual_effect :slide_down, "statistics"
       end
+  end
+  
+  def download_report_file
+      send_file "#{RAILS_ROOT}/tools/Migrator/migrator-stats"
   end
   
   private
