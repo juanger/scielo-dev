@@ -33,6 +33,8 @@ class Article < ActiveRecord::Base
   has_many :titles, :through => :alternate_titles
 
   has_one :associated_file
+  
+  after_destroy :delete_associated_records
 
   def as_vancouver
     [ author_names_as_vancouver, title_as_vancouver, journal_as_vancouver].join('. ')
@@ -54,12 +56,24 @@ class Article < ActiveRecord::Base
     self.journal_issue.year
   end
   
-  # def method_missing(methId)
-  #   if methId == :citations
-  #     self.citations.size
-  #   else
-  #     super
-  #   end
-  # end
+  private
+  
+  def delete_associated_records
+    self.references.each do |ref|
+      ref.destroy unless ref.citations.count >= 1
+    end
+    
+    # This is not needed as we don't create alternate titles for now
+    # self.titles.each do |title|
+    #   title.destroy
+    # end
+    
+    self.authors.each do |author|
+      author.destroy unless author.articles.length >= 1
+    end
+    
+    self.associated_file.destroy if associated_file
+    
+  end
   
 end
