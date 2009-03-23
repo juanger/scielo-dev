@@ -12,7 +12,7 @@
             <% end %>
         </table>
         <br/>
-        <%= link_to _("View Related Graph"), :controller => :scielo_admin, :action => :generate_chart, :chart => "general" %>
+        <%= link_to _("View Related Graph"), :controller => :citation_index, :action => :generate_chart, :chart => "general" %>
     </div>
 
     <div class="results">
@@ -26,7 +26,7 @@
             <% end %>
         </table>
         <br/>
-        <%= link_to _("View Related Graph"), :controller => :scielo_admin, :action => :generate_chart, :chart => "articles_and_subjects" %>
+        <%= link_to _("View Related Graph"), :controller => :citation_index, :action => :generate_chart, :chart => "articles_and_subjects" %>
     </div>
 
     <div class="results">
@@ -40,6 +40,6 @@
             <% end %>
         </table>
         <br/>
-        <%= link_to _("View Related Graph"), :controller => :scielo_admin, :action => :generate_chart, :chart => "authors_and_institutions" %>
+        <%= link_to _("View Related Graph"), :controller => :citation_index, :action => :generate_chart, :chart => "authors_and_institutions" %>
     </div>
 </div>

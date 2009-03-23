@@ -2,7 +2,7 @@
 
 <br/>
 <div class="link-container">
-    <%= link_to_remote _("Migrate ScieloIndex data"), :url=> {:controller => "scielo_admin", :action => "db_reinitialize"}, :before => "Element.show('loading')", :success => "Element.hide('loading')" %><br/>
+    <%= button_to_remote _("Migrate"), :url=> {:controller => "scielo_admin", :action => "db_reinitialize"}, :before => "Element.show('loading')", :success => "Element.hide('loading')" %><br/>
 </div>
 
 <div id="loading" style="display:none" class="migration">
