@@ -1,4 +1,6 @@
 load "#{RAILS_ROOT}/Rakefile"
+require 'fileutils'
+
 module ScieloAdmin
 # This class contains methods and variables used by the ScieloAdminController  
   
@@ -7,7 +9,7 @@ module ScieloAdmin
     #ActiveRecord::Base.remove_connection
     config_file = File.join(RAILS_ROOT, "tools","Migrator","config")
     if ! File.file? config_file
-      File.copy("#{config_file}.example",config_file)
+      FileUtils.copy("#{config_file}.example",config_file)
     end
     
     if option.eql? "erase_migrate"
