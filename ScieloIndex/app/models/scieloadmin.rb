@@ -5,6 +5,11 @@ module ScieloAdmin
   def re_migrate(option)
     # disconnect from database temporarily while processing changes
     #ActiveRecord::Base.remove_connection
+    config_file = File.join(RAILS_ROOT, "tools","Migrator","config")
+    if ! File.file? config_file
+      File.copy("#{config_file}.example",config_file)
+    end
+    
     if option.eql? "erase_migrate"
       Rake::Task["scielo:migrator:run"].invoke
     else
