@@ -17,7 +17,6 @@ class CitationIndexController < ApplicationController
 
   verify :method => :post, :only => [ :find_author, :find_article ], :redirect_to => { :action => :index }
 
-
   # Finds all the articles that match any search term in:
   #  authors.firstname, authors.middlename, authors.lastname
   #  articles.title

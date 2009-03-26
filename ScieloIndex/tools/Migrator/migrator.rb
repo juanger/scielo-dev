@@ -362,19 +362,19 @@ class Migrator
                                               :journal_name => @current_journal,
                                               :stats => @stats
                                             })
-      #TODO: create the associated files
       files = AssociatedFiles.new(
                                   :path => @options.serial_root,
                                   :journal => @current_journal,
                                   :issue => @current_issue,
                                   :article => @current_article,
+                                  :logger => @logger,
                                   :id => new_article.id
                                   )
       
       begin
         authors.insert_authors()
       rescue ArgumentError
-        @logger.error( 'El articulo no tiene autores.')
+        @logger.error_message( 'El articulo no tiene autores.')
       end
 
       begin
@@ -406,13 +406,14 @@ class Migrator
     articles.each do |output_line|
       begin
         status, file = output_line.split("\t")
-        puts "#{@options.serial_root} - #{status} - #{file}"
+        puts "#{status} - #{file}"
         sgml_article = SgmlArticle.new(File.join(@options.serial_root, file), @logger)
 
         journal = Journal.find_by_title(sgml_article.journal_title)
 
         data = file.split "/"
         data.delete_at 2
+        data[2].gsub!(/\.txt/, "")
         
         @current_journal,@current_issue,@current_article = data
 
@@ -440,7 +441,13 @@ class Migrator
           when 'A' # Added
             create_article(sgml_article)
           when 'M' # Modified
-            article = Article.find_by_title(sgml_article.title)
+            sgml_article_path = File.join(@options.serial_root,
+                @current_journal,
+                @current_issue,
+                "markup",
+                "#{@current_article}.txt")
+            assoc_file = AssociatedFile.find_by_sgml_path(sgml_article_path)
+            article = assoc_file.article
             article.destroy if article
             create_article(sgml_article)
           end

@@ -51,10 +51,12 @@ class Search
   end
 
   def author_conditions
-    if (terms = author.split).size <= 1
-      return ["authors.lastname #{postgres? "ILIKE", "LIKE"} ?", "%#{author}%"] unless author.blank?
+    if (name = author.split).size > 1
+      return ["(authors.firstname #{postgres? "ILIKE", "LIKE"} ? " +
+              "AND authors.lastname #{postgres? "ILIKE", "LIKE"} ?) ", [name[1], name[0]]]
     else
-      return ["authors.firstname LIKE ? AND authors.lastname LIKE ?", terms[0], terms[1]]
+      return ["authors.lastname #{postgres? "ILIKE", "LIKE"} ?", "%#{author}%"] unless author.blank?
+
     end
   end
 
@@ -63,12 +65,12 @@ class Search
   end
 
   def title_phrase_conditions
-    ["articles.title LIKE ?",  "%#{title_phrase}%"] unless title_phrase.blank?
+    ["articles.title #{postgres? "ILIKE", "LIKE"} ?",  "%#{title_phrase}%"] unless title_phrase.blank?
   end
 
   def title_any_conditions
-    terms = title_any.split.map {|t| "%#{t}%"}
-    conds = (["articles.title LIKE ?"]*terms.size).join(" OR ")
+    terms = title_any.split.map {|t| "%#{t}%" if t.size > 1}.compact
+    conds = (["articles.title #{postgres? "ILIKE", "LIKE"} ?"]*terms.size).join(" OR ")
     ["(#{conds})", terms] unless title_any.blank?
   end
   

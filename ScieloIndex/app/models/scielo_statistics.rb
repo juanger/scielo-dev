@@ -1,5 +1,5 @@
 load "#{RAILS_ROOT}/lib/ezgraphix_redef.rb"
-require 'Ezgraphix'
+# require 'Ezgraphix'
 ActionView::Base.send :include, EzgraphixHelper
 
 module ScieloStatistics

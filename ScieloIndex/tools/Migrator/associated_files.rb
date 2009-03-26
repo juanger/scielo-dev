@@ -7,6 +7,7 @@ class AssociatedFiles
     @article = hash[:article]        
     
     @article_id = hash[:id]
+    @logger = hash[:logger]
     create_associated_files()
   end
   
@@ -22,8 +23,15 @@ class AssociatedFiles
     html = File.join(issue_path, "body", "#{@article}.htm")
     files.html_path = html if File.file? html
     
+    files.sgml_path = File.join(issue_path, "markup", "#{@article}.txt")
+    
     if files.save
     else
+      @logger.error_message("Associated file doesn't exist")
+      files.errors.each do |key, value|
+        @logger.error("Artículo #{@article} de la revista #{@journal}", "#{key}: #{value}")
+      end
+      @logger.error(filename, files.errors)
     end
   end
 end

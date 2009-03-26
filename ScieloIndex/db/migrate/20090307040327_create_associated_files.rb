@@ -3,8 +3,9 @@ class CreateAssociatedFiles < ActiveRecord::Migration
     create_table :associated_files, :force => true do |t|
       t.integer  :article_id,  :null => false
       t.text     :filename,    :null => false
-      t.text     :pdf_path,    :null => false
-      t.text     :html_path,   :null => false
+      t.text     :sgml_path#,   :null => false
+      t.text     :pdf_path#,    :null => false
+      t.text     :html_path#,   :null => false
       t.timestamps
     end
     
