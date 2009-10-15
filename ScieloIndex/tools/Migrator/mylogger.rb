@@ -11,7 +11,7 @@ class MyLogger
     :info => 2,
     :none => 3
    }
-    @level = @levels[level]
+    @level = @levels[level.to_sym]
     if @level < 3
       @log = File.new(log_file, "w")
     end
