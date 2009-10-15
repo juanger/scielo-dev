@@ -13,7 +13,7 @@ Localization.define(:es_MX) do |l|
   
   # Listings
   l.store 'Results', 'Resultados'
-  l.store 'Searched for %s.', 'Busqueda de %s.'
+  l.store 'Searched for %s.', 'Búsqueda de %s.'
   l.store 'Results %d to %d of %d', 'Resultados %d a %d de %d'
   l.store ' and', ' y'
   l.store 'Cited by %d', 'Citado por %d'
