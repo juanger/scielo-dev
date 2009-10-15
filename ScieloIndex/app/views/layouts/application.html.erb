@@ -12,7 +12,7 @@
 
     <div id="mainContent">
       <div id="header">
-          <%= image_tag("logo.png", :class => "logo") %>
+          <%= link_to image_tag("logo.png", :class => "logo"), :controller => "citation_index", :action => "index" %>
           <%= render :partial => 'citation_index/basic_form' %>
         <div id="form">
         </div><br/>
