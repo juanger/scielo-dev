@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
+
 #
 # == Synopsis 
 #   Migrator to populate ScieloIndex database from markup files
