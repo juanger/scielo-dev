@@ -6,7 +6,7 @@ class Search
     
     case search_terms
     when String
-      @author =  @title_any = search_terms
+      @author = @title_any = search_terms
       @title = @title_phrase = ""
     when Hash
       search_terms.each do |key,val|
@@ -52,10 +52,13 @@ class Search
 
   def author_conditions
     if (name = author.split).size > 1
-      return ["(authors.firstname #{postgres? "ILIKE", "LIKE"} ? " +
-              "AND authors.lastname #{postgres? "ILIKE", "LIKE"} ?) ", [name[1], name[0]]]
+      return ["((#{case_free("authors.firstname")} LIKE #{case_free('?')} OR "+
+              "substring(#{case_free("authors.firstname")} from 1 for 1) LIKE #{case_free('?')})" +
+              "AND #{case_free("authors.lastname")} LIKE #{case_free('?')} )",
+              [name[1], name[1].mb_chars[0,1], name[0]]]
     else
-      return ["authors.lastname #{postgres? "ILIKE", "LIKE"} ?", "%#{author}%"] unless author.blank?
+      return ["#{case_free("authors.lastname")} LIKE #{case_free('?')}",
+              "%#{author}%"] unless author.blank?
 
     end
   end
@@ -70,7 +73,7 @@ class Search
 
   def title_any_conditions
     terms = title_any.split.map {|t| "%#{t}%" if t.size > 1}.compact
-    conds = (["articles.title #{postgres? "ILIKE", "LIKE"} ?"]*terms.size).join(" OR ")
+    conds = (["articles.title #{postgres? "ILIKE", "LIKE"} #{case_free('?')}"]*terms.size).join(" OR ")
     ["(#{conds})", terms] unless title_any.blank?
   end
   
@@ -121,6 +124,10 @@ class Search
     else
       advanced
     end
+  end
+  
+  def case_free(expr)
+    postgres? "translate(lower(#{expr}),'áÁéÉíÍóÓúÚñÑüÜ','aaeeiioouunnuu')", "lower(#{expr})"
   end
   
 end
