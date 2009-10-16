@@ -13,7 +13,7 @@ class SgmlArticle
     @article_tag = /\[article.*?\]/m.match(@document).to_s
 
     if @article_tag.empty?
-      raise Exeption.new("No es un documento de tipo article")
+      raise Exception.new("No es un documento de tipo article")
     end
 
     @front = /\[front\].*\[\/front\]/m.match(@document).to_s

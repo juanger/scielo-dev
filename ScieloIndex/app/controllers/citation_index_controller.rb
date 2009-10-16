@@ -116,7 +116,14 @@ class CitationIndexController < ApplicationController
         @graph = Ezgraphix::Graphic.new(:w => width, :h => 300, :c_type => "col3d", :div_name => "chart")
         @graph.data = Rails.cache.fetch("results") { eval(results_to_eval) }
         RAILS_DEFAULT_LOGGER.info @graph.to_xml
-        
+      # when "year"
+      #   @chart_heading = params[:chart].capitalize
+      #   @graph = Ezgraphix::Graphic.new(:w => width, :h => 300, :c_type => "line", :div_name => "chart")
+      #   years = JournalIssue.find(:all, :group => "year", :select => "count(journal_issues.id), year", :order => 'year')
+      #   years.each do |issue|
+      #     @graph.data[issue.year] = issue.count
+      #   end
+      #   RAILS_DEFAULT_LOGGER.info @graph.to_xml
       when "articles_and_subjects"
         @chart_heading = params[:chart].capitalize.humanize
         @graph = Ezgraphix::Graphic.new(:w => width, :h => 300, :c_type => "col3d", :div_name => "chart")
