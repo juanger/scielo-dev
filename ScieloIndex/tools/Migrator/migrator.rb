@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
-# encoding: utf-8
-
-#
+# 
 # == Synopsis 
 #   Migrator to populate ScieloIndex database from markup files
 #
@@ -20,11 +18,16 @@
 # == Options
 #   -h, --help          Displays help message
 #   -v, --version       Display the version, then exit
-#   -q, --quiet         Don't display the output
+#   -q, --quiet         Don't display the output (Errors are always displayed).
+#                       default is to display messages with level < LEVEL
 #   -l, --level LEVEL   Override logger level (LEVEL = debug|info|warning|none)
+#                       default is info
 #   -s, --serial SERIAL Path to the serial root directory
-#   -a, --all           Migrate all the files
+#   -a, --all           Migrate all the files. This is the default behaviour
 #   -o, --only-new      Migrate only the new files reported by git
+#
+#   You can optionally create a file named config under the Migrator direcotry 
+#   to change the default values. See tools/Migrator/config.example
 #
 # == Authors
 #   Juan Germán Castañeda Echevarría (juanger)
@@ -260,6 +263,7 @@ class Migrator
       end
     rescue Exception => e
       @logger.pdf_report_error @current_article, e.message
+      puts e
     end
 
     #@logger.info("Lenguaje: #{article.language}, Titulo Revista: #{article.journal_title}")
@@ -383,6 +387,7 @@ class Migrator
         references.insert_references()
       rescue Exception => e
         @logger.pdf_report_error @current_article, e.message
+        puts e.backtrace
       end
     else
       @logger.error_message("Error al crear el artículo (SciELO)")

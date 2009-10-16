@@ -83,8 +83,6 @@ class AssociatedAuthors
         @logger.info( "Autor Nombres: #{new_author.middlename}")
         @logger.info( "Autor Apellidos: #{new_author.lastname}")
 
-
-
         if new_author.save
           @logger.info( "Creando autor #{new_author.id}")
           @stats.add :author

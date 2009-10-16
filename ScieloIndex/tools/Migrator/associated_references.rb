@@ -15,10 +15,10 @@ class AssociatedReferences
     match_other = /\[other.*?\](.*)\[\/other\]/m.match(@back)
     match_vancouv = /\[vancouv.*?\](.*)\[\/vancouv\]/m.match(@back)
     if match_other
-      @other = match_other[1].to_s
+      @other = match_other[1]
       #puts "\nDEBUG REF #{@cited_by_article_id}: #{@other}\n"
     elsif match_vancouv
-      @vancouv = match_vancouv[1].to_s
+      @vancouv = match_vancouv[1]
       #puts "DEBUG REF #{@cited_by_article_id}: #{@vancouv}"
     else
       # Caso cuando no es ni other ni vancouv la cita.
@@ -46,27 +46,28 @@ class AssociatedReferences
       oiserial = nil
       ocontrib = nil
       omonog = ""
+      @cite_number += 1
       match = /\[oiserial\](.*)\[\/oiserial\]/.match(reference)
       if match
-        oiserial = match[1].to_s
+        oiserial = match[1]
         @logger.debug("REF OISERIAL: \n#{oiserial}")
       end
-
-      if oiserial
-        create_other_journal(oiserial)
-        create_other_journal_issue(oiserial)
-      end
-
       # BUG algunos archivos con dos ocontrib
       match = /\[ocontrib\](.*?)\[\/ocontrib\]/.match(reference)
-      @cite_number += 1
-      if match && oiserial
-        ocontrib = match[1].to_s
+      if match
+        ocontrib = match[1]
         @logger.debug("REF OCONTRIB: \n#{ocontrib}")
-        if ocontrib
-          @cite_count += 1
-          create_other_article(ocontrib)
-        end
+      end
+
+      if oiserial && ocontrib
+        # The Following breaks the DTD, but sometimes the date is
+        # outside oiserial and appears in ocontrib
+        match =  /\[date dateiso="(.*?)"\](.*?)\[\/date\]/.match(ocontrib)
+        @year = match[2] if match
+        create_other_journal(oiserial)
+        create_other_journal_issue(oiserial)
+        @cite_count += 1
+        create_other_article(ocontrib)
       end
 
     end
@@ -166,13 +167,12 @@ class AssociatedReferences
       :number => '',
       :year => ''
     }
-
     match = /\[date dateiso="(.*?)"\].*?\[\/date\]/.match(serial)
     if match
       year = match[1].to_s
       journal_issue_hash[:year] = year.strip[0,4]
     else
-      journal_issue_hash.delete(:year)
+      journal_issue_hash[:year] = @year
     end
 
     match = /\[volid\](.*?)\[\/volid\]/.match(serial)
@@ -180,7 +180,7 @@ class AssociatedReferences
       volume = match[1].to_s
       journal_issue_hash[:volume] = volume.strip
     else
-      journal_issue_hash.delete(:volume)
+      journal_issue_hash[:volume] = nil
     end
 
     match = /\[issueno\](.*?)\[\/issueno\]/.match(serial)
@@ -188,7 +188,7 @@ class AssociatedReferences
       number = match[1].to_s
       journal_issue_hash[:number] = number.strip
     else
-      journal_issue_hash.delete(:number)
+      journal_issue_hash[:volume] = nil
     end
 
     if !journal_issue_hash.empty?
@@ -220,7 +220,7 @@ class AssociatedReferences
       else
         @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}, ocitat número #{@cite_number +1}",
                     "oiserial no contiene el año de publicación. Saltando cita...")
-        raise Exception.new("oiserial no contiene el año de publicación. Saltando ocitat #{@cite_number + 1}...")
+        # raise Excepmmmmmtion.new("oiserial no contiene el año de publicación. Saltando ocitat #{@cite_number + 1}...")
       end
 
       journal_issue = JournalIssue.new
@@ -260,7 +260,6 @@ class AssociatedReferences
     if match
       article_hash[:title] = match[2].to_s.strip
       language = Language.find_by_code(match[1].to_s)
-      #puts match[1].to_s if !language
 
       article_hash[:language_id] = language.id
 
@@ -272,13 +271,9 @@ class AssociatedReferences
 
       # Determine if it already exists (find by title and subtitle)
       article = Article.find(:first, :conditions => {:title => article_hash[:title], :subtitle => article_hash[:subtitle]})
-      # Determine if both where published in the same journal
-      
-      # Determine if both where published in the same volume
-
-      # Merge data with the journal and journal issue
-
-      
+      # TODO: Determine if both where published in the same journal
+      # TODO: Determine if both where published in the same volume
+        # TODO: Merge data with the journal and journal issue
 
       if article
         @logger.info( "Se encontro el articulo en la DB (Referencia): #{article.id}" )
@@ -308,7 +303,7 @@ class AssociatedReferences
       end
 
     else
-      @logger.error("El articulo de la referencia no tiene titulo")
+      @logger.error("Artículo Original #{@article_file_name} de la revista #{@journal_name}\n Articulo ref #{article_hash[:title]}","El articulo de la referencia no tiene titulo")
       article_hash.clear
       article = nil
     end
@@ -336,7 +331,9 @@ class AssociatedReferences
                       postgres?(" translate(lower(substring(firstname from 1 for 1) || substring(middlename from 1 for 1)),'ÁÉÍÓÚÑÜ','áéíóúñü')",
                                 " lower(substr(firstname,1,1) || substr(middlename,1,1))") +
                                 " LIKE ? )",
-                       last.mb_chars.downcase.strip, first.mb_chars.downcase, first.mb_chars[0,2].downcase
+                       last.mb_chars.downcase.tr('ÁÉÍÓÚÑÜ','áéíóúü').strip, 
+                       first.mb_chars.tr('ÁÉÍÓÚÑÜ','áéíóúü').downcase, 
+                       first.mb_chars[0,2].tr('ÁÉÍÓÚÑÜ','áéíóúü').downcase
                     ]
         
         if author
@@ -397,7 +394,7 @@ class AssociatedReferences
         @logger.error_message("Error al crear la relacion articulo-autor (Referencia)")
         @logger.pdf_report_error(@article_file_name, "Se trato de insertar al autor #{Author.find(author_id).as_human} dos veces en la referencia #{@cite_number}.")
         article_author.errors.each do |key, value|
-          @logger.error "Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}"
+          @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}")
         end
       end
     end
