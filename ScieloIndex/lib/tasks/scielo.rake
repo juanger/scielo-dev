@@ -4,7 +4,7 @@ namespace :scielo do
     
     desc "Runs the scielo migrator."
     task :run, [:opts] => :environment do |t,args|
-      if !(args.opts =~ /--only-new/)
+      if !(args.opts =~ /-o|--only-new/) && !(args.opts =~ /-h|--help/)
         Rake::Task["scielo:db:clean"].execute
       end
       

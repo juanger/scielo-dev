@@ -16,10 +16,8 @@ class AssociatedReferences
     match_vancouv = /\[vancouv.*?\](.*)\[\/vancouv\]/m.match(@back)
     if match_other
       @other = match_other[1]
-      #puts "\nDEBUG REF #{@cited_by_article_id}: #{@other}\n"
     elsif match_vancouv
       @vancouv = match_vancouv[1]
-      #puts "DEBUG REF #{@cited_by_article_id}: #{@vancouv}"
     else
       # Caso cuando no es ni other ni vancouv la cita.
     end
@@ -58,16 +56,21 @@ class AssociatedReferences
         ocontrib = match[1]
         @logger.debug("REF OCONTRIB: \n#{ocontrib}")
       end
-
+      # puts "OISERIAL: " + oiserial
       if oiserial && ocontrib
         # The Following breaks the DTD, but sometimes the date is
         # outside oiserial and appears in ocontrib
-        match =  /\[date dateiso="(.*?)"\](.*?)\[\/date\]/.match(ocontrib)
+        match = /\[date dateiso="(.*?)"\](.*?)\[\/date\]/.match(ocontrib)
         @year = match[2] if match
-        create_other_journal(oiserial)
-        create_other_journal_issue(oiserial)
-        @cite_count += 1
-        create_other_article(ocontrib)
+        begin
+          create_other_journal(oiserial)
+          create_other_journal_issue(oiserial)
+          @cite_count += 1
+          create_other_article(ocontrib)
+        rescue Exception => e
+          # Si hay una excepción, pásate a la siguiente referencia
+          next
+        end
       end
 
     end
@@ -78,58 +81,43 @@ class AssociatedReferences
   end
 
   def create_other_journal(serial)
-    journal_hash = {
-      :title => '',
-      :abbrev => ''
-    }
+    journal_hash = Hash.new
 
-    match = /\[sertitle\](.*)\[\/sertitle\]/.match(serial)
-    if match
+    if match = /\[sertitle\](.*)\[\/sertitle\]/.match(serial)
       title = match[1].to_s
       journal_hash[:title] = title
-    else
-      journal_hash.delete(:title)
     end
 
-    match = /\[stitle\](.*)\[\/stitle\]/.match(serial)
-    if match
+    if match = /\[stitle\](.*)\[\/stitle\]/.match(serial)
       abbrev = match[1].strip.to_s
       journal_hash[:abbrev] = abbrev
-    else
-      journal_hash.delete(:abbrev)
     end
 
-    if !journal_hash.empty?
+    unless journal_hash.empty?
       journal = Journal.find_by_title(journal_hash[:title], :first)
-      if journal.nil?
+      unless journal
         journal = Journal.find_by_abbrev(journal_hash[:abbrev], :first)
       end
-    else
-      journal = nil
     end
 
     @logger.debug("REF Journal Title: #{journal_hash[:title]}")
     @logger.debug("REF Journal Abbrev: #{journal_hash[:abbrev]}")
-    if !(journal.nil?)
+    if journal
       @logger.info( "Se encontro el journal en la DB (Referencia): #{journal.id}")
       @current_journal_id = journal.id
       @current_journal = journal.title
     else
-      @logger.info( "No se encontro el journal en la DB")
+      @logger.info("No se encontro el journal en la DB")
 
-      if !journal_hash[:title].nil?
-        journal_title = journal_hash[:title]
-        if !journal_hash[:abbrev].nil?
-          journal_abbrev = journal_hash[:abbrev]
-        else
-          journal_abbrev = nil
-        end
-      elsif !journal_hash[:abbrev].nil?
-          journal_title = journal_hash[:abbrev]
-          journal_abbrev = journal_hash[:abbrev]
-      else
+      journal_title = journal_hash[:title] if journal_hash[:title]
+      if journal_hash[:abbrev]
+        journal_title ||= journal_hash[:abbrev]
+        journal_abbrev = journal_hash[:abbrev]
+      end
+
+      if journal_hash.empty?
         #TODO: Crear un journal fantasma para agregar el articulo a el.
-        raise ArgumentError
+        raise ArgumentError.new("No se encontró el título ni la abreviación del journal")
       end
 
       journal = Journal.new
@@ -153,7 +141,7 @@ class AssociatedReferences
         @stats.add :journal_ref
       else
         @logger.error_message("Error al crear el journal de la referencia")
-        new_author.errors.each{ |key, value|
+        journal.errors.each{ |key, value|
           @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}", "#{key}: #{value}")
         }
       end
@@ -161,42 +149,39 @@ class AssociatedReferences
   end
 
   def create_other_journal_issue(serial)
-    journal_issue_hash = {
-      :journal_id => @current_journal_id,
-      :volume => '',
-      :number => '',
-      :year => ''
-    }
-    match = /\[date dateiso="(.*?)"\].*?\[\/date\]/.match(serial)
-    if match
+    journal_issue_hash = { :journal_id => @current_journal_id }
+
+    if match = /\[date dateiso="(.*?)"\].*?\[\/date\]/.match(serial)
       year = match[1].to_s
       journal_issue_hash[:year] = year.strip[0,4]
-    else
+    elsif @year
       journal_issue_hash[:year] = @year
     end
 
-    match = /\[volid\](.*?)\[\/volid\]/.match(serial)
-    if match
+    if match = /\[date dateiso="(.*?)"\].*?\[\/date\]/.match(serial)
       volume = match[1].to_s
       journal_issue_hash[:volume] = volume.strip
-    else
-      journal_issue_hash[:volume] = nil
     end
 
-    match = /\[issueno\](.*?)\[\/issueno\]/.match(serial)
-    if match
+    if match = /\[issueno\](.*?)\[\/issueno\]/.match(serial)
       number = match[1].to_s
       journal_issue_hash[:number] = number.strip
-    else
-      journal_issue_hash[:volume] = nil
     end
 
-    if !journal_issue_hash.empty?
-      journal_issue = JournalIssue.find(:first, :conditions => journal_issue_hash)
-    else
-      #BUG: entra aqui?? journal_issue_hash nunca es empty por el journal_id
+    # puts journal_issue_hash.inspect
+    journal_issues = JournalIssue.find(:all, :conditions => journal_issue_hash)
+    
+    case journal_issues.size
+    when 0
       journal_issue = nil
+    when 1
+      journal_issue = journal_issues.first
+    else
+      @logger.error("Condiciones insuficientes para encontrar un único journal_issue",
+                    journal_issue_hash.inspect)
+      raise Exception.new("Condiciones insuficientes para en contrar un único journal issue")
     end
+
 
     if !(journal_issue.nil?)
       @logger.info( "Se encontro el journal_issue en la DB (Referencia): #{journal_issue.id}")
@@ -204,15 +189,15 @@ class AssociatedReferences
     else
       @logger.info( "No se encontro el journal_issue en la DB")
 
-      if !journal_issue_hash[:year].nil?
+      if journal_issue_hash[:year]
         journal_issue_year = journal_issue_hash[:year]
-        if !journal_issue_hash[:volume].nil?
+        if journal_issue_hash[:volume]
           journal_issue_volume = journal_issue_hash[:volume]
         else
           journal_issue_volume = nil
         end
 
-        if !journal_issue_hash[:number].nil?
+        if journal_issue_hash[:number]
           journal_issue_number = journal_issue_hash[:number]
         else
           journal_issue_number = nil
@@ -220,7 +205,7 @@ class AssociatedReferences
       else
         @logger.error("Artículo #{@article_file_name} de la revista #{@journal_name}, ocitat número #{@cite_number +1}",
                     "oiserial no contiene el año de publicación. Saltando cita...")
-        # raise Excepmmmmmtion.new("oiserial no contiene el año de publicación. Saltando ocitat #{@cite_number + 1}...")
+        raise Exception.new("oiserial no contiene el año de publicación. Saltando ocitat #{@cite_number + 1}...")
       end
 
       journal_issue = JournalIssue.new
