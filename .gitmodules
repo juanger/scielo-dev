@@ -13,3 +13,6 @@
 [submodule "ScieloIndex/vendor/plugins/ezgraphix"]
 	path = ScieloIndex/vendor/plugins/ezgraphix
 	url = git://github.com/jpemberthy/ezgraphix.git
+[submodule "ScieloIndex/vendor/plugins/open_flash_chart_2"]
+	path = ScieloIndex/vendor/plugins/open_flash_chart_2
+	url = git://github.com/korin/open_flash_chart_2_plugin.git
